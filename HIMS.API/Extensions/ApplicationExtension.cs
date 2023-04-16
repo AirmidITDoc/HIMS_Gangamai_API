@@ -19,7 +19,7 @@ namespace HIMS.API.Extensions
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "HIMS V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "AIRMID HIMS V1");
                 //c.RoutePrefix = string.Empty;
             });
         }
