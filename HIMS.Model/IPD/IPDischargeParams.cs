@@ -25,7 +25,9 @@ namespace HIMS.Model.Opd
         public int DischargedDocId { get; set; }
         public int DischargedRMOID { get; set; }
 
-        public String Modeofdischarge { get; set; }
+      //  public String Modeofdischarge { get; set; }
+
+        public int UpdatedBy { get; set; }
         public int AddedBy { get; set; }
 
        
