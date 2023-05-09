@@ -59,8 +59,8 @@ namespace HIMS.Model.IPD
         // public int TalukaId { get; set; }
         // public float PatientWeight { get; set; }
         //  public string AreaName { get; set; }
-         public string AadharCardNo { get; set; }
-         public string PanCardNo { get; set; }
+         //public string AadharCardNo { get; set; }
+         //public string PanCardNo { get; set; }
     }
     //public class RegistrationUpdate
     //{

@@ -7,19 +7,16 @@ namespace HIMS.Model.Opd
    public  class OPbillingparams
     {
         public List<InsertPathologyReportHeader> InsertPathologyReportHeader { get; set; }
-
         public List<InsertRadiologyReportHeader> InsertRadiologyReportHeader { get; set; }
-        public  InsertBillupdatewithbillno InsertBillupdatewithbillno { get; set; }
-
+        public InsertBillupdatewithbillno InsertBillupdatewithbillno { get; set; }
         public List<OpBillDetailsInsert> OpBillDetailsInsert { get; set; }
-        
-     //  public OPoctorShareGroupAdmChargeDoc OPoctorShareGroupAdmChargeDoc { get; set; }
-        
+
+        //  public OPoctorShareGroupAdmChargeDoc OPoctorShareGroupAdmChargeDoc { get; set; }
+
         public OPCalDiscAmountBill OPCalDiscAmountBill { get; set; }
-       
         public OPInsertPayment OPInsertPayment { get; set; }
     }
-   
+
     public class InsertPathologyReportHeader
     {
         public DateTime PathDate { get; set; }
@@ -51,7 +48,7 @@ namespace HIMS.Model.Opd
     }
     public class InsertBillupdatewithbillno
     {
-       // public int BillNo { get; set; }
+        public int BillNo { get; set; }
         public int OPD_IPD_ID { get; set; }
         public float TotalAmt { get; set; }
         public float ConcessionAmt { get; set; }
@@ -75,7 +72,9 @@ namespace HIMS.Model.Opd
         public int ConcessionAuthorizationName { get; set; }
         public float TaxPer { get; set; }
         public float TaxAmount { get; set; }
-        public int CompDiscAmt { get; set; }
+        //  public int CompDiscAmt { get; set; }
+        public int CashCounterId { get; set; }
+
         public string DiscComments { get; set; }
     }
 
@@ -84,24 +83,24 @@ namespace HIMS.Model.Opd
         public int BillNo { get; set; }
         public int ChargesId { get; set; }
 
-       // public int BillDetailId { get; set; }
+        // public int BillDetailId { get; set; }
     }
-   
-   
+
+
 
     public class OPoctorShareGroupAdmChargeDoc
     {
         public int BillNo { get; set; }
 
     }
-  
+
     public class OPCalDiscAmountBill
     {
         public int BillNo { get; set; }
 
     }
 
-   
+
     public class OPInsertPayment
     {
         // public int PaymentId { get; set; }
