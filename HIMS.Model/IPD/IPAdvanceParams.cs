@@ -50,6 +50,8 @@ namespace HIMS.Model.IPD
         public Boolean IsCancelled { get; set; }
         public int IsCancelledBy { get; set; }
         public DateTime IsCancelledDate { get; set; }
+
+        public int CashCounterId { get; set; }
         public string Reason { get; set; }
  
     }
