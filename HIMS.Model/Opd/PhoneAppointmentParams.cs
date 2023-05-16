@@ -28,7 +28,6 @@ namespace HIMS.Model.Transaction
         public long DepartmentId { get; set; }
         public long DoctorId { get; set; }
         public long AddedBy { get; set; }
-
         public long UpdatedBy { get; set; }
         /*  public Boolean IsCancelled { get; set; }
          public int IsCancelledBy { get; set; }

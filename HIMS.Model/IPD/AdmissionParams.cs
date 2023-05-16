@@ -59,8 +59,8 @@ namespace HIMS.Model.IPD
         // public int TalukaId { get; set; }
         // public float PatientWeight { get; set; }
         //  public string AreaName { get; set; }
-       //  public string AadharCardNo { get; set; }
-        // public string PanCardNo { get; set; }
+         //public string AadharCardNo { get; set; }
+         //public string PanCardNo { get; set; }
     }
     //public class RegistrationUpdate
     //{
@@ -136,8 +136,6 @@ namespace HIMS.Model.IPD
         public int PolicyNo { get; set; }
         public float AprovAmount { get; set; }
         public DateTime CompDOD { get; set; }
-
-        public bool IsPackagePatient { get; set; }
         //  public int IsPharClearUserId { get; set; }
         //  public DateTime PharDateTime { get; set; }
         // public string Comments { get; set; }
@@ -169,7 +167,7 @@ namespace HIMS.Model.IPD
         public int RefByTypeId { get; set; }
         public int RefByName { get; set; }
         public int isUpdatedBy { get; set; }
-        public bool IsPackagePatient { get; set; }
+
         public int SubTpaComId { get; set; }
     }
     public class IpSMSTemplateInsert
