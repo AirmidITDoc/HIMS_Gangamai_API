@@ -12,11 +12,11 @@ namespace HIMS.Data.Master.PersonalDetails
         {
             //transaction and connection is open when you inject unitofwork
         }
-
+        
         public bool Update(CityMasterParams CityMasterParams)
         {
             var disc1 = CityMasterParams.CityMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_CityMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_M_CityMaster_1", disc1);
             //commit transaction
             _unitofWork.SaveChanges();
             return true;
@@ -26,7 +26,7 @@ namespace HIMS.Data.Master.PersonalDetails
         {
             // throw new NotImplementedException();
             var disc = CityMasterParams.CityMasterInsert.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_CityMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_M_CityMaster_1", disc);
             //commit transaction
             _unitofWork.SaveChanges();
             return true;

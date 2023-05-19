@@ -23,7 +23,7 @@ namespace HIMS.Model.Master.PersonalDetails
     public class TalukaMasterUpdate
     {
 
-        public int TalukaID { get; set; }
+        public int TalukaId { get; set; }
         public String TalukaName { get; set; }
         public int CityId { get; set; }
         public bool IsDeleted { get; set; }

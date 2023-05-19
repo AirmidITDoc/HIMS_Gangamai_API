@@ -13,16 +13,16 @@ namespace HIMS.Model.Master.PersonalDetails
 
     public class CountryMasterInsert
     {
-        public String CountryName { get; set; }
+        public String CountryName_1 { get; set; }
         public int AddedBy { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted_2 { get; set; }
 
     }
 
     public class CountryMasterUpdate
     {
 
-        public int CountryID { get; set; }
+        public int CountryId { get; set; }
         public String CountryName { get; set; }
         public bool IsDeleted { get; set; }
         public int UpdatedBy { get; set; }

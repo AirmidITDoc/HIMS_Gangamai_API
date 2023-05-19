@@ -14,16 +14,16 @@ namespace HIMS.Model.Master.PersonalDetails
     public class GenderMasterInsert
     {
         public String GenderName { get; set; }
-        public int AddedBy { get; set; }
-        public bool IsDeleted { get; set; }
+      //  public int AddedBy { get; set; }
+        public bool IsActive { get; set; }
     }
 
     public class GenderMasterUpdate
     {
-        public int GenderID { get; set; }
+        public int GenderId { get; set; }
         public String GenderName { get; set; }
-        public bool IsDeleted { get; set; }
-        public int UpdatedBy { get; set; }
+        public bool IsActive { get; set; }
+      //  public int UpdatedBy { get; set; }
     }
 }
 

@@ -36,7 +36,7 @@ namespace HIMS.Data.Master.Billing
             {
                 var d = a.ToDictionary();
                 d["ServiceId"] = ServiceId;
-                ExecNonQueryProcWithOutSaveChanges("ps_Insert_ServiceDetail_1", d);
+                ExecNonQueryProcWithOutSaveChanges("insert_ServiceDetail_1", d);
 
             }
             _unitofWork.SaveChanges();
@@ -48,7 +48,7 @@ namespace HIMS.Data.Master.Billing
 
             //Update Service
             var dic = ServiceMasterParams.ServiceMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_ServiceMaster_1", dic);
+            ExecNonQueryProcWithOutSaveChanges("update_ServiceMaster_1", dic);
 
             //Delete Service Details
             var S_Det = ServiceMasterParams.ServiceDetDelete.ToDictionary();
@@ -58,7 +58,7 @@ namespace HIMS.Data.Master.Billing
             foreach (var a in ServiceMasterParams.ServiceDetailInsert)
             {
                 var disc = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("ps_Insert_ServiceDetail_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("insert_ServiceDetail_1", disc);
             }
 
             _unitofWork.SaveChanges();

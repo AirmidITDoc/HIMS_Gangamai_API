@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.Billing
         public bool Update(CashCounterMasterParams CashCounterMasterParams)
         {
             var disc1 = CashCounterMasterParams.CashCounterMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_CashCounterMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_CashCounter_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.Billing
             // throw new NotImplementedException();
             var disc = CashCounterMasterParams.CashCounterMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_CashCounterMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_CashCounter_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

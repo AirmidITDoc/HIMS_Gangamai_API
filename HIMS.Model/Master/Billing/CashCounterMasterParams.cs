@@ -24,7 +24,7 @@ namespace HIMS.Model.Master.Billing
     public class CashCounterMasterUpdate
     {
 
-        public int CashCounterID { get; set; }
+        public int CashCounterId { get; set; }
         public String CashCounterName { get; set; }
         public String Prefix { get; set; }
         public String BillNo { get; set; }

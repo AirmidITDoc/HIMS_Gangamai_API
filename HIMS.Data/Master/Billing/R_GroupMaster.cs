@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.Billing
         public bool Update(GroupMasterParams GroupMasterParams)
         {
             var disc1 = GroupMasterParams.GroupMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_GroupMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_GroupMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.Billing
             // throw new NotImplementedException();
             var disc = GroupMasterParams.GroupMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_GroupMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_GroupMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

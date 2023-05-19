@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.PersonalDetails
         public bool Update(AreaMasterParams AreaMasterParams)
         {
             var disc1 = AreaMasterParams.AreaMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_AreaMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_AreaMaster_1", disc1);
             //commit transaction
             _unitofWork.SaveChanges();
             return true;
@@ -26,7 +26,7 @@ namespace HIMS.Data.Master.PersonalDetails
         {
             // throw new NotImplementedException();
             var disc = AreaMasterParams.AreaMasterInsert.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_AreaMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_AreaMaster_1", disc);
             //commit transaction
             _unitofWork.SaveChanges();
             return true;

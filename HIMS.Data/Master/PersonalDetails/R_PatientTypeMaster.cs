@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.PersonalDetails
         public bool Update(PatientTypeMasterParams PatientTypeMasterParams)
         {
             var disc1 = PatientTypeMasterParams.PatientTypeMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_PatientTypeMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("Update_M_PatientTypeMaster", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.PersonalDetails
             // throw new NotImplementedException();
             var disc = PatientTypeMasterParams.PatientTypeMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_PatientTypeMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_PatientTypeMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

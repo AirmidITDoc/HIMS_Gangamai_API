@@ -19,7 +19,7 @@ namespace HIMS.Data.Master.DoctorMaster
         public bool Update(DoctorMasterParams DoctorMasterParams)
         {
             var disc1 = DoctorMasterParams.UpdateDoctorMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_DoctorMaster_1", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_DoctorMaster_1", disc1);
             
 
             var D_Det = DoctorMasterParams.DeleteAssignDoctorToDepartment.ToDictionary();
@@ -29,7 +29,7 @@ namespace HIMS.Data.Master.DoctorMaster
             foreach (var a in DoctorMasterParams.AssignDoctorDepartmentDet)
             {
                 var disc = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_DoctorDepartmentDet_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("Insert_M_DoctorDepartmentDet_1", disc);
             }
             //commit transaction
             _unitofWork.SaveChanges();

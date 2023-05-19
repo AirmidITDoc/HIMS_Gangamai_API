@@ -17,7 +17,7 @@ namespace HIMS.Data.Master.PersonalDetails
         {
             //throw new NotImplementedException();
             var disc1 = RelationshipMasterParams.RelationshipMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_RelationshipMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_RelationshipMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -29,7 +29,7 @@ namespace HIMS.Data.Master.PersonalDetails
             //throw new NotImplementedException();
             var disc = RelationshipMasterParams.RelationshipMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_RelationshipMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_RelationshipMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

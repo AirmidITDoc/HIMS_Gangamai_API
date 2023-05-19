@@ -13,9 +13,9 @@ namespace HIMS.Model.Master.PersonalDetails
 
     public class RelationshipMasterInsert
     {
-        public String RelationshipName { get; set; }
+        public String RelationshipName_1 { get; set; }
         public int AddedBy { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted_2 { get; set; }
     }
 
     public class RelationshipMasterUpdate

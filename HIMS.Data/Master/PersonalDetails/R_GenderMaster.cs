@@ -17,7 +17,7 @@ namespace HIMS.Data.Master.PersonalDetails
         {
             //throw new NotImplementedException();
             var disc1 = GenderMasterParams.GenderMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_GenderMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_GenderMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -29,7 +29,7 @@ namespace HIMS.Data.Master.PersonalDetails
             //throw new NotImplementedException();
             var disc = GenderMasterParams.GenderMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_GenderMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_GenderMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

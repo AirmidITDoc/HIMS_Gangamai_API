@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.Billing
         public bool Update(TariffMasterParams TariffMasterParams)
         {
             var disc1 = TariffMasterParams.TariffMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_TariffMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_TariffMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.Billing
             // throw new NotImplementedException();
             var disc = TariffMasterParams.TariffMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_TariffMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_TariffMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

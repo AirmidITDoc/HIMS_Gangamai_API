@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.Billing
         public bool Update(ClassMasterParams ClassMasterParams)
         {
             var disc1 = ClassMasterParams.ClassMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_ClassMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_ClassMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.Billing
             // throw new NotImplementedException();
             var disc = ClassMasterParams.ClassMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_ClassMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_ClassMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

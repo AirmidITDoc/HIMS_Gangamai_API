@@ -17,7 +17,7 @@ namespace HIMS.Data.Master.PersonalDetails
         public bool Update(CountryMasterParams CountryMasterParams)
         {
             var disc1 = CountryMasterParams.CountryMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_CountryMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_CountryMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -29,7 +29,7 @@ namespace HIMS.Data.Master.PersonalDetails
             // throw new NotImplementedException();
             var disc = CountryMasterParams.CountryMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_CountryMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_CountryMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

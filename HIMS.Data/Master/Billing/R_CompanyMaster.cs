@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.Billing
         public bool Update(CompanyMasterParams CompanyMasterParams)
         {
             var disc1 = CompanyMasterParams.CompanyMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_CompanyMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("Update_CompanyMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.Billing
             // throw new NotImplementedException();
             var disc = CompanyMasterParams.CompanyMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_CompanyMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("Insert_CompanyMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

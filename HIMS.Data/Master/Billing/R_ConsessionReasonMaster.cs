@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.Billing
         public bool Update(ConsessionReasonMasterParams ConsessionReasonMasterParams)
         {
             var disc1 = ConsessionReasonMasterParams.ConsessionReasonMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_ConcessionReasonMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_ConcessionReasonMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.Billing
             // throw new NotImplementedException();
             var disc = ConsessionReasonMasterParams.ConsessionReasonMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_ConcessionReasonMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_ConcessionReasonMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

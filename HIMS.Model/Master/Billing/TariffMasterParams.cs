@@ -14,17 +14,16 @@ namespace HIMS.Model.Master.Billing
     public class TariffMasterInsert
     {
         public String TariffName { get; set; }
-        public int AddedBy { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
 
     }
 
     public class TariffMasterUpdate
     {
-        public int TariffID { get; set; }
+        public int TariffId { get; set; }
         public String TariffName { get; set; }
-        public Boolean IsDeleted { get; set; }
-        public int UpdatedBy { get; set; }
+        public Boolean IsActive { get; set; }
+        
     }
 }
 

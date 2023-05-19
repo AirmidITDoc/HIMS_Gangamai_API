@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.PersonalDetails
         public bool Update(MaritalStatusMasterParams MaritalStatusMasterParams)
         {
             var disc1 = MaritalStatusMasterParams.MaritalStatusMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_MaritalStatusMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_MaritalStatusMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.PersonalDetails
             // throw new NotImplementedException();
             var disc = MaritalStatusMasterParams.MaritalStatusMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_MaritalStatusMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_MaritalStatusMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

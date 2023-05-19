@@ -22,7 +22,7 @@ namespace HIMS.Model.Master.PersonalDetails
     public class MaritalStatusMasterUpdate
     {
 
-        public int MaritalStatusID { get; set; }
+        public int MaritalStatusId { get; set; }
         public String MaritalStatusName { get; set; }
         public bool IsDeleted { get; set; }
         public int UpdatedBy { get; set; }

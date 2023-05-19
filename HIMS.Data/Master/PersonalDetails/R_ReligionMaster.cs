@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.PersonalDetails
         public bool Update(ReligionMasterParams ReligionMasterParams)
         {
             var disc1 = ReligionMasterParams.ReligionMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_ReligionMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("Update_M_ReligionMaster", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.PersonalDetails
             // throw new NotImplementedException();
             var disc = ReligionMasterParams.ReligionMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_ReligionMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_ReligionMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

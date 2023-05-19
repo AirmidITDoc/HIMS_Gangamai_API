@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.PersonalDetails
         public bool Update(TalukaMasterParams TalukaMasterParams)
         {
             var disc1 = TalukaMasterParams.TalukaMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_TalukaMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_M_TalukaMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.PersonalDetails
             // throw new NotImplementedException();
             var disc = TalukaMasterParams.TalukaMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_TalukaMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_M_TalukaMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

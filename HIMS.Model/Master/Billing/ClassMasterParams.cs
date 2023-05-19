@@ -14,18 +14,17 @@ namespace HIMS.Model.Master.Billing
     public class ClassMasterInsert
     {
         public String ClassName { get; set; }
-        public int AddedBy { get; set; }
-        public Boolean IsDeleted { get; set; }
+        public Boolean IsActive { get; set; }
 
     }
 
     public class ClassMasterUpdate
     {
 
-        public int ClassID { get; set; }
+        public int ClassId { get; set; }
         public String ClassName { get; set; }
-        public Boolean IsDeleted { get; set; }
-        public int UpdatedBy { get; set; }
+        public Boolean IsActive { get; set; }
+        
     }
 }
 

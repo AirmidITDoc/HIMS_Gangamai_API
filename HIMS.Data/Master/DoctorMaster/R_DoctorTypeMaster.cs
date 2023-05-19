@@ -17,7 +17,7 @@ namespace HIMS.Data.Master.DoctorMaster
         public bool Update(Model.Master.DoctorMaster.DoctorTypeMasterParams DoctorTypeMasterParams)
         {
             var disc1 = DoctorTypeMasterParams.DoctorTypeMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_DoctorTypeMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_DoctorTypeMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -29,7 +29,7 @@ namespace HIMS.Data.Master.DoctorMaster
             // throw new NotImplementedException();
             var disc = DoctorTypeMasterParams.DoctortTypeMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_DoctorTypeMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_DoctorTypeMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();
