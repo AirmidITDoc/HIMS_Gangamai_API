@@ -139,7 +139,7 @@ namespace HIMS.Model.IPD
   
     public class AdmissionNewUpdate
     {
-        public int AdmissionID { get; set; }
+        public int AdmissionId { get; set; }
 
         public DateTime AdmissionDate { get; set; }
         public DateTime AdmissionTime { get; set; }
@@ -164,6 +164,8 @@ namespace HIMS.Model.IPD
         public int isUpdatedBy { get; set; }
 
         public int SubTpaComId { get; set; }
+
+        public bool IsPackagePatient { get; set; }
     }
     public class IpSMSTemplateInsert
     {
