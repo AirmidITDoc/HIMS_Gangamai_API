@@ -78,7 +78,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<IComboboxRepository, ComboboxRepository>();
             services.AddTransient<IBrowseBillRepository, BrowseBillRepository>();
             services.AddTransient<I_LoginManager, R_LoginManager>();
-            //services.AddTransient<I_BankMaster, R_BankMaster>();
+            services.AddTransient<I_BankMaster, R_BankMaster>();
+            services.AddTransient<I_SubGroupMaster, R_SubGroupMaster>();
            // services.AddTransient<I_BillingClassMaster, R_BillingClassMaster>();
             services.AddTransient<I_CountryMaster, R_CountryMaster>();
             services.AddTransient<I_OpdAppointmentList, R_OpdAppointmentList>();
@@ -158,8 +159,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_IPDDischargeSummary, R_IPDDischargeSummary>();
             services.AddTransient<I_IPRefundofAdvance, R_IPRefundofAdvance>();
             services.AddTransient<I_IPRefundofBilll, R_IPRefundofBilll>();
-          //  services.AddTransient<I_IPBilling, R_IPBilling>();
-           // services.AddTransient<I_IPInterimBill, R_IPInterimBill>();
+            services.AddTransient<I_TariffMaster,R_TariffMaster>();
+            services.AddTransient<I_SubTpaCompanyMaster, R_SubTpaCompanyMaster>();
 
             services.AddTransient<I_IPDEmergency,R_IPDEmergency>();
             services.AddTransient<I_MLCInfo, R_MLCInfo>();

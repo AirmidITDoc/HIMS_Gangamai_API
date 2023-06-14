@@ -13,6 +13,7 @@ namespace HIMS.Model.Master.Billing
 
     public class BankMasterInsert
     {
+       
         public String BankName { get; set; }
         public int AddedBy { get; set; }
         public Boolean IsDeleted { get; set; }

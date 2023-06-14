@@ -15,7 +15,8 @@ namespace HIMS.Model.Master.Billing
     }
 
     public class ServiceMasterInsert
-    {     
+    {
+       
         public int GroupId { get; set; } 
         public String ServiceShortDesc { get; set; }
         public String ServiceName { get; set; }
@@ -24,7 +25,7 @@ namespace HIMS.Model.Master.Billing
         public Boolean CreditedtoDoctor { get; set; }
         public int IsPathology { get; set; }
         public int IsRadiology { get; set; }
-        public Boolean IsDeleted { get; set; }
+        public Boolean IsActive { get; set; }
         public int PrintOrder { get; set; }
         public int IsPackage { get; set; }
         public int SubgroupId { get; set; }
@@ -67,7 +68,7 @@ namespace HIMS.Model.Master.Billing
         public Boolean CreditedtoDoctor { get; set; }
         public int IsPathology { get; set; }
         public int IsRadiology { get; set; }
-        public Boolean IsDeleted { get; set; }
+        public Boolean IsActive { get; set; }
         public int PrintOrder { get; set; }
         public int IsPackage { get; set; }
         public int SubgroupId { get; set; }
