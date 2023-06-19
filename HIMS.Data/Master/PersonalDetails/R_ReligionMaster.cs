@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.PersonalDetails
         public bool Update(ReligionMasterParams ReligionMasterParams)
         {
             var disc1 = ReligionMasterParams.ReligionMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Update_M_ReligionMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_ReligionMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
