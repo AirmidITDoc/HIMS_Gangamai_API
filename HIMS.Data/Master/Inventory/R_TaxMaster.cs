@@ -16,14 +16,14 @@ namespace HIMS.Data.Master.Inventory
         public bool Update(TaxMasterParams taxMasterParams)
         {
             var disc = taxMasterParams.UpdateTaxMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_TaxNatureMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("update_TaxNature_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
         public bool Insert(TaxMasterParams taxMasterParams)
         {
             var disc = taxMasterParams.InsertTaxMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_TaxNatureMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_TaxNature_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }

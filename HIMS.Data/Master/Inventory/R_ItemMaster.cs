@@ -20,15 +20,15 @@ namespace HIMS.Data.Master.Inventory
         public bool Update(ItemMasterParams itemMasterParams)
         {
             var disc1 = itemMasterParams.UpdateItemMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_ItemMaster_1", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_ItemMaster_1", disc1);
 
             var D_Det = itemMasterParams.DeleteAssignItemToStore.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Delete_AssignItemtoStore", D_Det);
+            ExecNonQueryProcWithOutSaveChanges("Delete_AssignItemtoStore", D_Det);
 
             foreach (var a in itemMasterParams.InsertAssignItemToStore)
             {
                 var disc = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_assignItemToStore", disc);
+                ExecNonQueryProcWithOutSaveChanges("insert_M_assignItemToStore_1", disc);
             }
 
             _unitofWork.SaveChanges();
@@ -52,7 +52,7 @@ namespace HIMS.Data.Master.Inventory
             {
                 var disc = a.ToDictionary();
                 disc["ItemId"] = itemId;
-                ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_assignItemToStore_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("insert_M_assignItemToStore_1", disc);
             }
 
             _unitofWork.SaveChanges();

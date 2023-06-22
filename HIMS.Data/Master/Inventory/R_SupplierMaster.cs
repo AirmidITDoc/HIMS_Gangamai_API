@@ -20,15 +20,15 @@ namespace HIMS.Data.Master.Inventory
         public bool Update(SupplierMasterParams supplierMasterParams)
         {
             var disc1 = supplierMasterParams.UpdateSupplierMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_SupplierMaster_1", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_SupplierMaster_1", disc1);
 
             var D_Det = supplierMasterParams.DeleteAssignSupplierToStore.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Delete_AssignSuppliertoStore", D_Det);
+            ExecNonQueryProcWithOutSaveChanges("Delete_AssignSuppliertoStore", D_Det);
 
             foreach (var a in supplierMasterParams.InsertAssignSupplierToStore)
             {
                 var disc = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_AssignSupplierToStore_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("insert_M_AssignSupplierToStore_1", disc);
             }
 
             _unitofWork.SaveChanges();
@@ -47,7 +47,7 @@ namespace HIMS.Data.Master.Inventory
             };
             var disc1 = supplierMasterParams.InsertSupplierMaster.ToDictionary();
             disc1.Remove("SupplierId");
-            var supplierId = ExecNonQueryProcWithOutSaveChanges("ps_Insert_SupplierMaster_1_New", disc1, outputId);
+            var supplierId = ExecNonQueryProcWithOutSaveChanges("Insert_SupplierMaster_1_New", disc1, outputId);
 
             //add SupplierDetails
 
@@ -55,7 +55,7 @@ namespace HIMS.Data.Master.Inventory
             {
                 var disc = a.ToDictionary();
                 disc["SupplierId"] = supplierId;
-                ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_AssignSupplierToStore_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("insert_M_AssignSupplierToStore_1", disc);
             }
 
             _unitofWork.SaveChanges();
