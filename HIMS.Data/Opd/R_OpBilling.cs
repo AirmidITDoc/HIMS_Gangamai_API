@@ -74,9 +74,9 @@ namespace HIMS.Data.Opd
           //new  ExecNonQueryProcWithOutSaveChanges("ps_OP_Doctor_Share_Group_Adm_ChargeDoc_1", disc4);
 
 
-            var disc6 = OPbillingparams.OPCalDiscAmountBill.ToDictionary();
-            disc6["BillNo"] = (int)Convert.ToInt64(BillNo);
-            ExecNonQueryProcWithOutSaveChanges("Cal_DiscAmount_OPBill", disc6);
+            //var disc6 = OPbillingparams.OPCalDiscAmountBill.ToDictionary();
+            //disc6["BillNo"] = (int)Convert.ToInt64(BillNo);
+            //ExecNonQueryProcWithOutSaveChanges("Cal_DiscAmount_OPBill", disc6);
 
             //IPBillingParams.BillDetailsInsert.BillNo = (int)Convert.ToInt64(BillNo);
             var disc7 = OPbillingparams.OPInsertPayment.ToDictionary();
