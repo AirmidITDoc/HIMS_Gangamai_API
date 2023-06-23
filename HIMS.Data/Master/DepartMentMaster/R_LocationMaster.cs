@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.DepartMentMaster
         public bool Update(LocationMasterParams LocationMasterParams)
         {
             var disc1 = LocationMasterParams.LocationMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_LocationMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_LocationMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.DepartMentMaster
             // throw new NotImplementedException();
             var disc = LocationMasterParams.LocationMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_LocationMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_LocationMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

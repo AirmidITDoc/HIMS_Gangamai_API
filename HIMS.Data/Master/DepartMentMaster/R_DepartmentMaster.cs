@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.DepartMentMaster
         public bool Update(DepartmentMasterParams DepartmentMasterParams)
         {
             var disc1 = DepartmentMasterParams.DepartmentMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_DepartmentMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_DepartmentMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.DepartMentMaster
             // throw new NotImplementedException();
             var disc = DepartmentMasterParams.DepartmentMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_DepartmentMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_DepartmentMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

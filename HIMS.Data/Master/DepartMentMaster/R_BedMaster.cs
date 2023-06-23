@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.DepartMentMaster
         public bool Update(BedMasterParams BedMasterParams)
         {
             var disc1 = BedMasterParams.BedMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_BedMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_BedMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.DepartMentMaster
             // throw new NotImplementedException();
             var disc = BedMasterParams.BedMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_BedMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_BedMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

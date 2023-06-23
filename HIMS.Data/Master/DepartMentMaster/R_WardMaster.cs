@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.DepartMentMaster
         public bool Update(WardMasterParams WardMasterParams)
         {
             var disc1 = WardMasterParams.WardMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_WardMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_RoomMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.DepartMentMaster
             // throw new NotImplementedException();
             var disc = WardMasterParams.WardMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_WardMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_RoomMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();
