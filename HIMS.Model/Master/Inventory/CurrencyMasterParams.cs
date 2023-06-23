@@ -15,7 +15,8 @@ namespace HIMS.Model.Master.Inventory
          public string CurrencyName { get; set; }
         public Boolean IsDeleted { get; set;}
         public long AddedBy { get; set; }
-        
+        public long UpdatedBy { get; set; }
+
     }
 
     public class UpdateCurrencyMaster

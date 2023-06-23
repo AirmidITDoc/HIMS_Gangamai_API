@@ -18,7 +18,6 @@ namespace HIMS.Model.Master.DepartmenMaster
         public int RoomType { get; set; }
         public int LocationId { get; set; }
         public bool IsAvailable { get; set; }
-        public int AddedBy { get; set; }
         public bool IsDeleted { get; set; }
         public int ClassId { get; set; }
 
@@ -31,9 +30,7 @@ namespace HIMS.Model.Master.DepartmenMaster
         public String RoomName { get; set; }
         public int RoomType { get; set; }
         public int LocationId { get; set; }
-        public bool IsAvailable { get; set; }
         public bool IsDeleted { get; set; }
-        public int UpdatedBy { get; set; }
         public int ClassId { get; set; }
     }
 }

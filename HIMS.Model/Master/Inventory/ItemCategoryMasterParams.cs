@@ -11,6 +11,7 @@
         public string ItemCategoryName { get; set; }
         public bool IsDeleted { get; set; }
         public long AddedBy { get; set; }
+        public long UpdatedBy { get; set; }
         public long ItemTypeId { get; set; }
     }
 

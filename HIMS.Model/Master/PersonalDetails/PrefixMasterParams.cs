@@ -15,7 +15,6 @@ namespace HIMS.Model.Master.PersonalDetails
     {
         public String PrefixName { get; set; }
         public int SexID { get; set; }
-        public int AddedBy { get; set; }
         public bool IsDeleted { get; set; }
     }
 
@@ -26,7 +25,7 @@ namespace HIMS.Model.Master.PersonalDetails
         public String PrefixName { get; set; }
         public int SexID { get; set; }
         public bool IsDeleted { get; set; }
-        public int UpdatedBy { get; set; }
+     
     }
 }
 

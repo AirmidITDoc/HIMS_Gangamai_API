@@ -14,7 +14,6 @@ namespace HIMS.Model.Master.PersonalDetails
     public class PatientTypeMasterInsert
     {
         public String PatientType { get; set; }
-        public int AddedBy { get; set; }
         public bool IsDeleted { get; set; }
 
        
@@ -26,7 +25,7 @@ namespace HIMS.Model.Master.PersonalDetails
         public int PatientTypeID { get; set; }
         public String PatientType { get; set; }
         public bool IsDeleted { get; set; }
-        public int UpdatedBy { get; set; }
+      
     }
 }
 

@@ -14,8 +14,9 @@ namespace HIMS.Model.Master.DepartmenMaster
     public class DepartmentMasterInsert
     {
         public String DepartmentName { get; set; }
-        public int AddedBy { get; set; }
         public bool IsDeleted { get; set; }
+        public int AddedBy { get; set; }
+        public int UpdatedBy { get; set; }
 
     }
 

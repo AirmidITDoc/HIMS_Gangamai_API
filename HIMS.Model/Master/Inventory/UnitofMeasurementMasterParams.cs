@@ -16,6 +16,7 @@ namespace HIMS.Model.Master.Inventory
         public string UnitofMeasurementName { get; set; }
         public bool IsDeleted { get; set; }
         public long AddedBy { get; set; }
+        public long UpdatedBy { get; set; }
 
     }
 

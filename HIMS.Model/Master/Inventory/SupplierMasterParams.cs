@@ -14,7 +14,7 @@ namespace HIMS.Model.Master.Inventory
     }
     public class InsertSupplierMaster
     {
-        public int SupplierId { get; set; }
+       
         public string SupplierName { get; set; }
         public string ContactPerson { get; set; }
         public string Address { get; set; }
@@ -28,13 +28,15 @@ namespace HIMS.Model.Master.Inventory
         public string Email { get; set; }
         public int ModeOfPayment { get; set; }
         public int TermOfPayment { get; set; }
-        public int TaxNature { get; set; }
+
+      //  public int TaxNature { get; set; }
         public int CurrencyId { get; set; }
         public int Octroi { get; set; }
         public int Freight { get; set; }
         public bool IsDeleted { get; set; }
         public int AddedBy { get; set; }
         public string GSTNo { get; set; }
+        public int SupplierId { get; set; }
         public string PanNo { get; set; }
     }
     public class UpdateSupplierMaster
@@ -53,7 +55,7 @@ namespace HIMS.Model.Master.Inventory
         public string Email { get; set; }
         public int ModeOfPayment { get; set; }
         public int TermOfPayment { get; set; }
-        public int TaxNature { get; set; }
+       // public int TaxNature { get; set; }
         public int CurrencyId { get; set; }
         public int Octroi { get; set; }
         public int Freight { get; set; }

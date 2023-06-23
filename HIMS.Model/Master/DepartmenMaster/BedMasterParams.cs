@@ -17,7 +17,7 @@ namespace HIMS.Model.Master.DepartmenMaster
         public String BedName { get; set; }
         public int RoomId { get; set; }
         public bool IsAvailable { get; set; }
-        public int AddedBy { get; set; }
+       
         public bool IsDeleted { get; set; }
 
     }
@@ -28,9 +28,9 @@ namespace HIMS.Model.Master.DepartmenMaster
         public int BedID { get; set; }
         public String BedName { get; set; }
         public int RoomId { get; set; }
-        public bool IsAvailable { get; set; }
+       
         public bool IsDeleted { get; set; }
-        public int UpdatedBy { get; set; }
+       
     }
 }
 

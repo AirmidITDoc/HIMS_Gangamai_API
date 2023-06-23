@@ -14,7 +14,6 @@ namespace HIMS.Model.Master.DepartmenMaster
     public class LocationMasterInsert
     {
         public String LocationName { get; set; }
-        public int AddedBy { get; set; }
         public bool IsDeleted { get; set; }
 
     }
@@ -24,6 +23,6 @@ namespace HIMS.Model.Master.DepartmenMaster
         public int LocationID { get; set; }
         public String LocationName { get; set; }
         public bool IsDeleted { get; set; }
-        public int UpdatedBy { get; set; }
+       
     }
 }
