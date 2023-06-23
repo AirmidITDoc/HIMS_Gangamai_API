@@ -21,8 +21,9 @@ namespace HIMS.Model.Master.Billing
         public String PhoneNo { get; set; }
         public String MobileNo { get; set; }
         public String FaxNo { get; set; }
+        public Boolean IsActive { get; set; }
         public int AddedBy { get; set; }
-        public Boolean IsDeleted { get; set; }
+        public int UpdatedBy { get; set; }
         public Boolean IsCancelled { get; set; }
         public int IsCancelledBy { get; set; }
         public DateTime IsCancelledDate { get; set; }
@@ -40,8 +41,9 @@ namespace HIMS.Model.Master.Billing
         public String PhoneNo { get; set; }
         public String MobileNo { get; set; }
         public String FaxNo { get; set; }
+        public Boolean IsActive { get; set; }
+        public int AddedBy { get; set; }
         public int UpdatedBy { get; set; }
-        public Boolean IsDeleted { get; set; }
         public Boolean IsCancelled { get; set; }
         public int IsCancelledBy { get; set; }
         public DateTime IsCancelledDate { get; set; }

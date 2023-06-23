@@ -16,14 +16,14 @@ namespace HIMS.Data.Master.Inventory
         public bool Update(ItemClassMasterParams itemClassMasterParams)
         {
             var disc = itemClassMasterParams.UpdateItemClassMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_ItemClassMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("update_ItemClassMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
         public bool Insert(ItemClassMasterParams itemClassMasterParams)
         {
             var disc = itemClassMasterParams.InsertItemClassMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_ItemClassMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_ItemClassMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
