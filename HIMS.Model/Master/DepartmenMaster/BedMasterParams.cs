@@ -14,22 +14,22 @@ namespace HIMS.Model.Master.DepartmenMaster
 
     public class BedMasterInsert
     {
-        public String BedName { get; set; }
-        public int RoomId { get; set; }
-        public bool IsAvailable { get; set; }
+        public String BedName_1 { get; set; }
+        public int RoomId_2 { get; set; }
+        public bool IsAvailible_3 { get; set; }
        
-        public bool IsDeleted { get; set; }
+        public bool IsActive_4 { get; set; }
 
     }
 
     public class BedMasterUpdate
     {
 
-        public int BedID { get; set; }
-        public String BedName { get; set; }
-        public int RoomId { get; set; }
+        public int BedId_1 { get; set; }
+        public String BedName_2 { get; set; }
+        public int RoomId_3 { get; set; }
        
-        public bool IsDeleted { get; set; }
+        public bool IsActive_4 { get; set; }
        
     }
 }

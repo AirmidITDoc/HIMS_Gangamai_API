@@ -14,11 +14,11 @@ namespace HIMS.Model.Master.DepartmenMaster
 
     public class WardMasterInsert
     {
-        public String RoomName { get; set; }
-        public int RoomType { get; set; }
-        public int LocationId { get; set; }
-        public bool IsAvailable { get; set; }
-        public bool IsDeleted { get; set; }
+        public String RoomName_1 { get; set; }
+        public int RoomType_2 { get; set; }
+        public int LocationId_3 { get; set; }
+        public bool IsAvailible_4 { get; set; }
+        public bool IsActive_5 { get; set; }
         public int ClassId { get; set; }
 
     }
@@ -26,12 +26,12 @@ namespace HIMS.Model.Master.DepartmenMaster
     public class WardMasterUpdate
     {
 
-        public int RoomID { get; set; }
-        public String RoomName { get; set; }
-        public int RoomType { get; set; }
-        public int LocationId { get; set; }
-        public bool IsDeleted { get; set; }
-        public int ClassId { get; set; }
+        public int RoomId_1 { get; set; }
+        public String RoomName_2 { get; set; }
+        public int RoomType_3 { get; set; }
+        public int LocationId_4 { get; set; }
+        public bool IsActive_5 { get; set; }
+        public int ClassID { get; set; }
     }
 }
 

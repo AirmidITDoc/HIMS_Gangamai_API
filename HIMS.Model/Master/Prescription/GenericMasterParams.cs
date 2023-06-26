@@ -12,14 +12,14 @@ namespace HIMS.Model.Master.Prescription
     public class InsertGenericMaster 
     {
         public string GenericName { get; set; }
-        public bool IsDeleted { get; set; }
-        public long AddedBy { get; set; }
+        public bool IsActive { get; set; }
+      
     }
     public class UpdateGenericMaster 
     {
         public long GenericId { get; set; }
         public string GenericName { get; set; }
-        public bool IsDeleted { get; set; }
-        public long UpdatedBy { get; set; }
+        public bool IsActive { get; set; }
+       
     }
 }

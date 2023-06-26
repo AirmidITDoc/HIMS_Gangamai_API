@@ -86,7 +86,7 @@ namespace HIMS.Model.Master.Inventory
         public float MaxQty { get; set; }
         public float Reorder { get; set; }
 
-        public bool IsNursingFlag { get; set; }//
+        public bool IsNursingFlag { get; set; }
         public string HSNcode { get; set; }
         public float CGST { get; set; }
         public float SGST { get; set; }
