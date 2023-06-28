@@ -23,7 +23,7 @@ namespace HIMS.Data.Master.DoctorMaster
             
 
             var D_Det = DoctorMasterParams.DeleteAssignDoctorToDepartment.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Delete_AssignDoctorToDepartment", D_Det);
+            ExecNonQueryProcWithOutSaveChanges("Delete_AssignDoctorToDepartment", D_Det);
 
             
             foreach (var a in DoctorMasterParams.AssignDoctorDepartmentDet)
@@ -48,7 +48,7 @@ namespace HIMS.Data.Master.DoctorMaster
             };
             var disc1 = DoctorMasterParams.InsertDoctorMaster.ToDictionary();
             disc1.Remove("DoctorId");
-            var doctorId = ExecNonQueryProcWithOutSaveChanges("ps_Insert_DoctorMaster_1", disc1, outputId);
+            var doctorId = ExecNonQueryProcWithOutSaveChanges("Insert_DoctorMaster_1", disc1, outputId);
 
             //add DoctorDetails
 
@@ -56,7 +56,7 @@ namespace HIMS.Data.Master.DoctorMaster
             {
                 var disc = a.ToDictionary();
                 disc["DoctorId"] = doctorId;
-                ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_DoctorDepartmentDet_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("Insert_M_DoctorDepartmentDet_1", disc);
             }
 
             //commit transaction

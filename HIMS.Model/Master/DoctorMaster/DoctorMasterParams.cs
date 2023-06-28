@@ -19,7 +19,7 @@ namespace HIMS.Model.Master.DoctorMaster
 
     public class InsertDoctorMaster
 	{
-		public long DoctorId { get; set; }
+		
 		public long PrefixID { get; set; }
 		public string FirstName { get; set; }
 		public string MiddleName { get; set; }
@@ -30,11 +30,11 @@ namespace HIMS.Model.Master.DoctorMaster
 		public string Pin { get; set; }
 		public string Phone { get; set; }
 		public string Mobile { get; set; }
-		public int GenderId { get; set; }
+		public int GenderID { get; set; }
 		public string Education { get; set; }
 		public Boolean IsConsultant { get; set; }
 		public Boolean IsRefDoc { get; set; }
-		public Boolean IsDeleted { get; set; }
+		public Boolean IsActive { get; set; }
 		public long DoctorTypeId { get; set; }
 		public string AgeYear { get; set; }
 		public string AgeMonth { get; set; }
@@ -46,11 +46,14 @@ namespace HIMS.Model.Master.DoctorMaster
 		public string MahRegNo { get; set; }
 		public DateTime MahRegDate { get; set; }
 		public long  AddedBy { get; set; }
-		public string RefDocHospitalName { get; set; }
-		
-	}
+        public long UpdatedBy { get; set; }
+		public Boolean IsInHouseDoctor { get; set; }
+        public Boolean IsOnCallDoctor { get; set; }
+        public long DoctorId { get; set; }
 
-	public class UpdateDoctorMaster
+    }
+
+    public class UpdateDoctorMaster
 	{
 		public long DoctorId { get; set; }
 		public long PrefixID { get; set; }
@@ -63,11 +66,11 @@ namespace HIMS.Model.Master.DoctorMaster
 		public string Pin { get; set; }
 		public string Phone { get; set; }
 		public string Mobile { get; set; }
-		public int GenderId { get; set; }
+		public int GenderID { get; set; }
 		public string Education { get; set; }
 		public Boolean IsConsultant { get; set; }
 		public Boolean IsRefDoc { get; set; }
-		public Boolean IsDeleted { get; set; }
+		public Boolean IsActive { get; set; }
 		public long DoctorTypeId { get; set; }
 		public string AgeYear { get; set; }
 		public string AgeMonth { get; set; }
@@ -79,9 +82,10 @@ namespace HIMS.Model.Master.DoctorMaster
 		public string MahRegNo { get; set; }
 		public DateTime MahRegDate { get; set; }
 		public long UpdatedBy { get; set; }
-		public string RefDocHospitalName { get; set; }
+        public Boolean IsInHouseDoctor { get; set; }
+        public Boolean IsOnCallDoctor { get; set; }
 
-	}
+    }
 		public class DoctorDepartmentDet
 	{
 
