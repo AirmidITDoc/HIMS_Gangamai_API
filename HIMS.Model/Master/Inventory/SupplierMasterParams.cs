@@ -26,8 +26,8 @@ namespace HIMS.Model.Master.Inventory
         public string Phone { get; set; }
         public string Fax { get; set; }
         public string Email { get; set; }
-        public int ModeOfPayment { get; set; }
-        public int TermOfPayment { get; set; }
+        public int ModeofPayment { get; set; }
+        public int TermsofPayment { get; set; }
 
       //  public int TaxNature { get; set; }
         public int CurrencyId { get; set; }
