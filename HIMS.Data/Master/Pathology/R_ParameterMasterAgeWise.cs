@@ -15,14 +15,14 @@ namespace HIMS.Data.Master.Pathology
          public bool Update(ParameterMasterAgeWiseParams paraMasterAgeParams)
         {
             var disc = paraMasterAgeParams.UpdateParameterMasterAgeWise.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_ParameterRangeMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("Update_ParameterRangeMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
         public bool Insert(ParameterMasterAgeWiseParams paraMasterAgeParams)
         {
             var disc = paraMasterAgeParams.InsertParameterMasterAgeWise.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_ParameterRangeWithAgeMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("Insert_ParameterRangeWithAgeMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         } 

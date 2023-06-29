@@ -16,14 +16,14 @@ namespace HIMS.Data.Master.Pathology
         public bool Update(PathologyCategoryMasterParams pathCategoryMasterParams)
         {
             var disc = pathCategoryMasterParams.UpdatePathologyCategoryMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_PathCategoryMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("update_PathCategory_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
         public bool Insert(PathologyCategoryMasterParams pathCategoryMasterParams)
         {
             var disc = pathCategoryMasterParams.InsertPathologyCategoryMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_PathCategoryMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_PathCategoryMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
