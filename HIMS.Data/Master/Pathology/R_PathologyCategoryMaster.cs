@@ -2,6 +2,8 @@
 using HIMS.Model.Master.Pathology;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Text;
 
 namespace HIMS.Data.Master.Pathology
@@ -21,9 +23,21 @@ namespace HIMS.Data.Master.Pathology
             return true;
         }
         public bool Insert(PathologyCategoryMasterParams pathCategoryMasterParams)
+
         {
+
+            var outputId = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@CategoryId",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+
             var disc = pathCategoryMasterParams.InsertPathologyCategoryMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("insert_PathCategoryMaster_1", disc);
+            disc.Remove("CategoryId");
+            ExecNonQueryProcWithOutSaveChanges("insert_PathCategoryMaster_1", disc, outputId);
             _unitofWork.SaveChanges();
             return true;
         }
