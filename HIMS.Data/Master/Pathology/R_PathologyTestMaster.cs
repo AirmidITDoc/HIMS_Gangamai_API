@@ -21,7 +21,7 @@ namespace HIMS.Data.Master.Pathology
             var dic1 = pathTestMasterParams.UpdatePathologyTestMaster.ToDictionary();
             //var dic2 = pathTestMasterParams.updatePathologyTemplateTest.ToDictionary();
            // ExecNonQueryProcWithOutSaveChanges("ps_Update_M_PathologyTemplateTest", dic2);
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_PathologyTestMaster", dic1);
+            ExecNonQueryProcWithOutSaveChanges("update_PathologyTestMaster_1", dic1);
 
 
             // DeletePathTestDetail
@@ -35,7 +35,7 @@ namespace HIMS.Data.Master.Pathology
                 foreach (var a in pathTestMasterParams.PathologyTemplateTest)
                 {
                     var d = a.ToDictionary();
-                    ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_PathologyTemplateTestMaster", d);
+                    ExecNonQueryProcWithOutSaveChanges("insert_PathologyTemplateTest_1", d);
                 }
 
             }
@@ -44,7 +44,7 @@ namespace HIMS.Data.Master.Pathology
                 foreach (var a in pathTestMasterParams.PathTestDetailMaster)
                 {
                     var d = a.ToDictionary();
-                    ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_PathTestDetailMaster", d);
+                    ExecNonQueryProcWithOutSaveChanges("insert_PathTestDetailMaster_1", d);
                 }
 
             }
@@ -62,7 +62,7 @@ namespace HIMS.Data.Master.Pathology
             };
             var dic = pathTestMasterParams.InsertPathologyTestMaster.ToDictionary();
             dic.Remove("TestId");
-            var TestId = ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_PathologyTestMaster", dic, outputId);
+            var TestId = ExecNonQueryProcWithOutSaveChanges("insert_PathologyTestMaster_1", dic, outputId);
 
             if (pathTestMasterParams.InsertPathologyTestMaster.IsTemplateTest == true)
             {
@@ -70,7 +70,7 @@ namespace HIMS.Data.Master.Pathology
                 {
                     var d = a.ToDictionary();
                     d["TestId"] = TestId;
-                    ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_PathologyTemplateTestMaster", d);
+                    ExecNonQueryProcWithOutSaveChanges("insert_PathologyTemplateTest_1", d);
                 }
 
             }
@@ -80,7 +80,7 @@ namespace HIMS.Data.Master.Pathology
                 {
                     var d = a.ToDictionary();
                     d["TestId"] = TestId;
-                    ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_PathTestDetailMaster", d);
+                    ExecNonQueryProcWithOutSaveChanges("insert_PathTestDetailMaster_1", d);
                 }
 
             }

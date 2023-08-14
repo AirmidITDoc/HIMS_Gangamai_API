@@ -14,8 +14,8 @@ namespace HIMS.Model.Master.Prescription
         public string DrugName { get; set; }
         public long GenericId { get; set; }
         public long ClassId { get; set; }
-        public bool IsDeleted { get; set; }
-        public long AddedBy { get; set; }
+        public bool IsActive { get; set; }
+      
     
     }
     public class UpdateDrugMaster
@@ -24,8 +24,8 @@ namespace HIMS.Model.Master.Prescription
         public string DrugName { get; set; }
         public long GenericId { get; set; }
         public long ClassId { get; set; }
-        public bool IsDeleted { get; set; }
-        public long UpdatedBy { get; set; }
+        public bool IsActive { get; set; }
+       
 
     }
 }

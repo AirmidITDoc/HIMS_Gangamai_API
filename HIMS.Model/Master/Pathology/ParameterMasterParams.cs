@@ -26,10 +26,10 @@ namespace HIMS.Model.Master.Pathology
         public long UnitId { get; set; }
         public int IsNumeric { get; set; }
         public bool IsDeleted { get; set; }
-        public long AddedBy { get; set; }
+        public long Addedby { get; set; }
         public bool IsPrintDisSummary { get; set; }
         public string MethodName { get; set; }
-        public string ParaMultipleRange { get; set; }
+      //  public string ParaMultipleRange { get; set; }
         public int ParameterID { get; set; }
 
     }
@@ -41,7 +41,7 @@ namespace HIMS.Model.Master.Pathology
         public string MinValue { get; set; }
         public string Maxvalue { get; set; }
 
-        public bool IsDeleted { get; set; }
+      //  public bool IsDeleted { get; set; }
         public int Addedby { get; set; }
 
     }
@@ -52,16 +52,19 @@ namespace HIMS.Model.Master.Pathology
         public int PathparaRangeId { get; set; }
         public int ParaId { get; set; }
         public int SexId { get; set; }
-      
-        public bool IsDeleted { get; set; }
-        public int UpdatedBy { get; set; }
+
+        public string MinValue { get; set; }
+        public string Maxvalue { get; set; }
+
+     //   public bool IsDeleted { get; set; }
+        public int Updatedby { get; set; }
 
     }
 
 
     public class DeleteAssignParameterToRange
     {
-        public int ParaId { get; set; }
+        public int ParameterId { get; set; }
 
     }
 
@@ -72,16 +75,16 @@ namespace HIMS.Model.Master.Pathology
 
     public class InsertAssignParameterToDescriptive
     {
-        public int ParameterId { get; set; }
+        public int ParameterID { get; set; }
         public string ParameterValues { get; set; }
         public Boolean IsDefaultValue { get; set; }
-        public int AddedBy { get; set; }
+        public int Addedby { get; set; }
 
         public string DefaultValue { get; set; }
     }
     public class UpdateParameterMaster
     {
-        public int ParameterID { get; set; }
+        public int ParameterId { get; set; }
         public string ParameterShortName { get; set; }
         public string ParameterName { get; set; }
         public string PrintParameterName { get; set; }
@@ -91,7 +94,7 @@ namespace HIMS.Model.Master.Pathology
         public long UpdatedBy { get; set; }
         public bool IsPrintDisSummary { get; set; }
 
-        public string ParaMultipleRange { get; set; }
+    //    public string ParaMultipleRange { get; set; }
         public string MethodName { get; set; }
     }
 

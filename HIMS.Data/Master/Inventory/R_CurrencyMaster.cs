@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.Inventory
         public bool Update(CurrencyMasterParams currencyMasterParams)
         {
             var disc = currencyMasterParams.UpdateCurrencyMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_CurrencyMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("update_CurrencyMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }

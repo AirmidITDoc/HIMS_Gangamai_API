@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.DepartMentMaster
             // throw new NotImplementedException();
             var disc = DepartmentMasterParams.DepartmentMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("insert_DepartmentMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_DepartmentMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

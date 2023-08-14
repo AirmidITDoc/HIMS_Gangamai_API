@@ -15,15 +15,15 @@ namespace HIMS.Model.Master.PersonalDetails
     {
         public String VillageName { get; set; }
         public int TalukaId { get; set; }
+        public bool Isdeleted { get; set; }
         public int AddedBy { get; set; }
-        public bool IsDeleted { get; set; }
-       
+
     }
 
     public class VillageMasterUpdate
     {
 
-        public int VillageID { get; set; }
+        public int VillageId { get; set; }
         public String VillageName { get; set; }
         public int TalukaId { get; set; }
         public bool IsDeleted { get; set; }

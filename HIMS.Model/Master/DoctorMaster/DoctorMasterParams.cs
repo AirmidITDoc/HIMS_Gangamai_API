@@ -19,7 +19,7 @@ namespace HIMS.Model.Master.DoctorMaster
 
     public class InsertDoctorMaster
 	{
-		public long DoctorId { get; set; }
+		
 		public long PrefixID { get; set; }
 		public string FirstName { get; set; }
 		public string MiddleName { get; set; }
@@ -46,15 +46,14 @@ namespace HIMS.Model.Master.DoctorMaster
 		public string MahRegNo { get; set; }
 		public DateTime MahRegDate { get; set; }
 		public long  AddedBy { get; set; }
+        public long UpdatedBy { get; set; }
+		public Boolean IsInHouseDoctor { get; set; }
+        public Boolean IsOnCallDoctor { get; set; }
+        public long DoctorId { get; set; }
 
-		public long UpdatedBy { get; set; }
-		public bool IsInHouseDoctor { get; set; }
+    }
 
-		public bool IsOnCallDoctor { get; set; }
-
-	}
-
-	public class UpdateDoctorMaster
+    public class UpdateDoctorMaster
 	{
 		public long DoctorId { get; set; }
 		public long PrefixID { get; set; }
@@ -83,11 +82,10 @@ namespace HIMS.Model.Master.DoctorMaster
 		public string MahRegNo { get; set; }
 		public DateTime MahRegDate { get; set; }
 		public long UpdatedBy { get; set; }
-		public bool IsInHouseDoctor { get; set; }
-		public bool IsOnCallDoctor { get; set; }
+        public Boolean IsInHouseDoctor { get; set; }
+        public Boolean IsOnCallDoctor { get; set; }
 
-
-	}
+    }
 		public class DoctorDepartmentDet
 	{
 

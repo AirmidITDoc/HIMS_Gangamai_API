@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.PersonalDetails
         public bool Update(VillageMasterParams VillageMasterParams)
         {
             var disc1 = VillageMasterParams.VillageMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_VillageMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_M_VillageMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.PersonalDetails
             // throw new NotImplementedException();
             var disc = VillageMasterParams.VillageMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_VillageMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_M_VillageMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

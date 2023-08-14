@@ -21,9 +21,9 @@ namespace HIMS.Model.Master.DepartmenMaster
 
     public class LocationMasterUpdate
     {
-        public int LocationId_1 { get; set; }
-        public String LocationName_2 { get; set; }
-        public bool IsActive_3 { get; set; }
-        
+        public int LocationID { get; set; }
+        public String LocationName { get; set; }
+        public bool IsDeleted { get; set; }
+        public int UpdatedBy { get; set; }
     }
 }

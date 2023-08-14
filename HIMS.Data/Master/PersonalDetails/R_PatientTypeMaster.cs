@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.PersonalDetails
         public bool Update(PatientTypeMasterParams PatientTypeMasterParams)
         {
             var disc1 = PatientTypeMasterParams.PatientTypeMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Update_M_PatientTypeMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_PatientTypeMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();

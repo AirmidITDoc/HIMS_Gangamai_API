@@ -14,6 +14,7 @@ namespace HIMS.Model.Master.DepartmenMaster
     public class DischargeTypeMasterInsert
     {
         public String DischargeTypeName { get; set; }
+        public bool IsActive { get; set; }
         public int AddedBy { get; set; }
 
         public int UpdatedBy { get; set; }

@@ -16,14 +16,14 @@ namespace HIMS.Data.Master.Prescription
         public bool Update(DrugMasterParams drugMasterParams)
         {
             var disc = drugMasterParams.UpdateDrugMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_DrugMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("update_DrugMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
         public bool Insert(DrugMasterParams drugMasterParams)
         {
             var disc = drugMasterParams.InsertDrugMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_DrugMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_DrugMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }

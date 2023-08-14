@@ -50,18 +50,18 @@ namespace HIMS.Data.Master.Pathology
         public bool Update(ParameterMasterParams ParameterMasterParams)
         {
             var disc1 = ParameterMasterParams.UpdateParameterMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_update_ParameterMaster_1", disc1);
+            ExecNonQueryProcWithOutSaveChanges("update_ParameterMaster_1", disc1);
 
 
                 if (ParameterMasterParams.UpdateParameterMaster.IsNumeric == 1)
             {
 
                 var D_Det = ParameterMasterParams.DeleteAssignParameterToRange.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("ps_Delete_RangeParameterMaster_1", D_Det); 
+                ExecNonQueryProcWithOutSaveChanges("Delete_RangeParameterWithAgeMaster_1", D_Det); 
                  
                 var disc2 = ParameterMasterParams.InsertParameterMasterRangeWise.ToDictionary();
                 // disc1.Remove("ParameterId");
-                var ParaId = ExecNonQueryProcWithOutSaveChanges("ps_Insert_ParameterRangeMaster_1", disc2);
+                var ParaId = ExecNonQueryProcWithOutSaveChanges("Insert_ParameterRangeMaster_1", disc2);
 
             }
             else 
@@ -73,34 +73,13 @@ namespace HIMS.Data.Master.Pathology
                 foreach (var a in ParameterMasterParams.InsertAssignParameterToDescriptives)
                 {
                     var disc = a.ToDictionary();
-                    ExecNonQueryProcWithOutSaveChanges("ps_Insert_ParameterDescriptiveMaster_1", disc);
+                    ExecNonQueryProcWithOutSaveChanges("Insert_ParameterDescriptiveMaster_1", disc);
                 }
             }
 
             _unitofWork.SaveChanges();
             return true;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -150,7 +129,7 @@ namespace HIMS.Data.Master.Pathology
 
             var disc1 = ParameterMasterParams.InsertParameterMaster.ToDictionary();
             disc1.Remove("ParameterID");
-            var ParameterID = ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_PathParameterMaster", disc1, outputId);
+            var ParameterID = ExecNonQueryProcWithOutSaveChanges("Insert_PathParameterMaster_1", disc1, outputId);
 
            //var ParaId
             //add Range and Descriptive
@@ -161,7 +140,7 @@ namespace HIMS.Data.Master.Pathology
                 disc["ParaId"] = ParameterID;
                 //var disc = ParameterMasterParams.InsertParameterMasterRangeWise.ToDictionary();
                 //disc["ParaId"] = ParameterID;
-                ExecNonQueryProcWithOutSaveChanges("ps_Insert_ParameterRangeMaster_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("Insert_ParameterRangeMaster_1", disc);
 
             }
             else
@@ -170,7 +149,7 @@ namespace HIMS.Data.Master.Pathology
                 {
                     var disc = a.ToDictionary();
                     disc["ParameterId"] = ParameterID;
-                    ExecNonQueryProcWithOutSaveChanges("ps_Insert_ParameterDescriptiveMaster_1", disc);
+                    ExecNonQueryProcWithOutSaveChanges("Insert_ParameterDescriptiveMaster_1", disc);
                 }
             }
             _unitofWork.SaveChanges();

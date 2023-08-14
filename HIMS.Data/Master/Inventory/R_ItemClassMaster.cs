@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.Inventory
         public bool Update(ItemClassMasterParams itemClassMasterParams)
         {
             var disc = itemClassMasterParams.UpdateItemClassMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_ItemClassMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("update_ItemClassMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }

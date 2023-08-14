@@ -12,15 +12,15 @@ namespace HIMS.Model.Master.Prescription
     public class InsertInstructionMaster
     {
         public string InstructionName { get; set; }
-        public bool IsDeleted { get; set; }
-        public long AddedBy { get; set; }
+        public bool IsActive { get; set; }
+        //public string InstructionHindi { get; set; }
     }
     public class UpdateInstructionMaster
     {
         public long InstructionId { get;set;}
         public string InstructionName { get; set; }
-        public bool IsDeleted { get; set; }
-        public long UpdatedBy { get; set; }
+        public bool IsActive { get; set; }
+       // public string InstructionHindi { get; set; }
 	
     }
 }

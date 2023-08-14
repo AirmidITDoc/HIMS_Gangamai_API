@@ -16,14 +16,14 @@ namespace HIMS.Data.Master.Prescription
         public bool Update(GenericMasterParams genericMasterParams)
         {
             var disc = genericMasterParams.UpdateGenericMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_GenericMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("update_GenericMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
         public bool Insert(GenericMasterParams genericMasterParams)
         {
             var disc = genericMasterParams.InsertGenericMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_GenericMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_GenericMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }

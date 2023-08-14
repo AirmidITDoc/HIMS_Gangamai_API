@@ -100,7 +100,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_VillageMaster, R_VillageMaster>();
             services.AddTransient<I_AreaMaster, R_AreaMaster>();
             services.AddTransient<I_CurrencyMaster ,R_CurrencyMaster>();
-            //services.AddTransient<I_ItemCategoryMaster,R_ItemCategoryMaster>();
+            services.AddTransient<I_ItemCategoryMaster,R_ItemCategoryMaster>();
             services.AddTransient<I_DepartmentMaster, R_DepartmentMaster>();
             services.AddTransient<I_LocationMaster, R_LocationMaster>();
             services.AddTransient<I_WardMaster, R_WardMaster>();
@@ -121,6 +121,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_UnitMaster, R_UnitMaster>();
             services.AddTransient<I_GenericMaster, R_GenericMaster>();
             services.AddTransient<I_DoseMaster, R_DoseMaster>();
+            services.AddTransient<I_DrugMaster, R_DrugMaster>();
             services.AddTransient<I_InstructionMaster, R_InstructionMaster>();
             services.AddTransient<I_PathologyTestMaster, R_PathologyTestMaster>();
             services.AddTransient<I_RadiologyTestMaster, R_RadiologyTestMaster>();
@@ -256,6 +257,9 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_Mrddeathcertificate, R_Mrddeathcertificate>();
             services.AddTransient<I_SubcompanyTPA, R_SubcompanyTPA>();
             services.AddTransient<I_Prepostopnote, R_Prepostopnote>();
+
+
+            services.AddTransient<I_ItemMaster, R_ItemMaster>();
 
             /*   services.AddTransient<I_BookMasterHome, I_BookMasterHome>();
                services.AddTransient<I_BankMasterHome, I_BankMasterHome>();

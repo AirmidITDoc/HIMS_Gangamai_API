@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.Prescription
         public bool Update(PrescriptionTemplateMasterParams PrescriptionTemplateMasterParams)
         {
             var disc1 = PrescriptionTemplateMasterParams.PrescriptionTemplateMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_Prescription_TemplateMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("Update_M_Prescription_TemplateMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.Prescription
             //throw new NotImplementedException();
             var disc = PrescriptionTemplateMasterParams.PrescriptionTemplateMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_Prescription_TemplateMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_M_Prescription_TemplateMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

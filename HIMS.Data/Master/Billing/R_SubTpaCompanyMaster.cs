@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.Billing
         public bool Update(SubTpaCompanyMasterParams SubTpaCompanyMasterParams)
         {
             var disc1 = SubTpaCompanyMasterParams.SubTpaCompanyMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_SubTPACompanyMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("Update_M_SubTPACompanyMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.Billing
             // throw new NotImplementedException();
             var disc = SubTpaCompanyMasterParams.SubTpaCompanyMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_SubTPACompanyMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("Insert_M_SubTPACompanyMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();

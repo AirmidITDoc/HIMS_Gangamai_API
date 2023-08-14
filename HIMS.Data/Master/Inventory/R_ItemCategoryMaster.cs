@@ -20,7 +20,7 @@ namespace HIMS.Data.Master.Inventory
 
 
             var disc = itemCategoryMasterParams.InsertItemCategoryMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_ItemCategoryMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_ItemCategoryMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
@@ -30,7 +30,7 @@ namespace HIMS.Data.Master.Inventory
            // throw new NotImplementedException();
 
             var disc = itemCategoryMasterParams.UpdateItemCategoryMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_ItemCategoryMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("update_ItemCategoryMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }

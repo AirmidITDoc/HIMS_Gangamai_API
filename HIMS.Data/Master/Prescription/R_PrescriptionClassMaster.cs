@@ -16,14 +16,14 @@ namespace HIMS.Data.Master.Prescription
         public bool Update(PrescriptionClassMasterParams presClassMasterParams)
         {
             var disc = presClassMasterParams.UpdatePrescriptionClassMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("  ", disc);
+            ExecNonQueryProcWithOutSaveChanges("", disc);
             _unitofWork.SaveChanges();
             return true;
         }
         public bool Insert(PrescriptionClassMasterParams presClassMasterParams)
         {
             var disc = presClassMasterParams.InsertPrescriptionClassMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("  ", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_M_PrescriptionClassMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }

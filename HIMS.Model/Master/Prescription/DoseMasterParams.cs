@@ -15,8 +15,8 @@ namespace HIMS.Model.Master.Prescription
         public string DoseNameInEnglish { get; set; }
         public string DoseNameInMarathi { get; set; }
         public float DoseQtyPerDay { get; set; }
-        public bool IsDeleted { get; set; }
-        public long AddedBy { get; set; }
+        public bool IsActive { get; set; }
+      
     }
 
     public class UpdateDoseMaster
@@ -25,9 +25,9 @@ namespace HIMS.Model.Master.Prescription
         public string DoseName { get; set; }
         public string DoseNameInEnglish { get; set; }
         public string DoseNameInMarathi { get; set; }
+        public bool IsActive { get; set; }
         public float DoseQtyPerDay { get; set; }
-        public bool IsDeleted { get; set; }
-        public long UpdatedBy { get; set; }
+
 
     }
 }

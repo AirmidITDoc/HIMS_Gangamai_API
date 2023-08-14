@@ -15,14 +15,14 @@ namespace HIMS.Model.Master.DoctorMaster
     public class DoctortTypeMasterInsert
     {
         public String DoctorType { get; set; }
-        public bool IsActive{ get; set; }
+        public bool IsActive { get; set; }
 
     }
 
     public class DoctorTypeMasterUpdate
     {
 
-        public int ID { get; set; }
+        public int Id { get; set; }
         public String DoctorType { get; set; }
         public bool IsActive { get; set; }
        
