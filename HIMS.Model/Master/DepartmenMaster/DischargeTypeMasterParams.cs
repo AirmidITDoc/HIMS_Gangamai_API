@@ -15,7 +15,9 @@ namespace HIMS.Model.Master.DepartmenMaster
     {
         public String DischargeTypeName { get; set; }
         public int AddedBy { get; set; }
-        public bool IsDeleted { get; set; }
+
+        public int UpdatedBy { get; set; }
+        public bool IsActive { get; set; }
 
     }
 
@@ -23,7 +25,7 @@ namespace HIMS.Model.Master.DepartmenMaster
     {
         public int DischargeTypeId { get; set; }
         public String DischargeTypeName { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
         public int UpdatedBy { get; set; }
     }
 }

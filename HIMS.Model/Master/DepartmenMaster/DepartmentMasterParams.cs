@@ -15,13 +15,14 @@ namespace HIMS.Model.Master.DepartmenMaster
     {
         public String DepartmentName { get; set; }
         public int AddedBy { get; set; }
+        public int UpdatedBy { get; set; }
         public bool IsDeleted { get; set; }
 
     }
 
     public class DepartmentMasterUpdate
     {
-        public int DepartmentID { get; set; }
+        public int DepartmentId { get; set; }
         public String DepartmentName { get; set; }
         public bool IsDeleted { get; set; }
         public int UpdatedBy { get; set; }

@@ -30,11 +30,11 @@ namespace HIMS.Model.Master.DoctorMaster
 		public string Pin { get; set; }
 		public string Phone { get; set; }
 		public string Mobile { get; set; }
-		public int GenderId { get; set; }
+		public int GenderID { get; set; }
 		public string Education { get; set; }
 		public Boolean IsConsultant { get; set; }
 		public Boolean IsRefDoc { get; set; }
-		public Boolean IsDeleted { get; set; }
+		public Boolean IsActive { get; set; }
 		public long DoctorTypeId { get; set; }
 		public string AgeYear { get; set; }
 		public string AgeMonth { get; set; }
@@ -46,8 +46,12 @@ namespace HIMS.Model.Master.DoctorMaster
 		public string MahRegNo { get; set; }
 		public DateTime MahRegDate { get; set; }
 		public long  AddedBy { get; set; }
-		public string RefDocHospitalName { get; set; }
-		
+
+		public long UpdatedBy { get; set; }
+		public bool IsInHouseDoctor { get; set; }
+
+		public bool IsOnCallDoctor { get; set; }
+
 	}
 
 	public class UpdateDoctorMaster
@@ -63,11 +67,11 @@ namespace HIMS.Model.Master.DoctorMaster
 		public string Pin { get; set; }
 		public string Phone { get; set; }
 		public string Mobile { get; set; }
-		public int GenderId { get; set; }
+		public int GenderID { get; set; }
 		public string Education { get; set; }
 		public Boolean IsConsultant { get; set; }
 		public Boolean IsRefDoc { get; set; }
-		public Boolean IsDeleted { get; set; }
+		public Boolean IsActive { get; set; }
 		public long DoctorTypeId { get; set; }
 		public string AgeYear { get; set; }
 		public string AgeMonth { get; set; }
@@ -79,7 +83,9 @@ namespace HIMS.Model.Master.DoctorMaster
 		public string MahRegNo { get; set; }
 		public DateTime MahRegDate { get; set; }
 		public long UpdatedBy { get; set; }
-		public string RefDocHospitalName { get; set; }
+		public bool IsInHouseDoctor { get; set; }
+		public bool IsOnCallDoctor { get; set; }
+
 
 	}
 		public class DoctorDepartmentDet

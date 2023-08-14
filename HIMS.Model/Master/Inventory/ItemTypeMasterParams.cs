@@ -16,6 +16,8 @@ namespace HIMS.Model.Master.Inventory
         public bool IsDeleted { get; set; }
         public long AddedBy { get; set; }
 
+        public long UpdatedBy { get; set; }
+
     }
 
     public class UpdateItemTypeMaster

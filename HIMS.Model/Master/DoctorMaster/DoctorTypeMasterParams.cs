@@ -15,7 +15,7 @@ namespace HIMS.Model.Master.DoctorMaster
     public class DoctortTypeMasterInsert
     {
         public String DoctorType { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsActive{ get; set; }
 
     }
 
@@ -24,7 +24,7 @@ namespace HIMS.Model.Master.DoctorMaster
 
         public int ID { get; set; }
         public String DoctorType { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
        
     }
 }

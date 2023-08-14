@@ -16,14 +16,14 @@ namespace HIMS.Data.Master.Inventory
         public bool Update(UnitofMeasurementMasterParams uomMasterParams)
         {
             var disc = uomMasterParams.UpdateUnitofMeasurementMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_UnitofMeasurement", disc);
+            ExecNonQueryProcWithOutSaveChanges("update_UnitofMeasurement_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
         public bool Insert(UnitofMeasurementMasterParams uomMasterParams)
         {
             var disc = uomMasterParams.InsertUnitofMeasurementMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_UnitofMeasurementMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_UnitofMeasurementMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }

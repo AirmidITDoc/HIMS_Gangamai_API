@@ -33,7 +33,7 @@ namespace HIMS.Model.Master.Inventory
         public float MaxQty { get; set; }
         public float Reorder { get; set; }
 
-        public bool IsNursingFlag { get; set; }
+      //  public bool IsNursingFlag { get; set; }
         public string HSNcode { get; set; }
         public float CGST { get; set; }
         public float SGST { get; set; }
@@ -49,7 +49,7 @@ namespace HIMS.Model.Master.Inventory
         public bool IsScheduleX { get; set; }
         public bool IsLASA { get; set; }
         public bool IsEmgerency { get; set; }
-        public int ItemID { get; set; }
+        public int ItemId { get; set; }
 
         public int DrugType {get;set;}
 
@@ -83,7 +83,7 @@ namespace HIMS.Model.Master.Inventory
         public float MaxQty { get; set; }
         public float Reorder { get; set; }
 
-        public bool IsNursingFlag { get; set; }
+      //  public bool IsNursingFlag { get; set; }
         public string HSNcode { get; set; }
         public float CGST { get; set; }
         public float SGST { get; set; }
@@ -99,8 +99,12 @@ namespace HIMS.Model.Master.Inventory
         public bool IsScheduleX { get; set; }
         public bool IsLASA { get; set; }
         public bool IsEmgerency { get; set; }
-       
 
+        public int DrugType { get; set; }
+
+        public string DrugTypeName { get; set; }
+        public int ItemCompnayId { get; set; }
+        public DateTime IsUpdatedBy { get; set; }
     }
 
     public class DeleteAssignItemToStore

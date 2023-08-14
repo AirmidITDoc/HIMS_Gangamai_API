@@ -16,14 +16,14 @@ namespace HIMS.Data.Master.Inventory
         public bool Update(ModeofPaymentMasterParams modMasterParams)
         {
             var disc = modMasterParams.UpdateModeofPaymentMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_ModeOfPaymentMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("update_ModeOfPayment_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
         public bool Insert(ModeofPaymentMasterParams modMasterParams)
         {
             var disc =modMasterParams.InsertModeofPaymentMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_ModeOfPaymentMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("insert_ModeOfPayment_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }

@@ -48,7 +48,7 @@ namespace HIMS.Data.Master.DoctorMaster
             };
             var disc1 = DoctorMasterParams.InsertDoctorMaster.ToDictionary();
             disc1.Remove("DoctorId");
-            var doctorId = ExecNonQueryProcWithOutSaveChanges("ps_Insert_DoctorMaster_1", disc1, outputId);
+            var doctorId = ExecNonQueryProcWithOutSaveChanges("insert_DoctorMaster_1", disc1, outputId);
 
             //add DoctorDetails
 
