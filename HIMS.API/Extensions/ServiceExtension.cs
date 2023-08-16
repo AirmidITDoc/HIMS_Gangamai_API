@@ -257,7 +257,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_Mrddeathcertificate, R_Mrddeathcertificate>();
             services.AddTransient<I_SubcompanyTPA, R_SubcompanyTPA>();
             services.AddTransient<I_Prepostopnote, R_Prepostopnote>();
-
+            services.AddTransient<I_PatientFeedback, R_PatientFeedback>();
 
             services.AddTransient<I_ItemMaster, R_ItemMaster>();
 

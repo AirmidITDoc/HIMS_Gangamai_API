@@ -17,8 +17,6 @@ namespace HIMS.Model.Master.DepartmenMaster
         public bool IsDeleted { get; set; }
         public int AddedBy { get; set; }
         public int UpdatedBy { get; set; }
-        public bool IsDeleted { get; set; }
-
     }
 
     public class DepartmentMasterUpdate

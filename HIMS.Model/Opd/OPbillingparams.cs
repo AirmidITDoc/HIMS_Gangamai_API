@@ -130,7 +130,6 @@ namespace HIMS.Model.Opd
 
     }
 
-
     public class OPInsertPayment
     {
         // public int PaymentId { get; set; }

@@ -40,5 +40,5 @@ namespace HIMS.Model.Transaction
     public class PhoneAppointmentCancle
     {
         public int PhoneAppId { get; set; }
-          }
+    }
 }

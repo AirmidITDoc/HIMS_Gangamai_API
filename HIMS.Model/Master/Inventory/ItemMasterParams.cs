@@ -49,26 +49,18 @@ namespace HIMS.Model.Master.Inventory
         public bool IsScheduleX { get; set; }
         public bool IsLASA { get; set; }
         public bool IsEmgerency { get; set; }
-       
-
         public int DrugType {get;set;}
-
         public string DrugTypeName { get; set; }
         public int ItemCompnayId { get; set; }
         public DateTime IsCreatedBy { get; set; }
         public int ItemID { get; set; }
-
-
     }
-
-
    
     public class UpdateItemMaster
     {
         public int ItemID { get; set; }
         public string ItemShortName { get; set; }
         public string ItemName { get; set; }
-       
         public long ItemTypeID { get; set; }
         public long ItemCategoryId { get; set; }
         public long ItemGenericNameId { get; set; }
@@ -81,7 +73,6 @@ namespace HIMS.Model.Master.Inventory
         public bool IsBatchRequired { get; set; }
         public bool IsDeleted { get; set; }
         public long UpDatedBy { get; set; }
-        
         public float MinQty { get; set; }
         public float MaxQty { get; set; }
         public float Reorder { get; set; }
@@ -93,8 +84,6 @@ namespace HIMS.Model.Master.Inventory
         public float IGST { get; set; }
         public long ManufId { get; set; }
         public bool IsNarcotic { get; set; }
-      
-
         public string ProdLocation { get; set; }
         public bool IsH1Drug { get; set; }
         public bool IsScheduleH { get; set; }
@@ -102,14 +91,7 @@ namespace HIMS.Model.Master.Inventory
         public bool IsScheduleX { get; set; }
         public bool IsLASA { get; set; }
         public bool IsEmgerency { get; set; }
-
         public int DrugType { get; set; }
-
-        public string DrugTypeName { get; set; }
-        public int ItemCompnayId { get; set; }
-        public DateTime IsUpdatedBy { get; set; }
-
-
         public string DrugTypeName { get; set; }
         public int ItemCompnayId { get; set; }
         public DateTime IsUpdatedBy { get; set; }
