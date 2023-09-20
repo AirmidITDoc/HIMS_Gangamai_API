@@ -349,12 +349,12 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
-        //[HttpPost("LAD_RAD_Insert")]
-        //public IActionResult LAD_RAD_Insert(LAD_RADParams LRP)
-        //{
-        //    var ILRP = _LAD_RAD.Insert(LRP);
-        //    return Ok(ILRP);
-        //}
+        [HttpPost("IPAdvanceUpdate")]
+        public IActionResult IPAdvanceUpdate(IPAdvanceUpdateParams iPAdvanceUpdateParams)
+        {
+            var AdvUpdate = _IPAdvanceUpdate.Insert(iPAdvanceUpdateParams);
+            return Ok(AdvUpdate);
+        }
 
         //[HttpPost("IPPrescriptionInsert")]
         //public IActionResult IPPrescriptionInsert(IPPrescriptionParams IPPR)
