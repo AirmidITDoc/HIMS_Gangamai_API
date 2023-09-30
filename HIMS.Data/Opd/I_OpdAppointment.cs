@@ -6,7 +6,7 @@ namespace HIMS.Data.Opd
     public interface I_OpdAppointment
     {
         //List<dynamic> GetBrowseOPDBill(BrowseOPDBillParams browseOPDBillParams);
-        public bool Save(OpdAppointmentParams opdAppointmentParams);
+        public string Save(OpdAppointmentParams opdAppointmentParams);
 
         public bool Update(OpdAppointmentParams opdAppointmentParams);
 

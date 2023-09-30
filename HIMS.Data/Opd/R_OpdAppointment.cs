@@ -16,7 +16,7 @@ namespace HIMS.Data.Opd
             //transaction and connection is open when you inject unitofwork
         }
          
-        public bool Save(OpdAppointmentParams opdAppointmentParams)
+        public String Save(OpdAppointmentParams opdAppointmentParams)
         {
             //Add registration
             var outputId = new SqlParameter
@@ -71,7 +71,7 @@ namespace HIMS.Data.Opd
             //commit transaction
             _unitofWork.SaveChanges();
             
-            return true;
+            return VisitID;
         }
 
         public bool Update(OpdAppointmentParams opdAppointmentParams)
