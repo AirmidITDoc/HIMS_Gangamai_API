@@ -52,8 +52,6 @@ namespace HIMS.Data.IPD
             disc2["BillNo"]=BillNo1;
             ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", disc2);
 
-          
-
             _unitofWork.SaveChanges();
             return BillNo1;
         }
