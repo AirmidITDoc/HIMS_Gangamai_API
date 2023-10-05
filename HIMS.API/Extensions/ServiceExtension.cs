@@ -13,7 +13,7 @@ using HIMS.Data.Master.VendorMaster;
 using HIMS.Data.Opd;
 using HIMS.Data.Pathology;
 using HIMS.Data.Radiology;
-using HIMS.Model.Transaction;
+using HIMS.Data.Pharmacy;
 using HIMS.Model;
 using HIMS.Model.Radiology;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -254,6 +254,9 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_PatientFeedback, R_PatientFeedback>();
 
             services.AddTransient<I_ItemMaster, R_ItemMaster>();
+            //Pharmacy
+            services.AddTransient<I_Sales,R_Sales>();
+
 
             // Inventory
             services.AddTransient<I_Indent, R_Indent>();
