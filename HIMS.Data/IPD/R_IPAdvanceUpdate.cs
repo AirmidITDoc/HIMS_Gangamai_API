@@ -33,10 +33,6 @@ namespace HIMS.Data.IPD
                 Direction = ParameterDirection.Output
             };
 
-          
-
-           
-
             var disc2 = IPAdvanceUpdateParams.AdvanceDetailInsert1.ToDictionary();
             disc2.Remove("AdvanceDetailID");
             var AdvanceDetailID = ExecNonQueryProcWithOutSaveChanges("insert_AdvanceDetail_1", disc2, outputId1);
@@ -46,9 +42,10 @@ namespace HIMS.Data.IPD
             ExecNonQueryProcWithOutSaveChanges("Update_AdvHeader_1", disc1);
 
 
-            var disc3 = IPAdvanceUpdateParams.IPPaymentInsert1.ToDictionary();
-         //   disc3.Remove("PaymentId");
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", disc3);
+            var vAdDetParam = IPAdvanceUpdateParams.IPPaymentInsert1.ToDictionary();
+            vAdDetParam.Remove("AdvanceId");
+            vAdDetParam.Add("AdvanceId", AdvanceDetailID);
+            ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", vAdDetParam);
 
             _unitofWork.SaveChanges();
             return AdvanceDetailID;

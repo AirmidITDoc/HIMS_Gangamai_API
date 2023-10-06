@@ -49,6 +49,7 @@ namespace HIMS.Model.IPD
         public float TaxAmount { get; set; }
         //public string BillRemark { get; set; }
         public string DiscComments { get; set; }
+        public int CashCounterId { get; set; }
 
         public int CashCounterId { get; set; }
     }

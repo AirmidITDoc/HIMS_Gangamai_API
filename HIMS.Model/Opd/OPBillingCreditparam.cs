@@ -7,15 +7,12 @@ namespace HIMS.Model.Opd
     public class OPBillingCreditparam
     {
 
-        public List<InsertPathologyReportHeadercredit> InsertPathologyReportHeadercredit { get; set; }
+        //public List<InsertPathologyReportHeadercredit> InsertPathologyReportHeadercredit { get; set; }
 
-        public List<InsertRadiologyReportHeadercredit> InsertRadiologyReportHeadercredit { get; set; }
+        //public List<InsertRadiologyReportHeadercredit> InsertRadiologyReportHeadercredit { get; set; }
         public InsertBillcreditupdatewithbillno InsertBillcreditupdatewithbillno { get; set; }
-
         public List<OpBillDetailscreditInsert> OpBillDetailscreditInsert { get; set; }
-
-        //  public OPoctorShareGroupAdmChargeDoc OPoctorShareGroupAdmChargeDoc { get; set; }
-
+        public List<ChargesDetailCreditInsert> ChargesDetailCreditInsert { get; set; }
         public OPCalDiscAmountBillcredit OPCalDiscAmountBillcredit { get; set; }
     }
         public class InsertPathologyReportHeadercredit
@@ -32,7 +29,6 @@ namespace HIMS.Model.Opd
             public Boolean IsSampleCollection { get; set; }
             public Boolean TestType { get; set; }
         }
-
         public class InsertRadiologyReportHeadercredit
         {
             public DateTime RadDate { get; set; }
@@ -76,18 +72,45 @@ namespace HIMS.Model.Opd
             public int CashCounterId { get; set; }
         public string DiscComments { get; set; }
         }
-
         public class OpBillDetailscreditInsert
         {
             public int BillNo { get; set; }
             public int ChargesId { get; set; }
 
-            // public int BillDetailId { get; set; }
         }
+        public class ChargesDetailCreditInsert
+        {
+        public DateTime ChargesDate { get; set; }
+        public bool OPD_IPD_Type { get; set; }
+        public int OPD_IPD_Id { get; set; }
+        public int ServiceId { get; set; }
+        public long Price { get; set; }
+        public long Qty { get; set; }
+        public float TotalAmt { get; set; }
+        public float ConcessionPercentage { get; set; }
+        public float ConcessionAmount { get; set; }
+        public float NetAmount { get; set; }
+        public int DoctorId { get; set; }
+        public float DocPercentage { get; set; }
+        public float DocAmt { get; set; }
+        public float HospitalAmt { get; set; }
+        public bool IsGenerated { get; set; }
+        public int AddedBy { get; set; }
+        public bool IsCancelled { get; set; }
+        public bool IsCancelledBy { get; set; }
+        public DateTime IsCancelledDate { get; set; }
+        public bool IsPathology { get; set; }
+        public bool IsRadiology { get; set; }
+        public bool IsPackage { get; set; }
+        public int PackageMainChargeID { get; set; }
+        public bool IsSelfOrCompanyService { get; set; }
+        public int PackageId { get; set; }
+        public DateTime ChargeTime { get; set; }
+        public int ClassId { get; set; }
+        public int BillNo { get; set; }
+        public int ChargeID { get; set; }
 
-
-
-
+        }
         public class OPCalDiscAmountBillcredit
          {
             public int BillNo { get; set; }

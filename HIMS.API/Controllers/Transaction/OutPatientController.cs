@@ -50,10 +50,8 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_IP_SMSOutgoing _IP_SMSOutgoing;
         public readonly I_OPBillingCredit _OPBillingCredit;
         public readonly I_OPSettlemtCredit _OPSettlemtCredit;
-        public readonly I_PatientDocumentupload _PatientDocumentupload;
 
         public OutPatientController(
-            //  I_SaveAppointmentNewPatient saveAppointmentNewPatient,
             I_PhoneAppointment phoneAppointment,
             I_Payment payment,
             I_OpdAppointment opdAppointment
@@ -63,25 +61,22 @@ namespace HIMS.API.Controllers.Transaction
             I_OpdBrowseList opdBrowseList,
             I_OPDRegistration oPDRegistration,
             I_OPRefundBill oprefundbill,
-            //I_Dashboard Dashboard,
             I_SS_RoleTemplateMaster roleTemplateMaster,
             I_OPbilling oPbilling,
             I_CasePaperPrescription casePaperPrescription,
             I_OPAddCharges oPAddCharges,
-            ////I_OPAdvance oPAdvance
             I_Emailconfiguration emailconfiguration,
-           I_DynamicExecuteSchedule dynamicExecuteSchedule,
-           I_Configsetting configsetting,
+            I_DynamicExecuteSchedule dynamicExecuteSchedule,
+            I_Configsetting configsetting,
             I_OPAddCharges oPAddCharges1,
             I_EmailNotification emailNotification,
-            I_OPBillingCredit oPBillingCredit,I_OPSettlemtCredit oPSettlemtCredit, I_IP_SMSOutgoing iP_SMSOutgoing,
-            I_PatientDocumentupload patientDocumentupload
+            I_OPBillingCredit oPBillingCredit,I_OPSettlemtCredit oPSettlemtCredit, I_IP_SMSOutgoing iP_SMSOutgoing
 
 
             )
-       {
-             
-          //  this._SaveAppointmentNewPatient=saveAppointmentNewPatient;
+        {
+
+            //  this._SaveAppointmentNewPatient=saveAppointmentNewPatient;
             this._PhoneAppointment = phoneAppointment;
             this._Payment = payment;
             this._OpdAppointment = opdAppointment;
@@ -104,7 +99,15 @@ namespace HIMS.API.Controllers.Transaction
             this._OPBillingCredit = oPBillingCredit;
             this._OPSettlemtCredit = oPSettlemtCredit;
             this._IP_SMSOutgoing = iP_SMSOutgoing;
-            this._PatientDocumentupload = patientDocumentupload;
+        }
+
+
+        //OPDAppointment Insert 
+        [HttpPost("PatientFeedback")]
+        public IActionResult PatientFeedback(PatientFeedbackParams patientFeedbackParams)
+        {
+            var PatientInsert = _PatientFeedback.Insert(patientFeedbackParams);
+            return Ok(PatientInsert);
         }
 
         //OPDAppointment Insert 
@@ -113,7 +116,6 @@ namespace HIMS.API.Controllers.Transaction
         {
             var appoSave = _OpdAppointment.Save(OpdAppointmentParams);
             return Ok(appoSave);
-            //this._OPRefundBill = oprefundbill;
         }
 
         //OPDAppointment Update 
@@ -122,7 +124,6 @@ namespace HIMS.API.Controllers.Transaction
         {
             var appoSave = _OpdAppointment.Update(OpdAppointmentParams);
             return Ok(appoSave);
-            //this._OPRefundBill = oprefundbill;
         }
 
       /*  //saveAppointmentNewPatient Insert 

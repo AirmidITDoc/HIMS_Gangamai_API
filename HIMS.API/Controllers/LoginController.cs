@@ -77,8 +77,24 @@ namespace HIMS.API.Controllers
                     StoreId=user.StoreId ,
                     DoctorID=user.DoctorID,
                     MailDomain=user.MailDomain,
-                    LoginStatus=user.LoginStatus
-            },
+                    LoginStatus=user.LoginStatus,
+                    IsActive=user.IsActive,
+                    IsDoctorType=user.IsDoctorType,
+                    IsPOVerify=user.IsPOVerify,
+                    IsGRNVerify=user.IsGRNVerify,
+                    IsCollection=user.IsCollection,
+                    IsBedStatus=user.IsBedStatus,
+                    IsCurrentStk=user.IsCurrentStk,
+                    IsPatientInfo=user.IsPatientInfo,
+                    IsDateInterval=user.IsDateInterval,
+                    IsDateIntervalDays=user.IsDateIntervalDays,
+                    AddChargeIsDelete=user.AddChargeIsDelete,
+                    IsIndentVerify=user.IsIndentVerify,
+                    IsPOInchargeVerify=user.IsPOInchargeVerify,
+                    IsRefDocEditOpt=user.IsRefDocEditOpt,
+                    IsInchIndVfy=user.IsInchIndVfy,
+                    IsPharBalClearnace=user.IsPharBalClearnace
+                },
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 expires = token.ValidTo
             });

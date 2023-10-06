@@ -13,7 +13,7 @@ using HIMS.Data.Master.VendorMaster;
 using HIMS.Data.Opd;
 using HIMS.Data.Pathology;
 using HIMS.Data.Radiology;
-using HIMS.Model.Transaction;
+using HIMS.Data.Pharmacy;
 using HIMS.Model;
 using HIMS.Model.Radiology;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -30,9 +30,6 @@ using System.Net;
 using System.Text;
 using HIMS.Data.Opd.OP;
 using HIMS.Data.Transaction;
-//using HIMS.Data.NewFolder;
-using HIMS.Data.HomeTransaction;
-
 namespace HIMS.API.Extensions
 {
     public static class ServiceExtension
@@ -214,20 +211,12 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_ServiceMaster, R_ServiceMaster>();
             services.AddTransient<I_VendorMaster, R_VendorMaster>();
             //services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMaster>();
-
-            services.AddTransient<I_VendorAdvancePayment, R_VendorAdvancePayment>();
-            services.AddTransient<I_CustomerAdvancePayment, R_CustomerAdvancePayment>();
-            services.AddTransient<I_CustomerEnquiry, R_CustomerEnquiry>();
-            services.AddTransient<I_Customer, R_Customer>();
-            services.AddTransient<I_CustomerInformation_Sw, R_CustomerInformation_Sw>();
-            services.AddTransient<I_CustomerInfo_PayAdv_Sw, R_CustomerInfo_PayAdv_Sw>();
-            services.AddTransient<I_IssueTracking_Sw, R_IssueTracking_Sw>();
+    
             services.AddTransient<I_MenuMaster, R_MenuMaster>();
             services.AddTransient<I_MenuMasterDetails, R_MenuMasterDetails>();
             services.AddTransient<I_MenuMasterDetails_Details, R_MenuMasterDetails_Details>();
             //services.AddTransient<I_PayTranModeMaster, R_PayTranModeMaster>();
-            services.AddTransient<I_ProjectInformation, R_ProjectInformation>();
-            services.AddTransient<I_Sw_Bill_info, R_Sw_Bill_info>();
+    
 
             services.AddTransient<I_InsertIPDraft, R_InsertIPDraft>();
             services.AddTransient<I_IPPathOrRadiRequest, R_IPPathOrRadiRequest>();
@@ -260,20 +249,26 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_Mrddeathcertificate, R_Mrddeathcertificate>();
             services.AddTransient<I_SubcompanyTPA, R_SubcompanyTPA>();
             services.AddTransient<I_Prepostopnote, R_Prepostopnote>();
-
+            services.AddTransient<I_PatientFeedback, R_PatientFeedback>();
 
             services.AddTransient<I_ItemMaster, R_ItemMaster>();
 
-            /*   services.AddTransient<I_T_NursingBSLDetail, R_T_NursingBSLDetail>();
-               services.AddTransient<I_T_NursingHumanbody, R_T_NursingHumanbody>();
-               services.AddTransient<I_T_Nursinginouttake, R_T_Nursinginouttake>();
-               services.AddTransient<I_T_NursingPainAssessment, R_T_NursingPainAssessment>();
-               services.AddTransient<I_T_NursingPewsDetail, R_T_NursingPewsDetail>();
-               services.AddTransient<I_T_NursingTPRICU, R_T_NursingTPRICU>();
-               services.AddTransient<I_T_NursingVentilation, R_T_NursingVentilation>();
-               services.AddTransient<I_T_NursingVentilationDetail, R_T_NursingVentilationDetail>();*/
-               
-             services.AddTransient<I_PatientDocumentupload, R_PatientDocumentupload>();
+            /*   services.AddTransient<I_BookMasterHome, I_BookMasterHome>();
+               services.AddTransient<I_BankMasterHome, I_BankMasterHome>();
+               services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMasterHome>();
+               services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();
+               services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();
+               services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
+               services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
+               services.AddTransient<I_BillingClassMasterHome, R_BillingClassMasterHome>();
+               services.AddTransient<I_Itemmasterhome, R_Itemmasterhome>();
+
+               services.AddTransient<I_ItemCategoryMasterHome, R_ItemCategoryMasterHome>();
+               services.AddTransient<I_MenuMasterHome, R_MenuMasterHome>();
+               services.AddTransient<I_MenuMasterDetailsHome, R_MenuMasterDetailsHome>();
+               services.AddTransient<I_MenuMasterDetails_DetailsHome, R_MenuMasterDetails_DetailsHome>();*/
+
+            // services.AddTransient<>();
 
         }
 
