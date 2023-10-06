@@ -10,6 +10,8 @@ using HIMS.Data.Opd.OP;
 using HIMS.Model.Opd.OP;
 using HIMS.Model.IPD;
 using HIMS.Data.IPD;
+using HIMS.Data.HomeTransaction;
+using HIMS.Model.HomeTransaction;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -48,7 +50,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_IP_SMSOutgoing _IP_SMSOutgoing;
         public readonly I_OPBillingCredit _OPBillingCredit;
         public readonly I_OPSettlemtCredit _OPSettlemtCredit;
-
+        public readonly I_PatientDocumentupload _PatientDocumentupload;
 
         public OutPatientController(
             //  I_SaveAppointmentNewPatient saveAppointmentNewPatient,
@@ -72,7 +74,8 @@ namespace HIMS.API.Controllers.Transaction
            I_Configsetting configsetting,
             I_OPAddCharges oPAddCharges1,
             I_EmailNotification emailNotification,
-            I_OPBillingCredit oPBillingCredit,I_OPSettlemtCredit oPSettlemtCredit, I_IP_SMSOutgoing iP_SMSOutgoing
+            I_OPBillingCredit oPBillingCredit,I_OPSettlemtCredit oPSettlemtCredit, I_IP_SMSOutgoing iP_SMSOutgoing,
+            I_PatientDocumentupload patientDocumentupload
 
 
             )
@@ -101,6 +104,7 @@ namespace HIMS.API.Controllers.Transaction
             this._OPBillingCredit = oPBillingCredit;
             this._OPSettlemtCredit = oPSettlemtCredit;
             this._IP_SMSOutgoing = iP_SMSOutgoing;
+            this._PatientDocumentupload = patientDocumentupload;
         }
 
         //OPDAppointment Insert 
@@ -170,6 +174,26 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult OPDAppointment(OpdAppointmentParams OpdAppointmentParams)
         {
             var CasePaperSave = _OpdAppointment.Save(OpdAppointmentParams);
+            return Ok(CasePaperSave);
+
+        }
+
+
+        // Document Upload
+        [HttpPost("DocumentuploadSave")]
+        public IActionResult DocumentuploadSave(PatientDocumentuploadParam PatientDocumentuploadParam)
+        {
+            var CasePaperSave = _PatientDocumentupload.Save(PatientDocumentuploadParam);
+            return Ok(CasePaperSave);
+
+        }
+
+
+        //OPD upload
+        [HttpPost("DocumentuploadUpdate")]
+        public IActionResult DocumentuploadUpdate(PatientDocumentuploadParam PatientDocumentuploadParam)
+        {
+            var CasePaperSave = _PatientDocumentupload.Update(PatientDocumentuploadParam);
             return Ok(CasePaperSave);
 
         }

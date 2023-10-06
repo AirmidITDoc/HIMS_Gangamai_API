@@ -84,7 +84,7 @@ namespace HIMS.Model.IPD
         public float TaxPer { get; set; }
         public float TaxAmount { get; set; }
        
-      //  public float CompDiscAmt { get; set; }
+        public float CompDiscAmt { get; set; }
         public string DiscComments { get; set; }
 
         public int CashCounterId { get; set; }

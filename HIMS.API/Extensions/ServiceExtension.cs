@@ -30,6 +30,9 @@ using System.Net;
 using System.Text;
 using HIMS.Data.Opd.OP;
 using HIMS.Data.Transaction;
+//using HIMS.Data.NewFolder;
+using HIMS.Data.HomeTransaction;
+
 namespace HIMS.API.Extensions
 {
     public static class ServiceExtension
@@ -261,22 +264,16 @@ namespace HIMS.API.Extensions
 
             services.AddTransient<I_ItemMaster, R_ItemMaster>();
 
-            /*   services.AddTransient<I_BookMasterHome, I_BookMasterHome>();
-               services.AddTransient<I_BankMasterHome, I_BankMasterHome>();
-               services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMasterHome>();
-               services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();
-               services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();
-               services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
-               services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
-               services.AddTransient<I_BillingClassMasterHome, R_BillingClassMasterHome>();
-               services.AddTransient<I_Itemmasterhome, R_Itemmasterhome>();
-
-               services.AddTransient<I_ItemCategoryMasterHome, R_ItemCategoryMasterHome>();
-               services.AddTransient<I_MenuMasterHome, R_MenuMasterHome>();
-               services.AddTransient<I_MenuMasterDetailsHome, R_MenuMasterDetailsHome>();
-               services.AddTransient<I_MenuMasterDetails_DetailsHome, R_MenuMasterDetails_DetailsHome>();*/
-
-            // services.AddTransient<>();
+            /*   services.AddTransient<I_T_NursingBSLDetail, R_T_NursingBSLDetail>();
+               services.AddTransient<I_T_NursingHumanbody, R_T_NursingHumanbody>();
+               services.AddTransient<I_T_Nursinginouttake, R_T_Nursinginouttake>();
+               services.AddTransient<I_T_NursingPainAssessment, R_T_NursingPainAssessment>();
+               services.AddTransient<I_T_NursingPewsDetail, R_T_NursingPewsDetail>();
+               services.AddTransient<I_T_NursingTPRICU, R_T_NursingTPRICU>();
+               services.AddTransient<I_T_NursingVentilation, R_T_NursingVentilation>();
+               services.AddTransient<I_T_NursingVentilationDetail, R_T_NursingVentilationDetail>();*/
+               
+             services.AddTransient<I_PatientDocumentupload, R_PatientDocumentupload>();
 
         }
 

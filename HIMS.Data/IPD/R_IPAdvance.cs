@@ -19,7 +19,7 @@ namespace HIMS.Data.IPD
             var outputId = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
-                ParameterName = "@AdvanceID",
+                ParameterName = "@AdvanceId",
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
@@ -39,7 +39,7 @@ namespace HIMS.Data.IPD
             };
 
             var disc1 = IPAdvanceParams.AdvanceHeaderInsert.ToDictionary();
-            disc1.Remove("AdvanceID");
+            disc1.Remove("AdvanceId");
             var AdvanceID = ExecNonQueryProcWithOutSaveChanges("insert_AdvanceHeader_1", disc1, outputId);
 
             IPAdvanceParams.AdvanceDetailInsert.AdvanceId = (int)Convert.ToInt64(AdvanceID);

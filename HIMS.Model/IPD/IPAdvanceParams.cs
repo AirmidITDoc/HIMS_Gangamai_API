@@ -16,7 +16,7 @@ namespace HIMS.Model.IPD
 
     public class AdvanceHeaderInsert
     {
-        public int AdvanceID { get; set; }
+        public int AdvanceId { get; set; }
         public DateTime Date { get; set; }
         public int RefId { get; set; }
         public int OPD_IPD_Type { get; set; }

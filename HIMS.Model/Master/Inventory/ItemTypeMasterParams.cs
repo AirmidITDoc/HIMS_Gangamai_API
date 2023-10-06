@@ -17,7 +17,7 @@ namespace HIMS.Model.Master.Inventory
         public long AddedBy { get; set; }
         public long UpdatedBy { get; set; }
 
-        public long UpdatedBy { get; set; }
+      //public long UpdatedBy { get; set; }
 
     }
 
