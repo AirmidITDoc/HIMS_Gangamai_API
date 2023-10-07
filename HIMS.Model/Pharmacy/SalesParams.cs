@@ -67,6 +67,8 @@ namespace HIMS.Model.Pharmacy
         public float @PurTotAmt { get; set; }
         public float @CGSTPer { get; set; }
         public float @CGSTAmt { get; set; }
+
+        public float @SGSTPer { get; set; }
         public float @SGSTAmt { get; set; }
         public float @IGSTPer { get; set; }
         public float @IGSTAmt { get; set; }
