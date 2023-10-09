@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using HIMS.Model.Inventory;
 using HIMS.Data.Inventory;
 using HIMS.Common.Utility;
 using System.Data;
 using System.Data.SqlClient;
+using HIMS.Model.Inventory;
 
 namespace HIMS.Data.Inventory
 {

@@ -20,7 +20,7 @@ namespace HIMS.API.Controllers.Master
 
         public readonly I_CashCounterMaster _CashCounterMaster;
         public readonly I_ClassMaster _ClassMaster;
-        public readonly I_TariffMaster _TariffMaster;
+      //  public readonly I_TariffMaster _TariffMaster;
         public readonly I_GroupMaster _GroupMaster;
         public readonly I_SubGroupMaster _SubGroupMaster;
         public readonly I_ServiceMaster _ServiceMaster;
@@ -33,8 +33,8 @@ namespace HIMS.API.Controllers.Master
         public BillingController(I_BankMaster bankMaster, I_CashCounterMaster cashCounterMaster, I_ClassMaster classMaster,
             I_CompanyMaster companyMaster, I_CompanyTypeMaster companyTypeMaster,I_ConsessionReasonMaster consessionReasonMaster,
             I_GroupMaster groupMaster, I_ServiceMaster serviceMaster, I_SubGroupMaster subGroupMaster,
-            I_SubTpaCompanyMaster subTpaCompanyMaster,
-            I_TariffMaster tariffMaster
+            I_SubTpaCompanyMaster subTpaCompanyMaster
+           // I_TariffMaster tariffMaster
 
             )
 
@@ -42,7 +42,7 @@ namespace HIMS.API.Controllers.Master
 
             this._CashCounterMaster = cashCounterMaster;
             this._ClassMaster = classMaster;
-            this._TariffMaster = tariffMaster;
+           // this._TariffMaster = tariffMaster;
 
             this._GroupMaster = groupMaster;
             this._SubGroupMaster = subGroupMaster;
@@ -86,7 +86,7 @@ namespace HIMS.API.Controllers.Master
         }
 
         //TeriffMaster Save and Update
-        [HttpPost("TeriffSave")]
+       /* [HttpPost("TeriffSave")]
         public IActionResult TeriffSave(TariffMasterParams TariffMasterParams)
         {
             var ServiceSave = _TariffMaster.Save(TariffMasterParams);
@@ -98,7 +98,7 @@ namespace HIMS.API.Controllers.Master
         {
             var ServiceSave = _TariffMaster.Update(TariffMasterParams);
             return Ok(ServiceSave);
-        }
+        }*/
         //GroupMaster Save and Update
         [HttpPost("GroupSave")]
         public IActionResult GroupSave(GroupMasterParams GroupMasterParams)

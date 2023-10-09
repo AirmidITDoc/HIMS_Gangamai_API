@@ -50,7 +50,8 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_IP_SMSOutgoing _IP_SMSOutgoing;
         public readonly I_OPBillingCredit _OPBillingCredit;
         public readonly I_OPSettlemtCredit _OPSettlemtCredit;
-
+        public readonly I_PatientDocumentupload _PatientDocumentupload;
+        public readonly I_PatientFeedback _PatientFeedback;
         public OutPatientController(
             I_PhoneAppointment phoneAppointment,
             I_Payment payment,
@@ -70,7 +71,8 @@ namespace HIMS.API.Controllers.Transaction
             I_Configsetting configsetting,
             I_OPAddCharges oPAddCharges1,
             I_EmailNotification emailNotification,
-            I_OPBillingCredit oPBillingCredit,I_OPSettlemtCredit oPSettlemtCredit, I_IP_SMSOutgoing iP_SMSOutgoing
+            I_OPBillingCredit oPBillingCredit,I_OPSettlemtCredit oPSettlemtCredit, I_IP_SMSOutgoing iP_SMSOutgoing,I_PatientDocumentupload patientDocumentupload
+            ,I_PatientFeedback patientFeedback
 
 
             )
@@ -99,6 +101,8 @@ namespace HIMS.API.Controllers.Transaction
             this._OPBillingCredit = oPBillingCredit;
             this._OPSettlemtCredit = oPSettlemtCredit;
             this._IP_SMSOutgoing = iP_SMSOutgoing;
+            this._PatientDocumentupload = patientDocumentupload;
+            this._PatientFeedback = patientFeedback;
         }
 
 

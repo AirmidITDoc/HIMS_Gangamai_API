@@ -29,7 +29,7 @@ using System.Data.SqlClient;
 using System.Net;
 using System.Text;
 using HIMS.Data.Opd.OP;
-using HIMS.Data.Transaction;
+//using HIMS.Data.Transaction;
 namespace HIMS.API.Extensions
 {
     public static class ServiceExtension
@@ -160,7 +160,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_IPDDischargeSummary, R_IPDDischargeSummary>();
             services.AddTransient<I_IPRefundofAdvance, R_IPRefundofAdvance>();
             services.AddTransient<I_IPRefundofBilll, R_IPRefundofBilll>();
-            services.AddTransient<I_TariffMaster,R_TariffMaster>();
+           // services.AddTransient<I_TariffMaster,R_TariffMaster>();
             services.AddTransient<I_SubTpaCompanyMaster, R_SubTpaCompanyMaster>();
 
             services.AddTransient<I_IPDEmergency,R_IPDEmergency>();
@@ -252,6 +252,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_PatientFeedback, R_PatientFeedback>();
 
             services.AddTransient<I_ItemMaster, R_ItemMaster>();
+            services.AddTransient<I_Sales, R_Sales>();
 
             /*   services.AddTransient<I_BookMasterHome, I_BookMasterHome>();
                services.AddTransient<I_BankMasterHome, I_BankMasterHome>();
