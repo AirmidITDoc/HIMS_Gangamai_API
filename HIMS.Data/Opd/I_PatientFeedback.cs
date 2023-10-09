@@ -1,7 +1,8 @@
-﻿using System;
+﻿using HIMS.Model.Opd;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using HIMS.Model.Opd;
+
 
 namespace HIMS.Data.Opd
 {

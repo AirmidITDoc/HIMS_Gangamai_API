@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HIMS.Data.Pharmacy;
 using HIMS.Model.Pharmacy;
-using HIMS.Data.Pharmacy;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace HIMS.API.Controllers.Transaction
 {
