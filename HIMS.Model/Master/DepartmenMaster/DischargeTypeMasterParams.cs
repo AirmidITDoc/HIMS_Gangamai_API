@@ -17,7 +17,6 @@ namespace HIMS.Model.Master.DepartmenMaster
         public bool IsActive { get; set; }
         public int AddedBy { get; set; }
         public int UpdatedBy { get; set; }
-       
 
     }
 

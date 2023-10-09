@@ -96,11 +96,6 @@ namespace HIMS.Model.Master.Inventory
         public string DrugTypeName { get; set; }
         public int ItemCompnayId { get; set; }
         public DateTime IsUpdatedBy { get; set; }
-
-
-      /*  public string DrugTypeName { get; set; }
-        public int ItemCompnayId { get; set; }
-        public DateTime IsUpdatedBy { get; set; }*/
     }
 
     public class DeleteAssignItemToStore
