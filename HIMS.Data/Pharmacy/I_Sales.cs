@@ -5,5 +5,6 @@ namespace HIMS.Data.Pharmacy
     public interface I_Sales
     {
         public string InsertSales(SalesParams SalesParams);
+        public string InsertSalesWithCredit(SalesCreditParams salesCreditParams);
     }
 }

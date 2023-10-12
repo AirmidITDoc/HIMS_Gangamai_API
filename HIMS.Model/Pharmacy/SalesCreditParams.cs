@@ -4,19 +4,18 @@ using System.Text;
 
 namespace HIMS.Model.Pharmacy
 {
-    public class SalesParams
+    public class SalesCreditParams
     {
-            public SalesInsert SalesInsert { get; set; }
-            public List<SalesDetailInsert> SalesDetailInsert { get; set; }
-            public List<UpdateCurStkSales> UpdateCurStkSales { get; set; }
-            public Cal_DiscAmount_Sales Cal_DiscAmount_Sales { get; set; }
-            public Cal_GSTAmount_Sales Cal_GSTAmount_Sales { get; set; }
-            public SalesPayment SalesPayment { get; set; }
+        public SalesInsert SalesInsertCredit { get; set; }
+        public List<SalesDetailInsertCredit> SalesDetailInsertCredit { get; set; }
+        public List<UpdateCurStkSalesCredit> UpdateCurStkSalesCredit { get; set; }
+        public Cal_DiscAmount_SalesCredit Cal_DiscAmount_SalesCredit { get; set; }
+        public Cal_GSTAmount_SalesCredit Cal_GSTAmount_SalesCredit { get; set; }
     }
-    public class SalesInsert
+    public class SalesInsertCredit
     {
         public DateTime Date { get; set; }
-        public DateTime Time { get; set; }               
+        public DateTime Time { get; set; }
         public int OP_IP_ID { get; set; }
         public long OP_IP_Type { get; set; }
         public float TotalAmount { get; set; }
@@ -34,7 +33,7 @@ namespace HIMS.Model.Pharmacy
         public long AddedBy { get; set; }
         public String ExternalPatientName { get; set; }
         public String DoctorName { get; set; }
-        public long StoreId { get; set;}
+        public long StoreId { get; set; }
         public bool IsPrescription { get; set; }
         public String CreditReason { get; set; }
         public long CreditReasonID { get; set; }
@@ -47,8 +46,9 @@ namespace HIMS.Model.Pharmacy
         public long SalesTypeId { get; set; }
         public long SalesId { get; set; }
         public string ExtMobileNo { get; set; }
+
     }
-    public class SalesDetailInsert
+    public class SalesDetailInsertCredit
     {
         public long SalesID { get; set; }
         public long ItemId { get; set; }
@@ -77,53 +77,20 @@ namespace HIMS.Model.Pharmacy
         public long @StkID { get; set; }
 
     }
-    public class UpdateCurStkSales
+    public class UpdateCurStkSalesCredit
     {
         public long ItemId { get; set; }
         public long IssueQty { get; set; }
         public long StoreID { get; set; }
         public long StkID { get; set; }
     }
-    public class Cal_DiscAmount_Sales
+    public class Cal_DiscAmount_SalesCredit
     {
         public long SalesID { get; set; }
     }
-    public class Cal_GSTAmount_Sales
+    public class Cal_GSTAmount_SalesCredit
     {
         public long SalesID { get; set; }
     }
 
-    public class SalesPayment
-    {
-        public long BillNo { get; set; }
-        public DateTime PaymentDate { get; set; }
-        public DateTime PaymentTime { get; set; }
-        public float CashPayAmount { get; set; }
-        public float ChequePayAmount { get; set; }
-        public string ChequeNo { get; set; }
-        public string BankName { get; set; }
-        public DateTime ChequeDate { get; set; }
-        public float CardPayAmount { get; set; }
-        public string CardNo { get; set; }
-        public string CardBankName { get; set; }
-        public DateTime CardDate { get; set; }
-        public float AdvanceUsedAmount { get; set; }
-        public long AdvanceId { get; set; }
-        public long RefundId { get; set; }
-        public long TransactionType { get; set; }
-        public string Remark { get; set; }
-        public long AddBy { get; set; }
-        public bool IsCancelled { get; set; }
-        public long IsCancelledBy { get; set; }
-        public DateTime IsCancelledDate { get; set; }
-        public long OPD_IPD_Type { get; set; }
-        public float NEFTPayAmount { get; set; }
-        public string NEFTNo { get; set; }
-        public string NEFTBankMaster { get; set; }
-        public DateTime NEFTDate { get; set; }
-        public float PayTMAmount { get; set; }
-        public string PayTMTranNo { get; set; }
-        public DateTime PayTMDate { get; set; }
-        public long PaymentId { get; set; }
-    }
 }

@@ -25,13 +25,13 @@ namespace HIMS.Data.Pharmacy
                 Direction = ParameterDirection.Output
             };
 
-            //var outputId3 = new SqlParameter
-            //{
-            //    SqlDbType = SqlDbType.BigInt,
-            //    ParameterName = "@PaymentId",
-            //    Value = 0,
-            //    Direction = ParameterDirection.Output
-            //};
+            var outputId3 = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@PaymentId",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
 
 
             var disc3 = salesParams.SalesInsert.ToDictionary();
@@ -56,6 +56,59 @@ namespace HIMS.Data.Pharmacy
             ExecNonQueryProcWithOutSaveChanges("Cal_DiscAmount_Sales", vDiscCal);
 
             var vGSTCal = salesParams.Cal_GSTAmount_Sales.ToDictionary();
+            vGSTCal["SalesID"] = BillNo;
+            ExecNonQueryProcWithOutSaveChanges("Cal_GSTAmount_Sales", vDiscCal);
+
+            var vPayment = salesParams.SalesPayment.ToDictionary();
+            vPayment["BillNo"] = BillNo;
+            ExecNonQueryProcWithOutSaveChanges("insert_Payment_Pharmacy_New_1", vPayment);
+
+            _unitofWork.SaveChanges();
+            return BillNo;
+        }
+
+        public String InsertSalesWithCredit(SalesCreditParams salesCreditParams)
+        {
+
+            var outputId1 = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@SalesId",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+            var outputId3 = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@PaymentId",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+
+            var disc3 = salesCreditParams.SalesInsertCredit.ToDictionary();
+            disc3.Remove("SalesId");
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("insert_Sales_1", disc3, outputId1);
+
+            foreach (var a in salesCreditParams.SalesDetailInsertCredit)
+            {
+                var disc5 = a.ToDictionary();
+                disc5["SalesID"] = BillNo;
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_SalesDetails_1", disc5);
+            }
+
+            foreach (var a in salesCreditParams.UpdateCurStkSalesCredit)
+            {
+                var disc1 = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("Update_T_CurStk_Sales_Id_1", disc1);
+            }
+
+            var vDiscCal = salesCreditParams.Cal_DiscAmount_SalesCredit.ToDictionary();
+            vDiscCal["SalesID"] = BillNo;
+            ExecNonQueryProcWithOutSaveChanges("Cal_DiscAmount_Sales", vDiscCal);
+
+            var vGSTCal = salesCreditParams.Cal_GSTAmount_SalesCredit.ToDictionary();
             vGSTCal["SalesID"] = BillNo;
             ExecNonQueryProcWithOutSaveChanges("Cal_GSTAmount_Sales", vDiscCal);
 
