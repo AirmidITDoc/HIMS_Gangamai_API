@@ -39,7 +39,7 @@ namespace HIMS.Model.Pharmacy
     }
     public class SalesReturnDetail
     {
-        public long SalesReturnID { get; set; }
+        public long SalesReturnId { get; set; }
         public int ItemId { get; set; }
         public string BatchNo { get; set; }
         public DateTime BatchExpDate { get; set; }
@@ -56,7 +56,7 @@ namespace HIMS.Model.Pharmacy
         public float PurRate { get; set; }
         public float PurTot { get; set; }
         public long SalesID { get; set; }
-        public long SalesDetId { get; set; }
+        public long SalesDetID { get; set; }
         public int IsCashOrCredit { get; set; }
         public float CGSTPer { get; set; }
         public float CGSTAmt { get; set; }
@@ -64,7 +64,8 @@ namespace HIMS.Model.Pharmacy
         public float SGSTAmt { get; set; }
         public float IGSTPer { get; set; }
         public float IGSTAmt { get; set; }
-        public long StkId { get; set; }
+        public long StkID { get; set; }
+       // public long SalesReturnDetId { get; set; }
 
     }
 
