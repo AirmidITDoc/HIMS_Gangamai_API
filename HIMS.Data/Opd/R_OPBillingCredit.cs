@@ -50,7 +50,7 @@ namespace HIMS.Data.Opd
             };
 
 
-            var disc3 = OPBillingCreditparam.InsertBillcreditupdatewithbillno .ToDictionary();
+            var disc3 = OPBillingCreditparam.InsertBillcreditupdatewithbillno.ToDictionary();
             disc3.Remove("BillNo");
             var BillNo = ExecNonQueryProcWithOutSaveChanges("insert_Bill_UpdateWithBillNo_1_New", disc3, outputId1);
 

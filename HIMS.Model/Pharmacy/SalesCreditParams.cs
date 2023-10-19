@@ -59,22 +59,21 @@ namespace HIMS.Model.Pharmacy
         public float TotalAmount { get; set; }
         public float VatPer { get; set; }
         public float VatAmount { get; set; }
-        public float @DiscPer { get; set; }
-        public float @DiscAmount { get; set; }
-        public float @GrossAmount { get; set; }
-        public float @LandedPrice { get; set; }
-        public float @TotalLandedAmount { get; set; }
-        public float @PurRateWf { get; set; }
-        public float @PurTotAmt { get; set; }
-        public float @CGSTPer { get; set; }
-        public float @CGSTAmt { get; set; }
-
-        public float @SGSTPer { get; set; }
-        public float @SGSTAmt { get; set; }
-        public float @IGSTPer { get; set; }
-        public float @IGSTAmt { get; set; }
-        public bool @IsPurRate { get; set; }
-        public long @StkID { get; set; }
+        public float DiscPer { get; set; }
+        public float DiscAmount { get; set; }
+        public float GrossAmount { get; set; }
+        public float LandedPrice { get; set; }
+        public float TotalLandedAmount { get; set; }
+        public float PurRateWf { get; set; }
+        public float PurTotAmt { get; set; }
+        public float CGSTPer { get; set; }
+        public float CGSTAmt { get; set; }
+        public float SGSTPer { get; set; }
+        public float SGSTAmt { get; set; }
+        public float IGSTPer { get; set; }
+        public float IGSTAmt { get; set; }
+        public bool IsPurRate { get; set; }
+        public long StkID { get; set; }
 
     }
     public class UpdateCurStkSalesCredit

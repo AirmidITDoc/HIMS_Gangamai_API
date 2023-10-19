@@ -21,10 +21,9 @@ namespace HIMS.Model.IPD
         public bool IsCancelled { get; set; }
         public int IsCancelledBy { get; set; }
         public DateTime IsCancelledDate { get; set; }
-
         public DateTime IsCancelledTime { get; set; }
-        public bool IsOnFileTest { get; set; }
-        public int RequestId { get; set; }
+        //public bool IsOnFileTest { get; set; }
+        //public int RequestId { get; set; }
     }
 
     public class IPPathOrRadiRequestLabRequestInsert
@@ -34,6 +33,6 @@ namespace HIMS.Model.IPD
         public int ServiceId { get; set; }
         public int Price { get; set; }
         public bool IsStatus { get; set; }
-        public bool IsOnFileTest { get; set; }
+        //public bool IsOnFileTest { get; set; }
     }
 }
