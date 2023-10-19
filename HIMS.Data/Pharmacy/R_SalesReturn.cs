@@ -25,6 +25,7 @@ namespace HIMS.Data.Pharmacy
                 Direction = ParameterDirection.Output
             };
 
+          
             var disc3 = salesReturnParams.salesReturnHeader.ToDictionary();
             disc3.Remove("SalesReturnId");
             var BillNo = ExecNonQueryProcWithOutSaveChanges("insert_SalesReturnHeader_1", disc3, outputId1);

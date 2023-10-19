@@ -79,7 +79,11 @@ namespace HIMS.Model.Pharmacy
         public float SGSTAmt { get; set; }
         public float IGSTPer { get; set; }
         public float IGSTAmt { get; set; }
+
+        public int StkID { get; set; }
         public float MRP_Strip { get; set; }
+       // public int GRNDetID { get; set; }
+        
     }
 
     public class UpdateItemMasterGSTPer
