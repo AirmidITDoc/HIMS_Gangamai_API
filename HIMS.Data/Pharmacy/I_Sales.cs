@@ -6,5 +6,6 @@ namespace HIMS.Data.Pharmacy
     {
         public string InsertSales(SalesParams SalesParams);
         public string InsertSalesWithCredit(SalesCreditParams salesCreditParams);
+        public bool PaymentSettlement(SalesParams SalesParams);
     }
 }

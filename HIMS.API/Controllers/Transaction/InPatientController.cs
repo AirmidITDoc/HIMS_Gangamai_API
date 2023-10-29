@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using HIMS.Data.Opd;
 using HIMS.Model.Opd;
 using HIMS.Model.Transaction;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -16,6 +19,9 @@ namespace HIMS.API.Controllers.Transaction
     [Route("api/[controller]")]
     public class InPatientController : Controller
     {
+        private readonly IWebHostEnvironment _environment;
+
+
         public readonly I_AdmissionReg _AdmissionReg;
         public readonly I_RegisteredPatientAdmission _RPA;
         public readonly I_IPDischarge _IPDischarge;
@@ -69,7 +75,10 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_SubcompanyTPA _SubcompanyTPA;
         public readonly I_Mrddeathcertificate _Mrddeathcertificate;
         public readonly I_Prepostopnote _Prepostopnote;
-        public InPatientController(I_AdmissionReg admission,
+        public InPatientController(
+            IWebHostEnvironment environment,
+            
+            I_AdmissionReg admission,
             I_RegisteredPatientAdmission rpa,
             I_IPDischarge iPDischarge,
             I_IPDDischargeSummary iPDDischargeSummary,
@@ -98,6 +107,7 @@ namespace HIMS.API.Controllers.Transaction
             I_Mrddeathcertificate mrddeathcertificate,I_SubcompanyTPA subcompanyTPA,I_Prepostopnote prepostopnote
             )
         {
+            this._environment = environment;
             this._AdmissionReg = admission;
             this._RPA = rpa;
             this._IPDischarge = iPDischarge;
@@ -429,7 +439,64 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(RequestId);
         }
 
+        [HttpPost("SingleDocUpload")]
+        public async Task<IActionResult> SingleDocUpload(IFormFile formFile,string FileName)
+        {
+            if (formFile.FileName.Length > 0)
+            {
+                var filepath = getFilePath(FileName);
+                if (!Directory.Exists(filepath))
+                {
+                    Directory.CreateDirectory(filepath);
+                }
+                string imgpath = filepath + "\\" + formFile.FileName;
+                if(System.IO.File.Exists(imgpath))
+                {
+                    System.IO.File.Delete(imgpath);
+                }
+                using (FileStream fileStream=System.IO.File.Create(imgpath))
+                {
+                    await formFile.CopyToAsync(fileStream);
+                    fileStream.Flush();
+                }
+            }
 
+            //var RequestId = _DocumentAttachment.Save(documentAttachment);
+            return Ok(true);
+        }
+        [HttpPost("MultipleDocUpload")]
+        public async Task<IActionResult> MultipleDocUpload(IFormFileCollection formFileCollection, string FileName)
+        {
+            {
+                var filepath = getFilePath(FileName);
+                if (!Directory.Exists(filepath))
+                {
+                    Directory.CreateDirectory(filepath);
+                }
+                foreach (var file in formFileCollection)
+                {
+                    string imgpath = filepath + "\\" + file.FileName;
+
+                    if (System.IO.File.Exists(imgpath))
+                    {
+                        System.IO.File.Delete(imgpath);
+                    }
+                    using (FileStream fileStream = System.IO.File.Create(imgpath))
+                    {
+                        await file.CopyToAsync(fileStream);
+                        fileStream.Flush();
+                    }
+                }
+
+                //var RequestId = _DocumentAttachment.Save(documentAttachment);
+                return Ok(true);
+            }
+        }
+        [NonAction]
+        public string getFilePath(string fileName)
+        {
+            return this._environment.WebRootPath + "\\upload\\" + fileName;
+        }
 
         [HttpPost("OTDetailInsert")]
         public IActionResult OTDetailInsert(OTTableDetailParams OTTableDetailParams)

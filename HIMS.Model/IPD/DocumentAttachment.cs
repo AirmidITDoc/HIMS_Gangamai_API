@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace HIMS.Model.IPD
 {
@@ -8,9 +9,7 @@ namespace HIMS.Model.IPD
     {
         public deleteDocument deleteDocument { get; set; }
         public List<InsertdocumentAttach> InsertdocumentAttach { get; set; }
-
     }
-
     public class deleteDocument
     {
         public int AdmId { get; set; } = 0;

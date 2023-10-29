@@ -37,30 +37,29 @@ namespace HIMS.Data.Pharmacy
                 ExecNonQueryProcWithOutSaveChanges("insert_SalesReturnDetails_1", disc5);
             }
 
-            //foreach (var a in salesReturnParams.SalesReturn_CurStk_Upt)
-            //{
-            //    var disc1 = a.ToDictionary();
-            //    ExecNonQueryProcWithOutSaveChanges("Update_T_CurStk_SalesReturn_Id_1", disc1);
-            //}
+            foreach (var a in salesReturnParams.SalesReturn_CurStk_Upt)
+            {
+                var disc1 = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("Update_T_CurStk_SalesReturn_Id_1", disc1);
+            }
 
-            //foreach (var a in salesReturnParams.Update_SalesReturnQty_SalesTbl)
-            //{
-            //    var disc1 = a.ToDictionary();
-            //    ExecNonQueryProcWithOutSaveChanges("Update_SalesReturnQty_SalesTbl_1", disc1);
-            //}
+            foreach (var a in salesReturnParams.Update_SalesReturnQty_SalesTbl)
+            {
+                var disc1 = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("Update_SalesReturnQty_SalesTbl_1", disc1);
+            }
 
-            //var vPayment = salesReturnParams.Insert_ItemMovementReport_Cursor.ToDictionary();
-            //vPayment["SalesReturnId"] = BillNo;
-            //ExecNonQueryProcWithOutSaveChanges("Insert_ItemMovementReport_Cursor", vPayment);
+            var vDiscCal = salesReturnParams.Update_SalesRefundAmt_SalesHeader.ToDictionary();
+            vDiscCal["SalesReturnId"] = BillNo;
+            ExecNonQueryProcWithOutSaveChanges("Update_SalesRefundAmt_SalesHeader", vDiscCal);
 
-            //var vDiscCal = salesReturnParams.Update_SalesRefundAmt_SalesHeader.ToDictionary();
-            //vDiscCal["SalesReturnId"] = BillNo;
-            //ExecNonQueryProcWithOutSaveChanges("Update_SalesRefundAmt_SalesHeader", vDiscCal);
+            var vGSTCal = salesReturnParams.Cal_GSTAmount_SalesReturn.ToDictionary();
+            vGSTCal["SalesReturnId"] = BillNo;
+            ExecNonQueryProcWithOutSaveChanges("Cal_GSTAmount_SalesReturn", vDiscCal);
 
-            //var vGSTCal = salesReturnParams.Cal_GSTAmount_SalesReturn.ToDictionary();
-            //vGSTCal["SalesReturnId"] = BillNo;
-            //ExecNonQueryProcWithOutSaveChanges("Cal_GSTAmount_SalesReturn", vDiscCal);
-
+            var vItemMovement = salesReturnParams.Insert_ItemMovementReport_Cursor.ToDictionary();
+            vItemMovement["SalesReturnId"] = BillNo;
+            ExecNonQueryProcWithOutSaveChanges("Insert_ItemMovementReport_Cursor", vItemMovement);
 
             _unitofWork.SaveChanges();
             return BillNo;

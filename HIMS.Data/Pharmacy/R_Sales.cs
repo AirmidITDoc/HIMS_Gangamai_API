@@ -116,5 +116,17 @@ namespace HIMS.Data.Pharmacy
             return BillNo;
         }
 
+        public bool PaymentSettlement(SalesParams salesParams)
+        {
+            var vPayment = salesParams.SalesPayment.ToDictionary();
+            vPayment.Remove("PaymentID");
+            ExecNonQueryProcWithOutSaveChanges("insert_Payment_Pharmacy_New_1", vPayment);
+
+            var vUpdateHeader = salesParams.update_Pharmacy_BillBalAmount.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("update_Pharmacy_BillBalAmount_1", vUpdateHeader);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
     }
 }

@@ -12,6 +12,9 @@ namespace HIMS.Model.Pharmacy
             public Cal_DiscAmount_Sales Cal_DiscAmount_Sales { get; set; }
             public Cal_GSTAmount_Sales Cal_GSTAmount_Sales { get; set; }
             public SalesPayment SalesPayment { get; set; }
+            public update_Pharmacy_BillBalAmount update_Pharmacy_BillBalAmount { get; set; }
+            public List<update_T_PHAdvanceDetail> update_T_PHAdvanceDetail { get; set; }
+            public update_T_PHAdvanceHeader update_T_PHAdvanceHeader { get; set; }
     }
     public class SalesInsert
     {
@@ -125,5 +128,25 @@ namespace HIMS.Model.Pharmacy
         public string PayTMTranNo { get; set; }
         public DateTime PayTMDate { get; set; }
         public long PaymentId { get; set; }
+    }
+
+    public class update_Pharmacy_BillBalAmount
+    {
+        public long SalesID { get; set; }
+        public float BalanceAmount { get; set; }
+        public float SalRefundAmt { get; set; }
+    }
+    public class update_T_PHAdvanceDetail
+    {
+        public long AdvanceDetailID { get; set; }
+        public float UsedAmount { get; set; }
+        public float BalanceAmount { get; set; }
+    }
+    public class update_T_PHAdvanceHeader
+    {
+        public long AdvanceId { get; set; }
+        public float AdvanceUsedAmount { get; set; }
+        public float BalanceAmount { get; set; }
+
     }
 }

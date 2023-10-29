@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace HIMS.Data.IPD
 {
@@ -22,36 +23,10 @@ namespace HIMS.Data.IPD
             var dic = documentAttachment.deleteDocument.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("delete_MRD_AdmFile_1", dic);
 
-         
-
             foreach (var a in documentAttachment.InsertdocumentAttach)
             {
-                var disc = documentAttachment.InsertdocumentAttach.ToDictionary();
-                //string UserFileName = "D:\VBD";
-                //string filename = "c:";
-
-                //File.WriteAllText(tmpfile, JsonConvert.SerializeObject(current), Encoding.UTF8);
-
-                Dictionary<string, Object> PathParams = new Dictionary<string, object>();
-
-                PathParams.Add("OPD_IPD_ID", a.OPD_IPD_ID);
-                PathParams.Add("OPD_IPD_Type", a.OPD_IPD_Type);
-                PathParams.Add("FileName", a.FileName);
-                PathParams.Add("FilePath", File.ReadAllText(a.FilePath,Encoding.UTF8));
-
-                copyfunc(a.FilePath, a.FilePathLocation);
-
-                PathParams.Add("FilePathLocation", a.FilePathLocation);
-
-                PathParams.Add("CategoryId", a.CategoryId);
-                PathParams.Add("CategoryName", a.CategoryName);
-
-
-                ExecNonQueryProcWithOutSaveChanges("insert_T_MRD_AdmFile_1", PathParams);
-
-                //var disc1 = a.ToDictionary();
-                //disc1["DRNo"] = DRNo;
-                //ExecNonQueryProcWithOutSaveChanges("insert_T_DRBillDet_1", disc1);
+                var disc = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("insert_T_MRD_AdmFile_1", disc);
             }
 
             _unitofWork.SaveChanges();
@@ -70,7 +45,34 @@ namespace HIMS.Data.IPD
 
             file.CopyTo(System.IO.Path.Combine(DestPath, file.Name), true);
         }
+        //public async Task<string> WriteFile(IFileName file)
+        //{
+        //    string filename = "";
+        //    try
+        //    {
+        //        var extension = "." + file.filename.Split('.')[file.filename.Split('.').Length - 1];
+        //        filename = DateTime.Now.Ticks.ToString() + extension;
 
+        //        var filepath = Path.Combine(Directory.GetCurrentDirectory(), "upload");
+
+        //        if (!Directory.Exists(filepath))
+        //        {
+        //            Directory.CreateDirectory(filepath);
+        //        }
+        //        var exactpath = Path.Combine(Directory.GetCurrentDirectory(), "upload", filename);
+        //        using (var stream = new FileStream(exactpath, FileMode.Create))
+        //        {
+        //            await file.CopytoAsync(stream);
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+        //    return filename;
+
+        //}
 
     }
 }

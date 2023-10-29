@@ -19,7 +19,6 @@ namespace HIMS.Model.Opd
         public String EmailBody { get; set; }
         public String EmailCC { get; set; }
         public int IsSendMail { get; set; }
-      
         public string AttachmentPath { get; set; }
     }
 }
