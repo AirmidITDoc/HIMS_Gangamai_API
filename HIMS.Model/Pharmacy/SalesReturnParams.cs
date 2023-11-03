@@ -34,6 +34,8 @@ namespace HIMS.Model.Pharmacy
         public long UnitID { get; set; }
         public long AddedBy { get; set; }
         public long StoreID { get; set; }
+
+        public String Narration { get; set; }
         public long SalesReturnId { get; set; }
 
     }
