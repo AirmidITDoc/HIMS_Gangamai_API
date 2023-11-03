@@ -46,6 +46,7 @@ namespace HIMS.Data.Pharmacy
             foreach (var a in salesReturnParams.Update_SalesReturnQty_SalesTbl)
             {
                 var disc1 = a.ToDictionary();
+               // disc1["SalesDetId"]=
                 ExecNonQueryProcWithOutSaveChanges("Update_SalesReturnQty_SalesTbl_1", disc1);
             }
 
@@ -58,7 +59,7 @@ namespace HIMS.Data.Pharmacy
             ExecNonQueryProcWithOutSaveChanges("Cal_GSTAmount_SalesReturn", vDiscCal);
 
             var vItemMovement = salesReturnParams.Insert_ItemMovementReport_Cursor.ToDictionary();
-            vItemMovement["SalesReturnId"] = BillNo;
+           // vItemMovement["SalesReturnId"] = BillNo;
             ExecNonQueryProcWithOutSaveChanges("Insert_ItemMovementReport_Cursor", vItemMovement);
 
             _unitofWork.SaveChanges();
