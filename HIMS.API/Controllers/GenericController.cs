@@ -24,6 +24,14 @@ namespace HIMS.API.Controllers
             var result = _genericRepository.ExecDataSetProc(procName, entity.ToDictionary());
             return Ok(result);
         }
+        //Get
+        [HttpPost]
+        [Route("GetDataSetByProc")]
+        public IActionResult GetDataSet(string procName, [FromBody] JObject entity)
+        {
+            var result = _genericRepository.GetDataSetByProc(procName, entity.ToDictionary());
+            return Ok(result);
+        }
 
         //Get
         [HttpPost]

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Dynamic;
 using System.IO;
 
 namespace HIMS.Data
@@ -23,9 +24,9 @@ namespace HIMS.Data
         }
 
         public SqlCommand CreateCommand(
-            string query, 
-            CommandType type, 
-            Dictionary<string, object> entity, 
+            string query,
+            CommandType type,
+            Dictionary<string, object> entity,
             SqlParameter outputParam = null
             )
         {
@@ -123,8 +124,8 @@ namespace HIMS.Data
             return result;
         }
         public string ExecNonQueryProcWithOutSaveChanges(
-            string proc, 
-            Dictionary<string, object> entity, 
+            string proc,
+            Dictionary<string, object> entity,
             SqlParameter outputParam = null
             )
         {
@@ -139,7 +140,7 @@ namespace HIMS.Data
             return id;
         }
 
-        
+
         public object ExecScalar(string query, Dictionary<string, object> entity)
         {
             var cmd = CreateCommand(query, CommandType.Text, entity);
@@ -175,10 +176,26 @@ namespace HIMS.Data
             var cmd = Select_CreateCommand(proc, CommandType.StoredProcedure, entity);
             var adapt = new SqlDataAdapter(cmd);
             var ds = new DataSet();
-                adapt.Fill(ds);
+            adapt.Fill(ds);
             var result = ds.Tables[0].ToDynamic();
             _unitofWork.SaveChanges();
             return result;
+        }
+        public dynamic GetDataSetByProc(string proc, Dictionary<string, object> entity)
+        {
+            var cmd = Select_CreateCommand(proc, CommandType.StoredProcedure, entity);
+            var adapt = new SqlDataAdapter(cmd);
+            var ds = new DataSet();
+            adapt.Fill(ds);
+            dynamic dyn = new ExpandoObject();
+            foreach (DataTable dt in ds.Tables)
+            {
+                var dict = (IDictionary<string, object>)dyn;
+                if (dt.Rows.Count > 0)
+                    dict[dt.TableName] = dt.ToDynamic();
+            }
+            _unitofWork.SaveChanges();
+            return dyn;
         }
         public List<dynamic> ExecDataSetProcWithDataTable(string proc, JArray entity)
         {
@@ -222,6 +239,6 @@ namespace HIMS.Data
             _unitofWork.SaveChanges();
             return result;
         }
-      
+
     }
 }
