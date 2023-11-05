@@ -57,7 +57,7 @@ namespace HIMS.Data.Pharmacy
 
             var vGSTCal = salesParams.Cal_GSTAmount_Sales.ToDictionary();
             vGSTCal["SalesID"] = BillNo;
-            ExecNonQueryProcWithOutSaveChanges("Cal_GSTAmount_Sales", vDiscCal);
+            ExecNonQueryProcWithOutSaveChanges("m_Cal_GSTAmount_Sales", vDiscCal);
 
             var vPayment = salesParams.SalesPayment.ToDictionary();
             vPayment["BillNo"] = BillNo;
@@ -110,7 +110,7 @@ namespace HIMS.Data.Pharmacy
 
             var vGSTCal = salesCreditParams.Cal_GSTAmount_SalesCredit.ToDictionary();
             vGSTCal["SalesID"] = BillNo;
-            ExecNonQueryProcWithOutSaveChanges("Cal_GSTAmount_Sales", vDiscCal);
+            ExecNonQueryProcWithOutSaveChanges("m_Cal_GSTAmount_Sales", vDiscCal);
 
             _unitofWork.SaveChanges();
             return BillNo;
