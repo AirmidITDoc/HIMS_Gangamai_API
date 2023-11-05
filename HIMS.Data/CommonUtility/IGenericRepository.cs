@@ -23,6 +23,7 @@ namespace HIMS.Data
         SqlDataReader ExecDataReaderProc(string proc, Dictionary<string, object> entity);
 
         List<dynamic> ExecDataSetProc(string proc, Dictionary<string, object> entity);
+        dynamic GetDataSetByProc(string proc, Dictionary<string, object> entity);
         List<dynamic> ExecDataSetQuery(string query, Dictionary<string, object> entity);
         List<dynamic> ExecDataSetProcWithDataTable(string proc, JArray entity);
     }

@@ -46,7 +46,6 @@ namespace HIMS.Data.Pharmacy
             foreach (var a in salesReturnParams.Update_SalesReturnQty_SalesTbl)
             {
                 var disc1 = a.ToDictionary();
-               // disc1["SalesDetId"]=
                 ExecNonQueryProcWithOutSaveChanges("Update_SalesReturnQty_SalesTbl_1", disc1);
             }
 

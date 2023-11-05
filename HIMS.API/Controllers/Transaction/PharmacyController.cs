@@ -41,7 +41,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult PaymentSettlement(SalesParams salesParams)
         {
             var PaymentSettlement = _Sales.PaymentSettlement(salesParams);
-            return Ok(PaymentSettlement.ToString());
+            return Ok(PaymentSettlement);
 
         }
 
