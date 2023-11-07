@@ -45,11 +45,15 @@ namespace HIMS.Model.Pharmacy
         public float TotIGSTAmt { get; set; }
         public long TranProcessId { get; set; }
         public string TranProcessMode { get; set; }
+
+        public long BillDiscAmt  { get; set; }
         public long GRNID { get; set; }
     }
 
     public class GRNDetailSave
     {
+
+        public long GRNDetID { get; set; }
         public long GRNId { get; set; }
         public long ItemId { get; set; }
         public long UOMId { get; set; }
@@ -70,6 +74,7 @@ namespace HIMS.Model.Pharmacy
         public float TotalQty { get; set; }
         public long PONo { get; set; }
         public string BatchNo { get; set; }
+      
         public DateTime BatchExpDate { get; set; }
         public float PurUnitRate { get; set; }
         public float PurUnitRateWF { get; set; }
@@ -79,13 +84,16 @@ namespace HIMS.Model.Pharmacy
         public float SGSTAmt { get; set; }
         public float IGSTPer { get; set; }
         public float IGSTAmt { get; set; }
-
-        public int StkID { get; set; }
         public float MRP_Strip { get; set; }
-       // public int GRNDetID { get; set; }
         
-    }
+        public bool IsVerified { get; set; }
+        public DateTime IsVerifiedDatetime { get; set; }
 
+        public int IsVerifiedUserId { get; set; }
+
+       
+    }
+   
     public class UpdateItemMasterGSTPer
     {
         public long ItemId { get; set; }
@@ -93,7 +101,7 @@ namespace HIMS.Model.Pharmacy
         public float SGST { get; set; }
         public float IGST { get; set; }
         public string HSNcode { get; set; }
-        public float ConversionFactor { get; set; }
+       // public float ConversionFactor { get; set; }
     }
 
     public class Update_PO_STATUS_AganistGRN
