@@ -152,12 +152,12 @@ namespace HIMS.Model.Pharmacy
         public float TotIGSTAmt { get; set; }
         public long TranProcessId { get; set; }
         public string TranProcessMode { get; set; }
-       
 
+        public long BillDiscAmt { get; set; }
     }
     public class Delete_GRNDetails
     {
-        public long GRNID { get; set; }
+        public long GRNId { get; set; }
     }
 
 }

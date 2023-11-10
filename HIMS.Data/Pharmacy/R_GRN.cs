@@ -62,7 +62,8 @@ namespace HIMS.Data.Pharmacy
             ExecNonQueryProcWithOutSaveChanges("update_GRNHeader_1", vPurchaseOrderUdpate);
 
             var vPurchaseOrderDelete = grnParams.Delete_GRNDetails.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Delete_GRNDetails_1", vPurchaseOrderDelete);
+            vPurchaseOrderDelete["GRNId"] = grnParams.updateGRNHeader.GRNID;
+            ExecNonQueryProcWithOutSaveChanges("m_Delete_GRNDetails_1_1", vPurchaseOrderDelete);
 
             foreach (var a in grnParams.GRNDetailSave)
             {
