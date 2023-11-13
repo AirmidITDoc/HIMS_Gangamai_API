@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HIMS.Model.Pharmacy
 {
-    public class SalesReturnParams
+    public class SalesReturnCreditParams
     {
         public SalesReturnHeader salesReturnHeader { get; set; }
         public List<SalesReturnDetail> SalesReturnDetail { get; set; }
@@ -13,6 +13,7 @@ namespace HIMS.Model.Pharmacy
         public Update_SalesRefundAmt_SalesHeader Update_SalesRefundAmt_SalesHeader { get; set; }
         public Cal_GSTAmount_SalesReturn Cal_GSTAmount_SalesReturn { get; set; }
         public Insert_ItemMovementReport_Cursor Insert_ItemMovementReport_Cursor { get; set; }
+        public SalesReturnPayment SalesReturnPayment { get; set; }
     }   
 
     public class SalesReturnHeader
@@ -70,7 +71,6 @@ namespace HIMS.Model.Pharmacy
        // public long SalesReturnDetId { get; set; }
 
     }
-
     public class SalesReturn_CurStk_Upt
     {
         public long ItemId { get; set; }
@@ -88,15 +88,47 @@ namespace HIMS.Model.Pharmacy
     {
         public long SalesReturnId { get; set; }
     }
-  
     public class Cal_GSTAmount_SalesReturn
     {
         public long SalesReturnID { get; set; }
     }
-
     public class Insert_ItemMovementReport_Cursor
     { 
         public long Id { get; set; }
         public long TypeId { get; set; }
     }
+    public class SalesReturnPayment
+    {
+        public long BillNo { get; set; }
+        public DateTime PaymentDate { get; set; }
+        public DateTime PaymentTime { get; set; }
+        public float CashPayAmount { get; set; }
+        public float ChequePayAmount { get; set; }
+        public string ChequeNo { get; set; }
+        public string BankName { get; set; }
+        public DateTime ChequeDate { get; set; }
+        public float CardPayAmount { get; set; }
+        public string CardNo { get; set; }
+        public string CardBankName { get; set; }
+        public DateTime CardDate { get; set; }
+        public float AdvanceUsedAmount { get; set; }
+        public long AdvanceId { get; set; }
+        public long RefundId { get; set; }
+        public long TransactionType { get; set; }
+        public string Remark { get; set; }
+        public long AddBy { get; set; }
+        public bool IsCancelled { get; set; }
+        public long IsCancelledBy { get; set; }
+        public DateTime IsCancelledDate { get; set; }
+        public long OPD_IPD_Type { get; set; }
+        public float NEFTPayAmount { get; set; }
+        public string NEFTNo { get; set; }
+        public string NEFTBankMaster { get; set; }
+        public DateTime NEFTDate { get; set; }
+        public float PayTMAmount { get; set; }
+        public string PayTMTranNo { get; set; }
+        public DateTime PayTMDate { get; set; }
+        public long PaymentId { get; set; }
+    }
+
 }
