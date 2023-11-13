@@ -89,7 +89,7 @@ namespace HIMS.Model.Pharmacy
     }
     public class Delete_PurchaseDetails
     {
-        public long PurchaseID { get; set; }
+        public long PurchaseId { get; set; }
     }
 
     public class Update_POVerify_Status
