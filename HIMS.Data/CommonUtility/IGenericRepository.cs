@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace HIMS.Data
@@ -15,7 +16,7 @@ namespace HIMS.Data
 
         string ExecNonQueryProcWithOutSaveChanges(string proc, Dictionary<string, object> entity, SqlParameter outputParam = null);
 
-     //   string ExecNonQueryProcWithOutSaveChanges_Select(string proc, Dictionary<string, object> entity, SqlParameter outputParam = null);
+        //   string ExecNonQueryProcWithOutSaveChanges_Select(string proc, Dictionary<string, object> entity, SqlParameter outputParam = null);
 
         object ExecScalar(string query, Dictionary<string, object> entity);
         object ExecScalarProc(string proc, Dictionary<string, object> entity);
@@ -23,8 +24,10 @@ namespace HIMS.Data
         SqlDataReader ExecDataReaderProc(string proc, Dictionary<string, object> entity);
 
         List<dynamic> ExecDataSetProc(string proc, Dictionary<string, object> entity);
+        DataTable GetDataTableProc(string proc, Dictionary<string, object> entity);
         dynamic GetDataSetByProc(string proc, Dictionary<string, object> entity);
         List<dynamic> ExecDataSetQuery(string query, Dictionary<string, object> entity);
+        DataTable GetDataTableQuery(string proc, Dictionary<string, object> entity);
         List<dynamic> ExecDataSetProcWithDataTable(string proc, JArray entity);
     }
 }

@@ -32,24 +32,25 @@ namespace HIMS.Data
         {
             _sqlCommand.CommandText = query;
             _sqlCommand.CommandType = type;
-
+            _sqlCommand.Parameters.Clear();
             if (outputParam != null)
             {
                 entity.Remove(outputParam.ParameterName);
                 _sqlCommand.Parameters.Add(outputParam);
             }
-
-            foreach (var property in entity)
+            if ((entity?.Count ?? 0) > 0)
             {
-                var param = new SqlParameter
+                foreach (var property in entity)
                 {
-                    ParameterName = property.Key,
-                    Value = (object)property.Value
-                };
+                    var param = new SqlParameter
+                    {
+                        ParameterName = property.Key,
+                        Value = (object)property.Value
+                    };
 
-                _sqlCommand.Parameters.Add(param);
+                    _sqlCommand.Parameters.Add(param);
+                }
             }
-
             return _sqlCommand;
         }
 
@@ -62,7 +63,7 @@ namespace HIMS.Data
         {
             _sqlCommand.CommandText = query;
             _sqlCommand.CommandType = type;
-
+            _sqlCommand.Parameters.Clear();
             if (outputParam != null)
             {
                 entity.Remove(outputParam.ParameterName);
@@ -178,9 +179,18 @@ namespace HIMS.Data
             var ds = new DataSet();
             adapt.Fill(ds);
             var result = ds.Tables[0].ToDynamic();
-            _unitofWork.SaveChanges();
+                _unitofWork.SaveChanges();
             return result;
         }
+        public DataTable GetDataTableProc(string proc, Dictionary<string, object> entity)
+        {
+            var cmd = Select_CreateCommand(proc, CommandType.StoredProcedure, entity);
+            var adapt = new SqlDataAdapter(cmd);
+            var dt = new DataTable();
+            adapt.Fill(dt);
+            return dt;
+        }
+
         public dynamic GetDataSetByProc(string proc, Dictionary<string, object> entity)
         {
             var cmd = Select_CreateCommand(proc, CommandType.StoredProcedure, entity);
@@ -236,8 +246,15 @@ namespace HIMS.Data
             var ds = new DataSet();
             adapt.Fill(ds);
             var result = ds.Tables[0].ToDynamic();
-            _unitofWork.SaveChanges();
             return result;
+        }
+        public DataTable GetDataTableQuery(string query, Dictionary<string, object> entity)
+        {
+            var cmd = CreateCommand(query, CommandType.Text, entity);
+            var adapt = new SqlDataAdapter(cmd);
+            var dt = new DataTable();
+            adapt.Fill(dt);
+            return dt;
         }
 
     }

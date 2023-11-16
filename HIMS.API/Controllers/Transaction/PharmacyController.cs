@@ -1,7 +1,11 @@
 ﻿using HIMS.Data.Pharmacy;
 using HIMS.Model.Pharmacy;
 using Microsoft.AspNetCore.Mvc;
-
+using System.IO;
+using System;
+using Microsoft.AspNetCore.Hosting;
+using Wkhtmltopdf.NetCore;
+using HIMS.API.Utility;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -14,13 +18,17 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_SalesReturn _SalesReturn;
         public readonly I_PurchaseOrder _PurchaseOrder;
         public readonly I_GRN _GRN;
+        public readonly IPdfUtility _pdfUtility;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN)
+        public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, IHostingEnvironment hostingEnvironment, IPdfUtility pdfUtility)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
             _SalesReturn = salesReturn;
             _GRN = gRN;
+            _hostingEnvironment = hostingEnvironment;
+            _pdfUtility = pdfUtility;
         }
 
         [HttpPost("SalesSaveWithPayment")]
@@ -103,6 +111,19 @@ namespace HIMS.API.Controllers.Transaction
             var SalesSave = _GRN.VerifyGRN(grnParams);
             return Ok(SalesSave.ToString());
 
+        }
+
+        [HttpGet("view-pharmacy-sale-bill")]
+        public IActionResult ViewPharmaBill(int SalesID, int OP_IP_Type)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaBillReceipt.html");
+            var html = _Sales.ViewBill(SalesID, OP_IP_Type, htmlFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html);
+
+            // write logic for send pdf in whatsapp
+            if (System.IO.File.Exists(tuple.Item2))
+                System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
     }
 }

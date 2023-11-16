@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace HIMS.Data.Pharmacy
 {
@@ -128,5 +130,36 @@ namespace HIMS.Data.Pharmacy
             _unitofWork.SaveChanges();
             return true;
         }
+
+        public String ViewBill(int SalesID, int OP_IP_Type, string htmlFilePath)
+        {
+            Dictionary<string, object> dictionary = new Dictionary<string, object>
+            {
+                { "SalesID", SalesID },
+                { "OP_IP_Type", OP_IP_Type }
+            };
+            var Bills = GetDataTableProc("rptSalesPrint", dictionary);
+            //var BillDetails = GetDataTableProc("Rtrv_SalesDetails", dictionary);
+            //var templates = GetDataTableQuery("select TempId,TempDesign,TempKeys as TempKeys from Tg_Htl_Tmp where TempId=37", null);
+            string html = File.ReadAllText(htmlFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            //var TempKeys = templates.Rows[0]["TempKeys"].ToString().Replace("\"", "").Replace("[", "").Replace("]", "").Split(',');
+
+            // do replace logic here...
+
+
+            return html;
+
+        }
+        public string GetFilePath()
+        {
+            // for live
+            //var dt = GetDataTableQuery("SELECT TOP 1 FilePathLocation FROM ConfigSetting order by ConfigId DESC", null);
+            // for local
+            var dt = new DataTable();
+            dt.Columns.Add("s");
+            dt.Rows.Add("D:\\Vimal\\Angular\\Storage\\");
+            return Convert.ToString(dt.Rows[0][0]);
+        }
+
     }
 }

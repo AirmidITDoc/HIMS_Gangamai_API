@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
+using Wkhtmltopdf.NetCore;
 
 namespace HIMS.API
 {
@@ -26,6 +27,8 @@ namespace HIMS.API
             services.AddMyDependancies(Configuration);
             services.AddControllers()
                     .AddNewtonsoftJson();
+
+            services.AddWkhtmltopdf();
             services.AddMySwagger();
         }
 

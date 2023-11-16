@@ -29,6 +29,7 @@ using System.Data.SqlClient;
 using System.Net;
 using System.Text;
 using HIMS.Data.Opd.OP;
+using HIMS.API.Utility;
 //using HIMS.Data.Transaction;
 namespace HIMS.API.Extensions
 {
@@ -256,6 +257,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_SalesReturn,R_SalesReturn>();
             services.AddTransient<I_PurchaseOrder, R_PurchaseOrder>();
             services.AddTransient<I_GRN, R_GRN>();
+
+            services.AddTransient<IPdfUtility, PdfUtility>();
 
             /*   services.AddTransient<I_BookMasterHome, I_BookMasterHome>();
                services.AddTransient<I_BankMasterHome, I_BankMasterHome>();
