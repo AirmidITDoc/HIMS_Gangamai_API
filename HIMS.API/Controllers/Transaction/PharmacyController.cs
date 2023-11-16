@@ -53,10 +53,17 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
-        [HttpPost("InsertSalesReturn")]
-        public IActionResult InsertSalesReturn(SalesReturnParams salesReturnParams)
+        [HttpPost("InsertSalesReturnCredit")]
+        public IActionResult InsertSalesReturnCredit(SalesReturnCreditParams salesReturnParams)
         {
-            var SalesSave = _SalesReturn.InsertSalesReturn(salesReturnParams);
+            var SalesSave = _SalesReturn.InsertSalesReturnCredit(salesReturnParams);
+            return Ok(SalesSave.ToString());
+
+        }
+        [HttpPost("InsertSalesReturnPaid")]
+        public IActionResult InsertSalesReturnPaid(SalesReturnCreditParams salesReturnParams)
+        {
+            var SalesSave = _SalesReturn.InsertSalesReturnPaid(salesReturnParams);
             return Ok(SalesSave.ToString());
 
         }
