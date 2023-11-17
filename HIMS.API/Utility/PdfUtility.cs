@@ -1,4 +1,5 @@
 ﻿using HIMS.Data.Pharmacy;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace HIMS.API.Utility
     {
         public readonly I_Sales _Sales;
         public readonly IGeneratePdf _generatePdf;
-        public PdfUtility(I_Sales sales, IGeneratePdf generatePdf)
+        public readonly IConfiguration _configuration;
+        public PdfUtility(I_Sales sales, IGeneratePdf generatePdf,IConfiguration configuration)
         {
             _Sales = sales;
             _generatePdf = generatePdf;
+            _configuration = configuration;
         }
         public Tuple<byte[], string> GeneratePdfFromHtml(string html)
         {
@@ -30,6 +33,8 @@ namespace HIMS.API.Utility
             pdfStream.Position = 0;
             Byte[] bytes = pdfStream.ToArray();
             string DestinationPath = _Sales.GetFilePath();
+            if (string.IsNullOrWhiteSpace(DestinationPath))
+                DestinationPath = _configuration.GetValue<string>("StorageBasePath");
             if (!Directory.Exists(DestinationPath))
                 Directory.CreateDirectory(DestinationPath);
             if (!Directory.Exists(DestinationPath.Trim('\\') + "\\PharmaBill\\" + DateTime.Now.ToString("ddMMyyyy")))

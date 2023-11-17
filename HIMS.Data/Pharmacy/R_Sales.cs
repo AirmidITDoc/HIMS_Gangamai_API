@@ -157,7 +157,7 @@ namespace HIMS.Data.Pharmacy
             // for local
             var dt = new DataTable();
             dt.Columns.Add("s");
-            dt.Rows.Add("D:\\Vimal\\Angular\\Storage\\");
+            dt.Rows.Add("");
             return Convert.ToString(dt.Rows[0][0]);
         }
 
