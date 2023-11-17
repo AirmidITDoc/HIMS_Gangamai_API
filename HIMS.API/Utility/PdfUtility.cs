@@ -29,12 +29,12 @@ namespace HIMS.API.Utility
             pdfStream.Write(pdf, 0, pdf.Length);
             pdfStream.Position = 0;
             Byte[] bytes = pdfStream.ToArray();
-            string DestinaitonPath = _Sales.GetFilePath();
-            if (!Directory.Exists(DestinaitonPath))
-                Directory.CreateDirectory(DestinaitonPath);
-            if (!Directory.Exists(DestinaitonPath.Trim('\\') + "\\PharmaBill\\" + DateTime.Now.ToString("ddMMyyyy")))
-                Directory.CreateDirectory(DestinaitonPath.Trim('\\') + "\\PharmaBill\\" + DateTime.Now.ToString("ddMMyyyy"));
-            string FileName = DestinaitonPath.Trim('\\') + "\\PharmaBill\\" + DateTime.Now.ToString("ddMMyyyy") + "\\" + Guid.NewGuid() + ".pdf";
+            string DestinationPath = _Sales.GetFilePath();
+            if (!Directory.Exists(DestinationPath))
+                Directory.CreateDirectory(DestinationPath);
+            if (!Directory.Exists(DestinationPath.Trim('\\') + "\\PharmaBill\\" + DateTime.Now.ToString("ddMMyyyy")))
+                Directory.CreateDirectory(DestinationPath.Trim('\\') + "\\PharmaBill\\" + DateTime.Now.ToString("ddMMyyyy"));
+            string FileName = DestinationPath.Trim('\\') + "\\PharmaBill\\" + DateTime.Now.ToString("ddMMyyyy") + "\\" + Guid.NewGuid() + ".pdf";
             System.IO.File.WriteAllBytes(FileName, bytes);
             return new Tuple<byte[], string>(bytes, FileName);
         }
