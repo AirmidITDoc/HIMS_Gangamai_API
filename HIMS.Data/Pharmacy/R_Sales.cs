@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 
@@ -139,12 +140,45 @@ namespace HIMS.Data.Pharmacy
                 { "OP_IP_Type", OP_IP_Type }
             };
             var Bills = GetDataTableProc("rptSalesPrint", dictionary);
-            //var BillDetails = GetDataTableProc("Rtrv_SalesDetails", dictionary);
-            //var templates = GetDataTableQuery("select TempId,TempDesign,TempKeys as TempKeys from Tg_Htl_Tmp where TempId=37", null);
             string html = File.ReadAllText(htmlFilePath);// templates.Rows[0]["TempDesign"].ToString();
-            //var TempKeys = templates.Rows[0]["TempKeys"].ToString().Replace("\"", "").Replace("[", "").Replace("]", "").Split(',');
-
-            // do replace logic here...
+            html = html.Replace("{{RegNo}}", Convert.ToString(Bills.Rows[0]["RegNo"]));
+            html = html.Replace("{{StoreName}}", Convert.ToString(Bills.Rows[0]["StoreName"]));
+            html = html.Replace("{{StoreAddress}}", Convert.ToString(Bills.Rows[0]["StoreAddress"]));
+            html = html.Replace("{{GSTIN}}", Convert.ToString(Bills.Rows[0]["GSTIN"]));
+            html = html.Replace("{{DL_NO}}", Convert.ToString(Bills.Rows[0]["DL_NO"]));
+            html = html.Replace("{{PayMode}}", Convert.ToString(Bills.Rows[0]["PayMode"]));
+            html = html.Replace("{{PatientName}}", Convert.ToString(Bills.Rows[0]["PatientName"]));
+            html = html.Replace("{{ExtMobileNo}}", Convert.ToString(Bills.Rows[0]["ExtMobileNo"]));
+            html = html.Replace("{{SalesNo}}", Convert.ToString(Bills.Rows[0]["SalesNo"]));
+            html = html.Replace("{{Date}}", Convert.ToDateTime(Bills.Rows[0]["Date"]).ToString("dd/MM/yyyy hh:mm tt"));
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+                items.Append("<tr><td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(Convert.ToString(dr["HSNcode"])).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">-</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(Convert.ToString(dr["ItemName"])).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">-</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(Convert.ToString(dr["BatchNo"])).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(Convert.ToDateTime(dr["BatchExpDate"]).ToString("dd/MM/yyyy hh:mm tt")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(Convert.ToString(dr["Qty"])).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(Convert.ToString(dr["UnitMRP"])).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(Convert.ToString(dr["TotalAmount"])).Append("</td></tr>");
+            }
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{HTotalAmount}}", Convert.ToString(Bills.Rows[0]["HTotalAmount"]));
+            html = html.Replace("{{CGSTPer}}", Convert.ToString(Bills.Rows[0]["CGSTPer"]));
+            html = html.Replace("{{CGSTAmt}}", Convert.ToString(Bills.Rows[0]["CGSTAmt"]));
+            html = html.Replace("{{SGSTPer}}", Convert.ToString(Bills.Rows[0]["SGSTPer"]));
+            html = html.Replace("{{SGSTAmt}}", Convert.ToString(Bills.Rows[0]["SGSTAmt"]));
+            html = html.Replace("{{IGSTPer}}", Convert.ToString(Bills.Rows[0]["IGSTPer"]));
+            html = html.Replace("{{IGSTAmt}}", Convert.ToString(Bills.Rows[0]["IGSTAmt"]));
+            html = html.Replace("{{DiscAmount}}", Convert.ToString(Bills.Rows[0]["DiscAmount"]));
+            html = html.Replace("{{TotalGst}}", Convert.ToString(Bills.Rows[0]["TotalGst"]));
+            html = html.Replace("{{NetAmount}}", Convert.ToString(Bills.Rows[0]["NetAmount"]));
+            html = html.Replace("{{UserName}}", Convert.ToString(Bills.Rows[0]["UserName"]));
 
 
             return html;
