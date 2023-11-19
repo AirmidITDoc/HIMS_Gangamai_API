@@ -259,6 +259,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_GRN, R_GRN>();
 
             services.AddTransient<IPdfUtility, PdfUtility>();
+            services.AddTransient<I_Workorder, R_Workorder>();
 
             /*   services.AddTransient<I_BookMasterHome, I_BookMasterHome>();
                services.AddTransient<I_BankMasterHome, I_BankMasterHome>();
