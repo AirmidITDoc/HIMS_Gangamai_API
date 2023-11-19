@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Xml;
 
 namespace HIMS.Common.Utility
 {
@@ -46,13 +47,13 @@ namespace HIMS.Common.Utility
             return list;
         }
 
-       public static Dictionary<string, object> ToDictionary(this object entity)
+        public static Dictionary<string, object> ToDictionary(this object entity)
         {
             return entity.GetType()
                     .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                     .ToDictionary(prop => prop.Name, prop => prop.GetValue(entity, null));
         }
-        
+
         //datetime
         public static string ToShortDateString(this DateTime E_SystemDate)
         {
@@ -75,5 +76,63 @@ namespace HIMS.Common.Utility
         //    //return E_SystemDate.toString("dd-MM-yyyy HH:mm:ss");
         //}
 
+        public static string GetColValue(this DataTable dt, string colName, int row = 0)
+        {
+            if (dt.Rows.Count <= row)
+                return "";
+            try
+            {
+                return ConvertToString(dt.Rows[row][colName]);
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+        public static string ConvertToString(this object str)
+        {
+            if (str == DBNull.Value || (str ?? "") == "")
+            {
+                return "";
+            }
+
+            try
+            {
+                return Convert.ToString(str);
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+        public static string GetDateColValue(this DataTable dt, string colName, int row = 0, string format = "dd/MM/yyyy hh:mm tt")
+        {
+            if (dt.Rows.Count <= row)
+                return "";
+            try
+            {
+                return ConvertToDateString(dt.Rows[row][colName], format);
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+        public static string ConvertToDateString(this object str, string ouputFormat = "dd/MM/yyyy hh:mm tt")
+        {
+            if (str == DBNull.Value || (str ?? "") == "")
+            {
+                return "";
+            }
+
+            try
+            {
+                return Convert.ToDateTime(str).ToString(ouputFormat);
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
     }
 }
