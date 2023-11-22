@@ -20,8 +20,9 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_GRN _GRN;
         public readonly IPdfUtility _pdfUtility;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly I_Workorder _Workorder;
 
-        public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, IHostingEnvironment hostingEnvironment, IPdfUtility pdfUtility)
+        public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, IHostingEnvironment hostingEnvironment, IPdfUtility pdfUtility,I_Workorder workorder)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
@@ -29,6 +30,7 @@ namespace HIMS.API.Controllers.Transaction
             _GRN = gRN;
             _hostingEnvironment = hostingEnvironment;
             _pdfUtility = pdfUtility;
+            _Workorder = workorder;
         }
 
         [HttpPost("SalesSaveWithPayment")]
@@ -119,6 +121,24 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(SalesSave.ToString());
 
         }
+
+      
+        [HttpPost("InsertWorkorder")]
+        public IActionResult InsertWorkorder(Workorder Workorder)
+        {
+            var SalesSave = _Workorder.InsertWorkOrder(Workorder);
+            return Ok(SalesSave.ToString());
+
+        }
+
+        [HttpPost("updateWorkorder")]
+        public IActionResult updateWorkorder(Workorder Workorder)
+        {
+            var SalesSave = _Workorder.UpdateWorkOrder(Workorder);
+            return Ok(SalesSave.ToString());
+
+        }
+
 
         [HttpGet("view-pharmacy-sale-bill")]
         public IActionResult ViewPharmaBill(int SalesID, int OP_IP_Type)
