@@ -13,13 +13,13 @@ namespace HIMS.API.Utility
         public readonly I_Sales _Sales;
         public readonly IGeneratePdf _generatePdf;
         public readonly IConfiguration _configuration;
-        public PdfUtility(I_Sales sales, IGeneratePdf generatePdf,IConfiguration configuration)
+        public PdfUtility(I_Sales sales, IGeneratePdf generatePdf, IConfiguration configuration)
         {
             _Sales = sales;
             _generatePdf = generatePdf;
             _configuration = configuration;
         }
-        public Tuple<byte[], string> GeneratePdfFromHtml(string html)
+        public Tuple<byte[], string> GeneratePdfFromHtml(string html, string FolderName)
         {
             var options = new ConvertOptions
             {
@@ -37,9 +37,9 @@ namespace HIMS.API.Utility
                 DestinationPath = _configuration.GetValue<string>("StorageBasePath");
             if (!Directory.Exists(DestinationPath))
                 Directory.CreateDirectory(DestinationPath);
-            if (!Directory.Exists(DestinationPath.Trim('\\') + "\\PharmaBill\\" + DateTime.Now.ToString("ddMMyyyy")))
-                Directory.CreateDirectory(DestinationPath.Trim('\\') + "\\PharmaBill\\" + DateTime.Now.ToString("ddMMyyyy"));
-            string FileName = DestinationPath.Trim('\\') + "\\PharmaBill\\" + DateTime.Now.ToString("ddMMyyyy") + "\\" + Guid.NewGuid() + ".pdf";
+            if (!Directory.Exists(DestinationPath.Trim('\\') + "\\" + FolderName + "\\" + DateTime.Now.ToString("ddMMyyyy")))
+                Directory.CreateDirectory(DestinationPath.Trim('\\') + "\\" + FolderName + "\\" + DateTime.Now.ToString("ddMMyyyy"));
+            string FileName = DestinationPath.Trim('\\') + "\\" + FolderName + "\\" + DateTime.Now.ToString("ddMMyyyy") + "\\" + Guid.NewGuid() + ".pdf";
             System.IO.File.WriteAllBytes(FileName, bytes);
             return new Tuple<byte[], string>(bytes, FileName);
         }

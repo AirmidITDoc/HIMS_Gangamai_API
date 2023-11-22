@@ -125,9 +125,11 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaBillReceipt.html");
             var html = _Sales.ViewBill(SalesID, OP_IP_Type, htmlFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaBill");
 
             // write logic for send pdf in whatsapp
+
+
             if (System.IO.File.Exists(tuple.Item2))
                 System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
