@@ -6,6 +6,12 @@ using System;
 using Microsoft.AspNetCore.Hosting;
 using Wkhtmltopdf.NetCore;
 using HIMS.API.Utility;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Net.Http.Headers;
+using System.Collections.Generic;
+//using Microsoft.AspNetCore.Hosting.IWebHostEnvironment
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -19,10 +25,10 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_PurchaseOrder _PurchaseOrder;
         public readonly I_GRN _GRN;
         public readonly IPdfUtility _pdfUtility;
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
         private readonly I_Workorder _Workorder;
 
-        public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, IHostingEnvironment hostingEnvironment, IPdfUtility pdfUtility,I_Workorder workorder)
+         public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility,I_Workorder workorder)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
@@ -140,7 +146,7 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
-        [HttpGet("view-pharmacy-sale-bill")]
+       [HttpGet("view-pharmacy-sale-bill")]
         public IActionResult ViewPharmaBill(int SalesID, int OP_IP_Type)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaBillReceipt.html");
@@ -152,5 +158,9 @@ namespace HIMS.API.Controllers.Transaction
                 System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+      
+
+        
     }
 }
+ 

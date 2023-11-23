@@ -12,3 +12,4 @@ namespace HIMS.API.Utility
         Tuple<byte[], string> GeneratePdfFromHtml(string html);
     }
 }
+

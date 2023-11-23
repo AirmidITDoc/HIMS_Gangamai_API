@@ -28,7 +28,7 @@ namespace HIMS.API
             services.AddControllers()
                     .AddNewtonsoftJson();
 
-           // services.AddWkhtmltopdf();
+           services.AddWkhtmltopdf();
             services.AddMySwagger();
         }
 
