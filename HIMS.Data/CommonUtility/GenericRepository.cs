@@ -84,6 +84,24 @@ namespace HIMS.Data
             return _sqlCommand;
         }
 
+        public SqlCommand Select_CreateCommand(
+            string query,
+            CommandType type,
+            SqlParameter[] entity,
+            SqlParameter outputParam = null
+            )
+        {
+            _sqlCommand.CommandText = query;
+            _sqlCommand.CommandType = type;
+            _sqlCommand.Parameters.Clear();
+            if (outputParam != null)
+            {
+                _sqlCommand.Parameters.Add(outputParam);
+            }
+            _sqlCommand.Parameters.AddRange(entity);
+            return _sqlCommand;
+        }
+
         //Exec Non Query
         public int ExecNonQuery(string query, Dictionary<string, object> entity)
         {
@@ -179,10 +197,18 @@ namespace HIMS.Data
             var ds = new DataSet();
             adapt.Fill(ds);
             var result = ds.Tables[0].ToDynamic();
-                _unitofWork.SaveChanges();
+            _unitofWork.SaveChanges();
             return result;
         }
         public DataTable GetDataTableProc(string proc, Dictionary<string, object> entity)
+        {
+            var cmd = Select_CreateCommand(proc, CommandType.StoredProcedure, entity);
+            var adapt = new SqlDataAdapter(cmd);
+            var dt = new DataTable();
+            adapt.Fill(dt);
+            return dt;
+        }
+        public DataTable GetDataTableProc(string proc, SqlParameter[] entity)
         {
             var cmd = Select_CreateCommand(proc, CommandType.StoredProcedure, entity);
             var adapt = new SqlDataAdapter(cmd);

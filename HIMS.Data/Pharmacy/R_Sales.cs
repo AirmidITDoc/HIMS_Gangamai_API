@@ -133,7 +133,7 @@ namespace HIMS.Data.Pharmacy
             return true;
         }
 
-        public String ViewBill(int SalesID, int OP_IP_Type, string htmlFilePath)
+        public string ViewBill(int SalesID, int OP_IP_Type, string htmlFilePath)
         {
             Dictionary<string, object> dictionary = new Dictionary<string, object>
             {
@@ -149,7 +149,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{DL_NO}}", Bills.GetColValue("DL_NO"));
             html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
-            html = html.Replace("{{ExtMobileNo}}", Bills.GetColValue("ExtMobileNo"  ));
+            html = html.Replace("{{ExtMobileNo}}", Bills.GetColValue("ExtMobileNo"));
             html = html.Replace("{{SalesNo}}", Bills.GetColValue("SalesNo"));
             html = html.Replace("{{Date}}", Bills.GetDateColValue("Date"));
             StringBuilder items = new StringBuilder("");
@@ -184,6 +184,88 @@ namespace HIMS.Data.Pharmacy
 
             return html;
 
+        }
+        public string ViewDailyCollection(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById, string htmlFilePath)
+        {
+            SqlParameter[] para = new SqlParameter[4];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@AddedById", AddedById) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("RptSalesDailyCollection", para);
+            string html = File.ReadAllText(htmlFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            string previousLabel = "";
+            double G_CashPayAmount = 0, G_CardPayAmount = 0, G_ChequePayAmount = 0, G_NEFTPayAmount = 0, G_PayTMAmount = 0, G_AdvanceUsedAmount = 0, G_BalanceAmount = 0;
+            double T_CashPayAmount = 0, T_CardPayAmount = 0, T_ChequePayAmount = 0, T_NEFTPayAmount = 0, T_PayTMAmount = 0, T_AdvanceUsedAmount = 0, T_BalanceAmount = 0, T_NetAmount = 0;
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+                if (previousLabel != "" && previousLabel != dr["Label"].ConvertToString())
+                {
+                    items.Append("<tr><td colspan='4' style=\"border-left:1px solid #000;border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">Total</td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_CashPayAmount.To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_NEFTPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_AdvanceUsedAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_BalanceAmount.To2DecimalPlace()).Append("</td></tr>");
+                    G_CashPayAmount = 0; G_CardPayAmount = 0; G_ChequePayAmount = 0; G_NEFTPayAmount = 0; G_PayTMAmount = 0; G_AdvanceUsedAmount = 0; G_BalanceAmount = 0;
+                }
+                G_CashPayAmount += dr["CashPayAmount"].ConvertToDouble();
+                G_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
+                G_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
+                G_NEFTPayAmount += dr["NEFTPayAmount"].ConvertToDouble();
+                G_PayTMAmount += dr["PayTMAmount"].ConvertToDouble();
+                G_AdvanceUsedAmount += dr["AdvanceUsedAmount"].ConvertToDouble();
+                G_BalanceAmount += dr["BalanceAmount"].ConvertToDouble();
+                previousLabel = dr["Label"].ConvertToString();
+                T_CashPayAmount += dr["CashPayAmount"].ConvertToDouble();
+                T_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
+                T_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
+                T_NEFTPayAmount += dr["NEFTPayAmount"].ConvertToDouble();
+                T_PayTMAmount += dr["PayTMAmount"].ConvertToDouble();
+                T_AdvanceUsedAmount += dr["AdvanceUsedAmount"].ConvertToDouble();
+                T_BalanceAmount += dr["BalanceAmount"].ConvertToDouble();
+                T_NetAmount += dr["NetAmount"].ConvertToDouble();
+                items.Append("<tr style=\"font-size:10px;border-bottom: 1px;\"><td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">").Append(i).Append(" ").Append(dr["Label"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">").Append(dr["Date"].ConvertToDateString("dd/MM/yy")).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">").Append(dr["SalesNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: left;margin-left: 5px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;text-align:center;vertical-align:middle;text-align:center;padding:0;height:10px;text-align:center;vertical-align:middle\">").Append(dr["CashPayAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:0;height:10px;text-align:center;vertical-align:middle\">").Append(dr["CardPayAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["ChequePayAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["NEFTPayAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["PayTMAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["AdvanceUsedAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["BalanceAmount"].ConvertToDouble()).Append("</td></tr>");
+                if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
+                {
+                    items.Append("<tr><td colspan='4' style=\"border-left:1px solid #000;border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">Total</td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_CashPayAmount.To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_NEFTPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_AdvanceUsedAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_BalanceAmount.To2DecimalPlace()).Append("</td></tr>");
+                }
+            }
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{TotalCashpay}}", T_CashPayAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalCardpay}}", T_CardPayAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalChequepay}}", T_ChequePayAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalNeftpay}}", T_NEFTPayAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalPayTmpay}}", T_PayTMAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalAdvUsed}}", T_AdvanceUsedAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalNETAmount}}", T_NetAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalBalancepay}}", T_BalanceAmount.To2DecimalPlace());
+            return html;
         }
         public string GetFilePath()
         {
