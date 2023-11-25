@@ -151,7 +151,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaBillReceipt.html");
             var html = _Sales.ViewBill(SalesID, OP_IP_Type, htmlFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaBill");
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaBill", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
@@ -165,18 +165,51 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewPharmaDailyCollection(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaDailyCollection.html");
-            var html = _Sales.ViewDailyCollection(FromDate, ToDate, StoreId, AddedById, htmlFilePath);
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Sales.ViewDailyCollection(FromDate, ToDate, StoreId, AddedById, htmlFilePath, htmlHeaderFilePath);
+           // var html = _Sales.ViewDailyCollection(FromDate, ToDate, StoreId, AddedById, htmlFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaDailyCollection", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             // write logic for send pdf in whatsapp
 
 
-            if (System.IO.File.Exists(tuple.Item2))
-                System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-pharmacy-daily-collection_Summary")]
+        public IActionResult ViewPharmaDailyCollectionSummary(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaDailySummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Sales.ViewDailyCollectionSummary(FromDate, ToDate, StoreId, AddedById, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaDailySummary", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
 
+        [HttpGet("view-Sales_Report")]
+        public IActionResult viewSalesReport(DateTime FromDate, DateTime ToDate,string SalesFromNumber, string SalesToNumber, int StoreId, int AddedBy)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Sales.ViewSalesReport(FromDate, ToDate, SalesFromNumber, SalesToNumber, StoreId, AddedBy, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
     }
 }

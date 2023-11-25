@@ -44,6 +44,6 @@ namespace HIMS.API.Utility
             System.IO.File.WriteAllBytes(FileName, bytes);
             return new Tuple<byte[], string>(bytes, FileName);
         }
-
+     
     }
 }
