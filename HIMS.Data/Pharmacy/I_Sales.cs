@@ -8,7 +8,8 @@ namespace HIMS.Data.Pharmacy
         public string InsertSales(SalesParams SalesParams);
         public string InsertSalesWithCredit(SalesCreditParams salesCreditParams);
         public bool PaymentSettlement(SalesParams SalesParams);
-        String ViewBill(int SalesID, int OP_IP_Type,string htmlFilePath);
+        string ViewBill(int SalesID, int OP_IP_Type,string htmlFilePath);
+        string ViewDailyCollection(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById, string htmlFilePath);
         string GetFilePath();
     }
 }

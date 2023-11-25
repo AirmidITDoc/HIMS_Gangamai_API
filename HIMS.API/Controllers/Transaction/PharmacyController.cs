@@ -28,7 +28,7 @@ namespace HIMS.API.Controllers.Transaction
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
         private readonly I_Workorder _Workorder;
 
-         public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility,I_Workorder workorder)
+        public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_Workorder workorder)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
@@ -128,7 +128,7 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
-      
+
         [HttpPost("InsertWorkorder")]
         public IActionResult InsertWorkorder(Workorder Workorder)
         {
@@ -146,7 +146,7 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
-       [HttpGet("view-pharmacy-sale-bill")]
+        [HttpGet("view-pharmacy-sale-bill")]
         public IActionResult ViewPharmaBill(int SalesID, int OP_IP_Type)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaBillReceipt.html");
@@ -160,9 +160,23 @@ namespace HIMS.API.Controllers.Transaction
                 System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
-      
 
-        
+        [HttpGet("view-pharmacy-daily-collection")]
+        public IActionResult ViewPharmaDailyCollection(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaDailyCollection.html");
+            var html = _Sales.ViewDailyCollection(FromDate, ToDate, StoreId, AddedById, htmlFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaDailyCollection", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            if (System.IO.File.Exists(tuple.Item2))
+                System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+
     }
 }
- 

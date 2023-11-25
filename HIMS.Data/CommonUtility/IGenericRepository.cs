@@ -25,6 +25,7 @@ namespace HIMS.Data
 
         List<dynamic> ExecDataSetProc(string proc, Dictionary<string, object> entity);
         DataTable GetDataTableProc(string proc, Dictionary<string, object> entity);
+        DataTable GetDataTableProc(string proc, SqlParameter[] entity);
         dynamic GetDataSetByProc(string proc, Dictionary<string, object> entity);
         List<dynamic> ExecDataSetQuery(string query, Dictionary<string, object> entity);
         DataTable GetDataTableQuery(string proc, Dictionary<string, object> entity);
