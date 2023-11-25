@@ -9,7 +9,7 @@ namespace HIMS.API.Utility
 {
     public interface IPdfUtility
     {
-        Tuple<byte[], string> GeneratePdfFromHtml(string html);
+        Tuple<byte[], string> GeneratePdfFromHtml(string html,string FolderName);
     }
 }
 

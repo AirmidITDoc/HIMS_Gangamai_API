@@ -28,13 +28,13 @@ namespace HIMS.API
             services.AddControllers()
                     .AddNewtonsoftJson();
 
-           services.AddWkhtmltopdf();
+            services.AddWkhtmltopdf();
             services.AddMySwagger();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment()) 
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
 
