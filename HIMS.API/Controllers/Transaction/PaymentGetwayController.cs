@@ -40,5 +40,22 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
+
+        [HttpPost("OnlinePaymentCancel")]
+        public async Task<IActionResult> OnpayCancelAsync(OnlinePaymentCancelParams obj)
+        {
+
+            var client = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Post, "https://www.plutuscloudserviceuat.in:8201/API/CloudBasedIntegration/V1/CancelTransaction");
+            var content = new StringContent(JsonConvert.SerializeObject(obj), null, "application/json");
+            request.Content = content;
+            var response = await client.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            string res = await response.Content.ReadAsStringAsync();
+            return Ok(res);
+
+        }
+
     }
 }
