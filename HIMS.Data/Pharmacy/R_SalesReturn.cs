@@ -112,6 +112,7 @@ namespace HIMS.Data.Pharmacy
             
             var vPayment = salesReturnParams.SalesReturnPayment.ToDictionary();
             vPayment.Remove("PaymentID");
+            vPayment["RefundId"] = BillNo;
             ExecNonQueryProcWithOutSaveChanges("insert_Payment_Pharmacy_New_1", vPayment);
 
             _unitofWork.SaveChanges();

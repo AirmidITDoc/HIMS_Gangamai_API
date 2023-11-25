@@ -27,5 +27,14 @@ namespace HIMS.Model.OnlinePayment
         public int PlutusTransactionReferenceID { get; set; }
     }
 
+    public class OnlinePaymentCancelParams
+    {
+        public string MerchantID { get; set; }
+        public string SecurityToken { get; set; }
+        public string IMEI { get; set; }
+        public string MerchantStorePosCode { get; set; }
+        public int PlutusTransactionReferenceID { get; set; }
+        public int Amount { get; set; }
+    }
 
 }
