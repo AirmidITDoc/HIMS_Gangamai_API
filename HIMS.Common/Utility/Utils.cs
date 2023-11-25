@@ -105,6 +105,38 @@ namespace HIMS.Common.Utility
                 return "";
             }
         }
+        public static double ConvertToDouble(this object str)
+        {
+            if (str == DBNull.Value || (str ?? "") == "")
+            {
+                return 0;
+            }
+
+            try
+            {
+                return Convert.ToDouble(str);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+        public static string To2DecimalPlace(this double str)
+        {
+            if (str <= 0)
+            {
+                return "0";
+            }
+
+            try
+            {
+                return str.ToString("#.##");
+            }
+            catch (Exception)
+            {
+                return "0";
+            }
+        }
         public static string GetDateColValue(this DataTable dt, string colName, int row = 0, string format = "dd/MM/yyyy hh:mm tt")
         {
             if (dt.Rows.Count <= row)

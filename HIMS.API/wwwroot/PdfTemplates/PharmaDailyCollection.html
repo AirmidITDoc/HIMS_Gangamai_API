@@ -1,0 +1,150 @@
+<html>
+<head>
+    <style>
+        .watermark {
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            opacity: .1;
+            z-index: 99;
+            color: #000;
+            font-size: 70px;
+            transform: translate(-50%,-50%) rotate(-45deg);
+            white-space: nowrap;
+            pointer-events: none
+        }
+    </style>
+</head>
+<body>
+    <div class="bill-template-wrapper" style="font-size: 30.25%;">
+        <div style="margin-top:2px;">
+            <div style="font-weight:700;font-size:18px;text-align:center;margin-left:18%;width:500px;">
+                KESHAWAH
+                PHARMACY
+            </div>
+            <div style="color:#464343;text-align:center;margin-left:6%;width:700px;">
+                Plot No CS.NO 272/2 Ramwadi Raod Modikhna Solapur-413021
+                Call:9898767876,9089786567
+            </div>
+            <div style="color:#464343;text-align:center;margin-left:18%;width:500px;">
+                EmailId:hospital@113@gmail.com,WWW.Kheshav@gmail.com
+            </div>
+        </div>
+
+        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+            <div style="display:flex; align-items: center;">
+                <div style="font-weight:400;font-size:18px;text-align:center;margin-left:18%;width:500px;">
+                    PHARMACY
+                    DAILY COLLECTION
+                </div>
+                <span style="font-size: 9px;font-weight: 700;width: 20%;">PrintDate : {{CurrentDate}}</span>
+            </div>
+
+        </div>
+        <div style="margin-top:2px;">
+            <div style="font-weight: bold;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
+        </div>
+        <table class="table" style="width:100%;border-collapse:collapse">
+            <tbody>
+
+                <tr style="font-size:10px;background-color: rgb(127, 174, 255);">
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Sr No.
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Date
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Sales No
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:70px">
+                        Patient Name
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Cash Pay
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Card Pay
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:40px">
+                        Cheque Pay
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        NEFT Pay
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        PayTM
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Adv.Used
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Bal Amt
+                    </td>
+                </tr>
+                {{Items}}
+            </tbody>
+        </table>
+        <hr>
+        <table class="table1" style="width:100%;border-collapse:collapse">
+            <tbody>
+                <tr style="font-size:10px;border: 1px solid black;background-color: rgb(127, 174, 255);">
+
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Total CashAmount
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Total CardAmount
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Total ChequeAmount
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Total NEFTAmount
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Total PAYTMAmount
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Total Ad.UsedAmount
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Total NET Amount
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:30px">
+                        Total Bal.Amount
+                    </td>
+                </tr>
+                <tr style="border: 1px solid black;">
+
+                    <td style="border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle">
+                        {{TotalCashpay}}
+                    </td>
+                    <td style="border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle">
+                        {{TotalCardpay}}
+                    </td>
+
+                    <td style="border-left:1px solid #000;text-align:center;vertical-align:middle;text-align:center;padding:0;height:10px;text-align:center;vertical-align:middle">
+                        {{TotalChequepay}}
+                    </td>
+                    <td style="border-left:1px solid #000;vertical-align:middle;padding:0;height:10px;text-align:center;vertical-align:middle">
+                        {{TotalNeftpay}}
+                    </td>
+                    <td style="border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;vertical-align:middle">
+                        {{TotalPayTmpay}}
+                    </td>
+                    <td style="border-left:1px solid #000;text-align:center;vertical-align:middle;text-align:center;padding:0;height:10px;vertical-align:middle">
+                        {{TotalAdvUsed}}
+                    </td>
+                    <td style="border-left:1px solid #000;text-align:center;vertical-align:middle;padding:0;height:10px;vertical-align:middle">
+                        {{TotalNETAmount}}
+                    </td>
+                    <td style="border-left:1px solid #000;text-align:center;vertical-align:middle;padding:0;height:10px;vertical-align:middle">
+                        {{TotalBalancepay}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

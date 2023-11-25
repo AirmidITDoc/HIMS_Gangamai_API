@@ -6,6 +6,12 @@ using System;
 using Microsoft.AspNetCore.Hosting;
 using Wkhtmltopdf.NetCore;
 using HIMS.API.Utility;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Net.Http.Headers;
+using System.Collections.Generic;
+//using Microsoft.AspNetCore.Hosting.IWebHostEnvironment
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -19,10 +25,10 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_PurchaseOrder _PurchaseOrder;
         public readonly I_GRN _GRN;
         public readonly IPdfUtility _pdfUtility;
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
         private readonly I_Workorder _Workorder;
 
-        public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, IHostingEnvironment hostingEnvironment, IPdfUtility pdfUtility,I_Workorder workorder)
+        public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_Workorder workorder)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
@@ -81,7 +87,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult UpdatePurchaseOrder(PurchaseParams purchaseParams)
         {
             var SalesSave = _PurchaseOrder.UpdatePurchaseOrder(purchaseParams);
-            return Ok(SalesSave.ToString());
+            return Ok(true);
 
         }
         [HttpPost("VerifyPurchaseOrder")]
@@ -103,7 +109,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult updateGRN(GRNParams grnParams)
         {
             var SalesSave = _GRN.UpdateGRN(grnParams);
-            return Ok(SalesSave.ToString());
+            return Ok(true);
 
         }
         [HttpPost("InsertGRNPurchase")]
@@ -122,7 +128,7 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
-      
+
         [HttpPost("InsertWorkorder")]
         public IActionResult InsertWorkorder(Workorder Workorder)
         {
@@ -135,7 +141,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult updateWorkorder(Workorder Workorder)
         {
             var SalesSave = _Workorder.UpdateWorkOrder(Workorder);
-            return Ok(SalesSave.ToString());
+            return Ok(true);
 
         }
 
@@ -154,5 +160,23 @@ namespace HIMS.API.Controllers.Transaction
                 System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+
+        [HttpGet("view-pharmacy-daily-collection")]
+        public IActionResult ViewPharmaDailyCollection(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaDailyCollection.html");
+            var html = _Sales.ViewDailyCollection(FromDate, ToDate, StoreId, AddedById, htmlFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaDailyCollection", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            if (System.IO.File.Exists(tuple.Item2))
+                System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+
     }
 }

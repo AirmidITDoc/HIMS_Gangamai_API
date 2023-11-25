@@ -19,11 +19,12 @@ namespace HIMS.API.Utility
             _generatePdf = generatePdf;
             _configuration = configuration;
         }
-        public Tuple<byte[], string> GeneratePdfFromHtml(string html, string FolderName)
+        public Tuple<byte[], string> GeneratePdfFromHtml(string html, string FolderName, Wkhtmltopdf.NetCore.Options.Orientation PageOrientation = Wkhtmltopdf.NetCore.Options.Orientation.Portrait)
         {
             var options = new ConvertOptions
             {
-                EnableForms = true
+                EnableForms = true,
+                PageOrientation = PageOrientation
             };
 
             _generatePdf.SetConvertOptions(options);
