@@ -446,7 +446,7 @@ namespace HIMS.Data.Pharmacy
             return Convert.ToString(dt.Rows[0][0]);
         }
 
-        public string ViewSalesReportCharitableTrust(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesSummaryReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
         {
             SqlParameter[] para = new SqlParameter[6];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
@@ -459,7 +459,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{Header2}}", htmlHeader);
+            html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -490,7 +490,7 @@ namespace HIMS.Data.Pharmacy
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{TotalAmount}}", T_TotalAmount.To2DecimalPlace());
             html = html.Replace("{{TotalNETAmount}}", T_TotalNETAmount.To2DecimalPlace());
             html = html.Replace("{{TotalCGST}}", T_TotalCGST.To2DecimalPlace());
@@ -501,7 +501,7 @@ namespace HIMS.Data.Pharmacy
 
         }
 
-        public string ViewSalesReportPatientWiseCharitableTrust(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesReportPatientWise(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
         {
             SqlParameter[] para = new SqlParameter[6];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
@@ -515,7 +515,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{Header2}}", htmlHeader);
+            html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -549,7 +549,7 @@ namespace HIMS.Data.Pharmacy
 
         }
 
-        public string ViewSalesReturnReportCharitableTrust(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId,string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesReturnPatientwiseReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId,string htmlFilePath, string htmlHeaderFilePath)
         {
             SqlParameter[] para = new SqlParameter[5];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
@@ -561,7 +561,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{Header2}}", htmlHeader);
+            html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -596,7 +596,7 @@ namespace HIMS.Data.Pharmacy
 
 
 
-        public string ViewSalesReturnSummaryReportCharitableTrust(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesReturnSummaryReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
         {
             SqlParameter[] para = new SqlParameter[5];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
@@ -608,7 +608,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{Header2}}", htmlHeader);
+            html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -649,21 +649,21 @@ namespace HIMS.Data.Pharmacy
             return html;
         }
 
-        public string ViewSalesCreditReportCharitableTrust(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int CreditReasonId, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesCreditReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int CreditReasonId, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
         {
             SqlParameter[] para = new SqlParameter[6];
-            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[0] = new SqlParameter("@FromDate",FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            para[2] = new SqlParameter("@SalesFromNumber", SalesFromNumber) { DbType = DbType.String };
-            para[3] = new SqlParameter("@SalesToNumber", SalesToNumber) { DbType = DbType.String };
-            para[4] = new SqlParameter("@CreditReasonId", CreditReasonId) { DbType = DbType.Int64 };
+            para[2] = new SqlParameter("@SalesFromNumber",SalesFromNumber) { DbType = DbType.String };
+            para[3] = new SqlParameter("@SalesToNumber",SalesToNumber) { DbType = DbType.String };
+            para[4] = new SqlParameter("@CreditReasonId",CreditReasonId) { DbType = DbType.Int64 };
             para[5] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.String };
             
             var Bills = GetDataTableProc("RptPharmacyCreditReport", para);
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{Header2}}", htmlHeader);
+            html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -686,11 +686,11 @@ namespace HIMS.Data.Pharmacy
 
             }
 
-            html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{TotalNETAmount}}", T_TotalNETAmount.To2DecimalPlace());
-            html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
+            html = html.Replace("{{Items}}",items.ToString());
+            html = html.Replace("{{FromDate}}",FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{TotalNETAmount}}",T_TotalNETAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalBalancepay}}",T_TotalBalancepay.To2DecimalPlace());
 
             return html;
 
