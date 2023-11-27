@@ -254,6 +254,15 @@ namespace HIMS.Data.Pharmacy
                         .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(G_AdvanceUsedAmount.To2DecimalPlace()).Append("</td><td style=\"padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(G_BalanceAmount.To2DecimalPlace()).Append("</td></tr>");
+
+                    items.Append("<tr style='border:1px solid black;color:blue;font-weight:bold'><td colspan='4' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Sales + Cash GRN - Sales Return</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "CashPayAmount").To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "CardPayAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "ChequePayAmount").To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "NEFTPayAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "PayTMAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "AdvanceUsedAmount").To2DecimalPlace()).Append("</td><td style=\"padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "BalanceAmount").To2DecimalPlace()).Append("</td></tr>");
                 }
             }
             html = html.Replace("{{Items}}", items.ToString());
@@ -268,7 +277,12 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{TotalBalancepay}}", T_BalanceAmount.To2DecimalPlace());
             return html;
         }
-
+        public double GetSum(DataTable dt, string ColName)
+        {
+            double Return = dt.Compute("SUM(" + ColName + ")", "Label='Sales Return'").ConvertToDouble();
+            double cash = dt.Compute("SUM(" + ColName + ")", "Label<>'Sales Return'").ConvertToDouble();
+            return cash - Return;
+        }
 
 
         public string ViewDailyCollectionSummary(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById, string htmlFilePath, string htmlHeaderFilePath)
@@ -285,11 +299,11 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
-          //  string previousLabel = "";
+            //  string previousLabel = "";
 
-            double G_SalesBillAmount = 0, G_SalesDiscAmount = 0, G_SalesNetAmount = 0, G_SalesPaidAmount = 0, G_SalesBalAmount = 0, G_SalesCashAmount = 0, G_SalesTotalCardAmount =0;
-            double G_SalesReturnBillAmount = 0, G_SalesReturnDiscAmount = 0, G_SalesReturnNetAmount = 0, G_SalesReturnPaidAmount = 0, G_SalesReturnBalAmount = 0, G_SalesReturnCashAmount = 0 , G_SalesReturnCardAmount = 0;
-            double T_TotalBillAmount = 0, T_TotalDiscAmount = 0, T_TotalNETAmount = 0, T_TotalPaidAmount = 0, T_TotalBalAmount = 0, T_TotalCashAmount = 0 , T_TotalCardAmount = 0;
+            double G_SalesBillAmount = 0, G_SalesDiscAmount = 0, G_SalesNetAmount = 0, G_SalesPaidAmount = 0, G_SalesBalAmount = 0, G_SalesCashAmount = 0, G_SalesTotalCardAmount = 0;
+            double G_SalesReturnBillAmount = 0, G_SalesReturnDiscAmount = 0, G_SalesReturnNetAmount = 0, G_SalesReturnPaidAmount = 0, G_SalesReturnBalAmount = 0, G_SalesReturnCashAmount = 0, G_SalesReturnCardAmount = 0;
+            double T_TotalBillAmount = 0, T_TotalDiscAmount = 0, T_TotalNETAmount = 0, T_TotalPaidAmount = 0, T_TotalBalAmount = 0, T_TotalCashAmount = 0, T_TotalCardAmount = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -308,34 +322,34 @@ namespace HIMS.Data.Pharmacy
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["NEFTPay"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["OnlinePay"].ConvertToDouble()).Append("</td></tr>");
 
-                               
-                    if (dr["Label"].ConvertToString() == "Sales")
-                    {
-                       
-                        G_SalesBillAmount += dr["TotalBillAmount"].ConvertToDouble();
-                        G_SalesDiscAmount += dr["DiscAmount"].ConvertToDouble();
-                        G_SalesNetAmount += dr["NetAmount"].ConvertToDouble();
-                        G_SalesPaidAmount += dr["PaidAmount"].ConvertToDouble();
-                        G_SalesBalAmount += dr["BalAmount"].ConvertToDouble();
-                        G_SalesCashAmount += dr["CashPay"].ConvertToDouble();
-                        G_SalesTotalCardAmount += dr["CardPay"].ConvertToDouble();
+
+                if (dr["Label"].ConvertToString() == "Sales")
+                {
+
+                    G_SalesBillAmount += dr["TotalBillAmount"].ConvertToDouble();
+                    G_SalesDiscAmount += dr["DiscAmount"].ConvertToDouble();
+                    G_SalesNetAmount += dr["NetAmount"].ConvertToDouble();
+                    G_SalesPaidAmount += dr["PaidAmount"].ConvertToDouble();
+                    G_SalesBalAmount += dr["BalAmount"].ConvertToDouble();
+                    G_SalesCashAmount += dr["CashPay"].ConvertToDouble();
+                    G_SalesTotalCardAmount += dr["CardPay"].ConvertToDouble();
 
                 }
 
-                    if (dr["Label"].ConvertToString() == "Sales Return")
-                    {
+                if (dr["Label"].ConvertToString() == "Sales Return")
+                {
 
-                        G_SalesReturnBillAmount += dr["TotalBillAmount"].ConvertToDouble();
-                        G_SalesReturnDiscAmount += dr["DiscAmount"].ConvertToDouble();
-                        G_SalesReturnNetAmount += dr["NetAmount"].ConvertToDouble();
-                        G_SalesReturnPaidAmount += dr["PaidAmount"].ConvertToDouble();
-                        G_SalesReturnBalAmount += dr["BalAmount"].ConvertToDouble();
-                        G_SalesReturnCashAmount += dr["CashPay"].ConvertToDouble();
-                        G_SalesReturnCardAmount += dr["CardPay"].ConvertToDouble();
+                    G_SalesReturnBillAmount += dr["TotalBillAmount"].ConvertToDouble();
+                    G_SalesReturnDiscAmount += dr["DiscAmount"].ConvertToDouble();
+                    G_SalesReturnNetAmount += dr["NetAmount"].ConvertToDouble();
+                    G_SalesReturnPaidAmount += dr["PaidAmount"].ConvertToDouble();
+                    G_SalesReturnBalAmount += dr["BalAmount"].ConvertToDouble();
+                    G_SalesReturnCashAmount += dr["CashPay"].ConvertToDouble();
+                    G_SalesReturnCardAmount += dr["CardPay"].ConvertToDouble();
 
                 }
 
-                                
+
             }
 
 
@@ -367,7 +381,7 @@ namespace HIMS.Data.Pharmacy
 
 
 
-        public string ViewSalesReport(DateTime FromDate, DateTime ToDate,string SalesFromNumber,string SalesToNumber, int StoreId, int AddedBy, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId, int AddedBy, string htmlFilePath, string htmlHeaderFilePath)
         {
             SqlParameter[] para = new SqlParameter[6];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
@@ -383,8 +397,8 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
-          
-            double T_TotalAmount = 0, T_TotalVatAmount = 0, T_TotalDiscAmount = 0, T_TotalNETAmount = 0, T_TotalBalancepay = 0, T_TotalCGST = 0,T_TotalSGST = 0,T_TotalIGST = 0;
+
+            double T_TotalAmount = 0, T_TotalVatAmount = 0, T_TotalDiscAmount = 0, T_TotalNETAmount = 0, T_TotalBalancepay = 0, T_TotalCGST = 0, T_TotalSGST = 0, T_TotalIGST = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -413,7 +427,7 @@ namespace HIMS.Data.Pharmacy
                 T_TotalCGST += dr["CGSTAmt"].ConvertToDouble();
                 T_TotalSGST += dr["SGSTAmt"].ConvertToDouble();
                 T_TotalIGST += dr["IGSTAmt"].ConvertToDouble();
-               
+
 
             }
 
@@ -510,7 +524,7 @@ namespace HIMS.Data.Pharmacy
             para[3] = new SqlParameter("@SalesToNumber", SalesToNumber) { DbType = DbType.String };
             para[4] = new SqlParameter("@AddedBy", AddedBy) { DbType = DbType.Int64 };
             para[5] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
-            
+
             var Bills = GetDataTableProc("RptSalesReport", para);
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
@@ -531,11 +545,11 @@ namespace HIMS.Data.Pharmacy
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["NetAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["BalanceAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["UserName"].ConvertToString()).Append("</td></tr>");
-              
+
 
                 T_TotalNETAmount += dr["NetAmount"].ConvertToDouble();
                 T_TotalBalancepay += dr["BalanceAmount"].ConvertToDouble();
-              
+
 
             }
 
@@ -544,7 +558,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{TotalNETAmount}}", T_TotalNETAmount.To2DecimalPlace());
             html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
-          
+
             return html;
 
         }
@@ -576,7 +590,7 @@ namespace HIMS.Data.Pharmacy
                 items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: left;margin-left: 5px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["NetAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["BalanceAmount"].ConvertToDouble()).Append("</td></tr>");
-                
+
 
                 T_TotalNETAmount += dr["NetAmount"].ConvertToDouble();
                 T_TotalBalancepay += dr["BalanceAmount"].ConvertToDouble();
@@ -633,7 +647,7 @@ namespace HIMS.Data.Pharmacy
                 T_TotalCGST += dr["CGSTAmt"].ConvertToDouble();
                 T_TotalSGST += dr["SGSTAmt"].ConvertToDouble();
                 T_TotalIGST += dr["IGSTAmt"].ConvertToDouble();
-               // exec RptSalesReturnReport '11-01-2023','11-26-2023',1545,1557,10016
+                // exec RptSalesReturnReport '11-01-2023','11-26-2023',1545,1557,10016
 
             }
 
@@ -658,7 +672,7 @@ namespace HIMS.Data.Pharmacy
             para[3] = new SqlParameter("@SalesToNumber",SalesToNumber) { DbType = DbType.String };
             para[4] = new SqlParameter("@CreditReasonId",CreditReasonId) { DbType = DbType.Int64 };
             para[5] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.String };
-            
+
             var Bills = GetDataTableProc("RptPharmacyCreditReport", para);
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
@@ -676,13 +690,13 @@ namespace HIMS.Data.Pharmacy
                 items.Append("<tr><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">").Append(dr["SalesNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: left;margin-left: 5px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["NetAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["NetAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["BalanceAmount"].ConvertToDouble()).Append("</td>");
 
 
                 T_TotalNETAmount += dr["NetAmount"].ConvertToDouble();
                 T_TotalBalancepay += dr["BalanceAmount"].ConvertToDouble();
-             //   exec RptPharmacyCreditReport '11-01-2022','11-26-2023',11052,24879,0,10016
+                //   exec RptPharmacyCreditReport '11-01-2022','11-26-2023',11052,24879,0,10016
 
             }
 
