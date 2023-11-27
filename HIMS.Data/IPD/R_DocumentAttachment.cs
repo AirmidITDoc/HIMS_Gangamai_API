@@ -1,4 +1,5 @@
 ﻿using HIMS.Common.Utility;
+using HIMS.Data.Pharmacy;
 using HIMS.Model.IPD;
 using Newtonsoft.Json;
 using System;
@@ -15,26 +16,26 @@ namespace HIMS.Data.IPD
     {
         public R_DocumentAttachment(IUnitofWork unitofWork) : base(unitofWork)
         {
-            //transaction and connection is open when you inject unitofwork
         }
 
-        public bool Save(DocumentAttachment documentAttachment)
+        public List<DocumentAttachment> Save(List<DocumentAttachment> documentAttachment)
         {
-            var dic = documentAttachment.deleteDocument.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("delete_MRD_AdmFile_1", dic);
+            //var dic = documentAttachment.deleteDocument.ToDictionary();
+            //ExecNonQueryProcWithOutSaveChanges("delete_MRD_AdmFile_1", dic);
 
-            foreach (var a in documentAttachment.InsertdocumentAttach)
+
+            foreach (var a in documentAttachment)
             {
                 var disc = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("insert_T_MRD_AdmFile_1", disc);
+                disc.Remove("DocFile");
+                disc.Remove("Id");
+                a.Id = ExecScalarProc("insert_T_MRD_AdmFile_1", disc).ToString();
             }
 
-            _unitofWork.SaveChanges();
-
-            return true;
+            return documentAttachment;
         }
 
-        public void copyfunc(string f_sourcePath, string f_desPath )
+        public void copyfunc(string f_sourcePath, string f_desPath)
         {
             string sourcepath = f_sourcePath;
             string DestPath = f_desPath;

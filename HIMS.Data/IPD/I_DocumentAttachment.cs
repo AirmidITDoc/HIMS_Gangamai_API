@@ -7,6 +7,6 @@ namespace HIMS.Data.IPD
 {
     public interface I_DocumentAttachment
     {
-        bool Save(DocumentAttachment documentAttachment);
+        List<DocumentAttachment> Save(List<DocumentAttachment> documentAttachment);
     }
 }

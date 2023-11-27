@@ -7,16 +7,7 @@ namespace HIMS.Model.IPD
 {
     public class DocumentAttachment
     {
-        public deleteDocument deleteDocument { get; set; }
-        public List<InsertdocumentAttach> InsertdocumentAttach { get; set; }
-    }
-    public class deleteDocument
-    {
-        public int AdmId { get; set; } = 0;
-
-    }
-    public class InsertdocumentAttach
-    {
+        public string Id { get; set; }
         public long OPD_IPD_ID { get; set; } = 0;
         public long OPD_IPD_Type { get; set; } = 0;
         public string FileName { get; set; } = "";
@@ -24,6 +15,6 @@ namespace HIMS.Model.IPD
         public string FilePathLocation { get; set; } = "";
         public long CategoryId { get; set; } = 0;
         public string CategoryName { get; set; } = "";
-
+        public IFormFile DocFile { get; set; }
     }
 }
