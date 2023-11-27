@@ -1,0 +1,101 @@
+﻿<html>
+
+<head>
+    <style>
+        .watermark {
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            opacity: .1;
+            z-index: 99;
+            color: #000;
+            font-size: 70px;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            white-space: nowrap;
+            pointer-events: none
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bill-template-wrapper" style="font-size: 30.25%;">
+
+
+        {{Header2}}
+
+        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+
+            <div style="display:flex; align-items: center;">
+                <div style="font-weight:400;font-size:15px;text-align:center;margin-left:10%;width:900px;">
+                    SALES CREDIT REPORT
+                </div>
+                <span style="font-size: 9px;font-weight: 700;width:30%;margin-left:500px;">
+                    PrintDate : {{
+currentDate | date:
+                    'short'
+                    }}
+                </span>
+            </div>
+
+        </div>
+        <div style="margin-top:2px;">
+            <div style="font-weight: bold;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
+        </div>
+        <table class="table" style="width:100%;border-collapse:collapse">
+            <tbody>
+
+                <tr style="font-size:10px;background-color: rgb(127, 174, 255);">
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:20px !important;">
+                        SR.NO
+                    </td>
+
+                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 20px !important;">
+                        SalesNo
+                    </td>
+
+                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
+                        PatientName
+                    </td>
+
+                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
+                        NetAmount
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
+                        BalanceAmount
+                    </td>
+
+                </tr>
+
+                {{Items}}
+
+                <tr style="border: 1px solid black;">
+
+                    <td style="border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle">
+                    </td>
+                    <td style="border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle">
+                    </td>
+
+                    <td style="border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle;font-size:18px;font-weight:bold">
+                        Total
+                    </td>
+
+                    <td style="border-left: 1px solid #000; text-align: center; vertical-align: middle;padding: 0; height: 10px; font-weight: bold">
+                        {{TotalNETAmount}}
+                    </td>
+
+                    <td style="border-left: 1px solid #000; text-align: center; vertical-align: middle;padding: 0; height: 10px; font-weight: bold">
+                        {{TotalBalancepay}}
+                    </td>
+
+
+                </tr>
+
+            </tbody>
+        </table>
+        <hr>
+
+    </div>
+
+</body>
+
+</html>

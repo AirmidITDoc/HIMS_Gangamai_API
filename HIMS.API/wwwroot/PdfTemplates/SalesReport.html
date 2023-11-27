@@ -21,13 +21,13 @@
     <div class="bill-template-wrapper" style="font-size: 30.25%;">
 
 
-        {{HeaderName}}
+        {{Header2}}
 
         <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
 
             <div style="display:flex; align-items: center;">
                 <div style="font-weight:400;font-size:15px;text-align:center;margin-left:18%;width:500px;">
-                    Sales Report
+                   SALES RETURN PATIENTWISE REPORT
                 </div>
                 <span style="font-size: 9px;font-weight: 700;width: 20%;">
                     PrintDate : {{
@@ -38,12 +38,7 @@ currentDate | date:
             </div>
 
         </div>
-        <div style="margin-top:2px;">
-            <div style="font-weight: bold;font-size:15px;margin-left:10px;padding:5px;">
-                From Date : {{FromDate}} -- To
-                Date :{{Todate}}
-            </div>
-        </div>
+       
         <table class="table" style="width:100%;border-collapse:collapse">
             <tbody>
 
@@ -52,70 +47,30 @@ currentDate | date:
                         SR.NO
                     </td>
                     <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 30px !important;">
-                        SalesId
+                        SalesReturnNo
                     </td>
-                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 20px !important;">
-                        Date
-                    </td>
-                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
-                        RegNo
-                    </td>
+                   
                     <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 35px !important;">
                         PatientName
                     </td>
-                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
-                        TotalAmount
-                    </td>
-                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
-                        VatAmount
-                    </td>
-                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
-                        DiscAmount
-                    </td>
-
-                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
+                   <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
                         NetAmount
                     </td>
                     <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
                         BalanceAmount
                     </td>
-                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
-                        CGSTAmt
-                    </td>
-                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
-                        SGSTAmt
-                    </td>
-                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 25px !important;">
-                        IGSTAmt
-                    </td>
-
+                
                 </tr>
 
                 {{Items}}
 
             <tr style="border: 1px solid black;">
-
-                <td style="border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle">
-                </td>
-                <td style="border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle">
-                </td>
-                <td style="border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle">
-                </td>
                 <td style="border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle">
                 </td>
                 <td style="border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle;font-size:18px;font-weight:bold">
                     Total
                 </td>
-                <td style="border-left: 1px solid #000; padding: 0; height: 10px; text-align: center; vertical-align: middle; font-weight: bold">
-                    {{TotalAmount}}
-                </td>
-                <td style="border-left: 1px solid #000; padding: 0; height: 10px; text-align: center; vertical-align: middle; font-weight: bold">
-                    {{TotalVatAmount}}
-                </td>
-
-                <td style="border-left: 1px solid #000; text-align: center; vertical-align: middle;padding: 0; height: 10px; font-weight: bold">
-                    {{TotalDiscAmount}}
-                </td>
+              
                 <td style="border-left: 1px solid #000; text-align: center; vertical-align: middle;padding: 0; height: 10px; font-weight: bold">
                     {{TotalNETAmount}}
                 </td>
@@ -124,17 +79,7 @@ currentDate | date:
                     {{TotalBalancepay}}
                 </td>
 
-                <td style="border-left: 1px solid #000; text-align: center; vertical-align: middle;padding: 0; height: 10px; font-weight: bold">
-                    {{TotalCGST}}
-                </td>
-                <td style="border-left: 1px solid #000; text-align: center; vertical-align: middle;padding: 0; height: 10px; font-weight: bold">
-                    {{TotalSGST}}
-                </td>
-                <td style="border-left: 1px solid #000; text-align: center; vertical-align: middle;padding: 0; height: 10px; font-weight: bold">
-                    {{TotalIGST}}
-                </td>
-
-
+              
             </tr>
 
             </tbody>

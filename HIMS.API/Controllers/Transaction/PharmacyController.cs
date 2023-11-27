@@ -211,5 +211,87 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        [HttpGet("view-Sales_Report_CharitableTrust")]
+        public IActionResult viewSalesReportCharitableTrust(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CharitySalesReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Header2.html");
+            var html = _Sales.ViewSalesReportCharitableTrust(FromDate, ToDate, SalesFromNumber, SalesToNumber, AddedBy, StoreId,htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CharitySalesReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-Sales_Report_PatientWise_CharitableTrust")]
+        public IActionResult viewSalesReportPatientWiseCharitableTrust(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber,int AddedBy, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CharitableSalesReportPatientwise.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Header2.html");
+            var html = _Sales.ViewSalesReportPatientWiseCharitableTrust(FromDate, ToDate, SalesFromNumber, SalesToNumber, AddedBy, StoreId,htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CharitableSalesReportPatientwise", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+        [HttpGet("view-SalesReturn_Patientwise_Report_CharitableTrust")]
+        public IActionResult viewSalesReturnPatientwiseReporteCharitableTrust(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnSummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Header2.html");
+            var html = _Sales.ViewSalesReturnReportCharitableTrust(FromDate, ToDate, SalesFromNumber, SalesToNumber, StoreId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnSummary", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+        [HttpGet("view-SalesReturnSummary_Report_CharitableTrust")]
+        public IActionResult viewSalesReturnsummaryReporteCharitableTrust(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnFinalSummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Header2.html");
+            var html = _Sales.ViewSalesReturnSummaryReportCharitableTrust(FromDate, ToDate, SalesFromNumber, SalesToNumber, StoreId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnFinalSummary", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-SalesCredit_Report_CharitableTrust")]
+        public IActionResult viewSalesCreditReporteCharitableTrust(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber,int CreditReasonId, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesCredit.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Header2.html");
+            var html = _Sales.ViewSalesCreditReportCharitableTrust(FromDate, ToDate, SalesFromNumber, SalesToNumber, CreditReasonId, StoreId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesCredit", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
     }
 }
