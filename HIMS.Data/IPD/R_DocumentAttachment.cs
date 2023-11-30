@@ -18,7 +18,7 @@ namespace HIMS.Data.IPD
         {
         }
 
-        public List<DocumentAttachment> Save(List<DocumentAttachment> documentAttachment)
+        public List<DocumentAttachmentItem> Save(List<DocumentAttachmentItem> documentAttachment)
         {
             //var dic = documentAttachment.deleteDocument.ToDictionary();
             //ExecNonQueryProcWithOutSaveChanges("delete_MRD_AdmFile_1", dic);

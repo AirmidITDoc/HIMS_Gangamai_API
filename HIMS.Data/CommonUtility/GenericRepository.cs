@@ -171,7 +171,6 @@ namespace HIMS.Data
         {
             var cmd = CreateCommand(proc, CommandType.StoredProcedure, entity);
             var result = cmd.ExecuteScalar();
-            _unitofWork.SaveChanges();
             return result;
         }
         public SqlDataReader ExecDataReader(string query, Dictionary<string, object> entity)

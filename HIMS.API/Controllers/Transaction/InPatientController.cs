@@ -437,20 +437,18 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpPost("DocAttachment")]
-        public async Task<IActionResult> DocumentAttachmentAsync([FromForm] DocumentAttachment documentAttachment)
+        public async Task<IActionResult> DocumentAttachmentAsync([FromForm] DocumentAttachment documentAttachments)
         {
-            List<DocumentAttachment> data = new List<DocumentAttachment>
-            {
-                documentAttachment
-            };
-            foreach (DocumentAttachment objFile in data)
+            foreach (DocumentAttachmentItem objFile in documentAttachments.Files)
             {
                 string FileName = await _IFileUtility.UploadDocument(objFile.DocFile, "PatientDocuments\\" + objFile.OPD_IPD_ID);
                 objFile.FilePath = FileName;
                 objFile.FilePathLocation = FileName;
                 objFile.FileName = objFile.DocFile.FileName;
+                objFile.CategoryId = 1;
+                objFile.CategoryName = "AppoinmentImgDocument";
             }
-            var res = _DocumentAttachment.Save(data);
+            var res = _DocumentAttachment.Save(documentAttachments.Files);
             return Ok(res.Select(x => new { x.Id, x.FileName }));
         }
 

@@ -30,6 +30,7 @@ using System.Net;
 using System.Text;
 using HIMS.Data.Opd.OP;
 using HIMS.API.Utility;
+using Microsoft.AspNetCore.Http.Features;
 //using HIMS.Data.Transaction;
 namespace HIMS.API.Extensions
 {
@@ -60,6 +61,19 @@ namespace HIMS.API.Extensions
         public static void AddMyConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddOptions();
+            services.Configure<FormOptions>(o =>
+            {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = long.MaxValue;
+                o.MultipartHeadersLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.MaxRequestBodySize = int.MaxValue;
+                options.AllowSynchronousIO = true;
+            });
+
             services.Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
             services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<AppSettings>>().Value);
         }
