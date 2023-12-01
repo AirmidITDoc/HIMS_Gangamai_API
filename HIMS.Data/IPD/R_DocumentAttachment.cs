@@ -34,6 +34,13 @@ namespace HIMS.Data.IPD
 
             return documentAttachment;
         }
+        public List<DocumentAttachmentItem> GetFiles(int OPD_IPD_ID, int OPD_IPD_Type)
+        {
+            SqlParameter[] para = new SqlParameter[2];
+            para[0] = new SqlParameter("@OPD_IPD_Id", OPD_IPD_ID);
+            para[1] = new SqlParameter("@OPD_IPD_Type", OPD_IPD_Type);
+            return GetList<DocumentAttachmentItem>("SELECT * FROM [T_MRD_AdmFile] WHERE OPD_IPD_ID=@OPD_IPD_ID AND OPD_IPD_Type=@OPD_IPD_Type", para);
+        }
 
         public void copyfunc(string f_sourcePath, string f_desPath)
         {

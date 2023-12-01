@@ -451,6 +451,11 @@ namespace HIMS.API.Controllers.Transaction
             var res = _DocumentAttachment.Save(documentAttachments.Files);
             return Ok(res.Select(x => new { x.Id, x.FileName }));
         }
+        [HttpGet("get-files")]
+        public IActionResult GetFiles(int OPD_IPD_ID, int OPD_IPD_Type)
+        {
+            return Ok(_DocumentAttachment.GetFiles(OPD_IPD_ID, OPD_IPD_Type).Select(x => new { x.Id, x.FileName }));
+        }
 
         [HttpPost("SingleDocUpload")]
         public async Task<IActionResult> SingleDocUpload(IFormFile formFile, string FileName)
