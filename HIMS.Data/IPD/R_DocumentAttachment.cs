@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +41,12 @@ namespace HIMS.Data.IPD
             para[0] = new SqlParameter("@OPD_IPD_Id", OPD_IPD_ID);
             para[1] = new SqlParameter("@OPD_IPD_Type", OPD_IPD_Type);
             return GetList<DocumentAttachmentItem>("SELECT * FROM [T_MRD_AdmFile] WHERE OPD_IPD_ID=@OPD_IPD_ID AND OPD_IPD_Type=@OPD_IPD_Type", para);
+        }
+        public DocumentAttachmentItem GetFileById(int Id)
+        {
+            SqlParameter[] para = new SqlParameter[1];
+            para[0] = new SqlParameter("@Id", Id);
+            return GetList<DocumentAttachmentItem>("SELECT * FROM [T_MRD_AdmFile] WHERE Id=@Id", para).FirstOrDefault();
         }
 
         public void copyfunc(string f_sourcePath, string f_desPath)

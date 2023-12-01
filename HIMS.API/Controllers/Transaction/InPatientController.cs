@@ -456,6 +456,17 @@ namespace HIMS.API.Controllers.Transaction
         {
             return Ok(_DocumentAttachment.GetFiles(OPD_IPD_ID, OPD_IPD_Type).Select(x => new { x.Id, x.FileName }));
         }
+        [HttpGet("download-file")]
+        public async Task<IActionResult> DownloadFiles(int Id)
+        {
+            DocumentAttachmentItem item = _DocumentAttachment.GetFileById(Id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            var fileData = await _IFileUtility.DownloadFile(item.FilePathLocation);
+            return File(fileData.Item1, fileData.Item2, fileData.Item3);
+        }
 
         [HttpPost("SingleDocUpload")]
         public async Task<IActionResult> SingleDocUpload(IFormFile formFile, string FileName)

@@ -9,5 +9,6 @@ namespace HIMS.Data.IPD
     {
         List<DocumentAttachmentItem> Save(List<DocumentAttachmentItem> documentAttachment);
         List<DocumentAttachmentItem> GetFiles(int OPD_IPD_ID, int OPD_IPD_Type);
+        DocumentAttachmentItem GetFileById(int Id);
     }
 }

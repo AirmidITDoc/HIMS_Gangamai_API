@@ -1,6 +1,8 @@
 ﻿using HIMS.Data.Pharmacy;
 using HIMS.Model.IPD;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using System;
@@ -36,6 +38,28 @@ namespace HIMS.API.Utility
             fileStream.Flush();
             return FileName;
         }
+
+        public async Task<Tuple<MemoryStream, string, string>> DownloadFile(string filePath)
+        {
+            var memoryStream = new MemoryStream();
+            using (var stream = new FileStream(filePath, FileMode.Open))
+            {
+                await stream.CopyToAsync(memoryStream);
+            }
+            memoryStream.Position = 0;
+            return new Tuple<MemoryStream, string, string>(memoryStream, GetMimeType(filePath), Path.GetFileName(filePath));
+        }
+
+        private string GetMimeType(string fileName)
+        {
+            var provider = new FileExtensionContentTypeProvider();
+            if (!provider.TryGetContentType(fileName, out var contentType))
+            {
+                contentType = "application/octet-stream";
+            }
+            return contentType;
+        }
+
 
     }
 }
