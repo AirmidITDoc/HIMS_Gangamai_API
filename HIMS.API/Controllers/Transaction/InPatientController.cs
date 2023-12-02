@@ -11,6 +11,10 @@ using HIMS.Model.Transaction;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
+using HIMS.Data.Pharmacy;
+using Microsoft.Extensions.Configuration;
+using HIMS.API.Utility;
+using HIMS.Common.Utility;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -20,8 +24,7 @@ namespace HIMS.API.Controllers.Transaction
     public class InPatientController : Controller
     {
         private readonly IWebHostEnvironment _environment;
-
-
+        private readonly IFileUtility _IFileUtility;
         public readonly I_AdmissionReg _AdmissionReg;
         public readonly I_RegisteredPatientAdmission _RPA;
         public readonly I_IPDischarge _IPDischarge;
@@ -29,7 +32,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_IPRefundofAdvance _IPRefundofAdvance;
         public readonly I_IPRefundofBilll _IPRefundofBilll;
         public readonly I_IPBilling _IPBilling;
-        public readonly I_IPLabrequestChange _IPLabrequestChange ;
+        public readonly I_IPLabrequestChange _IPLabrequestChange;
         public readonly I_IPInterimBill _IPInterimBill;
         public readonly I_IPDEmergency _IPDEmergency;
         public readonly I_MLCInfo _MLCInfo;
@@ -77,7 +80,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_Prepostopnote _Prepostopnote;
         public InPatientController(
             IWebHostEnvironment environment,
-            
+            IFileUtility fileUtility,
             I_AdmissionReg admission,
             I_RegisteredPatientAdmission rpa,
             I_IPDischarge iPDischarge,
@@ -103,8 +106,8 @@ namespace HIMS.API.Controllers.Transaction
             I_Payment payment, I_IPBillEdit iPBillEdit, I_IPAdvanceEdit iPAdvanceEdit, I_IP_Settlement_Process iP_Settlement_Process,
             I_DocumentAttachment documentAttachment, I_IP_SMSOutgoing iP_SMSOutgoing, I_OTTableDetail oTTableDetail, I_OTBookingDetail oTBookingDetail, I_CathLabBookingDetail cathLabBookingDetail
             , I_IPPrescription iPPrescription, I_OTEndoscopy oTEndoscopy, I_OTRequest oTRequest, I_OTNotesTemplate oTNotesTemplate, I_MaterialConsumption materialConsumption
-            , I_NeroSurgeryOTNotes neroSurgeryOTNotes, I_DoctorNote doctorNote, I_NursingTemplate nursingTemplate,I_Mrdmedicalcertificate mrdmedicalcertificate,
-            I_Mrddeathcertificate mrddeathcertificate,I_SubcompanyTPA subcompanyTPA,I_Prepostopnote prepostopnote
+            , I_NeroSurgeryOTNotes neroSurgeryOTNotes, I_DoctorNote doctorNote, I_NursingTemplate nursingTemplate, I_Mrdmedicalcertificate mrdmedicalcertificate,
+            I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote
             )
         {
             this._environment = environment;
@@ -136,7 +139,7 @@ namespace HIMS.API.Controllers.Transaction
             this._IPBillEdit = iPBillEdit;
             this._IPAdvanceEdit = iPAdvanceEdit;
             this._IP_Settlement_Process = iP_Settlement_Process;
-            this._DocumentAttachment= documentAttachment;
+            this._DocumentAttachment = documentAttachment;
             this._IP_SMSOutgoing = iP_SMSOutgoing;
             this._OTTableDetail = oTTableDetail;
             this._OTBookingDetail = oTBookingDetail;
@@ -153,6 +156,7 @@ namespace HIMS.API.Controllers.Transaction
             this._Mrddeathcertificate = mrddeathcertificate;
             this._SubcompanyTPA = subcompanyTPA;
             this._Prepostopnote = prepostopnote;
+            this._IFileUtility = fileUtility;
         }
 
         //New AdmissionSave
@@ -228,7 +232,7 @@ namespace HIMS.API.Controllers.Transaction
         public String InsertIPRefundofAdvance(IPRefundofAdvanceParams IPRefundofAdvanceParams)
         {
             var IPD = _IPRefundofAdvance.Insert(IPRefundofAdvanceParams);
-            return(IPD.ToString());
+            return (IPD.ToString());
 
         }
 
@@ -336,12 +340,12 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(IPIBP);
         }
 
-     /*   [HttpPost("IPAdvance")]
-        public IActionResult IPAdvance(IPAdvanceParams IPA)
-        {
-            var IPAP = _IPAdvance.Insert(IPA);
-            return Ok(IPAP);
-        }*/
+        /*   [HttpPost("IPAdvance")]
+           public IActionResult IPAdvance(IPAdvanceParams IPA)
+           {
+               var IPAP = _IPAdvance.Insert(IPA);
+               return Ok(IPAP);
+           }*/
 
         [HttpPost("IPAdvance")]
         public String IPAdvance(IPAdvanceParams IPAdvanceParams)
@@ -433,14 +437,39 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpPost("DocAttachment")]
-        public IActionResult DocumentAttachment(DocumentAttachment documentAttachment)
+        public async Task<IActionResult> DocumentAttachmentAsync([FromForm] DocumentAttachment documentAttachments)
         {
-            var RequestId = _DocumentAttachment.Save(documentAttachment);
-            return Ok(RequestId);
+            foreach (DocumentAttachmentItem objFile in documentAttachments.Files)
+            {
+                string FileName = await _IFileUtility.UploadDocument(objFile.DocFile, "PatientDocuments\\" + objFile.OPD_IPD_ID);
+                objFile.FilePath = FileName;
+                objFile.FilePathLocation = FileName;
+                objFile.FileName = objFile.DocFile.FileName;
+                objFile.CategoryId = 1;
+                objFile.CategoryName = "AppoinmentImgDocument";
+            }
+            var res = _DocumentAttachment.Save(documentAttachments.Files);
+            return Ok(res.Select(x => new { x.Id, x.FileName }));
+        }
+        [HttpGet("get-files")]
+        public IActionResult GetFiles(int OPD_IPD_ID, int OPD_IPD_Type)
+        {
+            return Ok(_DocumentAttachment.GetFiles(OPD_IPD_ID, OPD_IPD_Type).Select(x => new { x.Id, x.FileName }));
+        }
+        [HttpGet("download-file")]
+        public async Task<IActionResult> DownloadFiles(int Id)
+        {
+            DocumentAttachmentItem item = _DocumentAttachment.GetFileById(Id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            var fileData = await _IFileUtility.DownloadFile(item.FilePathLocation);
+            return File(fileData.Item1, fileData.Item2, fileData.Item3);
         }
 
         [HttpPost("SingleDocUpload")]
-        public async Task<IActionResult> SingleDocUpload(IFormFile formFile,string FileName)
+        public async Task<IActionResult> SingleDocUpload(IFormFile formFile, string FileName)
         {
             if (formFile.FileName.Length > 0)
             {
@@ -450,11 +479,11 @@ namespace HIMS.API.Controllers.Transaction
                     Directory.CreateDirectory(filepath);
                 }
                 string imgpath = filepath + "\\" + formFile.FileName;
-                if(System.IO.File.Exists(imgpath))
+                if (System.IO.File.Exists(imgpath))
                 {
                     System.IO.File.Delete(imgpath);
                 }
-                using (FileStream fileStream=System.IO.File.Create(imgpath))
+                using (FileStream fileStream = System.IO.File.Create(imgpath))
                 {
                     await formFile.CopyToAsync(fileStream);
                     fileStream.Flush();

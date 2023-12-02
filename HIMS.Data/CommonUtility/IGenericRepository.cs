@@ -30,5 +30,6 @@ namespace HIMS.Data
         List<dynamic> ExecDataSetQuery(string query, Dictionary<string, object> entity);
         DataTable GetDataTableQuery(string proc, Dictionary<string, object> entity);
         List<dynamic> ExecDataSetProcWithDataTable(string proc, JArray entity);
+        List<T> GetList<T>(string query, SqlParameter[] entity);
     }
 }

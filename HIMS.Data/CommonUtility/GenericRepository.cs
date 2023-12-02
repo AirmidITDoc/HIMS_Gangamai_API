@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Dynamic;
 using System.IO;
+using System.Reflection;
 
 namespace HIMS.Data
 {
@@ -171,7 +172,6 @@ namespace HIMS.Data
         {
             var cmd = CreateCommand(proc, CommandType.StoredProcedure, entity);
             var result = cmd.ExecuteScalar();
-            _unitofWork.SaveChanges();
             return result;
         }
         public SqlDataReader ExecDataReader(string query, Dictionary<string, object> entity)
@@ -281,6 +281,52 @@ namespace HIMS.Data
             var dt = new DataTable();
             adapt.Fill(dt);
             return dt;
+        }
+        public T GetListItem<T>(SqlDataReader dr)
+        {
+            Type temp = typeof(T);
+            T obj = Activator.CreateInstance<T>();
+
+            for (int i = 0; i < dr.FieldCount; i++)
+            {
+                foreach (PropertyInfo pro in temp.GetProperties())
+                {
+                    if (pro.Name.ToLower().Split('_')[0] == dr.GetName(i).ToLower().Split('_')[0])
+                    {
+                        if (!string.IsNullOrEmpty(Convert.ToString(dr[i])))
+                        {
+                            if (pro.PropertyType.Name == "String")
+                                pro.SetValue(obj, Convert.ToString(dr[i]));
+                            else if (pro.PropertyType.Name == "Byte[]" && string.IsNullOrEmpty(Convert.ToString(dr[i])))
+                                pro.SetValue(obj, new byte[0]);
+                            else
+                                pro.SetValue(obj, dr[i]);
+                        }
+                        else
+                        {
+                            if (pro.PropertyType.Name == "String")
+                                pro.SetValue(obj, "");
+                        }
+                        break;
+                    }
+                }
+            }
+            return obj;
+        }
+
+        public List<T> GetList<T>(string query, SqlParameter[] entity)
+        {
+            var cmd = Select_CreateCommand(query, CommandType.Text, entity);
+            var dr = cmd.ExecuteReader();
+            List<T> lst = new List<T>();
+            while (dr.Read())
+            {
+                T item = GetListItem<T>(dr);
+                lst.Add(item);
+            }
+            dr.Close();
+            //_unitofWork.SaveChanges();
+            return lst;
         }
 
     }
