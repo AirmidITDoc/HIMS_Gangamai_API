@@ -301,9 +301,9 @@ namespace HIMS.Data.Pharmacy
             int i = 0;
             //  string previousLabel = "";
 
-            double G_SalesBillAmount = 0, G_SalesDiscAmount = 0, G_SalesNetAmount = 0, G_SalesPaidAmount = 0, G_SalesBalAmount = 0, G_SalesCashAmount = 0, G_SalesTotalCardAmount = 0;
-            double G_SalesReturnBillAmount = 0, G_SalesReturnDiscAmount = 0, G_SalesReturnNetAmount = 0, G_SalesReturnPaidAmount = 0, G_SalesReturnBalAmount = 0, G_SalesReturnCashAmount = 0, G_SalesReturnCardAmount = 0;
-            double T_TotalBillAmount = 0, T_TotalDiscAmount = 0, T_TotalNETAmount = 0, T_TotalPaidAmount = 0, T_TotalBalAmount = 0, T_TotalCashAmount = 0, T_TotalCardAmount = 0;
+            double G_SalesBillAmount = 0, G_SalesDiscAmount = 0, G_SalesNetAmount = 0, G_SalesPaidAmount = 0, G_SalesBalAmount = 0, G_SalesCashAmount = 0, G_SalesTotalCardAmount = 0, G_SalesAmount = 0, G_SalesChequeAmount = 0, G_SalesTotalNEFTAmount = 0, G_SalesOnlineAmount = 0;
+            double G_SalesReturnBillAmount = 0, G_SalesReturnDiscAmount = 0, G_SalesReturnNetAmount = 0, G_SalesReturnPaidAmount = 0, G_SalesReturnBalAmount = 0, G_SalesReturnCashAmount = 0, G_SalesReturnCardAmount = 0, G_SalesReturnChequeAmount = 0, G_SalesReturnNEFTAmount = 0, G_SalesReturnOnlineAmount = 0; 
+            double T_TotalBillAmount = 0, T_TotalDiscAmount = 0, T_TotalNETAmount = 0, T_TotalPaidAmount = 0, T_TotalBalAmount = 0, T_TotalCashAmount = 0, T_TotalCardAmount = 0, T_TotalChequeAmount = 0, T_TotalNEFTAmount = 0, T_TotalOnlineAmount = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -333,6 +333,11 @@ namespace HIMS.Data.Pharmacy
                     G_SalesBalAmount += dr["BalAmount"].ConvertToDouble();
                     G_SalesCashAmount += dr["CashPay"].ConvertToDouble();
                     G_SalesTotalCardAmount += dr["CardPay"].ConvertToDouble();
+                    G_SalesChequeAmount += dr["ChequePay"].ConvertToDouble();
+                    G_SalesTotalNEFTAmount += dr["NEFTPay"].ConvertToDouble();
+                    G_SalesOnlineAmount += dr["OnlinePay"].ConvertToDouble();
+
+
 
                 }
 
@@ -346,6 +351,9 @@ namespace HIMS.Data.Pharmacy
                     G_SalesReturnBalAmount += dr["BalAmount"].ConvertToDouble();
                     G_SalesReturnCashAmount += dr["CashPay"].ConvertToDouble();
                     G_SalesReturnCardAmount += dr["CardPay"].ConvertToDouble();
+                    G_SalesReturnChequeAmount += dr["BalAmount"].ConvertToDouble();
+                    G_SalesReturnNEFTAmount += dr["CashPay"].ConvertToDouble();
+                    G_SalesReturnOnlineAmount += dr["CardPay"].ConvertToDouble();
 
                 }
 
@@ -360,6 +368,9 @@ namespace HIMS.Data.Pharmacy
             T_TotalBalAmount += G_SalesBalAmount.ConvertToDouble() - G_SalesReturnBalAmount.ConvertToDouble();
             T_TotalCashAmount += G_SalesCashAmount.ConvertToDouble() - G_SalesReturnCashAmount.ConvertToDouble();
             T_TotalCardAmount += G_SalesReturnCardAmount.ConvertToDouble() - G_SalesReturnCardAmount.ConvertToDouble();
+            T_TotalChequeAmount += G_SalesChequeAmount.ConvertToDouble() - G_SalesReturnChequeAmount.ConvertToDouble();
+            T_TotalNEFTAmount += G_SalesTotalNEFTAmount.ConvertToDouble() - G_SalesReturnNEFTAmount.ConvertToDouble();
+            T_TotalOnlineAmount += G_SalesOnlineAmount.ConvertToDouble() - G_SalesReturnOnlineAmount.ConvertToDouble();
 
 
             html = html.Replace("{{Items}}", items.ToString());
@@ -372,6 +383,9 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{TotalPaidAmount}}", T_TotalPaidAmount.To2DecimalPlace());
             html = html.Replace("{{TotalCashAmount}}", T_TotalCashAmount.To2DecimalPlace());
             html = html.Replace("{{TotalCardAmount}}", T_TotalCardAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalChequeAmount}}", T_TotalChequeAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalNEFTAmount}}", T_TotalNEFTAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalOnlineAmount}}", T_TotalOnlineAmount.To2DecimalPlace());
             return html;
 
 
