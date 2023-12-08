@@ -21,6 +21,10 @@ namespace HIMS.Data.Pharmacy
         string ViewSalesReturnPatientwiseReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId, string htmlFilePath, string Header2);
         string ViewSalesCreditReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber,int CreditReasonId, int StoreId, string htmlFilePath, string Header2);
 
+
+        string ViewSalesTaxReceipt(int SalesID, int OP_IP_Type, string htmlFilePath, string HeaderName);
+
+        string ViewSalesReturnReceipt(int SalesID, int OP_IP_Type, string htmlFilePath, string HeaderName);
         string ViewOPBillingpatientwiseReport(string PBillNo,string htmlFilePath, string Header2);
         string GetFilePath();
     }
