@@ -242,7 +242,7 @@ namespace HIMS.Data.Pharmacy
                 T_PayTMAmount += dr["PayTMAmount"].ConvertToDouble();
                 T_AdvanceUsedAmount += dr["AdvanceUsedAmount"].ConvertToDouble();
                 T_BalanceAmount += dr["BalanceAmount"].ConvertToDouble();
-                items.Append("<tr style=\"font-size:10px;border-bottom: 1px;\"><td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(i).Append("</td>");
+                items.Append("<tr style=\"font-size:15px;border-bottom: 1px;\"><td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["Date"].ConvertToDateString("dd/MM/yy")).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["SalesNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;vertical-align:middle;text-align: left;margin-left: 5px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
