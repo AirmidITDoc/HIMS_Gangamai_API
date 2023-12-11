@@ -19,7 +19,7 @@ namespace HIMS.API.Utility
             _generatePdf = generatePdf;
             _configuration = configuration;
         }
-        public Tuple<byte[], string> GeneratePdfFromHtml(string html, string FolderName, Wkhtmltopdf.NetCore.Options.Orientation PageOrientation = Wkhtmltopdf.NetCore.Options.Orientation.Portrait)
+        public Tuple<byte[], string> GeneratePdfFromHtml(string html, string FolderName, string FileName = "", Wkhtmltopdf.NetCore.Options.Orientation PageOrientation = Wkhtmltopdf.NetCore.Options.Orientation.Portrait)
         {
             var options = new ConvertOptions
             {
@@ -40,10 +40,12 @@ namespace HIMS.API.Utility
                 Directory.CreateDirectory(DestinationPath);
             if (!Directory.Exists(DestinationPath.Trim('\\') + "\\" + FolderName + "\\" + DateTime.Now.ToString("ddMMyyyy")))
                 Directory.CreateDirectory(DestinationPath.Trim('\\') + "\\" + FolderName + "\\" + DateTime.Now.ToString("ddMMyyyy"));
-            string FileName = DestinationPath.Trim('\\') + "\\" + FolderName + "\\" + DateTime.Now.ToString("ddMMyyyy") + "\\" + Guid.NewGuid() + ".pdf";
-            System.IO.File.WriteAllBytes(FileName, bytes);
-            return new Tuple<byte[], string>(bytes, FileName);
+            string NewFileName = DestinationPath.Trim('\\') + "\\" + FolderName + "\\" + DateTime.Now.ToString("ddMMyyyy") + "\\" + (string.IsNullOrWhiteSpace(FileName) ? Guid.NewGuid().ToString() : FileName) + ".pdf";
+            if (File.Exists(NewFileName))
+                NewFileName = DestinationPath.Trim('\\') + "\\" + FolderName + "\\" + DateTime.Now.ToString("ddMMyyyy") + "\\" + FileName + "_" + (Guid.NewGuid()) + ".pdf";
+            System.IO.File.WriteAllBytes(NewFileName, bytes);
+            return new Tuple<byte[], string>(bytes, NewFileName);
         }
-     
+
     }
 }

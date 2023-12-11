@@ -12,7 +12,7 @@ namespace HIMS.API.Utility
 {
     public interface IFileUtility
     {
-        Task<string> UploadDocument(IFormFile objFile, string Folder);
+        Task<string> UploadDocument(IFormFile objFile, string Folder,string FileName);
         Task<Tuple<MemoryStream, string, string>> DownloadFile(string filePath);
     }
 }

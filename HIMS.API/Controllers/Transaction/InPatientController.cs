@@ -441,7 +441,8 @@ namespace HIMS.API.Controllers.Transaction
         {
             foreach (DocumentAttachmentItem objFile in documentAttachments.Files)
             {
-                string FileName = await _IFileUtility.UploadDocument(objFile.DocFile, "PatientDocuments\\" + objFile.OPD_IPD_ID);
+                string NewFileName = objFile.OPD_IPD_ID + "_" + objFile.CategoryName + "_" + objFile.OPD_IPD_Type;
+                string FileName = await _IFileUtility.UploadDocument(objFile.DocFile, "PatientDocuments\\" + objFile.OPD_IPD_ID, NewFileName);
                 objFile.FilePath = FileName;
                 objFile.FilePathLocation = FileName;
                 objFile.FileName = objFile.DocFile.FileName;
