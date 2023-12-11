@@ -22,7 +22,7 @@ namespace HIMS.API.Utility
             _Sales = sales;
             _configuration = configuration;
         }
-        public async Task<string> UploadDocument(IFormFile objFile, string Folder)
+        public async Task<string> UploadDocument(IFormFile objFile, string Folder, string FileName)
         {
             var DestinationPath = _Sales.GetFilePath();
             if (string.IsNullOrWhiteSpace(DestinationPath))
@@ -32,11 +32,13 @@ namespace HIMS.API.Utility
             if (!Directory.Exists(DestinationPath.Trim('\\') + "\\" + Folder))
                 Directory.CreateDirectory(DestinationPath.Trim('\\') + "\\" + Folder);
             string FilePath = DestinationPath.Trim('\\') + "\\" + Folder.Trim('\\') + "\\";
-            string FileName = FilePath + Guid.NewGuid() + System.IO.Path.GetExtension(objFile.FileName);
-            using FileStream fileStream = System.IO.File.Create(FileName);
+            string NewFileName = FilePath + (string.IsNullOrWhiteSpace(FileName) ? Guid.NewGuid().ToString() : FileName) + System.IO.Path.GetExtension(objFile.FileName);
+            if (File.Exists(NewFileName))
+                NewFileName = FilePath + FileName + "_" + Guid.NewGuid() + System.IO.Path.GetExtension(objFile.FileName);
+            using FileStream fileStream = System.IO.File.Create(NewFileName);
             await objFile.CopyToAsync(fileStream);
             fileStream.Flush();
-            return FileName;
+            return NewFileName;
         }
 
         public async Task<Tuple<MemoryStream, string, string>> DownloadFile(string filePath)
