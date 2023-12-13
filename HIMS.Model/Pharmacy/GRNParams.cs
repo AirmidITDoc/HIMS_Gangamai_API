@@ -46,7 +46,7 @@ namespace HIMS.Model.Pharmacy
         public long TranProcessId { get; set; }
         public string TranProcessMode { get; set; }
 
-        public long BillDiscAmt  { get; set; }
+        public float BillDiscAmt  { get; set; }
         public long GRNID { get; set; }
     }
 
@@ -153,7 +153,7 @@ namespace HIMS.Model.Pharmacy
         public long TranProcessId { get; set; }
         public string TranProcessMode { get; set; }
 
-        public long BillDiscAmt { get; set; }
+        public float BillDiscAmt { get; set; }
     }
     public class Delete_GRNDetails
     {
