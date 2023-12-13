@@ -146,7 +146,8 @@ namespace HIMS.Data
         public string ExecNonQueryProcWithOutSaveChanges(
             string proc,
             Dictionary<string, object> entity,
-            SqlParameter outputParam = null
+            SqlParameter outputParam = null,
+            bool IsSave=true
             )
         {
             var id = string.Empty;
@@ -157,6 +158,8 @@ namespace HIMS.Data
                 id = Convert.ToInt64(_sqlCommand.Parameters[outputParam.ParameterName].Value).ToString();
             }
             _sqlCommand.Parameters.Clear();
+            if (IsSave)
+                _unitofWork.SaveChanges();
             return id;
         }
 
@@ -168,11 +171,12 @@ namespace HIMS.Data
             _unitofWork.SaveChanges();
             return result;
         }
-        public object ExecScalarProc(string proc, Dictionary<string, object> entity)
+        public object ExecScalarProc(string proc, Dictionary<string, object> entity, bool isSave = true)
         {
             var cmd = CreateCommand(proc, CommandType.StoredProcedure, entity);
             var result = cmd.ExecuteScalar();
-            _unitofWork.SaveChanges();
+            if (isSave)
+                _unitofWork.SaveChanges();
             return result;
         }
         public SqlDataReader ExecDataReader(string query, Dictionary<string, object> entity)

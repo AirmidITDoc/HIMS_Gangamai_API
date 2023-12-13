@@ -14,12 +14,12 @@ namespace HIMS.Data
         int ExecNonQueryProc(string proc, Dictionary<string, object> entity);
         int ExecNonQueryProcBulk(string proc, JArray entities);
 
-        string ExecNonQueryProcWithOutSaveChanges(string proc, Dictionary<string, object> entity, SqlParameter outputParam = null);
+        string ExecNonQueryProcWithOutSaveChanges(string proc, Dictionary<string, object> entity, SqlParameter outputParam = null,bool IsSave=true);
 
         //   string ExecNonQueryProcWithOutSaveChanges_Select(string proc, Dictionary<string, object> entity, SqlParameter outputParam = null);
 
         object ExecScalar(string query, Dictionary<string, object> entity);
-        object ExecScalarProc(string proc, Dictionary<string, object> entity);
+        object ExecScalarProc(string proc, Dictionary<string, object> entity,bool isSave=true);
         SqlDataReader ExecDataReader(string query, Dictionary<string, object> entity);
         SqlDataReader ExecDataReaderProc(string proc, Dictionary<string, object> entity);
 
