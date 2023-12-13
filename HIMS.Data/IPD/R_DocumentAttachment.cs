@@ -23,14 +23,15 @@ namespace HIMS.Data.IPD
         {
             //var dic = documentAttachment.deleteDocument.ToDictionary();
             //ExecNonQueryProcWithOutSaveChanges("delete_MRD_AdmFile_1", dic);
-
+            int filesCount = 0;
 
             foreach (var a in documentAttachment)
             {
+                filesCount++;
                 var disc = a.ToDictionary();
                 disc.Remove("DocFile");
                 disc.Remove("Id");
-                a.Id = ExecScalarProc("insert_T_MRD_AdmFile_1", disc).ToString();
+                a.Id = ExecScalarProc("insert_T_MRD_AdmFile_1", disc, documentAttachment.Count == filesCount).ToString();
             }
 
             return documentAttachment;

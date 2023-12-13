@@ -19,7 +19,7 @@ namespace HIMS.Data
         //   string ExecNonQueryProcWithOutSaveChanges_Select(string proc, Dictionary<string, object> entity, SqlParameter outputParam = null);
 
         object ExecScalar(string query, Dictionary<string, object> entity);
-        object ExecScalarProc(string proc, Dictionary<string, object> entity);
+        object ExecScalarProc(string proc, Dictionary<string, object> entity,bool isSave=true);
         SqlDataReader ExecDataReader(string query, Dictionary<string, object> entity);
         SqlDataReader ExecDataReaderProc(string proc, Dictionary<string, object> entity);
 
