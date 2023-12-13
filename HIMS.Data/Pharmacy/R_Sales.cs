@@ -475,7 +475,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{TotalNEFTAmount}}", T_TotalNEFTAmount.To2DecimalPlace());
             html = html.Replace("{{TotalOnlineAmount}}", T_TotalOnlineAmount.To2DecimalPlace());
             html = html.Replace("{{TotalCollection}}", TotalCollection.To2DecimalPlace());
-
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
             html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
             html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
