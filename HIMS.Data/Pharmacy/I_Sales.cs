@@ -26,8 +26,8 @@ namespace HIMS.Data.Pharmacy
 
         string ViewSalesReturnReceipt(int SalesID, int OP_IP_Type, string htmlFilePath, string HeaderName);
 
-       
 
+      
         string ViewPharmsDailyCollectionsummaryDayandUserwise(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById, string htmlFilePath, string HeaderName);
         
         string ViewOPBillingpatientwiseReport(string PBillNo,string htmlFilePath, string Header2);

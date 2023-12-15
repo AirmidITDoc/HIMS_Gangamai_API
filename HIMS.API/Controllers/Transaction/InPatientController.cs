@@ -60,7 +60,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_IPAdvanceEdit _IPAdvanceEdit;
         public readonly I_IP_Settlement_Process _IP_Settlement_Process;
         public readonly I_DocumentAttachment _DocumentAttachment;
-
+        public readonly I_WhatsappSms _WhatsappSms;
         public readonly I_IP_SMSOutgoing _IP_SMSOutgoing;
         public readonly I_OTTableDetail _OTTableDetail;
         public readonly I_OTBookingDetail _OTBookingDetail;
@@ -107,7 +107,7 @@ namespace HIMS.API.Controllers.Transaction
             I_DocumentAttachment documentAttachment, I_IP_SMSOutgoing iP_SMSOutgoing, I_OTTableDetail oTTableDetail, I_OTBookingDetail oTBookingDetail, I_CathLabBookingDetail cathLabBookingDetail
             , I_IPPrescription iPPrescription, I_OTEndoscopy oTEndoscopy, I_OTRequest oTRequest, I_OTNotesTemplate oTNotesTemplate, I_MaterialConsumption materialConsumption
             , I_NeroSurgeryOTNotes neroSurgeryOTNotes, I_DoctorNote doctorNote, I_NursingTemplate nursingTemplate, I_Mrdmedicalcertificate mrdmedicalcertificate,
-            I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote
+            I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote,I_WhatsappSms whatsappSms
             )
         {
             this._environment = environment;
@@ -157,6 +157,7 @@ namespace HIMS.API.Controllers.Transaction
             this._SubcompanyTPA = subcompanyTPA;
             this._Prepostopnote = prepostopnote;
             this._IFileUtility = fileUtility;
+            this._WhatsappSms = whatsappSms;
         }
 
         //New AdmissionSave
@@ -433,6 +434,20 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult IPSettlement(IP_Settlement_Processparams IP_Settlement_Processparams)
         {
             var RequestId = _IP_Settlement_Process.Insert(IP_Settlement_Processparams);
+            return Ok(RequestId);
+        }
+
+        [HttpPost("WhatsappSMSoutgoingSave")]
+        public IActionResult InsertWhatsappsmsoutgoing(WhatsappSmsparam WhatsappSmsparam)
+        {
+            var Id = _WhatsappSms.Insert(WhatsappSmsparam);
+            return Ok(Id);
+        }
+
+        [HttpPost("WhatsappSMSoutgoingUpdate")]
+        public IActionResult UpdateWhatsappsmsoutgoing(WhatsappSmsparam WhatsappSmsparam)
+        {
+            var RequestId = _WhatsappSms.Update(WhatsappSmsparam);
             return Ok(RequestId);
         }
 

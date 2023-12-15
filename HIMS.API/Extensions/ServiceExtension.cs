@@ -275,7 +275,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<IPdfUtility, PdfUtility>();
             services.AddTransient<IFileUtility, FileUtility>();
             services.AddTransient<I_Workorder, R_Workorder>();
-
+            services.AddTransient<I_WhatsappSms, R_WhatsappSms>();
             /*   services.AddTransient<I_BookMasterHome, I_BookMasterHome>();
                services.AddTransient<I_BankMasterHome, I_BankMasterHome>();
                services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMasterHome>();
