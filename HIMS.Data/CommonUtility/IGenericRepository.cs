@@ -14,7 +14,7 @@ namespace HIMS.Data
         int ExecNonQueryProc(string proc, Dictionary<string, object> entity);
         int ExecNonQueryProcBulk(string proc, JArray entities);
 
-        string ExecNonQueryProcWithOutSaveChanges(string proc, Dictionary<string, object> entity, SqlParameter outputParam = null,bool IsSave=true);
+        string ExecNonQueryProcWithOutSaveChanges(string proc, Dictionary<string, object> entity, SqlParameter outputParam = null);
 
         //   string ExecNonQueryProcWithOutSaveChanges_Select(string proc, Dictionary<string, object> entity, SqlParameter outputParam = null);
 

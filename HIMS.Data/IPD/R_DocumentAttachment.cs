@@ -23,10 +23,8 @@ namespace HIMS.Data.IPD
         {
             //var dic = documentAttachment.deleteDocument.ToDictionary();
             //ExecNonQueryProcWithOutSaveChanges("delete_MRD_AdmFile_1", dic);
-            int fileCount = 0;
             foreach (var a in documentAttachment)
             {
-                fileCount++;
                 var outputId = new SqlParameter
                 {
                     SqlDbType = SqlDbType.BigInt,
@@ -37,9 +35,9 @@ namespace HIMS.Data.IPD
                 var disc = a.ToDictionary();
                 disc.Remove("DocFile");
                 disc.Remove("Id");
-                a.Id = ExecNonQueryProcWithOutSaveChanges("insert_T_MRD_AdmFile_1", disc, outputId, fileCount == documentAttachment.Count).ToString();
+                a.Id = ExecNonQueryProcWithOutSaveChanges("insert_T_MRD_AdmFile_1", disc, outputId).ToString();
             }
-
+            _unitofWork.SaveChanges();
             return documentAttachment;
         }
         public List<DocumentAttachmentItem> GetFiles(int OPD_IPD_ID, int OPD_IPD_Type)
