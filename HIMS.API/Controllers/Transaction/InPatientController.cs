@@ -107,7 +107,7 @@ namespace HIMS.API.Controllers.Transaction
             I_DocumentAttachment documentAttachment, I_IP_SMSOutgoing iP_SMSOutgoing, I_OTTableDetail oTTableDetail, I_OTBookingDetail oTBookingDetail, I_CathLabBookingDetail cathLabBookingDetail
             , I_IPPrescription iPPrescription, I_OTEndoscopy oTEndoscopy, I_OTRequest oTRequest, I_OTNotesTemplate oTNotesTemplate, I_MaterialConsumption materialConsumption
             , I_NeroSurgeryOTNotes neroSurgeryOTNotes, I_DoctorNote doctorNote, I_NursingTemplate nursingTemplate, I_Mrdmedicalcertificate mrdmedicalcertificate,
-            I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote,I_WhatsappSms whatsappSms
+            I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote, I_WhatsappSms whatsappSms
             )
         {
             this._environment = environment;
@@ -456,7 +456,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             foreach (DocumentAttachmentItem objFile in documentAttachments.Files)
             {
-                string NewFileName = objFile.OPD_IPD_ID + "_" + objFile.CategoryName + "_" + objFile.OPD_IPD_Type;
+                string NewFileName = objFile.OPD_IPD_ID + "_" + (objFile.CategoryName ?? "") + "_" + objFile.OPD_IPD_Type;
                 string FileName = await _IFileUtility.UploadDocument(objFile.DocFile, "PatientDocuments\\" + objFile.OPD_IPD_ID, NewFileName);
                 objFile.FilePath = FileName;
                 objFile.FilePathLocation = FileName;
@@ -482,6 +482,17 @@ namespace HIMS.API.Controllers.Transaction
             }
             var fileData = await _IFileUtility.DownloadFile(item.FilePathLocation);
             return File(fileData.Item1, fileData.Item2, fileData.Item3);
+        }
+        [HttpGet("get-file")]
+        public async Task<IActionResult> GetFile(int Id)
+        {
+            DocumentAttachmentItem item = _DocumentAttachment.GetFileById(Id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            var fileData = await _IFileUtility.GetBase64(item.FilePathLocation);
+            return Ok(new { file = fileData });
         }
 
         [HttpPost("SingleDocUpload")]

@@ -14,6 +14,7 @@ namespace HIMS.API.Utility
     {
         Task<string> UploadDocument(IFormFile objFile, string Folder,string FileName);
         Task<Tuple<MemoryStream, string, string>> DownloadFile(string filePath);
+        Task<string> GetBase64(string filePath);
     }
 }
 
