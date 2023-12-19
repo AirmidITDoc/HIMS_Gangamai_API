@@ -8,7 +8,5 @@ namespace HIMS.Data.IPD
    public interface I_WhatsappSms
     {
         public string Insert(WhatsappSmsparam WhatsappSmsparam);
-
-        public bool Update(WhatsappSmsparam WhatsappSmsparam);
     }
 }

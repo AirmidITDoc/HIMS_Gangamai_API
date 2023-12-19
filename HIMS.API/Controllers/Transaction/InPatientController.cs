@@ -23,6 +23,10 @@ namespace HIMS.API.Controllers.Transaction
     [Route("api/[controller]")]
     public class InPatientController : Controller
     {
+        public readonly I_Sales _Sales;
+        public readonly IPdfUtility _pdfUtility;
+        private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
+
         private readonly IWebHostEnvironment _environment;
         private readonly IFileUtility _IFileUtility;
         public readonly I_AdmissionReg _AdmissionReg;
@@ -107,9 +111,15 @@ namespace HIMS.API.Controllers.Transaction
             I_DocumentAttachment documentAttachment, I_IP_SMSOutgoing iP_SMSOutgoing, I_OTTableDetail oTTableDetail, I_OTBookingDetail oTBookingDetail, I_CathLabBookingDetail cathLabBookingDetail
             , I_IPPrescription iPPrescription, I_OTEndoscopy oTEndoscopy, I_OTRequest oTRequest, I_OTNotesTemplate oTNotesTemplate, I_MaterialConsumption materialConsumption
             , I_NeroSurgeryOTNotes neroSurgeryOTNotes, I_DoctorNote doctorNote, I_NursingTemplate nursingTemplate, I_Mrdmedicalcertificate mrdmedicalcertificate,
-            I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote,I_WhatsappSms whatsappSms
+            I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote,I_WhatsappSms whatsappSms,
+
+            I_Sales sales,
+            Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility
             )
         {
+            this._Sales = sales;
+            _hostingEnvironment = hostingEnvironment;
+            _pdfUtility = pdfUtility;
             this._environment = environment;
             this._AdmissionReg = admission;
             this._RPA = rpa;
@@ -440,17 +450,17 @@ namespace HIMS.API.Controllers.Transaction
         [HttpPost("WhatsappSMSoutgoingSave")]
         public IActionResult InsertWhatsappsmsoutgoing(WhatsappSmsparam WhatsappSmsparam)
         {
+
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaBillReceipt.html");
+            var html = _Sales.ViewBill(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, 2, htmlFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaBill", "PharmaBill_" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            
+            WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+
             var Id = _WhatsappSms.Insert(WhatsappSmsparam);
             return Ok(Id);
         }
-
-        [HttpPost("WhatsappSMSoutgoingUpdate")]
-        public IActionResult UpdateWhatsappsmsoutgoing(WhatsappSmsparam WhatsappSmsparam)
-        {
-            var RequestId = _WhatsappSms.Update(WhatsappSmsparam);
-            return Ok(RequestId);
-        }
-
+       
         [HttpPost("DocAttachment")]
         public async Task<IActionResult> DocumentAttachmentAsync([FromForm] DocumentAttachment documentAttachments)
         {
