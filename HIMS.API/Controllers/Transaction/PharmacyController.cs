@@ -46,6 +46,18 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(SalesSave.ToString());
 
         }
+
+
+
+        [HttpPost("SalesSaveDraftBill")]
+        public IActionResult SalesSaveDraftBill(SalesParams salesParams)
+        {
+            var SalesSave = _Sales.InsertSalesDraftBill(salesParams);
+            return Ok(SalesSave.ToString());
+
+        }
+
+
         [HttpPost("SalesSaveWithCredit")]
         public IActionResult SalesSaveWithCredit(SalesCreditParams salesCreditParams)
         {
@@ -360,7 +372,23 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
-        
+        [HttpGet("view-POrchaseorder_Report")]
+        public IActionResult viewPurchaseorderReport(int PurchaseID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PurchaseOrder.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Sales.ViewPurchaseorderReceipt(PurchaseID, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PurchaseOrder", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
 
 
         [HttpGet("view-OPBilling_Patientwise_Report")]

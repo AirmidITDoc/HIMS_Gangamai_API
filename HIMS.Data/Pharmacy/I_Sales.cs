@@ -6,6 +6,7 @@ namespace HIMS.Data.Pharmacy
     public interface I_Sales
     {
         public string InsertSales(SalesParams SalesParams);
+        public string InsertSalesDraftBill(SalesParams SalesParams);
         public string InsertSalesWithCredit(SalesCreditParams salesCreditParams);
         public bool PaymentSettlement(SalesParams SalesParams);
         string ViewBill(int SalesID, int OP_IP_Type,string htmlFilePath);
@@ -26,8 +27,8 @@ namespace HIMS.Data.Pharmacy
 
         string ViewSalesReturnReceipt(int SalesID, int OP_IP_Type, string htmlFilePath, string HeaderName);
 
+        string ViewPurchaseorderReceipt(int PurchaseID, string htmlFilePath, string HeaderName);
 
-      
         string ViewPharmsDailyCollectionsummaryDayandUserwise(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById, string htmlFilePath, string HeaderName);
         
         string ViewOPBillingpatientwiseReport(string PBillNo,string htmlFilePath, string Header2);
