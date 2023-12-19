@@ -466,7 +466,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             foreach (DocumentAttachmentItem objFile in documentAttachments.Files)
             {
-                string NewFileName = objFile.OPD_IPD_ID + "_" + objFile.CategoryName + "_" + objFile.OPD_IPD_Type;
+                string NewFileName = objFile.OPD_IPD_ID + "_" + (objFile.CategoryName ?? "") + "_" + objFile.OPD_IPD_Type;
                 string FileName = await _IFileUtility.UploadDocument(objFile.DocFile, "PatientDocuments\\" + objFile.OPD_IPD_ID, NewFileName);
                 objFile.FilePath = FileName;
                 objFile.FilePathLocation = FileName;
@@ -492,6 +492,17 @@ namespace HIMS.API.Controllers.Transaction
             }
             var fileData = await _IFileUtility.DownloadFile(item.FilePathLocation);
             return File(fileData.Item1, fileData.Item2, fileData.Item3);
+        }
+        [HttpGet("get-file")]
+        public async Task<IActionResult> GetFile(int Id)
+        {
+            DocumentAttachmentItem item = _DocumentAttachment.GetFileById(Id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            var fileData = await _IFileUtility.GetBase64(item.FilePathLocation);
+            return Ok(new { file = fileData, Mime = _IFileUtility.GetMimeType(item.FilePathLocation) });
         }
 
         [HttpPost("SingleDocUpload")]
