@@ -492,7 +492,7 @@ namespace HIMS.API.Controllers.Transaction
                 return NotFound();
             }
             var fileData = await _IFileUtility.GetBase64(item.FilePathLocation);
-            return Ok(new { file = fileData });
+            return Ok(new { file = fileData, Mime = _IFileUtility.GetMimeType(item.FilePathLocation) });
         }
 
         [HttpPost("SingleDocUpload")]

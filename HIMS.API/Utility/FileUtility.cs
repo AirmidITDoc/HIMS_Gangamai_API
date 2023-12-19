@@ -60,7 +60,7 @@ namespace HIMS.API.Utility
             return Convert.ToBase64String(imageArray);
         }
 
-        private string GetMimeType(string fileName)
+        public string GetMimeType(string fileName)
         {
             var provider = new FileExtensionContentTypeProvider();
             if (!provider.TryGetContentType(fileName, out var contentType))
