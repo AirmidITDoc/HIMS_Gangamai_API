@@ -31,13 +31,14 @@ namespace HIMS.API.Utility
                 Directory.CreateDirectory(DestinationPath);
             if (!Directory.Exists(DestinationPath.Trim('\\') + "\\" + Folder))
                 Directory.CreateDirectory(DestinationPath.Trim('\\') + "\\" + Folder);
-            string FilePath = DestinationPath.Trim('\\') + "\\" + Folder.Trim('\\') + "\\";
-            string NewFileName = FilePath + (string.IsNullOrWhiteSpace(FileName) ? Guid.NewGuid().ToString() : FileName) + System.IO.Path.GetExtension(objFile.FileName);
+            string FilePath = Path.Combine(DestinationPath.Trim('\\'), Folder.Trim('\\'));
+            string NewFileName = Path.Combine(FilePath, (string.IsNullOrWhiteSpace(FileName) ? Guid.NewGuid().ToString() : FileName) + System.IO.Path.GetExtension(objFile.FileName));
             if (File.Exists(NewFileName))
-                NewFileName = FilePath + FileName + "_" + Guid.NewGuid() + System.IO.Path.GetExtension(objFile.FileName);
-            using FileStream fileStream = System.IO.File.Create(NewFileName);
-            await objFile.CopyToAsync(fileStream);
-            fileStream.Flush();
+                NewFileName = Path.Combine(FilePath, FileName + "_" + Guid.NewGuid() + System.IO.Path.GetExtension(objFile.FileName));
+            using (Stream fileStream = new FileStream(NewFileName, FileMode.Create))
+            {
+                await objFile.CopyToAsync(fileStream);
+            }
             return NewFileName;
         }
 
@@ -51,8 +52,15 @@ namespace HIMS.API.Utility
             memoryStream.Position = 0;
             return new Tuple<MemoryStream, string, string>(memoryStream, GetMimeType(filePath), Path.GetFileName(filePath));
         }
+        public async Task<string> GetBase64(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return "";
+            byte[] imageArray = System.IO.File.ReadAllBytes(filePath);
+            return Convert.ToBase64String(imageArray);
+        }
 
-        private string GetMimeType(string fileName)
+        public string GetMimeType(string fileName)
         {
             var provider = new FileExtensionContentTypeProvider();
             if (!provider.TryGetContentType(fileName, out var contentType))

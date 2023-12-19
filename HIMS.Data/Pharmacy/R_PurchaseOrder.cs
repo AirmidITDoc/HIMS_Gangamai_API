@@ -62,7 +62,7 @@ namespace HIMS.Data.Pharmacy
         public bool VerifyPurchaseOrder(PurchaseParams purchaseParams)
         {
             var vDiscCal = purchaseParams.Update_POVerify_Status.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Update_POVerify_Status_1", vDiscCal);
+            ExecNonQueryProcWithOutSaveChanges("m_Update_POVerify_Status_1", vDiscCal);
 
             _unitofWork.SaveChanges();
             return true;

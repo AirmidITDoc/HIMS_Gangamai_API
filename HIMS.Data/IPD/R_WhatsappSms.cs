@@ -30,21 +30,8 @@ namespace HIMS.Data.IPD
             dic.Remove("SMSOutGoingID");
             var Id=ExecNonQueryProcWithOutSaveChanges("insert_WhatsappSmsinfo", dic, outputId1);
 
-
             _unitofWork.SaveChanges();
             return Id;
-        }
-
-        public bool Update(WhatsappSmsparam WhatsappSmsparam)
-        {
-            // throw new NotImplementedException();
-            var dic = WhatsappSmsparam.UpdateWhatsappsmsInfo.ToDictionary();
-           
-             ExecNonQueryProcWithOutSaveChanges("Update_WhatsappSmsinfo", dic);
-
-
-            _unitofWork.SaveChanges();
-            return true;
         }
     }
 }

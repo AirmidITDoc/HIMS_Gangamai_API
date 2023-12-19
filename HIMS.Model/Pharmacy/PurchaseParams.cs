@@ -97,7 +97,6 @@ namespace HIMS.Model.Pharmacy
         public long PurchaseID { get; set; }
         public bool ISVerified { get; set; }
         public long IsVerifiedId { get; set; }
-        public DateTime VerifiedDateTime { get; set; }
     }
 
 }
