@@ -180,7 +180,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _Sales.ViewDailyCollection(FromDate, ToDate, StoreId, AddedById, htmlFilePath, htmlHeaderFilePath);
             // var html = _Sales.ViewDailyCollection(FromDate, ToDate, StoreId, AddedById, htmlFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaDailyCollection", "PharmaDailyCollection_storeId.pdf", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaDailyCollection", "PharmaDailyCollection", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             // write logic for send pdf in whatsapp
 
@@ -363,6 +363,22 @@ namespace HIMS.API.Controllers.Transaction
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _Sales.ViewPharmsDailyCollectionsummaryDayandUserwise(FromDate, ToDate, StoreId, AddedById, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaDailySummaryDayAndUserWise","", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-PharSalesCashBookReport")]
+        public IActionResult ViewPharSalesCashBookReport(DateTime FromDate, DateTime ToDate,string PaymentMode, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesCashBook.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Sales.ViewPharSalesCashBookReport(FromDate, ToDate, PaymentMode, StoreId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesCashBook", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             // write logic for send pdf in whatsapp
 
