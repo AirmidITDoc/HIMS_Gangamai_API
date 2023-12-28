@@ -82,6 +82,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_SubcompanyTPA _SubcompanyTPA;
         public readonly I_Mrddeathcertificate _Mrddeathcertificate;
         public readonly I_Prepostopnote _Prepostopnote;
+       
         public InPatientController(
             IWebHostEnvironment environment,
             IFileUtility fileUtility,
@@ -247,6 +248,22 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
+
+        //[HttpGet("view-IP-RefundOfBillReceipt")]
+        //public IActionResult ViewRefundofBIllReceipt(int AdvanceNo)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPRefundBillReceipt.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+        //    var html = _IPRefundofBilll.ViewIPRefundofBillReceipt(AdvanceNo, htmlFilePath, htmlHeaderFilePath);
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html,"IPRefundBillReceipt", "IPRefundBillReceipt" + AdvanceNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+
+        //    if (System.IO.File.Exists(tuple.Item2))
+        //        System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
+
         [HttpPost("InsertIPRefundofBill")]
 
         public String InsertIPRefundofBill(IPRefundofBilllparams IPRefundofBillParams)
@@ -301,6 +318,23 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
+
+
+        [HttpGet("view-IP-BillReceipt")]
+        public IActionResult ViewIpBillReceipt(int BillNo)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPBillingReceipt.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPBilling.ViewIPBillReceipt(BillNo, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IpBillingReceipt", "IpBillingReceipt" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+
+            if (System.IO.File.Exists(tuple.Item2))
+                System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
         [HttpPost("IPBillingInsert")]
 
         public String IPBillingInsert(IPBillingParams IPBP)
@@ -343,6 +377,22 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
+
+        [HttpGet("view-IP-InterimBillReceipt")]
+        public IActionResult ViewIpINterimBillReceipt(int BillNo)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPInterimBill.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPBilling.ViewIPBillReceipt(BillNo, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPInterimBill", "IPInterimBill" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+
+            if (System.IO.File.Exists(tuple.Item2))
+                System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
         [HttpPost("IPInterimBillInsert")]
 
         public IActionResult IPInterimBillInsert(IPInterimBillParams IPBP)
@@ -357,6 +407,23 @@ namespace HIMS.API.Controllers.Transaction
                var IPAP = _IPAdvance.Insert(IPA);
                return Ok(IPAP);
            }*/
+
+
+
+        [HttpGet("view-IP-AdvanceReceipt")]
+        public IActionResult ViewAdvanceReceipt(int AdvanceNo)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "AdvanceReceipt.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPAdvance.ViewAdvanceReceipt(AdvanceNo,htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AdvanceReceipt", "AdvanceReceipt" + AdvanceNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+
+            if (System.IO.File.Exists(tuple.Item2))
+                System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         [HttpPost("IPAdvance")]
         public String IPAdvance(IPAdvanceParams IPAdvanceParams)

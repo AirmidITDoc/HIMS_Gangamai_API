@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Text;
 
 namespace HIMS.Data.IPD
@@ -65,6 +66,41 @@ namespace HIMS.Data.IPD
             return AdvanceDetailID;
         }
 
-      
+
+
+
+        public string ViewAdvanceReceipt(int AdvanceNo, string htmlFilePath, string htmlHeaderFilePath)
+        {
+            SqlParameter[] para = new SqlParameter[1];
+          
+            para[0] = new SqlParameter("@AdvanceNo", AdvanceNo) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptIPDAdvancePrint", para);
+            string html = File.ReadAllText(htmlFilePath);
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{HeaderName}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+
+          
+          
+            //html = html.Replace("{{TotalIGST}}", T_TotalIGST.To2DecimalPlace());
+            //html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
+
+            html = html.Replace("{{reason}}", Bills.GetColValue("reason"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{AdvanceNo}}", Bills.GetColValue("AdvanceNo"));
+            html = html.Replace("{{Addedby}}", Bills.GetColValue("Addedby"));
+
+            html = html.Replace("{{Age}}", Bills.GetColValue("Age"));
+            html = html.Replace("{{AdmissinDate}}", Bills.GetColValue("AdmissinDate"));
+
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+
+            return html;
+
+        }
+
     }
 }

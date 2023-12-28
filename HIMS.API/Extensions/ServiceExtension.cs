@@ -31,6 +31,7 @@ using System.Text;
 using HIMS.Data.Opd.OP;
 using HIMS.API.Utility;
 using Microsoft.AspNetCore.Http.Features;
+using HIMS.Data.HomeTransaction;
 //using HIMS.Data.Transaction;
 namespace HIMS.API.Extensions
 {
@@ -276,6 +277,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<IFileUtility, FileUtility>();
             services.AddTransient<I_Workorder, R_Workorder>();
             services.AddTransient<I_WhatsappSms, R_WhatsappSms>();
+            services.AddTransient<I_PatientDocumentupload, R_PatientDocumentupload>();
             /*   services.AddTransient<I_BookMasterHome, I_BookMasterHome>();
                services.AddTransient<I_BankMasterHome, I_BankMasterHome>();
                services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMasterHome>();

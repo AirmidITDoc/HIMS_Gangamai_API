@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
+
+        {{HeaderName}}
+        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+            <div style="display:block;width:100%; align-items: center;">
+                <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
+                   ADVANCE PAYMENT RECEIPT
+                </div>
+                <span style="font-size: 9px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
+            </div>
+
+        </div>
+        <div style="margin-top:2px;">
+            <div style="font-weight: bold;font-size:16px;margin-left:10px;font-style:italic;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 82px; font-size: 20px;">Advance No.</span>
+                    <span style="font-size:15px; ">{{PBillNo}} </span>
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 34px; margin-left: 100px;font-size:20px;">IPD No</span>
+                    <span style="font-size:15px;"> {{IPDNo}} </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 25px; font-size: 20px;">Patient Name</span>
+                    <span style="font-size:15px;">{{PatientName}}</span>
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 73px; margin-left: 300px; font-size: 20px;">Age</span>
+                    <span style="font-size:15px;">{{Age}}</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 75px; font-size: 20px;">DOA</span>
+                    <span style="font-size:15px;">{{AdmissinDate | date: 'dd/MM/yyyy'}}</span>
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 38px; margin-left: 300px; font-size: 20px;">Patient Type</span>
+                    <span style="font-size:15px;">{{PatientType}}</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 75px; font-size: 20px;">ConsultantDocName</span>
+                    <span style="font-size:15px;">{{ConsultantDocName}}</span>'
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 25px; margin-left: 300px; font-size: 20px;">Phone No</span>
+                    <span style="font-size:15px;">{{Phone}} </span>
+                </td>
+            </tr>
+        </table>
+
+
+        <hr>
+
+
+
+        <div style="display: flex;">
+
+            <span style="vertical-align: top;padding:0 10px 10px;">
+
+                <span style="font-weight: 500;margin-Left: 100px;font-size:20px">Advance Amount</span>
+                <span style="width: 400px;font-size:18px;"> {{AdvanceAmount}}</span> <br>
+                <span style="font-weight: 500; font-size: 20px; margin-Left: 100px;">Advance Reason </span>
+                <span style="width: 400px;font-size:18px;"> {{reason}}</span> <br>
+
+            </span>
+
+        </div>
+
+        <br>
+        <span style="font-weight: 500;"> Total Amount in words :-</span>
+        <hr>
+        <div style="display: flex;">
+            <span style="font-weight: 500;">Remark</span>
+
+        </div><br><br>
+
+        <div style="display: flex;">
+            <span style="font-weight: 500;">{{Addedby}}</span>
+            <span style="margin-left: 650px; font-weight: 500;">Authorized Signature</span>
+        </div><br>
+        <div style="border: 1px solid black;width: 1000px;height: 30px; background-color: red;border-bottom-right-radius: 110px;
+    margin-top: 0px;border-bottom-left-radius: 110px;padding: 6px ;">
+            <div style="font-style: italic; opacity:1;text-align: center;font-size: 15px; margin-top: 8px; color: white;">
+                This is Computer generated invoice hence doesn’t require signature
+            </div>
+        </div>
+    </div>
+</body>
+</html>

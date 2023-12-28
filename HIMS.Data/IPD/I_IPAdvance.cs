@@ -8,7 +8,7 @@ namespace HIMS.Data.IPD
     public interface I_IPAdvance
     {
         public String Insert(IPAdvanceParams IPAdvanceParams );
+        string ViewAdvanceReceipt(int AdvanceNo, string htmlFilePath, string HeaderName);
 
-        
     }
 }

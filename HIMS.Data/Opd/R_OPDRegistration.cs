@@ -25,12 +25,12 @@ namespace HIMS.Data.Opd
             var outputId = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
-                ParameterName = "@RegId",
+                ParameterName = "@RegID",
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
             var dic = OPDRegistrationParams.OPDRegistrationSave.ToDictionary();
-            dic.Remove("RegId");
+            dic.Remove("RegID");
             var RegID = ExecNonQueryProcWithOutSaveChanges("insert_Registration_1_1", dic, outputId);
 
            _unitofWork.SaveChanges();

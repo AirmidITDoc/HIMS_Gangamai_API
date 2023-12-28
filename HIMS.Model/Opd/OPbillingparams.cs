@@ -70,8 +70,8 @@ namespace HIMS.Model.Opd
         public int ConcessionAuthorizationName { get; set; }
         public float TaxPer { get; set; }
         public float TaxAmount { get; set; }
-        //  public int CompDiscAmt { get; set; }
-        public int CashCounterId { get; set; }
+         public int CompDiscAmt { get; set; }
+      //  public int CashCounterId { get; set; }
 
         public string DiscComments { get; set; }
     }

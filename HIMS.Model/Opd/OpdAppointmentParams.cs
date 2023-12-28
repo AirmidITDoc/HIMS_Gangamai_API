@@ -36,17 +36,17 @@ namespace HIMS.Model.Opd
         public long ClassId { get; set; }
         public long DepartmentId { get; set; }
         public long PatientOldNew { get; set; }
-        public Boolean FirstFollowupVisit { get; set; }
+        public int FirstFollowupVisit { get; set; }
         public long AppPurposeId { get; set; }
         public DateTime FollowupDate { get; set; }
 
-      //  public Boolean IsMark { get; set; }
-       // public Boolean IsXray { get; set; }
+        public int CrossConsulFlag { get; set; }
+        // public Boolean IsXray { get; set; }
     }
 
     public class RegistrationSave
     {
-        public long RegId { get; set; }
+        public long RegID { get; set; }
         public DateTime RegDate { get; set; }
         public DateTime RegTime { get; set; }
         public long PrefixId { get; set; }
@@ -82,8 +82,8 @@ namespace HIMS.Model.Opd
 
         //public long TalukaId { get; set; }
         // public double PatientWeight { get; set; }
-        // public string Aadharcardno { get; set; }
-         // public string Pancardno { get; set; }
+        public string Aadharcardno { get; set; }
+        public string Pancardno { get; set; }
         //   public SByte Barcodetext { get; set; }
         // public  byte PatientPhoto { get; set; }
 
@@ -118,10 +118,12 @@ namespace HIMS.Model.Opd
         public long ClassId { get; set; }
         public long DepartmentId { get; set; }
         public long PatientOldNew { get; set; }
-        public Boolean FirstFollowupVisit { get; set; }
+        public int FirstFollowupVisit { get; set; }
         public long AppPurposeId { get; set; }
         public DateTime FollowupDate { get; set; }
         public long VisitId { get; set; }
+
+        public int CrossConsulFlag { get; set; }
 
         //  public Boolean IsMark { get; set; }
         // public Boolean IsXray { get; set; }

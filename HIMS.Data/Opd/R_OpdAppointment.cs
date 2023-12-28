@@ -22,7 +22,7 @@ namespace HIMS.Data.Opd
             var outputId = new SqlParameter
             {
               SqlDbType = SqlDbType.BigInt,
-             ParameterName = "@RegId",
+             ParameterName = "@RegID",
             Value = 0,
             Direction = ParameterDirection.Output
             };
@@ -38,7 +38,7 @@ namespace HIMS.Data.Opd
 
 
             var dic = opdAppointmentParams.RegistrationSave.ToDictionary();
-            dic.Remove("RegId");
+            dic.Remove("RegID");
             var RegID=ExecNonQueryProcWithOutSaveChanges("insert_Registration_1_1", dic, outputId);
             
              opdAppointmentParams.VisitSave.RegID = Convert.ToInt64(RegID);

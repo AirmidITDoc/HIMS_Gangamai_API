@@ -6,6 +6,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
+
+using Microsoft.Extensions.Primitives;
+
+using System.IO;
+using System.Net;
+
+using System.Text.Json;
+
 namespace HIMS.Data.Opd
 {
    public class R_OpBilling :GenericRepository,I_OPbilling
@@ -149,6 +157,70 @@ namespace HIMS.Data.Opd
 
             _unitofWork.SaveChanges();
             return BillNo;
+        }
+
+
+        public String ViewOPBillReceipt(int BillNo, string htmlFilePath,string htmlHeaderFilePath)
+        {
+         
+
+            SqlParameter[] para = new SqlParameter[1];
+
+            para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptBillPrint", para);
+            string html = File.ReadAllText(htmlFilePath);
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{HeaderName}}", htmlHeader);
+                     
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount"));
+            html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
+            html = html.Replace("{{PBillNo}}", Bills.GetColValue("PBillNo"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate"));
+            html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{ExtMobileNo}}", Bills.GetColValue("ExtMobileNo"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{EmailId}}", Bills.GetColValue("EmailId"));
+            html = html.Replace("{{Date}}", Bills.GetDateColValue("Date"));
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            double T_NetAmount = 0;
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+                items.Append("<tr><td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">-</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["docname"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">-</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["Qty"].ConvertToDateString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["NetAmount"].ConvertToString()).Append("</td></tr>");
+
+                T_NetAmount += dr["NetAmount"].ConvertToDouble();
+            }
+            html = html.Replace("{{Items}}", items.ToString());
+
+
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
+            html = html.Replace("{{HTotalAmount}}", Bills.GetColValue("HTotalAmount"));
+         
+            html = html.Replace("{{BalanceAmt}}", Bills.GetColValue("BalanceAmt"));
+            html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount"));
+            html = html.Replace("{{Price}}", Bills.GetColValue("Price"));
+            html = html.Replace("{{SGSTAmt}}", Bills.GetColValue("SGSTAmt"));
+            html = html.Replace("{{IGSTPer}}", Bills.GetColValue("IGSTPer"));
+            html = html.Replace("{{IGSTAmt}}", Bills.GetColValue("IGSTAmt"));
+            html = html.Replace("{{DiscAmount}}", Bills.GetColValue("DiscAmount"));
+            html = html.Replace("{{TotalGst}}", Bills.GetColValue("TotalGst"));
+            html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount"));
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
+
+
+            return html;
+
         }
 
     }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.IO;
 
 namespace HIMS.Data.IPD
 {
@@ -57,5 +58,70 @@ namespace HIMS.Data.IPD
         }
 
 
+
+        public string ViewIPInterimBillReceipt(int BillNo, string htmlFilePath, string HeaderName)
+        {
+            // throw new NotImplementedException();
+
+            Dictionary<string, object> dictionary = new Dictionary<string, object>
+            {
+                { "BillNo", BillNo}
+            };
+            var Bills = GetDataTableProc("rptIPDFinalBill", dictionary);
+            string html = File.ReadAllText(htmlFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
+            html = html.Replace("{{IPDNo}}", Bills.GetDateColValue("IPDNo"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{Age}}", Bills.GetDateColValue("Age"));
+            html = html.Replace("{{GenderName}}", Bills.GetDateColValue("GenderName"));
+            html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionDate"));
+            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
+            html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
+            html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeDate"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate"));
+            html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
+
+
+            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalAmt"));
+            html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount"));
+            html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount"));
+            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalAmt"));
+            html = html.Replace("{{PayTMPayAmount}}", Bills.GetColValue("PayTMPayAmount"));
+            html = html.Replace("{{CashPayAmount}}", Bills.GetColValue("CashPayAmount"));
+            html = html.Replace("{{ChequePayAmount}}", Bills.GetColValue("ChequePayAmount"));
+            html = html.Replace("{{NEFTPayAmount}}", Bills.GetColValue("NEFTPayAmount"));
+            html = html.Replace("{{TotalAdvanceAmount}}", Bills.GetColValue("TotalAdvanceAmount"));
+            html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount"));
+            html = html.Replace("{{AdvanceBalAmount}}", Bills.GetColValue("AdvanceBalAmount"));
+            html = html.Replace("{{AdvanceRefundAmount}}", Bills.GetColValue("AdvanceRefundAmount"));
+
+
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            double T_NetAmount = 0;
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+                items.Append("<tr><td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">-</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["docname"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">-</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["Qty"].ConvertToDateString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
+
+                T_NetAmount += dr["NetAmount"].ConvertToDouble();
+            }
+            html = html.Replace("{{Items}}", items.ToString());
+
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
+
+
+            return html;
+        }
     }
 }

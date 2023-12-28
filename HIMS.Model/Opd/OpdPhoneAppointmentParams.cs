@@ -11,7 +11,7 @@ namespace HIMS.Model.Opd
     }
     public class OpdInsertPhoneAppointment
     {
-        //public int PhoneAppId { get; set; }
+        public int PhoneAppId { get; set; }
         public DateTime AppDate { get; set; }
         public DateTime AppTime { get; set; }
         //public string SeqNo { get; set; }
@@ -26,7 +26,9 @@ namespace HIMS.Model.Opd
         public long DoctorId { get; set; }
         public long AddedBy { get; set; }
         public long UpdatedBy { get; set; }
-        //public Boolean IsCancelled { get; set; }
+
+
+        public String RegNo  { get; set; }
         //public int IsCancelledBy { get; set; }
         //public DateTime IsCancelledDate { get; set; }
         //public string RegNo { get; set; }

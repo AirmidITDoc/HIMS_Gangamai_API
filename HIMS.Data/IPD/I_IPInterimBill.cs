@@ -9,5 +9,7 @@ namespace HIMS.Data.IPD
     {
         public String Insert(IPInterimBillParams IPInterimBillParams);
 
+        string ViewIPInterimBillReceipt(int BillNo, string htmlFilePath,string HeaderName);
+
     }
 }

@@ -12,6 +12,8 @@ using HIMS.Model.IPD;
 using HIMS.Data.IPD;
 using HIMS.Data.HomeTransaction;
 using HIMS.Model.HomeTransaction;
+using System.IO;
+using HIMS.API.Utility;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -52,6 +54,8 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_OPSettlemtCredit _OPSettlemtCredit;
         public readonly I_PatientDocumentupload _PatientDocumentupload;
         public readonly I_PatientFeedback _PatientFeedback;
+        public readonly IPdfUtility _pdfUtility;
+        private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
         public OutPatientController(
             I_PhoneAppointment phoneAppointment,
             I_Payment payment,
@@ -72,7 +76,7 @@ namespace HIMS.API.Controllers.Transaction
             I_OPAddCharges oPAddCharges1,
             I_EmailNotification emailNotification,
             I_OPBillingCredit oPBillingCredit,I_OPSettlemtCredit oPSettlemtCredit, I_IP_SMSOutgoing iP_SMSOutgoing,I_PatientDocumentupload patientDocumentupload
-            ,I_PatientFeedback patientFeedback
+            ,I_PatientFeedback patientFeedback, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility
 
 
             )
@@ -103,6 +107,8 @@ namespace HIMS.API.Controllers.Transaction
             this._IP_SMSOutgoing = iP_SMSOutgoing;
             this._PatientDocumentupload = patientDocumentupload;
             this._PatientFeedback = patientFeedback;
+            _hostingEnvironment = hostingEnvironment;
+            _pdfUtility = pdfUtility;
         }
 
 
@@ -185,7 +191,7 @@ namespace HIMS.API.Controllers.Transaction
 
 
         // Document Upload
-        [HttpPost("DocumentuploadSave")]
+      /*  [HttpPost("DocumentuploadSave")]
         public IActionResult DocumentuploadSave(PatientDocumentuploadParam PatientDocumentuploadParam)
         {
             var CasePaperSave = _PatientDocumentupload.Save(PatientDocumentuploadParam);
@@ -201,7 +207,7 @@ namespace HIMS.API.Controllers.Transaction
             var CasePaperSave = _PatientDocumentupload.Update(PatientDocumentuploadParam);
             return Ok(CasePaperSave);
 
-        }
+        }*/
 
         //-------------------------------------------------
         [HttpPost("CasePaperSave")]
@@ -293,20 +299,24 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
-      /*  [HttpPost("OPDPaymentSave")]
-        public IActionResult OPDPaymentSave(PaymentParams PaymentParams)
-        {
-            var OPDPaymentSave = _Payment.Save(PaymentParams);
-            return Ok(OPDPaymentSave);
-        }
 
-        [HttpPost("OPDPaymentUpdate")]
-        public IActionResult OPDPaymentUpdate(PaymentParams PaymentParams)
-        {
-            var OPDPaymentUpdate = _Payment.Update(PaymentParams);
-            return Ok(OPDPaymentUpdate);
-        }
-      */
+
+     
+
+        /*  [HttpPost("OPDPaymentSave")]
+          public IActionResult OPDPaymentSave(PaymentParams PaymentParams)
+          {
+              var OPDPaymentSave = _Payment.Save(PaymentParams);
+              return Ok(OPDPaymentSave);
+          }
+
+          [HttpPost("OPDPaymentUpdate")]
+          public IActionResult OPDPaymentUpdate(PaymentParams PaymentParams)
+          {
+              var OPDPaymentUpdate = _Payment.Update(PaymentParams);
+              return Ok(OPDPaymentUpdate);
+          }
+        */
         [HttpPost("OPRefundBill")]
         public IActionResult OPRefundBill(OPRefundBillParams OPRBP)
         {
@@ -328,15 +338,30 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(SSR);
         }
         //OPBilling
-      /*  [HttpPost("OPBilling")]
-        public IActionResult OPBilling(OPbillingparams OPbillingparams)
+        /*  [HttpPost("OPBilling")]
+          public IActionResult OPBilling(OPbillingparams OPbillingparams)
+          {
+              var SSR = _OPbilling.Insert(OPbillingparams);
+              return Ok(SSR);
+          }*/
+
+
+        [HttpGet("view-Op-BillReceipt")]
+        public IActionResult ViewOpBillReceipt(int BillNo)
         {
-            var SSR = _OPbilling.Insert(OPbillingparams);
-            return Ok(SSR);
-        }*/
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpBillingReceipt.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _OPbilling.ViewOPBillReceipt(BillNo, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OpBillingReceipt", "OpBillingReceipt" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
-         [HttpPost("OPBilling")]
+
+            if (System.IO.File.Exists(tuple.Item2))
+                System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpPost("OPBilling")]
         public String OPBilling(OPbillingparams OPbillingparams)
         {
             var SSR = _OPbilling.Insert(OPbillingparams);
