@@ -42,9 +42,9 @@ namespace HIMS.Data.Pharmacy
             foreach (var a in grnParams.GRNDetailSave)
             {
                 var disc5 = a.ToDictionary();
-                disc5.Remove("GRNDetID");
+             //   disc5.Remove("GRNDetID");
                 disc5["GRNId"] = BillNo;
-               var GrnDetID= ExecNonQueryProcWithOutSaveChanges("insert_GRNDetails_1_New", disc5,outputId2);
+               var GrnDetID= ExecNonQueryProcWithOutSaveChanges("insert_GRNDetails_1_New", disc5);
             }
             foreach (var a in grnParams.UpdateItemMasterGSTPer)
             {

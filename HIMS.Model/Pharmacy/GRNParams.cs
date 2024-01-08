@@ -53,7 +53,7 @@ namespace HIMS.Model.Pharmacy
     public class GRNDetailSave
     {
 
-        public long GRNDetID { get; set; }
+       // public long GRNDetID { get; set; }
         public long GRNId { get; set; }
         public long ItemId { get; set; }
         public long UOMId { get; set; }
