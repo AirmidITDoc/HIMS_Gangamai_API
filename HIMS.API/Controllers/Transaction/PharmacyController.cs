@@ -215,6 +215,8 @@ namespace HIMS.API.Controllers.Transaction
             var html = _Sales.ViewSalesReport(FromDate, ToDate, SalesFromNumber, SalesToNumber, StoreId, AddedBy, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
+           // var tuple1 = _pdfUtility.CreateExel();
+
             // write logic for send pdf in whatsapp
 
 
@@ -239,13 +241,16 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-        [HttpGet("view-Sales_Report_PatientWise")]
-        public IActionResult viewSalesReportPatientWise(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId)
+     
+
+
+        [HttpGet("view-Sales_Report_PatientWiseNew")]
+        public IActionResult viewSalesReportPatientWiseNew(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReportPatientwise.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnPatientwiseNew.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _Sales.ViewSalesReportPatientWise(FromDate, ToDate, SalesFromNumber, SalesToNumber, AddedBy, StoreId, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReportPatientwise", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnPatientwiseNew", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             // write logic for send pdf in whatsapp
 
@@ -259,18 +264,32 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-SalesReturn_Patientwise_Report")]
         public IActionResult viewSalesReturnPatientwiseReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnPatientwise.html");
+            //string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnPatientwise.html");
+            //string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            //var html = _Sales.ViewSalesReturnPatientwiseReport(FromDate, ToDate, SalesFromNumber, SalesToNumber, StoreId, htmlFilePath, htmlHeaderFilePath);
+            //var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnPatientwise", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            //return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnPatientwiseNew.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _Sales.ViewSalesReturnPatientwiseReport(FromDate, ToDate, SalesFromNumber, SalesToNumber, StoreId, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnPatientwise", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
-
-            // write logic for send pdf in whatsapp
-
-
-            //if (System.IO.File.Exists(tuple.Item2))
-            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnPatientwiseNew", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+
+
+        //[HttpGet("view-SalesReturn_PatientwiseNew_Report")]
+        //public IActionResult viewSalesReturnPatientwiseNewReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnPatientwiseNew.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+        //    var html = _Sales.ViewSalesReturnPatientwiseReport(FromDate, ToDate, SalesFromNumber, SalesToNumber, StoreId, htmlFilePath, htmlHeaderFilePath);
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnPatientwiseNew", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
+
+     
 
 
         [HttpGet("view-SalesReturnSummary_Report")]
