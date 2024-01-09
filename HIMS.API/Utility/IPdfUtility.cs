@@ -10,6 +10,9 @@ namespace HIMS.API.Utility
     public interface IPdfUtility
     {
         Tuple<byte[], string> GeneratePdfFromHtml(string html, string FolderName,string FileName="", Wkhtmltopdf.NetCore.Options.Orientation PageOrientation = Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+        Tuple<byte[], string> CreateExel(string html, string FolderName, string FileName = "", Wkhtmltopdf.NetCore.Options.Orientation PageOrientation = Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        //bool CreateExel();
     }
 }
 

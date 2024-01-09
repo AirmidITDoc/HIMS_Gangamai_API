@@ -356,8 +356,8 @@ namespace HIMS.API.Controllers.Transaction
 
 
 
-            if (System.IO.File.Exists(tuple.Item2))
-                System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 

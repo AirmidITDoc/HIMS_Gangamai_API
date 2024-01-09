@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HIMS;
+using HIMS.Data.Inventory;
+using HIMS.Model.Inventory;
+
 namespace HIMS.API.Controllers.Master
 {
     [ApiController]
@@ -27,6 +30,8 @@ namespace HIMS.API.Controllers.Master
         public readonly I_TermsofPaymentMaster _TermsofPaymentMasterRep;
         public readonly I_StoreMaster _StoreMaster;
         public readonly I_SupplierMaster _SupplierMaster;
+        public readonly I_IssueTrackingInfo _IssueTrackingInfo;
+        
 
         public InventoryController(I_CurrencyMaster currencyMaster,
                                    I_ItemCategoryMaster itemCategoryMaster,
@@ -40,7 +45,7 @@ namespace HIMS.API.Controllers.Master
                                    I_SupplierMaster supplierMaster,
                                    I_TaxMaster taxMaster,
                                    I_ModeofPaymentMaster mopMaster,
-                                   I_TermsofPaymentMaster topMaster)
+                                   I_TermsofPaymentMaster topMaster, I_IssueTrackingInfo issueTrackingInfo)
         {
             this._CurrencyMasterRep = currencyMaster;
             this._ItemCategoryMasterRep = itemCategoryMaster;
@@ -56,6 +61,7 @@ namespace HIMS.API.Controllers.Master
             this._ModeofPaymentMasterRep = mopMaster;
             this._TermsofPaymentMasterRep = topMaster;
             this._SupplierMaster = supplierMaster;
+            this._IssueTrackingInfo = issueTrackingInfo;
         }
 
         [HttpPost("CurrencySave")]
@@ -265,6 +271,19 @@ namespace HIMS.API.Controllers.Master
             return Ok(TODUpdate);
 
         }
-        //-------------------------------------------------------   
+
+        [HttpPost("IssueTracInformationSave")]
+        public IActionResult IssueTracInformationSave(IssueTrackingInformation IssueTrackingInformation)
+        {
+            var IndentInsert = _IssueTrackingInfo.Insert(IssueTrackingInformation);
+            return Ok(IndentInsert);
+        }
+
+        [HttpPost("IssueTracInformationsUpdate")]
+        public IActionResult IssueTracInformationsUpdate(IssueTrackingInformation IssueTrackingInformation)
+        {
+            var IndentUpdate = _IssueTrackingInfo.Update(IssueTrackingInformation);
+            return Ok(IndentUpdate);
+        }
     }
 }

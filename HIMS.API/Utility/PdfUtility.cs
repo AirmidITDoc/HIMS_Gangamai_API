@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.IO;
 using Wkhtmltopdf.NetCore;
 
+using Aspose.Cells;
+using Wkhtmltopdf.NetCore.Options;
+
 namespace HIMS.API.Utility
 {
     public class PdfUtility : IPdfUtility
@@ -47,5 +50,31 @@ namespace HIMS.API.Utility
             return new Tuple<byte[], string>(bytes, NewFileName);
         }
 
+
+
+        public Tuple<byte[], string> CreateExel(string html, string FolderName, string FileName = "", Orientation PageOrientation = Orientation.Portrait)
+        {
+            // throw new NotImplementedException();
+            // Instantiate a Workbook object that represents Excel file.
+            var pdfStream = new System.IO.MemoryStream();
+            Byte[] bytes = pdfStream.ToArray();
+            Workbook wb = new Workbook();
+
+            // When you create a new workbook, a default "Sheet1" is added to the workbook.
+            Worksheet sheet = wb.Worksheets[0];
+
+            // Access the "A1" cell in the sheet.
+            Cell cell = sheet.Cells["A1"];
+
+            // Input the "Hello World!" text into the "A1" cell.
+            cell.PutValue("Hello World!");
+
+            // Save the Excel as .xlsx file.
+            wb.Save("Excel.xlsx", SaveFormat.Xlsx);
+            String st="ok";
+
+            return new Tuple<byte[], string>(bytes,st); ;
+        }
     }
 }
+

@@ -42,7 +42,7 @@
                         <table style="width: 100%;border-collapse: collapse;font-size:18px;">
                             <!-- <tr> -->
                             <td style="vertical-align: top;padding:0 10px 10px">
-                                Customer Id : {{RegNo}} <br>
+                                Customer Id : {{OP_IP_Number}} <br>
                                 Customer Name: {{PatientName}} <br>
                                 Age & Gen: - <span style="margin-left: 10px;">
                                     Mob:
@@ -70,7 +70,7 @@
                         <table style="width: 100%;font-size:16px;">
                             <!-- <tr> -->
                             <td style="vertical-align: top;padding:0 10px 10px">
-                                Bill No: {{SalesNo}} <span style="margin-left: 10px;">
+                                Bill No: {{SalesReturnNo}} <span style="margin-left: 10px;">
                                     Bill
                                     Date:{{Date}}
                                 </span><br>
@@ -82,7 +82,7 @@
                 </tr>
 
                 <tr style="font-size:13px;">
-                    <td style="border: 1px solid black;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;width:5%;">
+                    <td style="border: 1px solid black;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;width:7%;">
                         Sr No.
                     </td>
                     <td style="border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; padding: 5px 5px; width: 10%;">
@@ -115,7 +115,7 @@
                 </tr>
                 {{Items}}
                 <tr>
-                    <td colspan="7" style="border: 1px solid black;vertical-align: top;
+                    <td colspan="6" style="border: 1px solid black;vertical-align: top;
                 padding: 0 10px 10px;">
                         <div style="font-weight: 400;font-size:20px">Terms & Conditions</div>
                         <ul style="margin: 5px 0 0 0;
@@ -135,29 +135,29 @@
                     </td>
                     <!-- <td colspan="5" style="border: 1px solid black;vertical-align: top;padding: 0;">
                     </td> -->
-                    <td colspan="3" style="border: 1px solid black;vertical-align: top;
+                    <td colspan="4" style="border: 1px solid black;vertical-align: top;
                 padding: 5px 1px 5px 0;font-size:18px;">
-                        <div style="margin-left:140px;">
+                        <div style="margin-left:40px;">
                             <span style="width:90px;display:inline-block;">Sub Total</span>
                             <span style="margin:0 2px">:</span>
                             <span>₹ {{HTotalAmount}}</span>
                         </div>
-                        <div style="margin-left:140px; ">
+                        <div style="margin-left:40px; ">
                             <span style="width:90px;display:inline-block;">Discount</span>
                             <span style="margin:0 2px">:</span>
                             <span>₹ {{DiscAmount}}</span>
                         </div>
-                        <div style="margin-left:140px; ">
+                        <div style="margin-left:40px; ">
                             <span style="width:90px;display:inline-block;">Total GST</span>
                             <span style="margin:0 5px">:</span>
                             <span>₹ {{TotalGST}}</span>
                         </div>
-                        <div style="margin-left:140px; ">
+                        <div style="margin-left:40px; ">
                             <span style="width:90px;display:inline-block;">Round off</span>
                             <span style="margin:0 5px">:</span>
                             <span>₹ 0.00</span>
                         </div>
-                        <div style="margin-left:90px; font-size: 18px; font-weight: bold ">
+                        <div style="margin-left:40px; font-size: 18px; font-weight: bold ">
                             <span style="width: 110px; display: inline-block;">Grand Total</span>
                             <span style="margin:0 5px">:</span>
                             <span>₹ {{NetAmount}}</span>

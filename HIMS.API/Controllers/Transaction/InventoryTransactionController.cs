@@ -21,12 +21,13 @@ namespace HIMS.API.Controllers.Transaction
          }*/
 
         public readonly I_Indent _indent;
-      
+    
         public InventoryTransactionController(
            I_Indent indent
         )
         {
             this._indent = indent;
+          
         }
 
         [HttpPost("IndentSave")]
@@ -42,6 +43,8 @@ namespace HIMS.API.Controllers.Transaction
             var IndentUpdate = _indent.Update(indentParams);
             return Ok(IndentUpdate);
         }
+
+
 
     }
 }
