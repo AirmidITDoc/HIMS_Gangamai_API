@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 
 namespace HIMS.Model.Opd
 {
@@ -86,6 +87,8 @@ namespace HIMS.Model.Opd
         public string Pancardno { get; set; }
         //   public SByte Barcodetext { get; set; }
         // public  byte PatientPhoto { get; set; }
+        public IFormFile ImgFile { get; set; }
+        public string Photo { get; set; }
 
     }
 

@@ -39,6 +39,7 @@ namespace HIMS.Data.Opd
 
             var dic = opdAppointmentParams.RegistrationSave.ToDictionary();
             dic.Remove("RegID");
+            dic.Remove("ImgFile");
             var RegID=ExecNonQueryProcWithOutSaveChanges("insert_Registration_1_1", dic, outputId);
             
              opdAppointmentParams.VisitSave.RegID = Convert.ToInt64(RegID);
