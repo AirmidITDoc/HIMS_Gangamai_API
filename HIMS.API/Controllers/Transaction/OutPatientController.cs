@@ -27,8 +27,8 @@ namespace HIMS.API.Controllers.Transaction
              return View();
          }*/
 
-       
-      //  public readonly I_SaveAppointmentNewPatient _SaveAppointmentNewPatient;
+
+        //  public readonly I_SaveAppointmentNewPatient _SaveAppointmentNewPatient;
         public readonly I_PhoneAppointment _PhoneAppointment;
         public readonly I_Payment _Payment;
         public readonly I_OpdAppointment _OpdAppointment;
@@ -42,7 +42,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_SS_RoleTemplateMaster i_SS_RoleTemplate;
         public readonly I_OPbilling _OPbilling;
         public readonly I_CasePaperPrescription _CasePaperPrescription;
-      //  public readonly I_OPAddCharges _OPAddCharges;
+        //  public readonly I_OPAddCharges _OPAddCharges;
         public readonly I_OPAddCharges _OPDAddCharges;
         //public readonly I_OPAdvance _OPAdvance;
         public readonly I_Emailconfiguration _Emailconfiguration;
@@ -56,6 +56,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_PatientFeedback _PatientFeedback;
         public readonly IPdfUtility _pdfUtility;
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
+        private readonly IFileUtility _IFileUtility;
         public OutPatientController(
             I_PhoneAppointment phoneAppointment,
             I_Payment payment,
@@ -75,9 +76,9 @@ namespace HIMS.API.Controllers.Transaction
             I_Configsetting configsetting,
             I_OPAddCharges oPAddCharges1,
             I_EmailNotification emailNotification,
-            I_OPBillingCredit oPBillingCredit,I_OPSettlemtCredit oPSettlemtCredit, I_IP_SMSOutgoing iP_SMSOutgoing,I_PatientDocumentupload patientDocumentupload
-            ,I_PatientFeedback patientFeedback, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility
-
+            I_OPBillingCredit oPBillingCredit, I_OPSettlemtCredit oPSettlemtCredit, I_IP_SMSOutgoing iP_SMSOutgoing, I_PatientDocumentupload patientDocumentupload
+            , I_PatientFeedback patientFeedback, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility
+            , IFileUtility fileUtility
 
             )
         {
@@ -109,6 +110,7 @@ namespace HIMS.API.Controllers.Transaction
             this._PatientFeedback = patientFeedback;
             _hostingEnvironment = hostingEnvironment;
             _pdfUtility = pdfUtility;
+            _IFileUtility = fileUtility;
         }
 
 
@@ -122,8 +124,18 @@ namespace HIMS.API.Controllers.Transaction
 
         //OPDAppointment Insert 
         [HttpPost("OPDAppointmentInsert")]
-        public IActionResult OPDAppointmentInsert(OpdAppointmentParams OpdAppointmentParams)
+        public async Task<IActionResult> OPDAppointmentInsertAsync([FromForm] OpdAppointmentParams OpdAppointmentParams)
         {
+            if (OpdAppointmentParams.RegistrationSave.ImgFile != null)
+            {
+                string NewFileName = Guid.NewGuid().ToString();
+                string FileName = await _IFileUtility.UploadDocument(OpdAppointmentParams.RegistrationSave.ImgFile, "PatientPhoto", NewFileName);
+                OpdAppointmentParams.RegistrationSave.Photo = FileName;
+            }
+            else
+            {
+                OpdAppointmentParams.RegistrationSave.Photo = null;
+            }
             var appoSave = _OpdAppointment.Save(OpdAppointmentParams);
             return Ok(appoSave);
         }
@@ -136,16 +148,16 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(appoSave);
         }
 
-      /*  //saveAppointmentNewPatient Insert 
-        [HttpPost("AppointmentNewPatient")]
-        public IActionResult saveAppointmentNewPatient(SaveAppointmentNewPatientParams SaveAppointmentNewPatientParams)
-        {
-            var appoSave = _SaveAppointmentNewPatient.RegistrationInsert(SaveAppointmentNewPatientParams);
-         
-            return Ok(appoSave);
-            
-        }
-        */
+        /*  //saveAppointmentNewPatient Insert 
+          [HttpPost("AppointmentNewPatient")]
+          public IActionResult saveAppointmentNewPatient(SaveAppointmentNewPatientParams SaveAppointmentNewPatientParams)
+          {
+              var appoSave = _SaveAppointmentNewPatient.RegistrationInsert(SaveAppointmentNewPatientParams);
+
+              return Ok(appoSave);
+
+          }
+          */
         //PhoneAppointment Insert 
         [HttpPost("PhoneAppointmentInsert")]
         public IActionResult PhoneAppointmentInsert(PhoneAppointmentParams PhoneAppointmentParams)
@@ -191,23 +203,23 @@ namespace HIMS.API.Controllers.Transaction
 
 
         // Document Upload
-      /*  [HttpPost("DocumentuploadSave")]
-        public IActionResult DocumentuploadSave(PatientDocumentuploadParam PatientDocumentuploadParam)
-        {
-            var CasePaperSave = _PatientDocumentupload.Save(PatientDocumentuploadParam);
-            return Ok(CasePaperSave);
+        /*  [HttpPost("DocumentuploadSave")]
+          public IActionResult DocumentuploadSave(PatientDocumentuploadParam PatientDocumentuploadParam)
+          {
+              var CasePaperSave = _PatientDocumentupload.Save(PatientDocumentuploadParam);
+              return Ok(CasePaperSave);
 
-        }
+          }
 
 
-        //OPD upload
-        [HttpPost("DocumentuploadUpdate")]
-        public IActionResult DocumentuploadUpdate(PatientDocumentuploadParam PatientDocumentuploadParam)
-        {
-            var CasePaperSave = _PatientDocumentupload.Update(PatientDocumentuploadParam);
-            return Ok(CasePaperSave);
+          //OPD upload
+          [HttpPost("DocumentuploadUpdate")]
+          public IActionResult DocumentuploadUpdate(PatientDocumentuploadParam PatientDocumentuploadParam)
+          {
+              var CasePaperSave = _PatientDocumentupload.Update(PatientDocumentuploadParam);
+              return Ok(CasePaperSave);
 
-        }*/
+          }*/
 
         //-------------------------------------------------
         [HttpPost("CasePaperSave")]
@@ -301,7 +313,7 @@ namespace HIMS.API.Controllers.Transaction
 
 
 
-     
+
 
         /*  [HttpPost("OPDPaymentSave")]
           public IActionResult OPDPaymentSave(PaymentParams PaymentParams)
