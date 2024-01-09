@@ -84,9 +84,7 @@ namespace HIMS.Model.Opd
         // public double PatientWeight { get; set; }
         public string Aadharcardno { get; set; }
         public string Pancardno { get; set; }
-        //   public SByte Barcodetext { get; set; }
-        // public  byte PatientPhoto { get; set; }
-
+        public string Photo { get; set; }
     }
 
     public class TokenNumberWithDoctorWiseSave
@@ -167,10 +165,10 @@ namespace HIMS.Model.Opd
 
         //public long TalukaId { get; set; }
         // public double PatientWeight { get; set; }
-        // public string AadharCardNo { get; set; }
-        //   public string PanCardNo { get; set; }
+         public string AadharCardNo { get; set; }
+         public string PanCardNo { get; set; }
         //   public SByte Barcodetext { get; set; }
-        // public  byte PatientPhoto { get; set; }
+        //public string Photo { get; set; }
 
     }
 

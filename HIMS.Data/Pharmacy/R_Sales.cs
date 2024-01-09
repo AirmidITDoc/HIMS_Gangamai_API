@@ -1086,11 +1086,11 @@ namespace HIMS.Data.Pharmacy
             return html;
         }
 
-        public string ViewSalesReturnReceipt(int SalesID, int OP_IP_Type, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesReturnReceipt(int SalesReturnId, int OP_IP_Type, string htmlFilePath, string htmlHeaderFilePath)
         {
             SqlParameter[] para = new SqlParameter[2];
 
-            para[0] = new SqlParameter("@SalesID", SalesID) { DbType = DbType.Int64 };
+            para[0] = new SqlParameter("@SalesID", SalesReturnId) { DbType = DbType.Int64 };
             para[1] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("m_rptSalesReturnPrint", para);
@@ -1113,7 +1113,7 @@ namespace HIMS.Data.Pharmacy
                 items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: left;padding-left:10px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: left;padding-left:10px;\">").Append(dr["ConversionFactor"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["BatchExpDate"].ConvertToDateString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["BatchExpDate"].ConvertToDateString("dd/mm/yyyy")).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: center;\">").Append(dr["Qty"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["UnitMRP"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: center;\">").Append(dr["TotalAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
@@ -1135,7 +1135,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{HospitalMobileNo}}", Bills.GetColValue("HospitalMobileNo"));
             html = html.Replace("{{HospitalEmailId}}", Bills.GetColValue("HospitalEmailId"));
 
-            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{OP_IP_Number}}", Bills.GetColValue("OP_IP_Number"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
 
             html = html.Replace("{{ExtMobileNo}}", Bills.GetColValue("ExtMobileNo"));
@@ -1149,8 +1149,8 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{GSTIN}}", Bills.GetColValue("GSTIN"));
             html = html.Replace("{{DL_NO}}", Bills.GetColValue("DL_NO"));
 
-            html = html.Replace("{{SalesNo}}", Bills.GetColValue("SalesNo"));
-            html = html.Replace("{{Date}}", Bills.GetColValue("Date"));
+            html = html.Replace("{{SalesReturnNo}}", Bills.GetColValue("SalesReturnNo"));
+            html = html.Replace("{{Date}}", Bills.GetColValue("Date").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
             html = html.Replace("{{DL_NO}}", Bills.GetColValue("DL_NO"));
 

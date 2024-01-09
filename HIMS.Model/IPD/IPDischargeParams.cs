@@ -36,8 +36,8 @@ namespace HIMS.Model.Opd
 
     public class UpdateIPDDischarg
     {
-
-       // public long AdmissionId { get; set; }
+      
+        // public long AdmissionId { get; set; }
         public long DischargeId { get; set; }
         public DateTime DischargeDate { get; set; }
         public DateTime DischargeTime { get; set; }
@@ -46,7 +46,7 @@ namespace HIMS.Model.Opd
         public int DischargedDocId { get; set; }
         public int DischargedRMOID { get; set; }
 
-        public String Modeofdischarge { get; set; }
+     //   public String Modeofdischarge { get; set; }
      
         public int UpdatedBy { get; set; }
 

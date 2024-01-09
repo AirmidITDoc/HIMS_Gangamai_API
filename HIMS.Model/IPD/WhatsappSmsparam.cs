@@ -18,6 +18,8 @@ namespace HIMS.Model.IPD
         public String SMSFlag { get; set; }
         public DateTime SMSDate { get; set; }
         public int TranNo { get; set; }
+
+        public int PatientType { get; set; }
         public int TemplateId { get; set; }
         public string SMSurl { get; set; }
         public string FilePath { get; set; }

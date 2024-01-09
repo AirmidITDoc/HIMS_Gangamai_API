@@ -27,13 +27,13 @@ namespace HIMS.Data.IPD
             var outputId1 = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
-                ParameterName = "@RegId",
+                ParameterName = "@RegID",
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
 
             var disc2 = AdmissionParams.RegInsert.ToDictionary();
-            disc2.Remove("RegId");
+            disc2.Remove("RegID");
             var RegId = ExecNonQueryProcWithOutSaveChanges("insert_Registration_1_1", disc2, outputId1);
 
             AdmissionParams.AdmissionNewInsert.RegId = Convert.ToInt32(RegId);

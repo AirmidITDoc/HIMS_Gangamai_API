@@ -28,7 +28,10 @@ namespace HIMS.Data.IPD
             };
             var dic = WhatsappSmsparam.InsertWhatsappsmsInfo.ToDictionary();
             dic.Remove("SMSOutGoingID");
+            dic.Remove("PatientType");
             var Id=ExecNonQueryProcWithOutSaveChanges("insert_WhatsappSmsinfo", dic, outputId1);
+
+
 
             _unitofWork.SaveChanges();
             return Id;

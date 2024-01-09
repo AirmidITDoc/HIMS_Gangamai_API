@@ -164,7 +164,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
-
+            double T_NetAmount = 0;
 
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
             html = html.Replace("{{IPDNo}}", Bills.GetDateColValue("IPDNo"));
@@ -177,7 +177,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
             html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeDate"));
-            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate").ConvertToDateString());
             html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
 
 
@@ -193,21 +193,24 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount"));
             html = html.Replace("{{AdvanceBalAmount}}", Bills.GetColValue("AdvanceBalAmount"));
             html = html.Replace("{{AdvanceRefundAmount}}", Bills.GetColValue("AdvanceRefundAmount"));
+            html = html.Replace("{{ConcessionAmount}}", Bills.GetColValue("ConcessionAmount"));
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
+            
 
-        double T_NetAmount = 0;
+
+
+       
         foreach (DataRow dr in Bills.Rows)
         {
             i++;
-            items.Append("<tr><td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(i).Append("</td>");
-            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
-            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">-</td>");
-            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["docname"].ConvertToString()).Append("</td>");
-            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">-</td>");
-            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
-            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["Qty"].ConvertToDateString()).Append("</td>");
-            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
+            items.Append("<tr><td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;\">").Append(i).Append("</td>");
+            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
+            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
+            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
+            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;\">").Append(dr["Qty"].ConvertToDateString()).Append("</td>");
+            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
 
-            T_NetAmount += dr["NetAmount"].ConvertToDouble();
+            T_NetAmount += dr["ChargesTotalAmt"].ConvertToDouble();
         }
         html = html.Replace("{{Items}}", items.ToString());
       

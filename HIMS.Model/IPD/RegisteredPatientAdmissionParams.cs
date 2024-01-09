@@ -53,11 +53,8 @@ namespace HIMS.Model.IPD
         public int PolicyNo { get; set; }
         public float AprovAmount { get; set; }
         public DateTime CompDOD { get; set; }
-
-        public bool IsPackagePatient { get; set; }
-        //  public int IsPharClearUserId { get; set; }
-        //  public DateTime PharDateTime { get; set; }
-        // public string Comments { get; set; }
-        //public Boolean IsReimbursement { get; set; }
+        public Boolean IsOpToIPConv { get; set; }
+        public string RefDoctorDept { get; set; }
+        public int AdmissionType { get; set; }
     }
 }

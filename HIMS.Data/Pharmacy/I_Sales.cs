@@ -25,7 +25,7 @@ namespace HIMS.Data.Pharmacy
 
         string ViewSalesTaxReceipt(int SalesID, int OP_IP_Type, string htmlFilePath, string HeaderName);
 
-        string ViewSalesReturnReceipt(int SalesID, int OP_IP_Type, string htmlFilePath, string HeaderName);
+        string ViewSalesReturnReceipt(int SalesReturnID, int OP_IP_Type, string htmlFilePath, string HeaderName);
 
         string ViewPurchaseorderReceipt(int PurchaseID, string htmlFilePath, string HeaderName);
 
