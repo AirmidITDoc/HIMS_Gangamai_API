@@ -51,7 +51,7 @@ namespace HIMS.API.Controllers
                     icon = ItemData.Icon,
                     title = ItemData.LinkName,
                     translate = "",
-                    type = "group",
+                    type = "collapsable",
                     children = new List<MenuModel>()
                 };
                 var levelData = lstMenu.Where(x => x.UpId == Convert.ToInt32(obj.id));
@@ -63,7 +63,7 @@ namespace HIMS.API.Controllers
                         icon = lData.Icon,
                         title = lData.LinkName,
                         translate = "",
-                        type = "group",
+                        type = "collapsable",
                         children = new List<MenuModel>()
                     };
                     test.children = AddChildtems(lstMenu, test);
@@ -88,10 +88,15 @@ namespace HIMS.API.Controllers
                     icon = objItem.Icon,
                     title = objItem.LinkName,
                     translate = "",
-                    type = "group",
+                    type = "collapsable",
                     children = new List<MenuModel>()
                 };
                 objData.children = AddChildtems(Data, objData);
+                if (objData.children.Count == 0)
+                {
+                    objData.type = "item";
+                    objData.url = objItem.LinkAction;
+                }
                 lstChilds.Add(objData);
             }
             return lstChilds;

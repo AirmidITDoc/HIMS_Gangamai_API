@@ -21,6 +21,7 @@ namespace HIMS.Model.Master
         public string translate { get; set; }
         public string type { get; set; }
         public string icon { get; set; }
+        public string url { get; set; }
         public List<MenuModel> children { get; set; }
     }
 }
