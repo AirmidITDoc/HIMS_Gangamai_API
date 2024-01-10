@@ -85,7 +85,9 @@ namespace HIMS.Model.Opd
         // public double PatientWeight { get; set; }
         public string Aadharcardno { get; set; }
         public string Pancardno { get; set; }
+        public IFormFile ImgFile { get; set; }
         public string Photo { get; set; }
+
     }
 
     public class TokenNumberWithDoctorWiseSave
