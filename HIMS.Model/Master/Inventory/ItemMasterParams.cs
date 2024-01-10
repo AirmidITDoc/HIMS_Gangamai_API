@@ -58,7 +58,7 @@ namespace HIMS.Model.Master.Inventory
    
     public class UpdateItemMaster
     {
-        public int ItemID { get; set; }
+        public int ItemId { get; set; }
         public string ItemShortName { get; set; }
         public string ItemName { get; set; }
         public long ItemTypeID { get; set; }
@@ -67,7 +67,7 @@ namespace HIMS.Model.Master.Inventory
         public long ItemClassId { get; set; }
         public long PurchaseUOMId { get; set; }
         public long StockUOMId { get; set; }
-        public string ConversionFactor { get; set; }
+        public long ConversionFactor { get; set; }
         public long CurrencyId { get; set; }
         public float TaxPer { get; set; }
         public bool IsBatchRequired { get; set; }

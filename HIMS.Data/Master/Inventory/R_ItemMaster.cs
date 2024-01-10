@@ -23,6 +23,7 @@ namespace HIMS.Data.Master.Inventory
             ExecNonQueryProcWithOutSaveChanges("update_ItemMaster_1", disc1);
 
             var D_Det = itemMasterParams.DeleteAssignItemToStore.ToDictionary();
+            D_Det["ItemId"] = itemMasterParams.UpdateItemMaster.ItemId;
             ExecNonQueryProcWithOutSaveChanges("Delete_AssignItemtoStore", D_Det);
 
             foreach (var a in itemMasterParams.InsertAssignItemToStore)
