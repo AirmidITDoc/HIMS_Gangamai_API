@@ -15,15 +15,6 @@ using System.Xml.Linq;
 
 namespace HIMS.API.Controllers
 {
-    public class MenuModel
-    {
-        public string id { get; set; }
-        public string title { get; set; }
-        public string translate { get; set; }
-        public string type { get; set; }
-        public string icon { get; set; }
-        public List<MenuModel> children { get; set; }
-    }
     [ApiController]
     [Route("api/[controller]")]
     public class LoginController : ControllerBase
