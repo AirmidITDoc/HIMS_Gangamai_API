@@ -67,6 +67,11 @@ namespace HIMS.API.Controllers
                         children = new List<MenuModel>()
                     };
                     test.children = AddChildtems(lstMenu, test);
+                    if (test.children.Count == 0)
+                    {
+                        test.type = "item";
+                        test.url = lData.LinkAction;
+                    }
                     obj.children.Add(test);
                 }
                 finalList.Add(obj);
