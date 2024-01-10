@@ -7,7 +7,8 @@ namespace HIMS.Data.Inventory
 {
    public interface I_IssueTrackingInfo
     {
-        public string Insert(IssueTrackingInformation IssueTrackingInformation);
-        public bool Update(IssueTrackingInformation IssueTrackingInformation);
+        public string Insert(IssueTrackerParams IssueTrackerParams);
+        public bool Update(IssueTrackerParams IssueTrackerParams);
+        public bool UpdateStatus(IssueTrackerParams IssueTrackerParams);
     }
 }

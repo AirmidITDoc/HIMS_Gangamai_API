@@ -30,7 +30,6 @@ namespace HIMS.API.Controllers.Master
         public readonly I_TermsofPaymentMaster _TermsofPaymentMasterRep;
         public readonly I_StoreMaster _StoreMaster;
         public readonly I_SupplierMaster _SupplierMaster;
-        public readonly I_IssueTrackingInfo _IssueTrackingInfo;
         
 
         public InventoryController(I_CurrencyMaster currencyMaster,
@@ -61,7 +60,6 @@ namespace HIMS.API.Controllers.Master
             this._ModeofPaymentMasterRep = mopMaster;
             this._TermsofPaymentMasterRep = topMaster;
             this._SupplierMaster = supplierMaster;
-            this._IssueTrackingInfo = issueTrackingInfo;
         }
 
         [HttpPost("CurrencySave")]
@@ -270,20 +268,6 @@ namespace HIMS.API.Controllers.Master
             var TODUpdate = _TermsofPaymentMasterRep.Update(topMasterParams);
             return Ok(TODUpdate);
 
-        }
-
-        [HttpPost("IssueTracInformationSave")]
-        public IActionResult IssueTracInformationSave(IssueTrackingInformation IssueTrackingInformation)
-        {
-            var IndentInsert = _IssueTrackingInfo.Insert(IssueTrackingInformation);
-            return Ok(IndentInsert);
-        }
-
-        [HttpPost("IssueTracInformationsUpdate")]
-        public IActionResult IssueTracInformationsUpdate(IssueTrackingInformation IssueTrackingInformation)
-        {
-            var IndentUpdate = _IssueTrackingInfo.Update(IssueTrackingInformation);
-            return Ok(IndentUpdate);
         }
     }
 }
