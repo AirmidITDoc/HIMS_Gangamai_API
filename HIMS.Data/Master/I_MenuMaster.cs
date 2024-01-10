@@ -10,5 +10,6 @@ namespace HIMS.Data.Master
         bool Save(MenuMasterParams menuMasterParams);
 
         bool Update(MenuMasterParams menuMasterParams);
+        List<MenuMaster> GetMenus();
     }
 }

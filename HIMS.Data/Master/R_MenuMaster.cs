@@ -6,11 +6,16 @@ using System.Text;
 
 namespace HIMS.Data.Master
 {
-   public class R_MenuMaster :GenericRepository,I_MenuMaster
+    public class R_MenuMaster : GenericRepository, I_MenuMaster
     {
         public R_MenuMaster(IUnitofWork unitofWork) : base(unitofWork)
         {
             //transaction and connection is open when you inject unitofwork
+        }
+
+        public List<MenuMaster> GetMenus()
+        {
+            return GetList<MenuMaster>("SELECT * FROM MenuMaster WHERE IsActive=1 AND IsDisplay=1", new System.Data.SqlClient.SqlParameter[0]);
         }
 
         public bool Update(MenuMasterParams menuMasterParams)
