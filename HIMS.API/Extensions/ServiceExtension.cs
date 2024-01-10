@@ -279,7 +279,9 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_Workorder, R_Workorder>();
             services.AddTransient<I_WhatsappSms, R_WhatsappSms>();
             services.AddTransient<I_PatientDocumentupload, R_PatientDocumentupload>();
-              services.AddTransient<I_IssueTrackingInfo, R_IssueTrackingInfo>();
+            services.AddTransient<I_IssueTrackingInfo, R_IssueTrackingInfo>();
+            services.AddTransient<I_Indent, R_Indent>();
+
             /*    services.AddTransient<I_BankMasterHome, I_BankMasterHome>();
                services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMasterHome>();
                services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();
@@ -338,7 +340,7 @@ namespace HIMS.API.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "HIMS Gangamai API",
+                    Title = "HIMS JSS API",
                     Description = "Hospital Informaion Management System"
                 });
                 c.AddSecurityDefinition("Bearer",

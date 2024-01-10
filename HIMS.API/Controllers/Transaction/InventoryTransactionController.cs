@@ -1,11 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HIMS.Data.Opd;
 using HIMS.Model.Inventory;
-using HIMS.Model.Transaction;
 using HIMS.Data.Inventory;
 
 namespace HIMS.API.Controllers.Transaction
@@ -21,13 +15,15 @@ namespace HIMS.API.Controllers.Transaction
          }*/
 
         public readonly I_Indent _indent;
+        public readonly I_IssueTrackingInfo _IssueTrackingInfo;
     
         public InventoryTransactionController(
-           I_Indent indent
+           I_Indent indent,
+           I_IssueTrackingInfo issueTrackingInfo
         )
         {
             this._indent = indent;
-          
+            this._IssueTrackingInfo = issueTrackingInfo;
         }
 
         [HttpPost("IndentSave")]
@@ -44,8 +40,25 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(IndentUpdate);
         }
 
+        [HttpPost("IssueTrackerSave")]
+        public IActionResult IssueTrackerSave(IssueTrackerParams issueTrackerParams)
+        {
+            var IndentInsert = _IssueTrackingInfo.Insert(issueTrackerParams);
+            return Ok(IndentInsert);
+        }
 
-
+        [HttpPost("IssueTrackerUpdate")]
+        public IActionResult IssueTrackerUpdate(IssueTrackerParams issueTrackerParams)
+        {
+            var IndentUpdate = _IssueTrackingInfo.Update(issueTrackerParams);
+            return Ok(IndentUpdate);
+        }
+        [HttpPost("IssueTrackerUpdateStatus")]
+        public IActionResult IssueTrackerUpdateStatus(IssueTrackerParams issueTrackerParams)
+        {
+            var IndentUpdate = _IssueTrackingInfo.UpdateStatus(issueTrackerParams);
+            return Ok(IndentUpdate);
+        }
     }
 }
 
