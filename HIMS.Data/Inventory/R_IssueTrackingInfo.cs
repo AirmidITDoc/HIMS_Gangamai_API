@@ -15,10 +15,10 @@ namespace HIMS.Data.Inventory
         {
 
         }
-        public string Insert(IssueTrackingInformation IssueTrackingInformation)
+        public string Insert(IssueTrackerParams issueTrackerParams)
         {
             // throw new NotImplementedException();
-            var vIndentId = new SqlParameter
+            var vIssueTrackerId = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
                 ParameterName = "@IssueTrackerId",
@@ -27,22 +27,28 @@ namespace HIMS.Data.Inventory
             };
 
 
-            var disc3 = IssueTrackingInformation.InsertIssueTrackinginfo.ToDictionary();
+            var disc3 = issueTrackerParams.InsertIssueTracker.ToDictionary();
             disc3.Remove("IssueTrackerId");
-            var IssueTrackerId = ExecNonQueryProcWithOutSaveChanges("insert_T_IssueTrackerInformation", disc3, vIndentId);
+            var IssueTrackerId = ExecNonQueryProcWithOutSaveChanges("m_insert_T_IssuetrackerInformation", disc3, vIssueTrackerId);
 
 
             _unitofWork.SaveChanges();
             return IssueTrackerId;
         }
 
-        public bool Update(IssueTrackingInformation IssueTrackingInformation)
+        public bool Update(IssueTrackerParams issueTrackerParams)
         {
-            //  throw new NotImplementedException();
-            var disc3 = IssueTrackingInformation.UpdateIssueTrackinginfo.ToDictionary();
-           
-           ExecNonQueryProcWithOutSaveChanges("Update_T_IssueTrackerInformation", disc3);
+           var disc3 = issueTrackerParams.UpdateIssueTracker.ToDictionary();
+           ExecNonQueryProcWithOutSaveChanges("m_Update_T_IssuetrackerInformation", disc3);
 
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
+        public bool UpdateStatus(IssueTrackerParams issueTrackerParams)
+        {
+            var disc3 = issueTrackerParams.UpdateIssueTrackerStatus.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_T_IssuetrackerInformation", disc3);
 
             _unitofWork.SaveChanges();
             return true;

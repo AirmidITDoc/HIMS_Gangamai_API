@@ -272,18 +272,18 @@ namespace HIMS.API.Controllers.Master
 
         }
 
-        [HttpPost("IssueTracInformationSave")]
-        public IActionResult IssueTracInformationSave(IssueTrackingInformation IssueTrackingInformation)
-        {
-            var IndentInsert = _IssueTrackingInfo.Insert(IssueTrackingInformation);
-            return Ok(IndentInsert);
-        }
+        //[HttpPost("IssueTracInformationSave")]
+        //public IActionResult IssueTracInformationSave(IssueTrackingInformation IssueTrackingInformation)
+        //{
+        //    var IndentInsert = _IssueTrackingInfo.Insert(IssueTrackingInformation);
+        //    return Ok(IndentInsert);
+        //}
 
-        [HttpPost("IssueTracInformationsUpdate")]
-        public IActionResult IssueTracInformationsUpdate(IssueTrackingInformation IssueTrackingInformation)
-        {
-            var IndentUpdate = _IssueTrackingInfo.Update(IssueTrackingInformation);
-            return Ok(IndentUpdate);
-        }
+        //[HttpPost("IssueTracInformationsUpdate")]
+        //public IActionResult IssueTracInformationsUpdate(IssueTrackingInformation IssueTrackingInformation)
+        //{
+        //    var IndentUpdate = _IssueTrackingInfo.Update(IssueTrackingInformation);
+        //    return Ok(IndentUpdate);
+        //}
     }
 }
