@@ -39,13 +39,13 @@ namespace HIMS.Data.Master.Inventory
             var outputId = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
-                ParameterName = "@ItemID",
+                ParameterName = "@ItemId",
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
 
             var disc1 = itemMasterParams.InsertItemMaster.ToDictionary();
-            disc1.Remove("ItemID");
+            disc1.Remove("ItemId");
             var itemId = ExecNonQueryProcWithOutSaveChanges("Insert_ItemMaster_1_New", disc1, outputId);
 
             foreach (var a in itemMasterParams.InsertAssignItemToStore)

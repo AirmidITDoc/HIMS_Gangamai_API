@@ -18,7 +18,7 @@ namespace HIMS.Model.Master.Inventory
         public string ItemName { get; set; }
         // public string ItemShortName { get; set; }
         public long ItemTypeId { get; set; }
-        public long ItemCategoryId { get; set; }
+        public long ItemCategaryId { get; set; }
         public long ItemGenericNameId { get; set; }
         public long ItemClassId { get; set; }
         public long PurchaseUOMId { get; set; }
@@ -53,7 +53,7 @@ namespace HIMS.Model.Master.Inventory
         public string DrugTypeName { get; set; }
         public int ItemCompnayId { get; set; }
         public DateTime IsCreatedBy { get; set; }
-        public int ItemID { get; set; }
+        public int ItemId { get; set; }
     }
    
     public class UpdateItemMaster
