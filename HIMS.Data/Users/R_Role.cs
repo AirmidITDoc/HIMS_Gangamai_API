@@ -29,9 +29,13 @@ namespace HIMS.Data.Users
             }
             return "Ok";
         }
-        public List<RoleModel> GetRoles()
+        public List<RoleModel> GetRoles(string RoleName)
         {
-            return GetList<RoleModel>("SELECT RoleId,RoleName FROM RoleTemplateMaster WHERE IsActive=1",new SqlParameter[0]);
+            if (string.IsNullOrEmpty(RoleName))
+                RoleName = "";
+            SqlParameter[] para = new SqlParameter[1];
+            para[0] = new SqlParameter("@RoleName",RoleName);
+            return GetList<RoleModel>("SELECT RoleId,RoleName FROM RoleTemplateMaster WHERE IsActive=1 AND RoleName LIKE '%'+@RoleName+'%'", para);
         }
 
     }

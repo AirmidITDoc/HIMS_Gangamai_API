@@ -16,9 +16,9 @@ namespace HIMS.API.Controllers.Users
         }
         [HttpGet]
         [Route("get-roles")]
-        public IActionResult GetRoles()
+        public IActionResult GetRoles(string RoleName)
         {
-            return Ok(i_Role.GetRoles());
+            return Ok(i_Role.GetRoles(RoleName));
         }
         [HttpPost]
         [Route("save")]

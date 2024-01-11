@@ -8,6 +8,6 @@ namespace HIMS.Data.Users
     public interface I_Role
     {
         public string Insert(RoleModel indentparams);
-        List<RoleModel> GetRoles();
+        List<RoleModel> GetRoles(string RoleName);
     }
 }
