@@ -27,5 +27,11 @@ namespace HIMS.API.Controllers.Users
             i_Role.Insert(obj);
             return Ok(obj);
         }
+        [HttpGet]
+        [Route("get-permissions")]
+        public IActionResult GetPermission()
+        {
+            return Ok(i_Role.GetPermisison());
+        }
     }
 }

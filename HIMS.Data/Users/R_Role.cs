@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using HIMS.Model.Users;
 using HIMS.Model.Opd.OP;
+using HIMS.Model.Master;
 
 namespace HIMS.Data.Users
 {
@@ -21,11 +22,11 @@ namespace HIMS.Data.Users
             var dic = indentParams.ToDictionary();
             if (indentParams.RoleId > 0)
             {
-                ExecScalar("UPDATE RoleTemplateMaster SET ROleName=@RoleName WHERE RoleId=@RoleId", dic);
+                ExecScalar("UPDATE RoleMaster SET ROleName=@RoleName WHERE RoleId=@RoleId", dic);
             }
             else
             {
-                ExecScalar("INSERT INTO RoleTemplateMaster(ROleName,IsActive) VALUES(@RoleName,1)", dic);
+                ExecScalar("INSERT INTO RoleMaster(ROleName,IsActive) VALUES(@RoleName,1)", dic);
             }
             return "Ok";
         }
@@ -35,7 +36,11 @@ namespace HIMS.Data.Users
                 RoleName = "";
             SqlParameter[] para = new SqlParameter[1];
             para[0] = new SqlParameter("@RoleName",RoleName);
-            return GetList<RoleModel>("SELECT RoleId,RoleName FROM RoleTemplateMaster WHERE IsActive=1 AND RoleName LIKE '%'+@RoleName+'%'", para);
+            return GetList<RoleModel>("SELECT RoleId,RoleName FROM RoleMaster WHERE IsActive=1 AND RoleName LIKE '%'+@RoleName+'%'", para);
+        }
+        public List<MenuMaster> GetPermisison()
+        {
+            return GetList<MenuMaster>("SELECT M.* FROM MenuMaster M LEFT JOIN MenuMaster MM on M.Id=MM.UpId WHERE ISNULL(MM.Id,0)=0", new SqlParameter[0]);
         }
 
     }
