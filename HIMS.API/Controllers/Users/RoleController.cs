@@ -1,0 +1,31 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using HIMS.Data.Users;
+using HIMS.Model.Users;
+
+namespace HIMS.API.Controllers.Users
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RoleController : ControllerBase
+    {
+        private readonly I_Role i_Role;
+        public RoleController(I_Role i_Role)
+        {
+            this.i_Role = i_Role;
+        }
+        [HttpGet]
+        [Route("get-roles")]
+        public IActionResult GetRoles()
+        {
+            return Ok(i_Role.GetRoles());
+        }
+        [HttpPost]
+        [Route("save")]
+        public IActionResult Save(RoleModel obj)
+        {
+            i_Role.Insert(obj);
+            return Ok(obj);
+        }
+    }
+}

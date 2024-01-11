@@ -33,6 +33,7 @@ using HIMS.API.Utility;
 using Microsoft.AspNetCore.Http.Features;
 using HIMS.Data.HomeTransaction;
 using HIMS.Data.Inventory;
+using HIMS.Data.Users;
 //using HIMS.Data.Transaction;
 namespace HIMS.API.Extensions
 {
@@ -281,6 +282,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_PatientDocumentupload, R_PatientDocumentupload>();
             services.AddTransient<I_IssueTrackingInfo, R_IssueTrackingInfo>();
             services.AddTransient<I_Indent, R_Indent>();
+
+            services.AddTransient<I_Role, R_Role>();
 
             /*    services.AddTransient<I_BankMasterHome, I_BankMasterHome>();
                services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMasterHome>();
