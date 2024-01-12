@@ -12,6 +12,7 @@ namespace HIMS.Model.Master
         public double SortOrder { get; set; }
         public bool IsActive { get; set; }
         public bool IsDisplay { get; set; }
+        public string Parent { get; set; }
     }
 
     public class MenuModel

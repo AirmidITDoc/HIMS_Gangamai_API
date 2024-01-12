@@ -330,6 +330,20 @@ namespace HIMS.Data
             //_unitofWork.SaveChanges();
             return lst;
         }
+        public List<T> GetListBySp<T>(string query, SqlParameter[] entity)
+        {
+            var cmd = Select_CreateCommand(query, CommandType.StoredProcedure, entity);
+            var dr = cmd.ExecuteReader();
+            List<T> lst = new List<T>();
+            while (dr.Read())
+            {
+                T item = GetListItem<T>(dr);
+                lst.Add(item);
+            }
+            dr.Close();
+            //_unitofWork.SaveChanges();
+            return lst;
+        }
 
     }
 }

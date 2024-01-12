@@ -40,7 +40,11 @@ namespace HIMS.Data.Users
         }
         public List<MenuMaster> GetPermisison()
         {
-            return GetList<MenuMaster>("SELECT M.* FROM MenuMaster M LEFT JOIN MenuMaster MM on M.Id=MM.UpId WHERE ISNULL(MM.Id,0)=0", new SqlParameter[0]);
+           // return GetListBySp<MenuMaster>("SELECT M.* FROM MenuMaster M LEFT JOIN MenuMaster MM on M.Id=MM.UpId WHERE ISNULL(MM.Id,0)=0", new SqlParameter[0]);
+
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("@RoleId", 1);
+            return GetListBySp<MenuMaster>("GET_PERMISSION", sqlParameters);
         }
 
     }
