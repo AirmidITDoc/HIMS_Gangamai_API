@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HIMS.Data.Users;
 using HIMS.Model.Users;
+using System.Collections.Generic;
 
 namespace HIMS.API.Controllers.Users
 {
@@ -32,6 +33,13 @@ namespace HIMS.API.Controllers.Users
         public IActionResult GetPermission()
         {
             return Ok(i_Role.GetPermisison());
+        }
+        [HttpPost]
+        [Route("save-permission")]
+        public IActionResult PostPermission(List<PermissionModel> obj)
+        {
+            i_Role.SavePermission(obj);
+            return Ok();
         }
     }
 }
