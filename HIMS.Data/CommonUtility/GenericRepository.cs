@@ -332,17 +332,31 @@ namespace HIMS.Data
         }
         public List<T> GetListBySp<T>(string query, SqlParameter[] entity)
         {
-            var cmd = Select_CreateCommand(query, CommandType.StoredProcedure, entity);
-            var dr = cmd.ExecuteReader();
             List<T> lst = new List<T>();
-            while (dr.Read())
+            try
             {
-                T item = GetListItem<T>(dr);
-                lst.Add(item);
+                var cmd = Select_CreateCommand(query, CommandType.StoredProcedure, entity);
+                var dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    T item = GetListItem<T>(dr);
+                    lst.Add(item);
+                }
+                dr.Close();
             }
-            dr.Close();
+            catch (Exception ex)
+            {
+                throw;
+            }
             //_unitofWork.SaveChanges();
             return lst;
+        }
+        public object ExecuteObjectBySP(string query, SqlParameter[] entity)
+        {
+            var cmd = Select_CreateCommand(query, CommandType.StoredProcedure, entity);
+            object obj= cmd.ExecuteScalar();
+            _unitofWork.SaveChanges();
+            return obj;
         }
 
     }

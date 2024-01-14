@@ -27,9 +27,7 @@ namespace HIMS.Data.Opd
         {
             // throw new NotImplementedException();
             var disc = PhoneAppointmentParams.PhoneAppointmentInsert.ToDictionary();
-
             ExecNonQueryProcWithOutSaveChanges("insert_T_PhoneAppointment_1", disc);
-
             //commit transaction
             _unitofWork.SaveChanges();
             return true;

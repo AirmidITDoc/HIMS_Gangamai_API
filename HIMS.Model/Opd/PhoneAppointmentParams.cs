@@ -29,10 +29,11 @@ namespace HIMS.Model.Transaction
         public long DoctorId { get; set; }
         public long AddedBy { get; set; }
         public long UpdatedBy { get; set; }
+        public string RegNo { get; set; }
         /*  public Boolean IsCancelled { get; set; }
          public int IsCancelledBy { get; set; }
          public DateTime IsCancelledDate { get; set; }
-         public string RegNo { get; set; }*/
+         */
 
     }
 
