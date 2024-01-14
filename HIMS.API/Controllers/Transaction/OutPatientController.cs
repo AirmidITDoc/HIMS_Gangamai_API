@@ -123,19 +123,38 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         //OPDAppointment Insert 
-        [HttpPost("OPDAppointmentInsert")]
-        public async Task<IActionResult> OPDAppointmentInsertAsync([FromForm] OpdAppointmentParams OpdAppointmentParams)
+        [HttpPost("OPDAppointmentWithPhotoInsert")]
+        public async Task<IActionResult> OPDAppointmentInsertwithPhotoAsync([FromForm] OpdAppointmentParams OpdAppointmentParams)
         {
-            if (OpdAppointmentParams.RegistrationSave.ImgFile != null)
+            if (OpdAppointmentParams.RegistrationSavewithPhoto.ImgFile != null)
             {
                 string NewFileName = Guid.NewGuid().ToString();
-                string FileName = await _IFileUtility.UploadDocument(OpdAppointmentParams.RegistrationSave.ImgFile, "PatientPhoto", NewFileName);
+                string FileName = await _IFileUtility.UploadDocument(OpdAppointmentParams.RegistrationSavewithPhoto.ImgFile, "PatientPhoto", NewFileName);
                 OpdAppointmentParams.RegistrationSave.Photo = FileName;
             }
             else
             {
                 OpdAppointmentParams.RegistrationSave.Photo = null;
             }
+            var appoSave = _OpdAppointment.Save(OpdAppointmentParams);
+            return Ok(appoSave);
+        }
+
+
+        //OPDAppointment Insert 
+        [HttpPost("OPDAppointmentInsert")]
+        public IActionResult OPDAppointmentInsert(OpdAppointmentParams OpdAppointmentParams)
+        {
+            //if (OpdAppointmentParams.RegistrationSave.ImgFile != null)
+            //{
+            //    string NewFileName = Guid.NewGuid().ToString();
+            //    string FileName = await _IFileUtility.UploadDocument(OpdAppointmentParams.RegistrationSave.ImgFile, "PatientPhoto", NewFileName);
+            //    OpdAppointmentParams.RegistrationSave.Photo = FileName;
+            //}
+            //else
+            //{
+            //    OpdAppointmentParams.RegistrationSave.Photo = null;
+            //}
             var appoSave = _OpdAppointment.Save(OpdAppointmentParams);
             return Ok(appoSave);
         }
