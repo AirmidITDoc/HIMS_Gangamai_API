@@ -5,6 +5,7 @@ namespace HIMS.Model.Master
     public class MenuMaster
     {
         public int Id { get; set; }
+        public int MenuId { get; set; }
         public int UpId { get; set; }
         public string LinkName { get; set; }
         public string Icon { get; set; }
@@ -13,6 +14,11 @@ namespace HIMS.Model.Master
         public bool IsActive { get; set; }
         public bool IsDisplay { get; set; }
         public string Parent { get; set; }
+        public int RoleId { get; set; }
+        public bool IsView { get; set; }
+        public bool IsAdd { get; set; }
+        public bool IsEdit { get; set; }
+        public bool IsDelete { get; set; }
     }
 
     public class MenuModel

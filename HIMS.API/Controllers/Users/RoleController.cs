@@ -30,9 +30,9 @@ namespace HIMS.API.Controllers.Users
         }
         [HttpGet]
         [Route("get-permissions")]
-        public IActionResult GetPermission()
+        public IActionResult GetPermission(int RoleId)
         {
-            return Ok(i_Role.GetPermisison());
+            return Ok(i_Role.GetPermisison(RoleId));
         }
         [HttpPost]
         [Route("save-permission")]

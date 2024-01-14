@@ -346,7 +346,6 @@ namespace HIMS.Data
             }
             catch (Exception ex)
             {
-                throw;
             }
             //_unitofWork.SaveChanges();
             return lst;
@@ -354,10 +353,36 @@ namespace HIMS.Data
         public object ExecuteObjectBySP(string query, SqlParameter[] entity)
         {
             var cmd = Select_CreateCommand(query, CommandType.StoredProcedure, entity);
-            object obj= cmd.ExecuteScalar();
+            object obj = cmd.ExecuteScalar();
             _unitofWork.SaveChanges();
             return obj;
         }
 
+    }
+
+    public static class CommonMethods
+    {
+        public static int ToInt(this object obj)
+        {
+            try
+            {
+                return Convert.ToInt32(obj);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+        public static bool ToBool(this object obj)
+        {
+            try
+            {
+                return Convert.ToBoolean(obj);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

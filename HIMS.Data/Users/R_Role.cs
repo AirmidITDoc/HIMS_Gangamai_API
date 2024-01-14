@@ -38,13 +38,15 @@ namespace HIMS.Data.Users
             para[0] = new SqlParameter("@RoleName", RoleName);
             return GetList<RoleModel>("SELECT RoleId,RoleName FROM RoleMaster WHERE IsActive=1 AND RoleName LIKE '%'+@RoleName+'%'", para);
         }
-        public List<MenuMaster> GetPermisison()
+        public List<MenuMaster> GetPermisison(int RoleId)
         {
             // return GetListBySp<MenuMaster>("SELECT M.* FROM MenuMaster M LEFT JOIN MenuMaster MM on M.Id=MM.UpId WHERE ISNULL(MM.Id,0)=0", new SqlParameter[0]);
 
             SqlParameter[] sqlParameters = new SqlParameter[1];
-            sqlParameters[0] = new SqlParameter("@RoleId", 1);
-            return GetListBySp<MenuMaster>("GET_PERMISSION", sqlParameters);
+            sqlParameters[0] = new SqlParameter("@RoleId", RoleId);
+            var lst= GetListBySp<MenuMaster>("GET_PERMISSION", sqlParameters);
+            _unitofWork.SaveChanges();
+            return lst;
         }
         public void SavePermission(List<PermissionModel> lst)
         {
