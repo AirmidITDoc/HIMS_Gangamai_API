@@ -82,27 +82,34 @@ namespace HIMS.API.Controllers
         [NonAction]
         private List<MenuModel> AddChildtems(List<MenuMaster> Data, MenuModel obj)
         {
-            //var lstData = Data.Where(x => x.KeyNo.StartsWith(obj.key + "_")).ToList();
-            var lstData = Data.Where(x => x.UpId == Convert.ToInt32(obj.id)).ToList();
             List<MenuModel> lstChilds = new List<MenuModel>();
-            foreach (var objItem in lstData)
+            try
             {
-                MenuModel objData = new MenuModel()
+                //var lstData = Data.Where(x => x.KeyNo.StartsWith(obj.key + "_")).ToList();
+                var lstData = Data.Where(x => x.UpId == Convert.ToInt32(obj.id)).ToList();
+                foreach (var objItem in lstData)
                 {
-                    id = objItem.Id.ToString(),
-                    icon = objItem.Icon,
-                    title = objItem.LinkName,
-                    translate = "",
-                    type = "collapsable",
-                    children = new List<MenuModel>()
-                };
-                objData.children = AddChildtems(Data, objData);
-                if (objData.children.Count == 0)
-                {
-                    objData.type = "item";
-                    objData.url = objItem.LinkAction;
+                    MenuModel objData = new MenuModel()
+                    {
+                        id = objItem.Id.ToString(),
+                        icon = objItem.Icon,
+                        title = objItem.LinkName,
+                        translate = "",
+                        type = "collapsable",
+                        children = new List<MenuModel>()
+                    };
+                    objData.children = AddChildtems(Data, objData);
+                    if (objData.children.Count == 0)
+                    {
+                        objData.type = "item";
+                        objData.url = objItem.LinkAction;
+                    }
+                    lstChilds.Add(objData);
                 }
-                lstChilds.Add(objData);
+            }
+            catch (Exception ex)
+            { 
+            
             }
             return lstChilds;
         }
