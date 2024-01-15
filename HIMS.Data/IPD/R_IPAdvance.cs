@@ -98,8 +98,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvanceAmount"));
-            
-                html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+            html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
 
 
             return html;

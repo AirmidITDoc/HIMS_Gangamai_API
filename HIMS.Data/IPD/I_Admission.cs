@@ -10,5 +10,7 @@ namespace HIMS.Data.IPD
         public String Insert(AdmissionParams AdmissionParams);
 
         public bool Update(AdmissionParams AdmissionParams);
+
+        string AdmissionListCurrent(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, string htmlFilePath, string HeaderName);
     }
 }
