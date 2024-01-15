@@ -12,6 +12,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HIMS.API.Controllers
 {
@@ -38,9 +39,9 @@ namespace HIMS.API.Controllers
         }
         [HttpGet]
         [Route("get-menus")]
-        public ActionResult GetMenus()
+        public ActionResult GetMenus(int RoleId)
         {
-            List<MenuMaster> lstMenu = i_MenuMaster.GetMenus();
+            List<MenuMaster> lstMenu = i_MenuMaster.GetMenus(RoleId);
             List<MenuModel> finalList = new List<MenuModel>();
             var distinct = lstMenu.Where(x => x.UpId == 0);
             foreach (var ItemData in distinct)
@@ -72,9 +73,16 @@ namespace HIMS.API.Controllers
                         test.type = "item";
                         test.url = lData.LinkAction;
                     }
-                    obj.children.Add(test);
+                    if (test.children.Count() > 0 || lData.IsView)
+                        obj.children.Add(test);
                 }
-                finalList.Add(obj);
+                if (obj.children.Count == 0)
+                {
+                    obj.type = "item";
+                    obj.url = ItemData.LinkAction;
+                }
+                if (obj.children.Count > 0 || ItemData.IsView)
+                    finalList.Add(obj);
             }
 
             return Ok(finalList);
@@ -104,12 +112,13 @@ namespace HIMS.API.Controllers
                         objData.type = "item";
                         objData.url = objItem.LinkAction;
                     }
-                    lstChilds.Add(objData);
+                    if (objData.children.Count > 0 || objItem.IsView)
+                        lstChilds.Add(objData);
                 }
             }
             catch (Exception ex)
-            { 
-            
+            {
+
             }
             return lstChilds;
         }
