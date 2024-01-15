@@ -2,6 +2,7 @@
 using HIMS.Model.Master;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Text;
 
 namespace HIMS.Data.Master
@@ -13,9 +14,11 @@ namespace HIMS.Data.Master
             //transaction and connection is open when you inject unitofwork
         }
 
-        public List<MenuMaster> GetMenus()
+        public List<MenuMaster> GetMenus(int RoleId)
         {
-            return GetList<MenuMaster>("SELECT * FROM MenuMaster WHERE IsActive=1 AND IsDisplay=1", new System.Data.SqlClient.SqlParameter[0]);
+            SqlParameter[] para = new SqlParameter[1];
+            para[0] = new SqlParameter("@RoleId", RoleId);
+            return GetList<MenuMaster>("SELECT M.*,P.IsView,P.IsAdd,P.IsEdit,P.IsDelete FROM MenuMaster M LEFT JOIN PermissionMaster P ON M.Id=P.MenuId AND P.RoleId=@RoleId\r\nWHERE IsActive=1 AND IsDisplay=1", para);
         }
 
         public bool Update(MenuMasterParams menuMasterParams)
