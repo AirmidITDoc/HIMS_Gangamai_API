@@ -72,16 +72,18 @@ namespace HIMS.API.Controllers
                     {
                         test.type = "item";
                         test.url = lData.LinkAction;
+                        test.children = null;
                     }
-                    if (test.children.Count() > 0 || lData.IsView)
+                    if ((test?.children?.Count() ?? 0) > 0 || lData.IsView)
                         obj.children.Add(test);
                 }
                 if (obj.children.Count == 0)
                 {
                     obj.type = "item";
                     obj.url = ItemData.LinkAction;
+                    obj.children = null;
                 }
-                if (obj.children.Count > 0 || ItemData.IsView)
+                if ((obj?.children?.Count ?? 0) > 0 || ItemData.IsView)
                     finalList.Add(obj);
             }
 
@@ -111,8 +113,9 @@ namespace HIMS.API.Controllers
                     {
                         objData.type = "item";
                         objData.url = objItem.LinkAction;
+                        objData.children = null;
                     }
-                    if (objData.children.Count > 0 || objItem.IsView)
+                    if ((objData?.children?.Count ?? 0) > 0 || objItem.IsView)
                         lstChilds.Add(objData);
                 }
             }
