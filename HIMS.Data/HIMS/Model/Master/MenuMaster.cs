@@ -29,6 +29,10 @@ namespace HIMS.Model.Master
         public string type { get; set; }
         public string icon { get; set; }
         public string url { get; set; }
+        public bool IsView { get; set; }
+        public bool IsAdd { get; set; }
+        public bool IsEdit { get; set; }
+        public bool IsDelete { get; set; }
         public List<MenuModel> children { get; set; }
     }
 }

@@ -53,7 +53,11 @@ namespace HIMS.API.Controllers
                     title = ItemData.LinkName,
                     translate = "",
                     type = "collapsable",
-                    children = new List<MenuModel>()
+                    children = new List<MenuModel>(),
+                    IsView = ItemData.IsView,
+                    IsAdd = ItemData.IsAdd,
+                    IsDelete = ItemData.IsDelete,
+                    IsEdit = ItemData.IsEdit
                 };
                 var levelData = lstMenu.Where(x => x.UpId == Convert.ToInt32(obj.id));
                 foreach (var lData in levelData)
@@ -65,7 +69,11 @@ namespace HIMS.API.Controllers
                         title = lData.LinkName,
                         translate = "",
                         type = "collapsable",
-                        children = new List<MenuModel>()
+                        children = new List<MenuModel>(),
+                        IsView = lData.IsView,
+                        IsAdd = lData.IsAdd,
+                        IsDelete = lData.IsDelete,
+                        IsEdit = lData.IsEdit
                     };
                     test.children = AddChildtems(lstMenu, test);
                     if (test.children.Count == 0)
@@ -106,7 +114,11 @@ namespace HIMS.API.Controllers
                         title = objItem.LinkName,
                         translate = "",
                         type = "collapsable",
-                        children = new List<MenuModel>()
+                        children = new List<MenuModel>(),
+                        IsView = objItem.IsView,
+                        IsAdd = objItem.IsAdd,
+                        IsDelete = objItem.IsDelete,
+                        IsEdit = objItem.IsEdit
                     };
                     objData.children = AddChildtems(Data, objData);
                     if (objData.children.Count == 0)
