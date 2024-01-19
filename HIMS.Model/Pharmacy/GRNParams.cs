@@ -46,7 +46,7 @@ namespace HIMS.Model.Pharmacy
         public long TranProcessId { get; set; }
         public string TranProcessMode { get; set; }
         public string EwayBillNo { get; set; }
-        public long EwayBillDate { get; set; }
+        public DateTime EwayBillDate { get; set; }
         public float BillDiscAmt  { get; set; }
         public long GRNID { get; set; }
     }
