@@ -22,6 +22,7 @@ namespace HIMS.Data.Dashboard
         }
         public PieChartModel GetPieChartData(string procName, Dictionary<string, object> entity)
         {
+            PieChartModel obj = new PieChartModel() { colors = new List<string>() };
             SqlParameter[] para = new SqlParameter[entity.Count];
             int i = 0;
             foreach (var ent in entity)
@@ -29,22 +30,16 @@ namespace HIMS.Data.Dashboard
                 para[i] = new SqlParameter(ent.Key, ent.Value.ToString());
                 i++;
             }
-            PieChartModel pieChartModel = new PieChartModel() { datasets = new List<PieChartItem>(), labels = new List<string>() };
-            List<PieChartFullDto> result = GetListBySp<PieChartFullDto>(procName, para);
-            PieChartItem objItem = new PieChartItem() { data = new List<decimal>(), backgroundColor = new List<string>() };
-            foreach (var item in result)
+            obj.data = GetListBySp<PieChartDto>(procName, para);
+            foreach (var item in obj.data)
             {
-                pieChartModel.labels.Add(item.Label);
-                objItem.data.Add(item.Data);
                 Random rnd = new Random();
-                Byte[] b = new Byte[3];
+                byte[] b = new Byte[3];
                 rnd.NextBytes(b);
                 Color color = Color.FromArgb(b[0], b[1], b[2]);
-
-                objItem.backgroundColor.Add("#" + color.Name);
+                obj.colors.Add("#" + color.Name);
             }
-            pieChartModel.datasets.Add(objItem);
-            return pieChartModel;
+            return obj;
         }
         public List<RoleModel> GetRoles(string RoleName)
         {
