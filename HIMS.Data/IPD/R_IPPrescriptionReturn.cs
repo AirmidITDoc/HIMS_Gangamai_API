@@ -30,10 +30,19 @@ namespace HIMS.Data.IPD
             disc2.Remove("PresReId");
             var PresReID = ExecNonQueryProcWithOutSaveChanges("Insert_T_IPPrescriptionReturnH_1", disc2, outputId);
 
-            IPPrescriptionReturnParams.IPPrescriptionReturnD.PresReId=Convert.ToInt32( PresReID);
-            var disc1 = IPPrescriptionReturnParams.IPPrescriptionReturnD.ToDictionary();
+            
+
+            foreach (var a in IPPrescriptionReturnParams.IPPrescriptionReturnD)
+            {
+                //IPPrescriptionReturnParams.IPPrescriptionReturnD.PresReId = Convert.ToInt32(PresReID);
+                var disc = a.ToDictionary();
+                disc["PresReId"] = Convert.ToInt32(PresReID);
+                ExecNonQueryProcWithOutSaveChanges("Insert_T_IPPrescriptionReturnD_1", disc);
+            }
+            //IPPrescriptionReturnParams.IPPrescriptionReturnD.PresReId=Convert.ToInt32( PresReID);
+            //var disc1 = IPPrescriptionReturnParams.IPPrescriptionReturnD.ToDictionary();
            // disc1.Remove("PresReId");
-            ExecNonQueryProcWithOutSaveChanges("Insert_T_IPPrescriptionReturnD_1", disc1);
+            //ExecNonQueryProcWithOutSaveChanges("Insert_T_IPPrescriptionReturnD_1", disc1);
 
           
             _unitofWork.SaveChanges();

@@ -8,7 +8,8 @@ namespace HIMS.Data.IPD
     public interface I_IPPrescriptionReturn
     {
         public bool Insert(IPPrescriptionReturnParams IPPrescriptionReturnParams);
-
        
+
+
     }
 }

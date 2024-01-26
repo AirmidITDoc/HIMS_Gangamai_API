@@ -3,6 +3,9 @@ using HIMS.Model.Opd;
 using HIMS.Model.Transaction;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
 using System.Text;
 
 namespace HIMS.Data.Opd
@@ -38,14 +41,61 @@ namespace HIMS.Data.Opd
 
         }
 
-       /* public bool Update(PaymentParams PaymentParams)
+        public string ViewOPPaymentReceipt(int PaymentId, string htmlFilePath, string HeaderName)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+            SqlParameter[] para = new SqlParameter[1];
+
+            para[0] = new SqlParameter("@PaymentId", PaymentId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptIPDPaymentReceiptPrint", para);
+            string html = File.ReadAllText(htmlFilePath);
+            string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{HeaderName}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+
+
+
+            //html = html.Replace("{{TotalIGST}}", T_TotalIGST.To2DecimalPlace());
+            //html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
+
+            html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{RegId}}", Bills.GetColValue("RegId"));
+            html = html.Replace("{{CashPayAmount}}", Bills.GetColValue("CashPayAmount"));
+
+            html = html.Replace("{{ChequePayAmount}}", Bills.GetColValue("ChequePayAmount"));
+            html = html.Replace("{{ChequeDate}}", Bills.GetColValue("ChequeDate").ConvertToDateString("dd/MM/yyyy"));
+
+            html = html.Replace("{{ChequeNo}}", Bills.GetColValue("ChequeNo"));
+            html = html.Replace("{{CardPayAmount}}", Bills.GetColValue("CardPayAmount"));
+            html = html.Replace("{{CardDate}}", Bills.GetColValue("CardDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{CardNo}}", Bills.GetColValue("CardNo"));
+            html = html.Replace("{{NEFTPayAmount}}", Bills.GetColValue("NEFTPayAmount"));
+            html = html.Replace("{{NEFTNo}}", Bills.GetColValue("NEFTNo"));
+            html = html.Replace("{{NEFTBankMaster}}", Bills.GetColValue("NEFTBankMaster"));
+            html = html.Replace("{{PayTMAmount}}", Bills.GetColValue("PayTMAmount"));
+            html = html.Replace("{{PayTMTranNo}}", Bills.GetColValue("PayTMTranNo"));
+            html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{ReceiptNo}}", Bills.GetColValue("ReceiptNo"));
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
+            html = html.Replace("{{PaymentDate}}", Bills.GetColValue("PaymentDate").ConvertToDateString("dd/MM/yyyy"));
+
+
+
+            return html;
         }
 
-        public bool Save(PaymentParams PaymentParams)
-        {
-            throw new NotImplementedException();
-        }*/
+        /* public bool Update(PaymentParams PaymentParams)
+         {
+             throw new NotImplementedException();
+         }
+
+         public bool Save(PaymentParams PaymentParams)
+         {
+             throw new NotImplementedException();
+         }*/
     }
 }

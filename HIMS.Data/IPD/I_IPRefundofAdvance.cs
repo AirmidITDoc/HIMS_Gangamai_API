@@ -8,6 +8,8 @@ namespace HIMS.Data.IPD
     public interface I_IPRefundofAdvance
     {
         public String Insert(IPRefundofAdvanceParams IPRefundofAdvanceParams);
-       // public bool Update(IPRefundofAdvanceParams IPRefundofAdvanceParams);
+        // public bool Update(IPRefundofAdvanceParams IPRefundofAdvanceParams);
+
+        string ViewIPRefundofAdvanceReceipt(int RefundId, string htmlFilePath, string htmlHeaderFilePath);
     }
 }

@@ -9,6 +9,8 @@ namespace HIMS.Data.IPD
     {
         public String Insert(IPRefundofBilllparams IPRefundofBilllparams);
 
-        object ViewIPRefundofBillReceipt(int RefundId, string htmlFilePath, string htmlHeaderFilePath);
+        string ViewIPRefundofBillReceipt(int RefundId, string htmlFilePath, string htmlHeaderFilePath);
+
+        
     }
 }

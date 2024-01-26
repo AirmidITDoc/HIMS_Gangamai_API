@@ -10,5 +10,7 @@ namespace HIMS.Data.Opd
     {
         bool Update(PaymentParams PaymentParams);
         bool Save(PaymentParams PaymentParams);
+
+        string ViewOPPaymentReceipt(int PaymentId, string htmlFilePath, string HeaderName);
     }
 }

@@ -204,6 +204,22 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        [HttpGet("view-Admitted_PatientCasepaper")]
+        public IActionResult ViewPatientCasepaper(int AdmissionId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPCasepaper.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Admission.ViewAdmissionPaper(AdmissionId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPCasepaper", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
         [HttpPost("RegisteredAdmissionSave")]
         public IActionResult AdmissionSave(RegisteredPatientAdmissionParams RegisteredPatientAdmissionParams)
         {
@@ -266,20 +282,20 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
-        //[HttpGet("view-IP-RefundOfBillReceipt")]
-        //public IActionResult ViewRefundofBIllReceipt(int AdvanceNo)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPRefundBillReceipt.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-        //    var html = _IPRefundofBilll.ViewIPRefundofBillReceipt(AdvanceNo, htmlFilePath, htmlHeaderFilePath);
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html,"IPRefundBillReceipt", "IPRefundBillReceipt" + AdvanceNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        [HttpGet("view-IP-ReturnOfAdvanceReceipt")]
+        public IActionResult ViewRetunOFAdvanceReceipt(int RefundId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "RefundofAdvanceReceipt.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPRefundofAdvance.ViewIPRefundofAdvanceReceipt(RefundId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RefundofAdvanceReceipt", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
 
-        //    if (System.IO.File.Exists(tuple.Item2))
-        //        System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        //}
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         [HttpPost("InsertIPRefundofBill")]
 
@@ -290,13 +306,63 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
+
+        [HttpGet("view-IP-ReturnOfBillReceipt")]
+        public IActionResult ViewRetunOFBillReceipt(int RefundId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPRefundBillReceipt.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPRefundofBilll.ViewIPRefundofBillReceipt(RefundId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPRefundBillReceipt", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
         [HttpPost("InsertIPPrescription")]
 
-        public String InsertIPPrescription(IPPrescriptionParams IPPrescriptionParams)
+        public IActionResult InsertIPPrescription(IPPrescriptionParams IPPrescriptionParams)
         {
             var IPD = _IPPrescription.Insert(IPPrescriptionParams);
-            return (IPD.ToString());
+            return Ok(IPD);
 
+        }
+
+
+        [HttpGet("view-IP_Prescription")]
+        public IActionResult ViewIPPrescription(int OP_IP_ID, int PatientType)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IpPrescription.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPPrescription.ViewIPPrescriptionReceipt(OP_IP_ID, PatientType, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IpPrescription", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-OP_Prescription")]
+        public IActionResult ViewOPPrescription(int VisitId, int PatientType)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPrescription.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPPrescription.ViewOPPrescriptionReceipt(VisitId, PatientType, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
         [HttpPost("InsertIPPrescriptionReturn")]
@@ -393,7 +459,20 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(IPBill);
         }
 
+        [HttpGet("view-IP-Labrequest")]
+        public IActionResult ViewLabRequestReceipt(int RequestId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "LabRequest.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPLabrequestChange.ViewLabRequest(RequestId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "LabRequest", "LabRequest" + RequestId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         [HttpGet("view-IP-InterimBillReceipt")]
         public IActionResult ViewIpINterimBillReceipt(int BillNo)
@@ -463,22 +542,7 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(AdvUpdate);
         }
 
-        //[HttpPost("IPPrescriptionInsert")]
-        //public IActionResult IPPrescriptionInsert(IPPrescriptionParams IPPR)
-        //{
-        //    var IPPIR = _IPPrescription.Insert(IPPR);
-        //    return Ok(IPPIR);
-        //}
-
-        //[HttpPost("IP_Charges_Delete")]
-        //public IActionResult IP_Charges_Delete(IP_Charges_DeleteParams IPCDR)
-        //{
-        //    var IPCR = _IP_Charges_Delete.Update(IPCDR);
-        //    return Ok(IPCR);
-        //}
-
-
-
+       
         [HttpPost("IPDBedTransfer")]
 
         public IActionResult IPDBedTransfer(BedTransferParams BedTransferParams)
@@ -545,6 +609,23 @@ namespace HIMS.API.Controllers.Transaction
             var RequestId = _IP_Settlement_Process.Insert(IP_Settlement_Processparams);
             return Ok(RequestId);
         }
+
+
+        [HttpGet("view-IP-SettlementReceipt")]
+        public IActionResult ViewSettlementReceipt(int PaymentId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SettlementReceipt.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IP_Settlement_Process.ViewSettlementReceipt(PaymentId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SettlementReceipt", "SettlementReceipt" + PaymentId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
 
         [HttpPost("WhatsappSMSoutgoingSave")]
         public IActionResult InsertWhatsappsmsoutgoing(WhatsappSmsparam WhatsappSmsparam)

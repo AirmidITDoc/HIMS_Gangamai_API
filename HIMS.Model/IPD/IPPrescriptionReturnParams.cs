@@ -7,7 +7,8 @@ namespace HIMS.Model.IPD
     public class IPPrescriptionReturnParams
     {
         public IPPrescriptionReturnH IPPrescriptionReturnH { get; set; }
-        public IPPrescriptionReturnD IPPrescriptionReturnD { get; set; }
+        //public IPPrescriptionReturnD IPPrescriptionReturnD { get; set; }
+        public List<IPPrescriptionReturnD> IPPrescriptionReturnD { get; set; }
 
     }
 

@@ -287,6 +287,23 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(appoSave);
         }
 
+
+        [HttpGet("view-OP-PaymentReceipt")]
+        public IActionResult ViewOPPaymentReceipt(int PaymentId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPaymentReceipt.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Payment.ViewOPPaymentReceipt(PaymentId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPaymentReceipt", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
         //Prescription Update 
         [HttpPost("PrescriptionInsert")]
         public IActionResult PrescriptionInsert(OPDPrescriptionParams OPDPrescriptionParams)

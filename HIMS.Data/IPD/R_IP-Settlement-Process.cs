@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Text;
 
 namespace HIMS.Data.IPD
@@ -53,6 +54,46 @@ namespace HIMS.Data.IPD
             //commit transaction
             _unitofWork.SaveChanges();
             return paymentid;
+
+        }
+
+
+        public string ViewSettlementReceipt(int PaymentId, string htmlFilePath, string htmlHeaderFilePath)
+        {
+            SqlParameter[] para = new SqlParameter[1];
+
+            para[0] = new SqlParameter("@PaymentId", PaymentId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptIPDPaymentReceiptPrint", para);
+            string html = File.ReadAllText(htmlFilePath);
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{HeaderName}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+
+
+
+            //html = html.Replace("{{TotalIGST}}", T_TotalIGST.To2DecimalPlace());
+            //html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
+
+            html = html.Replace("{{PBillNo}}", Bills.GetColValue("PBillNo"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+
+            html = html.Replace("{{CashPayAmount}}", Bills.GetColValue("CashPayAmount"));
+            html = html.Replace("{{PaymentDate}}", Bills.GetColValue("PaymentDate").ConvertToDateString());
+
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate").ConvertToDateString());
+            html = html.Replace("{{PaymentDate}}", Bills.GetColValue("PaymentDate").ConvertToDateString());
+            
+            html = html.Replace("{{TotalAmt}}", Bills.GetColValue("TotalAmt"));
+            html = html.Replace("{{Remark}}", Bills.GetColValue("Remark"));
+
+
+            return html;
 
         }
     }

@@ -8,5 +8,8 @@ namespace HIMS.Data.IPD
    public interface I_IP_Settlement_Process
     {
         public String Insert(IP_Settlement_Processparams IP_Settlement_Processparams);
+
+        string ViewSettlementReceipt(int PaymentId, string htmlFilePath, string HeaderName);
+        
     }
 }

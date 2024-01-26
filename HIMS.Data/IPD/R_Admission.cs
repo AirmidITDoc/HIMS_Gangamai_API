@@ -80,6 +80,59 @@ namespace HIMS.Data.IPD
 
         }
 
+        public string ViewAdmissionPaper(int AdmissionId, string htmlFilePath, string HeaderName)
+        {
+            //  throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[1];
+           
+            para[0] = new SqlParameter("@AdmissionId", AdmissionId) { DbType = DbType.String };
+
+            var Bills = GetDataTableProc("rptAdmissionPrint1", para);
+            string html = File.ReadAllText(htmlFilePath);
+            string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{HeaderName}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+
+
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+
+            html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
+            html = html.Replace("{{MobileNo}}", Bills.GetColValue("MobileNo"));
+
+            html = html.Replace("{{DOT}}", Bills.GetColValue("DOT").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
+            html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
+
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{Age}}", Bills.GetColValue("Age"));
+
+            html = html.Replace("{{AdmittedDoctorName}}", Bills.GetColValue("AdmittedDoctorName"));
+            html = html.Replace("{{RefDoctorName}}", Bills.GetColValue("RefDoctorName"));
+
+            html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
+            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
+
+            html = html.Replace("{{RelativeName}}", Bills.GetColValue("RelativeName"));
+            html = html.Replace("{{RelativePhoneNo}}", Bills.GetColValue("RelativePhoneNo"));
+
+            html = html.Replace("{{RelationshipName}}", Bills.GetColValue("RelationshipName"));
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{IsMLC}}", Bills.GetColValue("IsMLC"));
+            html = html.Replace("{{AdmittedDoctor1}}", Bills.GetColValue("AdmittedDoctor1"));
+
+            html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));
+            html = html.Replace("{{LoginUserSurname}}", Bills.GetColValue("LoginUserSurname"));
+
+            return html;
+
+        }
+
         public String Insert(AdmissionParams AdmissionParams)
         {
             var outputId = new SqlParameter
