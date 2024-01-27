@@ -80,12 +80,12 @@
                     <span style="vertical-align: top;padding:0 10px 10px;">
 
                         <br />
-                        <div id="id1" runat="server" Visible="chkcashflag">
+                        <div style="display:{{chkcashflag}}">
                             <span style="font-weight: 500; margin-Left: 20px; font-size: 20px;">Cash Pay Amount:</span>
                             <span style="width: 400px;font-size:18px;margin-left:10px;"> ₹{{CashPayAmount}}</span> <br>
                         </div>
                         <div>
-                            <div id="chkcardflag">
+                            <div style="display:{{chkcardflag}}">
                                 <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">Card Pay Amount:</span>
                                 <span style="font-size: 18px; margin-left: 10px;">
                                     ₹{{CardPayAmount}}
@@ -94,19 +94,19 @@
                             </div>
                         </div> <br>
                         <!--hidden="chkchequeflag"-->
-                        <div id="chkchequeflag" *ngIf="{{chkchequeflag}}">
+                        <div style="display:{{chkchequeflag}}">
                             <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">ChequePayAmount :</span>
                             <span style="font-size: 18px; margin-left: 10px;">
                                 ₹ {{ChequePayAmount}}
                                 <span style="margin-left:20px;">Cheque No : {{ChequeNo}}</span> <span style="margin-left:20px;">Cheque Date : {{ChequeDate}}</span>
                             </span>
                         </div> <br>
-                        <div id="chkNeftflag">
+                        <div style="display:{{chkNeftflag}}">
                             <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">NEFTPayAmount :</span>
 
                             <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{NEFTPayAmount}}</span> <br>
                         </div>
-                        <div id="chkpaytmflag">
+                        <div style="display:{{chkpaytmflag}}">
                             <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">PayTMAmount :</span>
                             <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{PayTMAmount}}</span> <br>
                         </div>

@@ -57,34 +57,12 @@ namespace HIMS.Data.Opd
             StringBuilder items = new StringBuilder("");
             int i = 0;
             
-
-            html = html.Replace("{{chkchequeflag}}", chkchequeflag.ConvertToString());
-            //html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
-
-            if ((Bills.GetColValue("ChequePayAmount").ConvertToDouble()) > 0)
-            {
-                chkchequeflag = true;
-                //@Html.Hidden("carmodelhiden", "");
-                //id1.Visible = true;
-
-            }
-            if ((Bills.GetColValue("CashPayAmount").ConvertToDouble()) > 0)
-            {
-                chkcashflag = true;
-            }
-            if ((Bills.GetColValue("CardPayAmount").ConvertToDouble()) > 0)
-            {
-                chkcardflag = false;
-            }
-            if ((Bills.GetColValue("NEFTPayAmount").ConvertToDouble()) > 0)
-            {
-                chkNeftflag = false;
-            }
-            if ((Bills.GetColValue("PayTMAmount").ConvertToDouble()) > 0)
-            {
-                chkpaytmflag = false;
-            }
-
+            html = html.Replace("{{chkchequeflag}}", Bills.GetColValue("ChequePayAmount").ConvertToDouble() > 0 ? "block" : "none");
+            html = html.Replace("{{chkcashflag}}", Bills.GetColValue("CashPayAmount").ConvertToDouble() > 0 ? "block" : "none");
+            html = html.Replace("{{chkcardflag}}", Bills.GetColValue("CardPayAmount").ConvertToDouble() > 0 ? "block" : "none");
+            html = html.Replace("{{chkNeftflag}}", Bills.GetColValue("NEFTPayAmount").ConvertToDouble() > 0 ? "block" : "none");
+            html = html.Replace("{{chkpaytmflag}}", Bills.GetColValue("PayTMAmount").ConvertToDouble() > 0 ? "block" : "none");
+            
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{RegId}}", Bills.GetColValue("RegId"));
