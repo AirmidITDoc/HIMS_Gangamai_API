@@ -25,5 +25,12 @@ namespace HIMS.API.Controllers.Users
             var result = i_Dashboard.GetPieChartData(procName, entity.ToDictionary());
             return Ok(result);
         }
+        [HttpPost]
+        [Route("get-bar-chart-date")]
+        public IActionResult GetBarChart(string procName, [FromBody] JObject entity)
+        {
+            var result = i_Dashboard.GetBarChartData(procName, entity.ToDictionary());
+            return Ok(result);
+        }
     }
 }

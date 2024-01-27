@@ -41,6 +41,34 @@ namespace HIMS.Data.Dashboard
             }
             return obj;
         }
+        public BarChartModel GetBarChartData(string procName, Dictionary<string, object> entity)
+        {
+            BarChartModel obj = new BarChartModel() { colors = new List<string>(), data = new List<BarChartDto>() };
+            SqlParameter[] para = new SqlParameter[entity.Count];
+            int i = 0;
+            foreach (var ent in entity)
+            {
+                para[i] = new SqlParameter(ent.Key, ent.Value.ToString());
+                i++;
+            }
+            var Items = GetListBySp<BarChartItem>(procName, para);
+            foreach (var item in Items.Select(x => new { x.multiid, x.multi }).Distinct())
+            {
+                BarChartDto objDto = new BarChartDto() { name = item.multi, series = new List<BarChartItem>() };
+                var data = Items.Where(x => x.multiid == item.multiid);
+                foreach (var objItem in data)
+                {
+                    objDto.series.Add(new BarChartItem() { name = objItem.name, value = objItem.value });
+                }
+                obj.data.Add(objDto);
+                Random rnd = new Random();
+                byte[] b = new Byte[3];
+                rnd.NextBytes(b);
+                Color color = Color.FromArgb(b[0], b[1], b[2]);
+                obj.colors.Add("#" + color.Name);
+            }
+            return obj;
+        }
         public List<RoleModel> GetRoles(string RoleName)
         {
             if (string.IsNullOrEmpty(RoleName))
