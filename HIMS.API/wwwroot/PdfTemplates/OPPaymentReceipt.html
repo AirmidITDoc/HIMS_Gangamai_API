@@ -26,7 +26,7 @@
                         <span style="font-size:15px; ">{{RegId}} </span>
                     </td>
                     <td>
-                        <span style="font-weight: 500; margin-right: 10px; margin-left: 100px; font-size: 20px;">Bill No.</span>
+                        <span style="font-weight: 500; margin-right: 10px; margin-left: 60px; font-size: 20px;">Bill No.</span>
                         <span style="font-size:15px;"> {{BillNo}} </span>
                     </td>
                 </tr>
@@ -37,7 +37,7 @@
                         <span style="font-size:15px;width:500px;">{{ReceiptNo}}</span>
                     </td>
                     <td>
-                        <span style="font-weight: 500; margin-right: 10px; margin-left: 100px; font-size: 20px;;">Bill Date</span>
+                        <span style="font-weight: 500; margin-right: 10px; margin-left: 60px; font-size: 20px;;">Bill Date</span>
                         <span style="font-size:15px;">{{BillDate}}</span>
                     </td>
                 </tr>
@@ -48,7 +48,7 @@
                         <span style="font-size:15px;">{{PatientName}}</span>
                     </td>
                     <td>
-                        <span style="font-weight: 500; margin-right: 10px; margin-left: 100px; font-size: 20px;">Age</span>
+                        <span style="font-weight: 500; margin-right: 10px; margin-left: 60px; font-size: 20px;">Age</span>
                         <span style="font-size:15px;">{{AgeYear}}</span>
                     </td>
                 </tr>
@@ -58,7 +58,7 @@
                         <!--<span style="font-size:15px;"></span>-->
                     </td>
                     <td>
-                        <span style="font-weight: 500; margin-right: 10px; margin-left: 100px; font-size: 20px;">PaymentDate</span>
+                        <span style="font-weight: 500; margin-right: 10px; margin-left: 60px; font-size: 20px;">PaymentDate</span>
                         <span style="font-size:15px;">{{PaymentDate}}</span>
                     </td>
                 </tr>
@@ -80,28 +80,36 @@
                     <span style="vertical-align: top;padding:0 10px 10px;">
 
                         <br />
-                        <span style="font-weight: 500; margin-Left: 20px; font-size: 20px;">Cash Pay Amount:</span>
-                        <span style="width: 400px;font-size:18px;margin-left:10px;"> ₹{{CashPayAmount}}</span> <br>
-
+                        <div id="id1" runat="server" Visible="chkcashflag">
+                            <span style="font-weight: 500; margin-Left: 20px; font-size: 20px;">Cash Pay Amount:</span>
+                            <span style="width: 400px;font-size:18px;margin-left:10px;"> ₹{{CashPayAmount}}</span> <br>
+                        </div>
                         <div>
-                            <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">Card Pay Amount:</span>
-                            <span style="font-size: 18px; margin-left: 10px;">
-                                ₹{{CardPayAmount}}
-                                <span style="margin-left:20px;">Card No : {{CardNo}}</span> <span style="margin-left:20px;">Card Date : {{CardDate}} </span><span style="margin-left:20px;">Card Bank Name :</span>
-                            </span>
+                            <div id="chkcardflag">
+                                <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">Card Pay Amount:</span>
+                                <span style="font-size: 18px; margin-left: 10px;">
+                                    ₹{{CardPayAmount}}
+                                    <span style="margin-left:20px;">Card No : {{CardNo}}</span> <span style="margin-left:20px;">Card Date : {{CardDate}} </span><span style="margin-left:20px;">Card Bank Name :</span>
+                                </span>
+                            </div>
                         </div> <br>
-
-                        <div>
+                        <!--hidden="chkchequeflag"-->
+                        <div id="chkchequeflag" *ngIf="{{chkchequeflag}}">
                             <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">ChequePayAmount :</span>
                             <span style="font-size: 18px; margin-left: 10px;">
                                 ₹ {{ChequePayAmount}}
                                 <span style="margin-left:20px;">Cheque No : {{ChequeNo}}</span> <span style="margin-left:20px;">Cheque Date : {{ChequeDate}}</span>
                             </span>
                         </div> <br>
-                        <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">NEFTPayAmount :</span>
-                        <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{NEFTPayAmount}}</span> <br>
-                        <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">PayTMAmount :</span>
-                        <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{PayTMAmount}}</span> <br>
+                        <div id="chkNeftflag">
+                            <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">NEFTPayAmount :</span>
+
+                            <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{NEFTPayAmount}}</span> <br>
+                        </div>
+                        <div id="chkpaytmflag">
+                            <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">PayTMAmount :</span>
+                            <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{PayTMAmount}}</span> <br>
+                        </div>
                         <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">Paid Amount :</span>
                         <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{PaidAmount}}</span> <br>
 

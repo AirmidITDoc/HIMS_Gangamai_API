@@ -14,7 +14,7 @@ namespace HIMS.Model.Master.Pathology
         public string CategoryName { get; set; }
         public bool IsDeleted { get; set; }
         public long AddedBy { get; set; }
-        public long CategoryId { get; set; }
+       // public long CategoryId { get; set; }
 
     }
     public class UpdatePathologyCategoryMaster 

@@ -164,7 +164,16 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
+            String[] GroupName;
+            object GroupName1="";
+
             double T_NetAmount = 0;
+            int j = Bills.Rows.Count;
+
+            for (int p=0;p < j;p++)
+            {
+                ////GroupName = Bills.Rows[p]["GroupName"].ToString();
+            }
 
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
             html = html.Replace("{{IPDNo}}", Bills.GetDateColValue("IPDNo"));
@@ -197,22 +206,38 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{ConcessionAmount}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{Qty}}", Bills.GetColValue("Qty"));
-
-
+            string previousLabel = "";
+            String Label ="";
 
 
             foreach (DataRow dr in Bills.Rows)
-        {
-            i++;
-            items.Append("<tr><td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;\">").Append(i).Append("</td>");
-            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
-            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
-            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
-            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
-            items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
+            {
+                i++; 
+                if (i == 1 || Label != previousLabel)
+                {
+                    j = 1;
+                    Label = dr["GroupName"].ConvertToString();
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+                previousLabel = dr["GroupName"].ConvertToString();
+                
+                if (Label == previousLabel)
+                {
+                   
+                    i++;
+                    items.Append("<tr><td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(j).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
 
-            T_NetAmount += dr["ChargesTotalAmt"].ConvertToDouble();
-        }
+                    T_NetAmount += dr["ChargesTotalAmt"].ConvertToDouble();
+                    j++;
+                }
+
+               
+            }
         html = html.Replace("{{Items}}", items.ToString());
       
         html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));

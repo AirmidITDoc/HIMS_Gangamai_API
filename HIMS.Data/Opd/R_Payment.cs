@@ -44,7 +44,9 @@ namespace HIMS.Data.Opd
         public string ViewOPPaymentReceipt(int PaymentId, string htmlFilePath, string HeaderName)
         {
             // throw new NotImplementedException();
+
             SqlParameter[] para = new SqlParameter[1];
+            Boolean chkchequeflag = false, chkNeftflag = true, chkcardflag = true, chkpaytmflag = true, chkcashflag = false;
 
             para[0] = new SqlParameter("@PaymentId", PaymentId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptIPDPaymentReceiptPrint", para);
@@ -54,11 +56,34 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
+            
 
-
-
-            //html = html.Replace("{{TotalIGST}}", T_TotalIGST.To2DecimalPlace());
+            html = html.Replace("{{chkchequeflag}}", chkchequeflag.ConvertToString());
             //html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
+
+            if ((Bills.GetColValue("ChequePayAmount").ConvertToDouble()) > 0)
+            {
+                chkchequeflag = true;
+                //@Html.Hidden("carmodelhiden", "");
+                //id1.Visible = true;
+
+            }
+            if ((Bills.GetColValue("CashPayAmount").ConvertToDouble()) > 0)
+            {
+                chkcashflag = true;
+            }
+            if ((Bills.GetColValue("CardPayAmount").ConvertToDouble()) > 0)
+            {
+                chkcardflag = false;
+            }
+            if ((Bills.GetColValue("NEFTPayAmount").ConvertToDouble()) > 0)
+            {
+                chkNeftflag = false;
+            }
+            if ((Bills.GetColValue("PayTMAmount").ConvertToDouble()) > 0)
+            {
+                chkpaytmflag = false;
+            }
 
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
@@ -69,6 +94,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{ChequeDate}}", Bills.GetColValue("ChequeDate").ConvertToDateString("dd/MM/yyyy"));
 
             html = html.Replace("{{ChequeNo}}", Bills.GetColValue("ChequeNo"));
+
             html = html.Replace("{{CardPayAmount}}", Bills.GetColValue("CardPayAmount"));
             html = html.Replace("{{CardDate}}", Bills.GetColValue("CardDate").ConvertToDateString("dd/MM/yyyy"));
             html = html.Replace("{{CardNo}}", Bills.GetColValue("CardNo"));

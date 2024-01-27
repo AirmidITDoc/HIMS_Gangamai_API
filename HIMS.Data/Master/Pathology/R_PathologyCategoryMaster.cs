@@ -36,8 +36,8 @@ namespace HIMS.Data.Master.Pathology
 
 
             var disc = pathCategoryMasterParams.InsertPathologyCategoryMaster.ToDictionary();
-            disc.Remove("CategoryId");
-            ExecNonQueryProcWithOutSaveChanges("insert_PathCategoryMaster_1", disc, outputId);
+           // disc.Remove("CategoryId");
+            ExecNonQueryProcWithOutSaveChanges("insert_PathCategoryMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
