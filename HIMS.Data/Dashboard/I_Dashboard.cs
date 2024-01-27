@@ -10,6 +10,6 @@ namespace HIMS.Data.Dashboard
     public interface I_Dashboard
     {
         public PieChartModel GetPieChartData(string procName, Dictionary<string, object> entity);
-        BarChartModel GetBarChartData(string procName, Dictionary<string, object> entity);
+        object GetBarChartData(string procName, Dictionary<string, object> entity);
     }
 }

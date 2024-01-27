@@ -11,6 +11,7 @@ using HIMS.Model.Master;
 using HIMS.Model.Dashboard;
 using System.Linq;
 using System.Drawing;
+using System.Reflection;
 
 namespace HIMS.Data.Dashboard
 {
@@ -41,7 +42,7 @@ namespace HIMS.Data.Dashboard
             }
             return obj;
         }
-        public BarChartModel GetBarChartData(string procName, Dictionary<string, object> entity)
+        public object GetBarChartData(string procName, Dictionary<string, object> entity)
         {
             BarChartModel obj = new BarChartModel() { colors = new List<string>(), data = new List<BarChartDto>() };
             SqlParameter[] para = new SqlParameter[entity.Count];
@@ -52,22 +53,39 @@ namespace HIMS.Data.Dashboard
                 i++;
             }
             var Items = GetListBySp<BarChartItem>(procName, para);
-            foreach (var item in Items.Select(x => new { x.multiid, x.multi }).Distinct())
+            if (Items.Any(x => x.multiid > 0))
             {
-                BarChartDto objDto = new BarChartDto() { name = item.multi, series = new List<BarChartItem>() };
-                var data = Items.Where(x => x.multiid == item.multiid);
-                foreach (var objItem in data)
+                foreach (var item in Items.Select(x => new { x.multiid, x.multi }).Distinct())
                 {
-                    objDto.series.Add(new BarChartItem() { name = objItem.name, value = objItem.value });
+                    BarChartDto objDto = new BarChartDto() { name = item.multi, series = new List<BarChartItem>() };
+                    var data = Items.Where(x => x.multiid == item.multiid);
+                    foreach (var objItem in data)
+                    {
+                        objDto.series.Add(new BarChartItem() { name = objItem.name, value = objItem.value });
+                    }
+                    obj.data.Add(objDto);
+                    Random rnd = new Random();
+                    byte[] b = new Byte[3];
+                    rnd.NextBytes(b);
+                    Color color = Color.FromArgb(b[0], b[1], b[2]);
+                    obj.colors.Add("#" + color.Name);
                 }
-                obj.data.Add(objDto);
-                Random rnd = new Random();
-                byte[] b = new Byte[3];
-                rnd.NextBytes(b);
-                Color color = Color.FromArgb(b[0], b[1], b[2]);
-                obj.colors.Add("#" + color.Name);
+                return obj;
             }
-            return obj;
+            else
+            {
+                PieChartModel model = new PieChartModel() { data = new List<PieChartDto>(), colors = new List<string>() };
+                foreach (var item in Items)
+                {
+                    model.data.Add(new PieChartDto() { name=item.name, value=item.value.ToString() });
+                    Random rnd = new Random();
+                    byte[] b = new Byte[3];
+                    rnd.NextBytes(b);
+                    Color color = Color.FromArgb(b[0], b[1], b[2]);
+                    model.colors.Add("#" + color.Name);
+                }
+                return model;
+            }
         }
         public List<RoleModel> GetRoles(string RoleName)
         {
