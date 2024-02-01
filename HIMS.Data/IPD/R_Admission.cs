@@ -194,8 +194,157 @@ namespace HIMS.Data.IPD
 
         }
 
+        public string AdmissionListCurrentHospitaldetail(int DoctorId, int WardId, string htmlFilePath, string htmlHeaderFilePath)
+        {
+            //throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[2];
+
+            para[0] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.String };
+            para[1] = new SqlParameter("@WardId", WardId) { DbType = DbType.String };
+
+            var Bills = GetDataTableProc("rptCurrentAdmittedList", para);
+            string html = File.ReadAllText(htmlFilePath);
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{HeaderName}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            string previousLabel = "";
+
+            double T_TotalBillAmount = 0,  T_TotalAdvAmount = 0, T_TotalBalAmount = 0;
+            String Label = "";
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+                if (i == 1)
+                {
+
+                    Label = dr["RoomName"].ConvertToString();
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+                previousLabel = dr["RoomName"].ConvertToString();
+
+                if (Label == previousLabel)
+                {
+                    j = 1;
+
+                    items.Append("<tr><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;text-align:center;\">").Append(j).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["RegID"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;vertical-align:middle;text-align: left;margin-left: 5px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;vertical-align:middle;text-align: center;\">").Append(dr["Age"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;vertical-align:middle;text-align: center;\">").Append(dr["GenderName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["AdmissionTime"].ConvertToDateString("dd/MM/yy")).Append("</td>");
+
+
+                    items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["RoomName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["BedName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["ChargesAmount"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["AdvanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["ChargesAmount"].ConvertToString()).Append("</td></tr>");
 
 
 
+
+                    T_TotalBillAmount += dr["ChargesAmount"].ConvertToDouble();
+                   T_TotalAdvAmount += dr["AdvanceAmount"].ConvertToDouble();
+                    T_TotalBalAmount += dr["ApprovedAmount"].ConvertToDouble();
+                    j++;
+                }
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_TotalBillAmount}}", T_TotalBillAmount.To2DecimalPlace());
+            html = html.Replace("{{T_TotalAdvAmount}}", T_TotalAdvAmount.To2DecimalPlace());
+            html = html.Replace("{{T_TotalBalAmount}}", T_TotalBalAmount.To2DecimalPlace());
+            //html = html.Replace("{{T_TotalBalafterAdvAmount}}", T_TotalBalafterAdvAmount.To2DecimalPlace());
+            //html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
+            //html = html.Replace("{{TotalCGST}}", T_TotalCGST.To2DecimalPlace());
+            //html = html.Replace("{{TotalSGST}}", T_TotalSGST.To2DecimalPlace());
+            //html = html.Replace("{{TotalIGST}}", T_TotalIGST.To2DecimalPlace());
+
+            return html;
+        }
+
+        public string AdmissionListCurrentPharmacydetail(int DoctorId, int WardId, string htmlFilePath, string htmlHeaderFilePath)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[2];
+
+            para[0] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.String };
+            para[1] = new SqlParameter("@WardId", WardId) { DbType = DbType.String };
+
+            var Bills = GetDataTableProc("rptCurrentAdmittedList", para);
+            string html = File.ReadAllText(htmlFilePath);
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{HeaderName}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0,j=0;
+            string previousLabel = "";
+
+            double T_TotalBillAmount = 0, T_TotalCreditAmount = 0, T_TotalAdvbalAmount = 0, T_TotalBalafterAdvAmount = 0, T_TotalBalancepay = 0, T_TotalCGST = 0, T_TotalSGST = 0, T_TotalIGST = 0;
+            String Label ="";
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++; 
+                if (i == 1)
+                {
+                   
+                    Label = dr["RoomName"].ConvertToString();
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+                previousLabel = dr["RoomName"].ConvertToString();
+
+                if (Label == previousLabel)
+                {
+                    j = 1;
+
+                    items.Append("<tr><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;text-align:center;\">").Append(j).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["RegID"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;vertical-align:middle;text-align: left;margin-left: 5px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;vertical-align:middle;text-align: center;\">").Append(dr["Age"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;vertical-align:middle;text-align: center;\">").Append(dr["GenderName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["AdmissionTime"].ConvertToDateString("dd/MM/yy")).Append("</td>");
+
+
+                    items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["RoomName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["BedName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["ChargesAmount"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["ChargesAmount"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["AdvanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["ApprovedAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+
+
+
+                    T_TotalBillAmount += dr["ChargesAmount"].ConvertToDouble();
+                    T_TotalCreditAmount += dr["ChargesAmount"].ConvertToDouble();
+                    T_TotalAdvbalAmount += dr["AdvanceAmount"].ConvertToDouble();
+                    T_TotalBalafterAdvAmount += dr["ApprovedAmount"].ConvertToDouble();
+                    j++;
+                }
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_TotalBillAmount}}", T_TotalBillAmount.To2DecimalPlace());
+            html = html.Replace("{{T_TotalCreditAmount}}", T_TotalCreditAmount.To2DecimalPlace());
+            html = html.Replace("{{T_TotalAdvbalAmount}}", T_TotalAdvbalAmount.To2DecimalPlace());
+            html = html.Replace("{{T_TotalBalafterAdvAmount}}", T_TotalBalafterAdvAmount.To2DecimalPlace());
+            //html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
+            //html = html.Replace("{{TotalCGST}}", T_TotalCGST.To2DecimalPlace());
+            //html = html.Replace("{{TotalSGST}}", T_TotalSGST.To2DecimalPlace());
+            //html = html.Replace("{{TotalIGST}}", T_TotalIGST.To2DecimalPlace());
+
+            return html;
+        }
     }
 }

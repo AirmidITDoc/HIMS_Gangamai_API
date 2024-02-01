@@ -161,3 +161,14 @@ namespace HIMS.API.Controllers.Master
         //----------------------------------------
     }
 }
+
+
+//Del_M_PathParaRangeMaster
+//Delete_DescriptiveParameterMaster_1
+//Insert_ParameterRangeWithAgeMaster_1
+//M_Insert_M_PathologyTemplateMaster
+//M_Update_M_PathologyTemplateMaster
+
+//PTestMaster----
+//Delete_M_PathTestDetailMaster
+//Delete_M_PathTemplateDetails

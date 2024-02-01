@@ -19,10 +19,12 @@ namespace HIMS.Model.Master.Pathology
         public string MinValue { get; set; }
         public string Maxvalue { get; set; }
         public long Addedby { get; set; }
-        public int MinAge { get; set; } 
-        public int MaxAge { get; set; }
-        public string AgeType { get; set; }
-     }
+
+        //public int PathparaRangeId { get; set; }
+        //public int MinAge { get; set; } 
+        //public int MaxAge { get; set; }
+        //public string AgeType { get; set; }
+    }
 
     public class UpdateParameterMasterAgeWise
     {
@@ -32,9 +34,9 @@ namespace HIMS.Model.Master.Pathology
         public string MinValue { get; set; }
         public string MaxValue { get; set; }
         public long Updatedby { get; set; }
-        public int MinAge { get; set; }
-        public int MaxAge { get; set; }
-        public string AgeType { get; set; }
+        //public int MinAge { get; set; }
+        //public int MaxAge { get; set; }
+        //public string AgeType { get; set; }
     }
 
 

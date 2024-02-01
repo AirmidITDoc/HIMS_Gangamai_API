@@ -172,7 +172,10 @@ namespace HIMS.Data.Opd
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
-                     
+
+            Boolean chkpaidflag = false, chkbalflag = false, chkremarkflag=false;
+
+
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount"));
             html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
@@ -216,14 +219,13 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{BalanceAmt}}", Bills.GetColValue("BalanceAmt"));
             html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount"));
             html = html.Replace("{{Price}}", Bills.GetColValue("Price"));
-         
-           
-  
             html = html.Replace("{{TotalGst}}", Bills.GetColValue("TotalGst"));
             html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount"));
             html = html.Replace("{{UserName}}", Bills.GetColValue("AddedByName").ConvertToString());
 
-
+            html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "block" : "none");
+            html = html.Replace("{{chkbalflag}}", Bills.GetColValue("BalanceAmt").ConvertToDouble() > 0 ? "block" : "none");
+            html = html.Replace("{{chkbalflag}}", Bills.GetColValue("BalanceAmt").ConvertToDouble() > 0 ? "block" : "none");
             return html;
 
         }

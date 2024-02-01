@@ -57,10 +57,11 @@ namespace HIMS.Data.Master.Pathology
             {
 
                 var D_Det = ParameterMasterParams.DeleteAssignParameterToRange.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("Delete_RangeParameterWithAgeMaster_1", D_Det); 
+                D_Det["ParameterId"] = ParameterMasterParams.UpdateParameterMaster.ParameterId;
+                ExecNonQueryProcWithOutSaveChanges("Del_M_PathParaRangeMaster", D_Det); 
                  
                 var disc2 = ParameterMasterParams.InsertParameterMasterRangeWise.ToDictionary();
-                // disc1.Remove("ParameterId");
+                 disc2["ParaId"]= ParameterMasterParams.UpdateParameterMaster.ParameterId;
                 var ParaId = ExecNonQueryProcWithOutSaveChanges("Insert_ParameterRangeMaster_1", disc2);
 
             }
@@ -68,11 +69,13 @@ namespace HIMS.Data.Master.Pathology
             {
 
                 var D_Det = ParameterMasterParams.DeleteAssignParameterToDescriptive.ToDictionary();
+                D_Det["ParameterId"] = ParameterMasterParams.UpdateParameterMaster.ParameterId;
                 ExecNonQueryProcWithOutSaveChanges("Delete_DescriptiveParameterMaster_1", D_Det);
 
                 foreach (var a in ParameterMasterParams.InsertAssignParameterToDescriptives)
                 {
                     var disc = a.ToDictionary();
+                    disc["ParameterId"] = ParameterMasterParams.UpdateParameterMaster.ParameterId;
                     ExecNonQueryProcWithOutSaveChanges("Insert_ParameterDescriptiveMaster_1", disc);
                 }
             }

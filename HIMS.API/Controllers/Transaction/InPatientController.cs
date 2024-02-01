@@ -82,6 +82,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_SubcompanyTPA _SubcompanyTPA;
         public readonly I_Mrddeathcertificate _Mrddeathcertificate;
         public readonly I_Prepostopnote _Prepostopnote;
+
        
         public InPatientController(
             IWebHostEnvironment environment,
@@ -113,7 +114,6 @@ namespace HIMS.API.Controllers.Transaction
             , I_IPPrescription iPPrescription, I_OTEndoscopy oTEndoscopy, I_OTRequest oTRequest, I_OTNotesTemplate oTNotesTemplate, I_MaterialConsumption materialConsumption
             , I_NeroSurgeryOTNotes neroSurgeryOTNotes, I_DoctorNote doctorNote, I_NursingTemplate nursingTemplate, I_Mrdmedicalcertificate mrdmedicalcertificate,
             I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote,I_WhatsappSms whatsappSms,
-
             I_Sales sales,
             Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility
             )
@@ -169,6 +169,7 @@ namespace HIMS.API.Controllers.Transaction
             this._Prepostopnote = prepostopnote;
             this._IFileUtility = fileUtility;
             this._WhatsappSms = whatsappSms;
+            
         }
 
         //New AdmissionSave
@@ -179,6 +180,9 @@ namespace HIMS.API.Controllers.Transaction
             var AdmissionS = _Admission.Insert(admissionParams);
             return Ok(AdmissionS);
         }
+
+
+
 
         [HttpPost("NewAdmissionUpdate")]
         public IActionResult NewAdmissionUpdate(AdmissionParams admissionParams)
@@ -195,6 +199,39 @@ namespace HIMS.API.Controllers.Transaction
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _Admission.AdmissionListCurrent(FromDate, ToDate, DoctorId, WardId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AdmittedPatientList", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-Admitted_PatientListHospitalDet")]
+        public IActionResult ViewAdmittedPatientListHospdetail(int DoctorId, int WardId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Admittedpatientlisthospdetail.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Admission.AdmissionListCurrentHospitaldetail( DoctorId, WardId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Admittedpatientlisthospdetail", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+        [HttpGet("view-Admitted_PatientListPharmacydetail")]
+        public IActionResult ViewAdmittedPatientListPharmactdet(int DoctorId, int WardId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Admittedpatientpharmacydetaillist.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Admission.AdmissionListCurrentPharmacydetail(DoctorId, WardId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Admittedpatientpharmacydetaillist", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             // write logic for send pdf in whatsapp
 
@@ -410,6 +447,37 @@ namespace HIMS.API.Controllers.Transaction
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _IPBilling.ViewIPBillReceipt(BillNo, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IpBillingReceipt", "IpBillingReceipt" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+        [HttpGet("view-IP-BillDatewiseReceipt")]
+        public IActionResult ViewIpBilldatewiseReceipt(int BillNo)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPBillDatewiseReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPBilling.ViewIPBillDatewiseReceipt(BillNo, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPBillDatewiseReport", "IPBillDatewiseReport" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-IP-BillWardwiseReceipt")]
+        public IActionResult ViewIpBillwardwiseReceipt(int BillNo)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPBillWardwiseReceipt.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPBilling.ViewIPBillWardwiseReceipt(BillNo, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPBillWardwiseReceipt", "IPBillWardwiseReceipt" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
 

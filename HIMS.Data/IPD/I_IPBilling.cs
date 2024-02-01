@@ -12,5 +12,9 @@ namespace HIMS.Data.IPD
 
         string ViewIPBillReceipt(int BillNo, string htmlFilePath, string HeaderName);
 
+        string ViewIPBillDatewiseReceipt(int BillNo, string htmlFilePath, string HeaderName);
+
+        string ViewIPBillWardwiseReceipt(int BillNo, string htmlFilePath, string HeaderName);
+
     }
 }

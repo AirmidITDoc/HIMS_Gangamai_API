@@ -556,6 +556,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
+            Boolean chkdiscflag = false;
 
             double T_TotalAmount = 0, T_TotalVatAmount = 0, T_TotalDiscAmount = 0, T_TotalNETAmount = 0, T_TotalBalancepay = 0, T_TotalCGST = 0, T_TotalSGST = 0, T_TotalIGST = 0;
 
@@ -601,6 +602,8 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{TotalCGST}}", T_TotalCGST.To2DecimalPlace());
             html = html.Replace("{{TotalSGST}}", T_TotalSGST.To2DecimalPlace());
             html = html.Replace("{{TotalIGST}}", T_TotalIGST.To2DecimalPlace());
+
+            html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("T_TotalDiscAmount").ConvertToDouble() > 0 ? "block" : "none");
 
             return html;
 

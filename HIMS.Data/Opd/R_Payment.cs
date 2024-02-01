@@ -46,10 +46,10 @@ namespace HIMS.Data.Opd
             // throw new NotImplementedException();
 
             SqlParameter[] para = new SqlParameter[1];
-            Boolean chkchequeflag = false, chkNeftflag = true, chkcardflag = true, chkpaytmflag = true, chkcashflag = false;
-
+            Boolean chkchequeflag = false, chkNeftflag = true, chkcardflag = true, chkpaytmflag = true, chkcashflag = false, chkremarkflag=false;
+            //rptIPDPaymentReceiptPrint
             para[0] = new SqlParameter("@PaymentId", PaymentId) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("rptIPDPaymentReceiptPrint", para);
+            var Bills = GetDataTableProc("rptOPDPaymentReceiptPrint", para);
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
@@ -62,7 +62,9 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{chkcardflag}}", Bills.GetColValue("CardPayAmount").ConvertToDouble() > 0 ? "block" : "none");
             html = html.Replace("{{chkNeftflag}}", Bills.GetColValue("NEFTPayAmount").ConvertToDouble() > 0 ? "block" : "none");
             html = html.Replace("{{chkpaytmflag}}", Bills.GetColValue("PayTMAmount").ConvertToDouble() > 0 ? "block" : "none");
-            
+            html = html.Replace("{{chkremarkflag}}", Bills.GetColValue("Remark").ConvertToString() != null ? "block" : "none");
+
+
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{RegId}}", Bills.GetColValue("RegId"));

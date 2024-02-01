@@ -11,6 +11,8 @@ namespace HIMS.Model.Master.Pathology
     }
     public class InsertPathologyTemplateMaster
     {
+
+
         public long TestId { get; set; }
         public long TemplateId { get; set; }
     }

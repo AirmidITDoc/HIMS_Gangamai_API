@@ -28,7 +28,7 @@ namespace HIMS.Model.Master.Pathology
         public bool IsDeleted { get; set; }
         public long Addedby { get; set; }
         public bool IsPrintDisSummary { get; set; }
-        public string MethodName { get; set; }
+        //public string MethodName { get; set; }
       //  public string ParaMultipleRange { get; set; }
         public int ParameterID { get; set; }
 
@@ -75,7 +75,7 @@ namespace HIMS.Model.Master.Pathology
 
     public class InsertAssignParameterToDescriptive
     {
-        public int ParameterID { get; set; }
+        public int ParameterId { get; set; }
         public string ParameterValues { get; set; }
         public Boolean IsDefaultValue { get; set; }
         public int Addedby { get; set; }
@@ -95,7 +95,7 @@ namespace HIMS.Model.Master.Pathology
         public bool IsPrintDisSummary { get; set; }
 
     //    public string ParaMultipleRange { get; set; }
-        public string MethodName { get; set; }
+        //public string MethodName { get; set; }
     }
 
 

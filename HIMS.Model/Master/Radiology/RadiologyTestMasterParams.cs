@@ -16,7 +16,7 @@ namespace HIMS.Model.Master.Radiology
         public string TestName { get; set; }
         public string PrintTestName { get; set; }
         public long CategoryId { get; set; }
-        public bool IsDeleted { get; set; }
+       // public bool IsDeleted { get; set; }
         public long AddedBy { get; set; }
         public long ServiceId { get; set; }
     }
@@ -26,7 +26,7 @@ namespace HIMS.Model.Master.Radiology
         public string TestName { get; set; }
         public string PrintTestName { get; set; }
         public long CategoryId { get; set; }
-        public bool IsDeleted { get; set; }
+       // public bool IsDeleted { get; set; }
         public long UpdatedBy { get; set; }
         public long ServiceId { get; set; }
     }

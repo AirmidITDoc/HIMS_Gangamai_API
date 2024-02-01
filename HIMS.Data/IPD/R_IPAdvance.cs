@@ -81,9 +81,9 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
+            Boolean chkresonflag = false;
 
-          
-          
+
             //html = html.Replace("{{TotalIGST}}", T_TotalIGST.To2DecimalPlace());
             //html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
 
@@ -101,7 +101,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
 
-
+            html = html.Replace("{{chkresonflag}}", Bills.GetColValue("reason").ConvertToString() !=null ? "block" : "none");
             return html;
 
         }

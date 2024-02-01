@@ -18,15 +18,17 @@ namespace HIMS.Data.Master.Radiology
         public bool Update(RadiologyTestMasterParams rtMasterParams)
         {
             var disc1 = rtMasterParams.UpdateRadiologyTestMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_RadiologyTestMaster", disc1);
+            ExecNonQueryProcWithOutSaveChanges("M_Update_M_RadiologyTestMaster", disc1);
 
             var D_Det = rtMasterParams.RadiologyTemplateDetDelete.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("p_Delete_M_RadiologyTemplateDetails", D_Det);
+            D_Det["TestId"] = rtMasterParams.UpdateRadiologyTestMaster.TestId;
+            ExecNonQueryProcWithOutSaveChanges("M_Delete_M_RadiologyTemplateDetails", D_Det);
 
             foreach (var a in rtMasterParams.InsertRadiologyTemplateTest)
             {
                 var disc = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_RadiologyTemplateTest", disc);
+                disc["TestId"] = rtMasterParams.UpdateRadiologyTestMaster.TestId;
+                ExecNonQueryProcWithOutSaveChanges("M_Insert_M_RadiologyTemplateTest", disc);
             }
             //-----------------------
 
@@ -44,8 +46,8 @@ namespace HIMS.Data.Master.Radiology
                 Direction = ParameterDirection.Output
             };
             var disc1 = rtMasterParams.InsertRadiologyTestMaster.ToDictionary();
-            disc1.Remove("TestId");
-            var testId = ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_Radiology_TestMaster", disc1, outputId);
+           // disc1.Remove("TestId");
+            var testId = ExecNonQueryProcWithOutSaveChanges("M_Insert_M_Radiology_TestMaster", disc1);
 
             //add DoctorDetails
 
@@ -53,7 +55,7 @@ namespace HIMS.Data.Master.Radiology
             {
                 var disc = a.ToDictionary();
                 disc["TestId"] = testId;
-                ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_RadiologyTemplateTest", disc);
+                ExecNonQueryProcWithOutSaveChanges("M_Insert_M_RadiologyTemplateTest", disc);
             }
 
             _unitofWork.SaveChanges();

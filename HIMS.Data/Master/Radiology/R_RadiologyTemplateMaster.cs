@@ -16,14 +16,14 @@ namespace HIMS.Data.Master.Radiology
         public bool Update(RadiologyTemplateMasterParams rtMasterParams)
         {
             var disc = rtMasterParams.UpdateRadiologyTemplateMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_Radiology_TemplateMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("M_Update_M_Radiology_TemplateMaster", disc);
             _unitofWork.SaveChanges();
             return true;
         }
         public bool Insert(RadiologyTemplateMasterParams rtMasterParams)
         {
             var disc = rtMasterParams.InsertRadiologyTemplateMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_Radiology_TemplateMaster", disc);
+            ExecNonQueryProcWithOutSaveChanges("M_Insert_M_Radiology_TemplateMaster", disc);
             _unitofWork.SaveChanges();
             return true;
         }

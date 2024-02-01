@@ -30,9 +30,11 @@ namespace HIMS.Model.Master.Pathology
         public long AddedBy { get; set; }
         public long ServiceId { get; set; }
         public bool IsTemplateTest { get; set; }
-        public bool IsCategoryPrint { get; set; }
-        public bool IsPrintTestName { get; set; }
- 
+
+        public int TestId { get; set; }
+        //public bool IsCategoryPrint { get; set; }
+        //public bool IsPrintTestName { get; set; }
+
     }
     public class UpdatePathologyTestMaster
     {
@@ -48,9 +50,9 @@ namespace HIMS.Model.Master.Pathology
         public bool IsDeleted { get; set; }
         public long UpdatedBy { get; set; }
         public long ServiceId { get; set; }
-        public bool IsTemplateTest { get; set; }
-        public bool IsCategoryPrint { get; set; }
-        public bool IsPrintTestName { get; set; }
+        public bool IsTemplateTest { get; set; }        //public bool IsCategoryPrint { get; set; }
+        //public bool IsPrintTestName { get; set; }
+
        
 
     }
