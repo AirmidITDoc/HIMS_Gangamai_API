@@ -8,5 +8,7 @@ namespace HIMS.Data.IPD
   public  interface I_MaterialConsumption
     {
         public String Insert(MaterialConsumptionparam MaterialConsumptionparam);
+
+        string ViewMaterialConsumptionReceipt(int MaterialConsumptionId, string htmlFilePath, string HeaderName);
     }
 }

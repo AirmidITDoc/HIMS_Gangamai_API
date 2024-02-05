@@ -83,6 +83,8 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_Mrddeathcertificate _Mrddeathcertificate;
         public readonly I_Prepostopnote _Prepostopnote;
 
+        public readonly I_DoctorShare _DoctorShare;
+
        
         public InPatientController(
             IWebHostEnvironment environment,
@@ -114,7 +116,7 @@ namespace HIMS.API.Controllers.Transaction
             , I_IPPrescription iPPrescription, I_OTEndoscopy oTEndoscopy, I_OTRequest oTRequest, I_OTNotesTemplate oTNotesTemplate, I_MaterialConsumption materialConsumption
             , I_NeroSurgeryOTNotes neroSurgeryOTNotes, I_DoctorNote doctorNote, I_NursingTemplate nursingTemplate, I_Mrdmedicalcertificate mrdmedicalcertificate,
             I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote,I_WhatsappSms whatsappSms,
-            I_Sales sales,
+            I_Sales sales,I_DoctorShare doctorShare,
             Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility
             )
         {
@@ -169,6 +171,7 @@ namespace HIMS.API.Controllers.Transaction
             this._Prepostopnote = prepostopnote;
             this._IFileUtility = fileUtility;
             this._WhatsappSms = whatsappSms;
+            this._DoctorShare = doctorShare;
             
         }
 
@@ -402,6 +405,37 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+
+        [HttpGet("view-IP_PrescriptionDetails")]
+        public IActionResult ViewIPPrescriptionDetails(int AdmissionID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPPrescriptiondetail.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPPrescription.ViewIPPrescriptionDetailReceipt(AdmissionID, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPPrescriptiondetail", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+        [HttpGet("view-IP_PrescriptionSummarylist")]
+        public IActionResult VieIOPPrescriptionSummarylist(int  AdmissionID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Prescriptionsummarylist.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPPrescription.ViewIPPrescriptionSummReceipt(AdmissionID, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Prescriptionsummarylist", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+
         [HttpPost("InsertIPPrescriptionReturn")]
 
         public IActionResult InsertIPPrescriptionReturn(IPPrescriptionReturnParams IPPrescriptionReturnParams)
@@ -409,6 +443,38 @@ namespace HIMS.API.Controllers.Transaction
             var IPD = _IPPrescriptionReturn.Insert(IPPrescriptionReturnParams);
             return Ok(IPD);
 
+        }
+
+        [HttpGet("view-IP_PrescriptionReturn")]
+        public IActionResult ViewIPPrescriptionReturn(int PresReId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPPrescriptionReturn.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPPrescriptionReturn.ViewIPPrescriptionReturnReceipt(PresReId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPPrescriptionReturn", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-IP_PrescriptionReturnWardwise")]
+        public IActionResult ViewIPPrescriptionReturnwardwise(DateTime FromDate, DateTime ToDate, int Reg_No)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PrescriptionReturnwardwise.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPPrescriptionReturn.ViewIPPrescriptionReturnfromwardReceipt(FromDate, ToDate, Reg_No, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PrescriptionReturnwardwise", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
         [HttpPost("IPDEmergencyRegInsert")]
@@ -913,6 +979,22 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(OtId);
         }
 
+        [HttpGet("view-MaterialConsumption")]
+        public IActionResult ViewMaterialconsumptionReceipt(int MaterialConsumptionI)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "MaterialConsumptionReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _MaterialConsumption.ViewMaterialConsumptionReceipt(MaterialConsumptionI, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "MaterialConsumptionReport", "MaterialConsumptionReport" + MaterialConsumptionI.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+      
         [HttpPost("DoctorNoteInsert")]
         public IActionResult DoctorNoteInsert(DoctorNoteparam DoctorNoteparam)
         {
@@ -977,6 +1059,14 @@ namespace HIMS.API.Controllers.Transaction
         {
             var OtId = _Prepostopnote.Update(Prepostopnoteparam);
             return Ok(OtId);
+        }
+
+
+        [HttpPost("InsertDoctorShare")]
+        public IActionResult DoctorshareInsert(Doctorshareparam Doctorshareparam)
+        {
+            var Id = _DoctorShare.Insert(Doctorshareparam);
+            return Ok(Id);
         }
     }
 

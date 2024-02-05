@@ -46,6 +46,70 @@ namespace HIMS.Data.IPD
             return true;
         }
 
+        public string ViewIPPrescriptionDetailReceipt(int AdmissionID, string htmlFilePath, string HeaderName)
+        {
+            //throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[1];
+
+            para[0] = new SqlParameter("@AdmissionID", AdmissionID) { DbType = DbType.Int64 };
+            //para[1] = new SqlParameter("@PatientType", PatientType) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptIPPrescriptionDetails", para);
+            string html = File.ReadAllText(htmlFilePath);
+            string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{HeaderName}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0,j=0;
+            string previousLabel = "";
+            String Label = "";
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+                if (i == 1 || Label != previousLabel)
+                {
+                    j = 1;
+                    Label = dr["RoundVisitTime"].ConvertToDateString("MM/dd/yyyy");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+                previousLabel = dr["RoundVisitTime"].ConvertToDateString("MM/dd/yyyy");
+
+                if (Label == previousLabel)
+                {
+
+                    i++;
+                    items.Append("<tr><td style=\"border-left:1px solid #000;padding:3px;height:10px;border-bottom:1px solid #000;text-align:center;vertical-align:middle;font-size:18px;\">").Append(j).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;border-bottom:1px solid #000;text-align:center;vertical-align:middle;font-size:18px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;font-size:18px;\">").Append(dr["TotalQty"].ConvertToString()).Append("</td></tr>");
+
+                   
+                    j++;
+                }
+
+
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
+
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{PDate}}", Bills.GetColValue("AdmissionTime").ConvertToDateString());
+
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+            html = html.Replace("{{WardName}}", Bills.GetColValue("WardName"));
+            html = html.Replace("{{PreparedBy}}", Bills.GetColValue("PreparedBy"));
+            html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
+
+            return html;
+        }
+
         public string ViewIPPrescriptionReceipt(int OP_IP_ID, int PatientType,  string htmlFilePath, string HeaderName)
         {
             // throw new NotImplementedException();
@@ -91,6 +155,134 @@ namespace HIMS.Data.IPD
             return html;
 
             }
+
+        public string ViewIPPrescriptionSummHourlyReceipt(int OP_IP_ID, int PatientType, string htmlFilePath, string HeaderName)
+        {
+            //  throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[1];
+
+            //para[0] = new SqlParameter("@AdmissionID", AdmissionID) { DbType = DbType.Int64 };
+            //para[1] = new SqlParameter("@PatientType", PatientType) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptIPPrescriptionDetails", para);
+            string html = File.ReadAllText(htmlFilePath);
+            string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{HeaderName}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            string previousLabel = "";
+            String Label = "";
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+                if (i == 1 || Label != previousLabel)
+                {
+                    j = 1;
+                    Label = dr["RoundVisitTime"].ConvertToDateString("MM/dd/yyyy");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+                previousLabel = dr["RoundVisitTime"].ConvertToDateString("MM/dd/yyyy");
+
+                if (Label == previousLabel)
+                {
+
+                    i++;
+                    items.Append("<tr><td style=\"border-left:1px solid #000;padding:3px;height:10px;border-bottom:1px solid #000;text-align:center;vertical-align:middle;font-size:18px;\">").Append(j).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;border-bottom:1px solid #000;text-align:center;vertical-align:middle;font-size:18px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;font-size:18px;\">").Append(dr["TotalQty"].ConvertToString()).Append("</td></tr>");
+
+
+                    j++;
+                }
+
+
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
+
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{PDate}}", Bills.GetColValue("AdmissionTime").ConvertToDateString());
+
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+            html = html.Replace("{{WardName}}", Bills.GetColValue("WardName"));
+            html = html.Replace("{{PreparedBy}}", Bills.GetColValue("PreparedBy"));
+            html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
+
+            return html;
+        }
+
+        public string ViewIPPrescriptionSummReceipt(int AdmissionID, string htmlFilePath, string HeaderName)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[1];
+
+            para[0] = new SqlParameter("@AdmissionID", AdmissionID) { DbType = DbType.Int64 };
+            //para[1] = new SqlParameter("@PatientType", PatientType) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptIPPrescriptionDetails", para);
+            string html = File.ReadAllText(htmlFilePath);
+            string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{HeaderName}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            string previousLabel = "";
+            String Label = "";
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+                if (i == 1 || Label != previousLabel)
+                {
+                    j = 1;
+                    Label = dr["RoundVisitTime"].ConvertToDateString("MM/dd/yyyy");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+                previousLabel = dr["RoundVisitTime"].ConvertToDateString("MM/dd/yyyy");
+
+                if (Label == previousLabel)
+                {
+
+                    i++;
+                    items.Append("<tr><td style=\"border-left:1px solid #000;padding:3px;height:10px;border-bottom:1px solid #000;text-align:center;vertical-align:middle;font-size:18px;\">").Append(j).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;border-bottom:1px solid #000;text-align:center;vertical-align:middle;font-size:18px;\">").Append(dr["RoundVisitDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                    items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;font-size:18px;\">").Append(dr["RoundVisitTime"].ConvertToDateString("hh:mm:tt")).Append("</td></tr>");
+
+
+                    j++;
+                }
+
+
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
+
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{PDate}}", Bills.GetColValue("AdmissionTime").ConvertToDateString());
+
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+            html = html.Replace("{{WardName}}", Bills.GetColValue("WardName"));
+            html = html.Replace("{{PreparedBy}}", Bills.GetColValue("PreparedBy"));
+            html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
+
+            return html;
+        }
 
         public string ViewOPPrescriptionReceipt(int VisitId, int PatientType, string htmlFilePath, string HeaderName)
         {

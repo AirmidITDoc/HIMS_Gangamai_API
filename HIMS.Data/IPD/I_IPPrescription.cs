@@ -9,6 +9,12 @@ namespace HIMS.Data.IPD
     {
         public bool Insert(IPPrescriptionParams IPPrescriptionParams);
         string ViewIPPrescriptionReceipt(int OP_IP_ID, int PatientType, string htmlFilePath, string HeaderName);
+
+        string ViewIPPrescriptionSummHourlyReceipt(int OP_IP_ID, int PatientType, string htmlFilePath, string HeaderName);
+
+        string ViewIPPrescriptionSummReceipt(int AdmissionID, string htmlFilePath, string HeaderName);
+
+        string ViewIPPrescriptionDetailReceipt(int AdmissionID ,string htmlFilePath, string HeaderName);
         string ViewOPPrescriptionReceipt(int VisitId, int PatientType, string htmlFilePath, string HeaderName);
     }
 }

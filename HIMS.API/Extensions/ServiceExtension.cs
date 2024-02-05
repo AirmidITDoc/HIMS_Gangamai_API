@@ -287,6 +287,11 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_Role, R_Role>();
             services.AddTransient<I_Dashboard, R_Dashboard>();
 
+            services.AddTransient<I_Stokadjustment, R_Stockadjustment>();
+            services.AddTransient<I_Mrpadjustment, R_Mrpadjustment>();
+            services.AddTransient<I_Openingbalance, R_OpeningBalance>();
+            services.AddTransient<I_DoctorShare, R_DoctorShare>();
+
             /*    services.AddTransient<I_BankMasterHome, I_BankMasterHome>();
                services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMasterHome>();
                services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();

@@ -34,6 +34,13 @@ namespace HIMS.Data.Pharmacy
         string ViewOPBillingpatientwiseReport(string PBillNo,string htmlFilePath, string Header2);
         string ViewPharSalesCashBookReport(DateTime FromDate, DateTime ToDate, string PaymentMode, int StoreId, string htmlFilePath, string HeaderName);
 
+
+        string ViewPharOPExtcountdailyReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string HeaderName);
+
+        string ViewPharCompanycreditlistReport(int StoreId, DateTime FromDate, DateTime ToDate,string htmlFilePath, string HeaderName);
+
+
+        string ViewPharcomwisepatientcreditReceipt(int StoreId,string htmlFilePath, string HeaderName);
         string GetFilePath();
     }
 }

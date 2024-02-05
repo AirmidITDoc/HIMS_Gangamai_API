@@ -27,9 +27,14 @@ namespace HIMS.API.Controllers.Transaction
         public readonly IPdfUtility _pdfUtility;
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
         private readonly I_Workorder _Workorder;
+        private readonly I_Stokadjustment _Stokadjustment;
+        private readonly I_Mrpadjustment _Mrpadjustment;
+        private readonly I_Openingbalance _Openingbalance;
 
         public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, 
-            Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_Workorder workorder)
+            Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_Workorder workorder,I_Stokadjustment stokadjustment,
+            I_Openingbalance openingbalance,
+            I_Mrpadjustment mrpadjustment)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
@@ -38,6 +43,9 @@ namespace HIMS.API.Controllers.Transaction
             _hostingEnvironment = hostingEnvironment;
             _pdfUtility = pdfUtility;
             _Workorder = workorder;
+            _Stokadjustment = stokadjustment;
+            _Mrpadjustment = mrpadjustment;
+            _Openingbalance = openingbalance;
         }
 
         [HttpPost("SalesSaveWithPayment")]
@@ -145,8 +153,8 @@ namespace HIMS.API.Controllers.Transaction
         [HttpPost("InsertWorkorder")]
         public IActionResult InsertWorkorder(Workorder Workorder)
         {
-            var SalesSave = _Workorder.InsertWorkOrder(Workorder);
-            return Ok(SalesSave.ToString());
+            var Id = _Workorder.InsertWorkOrder(Workorder);
+            return Ok(Id);
 
         }
 
@@ -157,6 +165,55 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(true);
 
         }
+
+        [HttpPost("InsertStockadjustment")]
+        public IActionResult InsertStockadjustment(Stockadjustmentparam Stockadjustmentparam)
+        {
+            var Id = _Stokadjustment.Insert(Stockadjustmentparam);
+            return Ok(Id);
+
+        }
+
+        [HttpPost("UpdateStockadjustment")]
+        public IActionResult updateStockadjustment(Stockadjustmentparam Stockadjustmentparam)
+        {
+            var SalesSave = _Stokadjustment.Update(Stockadjustmentparam);
+            return Ok(true);
+
+        }
+
+        [HttpPost("InsertMRPadjustment")]
+        public IActionResult InsertMRPadjustment(MRPAdjustment MRPAdjustment)
+        {
+            var Id = _Mrpadjustment.Insert(MRPAdjustment);
+            return Ok(Id);
+
+        }
+
+        [HttpPost("UpdateMRPadjustment")]
+        public IActionResult updateMRPadjustment(MRPAdjustment MRPAdjustment)
+        {
+            var SalesSave = _Mrpadjustment.update(MRPAdjustment);
+            return Ok(true);
+
+        }
+
+        [HttpPost("InsertOpeningBalance")]
+        public IActionResult InsertOpeningbalance(Openingbalance Openingbalance)
+        {
+            var Id = _Openingbalance.Insert(Openingbalance);
+            return Ok(Id);
+
+        }
+
+        [HttpPost("UpdateOpeningbalance")]
+        public IActionResult updateMRPadjustment(Openingbalance Openingbalance)
+        {
+            var SalesSave = _Openingbalance.Update(Openingbalance);
+            return Ok(true);
+
+        }
+
 
 
         [HttpGet("view-pharmacy-sale-bill")]
@@ -241,7 +298,54 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-     
+
+        [HttpGet("view-OPEXTDailycount_Report")]
+        public IActionResult viewOPExtdailycountReport(DateTime FromDate, DateTime ToDate,int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharOPExtdailycount.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Sales.ViewPharOPExtcountdailyReport(FromDate, ToDate,StoreId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharOPExtdailycount", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-CompanyCredit_Report")]
+        public IActionResult viewCompanycreditReport(int StoreId,DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharCompanycreditlist.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Sales.ViewPharCompanycreditlistReport(StoreId, FromDate, ToDate, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharCompanycreditlist", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-PatientwisecompyCredit_Report")]
+        public IActionResult viewCompanywisepatientcreditReport(int StoreID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharIPComwisepatientcredit.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Sales.ViewPharcomwisepatientcreditReceipt(StoreID, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharIPComwisepatientcredit", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
 
         [HttpGet("view-Sales_Report_PatientWiseNew")]

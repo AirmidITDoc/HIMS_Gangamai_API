@@ -11,7 +11,7 @@
         <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
             <div style="display:block;width:100%; align-items: center;">
                 <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
-                    IP PRESCRIPTION RETURN
+                    IP PRESCRIPTION SUMMARY LIST
                 </div>
                 <span style="font-size: 16px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
             </div>
@@ -88,19 +88,14 @@
                     </td>
 
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:50%;">
-                        Drug
+                        Date
                     </td>
 
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:20%;">
-                        Dose
+                        Time
                     </td>
 
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:15%;">
-                        Total Qty
-                    </td>
-                    <!-- <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:15%;">
-                        BalanceAmount
-                    </td>-->
+                 
 
                 </tr>
 
@@ -114,7 +109,7 @@
         <div style="display:flex;justify-content:space-between;margin-left:580px;margin-top:250px;">
 
             <div style="text-align:center;margin-left:30px;">
-                <div style="font-weight:700;font-size:18px;">{{PreparedBy}}</div>
+                <div style="font-weight:700;font-size:18px;">{{UserName}}</div>
                 <div style="font-size:18px;">Prepared By </div>
             </div>
         </div>
