@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="bill-template-wrapper" style="font-size: 30.25%;">
+
+
+        {{HeaderName}}
+        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+            <div style="display:block;width:100%; align-items: center;">
+                <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
+                   PATHOLOGY TEST REPORT
+                </div>
+                <span style="font-size: 15px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
+            </div>
+
+        </div>
+        <div style="margin-top:2px;">
+            <div style="font-weight: bold;font-size:16px;margin-left:10px;font-style:italic;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
+        </div>
+        <hr style="border-color:#a0a0a0">
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; font-size: 20px;">Reg No.</span>
+                        <span style="font-size:15px; ">{{RegNo}} </span>
+                    </td>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;;">PathDate</span>
+                        <span style="font-size:15px;"> {{PathTime}} </span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; font-size: 20px;">Patient Name</span>
+                        <span style="font-size:15px;width:500px;">{{PatientName}}</span>
+                    </td>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;;">Age</span>
+                        <span style="font-size:15px;">{{AgeYear}}/{{GenderName}}</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; font-size: 20px;">ConsultantDocName</span>
+                        <span style="font-size:15px;">{{ConsultantDocName}}</span>
+                    </td>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;">Room /Bed :</span>
+                        <span style="font-size:15px;">{{RoomName}} {{BedName}}</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; font-size: 20px; width: 300px;">Admiss Date :</span>
+                        <!-- <span style="font-size:15px;">{{Adm_Visit_Time}}</span>'-->
+                    </td>
+
+
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;">PathResultDr :</span>
+                        <span style="font-size:15px;">{{PathResultDr1}}</span>
+                    </td>
+                </tr>
+            </table>
+
+            <div style="display:flex;justify-content:space-between;padding:8px;border:2px solid gray;margin:5px; width:100%;">
+                <div style="display:flex;width:100%;margin-left:20px;font-size:20px;color:rgb(74 134 237);">
+                    <div style="font-weight:600">Investigation</div>
+                </div>
+            </div>
+
+
+            <table class="table" style="width:100%;border-collapse:collapse">
+                <tbody>
+
+                    <tr style="font-size:15px;background-color: rgb(127, 174, 255);">
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:5%;">
+                            SR.NO
+                        </td>
+                        <!--<td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:20%;">
+                            PatientName
+                        </td>
+
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:8%;">
+                            OP_IP_NO
+                        </td>-->
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
+                            PathTime
+                        </td>
+
+
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
+                            Report Time
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
+                            Parameter
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
+                            Result
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
+                            Normal Range
+                        </td>
+                        <!--<td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
+                            Room
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
+                            Bed
+                        </td>-->
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:15%;">
+                            Doctor Name
+                        </td>
+                    </tr>
+
+                    {{Items}}
+
+
+                </tbody>
+            </table>
+
+            <div style="display:flex;justify-content:space-between;margin-left:850px;">
+                <div style="position:relative;top:100px;text-align:center">
+                    <div style="font-weight:700;font-size:16px">{{PathResultDr1}}</div>
+                    <div style="font-weight:700;font-size:20px">Pathology Doc Name</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

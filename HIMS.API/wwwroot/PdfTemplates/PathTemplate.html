@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="bill-template-wrapper" style="font-size: 30.25%;">
+
+
+        {{HeaderName}}
+        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+            <div style="display:block;width:100%; align-items: center;">
+                <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
+                   PATHOLOGY TEMPLATE REPORT
+                </div>
+                <span style="font-size: 15px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
+            </div>
+
+        </div>
+        <div style="margin-top:2px;">
+            <div style="font-weight: bold;font-size:16px;margin-left:10px;font-style:italic;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
+        </div>
+        <hr style="border-color:#a0a0a0">
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; font-size: 20px;">Reg No.</span>
+                        <span style="font-size:15px; ">{{RegNo}} </span>
+                    </td>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;;">PathDate</span>
+                        <span style="font-size:15px;"> {{PathTime}} </span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; font-size: 20px;">Patient Name</span>
+                        <span style="font-size:15px;width:500px;">{{PatientName}}</span>
+                    </td>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;;">Age</span>
+                        <span style="font-size:15px;">{{AgeYear}}/{{GenderName}}</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; font-size: 20px;">ConsultantDocName</span>
+                        <span style="font-size:15px;">{{ConsultantDocName}}</span>
+                    </td>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;">Room /Bed :</span>
+                        <span style="font-size:15px;">{{RoomName}} {{BedName}}</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; font-size: 20px; width: 300px;">ReportTime :</span>
+                        <!-- <span style="font-size:15px;">{{ReportTime}}</span>'-->
+                    </td>
+
+
+                    <td>
+                        <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;">PathResultDr :</span>
+                        <span style="font-size:15px;">{{PathResultDr1}}</span>
+                    </td>
+                </tr>
+            </table>
+
+            <div style="display:flex;justify-content:space-between;padding:8px;border:2px solid gray;margin:5px; width:100%;">
+                <div style="display:flex;width:100%;margin-left:520px;font-size:20px;color:Blue;">
+                    <div style="font-weight:600">{{PrintTestName}}</div>
+                </div>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;padding:10px;border:2px solid gray;margin:5px;width:100%;">
+                <div style="display:flex;width:100%;margin-left:10px;height:auto">
+                    <div [innerHtml]="PathTemplateDetailsResult"></div>
+                    {{PathTemplateDetailsResult}}
+                </div>
+            </div>
+
+
+            <div style="display:flex;justify-content:space-between;margin-left:850px;">
+                <div style="position:relative;top:100px;text-align:center">
+                    <div style="font-weight:700;font-size:16px">{{Path_DoctorName}}</div>
+                    <div>Pathology Doc Name</div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+</body>
+</html>

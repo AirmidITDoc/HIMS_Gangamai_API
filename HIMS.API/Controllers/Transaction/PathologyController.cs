@@ -8,6 +8,8 @@ using HIMS.Model.Opd;
 using HIMS.Model.Transaction;
 using HIMS.Model.Pathology;
 using HIMS.Data.Pathology;
+using System.IO;
+using HIMS.API.Utility;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -16,16 +18,23 @@ namespace HIMS.API.Controllers.Transaction
     [Route("api/[controller]")]
     public class PathologyController : Controller
     {
+
+        public readonly IPdfUtility _pdfUtility;
+        private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
+
+
         public readonly I_PathologyTemplateResult _PathologyTemplateResult;
         public readonly I_Pathologysamplecollection _Pathologysamplecollection;
        public readonly I_pathresultentry _Pathresultentry;
         
         public PathologyController(I_PathologyTemplateResult pathologyTemplateResult,
-            I_Pathologysamplecollection pathologysamplecollection,I_pathresultentry pathresultentry)
+            I_Pathologysamplecollection pathologysamplecollection,I_pathresultentry pathresultentry, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility)
         {
             this._PathologyTemplateResult = pathologyTemplateResult;
             this._Pathologysamplecollection = pathologysamplecollection;
             this._Pathresultentry = pathresultentry;
+            _hostingEnvironment = hostingEnvironment;
+            _pdfUtility = pdfUtility;
         }
 
         [HttpPost("PathologyTemplateResult")]
@@ -34,6 +43,26 @@ namespace HIMS.API.Controllers.Transaction
             var PTR1 = _PathologyTemplateResult.Insert(PTRP);
             return Ok(PTR1);
         }
+
+
+        [HttpGet("view-PathTemplate")]
+        public IActionResult ViewPathTemplate(int PathReportId, int OP_IP_Type)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathTemplate.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _PathologyTemplateResult.ViewPathTemplateReceipt( PathReportId, OP_IP_Type, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTemplate", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+
 
         [HttpPost("PathSamplecollection")]
         public IActionResult PathSamplecollection(Pathologysamplecollectionparameter PTRP)
@@ -47,6 +76,23 @@ namespace HIMS.API.Controllers.Transaction
         {
             var PTR1 = _Pathresultentry.Insert(pathresultentryparam);
             return Ok(PTR1);
+        }
+
+
+        [HttpGet("view-PathReportMultiple")]
+        public IActionResult ViewPathReportMultiple(int OP_IP_Type)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathTestReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Pathresultentry.ViewPathTestReport(OP_IP_Type, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTestReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
     }
 

@@ -9,5 +9,6 @@ namespace HIMS.Data.Radiology
     public interface I_RadiologyTemplateResult
     {
         public bool Update(RadiologyTemplateResultParams RadiologyTemplateResultParams);
+        string ViewRadiologyTemplateReceipt(int RadReportId, int OP_IP_Type, string htmlFilePath, string HeaderName);
     }
 }
