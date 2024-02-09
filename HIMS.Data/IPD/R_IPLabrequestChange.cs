@@ -59,7 +59,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{AdmittedDocName}}", Bills.GetColValue("AdmittedDocName"));
 
             html = html.Replace("{{OPDNo}}", Bills.GetColValue("IPDNo"));
-            html = html.Replace("{{ReqDate}}", Bills.GetColValue("ReqDate").ConvertToDateString());
+            html = html.Replace("{{ReqDate}}", Bills.GetColValue("ReqDate").ConvertToDateString("dd/MM/yyyy"));
 
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));

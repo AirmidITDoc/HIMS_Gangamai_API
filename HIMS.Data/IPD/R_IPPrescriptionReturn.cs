@@ -89,7 +89,8 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
-            html = html.Replace("{{WardName}}", Bills.GetColValue("WardName"));
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
+            html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{PreparedBy}}", Bills.GetColValue("PreparedBy"));
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
 
@@ -131,11 +132,12 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
 
             html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
-            html = html.Replace("{{PDate}}", Bills.GetColValue("PDate").ConvertToDateString());
+            html = html.Replace("{{PresTime}}", Bills.GetColValue("PresTime").ConvertToDateString());
 
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
-            html = html.Replace("{{WardName}}", Bills.GetColValue("WardName"));
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
+            html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{PreparedBy}}", Bills.GetColValue("PreparedBy"));
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
 
