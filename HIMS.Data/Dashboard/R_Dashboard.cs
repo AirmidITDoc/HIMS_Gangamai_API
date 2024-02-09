@@ -34,11 +34,7 @@ namespace HIMS.Data.Dashboard
             obj.data = GetListBySp<PieChartDto>(procName, para);
             foreach (var item in obj.data)
             {
-                Random rnd = new Random();
-                byte[] b = new Byte[3];
-                rnd.NextBytes(b);
-                Color color = Color.FromArgb(b[0], b[1], b[2]);
-                obj.colors.Add("#" + color.Name);
+                obj.colors.Add(item.color);
             }
             return obj;
         }
@@ -77,7 +73,7 @@ namespace HIMS.Data.Dashboard
                 PieChartModel model = new PieChartModel() { data = new List<PieChartDto>(), colors = new List<string>() };
                 foreach (var item in Items)
                 {
-                    model.data.Add(new PieChartDto() { name=item.name, value=item.value.ToString() });
+                    model.data.Add(new PieChartDto() { name = item.name, value = item.value.ToString() });
                     Random rnd = new Random();
                     byte[] b = new Byte[3];
                     rnd.NextBytes(b);
