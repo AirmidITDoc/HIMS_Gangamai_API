@@ -57,6 +57,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly IPdfUtility _pdfUtility;
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
         private readonly IFileUtility _IFileUtility;
+        private readonly I_CrossConsultation _CrossConsultation;
         public OutPatientController(
             I_PhoneAppointment phoneAppointment,
             I_Payment payment,
@@ -78,7 +79,7 @@ namespace HIMS.API.Controllers.Transaction
             I_EmailNotification emailNotification,
             I_OPBillingCredit oPBillingCredit, I_OPSettlemtCredit oPSettlemtCredit, I_IP_SMSOutgoing iP_SMSOutgoing, I_PatientDocumentupload patientDocumentupload
             , I_PatientFeedback patientFeedback, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility
-            , IFileUtility fileUtility
+            , IFileUtility fileUtility, I_CrossConsultation crossConsultation
 
             )
         {
@@ -111,6 +112,7 @@ namespace HIMS.API.Controllers.Transaction
             _hostingEnvironment = hostingEnvironment;
             _pdfUtility = pdfUtility;
             _IFileUtility = fileUtility;
+            _CrossConsultation = crossConsultation;
         }
 
 
@@ -165,6 +167,33 @@ namespace HIMS.API.Controllers.Transaction
         {
             var appoSave = _OpdAppointment.Update(OpdAppointmentParams);
             return Ok(appoSave);
+        }
+
+
+        [HttpGet("view-PatientAppointment")]
+        public IActionResult ViewPatientAppointment(int VisitId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "AppointmentofOPPatient.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _OpdAppointment.ViewpatientAppointmentReceipt(VisitId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AppointmentofOPPatient", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+        //OPDCrossConsultation Insert 
+        [HttpPost("OPDCrossConsultationInsert")]
+        public IActionResult OPDCrossconsultationInsert(CrossConsultation CrossConsultation)
+        {
+          
+            var Id = _CrossConsultation.Save(CrossConsultation);
+            return Ok(Id);
         }
 
         /*  //saveAppointmentNewPatient Insert 

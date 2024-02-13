@@ -11,5 +11,7 @@ namespace HIMS.Data.Opd
         public string SavewithPhoto(OpdAppointmentParams opdAppointmentParams);
         public bool Update(OpdAppointmentParams opdAppointmentParams);
 
+
+        string ViewpatientAppointmentReceipt(int VisitId, string htmlFilePath, string htmlHeaderFilePath);
     }
 }
