@@ -91,7 +91,7 @@ namespace HIMS.Data.IPD
             
             html = html.Replace("{{TotalAmt}}", Bills.GetColValue("TotalAmt"));
             html = html.Replace("{{Remark}}", Bills.GetColValue("Remark"));
-
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
             return html;
 
