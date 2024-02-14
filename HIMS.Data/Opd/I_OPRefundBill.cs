@@ -8,5 +8,7 @@ namespace HIMS.Data.Opd
     public interface I_OPRefundBill
     {
         public String Insert(OPRefundBillParams OPRefundBillParams);
+
+        string ViewOPRefundofBillReceipt(int RefundId, string htmlFilePath, string htmlHeaderFilePath);
     } 
 }

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
+
+        {{HeaderName}}
+        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+            <div style="display:block;width:100%; align-items: center;">
+                <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
+                    OP REFUND  OF BILL RECEIPT
+                </div>
+                <span style="font-size: 18px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
+            </div>
+
+        </div>
+
+        <table>
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px;margin-left:10px; font-size: 20px;">Refund No.</span>
+                    <span style="font-size:18px; ">{{RefundNo}} </span>
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 400px;font-size:20px;">IPD No</span>
+                    <span style="font-size:18px;"> {{RegNo}} </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 10px; font-size: 20px;">Patient Name</span>
+                    <span style="font-size:18px;">{{PatientName}}</span>
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 400px; font-size: 20px;">Age</span>
+                    <span style="font-size:18px;">{{AgeYear}}</span>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 10px; font-size: 20px;">Refund Date</span>
+                    <span style="font-size:18px;">{{RefundDate}}</span>'
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 400px; font-size: 20px;">Phone No</span>
+                    <span style="font-size:18px;">{{MobileNo}} </span>
+                </td>
+            </tr>
+        </table>
+
+
+        <hr>
+
+
+
+        <div style="display: flex;">
+
+            <span style="vertical-align: top;padding:0 10px 10px;">
+                <br />
+                <span style="font-weight: 500;margin-Left:10px;font-size:20px">Bill Amount : </span>
+                <span style="width: 400px;font-size:18px;"> {{NetPayableAmt}}</span> <br>
+                <span style="font-weight: 500;margin-Left: 10px;font-size:20px">Payment Date :</span>
+                <span style="width: 400px;font-size:18px;"> {{PaymentTime}}</span> <br>
+                <span style="font-weight: 500;margin-Left: 10px;font-size:20px">Refund Amount :</span>
+                <span style="width: 400px;font-size:18px;"> {{RefundAmount}}</span> <br>
+                <span style="font-weight: 500; font-size: 20px; margin-Left: 10px;">Refund Reason :</span>
+                <span style="width: 400px;font-size:18px;"> {{Remark}}</span> <br>
+
+            </span>
+
+        </div>
+
+        <br>  <hr>
+        <span style="font-weight: 500;font-size:18px;"> Total Amount in words :-</span>
+        <hr>
+        <!--<div style="display: flex;">
+            <span style="font-weight: 500;">Remark</span>
+
+        </div><br><br>-->
+
+        <div style="display:flex;justify-content:space-between;margin-left:580px;margin-top:250px;">
+
+            <div style="text-align:center;margin-left:30px;">
+                <div style="font-weight:700;font-size:18px;">{{UserName}}</div>
+                <div style="font-size:18px;">Prepared By </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

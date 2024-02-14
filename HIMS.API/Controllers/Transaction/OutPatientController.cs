@@ -400,6 +400,22 @@ namespace HIMS.API.Controllers.Transaction
             var OPRBP1 = _OPRefundBill.Insert(OPRBP);
             return Ok(OPRBP1);
         }
+
+        [HttpGet("view-OPRefundofBill")]
+        public IActionResult ViewOPRefundofbill(int RefundId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPRefundofbill.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _OPRefundBill.ViewOPRefundofBillReceipt(RefundId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPRefundofbill", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         //SS_RoleTemplateMaster
         [HttpPost("OP_SS_RoleTemplateMasterSave")]
         public IActionResult OP_SS_RoleTemplateMasterSave(SS_RoleTemplateMasterParams SS_RoleTemplateMasterParams)
