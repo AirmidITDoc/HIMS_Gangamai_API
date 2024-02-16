@@ -65,6 +65,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
+
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
             

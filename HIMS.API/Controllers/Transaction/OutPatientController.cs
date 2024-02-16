@@ -173,10 +173,10 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-PatientAppointment")]
         public IActionResult ViewPatientAppointment(int VisitId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "AppointmentofOPPatient.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPAppointmentDetails.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _OpdAppointment.ViewpatientAppointmentReceipt(VisitId, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AppointmentofOPPatient", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var html = _OpdAppointment.ViewOppatientAppointmentdetailsReceipt(VisitId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPAppointmentDetails", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             // write logic for send pdf in whatsapp
 

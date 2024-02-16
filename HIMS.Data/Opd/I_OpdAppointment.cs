@@ -13,5 +13,6 @@ namespace HIMS.Data.Opd
 
 
         string ViewpatientAppointmentReceipt(int VisitId, string htmlFilePath, string htmlHeaderFilePath);
+        string ViewOppatientAppointmentdetailsReceipt(int VisitId, string htmlFilePath, string htmlHeaderFilePath);
     }
 }

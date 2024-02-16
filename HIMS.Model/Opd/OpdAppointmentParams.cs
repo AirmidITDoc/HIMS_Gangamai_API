@@ -44,7 +44,7 @@ namespace HIMS.Model.Opd
         public DateTime FollowupDate { get; set; }
 
         public int CrossConsulFlag { get; set; }
-        // public Boolean IsXray { get; set; }
+        public long PhoneAppId { get; set; }
     }
 
     public class RegistrationSave
@@ -174,6 +174,8 @@ namespace HIMS.Model.Opd
         public long VisitId { get; set; }
 
         public int CrossConsulFlag { get; set; }
+
+        public long PhoneAppId { get; set; }
 
         //  public Boolean IsMark { get; set; }
         // public Boolean IsXray { get; set; }
