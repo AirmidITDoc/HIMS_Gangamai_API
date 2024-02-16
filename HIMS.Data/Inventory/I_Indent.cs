@@ -9,5 +9,13 @@ namespace HIMS.Data.Inventory
     {
         public string Insert(IndentParams indentparams);
         public bool Update(IndentParams indentParams);
+
+
+        string ViewCurrentStock(string ItemName, int StoreId, string htmlFilePath, string HeaderName);
+
+        string ViewItemwiseStock( DateTime FromDate, DateTime todate,int StoreId, string htmlFilePath, string HeaderName);
+
+        string ViewDaywisestock(DateTime LedgerDate,int StoreId, string htmlFilePath, string HeaderName);
+
     }
 }

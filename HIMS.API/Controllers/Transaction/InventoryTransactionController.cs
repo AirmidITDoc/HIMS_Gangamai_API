@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using HIMS.Model.Inventory;
 using HIMS.Data.Inventory;
+using System.IO;
+using HIMS.API.Utility;
+using System;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -13,17 +16,24 @@ namespace HIMS.API.Controllers.Transaction
          {
              return View();
          }*/
-
+        public readonly IPdfUtility _pdfUtility;
+        private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
+        private readonly IFileUtility _IFileUtility;
         public readonly I_Indent _indent;
         public readonly I_IssueTrackingInfo _IssueTrackingInfo;
     
         public InventoryTransactionController(
            I_Indent indent,
-           I_IssueTrackingInfo issueTrackingInfo
+           I_IssueTrackingInfo issueTrackingInfo,
+            Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility
+            , IFileUtility fileUtility
         )
         {
             this._indent = indent;
             this._IssueTrackingInfo = issueTrackingInfo;
+            _hostingEnvironment = hostingEnvironment;
+            _pdfUtility = pdfUtility;
+            _IFileUtility = fileUtility;
         }
 
         [HttpPost("IndentSave")]
@@ -58,6 +68,55 @@ namespace HIMS.API.Controllers.Transaction
         {
             var IndentUpdate = _IssueTrackingInfo.UpdateStatus(issueTrackerParams);
             return Ok(IndentUpdate);
+        }
+
+        [HttpGet("view-InvItemwiseStock")]
+        public IActionResult ViewInvItemwise(DateTime FromDate ,DateTime todate,int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InvCurStockItemwise.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _indent.ViewItemwiseStock(FromDate, todate, StoreId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvCurStockItemwise", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+        [HttpGet("view-InvDaywiseStock")]
+        public IActionResult ViewInvDaywise(DateTime LedgerDate, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InvStockDaywise.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _indent.ViewDaywisestock(LedgerDate, StoreId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvStockDaywise", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-InvCurrentStock")]
+        public IActionResult ViewCurrentStock(string ItemName, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InvCurrentStock.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _indent.ViewCurrentStock(ItemName, StoreId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvCurrentStock", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
     }
 }
