@@ -7,5 +7,7 @@ namespace HIMS.Data.Pharmacy
         public string InsertPurchaseOrder(PurchaseParams purchaseParams);
         public bool UpdatePurchaseOrder(PurchaseParams purchaseParams);
         public bool VerifyPurchaseOrder(PurchaseParams purchaseParams);
+
+        string ViewPurchaseorder(int PurchaseID, string htmlFilePath, string HeaderName);
     }
 }

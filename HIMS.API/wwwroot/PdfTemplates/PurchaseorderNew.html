@@ -1,0 +1,259 @@
+﻿<div class="bill-template-wrapper" style="font-size: 30.25%;">
+
+
+
+    <div style=" align-items: center; margin-bottom: 10px;text-align: center; ">
+        <div style="border: 1px solid black;width:95%x;height: 50px; background-color: red;border-top-right-radius: 110px;
+        margin-top: 0px;border-top-left-radius: 110px;padding: 6px ;">
+            <!--  <span style="text-transform: uppercase;font-weight:bolder;margin:0;text-align: center;color: white;padding-top: 6px;font-size:20px;">
+                jnanayogi shri siddeshwar
+                super speciality hospital
+            </span>-->
+        </div>
+        <div style="display: flex;">
+            <!--<div style="border: 1px solid transparent;width: 700px;height: 50px; background-color: black;border-bottom-right-radius: 110px;">
+                <span style="text-transform: uppercase;font-size: 18px;font-weight: 500;text-align: center;color: white;">
+                    (A Unit of Shri
+                    Siddeshwar Loka Kalyana Charitable
+                    Trust)
+                </span><br>
+                <span style="font-size:15px;font-weight: 500;text-align: center;color: white;">
+                    Survey No.10/4, Near S-Hyper Mart, Vijayapur
+                    586 101
+                </span><br>
+                <span style="font-size: 15px;font-weight: 500;text-align: center;color: white;padding-bottom:10px;">
+                    Call :-08352-249399 | info@ jsshospitals.com
+                    | www.jsshospitals.com
+                    | Reg.No :-BIJ00467ALSSh
+                </span>
+
+            </div>-->
+            {{HeaderName}}
+            <span style="font-size: 20px; text-transform: uppercase;font-weight: 500;margin-top: 20px;margin-left: 60px;color:black">
+               PURCHASE ORDER
+            </span>
+        </div>
+        <!--  <hr>-->
+
+    </div>
+    <table style="font-size:18px;">
+        <tr>
+            <td>
+                <span style="font-weight: 500;margin-right: 25px;">Supplier Name</span>
+                <span>{{SupplierName}}</span>
+            </td>
+            <td>
+                <span style="font-weight: 500;margin-right: 35px;margin-left: 400px;">PO No.</span>
+                <span>{{PurchaseNo}} </span>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <span style="font-weight: 500;margin-right: 60px;">Address</span>
+                <span>{{Address}}</span>
+            </td>
+            <td>
+                <span style="font-weight: 500;margin-right:27px;margin-left: 400px;">PO Date</span>
+                <span> {{PurchaseDate}} </span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <span style="font-weight: 500;margin-right: 60px;">Email Id</span>
+                <span>{{Email}}</span>
+            </td>
+            <td>
+                <span style="font-weight: 500;margin-right: 30px;margin-left: 400px;">GST No.</span>
+                <span>{{GSTNo}}</span>'
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <span style="font-weight: 500;margin-right: 45px;">Mobile No.</span>
+                <span>{{Mobile}}</span>'
+            </td>
+            <td>
+                <span style="font-weight: 500;margin-right: 21px;margin-left: 400px;">Phone No</span>
+                <span>{{Phone}} </span>
+            </td>
+        </tr>
+    </table>
+
+
+    <hr>
+
+    <table class="table6"style="width: 100%;  text-align: right;border-spacing: 1px;border-collapse: separate;border-color: gray;">
+        <tr style="font-size:15px;">
+
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
+                 border-top-left-radius: 20px;color: black;">
+                Sr.No
+            </td>
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
+                color: black;">
+
+                Item Name
+            </td>
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                Unit
+            </td>
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                Qty
+            </td>
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                MRP
+            </td>
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                Rate
+            </td>
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                Total Amount
+            </td>
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                Disc
+            </td>
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                GST
+            </td>
+
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+              border-top-right-radius: 20px;color: black;">
+                Net Amount
+            </td>
+        </tr>
+        {{Items}}
+
+        <!-- <tr style="height:20px;">
+
+            <td colspan="3" style="border: 1px solid gray;vertical-align: top;
+            padding: 15px;color: black;font-weight:bold;">Total</td>
+            <td style="border: 1px solid gray;vertical-align: top;font-weight:bold;
+            padding: 15px;height: 20px;color: black;">{{TotalQty}}</td>
+            <td style="border: 1px solid gray;vertical-align: top;font-weight:bold;
+            padding: 15px;height: 20px;color: black;">{{TotalRate.toFixed(2)}}</td>
+            <td style="border: 1px solid gray;vertical-align: top;font-weight:bold;
+            padding: 15px;height: 20px;color: black;">{{TotalAmt.toFixed(2)}}</td>
+            <td style="border: 1px solid gray;vertical-align: top;font-weight:bold;
+            padding: 15px;height: 20px;color: black;">{{TOtalDiscPer.toFixed(2)}}</td>
+            <td style="border: 1px solid gray;vertical-align: top;font-weight:bold;
+            padding: 15px;height: 20px;color: black;">{{TotalGSTAmt.toFixed(2)}}</td>
+            <td style="border: 1px solid gray;vertical-align: top;font-weight:bold;
+            padding: 15px;height: 20px;color: black;">{{TotalNetAmt.toFixed(2)}}</td>
+
+        </tr> -->
+        <tr style="height: 5px;">
+            <td colspan="2" style="border: 1px solid gray;font-weight: 500;
+           padding: 15px;text-align: left;vertical-align: top;">
+                Freight Amount :-
+                <span>{{FreightAmount}}</span>
+            </td>
+            <td colspan="4" style="border: 1px solid gray;vertical-align: top;
+             padding: 15px;text-align: left;font-weight: 500;">
+                Transport Charges :-
+                <span>{{TransportChanges}}</span>
+            </td>
+            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+            padding: 15px;text-align: left;">
+                Grand Total Amount
+            </td>
+            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+            padding: 15px;height: 20px;text-align: right;">
+                {{TotalAmount}}
+            </td>
+        </tr>
+        <tr>
+            <!-- <td colspan="7"></td> -->
+            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+            padding: 15px;text-align: left;font-weight: 500;">
+                Handling Charges :-
+                <span>{{HandlingCharges}}</span>
+            </td>
+            <td colspan="4" style="border: 1px solid gray;vertical-align: top;
+            padding: 15px;text-align: left;font-weight: 500;">
+                Octri Amount :-
+                <span>{{OctriAmount}}</span>
+            </td>
+            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+             padding: 15px;text-align: left;">
+                Discount Amount
+            </td>
+            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+             padding: 15px;height: 20px;text-align: right;">
+                {{DiscAmount}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" style="border: 1px solid gray;vertical-align: top;
+            padding: 15px;text-align: left;font-weight: 500;">
+                Remark :-
+                <span>{{Remarks}}</span>
+            </td>
+            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+             padding: 15px;text-align: left;">
+                GST Amount
+            </td>
+            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+             padding: 15px;height: 20px;text-align: right;">
+                {{VatAmount}}
+            </td>
+        </tr>
+
+        <tr rowspan="2">
+            <td colspan="6" style="font-weight: 500;border: 1px solid gray;vertical-align: top;
+            padding: 15px;text-align: left; border-bottom-left-radius: 20px;">
+                Total Amount in words :-
+                {{TotalAmount}}
+            </td>
+            <td colspan="2" style="border: 1px solid gray;vertical-align: top;text-align: left;font-weight:bold;
+             padding: 15px;color: black; ">
+                Total Net Amount
+            </td>
+            <td colspan="2" style="border: 1px solid gray;vertical-align: top;text-align: right;font-weight:bold;
+             padding: 15px;height: 20px;color: black;border-bottom-right-radius: 20px;">
+                {{TotalNETAmount}}
+            </td>
+        </tr>
+
+    </table>
+    <hr><br>
+
+
+    <div style="display: flex;font-size:18px">
+        <div>
+            <span style="font-weight: 500;margin-left:70px;margin-top:50px;">
+                {{AddedByName}}
+            </span><br>
+            <span style="font-weight: 500;margin-left: 55px;"> Added By</span>
+        </div>
+
+        <span style="margin-left: 770px; font-weight: 500;">Authorized Signature</span>
+
+    </div><br>
+
+
+    <div style="border: 1px solid black;width: 95%;height: 30px;border-bottom-right-radius: 110px;
+    margin-top: 0px;border-bottom-left-radius: 110px;padding: 6px ;">
+        <div style="font-style: italic; opacity:1;text-align: center;font-size: 18px; margin-top: 8px; color:  black;">
+            This is Computer generated invoice hence doesn’t require signature
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
