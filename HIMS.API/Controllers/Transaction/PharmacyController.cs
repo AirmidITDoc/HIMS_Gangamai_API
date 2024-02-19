@@ -89,6 +89,7 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(SalesSave.ToString());
 
         }
+
         [HttpPost("InsertSalesReturnPaid")]
         public IActionResult InsertSalesReturnPaid(SalesReturnCreditParams salesReturnParams)
         {
@@ -111,6 +112,23 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(true);
 
         }
+
+        [HttpGet("view-Purchaseorder")]
+        public IActionResult ViewAdmittedPatientList(int PurchaseID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PurchaseorderNew.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _PurchaseOrder.ViewPurchaseorder(PurchaseID, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PurchaseorderNew", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
         [HttpPost("VerifyPurchaseOrder")]
         public IActionResult VerifyPurchaseOrder(PurchaseParams purchaseParams)
         {
@@ -139,6 +157,22 @@ namespace HIMS.API.Controllers.Transaction
             var SalesSave = _GRN.InsertGRNPurchase(grnParams);
             return Ok(SalesSave.ToString());
 
+        }
+
+        [HttpGet("view-GRNReport")]
+        public IActionResult ViewGRNReport(int GRNID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GRNReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _GRN.ViewGRNReport( GRNID, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GRNReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
         [HttpPost("VerifyGRN")]

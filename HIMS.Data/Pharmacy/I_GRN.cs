@@ -8,5 +8,7 @@ namespace HIMS.Data.Pharmacy
         public string InsertGRNPurchase(GRNParams grnParams);
         public bool UpdateGRN(GRNParams grnParams);
         public bool VerifyGRN(GRNParams grnParams);
+
+        string ViewGRNReport(int GRNID, string htmlFilePath, string HeaderName);
     }
 }
