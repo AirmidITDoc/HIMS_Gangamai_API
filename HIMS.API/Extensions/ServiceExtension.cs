@@ -35,6 +35,7 @@ using HIMS.Data.HomeTransaction;
 using HIMS.Data.Inventory;
 using HIMS.Data.Users;
 using HIMS.Data.Dashboard;
+using HIMS.Data.WhatsAppEmail;
 //using HIMS.Data.Transaction;
 namespace HIMS.API.Extensions
 {

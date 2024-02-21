@@ -15,6 +15,8 @@ using HIMS.Data.Pharmacy;
 using Microsoft.Extensions.Configuration;
 using HIMS.API.Utility;
 using HIMS.Common.Utility;
+using HIMS.Model.WhatsAppEmail;
+using HIMS.Data.WhatsAppEmail;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -761,19 +763,19 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
-        [HttpPost("WhatsappSMSoutgoingSave")]
-        public IActionResult InsertWhatsappsmsoutgoing(WhatsappSmsparam WhatsappSmsparam)
-        {
+        //[HttpPost("WhatsappSMSoutgoingSave")]
+        //public IActionResult InsertWhatsappsmsoutgoing(WhatsappSmsparam WhatsappSmsparam)
+        //{
 
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaBillReceipt.html");
-            var html = _Sales.ViewBill(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, WhatsappSmsparam.InsertWhatsappsmsInfo.PatientType, htmlFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaBill", "PharmaBill_" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaBillReceipt.html");
+        //    var html = _Sales.ViewBill(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, WhatsappSmsparam.InsertWhatsappsmsInfo.PatientType, htmlFilePath);
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaBill", "PharmaBill_" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
             
-            WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+        //    WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
 
-            var Id = _WhatsappSms.Insert(WhatsappSmsparam);
-            return Ok(Id);
-        }
+        //    var Id = _WhatsappSms.Insert(WhatsappSmsparam);
+        //    return Ok(Id);
+        //}
        
         [HttpPost("DocAttachment")]
         public async Task<IActionResult> DocumentAttachmentAsync([FromForm] DocumentAttachment documentAttachments)
