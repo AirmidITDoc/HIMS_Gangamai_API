@@ -36,6 +36,6 @@ namespace HIMS.Model.Opd
         public DateTime FollowupDate { get; set; }
 
         public int CrossConsulFlag { get; set; }
-        // public Boolean IsXray { get; set; }
+        public int PhoneAppId { get; set; }
     }
 }
