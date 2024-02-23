@@ -105,9 +105,14 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{MobileNo}}", Bills.GetColValue("MobileNo"));
 
             html = html.Replace("{{RefundDate}}", Bills.GetColValue("RefundDate").ConvertToDateString());
+            html = html.Replace("{{RefundTime}}", Bills.GetColValue("RefundTime").ConvertToDateString("dd/mm/yyyy hh:mm"));
             html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString());
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
+            html = html.Replace("{{PBillNo}}", Bills.GetColValue("PBillNo").ConvertToString());
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate").ConvertToDateString());
+            html = html.Replace("{{NetPayableAmt}}", Bills.GetColValue("NetPayableAmt"));
+            
 
             return html;
         }

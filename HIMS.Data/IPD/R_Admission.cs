@@ -102,6 +102,7 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
             html = html.Replace("{{MobileNo}}", Bills.GetColValue("MobileNo"));
+            html = html.Replace("{{PhoneNo}}", Bills.GetColValue("PhoneNo"));
 
             html = html.Replace("{{DOT}}", Bills.GetColValue("DOT").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
@@ -125,7 +126,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{IsMLC}}", Bills.GetColValue("IsMLC"));
             html = html.Replace("{{AdmittedDoctor1}}", Bills.GetColValue("AdmittedDoctor1"));
-
+            html = html.Replace("{{MaritalStatusName}}", Bills.GetColValue("MaritalStatusName"));
+            
             html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));
             html = html.Replace("{{LoginUserSurname}}", Bills.GetColValue("LoginUserSurname"));
 

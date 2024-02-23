@@ -453,7 +453,22 @@ namespace HIMS.API.Controllers.Transaction
             //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+        [HttpGet("view-OPD-daily-collection")]
+        public IActionResult ViewOPDDailyCollection(DateTime FromDate, DateTime ToDate, int AddedById)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDDailyCollection.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _OPbilling.ViewOPBillDailyReportReceipt(FromDate, ToDate, AddedById, htmlFilePath, htmlHeaderFilePath);
+            // var html = _Sales.ViewDailyCollection(FromDate, ToDate, StoreId, AddedById, htmlFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDDailyCollection", "OPDDailyCollection", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpPost("OPBilling")]
         public String OPBilling(OPbillingparams OPbillingparams)
         {
