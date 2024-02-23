@@ -30,13 +30,13 @@ namespace HIMS.Data.Inventory
 
             var disc3 = indentParams.InsertIndent.ToDictionary();
             disc3.Remove("IndentId");
-            var IndentId = ExecNonQueryProcWithOutSaveChanges("insert_IndentHeader_1", disc3, vIndentId);
+            var IndentId = ExecNonQueryProcWithOutSaveChanges("m_insert_IndentHeader_1", disc3, vIndentId);
 
             foreach (var a in indentParams.InsertIndentDetail)
             {
                 var disc5 = a.ToDictionary();
                 disc5["IndentId"] = IndentId;
-                ExecNonQueryProcWithOutSaveChanges("insert_IndentDetails", disc5);
+                ExecNonQueryProcWithOutSaveChanges("m_insert_IndentDetails", disc5);
              
             }
 
@@ -56,7 +56,7 @@ namespace HIMS.Data.Inventory
             foreach (var a in indentParams.InsertIndentDetail)
             {
                 var disc5 = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("insert_IndentDetails", disc5);
+                ExecNonQueryProcWithOutSaveChanges("m_insert_IndentDetails", disc5);
 
             }
 
