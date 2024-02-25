@@ -8,11 +8,9 @@ namespace HIMS.Model.Pharmacy
     {
             public SalesInsert SalesInsert { get; set; }
             public List<SalesDetailInsert> SalesDetailInsert { get; set; }
-
-
-        public SalesDraftbillInsert SalesDraftbillInsert { get; set; }
-        public List<SalesDraftbillDetailInsert> SalesDraftbillDetailInsert { get; set; }
-        public List<UpdateCurStkSales> UpdateCurStkSales { get; set; }
+            public SalesDraftbillInsert SalesDraftbillInsert { get; set; }
+            public List<SalesDraftbillDetailInsert> SalesDraftbillDetailInsert { get; set; }
+            public List<UpdateCurStkSales> UpdateCurStkSales { get; set; }
             public Cal_DiscAmount_Sales Cal_DiscAmount_Sales { get; set; }
             public Cal_GSTAmount_Sales Cal_GSTAmount_Sales { get; set; }
             public SalesPayment SalesPayment { get; set; }
@@ -120,7 +118,7 @@ namespace HIMS.Model.Pharmacy
         //public string SalesHeadName { get; set; }
         //public long SalesTypeId { get; set; }
         public long DSalesId { get; set; }
-        //public string ExtMobileNo { get; set; }
+        public string ExtMobileNo { get; set; }
     }
     public class SalesDraftbillDetailInsert
     {

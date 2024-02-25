@@ -30,11 +30,13 @@ namespace HIMS.API.Controllers.Transaction
         private readonly I_Stokadjustment _Stokadjustment;
         private readonly I_Mrpadjustment _Mrpadjustment;
         private readonly I_Openingbalance _Openingbalance;
+        private readonly I_MaterialAcceptance _MaterialAcceptance;
 
         public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, 
-            Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_Workorder workorder,I_Stokadjustment stokadjustment,
+            Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_Workorder workorder, I_Stokadjustment stokadjustment,
             I_Openingbalance openingbalance,
-            I_Mrpadjustment mrpadjustment)
+            I_Mrpadjustment mrpadjustment,
+            I_MaterialAcceptance materialAcceptance)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
@@ -46,6 +48,7 @@ namespace HIMS.API.Controllers.Transaction
             _Stokadjustment = stokadjustment;
             _Mrpadjustment = mrpadjustment;
             _Openingbalance = openingbalance;
+            _MaterialAcceptance = materialAcceptance;
         }
 
         [HttpPost("SalesSaveWithPayment")]
@@ -56,8 +59,6 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
-
-
         [HttpPost("SalesSaveDraftBill")]
         public IActionResult SalesSaveDraftBill(SalesParams salesParams)
         {
@@ -65,7 +66,6 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(SalesSave.ToString());
 
         }
-
 
         [HttpPost("SalesSaveWithCredit")]
         public IActionResult SalesSaveWithCredit(SalesCreditParams salesCreditParams)
@@ -82,6 +82,13 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
+        [HttpPost("UpdateMaterialAcceptance")]
+        public IActionResult UpdateMaterialAcceptance(MaterialAcceptParams materialAcceptParams)
+        {
+            var SalesSave = _MaterialAcceptance.UpdateMaterialAcceptance(materialAcceptParams);
+            return Ok(SalesSave.ToString());
+
+        }
         [HttpPost("InsertSalesReturnCredit")]
         public IActionResult InsertSalesReturnCredit(SalesReturnCreditParams salesReturnParams)
         {

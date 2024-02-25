@@ -94,7 +94,7 @@ namespace HIMS.Data.Pharmacy
 
             var disc3 = salesParams.SalesDraftbillInsert.ToDictionary();
             disc3.Remove("DSalesId");
-            var BillNo = ExecNonQueryProcWithOutSaveChanges("insert_T_SalesDraftHeader_1", disc3, outputId1);
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_T_SalesDraftHeader_1", disc3, outputId1);
 
             foreach (var a in salesParams.SalesDraftbillDetailInsert)
             {
@@ -102,7 +102,6 @@ namespace HIMS.Data.Pharmacy
                 disc5["DSalesID"] = BillNo;
                 var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_T_SalesDraftDet_1", disc5);
             }
-
 
             _unitofWork.SaveChanges();
             return BillNo;

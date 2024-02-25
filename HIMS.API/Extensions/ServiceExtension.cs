@@ -276,6 +276,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_SalesReturn, R_SalesReturn>();
             services.AddTransient<I_PurchaseOrder, R_PurchaseOrder>();
             services.AddTransient<I_GRN, R_GRN>();
+            services.AddTransient<I_MaterialAcceptance, R_MaterialAcceptance>();
 
             services.AddTransient<IPdfUtility, PdfUtility>();
             services.AddTransient<IFileUtility, FileUtility>();
