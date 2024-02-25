@@ -113,12 +113,15 @@ namespace HIMS.Model.Pharmacy
         public long WardId { get; set; }
         public long BedId { get; set; }
         //public float Discper_H { get; set; }
+
+        public string extAddress { get; set; }
+        public string extMobileNo { get; set; }
         public bool IsClosed { get; set; }
         //public bool IsBillCheck { get; set; }
         //public string SalesHeadName { get; set; }
         //public long SalesTypeId { get; set; }
         public long DSalesId { get; set; }
-        public string ExtMobileNo { get; set; }
+      
     }
     public class SalesDraftbillDetailInsert
     {
