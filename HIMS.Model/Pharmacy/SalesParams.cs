@@ -119,6 +119,7 @@ namespace HIMS.Model.Pharmacy
         //public long SalesTypeId { get; set; }
         public long DSalesId { get; set; }
         public string ExtMobileNo { get; set; }
+        public string extAddress { get; set; }
     }
     public class SalesDraftbillDetailInsert
     {
