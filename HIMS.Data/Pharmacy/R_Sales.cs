@@ -67,6 +67,9 @@ namespace HIMS.Data.Pharmacy
             vPayment["BillNo"] = BillNo;
             ExecNonQueryProcWithOutSaveChanges("insert_Payment_Pharmacy_New_1", vPayment);
 
+            var vDaraftStatus = salesParams.SalesDraftStatusUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_T_SalDraHeader_IsClosed_1", vDaraftStatus);
+
             _unitofWork.SaveChanges();
             return BillNo;
         }
