@@ -87,7 +87,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult UpdateMaterialAcceptance(MaterialAcceptParams materialAcceptParams)
         {
             var SalesSave = _MaterialAcceptance.UpdateMaterialAcceptance(materialAcceptParams);
-            return Ok(SalesSave.ToString());
+            return Ok(true);
 
         }
         [HttpPost("InsertSalesReturnCredit")]
