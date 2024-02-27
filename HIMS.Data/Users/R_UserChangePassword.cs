@@ -25,5 +25,27 @@ namespace HIMS.Data.Users
             _unitofWork.SaveChanges();
             return true;
         }
+
+        public bool Insertlogin(UserChangePasswordParams UserChangePasswordParams)
+        {
+            // throw new NotImplementedException();
+
+            var disc = UserChangePasswordParams.LoginInsert.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("insert_LoginManager_1", disc);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
+        public bool UpdateLogin(UserChangePasswordParams UserChangePasswordParams)
+        {
+            //  throw new NotImplementedException();
+
+            var disc = UserChangePasswordParams.LoginUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("update_LoginManager_1", disc);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
     }
 }
