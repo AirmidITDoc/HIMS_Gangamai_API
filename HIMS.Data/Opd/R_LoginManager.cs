@@ -1,4 +1,5 @@
-﻿using HIMS.Model.Opd;
+﻿using HIMS.Common.Utility;
+using HIMS.Model.Opd;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,15 +7,15 @@ using System.Data.SqlClient;
 
 namespace HIMS.Data.Opd
 {
-    public class R_LoginManager : I_LoginManager
+    public class R_LoginManager :GenericRepository, I_LoginManager
     {
         private readonly IUnitofWork _unitofWork;
         private readonly SqlCommand command;
 
-        public R_LoginManager(IUnitofWork unitofWork)
+        public R_LoginManager(IUnitofWork unitofWork) : base(unitofWork)
         {
-            _unitofWork = unitofWork;
-            command = _unitofWork.CreateCommand();
+            //_unitofWork = unitofWork;
+            //command = _unitofWork.CreateCommand();
         }
 
         public Login Get(string userName)
@@ -59,6 +60,8 @@ namespace HIMS.Data.Opd
             reader.Close();
             return user;
         }
+
+      
     }
 
 }
