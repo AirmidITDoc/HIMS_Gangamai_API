@@ -31,12 +31,12 @@ namespace HIMS.API.Controllers.Transaction
         private readonly I_Mrpadjustment _Mrpadjustment;
         private readonly I_Openingbalance _Openingbalance;
         private readonly I_MaterialAcceptance _MaterialAcceptance;
-
+        private readonly I_PharmPaymentMode _PharmPaymentMode;
         public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, 
             Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_Workorder workorder, I_Stokadjustment stokadjustment,
             I_Openingbalance openingbalance,
             I_Mrpadjustment mrpadjustment,
-            I_MaterialAcceptance materialAcceptance)
+            I_MaterialAcceptance materialAcceptance,I_PharmPaymentMode pharmPaymentMode)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
@@ -49,6 +49,7 @@ namespace HIMS.API.Controllers.Transaction
             _Mrpadjustment = mrpadjustment;
             _Openingbalance = openingbalance;
             _MaterialAcceptance = materialAcceptance;
+            _PharmPaymentMode = pharmPaymentMode;
         }
 
         [HttpPost("SalesSaveWithPayment")]
@@ -256,7 +257,13 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
+        [HttpPost("UpdatePharmPaymentMode")]
+        public IActionResult updatePharmPaymentMode(PharmPaymentMode PharmPaymentMode)
+        {
+            var SalesSave = _PharmPaymentMode.UpdatePaymentMode(PharmPaymentMode);
+            return Ok(true);
 
+        }
         [HttpGet("view-pharmacy-sale-bill")]
         public IActionResult ViewPharmaBill(int SalesID, int OP_IP_Type)
         {

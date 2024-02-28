@@ -297,19 +297,19 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_CrossConsultation, R_CrossConsultation>();
 
             services.AddTransient<I_UserChangePassword, R_UserChangePassword>();
-            /*    services.AddTransient<I_BankMasterHome, I_BankMasterHome>();
-               services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMasterHome>();
-               services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();
-               services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();
-               services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
-               services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
-               services.AddTransient<I_BillingClassMasterHome, R_BillingClassMasterHome>();
-               services.AddTransient<I_Itemmasterhome, R_Itemmasterhome>();
+             services.AddTransient<I_PharmPaymentMode, R_PharmPaymentMode>();
+            /*  services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMasterHome>();
+           services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();
+           services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();
+           services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
+           services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
+           services.AddTransient<I_BillingClassMasterHome, R_BillingClassMasterHome>();
+           services.AddTransient<I_Itemmasterhome, R_Itemmasterhome>();
 
-               services.AddTransient<I_ItemCategoryMasterHome, R_ItemCategoryMasterHome>();
-               services.AddTransient<I_MenuMasterHome, R_MenuMasterHome>();
-               services.AddTransient<I_MenuMasterDetailsHome, R_MenuMasterDetailsHome>();
-               services.AddTransient<I_MenuMasterDetails_DetailsHome, R_MenuMasterDetails_DetailsHome>();*/
+           services.AddTransient<I_ItemCategoryMasterHome, R_ItemCategoryMasterHome>();
+           services.AddTransient<I_MenuMasterHome, R_MenuMasterHome>();
+           services.AddTransient<I_MenuMasterDetailsHome, R_MenuMasterDetailsHome>();
+           services.AddTransient<I_MenuMasterDetails_DetailsHome, R_MenuMasterDetails_DetailsHome>();*/
 
             // services.AddTransient<>();
 

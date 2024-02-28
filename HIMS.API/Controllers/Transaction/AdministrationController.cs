@@ -32,6 +32,19 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(UserName);
         }
 
+        [HttpPost("InsertLoginUser")]
+        public IActionResult UserInsert(UserChangePasswordParams userChangePasswordParams)
+        {
+            var UserName = _UserChangePassword.Insertlogin(userChangePasswordParams);
+            return Ok(UserName);
+        }
+
+        [HttpPost("UpdateLoginUser")]
+        public IActionResult Userupdate(UserChangePasswordParams userChangePasswordParams)
+        {
+            var UserName = _UserChangePassword.UpdateLogin(userChangePasswordParams);
+            return Ok(UserName);
+        }
     }
 
 }
