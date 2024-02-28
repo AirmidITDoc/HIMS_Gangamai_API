@@ -7,7 +7,6 @@ namespace HIMS.Model.Inventory
     public class IssueTrackerParams
     {
         public InsertIssueTracker InsertIssueTracker { get; set; }
-        //public List<InsertIndentDetail> InsertIndentDetail { get; set; }
         public UpdateIssueTracker UpdateIssueTracker { get; set; }
         public UpdateIssueTrackerStatus UpdateIssueTrackerStatus { get; set; }
     }

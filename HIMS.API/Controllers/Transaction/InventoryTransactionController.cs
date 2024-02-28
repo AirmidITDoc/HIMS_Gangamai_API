@@ -21,19 +21,21 @@ namespace HIMS.API.Controllers.Transaction
         private readonly IFileUtility _IFileUtility;
         public readonly I_Indent _indent;
         public readonly I_IssueTrackingInfo _IssueTrackingInfo;
+        public readonly I_IssuetoDepartment _IssuetoDepartment;
     
         public InventoryTransactionController(
-           I_Indent indent,
-           I_IssueTrackingInfo issueTrackingInfo,
-            Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility
-            , IFileUtility fileUtility
-        )
+             I_Indent indent
+            ,I_IssueTrackingInfo issueTrackingInfo
+            ,Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment
+            , IPdfUtility pdfUtility
+            , IFileUtility fileUtility            , I_IssuetoDepartment issuetoDepartment )
         {
             this._indent = indent;
             this._IssueTrackingInfo = issueTrackingInfo;
             _hostingEnvironment = hostingEnvironment;
             _pdfUtility = pdfUtility;
-            _IFileUtility = fileUtility;
+            _IFileUtility = fileUtility;            _IssuetoDepartment = issuetoDepartment;
+
         }
 
         [HttpPost("IndentSave")]
@@ -50,6 +52,12 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(IndentUpdate);
         }
 
+        [HttpPost("IssuetoDepartmentSave")]
+        public IActionResult IssuetoDepartmentSave(IssuetoDepartmentParams issuetoDepartmentParams)
+        {
+            var IndentInsert = _IssuetoDepartment.InsertIssuetoDepartment(issuetoDepartmentParams);
+            return Ok(IndentInsert);
+        }
         [HttpPost("IssueTrackerSave")]
         public IActionResult IssueTrackerSave(IssueTrackerParams issueTrackerParams)
         {

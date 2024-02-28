@@ -285,6 +285,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_PatientDocumentupload, R_PatientDocumentupload>();
             services.AddTransient<I_IssueTrackingInfo, R_IssueTrackingInfo>();
             services.AddTransient<I_Indent, R_Indent>();
+            services.AddTransient<I_IssuetoDepartment, R_IssuetoDepartment>();
 
             services.AddTransient<I_Role, R_Role>();
             services.AddTransient<I_Dashboard, R_Dashboard>();
