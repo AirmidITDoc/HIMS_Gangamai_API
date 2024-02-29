@@ -31,7 +31,7 @@ namespace HIMS.Data.Users
             // throw new NotImplementedException();
 
             var disc = UserChangePasswordParams.LoginInsert.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("insert_LoginManager_1", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_LoginManager_1", disc);
 
             _unitofWork.SaveChanges();
             return true;
@@ -42,7 +42,7 @@ namespace HIMS.Data.Users
             //  throw new NotImplementedException();
 
             var disc = UserChangePasswordParams.LoginUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_LoginManager_1", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_update_LoginManager_1", disc);
 
             _unitofWork.SaveChanges();
             return true;

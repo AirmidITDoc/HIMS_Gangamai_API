@@ -7,15 +7,15 @@ using System.Data.SqlClient;
 
 namespace HIMS.Data.Opd
 {
-    public class R_LoginManager :GenericRepository, I_LoginManager
+    public class R_LoginManager :I_LoginManager
     {
         private readonly IUnitofWork _unitofWork;
         private readonly SqlCommand command;
 
-        public R_LoginManager(IUnitofWork unitofWork) : base(unitofWork)
+        public R_LoginManager(IUnitofWork unitofWork)
         {
-            //_unitofWork = unitofWork;
-            //command = _unitofWork.CreateCommand();
+            _unitofWork = unitofWork;
+            command = _unitofWork.CreateCommand();
         }
 
         public Login Get(string userName)
