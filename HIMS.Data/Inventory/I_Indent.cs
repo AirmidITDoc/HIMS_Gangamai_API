@@ -17,5 +17,7 @@ namespace HIMS.Data.Inventory
 
         string ViewDaywisestock(DateTime LedgerDate,int StoreId, string htmlFilePath, string HeaderName);
 
+        string ViewItemWisePurchase(DateTime FromDate, DateTime todate,int StoreId, string htmlFilePath, string HeaderName);
+
     }
 }
