@@ -147,6 +147,49 @@ namespace HIMS.Data.Inventory
             return html;
         }
 
+        public string ViewItemWisePurchase(DateTime FromDate, DateTime todate, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        {
+            //throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@todate", todate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("m_rpt_ItemWisePurchaseReport", para);
+            string html = File.ReadAllText(htmlFilePath);
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{HeaderName}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;border-bottom: 1px solid black;text-align:center\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;text-align:center;border-bottom: 1px solid black;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:0;height:10px;text-align:center;border-bottom: 1px solid black;\">").Append(dr["Received_Qty"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:0;height:10px;text-align:center;border-bottom: 1px solid black;\">").Append(dr["Sales_Qty"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;border-bottom: 1px solid black;\">").Append(dr["Current_BalQty"].ConvertToString()).Append("</td></tr>");
+
+
+
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{StoreName}}", Bills.GetColValue("StoreName"));
+
+            html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
+            html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
+
+            return html;
+        }
+
         public string ViewItemwiseStock(DateTime FromDate, DateTime todate, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
         {
             // throw new NotImplementedException();
@@ -170,8 +213,6 @@ namespace HIMS.Data.Inventory
                 items.Append("<tr><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;border-bottom: 1px solid black;text-align:center\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;text-align:center;border-bottom: 1px solid black;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:0;height:10px;text-align:center;border-bottom: 1px solid black;\">").Append(dr["ConversionFactor"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle;border-bottom: 1px solid black;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yy")).Append("</td>");
-                
                 items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:0;height:10px;text-align:center;border-bottom: 1px solid black;\">").Append(dr["Received_Qty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;border-bottom: 1px solid black;\">").Append(dr["Sales_Qty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;border-bottom: 1px solid black;\">").Append(dr["Current_BalQty"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
