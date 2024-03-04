@@ -271,8 +271,6 @@ namespace HIMS.API.Controllers.Transaction
             var html = _Sales.ViewBill(SalesID, OP_IP_Type, htmlFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaBill", "PharmaBill_" + SalesID.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-
-
             if (System.IO.File.Exists(tuple.Item2))
                 System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });

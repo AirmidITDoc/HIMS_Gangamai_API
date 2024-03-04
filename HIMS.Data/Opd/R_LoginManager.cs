@@ -56,6 +56,7 @@ namespace HIMS.Data.Opd
                 user.IsRefDocEditOpt = Convert.ToBoolean(reader["LoginStatus"]);
                 user.IsInchIndVfy = Convert.ToBoolean(reader["LoginStatus"]);
                 user.IsPharBalClearnace = Convert.ToBoolean(reader["LoginStatus"]);
+                user.WebRoleId = Convert.ToInt64(reader["WebRoleId"]);
             }
             reader.Close();
             return user;

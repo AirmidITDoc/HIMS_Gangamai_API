@@ -40,6 +40,9 @@ namespace HIMS.Model.WhatsAppEmail
         public string AttachmentName { get; set; }
         public string AttachmentLink { get; set; }
         public int Id { get; set; }
+        public int TranNo { get; set; }
+        public string EmailType { get; set; }
+
     }
 
 }

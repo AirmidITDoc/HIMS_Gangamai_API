@@ -32,7 +32,7 @@
         public bool IsPOInchargeVerify { get; set; }
         public bool IsRefDocEditOpt { get; set; }
         public bool IsInchIndVfy { get; set; }
-        public int WebRoleId { get; set; }
+        public long WebRoleId { get; set; }
 
     }
 

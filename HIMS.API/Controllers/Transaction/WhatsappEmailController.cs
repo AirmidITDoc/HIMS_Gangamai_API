@@ -82,36 +82,36 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult EmailInsert(WhatsappSmsparam WhatsappSmsparam)
         {
 
-            //if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "GRN")
-            //{
-            //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GRNReport.html");
-            //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            //    var html = _GRN.ViewGRNReport(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, htmlHeaderFilePath);
-            //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GRNReport", "GRNReport_" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
-            //    WhatsappSmsparam.InsertEamil.AttachmentLink = tuple.Item2;
-            //}
-            //else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "Purchase")
-            //{
-            //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PurchaseorderNew.html");
-            //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            //    var html = _PurchaseOrder.ViewPurchaseorder(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, htmlHeaderFilePath);
-            //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PurchaseorderNew", "PurchaseorderNew_" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
-            //    WhatsappSmsparam.InsertEamil.AttachmentLink = tuple.Item2;
-            //}
-            //else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "Sales")
-            //{
-            //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaBillReceipt.html");
-            //    var html = _Sales.ViewBill(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, WhatsappSmsparam.InsertWhatsappsmsInfo.PatientType, htmlFilePath);
-            //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaBill", "PharmaBill_" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
-            //    WhatsappSmsparam.InsertEamil.AttachmentLink = tuple.Item2;
-            //}
-            //else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "SalesReturn")
-            //{
-            //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnReceipt.html");
-            //    var html = _Sales.ViewBill(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, WhatsappSmsparam.InsertWhatsappsmsInfo.PatientType, htmlFilePath);
-            //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnReceipt", "SalesReturnReceipt" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
-            //    WhatsappSmsparam.InsertEamil.AttachmentLink= tuple.Item2;
-            //}
+            if (WhatsappSmsparam.InsertEamil.EmailType == "GRN")
+            {
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GRNReport.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+                var html = _GRN.ViewGRNReport(WhatsappSmsparam.InsertEamil.TranNo, htmlFilePath, htmlHeaderFilePath);
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GRNReport", "GRNReport_" + WhatsappSmsparam.InsertEamil.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                WhatsappSmsparam.InsertEamil.AttachmentLink = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertEamil.EmailType == "Purchase")
+            {
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PurchaseorderNew.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+                var html = _PurchaseOrder.ViewPurchaseorder(WhatsappSmsparam.InsertEamil.TranNo, htmlFilePath, htmlHeaderFilePath);
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PurchaseorderNew", "PurchaseorderNew_" + WhatsappSmsparam.InsertEamil.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                WhatsappSmsparam.InsertEamil.AttachmentLink = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertEamil.EmailType == "Sales")
+            {
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaBillReceipt.html");
+                var html = _Sales.ViewBill(WhatsappSmsparam.InsertEamil.TranNo, WhatsappSmsparam.InsertWhatsappsmsInfo.PatientType, htmlFilePath);
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaBill", "PharmaBill_" + WhatsappSmsparam.InsertEamil.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                WhatsappSmsparam.InsertEamil.AttachmentLink = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertEamil.EmailType == "SalesReturn")
+            {
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnReceipt.html");
+                var html = _Sales.ViewBill(WhatsappSmsparam.InsertEamil.TranNo, WhatsappSmsparam.InsertWhatsappsmsInfo.PatientType, htmlFilePath);
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnReceipt", "SalesReturnReceipt" + WhatsappSmsparam.InsertEamil.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                WhatsappSmsparam.InsertEamil.AttachmentLink = tuple.Item2;
+            }
 
             var Id = _WhatsappSms.InsertEmail(WhatsappSmsparam);
             return Ok(Id);

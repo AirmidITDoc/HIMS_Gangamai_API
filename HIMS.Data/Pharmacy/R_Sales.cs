@@ -1077,6 +1077,9 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{DiscAmount}}", Bills.GetColValue("DiscAmount"));
 
             html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount"));
+            html = html.Replace("{{RoundOff}}", Bills.GetColValue("RoundOff"));
+            html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount"));
+            
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
             html = html.Replace("{{GSTIN}}", Bills.GetColValue("GSTIN"));
             html = html.Replace("{{DL_NO}}", Bills.GetColValue("DL_NO"));
