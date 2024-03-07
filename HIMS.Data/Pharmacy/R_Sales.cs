@@ -173,58 +173,7 @@ namespace HIMS.Data.Pharmacy
             return true;
         }
 
-        public string ViewBill(int SalesID, int OP_IP_Type, string htmlFilePath)
-        {
-            Dictionary<string, object> dictionary = new Dictionary<string, object>
-            {
-                { "SalesID", SalesID },
-                { "OP_IP_Type", OP_IP_Type }
-            };
-            var Bills = GetDataTableProc("rptSalesPrint", dictionary);
-            string html = File.ReadAllText(htmlFilePath);// templates.Rows[0]["TempDesign"].ToString();
-            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
-            html = html.Replace("{{StoreName}}", Bills.GetColValue("StoreName"));
-            html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
-            html = html.Replace("{{GSTIN}}", Bills.GetColValue("GSTIN"));
-            html = html.Replace("{{DL_NO}}", Bills.GetColValue("DL_NO"));
-            html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
-            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
-            html = html.Replace("{{ExtMobileNo}}", Bills.GetColValue("ExtMobileNo"));
-            html = html.Replace("{{SalesNo}}", Bills.GetColValue("SalesNo"));
-            html = html.Replace("{{Date}}", Bills.GetDateColValue("Date"));
-            StringBuilder items = new StringBuilder("");
-            int i = 0;
-            foreach (DataRow dr in Bills.Rows)
-            {
-                i++;
-                items.Append("<tr><td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["HSNcode"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">-</td>");
-                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">-</td>");
-                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["BatchExpDate"].ConvertToDateString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["UnitMRP"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["TotalAmount"].ConvertToString()).Append("</td></tr>");
-            }
-            html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{HTotalAmount}}", Bills.GetColValue("HTotalAmount"));
-            html = html.Replace("{{CGSTPer}}", Bills.GetColValue("CGSTPer"));
-            html = html.Replace("{{CGSTAmt}}", Bills.GetColValue("CGSTAmt"));
-            html = html.Replace("{{SGSTPer}}", Bills.GetColValue("SGSTPer"));
-            html = html.Replace("{{SGSTAmt}}", Bills.GetColValue("SGSTAmt"));
-            html = html.Replace("{{IGSTPer}}", Bills.GetColValue("IGSTPer"));
-            html = html.Replace("{{IGSTAmt}}", Bills.GetColValue("IGSTAmt"));
-            html = html.Replace("{{DiscAmount}}", Bills.GetColValue("DiscAmount"));
-            html = html.Replace("{{TotalGst}}", Bills.GetColValue("TotalGst"));
-            html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount"));
-            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
-
-
-            return html;
-
-        }
+     
         public string ViewDailyCollection(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById, string htmlFilePath, string htmlHeaderFilePath)
         {
             SqlParameter[] para = new SqlParameter[4];
@@ -1045,7 +994,7 @@ namespace HIMS.Data.Pharmacy
                 items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: left;padding-left:10px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: left;padding-left:10px;\">").Append(dr["ConversionFactor"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["BatchExpDate"].ConvertToDateString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["BatchExpDate"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: center;\">").Append(dr["Qty"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["UnitMRP"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: center;\">").Append(dr["TotalAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
@@ -1092,6 +1041,60 @@ namespace HIMS.Data.Pharmacy
 
 
             return html;
+        }
+
+        public string ViewBill(int SalesID, int OP_IP_Type, string htmlFilePath)
+        {
+            Dictionary<string, object> dictionary = new Dictionary<string, object>
+            {
+                { "SalesID", SalesID },
+                { "OP_IP_Type", OP_IP_Type }
+            };
+
+            var Bills = GetDataTableProc("rptSalesPrint", dictionary);
+            string html = File.ReadAllText(htmlFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{StoreName}}", Bills.GetColValue("StoreName"));
+            html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
+            html = html.Replace("{{GSTIN}}", Bills.GetColValue("GSTIN"));
+            html = html.Replace("{{DL_NO}}", Bills.GetColValue("DL_NO"));
+            html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{ExtMobileNo}}", Bills.GetColValue("ExtMobileNo"));
+            html = html.Replace("{{SalesNo}}", Bills.GetColValue("SalesNo"));
+            html = html.Replace("{{Date}}", Bills.GetDateColValue("Date"));
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+                items.Append("<tr><td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["HSNcode"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">-</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">-</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["BatchExpDate"].ConvertToDateString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["UnitMRP"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(dr["TotalAmount"].ConvertToString()).Append("</td></tr>");
+            }
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{HTotalAmount}}", Bills.GetColValue("HTotalAmount"));
+            html = html.Replace("{{CGSTPer}}", Bills.GetColValue("CGSTPer"));
+            html = html.Replace("{{CGSTAmt}}", Bills.GetColValue("CGSTAmt"));
+            html = html.Replace("{{SGSTPer}}", Bills.GetColValue("SGSTPer"));
+            html = html.Replace("{{SGSTAmt}}", Bills.GetColValue("SGSTAmt"));
+            html = html.Replace("{{IGSTPer}}", Bills.GetColValue("IGSTPer"));
+            html = html.Replace("{{IGSTAmt}}", Bills.GetColValue("IGSTAmt"));
+            html = html.Replace("{{DiscAmount}}", Bills.GetColValue("DiscAmount"));
+            html = html.Replace("{{TotalGst}}", Bills.GetColValue("TotalGst"));
+            html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount"));
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
+
+
+            return html;
+
         }
 
         public string ViewSalesReturnReceipt(int SalesReturnId, int OP_IP_Type, string htmlFilePath, string htmlHeaderFilePath)
