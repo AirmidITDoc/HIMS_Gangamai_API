@@ -187,7 +187,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult VerifyGRN(GRNParams grnParams)
         {
             var SalesSave = _GRN.VerifyGRN(grnParams);
-            return Ok(SalesSave.ToString());
+            return Ok(SalesSave);
 
         }
 
