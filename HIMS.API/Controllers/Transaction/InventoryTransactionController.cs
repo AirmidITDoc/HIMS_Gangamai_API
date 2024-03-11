@@ -51,6 +51,13 @@ namespace HIMS.API.Controllers.Transaction
             var IndentUpdate = _indent.Update(indentParams);
             return Ok(IndentUpdate);
         }
+        
+        [HttpPost("IndentVerify")]
+        public IActionResult IndentVerify(IndentParams indentParams)
+        {
+            var IndentUpdate = _indent.IndentVerify(indentParams);
+            return Ok(IndentUpdate);
+        }
 
         [HttpPost("IssuetoDepartmentSave")]
         public IActionResult IssuetoDepartmentSave(IssuetoDepartmentParams issuetoDepartmentParams)

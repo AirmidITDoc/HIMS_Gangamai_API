@@ -10,6 +10,7 @@ namespace HIMS.Model.Inventory
         public List<InsertIndentDetail> InsertIndentDetail { get; set; }
         public UpdateIndent UpdateIndent { get; set; }
         public DeleteIndent DeleteIndent { get;set;}
+        public IndentVerify IndentVerify { get; set; }
     }
 
     public class InsertIndent
@@ -35,5 +36,11 @@ namespace HIMS.Model.Inventory
     public class DeleteIndent
     {
         public long IndentId { get; set; }
+    }
+    public class IndentVerify
+    {
+        public long IndentId { get; set; }
+        public Boolean IsInchargeVerify { get; set; }
+        public long IsInchargeVerifyId { get; set; }
     }
 }

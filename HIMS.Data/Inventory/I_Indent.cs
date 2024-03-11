@@ -9,7 +9,7 @@ namespace HIMS.Data.Inventory
     {
         public string Insert(IndentParams indentparams);
         public bool Update(IndentParams indentParams);
-
+        public bool IndentVerify(IndentParams indentParams);
 
         string ViewCurrentStock(string ItemName, int StoreId, string htmlFilePath, string HeaderName);
 

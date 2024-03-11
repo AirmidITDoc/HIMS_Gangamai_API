@@ -64,6 +64,16 @@ namespace HIMS.Data.Inventory
             return true;
         }
 
+        public bool IndentVerify(IndentParams indentParams)
+        {
+
+            var vupdateIndent = indentParams.IndentVerify.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_IndentInchargeVerify_Status_1", vupdateIndent);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
         public string ViewCurrentStock(string ItemName, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
         {
             // throw new NotImplementedException();
