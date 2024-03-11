@@ -38,6 +38,23 @@ namespace HIMS.Model.Master.Inventory
         public string GSTNo { get; set; }
         public int SupplierId { get; set; }
         public string PanNo { get; set; }
+
+        public string PinCode { get; set; }
+        public int Taluka { get; set; }
+        public String LicNo { get; set; }
+        public DateTime ExpDate { get; set; }
+        public String DlNo { get; set; }
+        public string Bankname { get; set; }
+        public string Branch { get; set; }
+        public int BankNo { get; set; }
+
+        public string Ifsccode { get; set; }
+        public string VenderType { get; set; }
+
+
+        public float OpeningBalance { get; set; }
+       
+
     }
     public class UpdateSupplierMaster
     {
@@ -63,6 +80,22 @@ namespace HIMS.Model.Master.Inventory
         public int UpdatedBy { get; set; }
         public string GSTNo { get; set; }
         public string PanNo { get; set; }
+
+
+        public string PinCode { get; set; }
+        public int Taluka { get; set; }
+        public String LicNo { get; set; }
+        public DateTime ExpDate { get; set; }
+        public String DlNo { get; set; }
+        public string Bankname { get; set; }
+        public string Branch { get; set; }
+        public int BankNo { get; set; }
+
+        public string Ifsccode { get; set; }
+        public string VenderType { get; set; }
+
+
+        public float OpeningBalance { get; set; }
     }
     public class DeleteAssignSupplierToStore
     {
