@@ -29,7 +29,7 @@ namespace HIMS.Model.Master.Inventory
         public int ModeofPayment { get; set; }
         public int TermsofPayment { get; set; }
 
-      //  public int TaxNature { get; set; }
+        public int TaxNature { get; set; }
         public int CurrencyId { get; set; }
         public int Octroi { get; set; }
         public int Freight { get; set; }
@@ -74,7 +74,7 @@ namespace HIMS.Model.Master.Inventory
         public string Email { get; set; }
         public int ModeofPayment { get; set; }
         public int TermsofPayment { get; set; }
-       // public int TaxNature { get; set; }
+        public int TaxNature { get; set; }
         public int CurrencyId { get; set; }
         public int Octroi { get; set; }
         public int Freight { get; set; }
