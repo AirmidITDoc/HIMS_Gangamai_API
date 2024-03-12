@@ -44,12 +44,14 @@ namespace HIMS.Model.Master.Inventory
         public String LicNo { get; set; }
         public DateTime ExpDate { get; set; }
         public String DlNo { get; set; }
+
+        public int BankId { get; set; }
         public string Bankname { get; set; }
         public string Branch { get; set; }
         public int BankNo { get; set; }
 
         public string Ifsccode { get; set; }
-        public string VenderType { get; set; }
+        public int VenderTypeId { get; set; }
 
 
         public float OpeningBalance { get; set; }
@@ -87,12 +89,14 @@ namespace HIMS.Model.Master.Inventory
         public String LicNo { get; set; }
         public DateTime ExpDate { get; set; }
         public String DlNo { get; set; }
+
+        public int BankId { get; set; }
         public string Bankname { get; set; }
         public string Branch { get; set; }
         public int BankNo { get; set; }
 
         public string Ifsccode { get; set; }
-        public string VenderType { get; set; }
+        public int VenderTypeId { get; set; }
 
 
         public float OpeningBalance { get; set; }
