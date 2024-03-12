@@ -65,6 +65,9 @@ namespace HIMS.Model.Pharmacy
         public float SGSTAmt { get; set; }
         public float IGSTPer { get; set; }
         public float IGSTAmt { get; set; }
+        public float DefRate { get; set; }
+        public float VendDiscPer { get; set; }
+        public float VendDiscAmt { get; set; }
     }
 
     public class UpdatePurchaseOrderHeader
