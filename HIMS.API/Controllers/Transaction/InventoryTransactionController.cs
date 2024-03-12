@@ -28,15 +28,13 @@ namespace HIMS.API.Controllers.Transaction
             ,I_IssueTrackingInfo issueTrackingInfo
             ,Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment
             , IPdfUtility pdfUtility
-            , IFileUtility fileUtility
-            , I_IssuetoDepartment issuetoDepartment )
+            , IFileUtility fileUtility            , I_IssuetoDepartment issuetoDepartment )
         {
             this._indent = indent;
             this._IssueTrackingInfo = issueTrackingInfo;
             _hostingEnvironment = hostingEnvironment;
             _pdfUtility = pdfUtility;
-            _IFileUtility = fileUtility;
-            _IssuetoDepartment = issuetoDepartment;
+            _IFileUtility = fileUtility;            _IssuetoDepartment = issuetoDepartment;
 
         }
 
@@ -143,6 +141,58 @@ namespace HIMS.API.Controllers.Transaction
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _indent.ViewItemWisePurchase(FromDate, todate, StoreId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ItemWisePurchaseReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+
+
+        [HttpGet("view-IssuetoDeptIssuewise")]
+        public IActionResult ViewIssuetoDeptIssuewise(int IssueId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InvIssuetoDept.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IssuetoDepartment.ViewIssuetoDeptIssuewise(IssueId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvIssuetoDept", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-ReturnfromDept")]
+        public IActionResult ViewReturnFromDept(int ReturnId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InvReturnfromDept.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IssuetoDepartment.ViewReturnfromDeptReturnIdwise(ReturnId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvReturnfromDept", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+        [HttpGet("view-ReturnfromDeptDatewise")]
+        public IActionResult ViewReturnFromDeptdatewise(DateTime FromDate,DateTime ToDate, int FromStoreId,int ToStoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InvReturnfrdeptdatewise.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IssuetoDepartment.ViewReturnfrdeptdatewise(FromDate, ToDate, FromStoreId, ToStoreId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvReturnfrdeptdatewise", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             // write logic for send pdf in whatsapp
 
