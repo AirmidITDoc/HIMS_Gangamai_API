@@ -62,7 +62,7 @@ namespace HIMS.Model.Master.Inventory
         public string ItemShortName { get; set; }
         public string ItemName { get; set; }
         public long ItemTypeID { get; set; }
-        public long ItemCategoryId { get; set; }
+        public long ItemCategaryId { get; set; }
         public long ItemGenericNameId { get; set; }
         public long ItemClassId { get; set; }
         public long PurchaseUOMId { get; set; }
