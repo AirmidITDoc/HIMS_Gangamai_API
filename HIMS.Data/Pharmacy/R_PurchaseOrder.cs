@@ -54,7 +54,7 @@ namespace HIMS.Data.Pharmacy
             {
                 var disc5 = a.ToDictionary();
                 disc5["PurchaseId"] = purchaseParams.UpdatePurchaseOrderHeader.PurchaseID;
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_PurchaseDetails_1", disc5);
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_PurchaseDetails_1", disc5);
             }
 
             _unitofWork.SaveChanges();

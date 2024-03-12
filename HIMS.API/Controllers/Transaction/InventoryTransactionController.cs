@@ -28,13 +28,15 @@ namespace HIMS.API.Controllers.Transaction
             ,I_IssueTrackingInfo issueTrackingInfo
             ,Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment
             , IPdfUtility pdfUtility
-            , IFileUtility fileUtility            , I_IssuetoDepartment issuetoDepartment )
+            , IFileUtility fileUtility
+            , I_IssuetoDepartment issuetoDepartment )
         {
             this._indent = indent;
             this._IssueTrackingInfo = issueTrackingInfo;
             _hostingEnvironment = hostingEnvironment;
             _pdfUtility = pdfUtility;
-            _IFileUtility = fileUtility;            _IssuetoDepartment = issuetoDepartment;
+            _IFileUtility = fileUtility;
+            _IssuetoDepartment = issuetoDepartment;
 
         }
 
