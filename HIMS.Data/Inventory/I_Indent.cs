@@ -11,6 +11,10 @@ namespace HIMS.Data.Inventory
         public bool Update(IndentParams indentParams);
         public bool IndentVerify(IndentParams indentParams);
 
+
+        string ViewIndentwise(int IndentId, string htmlFilePath, string HeaderName);
+
+
         string ViewCurrentStock(string ItemName, int StoreId, string htmlFilePath, string HeaderName);
 
         string ViewItemwiseStock( DateTime FromDate, DateTime todate,int StoreId, string htmlFilePath, string HeaderName);
