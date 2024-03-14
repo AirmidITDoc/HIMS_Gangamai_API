@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<div>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <div>
+        <body>
+            <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
+
+                {{HeaderName}}
+                <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+                    <div style="display:block;width:100%; align-items: center;">
+                        <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:150px">
+                            INDENT
+                        </div>
+                        <span style="font-size: 18px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
+                    </div>
+
+                </div>
+
+                <hr />
+                <table>
+                    <tr>
+                        <td>
+                            <span style="font-weight: 500;font-size: 20px;">Indent No.:</span>
+                            <span style="font-size: 15px; margin-left: 10px;">{{IndentNo}} </span>
+                        </td>
+
+
+
+                        <td>
+                            <span style="font-weight: 500;font-size:20px;"> Date:</span>
+                            <span style="font-size: 16px; margin-left: 10px;"> {{IndentTime}} </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <span style="font-weight: 500; font-size: 20px;">From Store Name:</span>
+                            <span style="font-size: 15px; margin-left: 10px;">{{FromStoreName}} </span>
+                        </td>
+
+
+
+
+                    </tr>
+
+                    <tr>
+                        <td style="width:80%;">
+                            <span style="font-weight: 500;font-size: 20px;">To Store Name:</span>
+                            <span style="font-size: 16px; margin-left: 10px;">{{ToStoreName}}</span>
+                        </td>
+
+                        <td style="border-top: 1px solid grey; border-bottom: 1px solid grey; border-block-style: double; text-align: center; margin-left: 100px; ">
+                            <span style="font-weight: 500; font-size: 20px;">Verified By AO</span>
+
+                        </td>
+                    </tr>
+
+
+
+                </table>
+
+
+                <hr>
+
+                <table class="table6" style="width: 100%;  text-align: right;border-spacing: 1px;border-collapse: separate;border-color: gray;padding-bottom:20px;">
+                    <div>
+                    <tr style="font-size:18px;">
+
+                        <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;">
+                            Sr.No
+                        </td>
+                        <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;">
+
+                            Item Name
+                        </td>
+                        <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;">
+                            QTY
+                        </td>
+                        <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;"></td>
+                    </tr>
+            </div>
+
+            {{Items}}
+
+            </table>
+
+           
+            <div style="display:flex;justify-content:space-between;margin-left:30px;">
+                <br />
+                <div style="display: flex;">
+
+                    <span style="margin-left: 50px; font-weight: 500; font-size: 18px;">Prepared By :</span>
+                    <span style="font-weight: 500; font-size: 15px;">{{UserName}}</span>
+                </div>
+
+            </div>
+        </body>
+    </div>
+</html>
+</div>

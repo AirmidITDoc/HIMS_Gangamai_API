@@ -237,5 +237,49 @@ namespace HIMS.Data.Inventory
 
             return html;
         }
+
+        public string ViewIndentwise(int IndentId, string htmlFilePath, string htmlHeaderFilePath)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[1];
+           
+            para[0] = new SqlParameter("@IndentId", IndentId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptPrintIndent", para);
+            string html = File.ReadAllText(htmlFilePath);
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{HeaderName}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;border-bottom: 1px solid black;text-align:center;font-size:18px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;text-align:center;border-bottom: 1px solid black;font-size:18px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:0;height:10px;text-align:center;border-bottom: 1px solid black;font-size:18px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+                
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;border-bottom: 1px solid black;\">").Append("</td></tr>");
+
+
+
+            }
+            
+
+           html = html.Replace("{{Items}}", items.ToString());
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{FromStoreName}}", Bills.GetColValue("FromStoreName"));
+
+            html = html.Replace("{{ToStoreName}}", Bills.GetColValue("ToStoreName"));
+            html = html.Replace("{{IndentNo}}", Bills.GetColValue("IndentNo"));
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
+            html = html.Replace("{{IndentTime}}", Bills.GetColValue("IndentTime").ConvertToDateString("dd.MM.yyyy hhLmm tt"));
+            return html;
+        }
     }
 }
