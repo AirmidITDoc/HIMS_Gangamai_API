@@ -54,7 +54,7 @@ namespace HIMS.Model.Pharmacy
     public class GRNDetailSave
     {
 
-       // public long GRNDetID { get; set; }
+        public long GRNDetID { get; set; }
         public long GRNId { get; set; }
         public long ItemId { get; set; }
         public long UOMId { get; set; }
@@ -88,6 +88,10 @@ namespace HIMS.Model.Pharmacy
         public bool IsVerified { get; set; }
         public DateTime IsVerifiedDatetime { get; set; }
         public int IsVerifiedUserId { get; set; }
+        public int stkId { get; set; }
+        public float DiscPerc2 { get; set; }
+
+        public float DiscAmt2 { get; set; }
     }
    
     public class UpdateItemMasterGSTPer
@@ -103,15 +107,19 @@ namespace HIMS.Model.Pharmacy
     public class Update_PO_STATUS_AganistGRN
     {
         public long POId { get; set; }
+
+        public long PurDetID { get; set; }
+
+        public long POBalQty { get; set; }
         public bool IsClosed { get; set; }
 
     }
     public class Update_POHeader_Status_AganistGRN
     {
         public long POId { get; set; }
-        public long PurDetID { get; set; }
+       // public long PurDetID { get; set; }
         public bool IsClosed { get; set; }
-        public float POBalQty { get; set; }
+       // public float POBalQty { get; set; }
 
     }
 

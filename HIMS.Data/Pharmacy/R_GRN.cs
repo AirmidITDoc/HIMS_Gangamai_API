@@ -43,9 +43,9 @@ namespace HIMS.Data.Pharmacy
             foreach (var a in grnParams.GRNDetailSave)
             {
                 var disc5 = a.ToDictionary();
-             //   disc5.Remove("GRNDetID");
+                disc5.Remove("GRNDetID");
                 disc5["GRNId"] = BillNo;
-               var GrnDetID= ExecNonQueryProcWithOutSaveChanges("m_insert_GRNDetails_1_New", disc5);
+               var GrnDetID= ExecNonQueryProcWithOutSaveChanges("m_insert_GRNDetails_1_New ", disc5, outputId2);
             }
             foreach (var a in grnParams.UpdateItemMasterGSTPer)
             {
@@ -86,6 +86,14 @@ namespace HIMS.Data.Pharmacy
                 Direction = ParameterDirection.Output
             };
 
+            var outputId2 = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@GRNDetID",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
             var disc3 = grnParams.GRNSave.ToDictionary();
             disc3.Remove("GRNID");
             var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNHeader_PurNo_1_New", disc3, outputId1);
@@ -93,8 +101,9 @@ namespace HIMS.Data.Pharmacy
             foreach (var a in grnParams.GRNDetailSave)
             {
                 var disc5 = a.ToDictionary();
-                disc5["GRNID"] = BillNo;
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNDetails_1_New", disc5);
+                disc5.Remove("GRNDetID");
+                disc5["GRNId"] = BillNo;
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNDetails_1_New", disc5, outputId2);
             }
             foreach (var a in grnParams.UpdateItemMasterGSTPer)
             {

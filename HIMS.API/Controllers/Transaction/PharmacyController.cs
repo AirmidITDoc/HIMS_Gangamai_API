@@ -32,11 +32,13 @@ namespace HIMS.API.Controllers.Transaction
         private readonly I_Openingbalance _Openingbalance;
         private readonly I_MaterialAcceptance _MaterialAcceptance;
         private readonly I_PharmPaymentMode _PharmPaymentMode;
+        private readonly I_GRNReturn _GRNReturn;
+
         public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, 
             Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_Workorder workorder, I_Stokadjustment stokadjustment,
             I_Openingbalance openingbalance,
             I_Mrpadjustment mrpadjustment,
-            I_MaterialAcceptance materialAcceptance,I_PharmPaymentMode pharmPaymentMode)
+            I_MaterialAcceptance materialAcceptance,I_PharmPaymentMode pharmPaymentMode,I_GRNReturn gRNReturn)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
@@ -50,6 +52,7 @@ namespace HIMS.API.Controllers.Transaction
             _Openingbalance = openingbalance;
             _MaterialAcceptance = materialAcceptance;
             _PharmPaymentMode = pharmPaymentMode;
+            _GRNReturn = gRNReturn;
         }
 
         [HttpPost("SalesSaveWithPayment")]
@@ -191,7 +194,13 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
+        [HttpPost("InsertGRNReturn")]
+        public IActionResult InsertGRNReturn(GRNReturnParam GRNReturnParam)
+        {
+            var Id = _GRNReturn.InsertGRNReturn(GRNReturnParam);
+            return Ok(Id);
 
+        }
         [HttpPost("InsertWorkorder")]
         public IActionResult InsertWorkorder(Workorder Workorder)
         {

@@ -22,14 +22,15 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_Indent _indent;
         public readonly I_IssueTrackingInfo _IssueTrackingInfo;
         public readonly I_IssuetoDepartment _IssuetoDepartment;
-    
+        public readonly I_InvMaterialConsumption _InvMaterialConsumption;
+        public readonly I_ReturnFromDept _ReturnFromDept;
         public InventoryTransactionController(
              I_Indent indent
             ,I_IssueTrackingInfo issueTrackingInfo
             ,Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment
             , IPdfUtility pdfUtility
             , IFileUtility fileUtility
-            , I_IssuetoDepartment issuetoDepartment )
+            , I_IssuetoDepartment issuetoDepartment,I_InvMaterialConsumption invMaterialConsumption,I_ReturnFromDept returnFromDept )
         {
             this._indent = indent;
             this._IssueTrackingInfo = issueTrackingInfo;
@@ -37,7 +38,8 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
             _IFileUtility = fileUtility;
             _IssuetoDepartment = issuetoDepartment;
-
+            _InvMaterialConsumption = invMaterialConsumption;
+            _ReturnFromDept = returnFromDept;
         }
 
         [HttpPost("IndentSave")]
@@ -67,6 +69,16 @@ namespace HIMS.API.Controllers.Transaction
             var IndentInsert = _IssuetoDepartment.InsertIssuetoDepartment(issuetoDepartmentParams);
             return Ok(IndentInsert);
         }
+
+        [HttpPost("InsertReturnFromDepartment")]
+        public IActionResult ReturnfromDepartmentInsert(ReturnfrdeptParam ReturnfrdeptParam)
+        {
+            var Id = _ReturnFromDept.InsertReturnFromDepartment(ReturnfrdeptParam);
+            return Ok(Id);
+        }
+
+
+
         [HttpPost("IssueTrackerSave")]
         public IActionResult IssueTrackerSave(IssueTrackerParams issueTrackerParams)
         {
@@ -171,6 +183,62 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+
+
+        [HttpGet("view-IssuetoDeptSummary")]
+        public IActionResult ViewIssuetoDeptSummary(DateTime FromDate, DateTime ToDate, int FromStoreId, int ToStoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InvIssuetodeptsummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IssuetoDepartment.ViewIssuetodeptsummary(FromDate, ToDate, FromStoreId, ToStoreId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvIssuetodeptsummary", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+        [HttpGet("view-NONMovingItem")]
+        public IActionResult ViewNonmovingitem(int NonMovingDay, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NonMovingItemList.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IssuetoDepartment.ViewNonMovingItem(NonMovingDay,StoreId, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "NonMovingItemList", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        
+
+
+        [HttpGet("view-ExpiryItemList")]
+        public IActionResult ViewExpiryitemlist(int ExpMonth, int ExpYear,int StoreID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "ExpItemList.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IssuetoDepartment.ViewExpItemlist(ExpMonth, ExpYear, StoreID, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ExpItemList", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+
         [HttpGet("view-ReturnfromDept")]
         public IActionResult ViewReturnFromDept(int ReturnId)
         {
@@ -218,6 +286,15 @@ namespace HIMS.API.Controllers.Transaction
             //if (System.IO.File.Exists(tuple.Item2))
             //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+
+        [HttpPost("MaterialConsumptionSave")]
+        public IActionResult MaterialConsumptionSave(MaterialConsumptionParam MaterialConsumptionParam)
+        {
+            var IndentInsert = _InvMaterialConsumption.Insert(MaterialConsumptionParam);
+            return Ok(IndentInsert);
         }
     }
 }

@@ -68,6 +68,8 @@ namespace HIMS.Data.Pharmacy
                 //   exec RptPharmacyCreditReport '11-01-2022','11-26-2023',11052,24879,0,10016
 
             }
+            T_TotalNETAmount = Math.Round(T_TotalNETAmount);
+
 
             html = html.Replace("{{Items}}", items.ToString());
             //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
@@ -91,7 +93,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{ToStreName}}", Bills.GetColValue("ToStreName"));
 
 
-            string finalamt = NumberToWords(T_TotalNETAmount.ConvertToDouble().To2DecimalPlace().ToInt());
+            string finalamt = NumberToWords(T_TotalNETAmount.ToInt());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
             return html;

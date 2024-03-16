@@ -9,10 +9,16 @@ namespace HIMS.Data.Inventory
 
         string ViewIssuetoDeptIssuewise(int IssueId, string htmlFilePath, string HeaderName);
 
+
+        string ViewIssuetodeptsummary(DateTime FromDate, DateTime ToDate, int FromStoreId, int ToStoreId, string htmlFilePath, string HeaderName);
         string ViewReturnfromDeptReturnIdwise(int ReturnId, string htmlFilePath, string HeaderName);
 
 
         string ViewReturnfrdeptdatewise(DateTime FromDate, DateTime ToDate, int FromStoreId, int ToStoreId, string htmlFilePath, string HeaderName);
 
+
+        public string ViewNonMovingItem(int NonMovingDay, int StoreId, string htmlFilePath, string HeaderName);
+
+        public string ViewExpItemlist(int ExpMonth, int ExpYear,int StoreID, string htmlFilePath, string HeaderName);
     }
 }
