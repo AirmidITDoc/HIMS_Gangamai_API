@@ -75,7 +75,6 @@ namespace HIMS.Model.Pharmacy
         public float TotalQty { get; set; }
         public long PONo { get; set; }
         public string BatchNo { get; set; }
-      
         public DateTime BatchExpDate { get; set; }
         public float PurUnitRate { get; set; }
         public float PurUnitRateWF { get; set; }
@@ -86,13 +85,9 @@ namespace HIMS.Model.Pharmacy
         public float IGSTPer { get; set; }
         public float IGSTAmt { get; set; }
         public float MRP_Strip { get; set; }
-        
         public bool IsVerified { get; set; }
         public DateTime IsVerifiedDatetime { get; set; }
-
         public int IsVerifiedUserId { get; set; }
-
-       
     }
    
     public class UpdateItemMasterGSTPer

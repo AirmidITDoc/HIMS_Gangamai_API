@@ -28,7 +28,7 @@ namespace HIMS.Data.Pharmacy
 
             var disc3 = purchaseParams.PurchaseHeaderInsert.ToDictionary();
             disc3.Remove("PurchaseId");
-            var BillNo = ExecNonQueryProcWithOutSaveChanges("insert_PurchaseHeader_WithPurNo_1", disc3, outputId1);
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_PurchaseHeader_WithPurNo_1", disc3, outputId1);
 
             foreach (var a in purchaseParams.PurchaseDetailInsert)
             {
@@ -44,11 +44,11 @@ namespace HIMS.Data.Pharmacy
         public bool UpdatePurchaseOrder(PurchaseParams purchaseParams)
         {
             var vPurchaseOrderUdpate = purchaseParams.UpdatePurchaseOrderHeader.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Update_PurchaseHeader", vPurchaseOrderUdpate);
+            ExecNonQueryProcWithOutSaveChanges("m_Update_PurchaseHeader", vPurchaseOrderUdpate);
 
             var vPurchaseOrderDelete = purchaseParams.Delete_PurchaseDetails.ToDictionary();
             vPurchaseOrderDelete["PurchaseId"] = purchaseParams.UpdatePurchaseOrderHeader.PurchaseID;
-            ExecNonQueryProcWithOutSaveChanges("Delete_PurchaseDetails_1", vPurchaseOrderDelete);
+            ExecNonQueryProcWithOutSaveChanges("m_Delete_PurchaseDetails_1", vPurchaseOrderDelete);
 
             foreach (var a in purchaseParams.PurchaseDetailInsert)
             {

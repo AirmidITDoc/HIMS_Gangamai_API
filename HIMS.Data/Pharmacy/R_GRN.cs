@@ -38,19 +38,19 @@ namespace HIMS.Data.Pharmacy
 
             var disc3 = grnParams.GRNSave.ToDictionary();
             disc3.Remove("GRNID");
-            var BillNo = ExecNonQueryProcWithOutSaveChanges("insert_GRNHeader_PurNo_1_New", disc3, outputId1);
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNHeader_PurNo_1_New", disc3, outputId1);
 
             foreach (var a in grnParams.GRNDetailSave)
             {
                 var disc5 = a.ToDictionary();
              //   disc5.Remove("GRNDetID");
                 disc5["GRNId"] = BillNo;
-               var GrnDetID= ExecNonQueryProcWithOutSaveChanges("insert_GRNDetails_1_New", disc5);
+               var GrnDetID= ExecNonQueryProcWithOutSaveChanges("m_insert_GRNDetails_1_New", disc5);
             }
             foreach (var a in grnParams.UpdateItemMasterGSTPer)
             {
                 var disc5 = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("Update_M_ItemMaster_GSTPer_1", disc5);
+                ExecNonQueryProcWithOutSaveChanges("m_Update_M_ItemMaster_GSTPer_1", disc5);
             }
 
             _unitofWork.SaveChanges();
@@ -60,7 +60,7 @@ namespace HIMS.Data.Pharmacy
         public bool UpdateGRN(GRNParams grnParams)
         { 
             var vPurchaseOrderUdpate = grnParams.updateGRNHeader.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_GRNHeader_1", vPurchaseOrderUdpate);
+            ExecNonQueryProcWithOutSaveChanges("m_update_GRNHeader_1", vPurchaseOrderUdpate);
 
             var vPurchaseOrderDelete = grnParams.Delete_GRNDetails.ToDictionary();
             vPurchaseOrderDelete["GRNId"] = grnParams.updateGRNHeader.GRNID;
@@ -69,7 +69,7 @@ namespace HIMS.Data.Pharmacy
             foreach (var a in grnParams.GRNDetailSave)
             {
                 var disc5 = a.ToDictionary();
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_GRNDetails_1_New", disc5);
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNDetails_1_New", disc5);
             }
 
             _unitofWork.SaveChanges();
@@ -88,28 +88,28 @@ namespace HIMS.Data.Pharmacy
 
             var disc3 = grnParams.GRNSave.ToDictionary();
             disc3.Remove("GRNID");
-            var BillNo = ExecNonQueryProcWithOutSaveChanges("insert_GRNHeader_PurNo_1_New", disc3, outputId1);
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNHeader_PurNo_1_New", disc3, outputId1);
 
             foreach (var a in grnParams.GRNDetailSave)
             {
                 var disc5 = a.ToDictionary();
                 disc5["GRNID"] = BillNo;
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_GRNDetails_1_New", disc5);
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNDetails_1_New", disc5);
             }
             foreach (var a in grnParams.UpdateItemMasterGSTPer)
             {
                 var vItemMasterGST = a.ToDictionary();
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("Update_M_ItemMaster_GSTPer_1", vItemMasterGST);
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_Update_M_ItemMaster_GSTPer_1", vItemMasterGST);
             }
             foreach (var a in grnParams.Update_PO_STATUS_AganistGRN)
             {
                 var vPODet = a.ToDictionary();
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("Update_PO_STATUS_AganistGRN", vPODet);
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_Update_PO_STATUS_AganistGRN", vPODet);
             }
             foreach (var a in grnParams.Update_POHeader_Status_AganistGRN)
             {
                 var vPOHeader = a.ToDictionary();
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("Update_POHeader_Status_AganistGRN", vPOHeader);
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_Update_POHeader_Status_AganistGRN", vPOHeader);
             }
             _unitofWork.SaveChanges();
             return BillNo;
