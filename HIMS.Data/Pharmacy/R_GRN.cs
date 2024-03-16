@@ -26,7 +26,7 @@ namespace HIMS.Data.Pharmacy
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
-            
+
 
             var outputId2 = new SqlParameter
             {
@@ -45,7 +45,7 @@ namespace HIMS.Data.Pharmacy
                 var disc5 = a.ToDictionary();
                 disc5.Remove("GRNDetID");
                 disc5["GRNId"] = BillNo;
-               var GrnDetID= ExecNonQueryProcWithOutSaveChanges("m_insert_GRNDetails_1_New ", disc5, outputId2);
+                var GrnDetID = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNDetails_1_New ", disc5, outputId2);
             }
             foreach (var a in grnParams.UpdateItemMasterGSTPer)
             {
@@ -58,7 +58,7 @@ namespace HIMS.Data.Pharmacy
         }
 
         public bool UpdateGRN(GRNParams grnParams)
-        { 
+        {
             var vPurchaseOrderUdpate = grnParams.updateGRNHeader.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_update_GRNHeader_1", vPurchaseOrderUdpate);
 
@@ -216,7 +216,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{GSTNo}}", Bills.GetColValue("GSTNo").ConvertToString());
             html = html.Replace("{{EwayBillNo}}", Bills.GetColValue("EwayBillNo"));
 
-            
+
             html = html.Replace("{{SupplierName}}", Bills.GetColValue("SupplierName").ConvertToString());
             html = html.Replace("{{PONo}}", Bills.GetColValue("PONo").ConvertToString());
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
@@ -227,7 +227,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{VatAmount}}", Bills.GetColValue("VatAmount").ConvertToString());
             html = html.Replace("{{Mobile}}", Bills.GetColValue("Mobile"));
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
-            
+
             html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
             string finalamt = NumberToWords(Bills.GetColValue("NetPayble").ConvertToDouble().To2DecimalPlace().ToInt());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
