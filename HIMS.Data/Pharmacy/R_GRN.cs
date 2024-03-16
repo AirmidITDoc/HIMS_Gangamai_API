@@ -217,7 +217,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{EwayBillNo}}", Bills.GetColValue("EwayBillNo"));
 
             
-               html = html.Replace("{{SupplierName}}", Bills.GetColValue("SupplierName").ConvertToString());
+            html = html.Replace("{{SupplierName}}", Bills.GetColValue("SupplierName").ConvertToString());
             html = html.Replace("{{PONo}}", Bills.GetColValue("PONo").ConvertToString());
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
             html = html.Replace("{{Email}}", Bills.GetColValue("Email").ConvertToString());
@@ -228,7 +228,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{Mobile}}", Bills.GetColValue("Mobile"));
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
             
-                 html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
+            html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
             string finalamt = NumberToWords(Bills.GetColValue("NetPayble").ConvertToDouble().To2DecimalPlace().ToInt());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 

@@ -176,7 +176,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GRNReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _GRN.ViewGRNReport( GRNID, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GRNReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GRNReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
