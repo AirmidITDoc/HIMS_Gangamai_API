@@ -25,13 +25,40 @@
         <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
             <div style="display:block;width:100%; align-items: center;">
                 <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
-                  MATERIAL CONSUMPTION REPORT
+                    MATERIAL CONSUMPTION REPORT
                 </div>
                 <span style="font-size: 9px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
             </div>
 
         </div>
+        <table>
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; font-size: 20px;">PatientName.</span>
+                    <span style="font-size:15px; ">{{PatientName}} </span>
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;;">RegNo</span>
+                    <span style="font-size:15px;"> {{RegNo}} </span>
+                </td>
+            </tr>
 
+          
+
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; font-size: 20px;">StoreName</span>
+                    <span style="font-size:15px;">{{StoreName}}</span>
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;">Patient Type</span>
+                    <span style="font-size:15px;">{{PatientType}}</span>
+                </td>
+            </tr>
+
+           
+        </table>
+        <hr />
         <table class="table" style="width:100%;border-collapse:collapse">
             <tbody>
 
@@ -40,17 +67,7 @@
                         SR.NO
                     </td>
 
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:5%;">
-                        RegNo
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:15%;">
-                        PatientName
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:15%;">
-                        Store
-                    </td>
+                   
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:15%;">
                         Item
                     </td>
@@ -75,34 +92,31 @@
 
                 {{Items}}
 
-            <tr style="border: 1px solid black;">
+                <tr style="border: 1px solid black;">
 
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;color:cornflowerblue;">
-                    Total
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-                <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; color: cornflowerblue;">
-                    {{T_TotalMrpAmount}}
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;color:cornflowerblue;" ">
-                    {{T_TotalLandAmount}}
-                </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                    </td>
+                    
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;color:cornflowerblue;">
+                        Total
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; color: cornflowerblue;">
+                        {{T_TotalMrpAmount}}
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;color:cornflowerblue;" ">
+                        {{T_TotalLandAmount}}
+                    </td>
 
 
-            </tr>
+                </tr>
 
             </tbody>
         </table>

@@ -274,7 +274,9 @@ namespace HIMS.Data.Inventory
             //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{FromStoreName}}", Bills.GetColValue("FromStoreName"));
+            
 
+                html = html.Replace("{{Remark}}", Bills.GetColValue("Remark"));
             html = html.Replace("{{ToStoreName}}", Bills.GetColValue("ToStoreName"));
             html = html.Replace("{{IndentNo}}", Bills.GetColValue("IndentNo"));
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
