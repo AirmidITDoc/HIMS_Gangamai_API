@@ -88,6 +88,8 @@ namespace HIMS.Model.Pharmacy
         public bool IsVerified { get; set; }
         public DateTime IsVerifiedDatetime { get; set; }
         public int IsVerifiedUserId { get; set; }
+
+        public long stkId { get; set; }
     }
    
     public class UpdateItemMasterGSTPer
@@ -117,7 +119,7 @@ namespace HIMS.Model.Pharmacy
 
     public class UpdateGRNVerifyStatus {
         public long GRNID { get; set; }
-        public bool ISVerified { get; set; }
+        public long IsVerifiedUserId { get; set; }
     }
     public class UpdateGRNHeader
     {
