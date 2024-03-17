@@ -201,13 +201,12 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-
-        [HttpGet("view-NONMovingItem")]
-        public IActionResult ViewNonmovingitem(int NonMovingDay, int StoreId)
+        [HttpGet("view-NonMovingItem")]
+        public IActionResult ViewNonMovingItem(int NonMovingDay, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NonMovingItemList.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IssuetoDepartment.ViewNonMovingItem(NonMovingDay,StoreId, htmlFilePath, htmlHeaderFilePath);
+            var html = _IssuetoDepartment.ViewNonMovingItem(NonMovingDay, StoreId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "NonMovingItemList", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             // write logic for send pdf in whatsapp
@@ -218,7 +217,7 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-        
+
 
 
         [HttpGet("view-ExpiryItemList")]

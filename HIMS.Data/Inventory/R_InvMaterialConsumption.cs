@@ -40,10 +40,11 @@ namespace HIMS.Data.Inventory
                 ExecNonQueryProcWithOutSaveChanges("insert_IMaterialConsumptionDetails", disc5);
 
             }
-
-            var disc2 = MaterialConsumptionParam.UpdateCurrentStock.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Upd_T_Curstk_MatC_1", disc2);
-
+            foreach (var a in MaterialConsumptionParam.UpdateCurrentStock)
+            {
+                var disc2 = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("Upd_T_Curstk_MatC_1", disc2);
+            }
 
             _unitofWork.SaveChanges();
             return Id;

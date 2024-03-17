@@ -8,7 +8,7 @@ namespace HIMS.Model.Inventory
     {
         public InsertMaterialConsumption InsertMaterialConsumption { get; set; }
         public List<InsertMaterialConsDetail> InsertMaterialConsDetail { get; set; }
-        public UpdateCurrentStock UpdateCurrentStock { get; set; }
+        public List<UpdateCurrentStock> UpdateCurrentStock { get; set; }
     }
    
    public class InsertMaterialConsumption{

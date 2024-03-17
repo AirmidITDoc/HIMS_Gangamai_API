@@ -94,15 +94,13 @@ namespace HIMS.Model.Pharmacy
         public bool IsVerified { get; set; }
         public DateTime IsVerifiedDatetime { get; set; }
         public int IsVerifiedUserId { get; set; }
-<<<<<<< HEAD
+
         public int stkId { get; set; }
         public float DiscPerc2 { get; set; }
 
         public float DiscAmt2 { get; set; }
-=======
 
-        public long stkId { get; set; }
->>>>>>> 19a9d1e3b9f5b7ee0296877ec7ca4b81b9cb1a78
+
     }
 
     public class UpdateItemMasterGSTPer
