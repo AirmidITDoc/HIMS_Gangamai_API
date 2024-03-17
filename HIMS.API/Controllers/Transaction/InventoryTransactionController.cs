@@ -30,7 +30,9 @@ namespace HIMS.API.Controllers.Transaction
             ,Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment
             , IPdfUtility pdfUtility
             , IFileUtility fileUtility
-            , I_IssuetoDepartment issuetoDepartment,I_InvMaterialConsumption invMaterialConsumption,I_ReturnFromDept returnFromDept )
+            , I_IssuetoDepartment issuetoDepartment,
+             I_InvMaterialConsumption invMaterialConsumption,
+             I_ReturnFromDept returnFromDept )
         {
             this._indent = indent;
             this._IssueTrackingInfo = issueTrackingInfo;

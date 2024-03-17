@@ -97,10 +97,11 @@ namespace HIMS.Model.Pharmacy
 
         public int stkId { get; set; }
         public float DiscPerc2 { get; set; }
-
         public float DiscAmt2 { get; set; }
+=======
 
-
+        public long stkId { get; set; }
+>>>>>>> 19a9d1e3b9f5b7ee0296877ec7ca4b81b9cb1a78
     }
 
     public class UpdateItemMasterGSTPer
@@ -116,9 +117,7 @@ namespace HIMS.Model.Pharmacy
     public class Update_PO_STATUS_AganistGRN
     {
         public long POId { get; set; }
-
         public long PurDetID { get; set; }
-
         public long POBalQty { get; set; }
         public bool IsClosed { get; set; }
 
