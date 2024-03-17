@@ -36,7 +36,8 @@ using HIMS.Data.Inventory;
 using HIMS.Data.Users;
 using HIMS.Data.Dashboard;
 using HIMS.Data.WhatsAppEmail;
-//using HIMS.Data.Transaction;
+using HIMS.Data.HomeDelivery;
+
 namespace HIMS.API.Extensions
 {
     public static class ServiceExtension
@@ -301,6 +302,10 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_InvMaterialConsumption, R_InvMaterialConsumption>();
             services.AddTransient<I_GRNReturn, R_GRNReturn>();
             services.AddTransient<I_ReturnFromDept, R_ReturnFromDept>();
+
+            services.AddTransient<I_HomeDeliveryLogin, R_HomeDeliveryLogin>();
+            services.AddTransient<I_HomeDeliveryOrder, R_HomeDeliveryOrder>();
+
             /*  services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMasterHome>();
            services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();
            services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();

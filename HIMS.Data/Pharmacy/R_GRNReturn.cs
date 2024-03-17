@@ -19,8 +19,6 @@ namespace HIMS.Data.Pharmacy
         {
             //  throw new NotImplementedException();
 
-           
-
 
             var outputId2 = new SqlParameter
             {
