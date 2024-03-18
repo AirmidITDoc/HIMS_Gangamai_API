@@ -690,58 +690,6 @@ namespace HIMS.Data.Pharmacy
 
         }
 
-        //public string ViewSalesReturnPatientwiseReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
-        //{
-        //    SqlParameter[] para = new SqlParameter[5];
-        //    para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
-        //    para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-        //    para[2] = new SqlParameter("@SalesFromNumber", SalesFromNumber) { DbType = DbType.String };
-        //    para[3] = new SqlParameter("@SalesToNumber", SalesToNumber) { DbType = DbType.String };
-        //    para[4] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
-        //    var Bills = GetDataTableProc("RptSalesReturnReport", para);
-        //    string html = File.ReadAllText(htmlFilePath);
-        //    string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
-        //    html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-        //    html = html.Replace("{{HeaderName}}", htmlHeader);
-        //    StringBuilder items = new StringBuilder("");
-        //    int i = 0;
-
-        //    double T_TotalNETAmount = 0, T_TotalBalancepay = 0;
-
-        //    foreach (DataRow dr in Bills.Rows)
-        //    {
-        //        i++;
-
-        //        items.Append("<tr><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;margin-left:10px !important;text-align:center;\">").Append(i).Append("</td>");
-        //        items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle;padding-left:10px;\">").Append(dr["SalesReturnNo"].ConvertToString()).Append("</td>");
-        //        items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: left;padding-left:10px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-        //        items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-        //        items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["BalanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
-
-
-        //        T_TotalNETAmount += dr["NetAmount"].ConvertToDouble();
-        //        T_TotalBalancepay += dr["BalanceAmount"].ConvertToDouble();
-
-        //        //   exec RptPharmacyCreditReport '11-01-2022','11-26-2023',1545,1557,0,10016
-        //    }
-
-        //    html = html.Replace("{{Items}}", items.ToString());
-        //    html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-        //    html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
-        //    html = html.Replace("{{TotalNETAmount}}", T_TotalNETAmount.To2DecimalPlace());
-        //    html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
-
-        //    html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
-        //    html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
-
-        //    return html;
-
-        //}
-
-
-
-
-
         public string ViewSalesReturnPatientwiseReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
         {
             SqlParameter[] para = new SqlParameter[5];
@@ -758,33 +706,30 @@ namespace HIMS.Data.Pharmacy
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
-            double T_TotalNETAmount = 0, T_TotalSalespay = 0;
+            double T_TotalNETAmount = 0, T_TotalBalancepay = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
                 i++;
 
                 items.Append("<tr><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;margin-left:10px !important;text-align:center;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:left;vertical-align:middle;padding-left:10px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: center;padding-left:10px;\">").Append(dr["MobileNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["SalesDate"].ConvertToDateString("dd/MM/yy")).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle;padding-left:10px;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yy")).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: center;padding-left:10px;\">").Append(dr["AgingDays"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["SalesAmount"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["NetAmount"].ConvertToDouble()).Append("</td></tr>");
+                items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle;padding-left:10px;\">").Append(dr["SalesReturnNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: left;padding-left:10px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["BalanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
 
                 T_TotalNETAmount += dr["NetAmount"].ConvertToDouble();
-                T_TotalSalespay += dr["SalesAmount"].ConvertToDouble();
+                T_TotalBalancepay += dr["BalanceAmount"].ConvertToDouble();
 
-                
+                //   exec RptPharmacyCreditReport '11-01-2022','11-26-2023',1545,1557,0,10016
             }
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{TotalNETAmount}}", T_TotalNETAmount.To2DecimalPlace());
-            html = html.Replace("{{T_TotalSalespay}}", T_TotalSalespay.To2DecimalPlace());
+            html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
 
             html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
             html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
@@ -792,6 +737,61 @@ namespace HIMS.Data.Pharmacy
             return html;
 
         }
+
+
+
+
+
+        //public string ViewSalesReturnPatientwiseReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        //{
+        //    SqlParameter[] para = new SqlParameter[5];
+        //    para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+        //    para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+        //    para[2] = new SqlParameter("@SalesFromNumber", SalesFromNumber) { DbType = DbType.String };
+        //    para[3] = new SqlParameter("@SalesToNumber", SalesToNumber) { DbType = DbType.String };
+        //    para[4] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+        //    var Bills = GetDataTableProc("RptSalesReturnReport", para);
+        //    string html = File.ReadAllText(htmlFilePath);
+        //    string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+        //    html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+        //    html = html.Replace("{{HeaderName}}", htmlHeader);
+        //    StringBuilder items = new StringBuilder("");
+        //    int i = 0;
+
+        //    double T_TotalNETAmount = 0, T_TotalSalespay = 0;
+
+        //    foreach (DataRow dr in Bills.Rows)
+        //    {
+        //        i++;
+
+        //        items.Append("<tr><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;margin-left:10px !important;text-align:center;\">").Append(i).Append("</td>");
+        //        items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:left;vertical-align:middle;padding-left:10px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+        //        items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: center;padding-left:10px;\">").Append(dr["MobileNo"].ConvertToString()).Append("</td>");
+        //        items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["SalesDate"].ConvertToDateString("dd/MM/yy")).Append("</td>");
+        //        items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle;padding-left:10px;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yy")).Append("</td>");
+        //        items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: center;padding-left:10px;\">").Append(dr["AgingDays"].ConvertToString()).Append("</td>");
+        //        items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["SalesAmount"].ConvertToDouble()).Append("</td>");
+        //        items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["NetAmount"].ConvertToDouble()).Append("</td></tr>");
+
+
+        //        T_TotalNETAmount += dr["NetAmount"].ConvertToDouble();
+        //        T_TotalSalespay += dr["SalesAmount"].ConvertToDouble();
+
+                
+        //    }
+
+        //    html = html.Replace("{{Items}}", items.ToString());
+        //    html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+        //    html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
+        //    html = html.Replace("{{TotalNETAmount}}", T_TotalNETAmount.To2DecimalPlace());
+        //    html = html.Replace("{{T_TotalSalespay}}", T_TotalSalespay.To2DecimalPlace());
+
+        //    html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
+        //    html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
+
+        //    return html;
+
+        //}
 
 
         public string ViewSalesReturnSummaryReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
