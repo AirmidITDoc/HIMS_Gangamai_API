@@ -414,18 +414,18 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-SalesReturn_Patientwise_Report")]
         public IActionResult viewSalesReturnPatientwiseReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId)
         {
-            //string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnPatientwise.html");
-            //string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            //var html = _Sales.ViewSalesReturnPatientwiseReport(FromDate, ToDate, SalesFromNumber, SalesToNumber, StoreId, htmlFilePath, htmlHeaderFilePath);
-            //var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnPatientwise", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
-
-            //return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnPatientwiseNew.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnPatientwise.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _Sales.ViewSalesReturnPatientwiseReport(FromDate, ToDate, SalesFromNumber, SalesToNumber, StoreId, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnPatientwiseNew", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnPatientwise", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+            //string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnPatientwiseNew.html");
+            //string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            //var html = _Sales.ViewSalesReturnPatientwiseReport(FromDate, ToDate, SalesFromNumber, SalesToNumber, StoreId, htmlFilePath, htmlHeaderFilePath);
+            //var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnPatientwiseNew", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            //return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
 
