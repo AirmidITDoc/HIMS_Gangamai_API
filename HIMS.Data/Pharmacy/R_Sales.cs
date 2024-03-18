@@ -40,13 +40,13 @@ namespace HIMS.Data.Pharmacy
 
             var disc3 = salesParams.SalesInsert.ToDictionary();
             disc3.Remove("SalesId");
-            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_Sales_1", disc3, outputId1);
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("insert_Sales_1", disc3, outputId1);
 
             foreach (var a in salesParams.SalesDetailInsert)
             {
                 var disc5 = a.ToDictionary();
                 disc5["SalesID"] = BillNo;
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_SalesDetails_1", disc5);
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_SalesDetails_1", disc5);
             }
 
             foreach (var a in salesParams.UpdateCurStkSales)
