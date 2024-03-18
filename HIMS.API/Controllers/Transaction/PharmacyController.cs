@@ -397,10 +397,10 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-Sales_Report_PatientWiseNew")]
         public IActionResult viewSalesReportPatientWiseNew(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReturnPatientwiseNew.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReportPatientwise.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _Sales.ViewSalesReportPatientWise(FromDate, ToDate, SalesFromNumber, SalesToNumber, AddedBy, StoreId, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnPatientwiseNew", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReportPatientwise", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             // write logic for send pdf in whatsapp
 
