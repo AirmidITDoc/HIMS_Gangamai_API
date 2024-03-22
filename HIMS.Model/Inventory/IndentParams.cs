@@ -20,6 +20,7 @@ namespace HIMS.Model.Inventory
         public long FromStoreId { get; set; }
         public long ToStoreId { get; set; }
         public long Addedby { get; set; }
+        public string Comments { get; set; }
     }
     public class InsertIndentDetail{
         public long IndentId { get; set; }

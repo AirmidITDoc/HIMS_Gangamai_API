@@ -90,11 +90,11 @@ namespace HIMS.Data.Inventory
                 //   exec RptPharmacyCreditReport '11-01-2022','11-26-2023',11052,24879,0,10016
 
             }
-            T_TotalNETAmount = Math.Round(T_TotalNETAmount);
+            //T_TotalNETAmount = Math.Round(T_TotalNETAmount);
             html = html.Replace("{{Items}}", items.ToString());
             //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{TotalNETAmount}}", T_TotalNETAmount.ToString());
+            html = html.Replace("{{TotalNETAmount}}", T_TotalNETAmount.To2DecimalPlace());
             html = html.Replace("{{T_TotalVatAmount}}", T_TotalVatAmount.To2DecimalPlace());
             
              html = html.Replace("{{Remark}}", Bills.GetColValue("Remark"));
@@ -102,6 +102,7 @@ namespace HIMS.Data.Inventory
             html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
 
             html = html.Replace("{{StoreName}}", Bills.GetColValue("StoreName"));
+            html = html.Replace("{{AddedByName}}", Bills.GetColValue("AddedByName").ToString());
 
 
             html = html.Replace("{{IssueNo}}", Bills.GetColValue("IssueNo"));
@@ -113,7 +114,10 @@ namespace HIMS.Data.Inventory
             html = html.Replace("{{ToStreName}}", Bills.GetColValue("ToStreName"));
 
 
-            string finalamt = NumberToWords(T_TotalNETAmount.ToInt());
+            //string finalamt = NumberToWords(T_TotalNETAmount.ToInt());
+            
+
+            string finalamt = words(T_TotalNETAmount.ToInt());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
             return html;
@@ -338,7 +342,8 @@ namespace HIMS.Data.Inventory
             html = html.Replace("{{T_TotalLRateAmount}}", T_TotalLRateAmount.To2DecimalPlace());
             html = html.Replace("{{T_TotalVatAmount}}", T_TotalVatAmount.To2DecimalPlace());
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
-
+            
+            html = html.Replace("{{AddedByName}}", Bills.GetColValue("AddedByName").ToString());
 
             html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
             html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
@@ -441,6 +446,74 @@ namespace HIMS.Data.Inventory
 
 
             return html;
+        }
+
+
+
+
+
+        //private void btntowords_Click(object sender, EventArgs e)
+        //{
+        //    MessageBox.Show(words(Convert.ToInt32(textBox1.Text)));
+        //}
+
+        public string words(int numbers)
+        {
+            int number = numbers;
+
+            if (number == 0) return "Zero";
+            if (number == -2147483648) return "Minus Two Hundred and Fourteen Crore Seventy Four Lakh Eighty Three Thousand Six Hundred and Forty Eight";
+            int[] num = new int[4];
+            int first = 0;
+            int u, h, t;
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            if (number < 0)
+            {
+                sb.Append("Minus ");
+                number = -number;
+            }
+            string[] words0 = {"" ,"One ", "Two ", "Three ", "Four ",
+"Five " ,"Six ", "Seven ", "Eight ", "Nine "};
+            string[] words1 = {"Ten ", "Eleven ", "Twelve ", "Thirteen ", "Fourteen ",
+"Fifteen ","Sixteen ","Seventeen ","Eighteen ", "Nineteen "};
+            string[] words2 = {"Twenty ", "Thirty ", "Forty ", "Fifty ", "Sixty ",
+"Seventy ","Eighty ", "Ninety "};
+            string[] words3 = { "Thousand ", "Lakh ", "Crore " };
+            num[0] = number % 1000; // units
+            num[1] = number / 1000;
+            num[2] = number / 100000;
+            num[1] = num[1] - 100 * num[2]; // thousands
+            num[3] = number / 10000000; // crores
+            num[2] = num[2] - 100 * num[3]; // lakhs
+            for (int i = 3; i > 0; i--)
+            {
+                if (num[i] != 0)
+                {
+                    first = i;
+                    break;
+                }
+            }
+            for (int i = first; i >= 0; i--)
+            {
+                if (num[i] == 0) continue;
+                u = num[i] % 10; // ones
+                t = num[i] / 10;
+                h = num[i] / 100; // hundreds
+                t = t - 10 * h; // tens
+                if (h > 0) sb.Append(words0[h] + "Hundred ");
+                if (u > 0 || t > 0)
+                {
+                    if (h > 0 || i == 0) sb.Append("and ");
+                    if (t == 0)
+                        sb.Append(words0[u]);
+                    else if (t == 1)
+                        sb.Append(words1[u]);
+                    else
+                        sb.Append(words2[t - 2] + words0[u]);
+                }
+                if (i != 0) sb.Append(words3[i - 1]);
+            }
+            return sb.ToString().TrimEnd();
         }
     }
 }
