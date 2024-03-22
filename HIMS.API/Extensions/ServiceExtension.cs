@@ -305,6 +305,7 @@ namespace HIMS.API.Extensions
 
             services.AddTransient<I_HomeDeliveryLogin, R_HomeDeliveryLogin>();
             services.AddTransient<I_HomeDeliveryOrder, R_HomeDeliveryOrder>();
+            services.AddTransient<I_SalesReport, R_SalesReport>();
 
             /*  services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMasterHome>();
            services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();
