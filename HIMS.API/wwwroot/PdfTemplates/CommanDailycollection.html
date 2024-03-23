@@ -22,67 +22,72 @@
 
         {{HeaderName}}
 
-        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: beige;">
             <div style="display:block;width:100%; align-items: center;">
                 <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;">
-                     DAILY COLLECTION REPORT
+                  COMMAN  DAILY COLLECTION REPORT
                 </div>
                 <span style="font-size: 18px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
             </div>
 
         </div>
         <div style="margin-top:2px;">
-            <div style="font-weight: bold;font-size:18px;margin-left:10px;padding:5px;">From Date : {{FromDate}} -- To Date :{{Todate}}</div>
+            <div style="font-weight: bold;font-size:18px;margin-left:10px;padding:5px;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
         </div>
         <table class="table" style="width:100%;border-collapse:collapse">
             <tbody>
 
                 <tr style="font-size:10px;background-color: rgb(127, 174, 255);">
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Sr.No
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        BillNo
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        PAY Date
+                        SR.NO
                     </td>
 
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                        Date
+                    </td>
+
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                        PBill
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                        Reg No
+                    </td>
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                         Patient Name
                     </td>
+
+
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Total Amt
+                        Bill Amt
+                    </td>
+
+
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                        Cash Amt
                     </td>
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Disc Amt
+                        Cheque Amt
                     </td>
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Net Amt
+                        Card Amt
                     </td>
 
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Paid Amt
+                        NEFT Amt
+                    </td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                        Online Amt
+                    </td>
+
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                        Adv.used Amt
                     </td>
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                         Bal Amt
                     </td>
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Cash Amt
+                        User Name
                     </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Card Amt
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Cheque PAY
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Advance Used
-                    </td>
-                    <!--<td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-        UPI PAY
-    </td>-->
-
                 </tr>
 
                 {{Items}}
@@ -96,35 +101,38 @@
                 <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                 </td>
                 <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                </td>
+                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                     Total Amt.
                 </td>
                 <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    {{T_TotAmount}}
+                    {{T_AddBillAmount}}
                 </td>
 
                 <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    {{T_DiscAmount}}
+                    {{T_FinalCashPayAmount}}
                 </td>
 
                 <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    {{T_NetAmount}}
+                    {{T_FinalChequePayAmount}}
                 </td>
                 <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    {{T_BalAmount}}
+                    {{T_FinalCardPayAmount}}
                 </td>
                 <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    {{T_PaidAmount}}
+                    {{T_FinalNEFTPayAmount}}
                 </td>
 
                 <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    {{T_CashPayAmount}}
+                    {{T_FinalPayTMAmount}}
                 </td>
                 <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    {{T_CardPayAmount}}
+                    
                 </td>
                 <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    {{T_ChequePayAmount}}
+                    
                 </td>
+
                 <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                 </td>
             </tr>
