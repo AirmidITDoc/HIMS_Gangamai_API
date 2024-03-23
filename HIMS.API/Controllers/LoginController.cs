@@ -41,6 +41,17 @@ namespace HIMS.API.Controllers
         [Route("get-menus")]
         public ActionResult GetMenus(int RoleId)
         {
+            return Ok(PrepareMenu(RoleId,true));
+        }
+        [HttpGet]
+        [Route("get-permission-menu")]
+        public ActionResult GetPermissionMenus(int RoleId)
+        {
+            return Ok(PrepareMenu(RoleId, false));
+        }
+        [NonAction]
+        public List<MenuModel> PrepareMenu(int RoleId, bool isActiveMenuOnly)
+        {
             List<MenuMaster> lstMenu = i_MenuMaster.GetMenus(RoleId);
             List<MenuModel> finalList = new List<MenuModel>();
             var distinct = lstMenu.Where(x => x.UpId == 0);
@@ -75,14 +86,14 @@ namespace HIMS.API.Controllers
                         IsDelete = lData.IsDelete,
                         IsEdit = lData.IsEdit
                     };
-                    test.children = AddChildtems(lstMenu, test);
+                    test.children = AddChildtems(lstMenu, test, isActiveMenuOnly);
                     if (test.children.Count == 0)
                     {
                         test.type = "item";
                         test.url = lData.LinkAction;
                         test.children = null;
                     }
-                    if ((test?.children?.Count() ?? 0) > 0 || lData.IsView)
+                    if ((test?.children?.Count() ?? 0) > 0 || lData.IsView || !isActiveMenuOnly)
                         obj.children.Add(test);
                 }
                 if (obj.children.Count == 0)
@@ -91,14 +102,13 @@ namespace HIMS.API.Controllers
                     obj.url = ItemData.LinkAction;
                     obj.children = null;
                 }
-                if ((obj?.children?.Count ?? 0) > 0 || ItemData.IsView)
+                if ((obj?.children?.Count ?? 0) > 0 || ItemData.IsView || !isActiveMenuOnly)
                     finalList.Add(obj);
             }
-
-            return Ok(finalList);
+            return finalList;
         }
         [NonAction]
-        private List<MenuModel> AddChildtems(List<MenuMaster> Data, MenuModel obj)
+        private List<MenuModel> AddChildtems(List<MenuMaster> Data, MenuModel obj, bool isActiveMenuOnly)
         {
             List<MenuModel> lstChilds = new List<MenuModel>();
             try
@@ -120,14 +130,14 @@ namespace HIMS.API.Controllers
                         IsDelete = objItem.IsDelete,
                         IsEdit = objItem.IsEdit
                     };
-                    objData.children = AddChildtems(Data, objData);
+                    objData.children = AddChildtems(Data, objData, isActiveMenuOnly);
                     if (objData.children.Count == 0)
                     {
                         objData.type = "item";
                         objData.url = objItem.LinkAction;
                         objData.children = null;
                     }
-                    if ((objData?.children?.Count ?? 0) > 0 || objItem.IsView)
+                    if ((objData?.children?.Count ?? 0) > 0 || objItem.IsView || !isActiveMenuOnly)
                         lstChilds.Add(objData);
                 }
             }
