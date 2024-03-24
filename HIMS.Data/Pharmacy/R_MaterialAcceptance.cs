@@ -33,6 +33,15 @@ namespace HIMS.Data.Pharmacy
             return true;
         }
 
+        public bool UpdateStockToMainStock(MaterialAcceptParams materialAcceptParams)
+        {
+            var vUpdateStockToMainStock = materialAcceptParams.UpdateStockToMainStock.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_StockToMainStore_1", vUpdateStockToMainStock);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
         public string ViewMaterialReceivedfrDept(int IssueId, string htmlFilePath, string htmlHeaderFilePath)
         {
             // throw new NotImplementedException();

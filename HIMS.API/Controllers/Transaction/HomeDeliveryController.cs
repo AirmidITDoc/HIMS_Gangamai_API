@@ -44,7 +44,7 @@ namespace HIMS.API.Controllers.Transaction
         public async Task<IActionResult> HomeDeliveryOrderInsertAsync([FromForm] HomeDeliveryOrderParams homeDeliveryOrderParams)
         {
             string NewFileName = homeDeliveryOrderParams.HomeDeliveryOrderInsert.CustomerID.ToString();//Guid.NewGuid().ToString();
-            string FileName = await _IFileUtility.UploadDocument(homeDeliveryOrderParams.HomeDeliveryOrderInsert.ImgFile, "PatientPhoto", NewFileName);
+            string FileName = await _IFileUtility.UploadDocument(homeDeliveryOrderParams.HomeDeliveryOrderInsert.ImgFile, "HomeDelivery", NewFileName);
             homeDeliveryOrderParams.HomeDeliveryOrderInsert.UploadDocument = FileName;
 
             var Id = _HomeDeliveryOrder.HomeDeliveryOrderInsert(homeDeliveryOrderParams);
