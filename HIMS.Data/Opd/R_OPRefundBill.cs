@@ -28,7 +28,7 @@ namespace HIMS.Data.Opd
 
             var disc1 = OPRefundBillParams.InsertRefund.ToDictionary();
             disc1.Remove("RefundId");
-            var RefundId = ExecNonQueryProcWithOutSaveChanges("insert_Refund_1", disc1, outputId1);
+            var RefundId = ExecNonQueryProcWithOutSaveChanges("m_insert_Refund_1", disc1, outputId1);
 
 
             foreach (var a in OPRefundBillParams.InsertOPRefundDetails)
@@ -36,7 +36,7 @@ namespace HIMS.Data.Opd
                 var disc2 = a.ToDictionary();
                 disc2["RefundID"] = RefundId;
                 disc2["RefundAmount"] = OPRefundBillParams.InsertRefund.RefundAmount;
-                ExecNonQueryProcWithOutSaveChanges("insert_T_RefundDetails_1", disc2);
+                ExecNonQueryProcWithOutSaveChanges("m_insert_T_RefundDetails_1", disc2);
             }
 
             foreach (var a in OPRefundBillParams.Update_AddCharges_RefundAmount)
@@ -44,28 +44,14 @@ namespace HIMS.Data.Opd
 
                 var disc3 = a.ToDictionary();
                 disc3["RefundAmount"] = OPRefundBillParams.InsertRefund.RefundAmount;
-                ExecNonQueryProcWithOutSaveChanges("Update_AddCharges_RefundAmt", disc3);
+                ExecNonQueryProcWithOutSaveChanges("m_Update_AddCharges_RefundAmt", disc3);
             }
 
-          
-           /* var disc4 = OPRefundBillParams.OP_DoctorShare_GroupWise_RefundOfBill.ToDictionary();
-            disc4["RefundId"] = RefundId;
-            ExecNonQueryProcWithOutSaveChanges("OP_DoctorShare_GroupWise_RefundOfBill", disc4);
-
-            var outputId2 = new SqlParameter
-            {
-                SqlDbType = SqlDbType.BigInt,
-                ParameterName = "@PaymentId",
-                Value = 0,
-                Direction = ParameterDirection.Output
-            };*/
-
             var disc5 = OPRefundBillParams.InsertOPPayment.ToDictionary();
-           // disc5.Remove("PaymentId");
             disc5["RefundId"] = RefundId;
             disc5["BillNo"] = OPRefundBillParams.InsertRefund.BillId;
             disc5["AdvanceId"] = OPRefundBillParams.InsertRefund.AdvanceId;
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", disc5);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc5);
 
             _unitofWork.SaveChanges();      
             return RefundId;

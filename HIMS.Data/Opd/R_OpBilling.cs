@@ -61,20 +61,20 @@ namespace HIMS.Data.Opd
 
             var disc3 = OPbillingparams.InsertBillupdatewithbillno.ToDictionary();
             disc3.Remove("BillNo");
-            var BillNo = ExecNonQueryProcWithOutSaveChanges("insert_Bill_UpdateWithBillNo_1_New", disc3, outputId1);
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_Bill_1", disc3, outputId1);
 
             foreach (var a in OPbillingparams.ChargesDetailInsert)
             {
                 var disc5 = a.ToDictionary();
                 disc5["BillNo"] = BillNo;
                 disc5.Remove("ChargeID");
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_OPAddCharges_1", disc5, VarChargeID);
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_OPAddCharges_1", disc5, VarChargeID);
 
                 // Dill Detail Table Insert 
                 Dictionary<string, Object> OPBillDet = new Dictionary<string, object>();
                 OPBillDet.Add("BillNo", BillNo);
                 OPBillDet.Add("ChargesID", ChargeID);
-                ExecNonQueryProcWithOutSaveChanges("insert_BillDetails_1", OPBillDet);
+                ExecNonQueryProcWithOutSaveChanges("m_insert_BillDetails_1", OPBillDet);
 
                 if (a.IsPathology)
                 {
@@ -92,7 +92,7 @@ namespace HIMS.Data.Opd
                     PathParams.Add("IsSamplecollection", 0);
                     PathParams.Add("TestType", 0);
 
-                    ExecNonQueryProcWithOutSaveChanges("insert_PathologyReportHeader_1", PathParams);
+                    ExecNonQueryProcWithOutSaveChanges("m_insert_PathologyReportHeader_1", PathParams);
                 }
                 if (a.IsRadiology)
                 {
@@ -110,50 +110,13 @@ namespace HIMS.Data.Opd
                     PathParams.Add("IsPrinted", 0);
                     PathParams.Add("TestType", 0);
 
-                    ExecNonQueryProcWithOutSaveChanges("insert_RadiologyReportHeader_1", PathParams);
+                    ExecNonQueryProcWithOutSaveChanges("m_insert_RadiologyReportHeader_1", PathParams);
                 }
             }
 
             var disc7 = OPbillingparams.OPInsertPayment.ToDictionary();
             disc7["BillNo"] = (int)Convert.ToInt64(BillNo);
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", disc7);
-            
-            
-            // foreach (var a in OPbillingparams.InsertPathologyReportHeader)
-            // {
-            //     var disc1 = a.ToDictionary();
-            //     //disc5["BillNo"] = BillNo;
-            //     ExecNonQueryProcWithOutSaveChanges("insert_PathologyReportHeader_1", disc1);
-            // }
-
-            // foreach (var a in OPbillingparams.InsertRadiologyReportHeader)
-            // {
-            //     var disc2 = a.ToDictionary();
-            //    ExecNonQueryProcWithOutSaveChanges("insert_RadiologyReportHeader_1", disc2);
-            // }
-
-
-
-            // foreach (var a in OPbillingparams.OpBillDetailsInsert)
-            //{
-            //    var disc5 = a.ToDictionary();
-            //    disc5["BillNo"] = BillNo;
-            //    ExecNonQueryProcWithOutSaveChanges("insert_BillDetails_1", disc5);
-            // }
-
-            // var disc4 = OPbillingparams.OPoctorShareGroupAdmChargeDoc.ToDictionary();
-            // disc4["BillNo"] = (int)Convert.ToInt64(BillNo);
-            //disc4.Remove("BillNo");
-            //new  ExecNonQueryProcWithOutSaveChanges("ps_OP_Doctor_Share_Group_Adm_ChargeDoc_1", disc4);
-
-
-            //var disc6 = OPbillingparams.OPCalDiscAmountBill.ToDictionary();
-            //disc6["BillNo"] = (int)Convert.ToInt64(BillNo);
-            //ExecNonQueryProcWithOutSaveChanges("Cal_DiscAmount_OPBill", disc6);
-
-            //IPBillingParams.BillDetailsInsert.BillNo = (int)Convert.ToInt64(BillNo);
-
-
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc7);
 
             _unitofWork.SaveChanges();
             return BillNo;

@@ -30,7 +30,7 @@ namespace HIMS.Data.Opd
             //opdAppointmentParams.VisitSave.RegID = Convert.ToInt64(RegID);
             var dic1 = CrossConsultation.CrossConsultationSave.ToDictionary();
             dic1.Remove("VisitId");
-            var VisitID = ExecNonQueryProcWithOutSaveChanges("insert_VisitDetails_New_1", dic1, outputId1);
+            var VisitID = ExecNonQueryProcWithOutSaveChanges("m_insert_VisitDetails_1", dic1, outputId1);
 
             _unitofWork.SaveChanges();
 

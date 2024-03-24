@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace HIMS.Model.HomeDelivery
 {
@@ -16,5 +17,7 @@ namespace HIMS.Model.HomeDelivery
         public long CustomerID { get; set; }
         public string UploadDocument { get; set; }
         public long StoreId { get; set; }
+        public IFormFile ImgFile { get; set; }
+        //public string Photo { get; set; }
     }
 }
