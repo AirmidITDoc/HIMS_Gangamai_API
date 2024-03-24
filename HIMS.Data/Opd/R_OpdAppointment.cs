@@ -33,7 +33,7 @@ namespace HIMS.Data.Opd
             var outputId1 = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
-                ParameterName = "@VisitId",
+                ParameterName = "@VisitID",
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
@@ -43,9 +43,9 @@ namespace HIMS.Data.Opd
             dic.Remove("RegID");
             var RegID=ExecNonQueryProcWithOutSaveChanges("insert_Registration_1_1", dic, outputId);
             
-             opdAppointmentParams.VisitSave.RegID = Convert.ToInt64(RegID);
+             opdAppointmentParams.VisitSave.RegId = Convert.ToInt64(RegID);
              var dic1 = opdAppointmentParams.VisitSave.ToDictionary();
-               dic1.Remove("VisitId");
+               dic1.Remove("VisitID");
             var VisitID = ExecNonQueryProcWithOutSaveChanges("insert_VisitDetails_New_1", dic1, outputId1);
 
             // insert_Registration_1_1
@@ -104,7 +104,7 @@ namespace HIMS.Data.Opd
             dic.Remove("ImgFile");
             var RegID = ExecNonQueryProcWithOutSaveChanges("insert_Registration_1_1", dic, outputId);
 
-            opdAppointmentParams.VisitSave.RegID = Convert.ToInt64(RegID);
+            opdAppointmentParams.VisitSave.RegId = Convert.ToInt64(RegID);
             var dic1 = opdAppointmentParams.VisitSave.ToDictionary();
             dic1.Remove("VisitId");
             var VisitID = ExecNonQueryProcWithOutSaveChanges("insert_VisitDetails_New_1", dic1, outputId1);
@@ -145,7 +145,7 @@ namespace HIMS.Data.Opd
             var outputId = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
-                ParameterName = "@VisitId",
+                ParameterName = "@VisitID",
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
@@ -158,9 +158,9 @@ namespace HIMS.Data.Opd
 
           
             var Reg = opdAppointmentParams.RegistrationUpdate.RegId;
-            opdAppointmentParams.VisitUpdate.RegID = Convert.ToInt64(Reg);
-            var dic1 = opdAppointmentParams.VisitUpdate.ToDictionary();
-            dic1.Remove("VisitId");
+            opdAppointmentParams.VisitUpdate.RegId = Convert.ToInt64(Reg);
+            var dic1 = opdAppointmentParams.VisitSave.ToDictionary();
+            dic1.Remove("VisitID");
             var VisitID = ExecNonQueryProcWithOutSaveChanges("insert_VisitDetails_New_1", dic1, outputId);
 
             // insert_Registration_1_1

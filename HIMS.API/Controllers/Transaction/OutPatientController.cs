@@ -132,11 +132,11 @@ namespace HIMS.API.Controllers.Transaction
             {
                 string NewFileName = Guid.NewGuid().ToString();
                 string FileName = await _IFileUtility.UploadDocument(OpdAppointmentParams.RegistrationSavewithPhoto.ImgFile, "PatientPhoto", NewFileName);
-                OpdAppointmentParams.RegistrationSave.Photo = FileName;
+               // OpdAppointmentParams.RegistrationSave.Photo = FileName;
             }
             else
             {
-                OpdAppointmentParams.RegistrationSave.Photo = null;
+               // OpdAppointmentParams.RegistrationSave.Photo = null;
             }
             var appoSave = _OpdAppointment.Save(OpdAppointmentParams);
             return Ok(appoSave);

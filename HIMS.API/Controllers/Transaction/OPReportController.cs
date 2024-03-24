@@ -1,5 +1,6 @@
 ﻿using HIMS.API.Utility;
 using HIMS.Data.Opd;
+using HIMS.Data.Opd.OP;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,11 @@ namespace HIMS.API.Controllers.Transaction
     [Route("api/[controller]")]
     public class OPReportController : Controller
     {
-        public readonly I_OPbilling _OPbilling;
+        public readonly I_OPBillingReport _OPbilling;
         public readonly IPdfUtility _pdfUtility;
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
         public OPReportController(
-           I_OPbilling oPbilling, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility)
+           I_OPBillingReport oPbilling, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility)
         {
             _OPbilling = oPbilling;
             _hostingEnvironment = hostingEnvironment;

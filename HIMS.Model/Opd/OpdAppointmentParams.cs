@@ -20,8 +20,8 @@ namespace HIMS.Model.Opd
 
     public class VisitSave
     {
-        public long VisitId { get; set; }
-        public long RegID { get; set; }
+        public long VisitID { get; set; }
+        public long RegId { get; set; }
         public DateTime VisitDate { get; set; }
         public DateTime VisitTime { get; set; }
         public long UnitId { get; set; }
@@ -44,7 +44,7 @@ namespace HIMS.Model.Opd
         public DateTime FollowupDate { get; set; }
 
         public int CrossConsulFlag { get; set; }
-        public long PhoneAppId { get; set; }
+      //  public long PhoneAppId { get; set; }
     }
 
     public class RegistrationSave
@@ -85,10 +85,10 @@ namespace HIMS.Model.Opd
 
         //public long TalukaId { get; set; }
         // public double PatientWeight { get; set; }
-        public string Aadharcardno { get; set; }
-        public string Pancardno { get; set; }
+        public string AadharCardNo { get; set; }
+        public string PanCardNo { get; set; }
        // public String ImgFile { get; set; }
-        public string Photo { get; set; }
+      //  public string Photo { get; set; }
 
     }
 
@@ -149,8 +149,8 @@ namespace HIMS.Model.Opd
 
     public class VisitUpdate
     {
-       
-        public long RegID { get; set; }
+        public long VisitID { get; set; }
+        public long RegId { get; set; }
         public DateTime VisitDate { get; set; }
         public DateTime VisitTime { get; set; }
         public long UnitId { get; set; }
@@ -171,21 +171,14 @@ namespace HIMS.Model.Opd
         public int FirstFollowupVisit { get; set; }
         public long AppPurposeId { get; set; }
         public DateTime FollowupDate { get; set; }
-        public long VisitId { get; set; }
 
         public int CrossConsulFlag { get; set; }
-
-        public long PhoneAppId { get; set; }
-
-        //  public Boolean IsMark { get; set; }
-        // public Boolean IsXray { get; set; }
     }
 
     public class RegistrationUpdate
     {
         public long RegId { get; set; }
-        // public DateTime RegDate { get; set; }
-        // public DateTime RegTime { get; set; }
+      
         public long PrefixId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -198,9 +191,10 @@ namespace HIMS.Model.Opd
         public long GenderID { get; set; }
         public string PhoneNo { get; set; }
         public string MobileNo { get; set; }
+
+       // public long AddedBy { get; set; }
         public long UpdatedBy { get; set; }
 
-        //   public String RegNo { get; set; }
         public string AgeYear { get; set; }
         public string AgeMonth { get; set; }
         public string AgeDay { get; set; }
@@ -209,20 +203,19 @@ namespace HIMS.Model.Opd
         public long CityId { get; set; }
         public long MaritalStatusId { get; set; }
 
-        // public long ReligionId { get; set; }
+       // public int ReligionId { get; set; }
         public bool IsCharity { get; set; }
         //  public string RegPrefix { get; set; }
-        //  public long ReligionId { get; set; }
-        // public long AreaId { get; set; }
+       // public long AreaId { get; set; }
         //  public long VillageId { get; set; }
-        //  public bool IsSeniorCitizen { get; set; }
+      //  public bool IsSeniorCitizen { get; set; }
 
         //public long TalukaId { get; set; }
         // public double PatientWeight { get; set; }
-         public string AadharCardNo { get; set; }
-         public string PanCardNo { get; set; }
-        //   public SByte Barcodetext { get; set; }
-        //public string Photo { get; set; }
+        public string AadharCardNo { get; set; }
+        public string PanCardNo { get; set; }
+        // public String ImgFile { get; set; }
+        //  public string Photo { get; set; }
 
     }
 

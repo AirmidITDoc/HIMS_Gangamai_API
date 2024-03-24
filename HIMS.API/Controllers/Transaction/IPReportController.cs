@@ -15,13 +15,13 @@ namespace HIMS.API.Controllers.Transaction
     [Route("api/[controller]")]
     public class IPReportController : Controller
     {
-        public readonly I_IPBilling _IPBilling;
+        public readonly I_IPReports _IPReports;
         public readonly IPdfUtility _pdfUtility;
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
         public IPReportController(
-           I_IPBilling iPBilling, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility)
+           I_IPReports iPReports, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility)
         {
-            _IPBilling = iPBilling;
+            _IPReports = iPReports;
             _hostingEnvironment = hostingEnvironment;
             _pdfUtility = pdfUtility;
         }
@@ -31,7 +31,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanDailycollection.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPBilling.ViewCommanDailyCollectionReceipt(FromDate, ToDate, AddedById, DoctorId, htmlFilePath, htmlHeaderFilePath);
+            var html = _IPReports.ViewCommanDailyCollectionReceipt(FromDate, ToDate, AddedById, DoctorId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CommanDailycollection", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
          
@@ -43,8 +43,19 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPDDailycollection.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPBilling.ViewIPDailyCollectionReceipt(FromDate, ToDate, AddedById, htmlFilePath, htmlHeaderFilePath);
+            var html = _IPReports.ViewIPDailyCollectionReceipt(FromDate, ToDate, AddedById, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDDailycollection", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpGet("view-OPIPBILLSummaryReport")]
+        public IActionResult ViewOpIPBillsummaryReport(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPIPBillsummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _IPReports.ViewOPIPBillSummaryReceipt(FromDate, ToDate, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPIPBillsummary", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });

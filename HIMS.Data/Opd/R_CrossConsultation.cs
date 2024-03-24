@@ -22,14 +22,14 @@ namespace HIMS.Data.Opd
             var outputId1 = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
-                ParameterName = "@VisitId",
+                ParameterName = "@VisitID",
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
 
             //opdAppointmentParams.VisitSave.RegID = Convert.ToInt64(RegID);
             var dic1 = CrossConsultation.CrossConsultationSave.ToDictionary();
-            dic1.Remove("VisitId");
+            dic1.Remove("VisitID");
             var VisitID = ExecNonQueryProcWithOutSaveChanges("insert_VisitDetails_New_1", dic1, outputId1);
 
             _unitofWork.SaveChanges();
