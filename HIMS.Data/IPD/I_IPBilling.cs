@@ -16,5 +16,9 @@ namespace HIMS.Data.IPD
 
         string ViewIPBillWardwiseReceipt(int BillNo, string htmlFilePath, string HeaderName);
 
+        string ViewIPDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById, string htmlFilePath, string HeaderName);
+
+        string ViewCommanDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById, int DoctorId, string htmlFilePath, string HeaderName);
+
     }
 }

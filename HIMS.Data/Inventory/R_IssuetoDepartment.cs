@@ -55,8 +55,8 @@ namespace HIMS.Data.Inventory
             //throw new NotImplementedException();
 
             SqlParameter[] para = new SqlParameter[1];
-          
-            para[0] = new SqlParameter("@IssueId", IssueId) { DbType = DbType.Int64};
+
+            para[0] = new SqlParameter("@IssueId", IssueId) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("rptPrintIssueToDepartment", para);
             string html = File.ReadAllText(htmlFilePath);
@@ -78,7 +78,7 @@ namespace HIMS.Data.Inventory
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["IssueQty"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: left;padding-left:10px;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["BatchExpDate"].ConvertToDateString("dd/Mm/yyyy")).Append("</td>");
-                
+
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["PerUnitLandedRate"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["VatPercentage"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["VatAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
@@ -90,14 +90,14 @@ namespace HIMS.Data.Inventory
                 //   exec RptPharmacyCreditReport '11-01-2022','11-26-2023',11052,24879,0,10016
 
             }
-            //T_TotalNETAmount = Math.Round(T_TotalNETAmount);
-            html = html.Replace("{{Items}}", items.ToString());
+            //T_TotalNETAmount = T_TotalNETAmount.ConvertToDouble().To2DecimalPlace();
+            //html = html.Replace("{{Items}}", items.ToString());
             //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{TotalNETAmount}}", T_TotalNETAmount.To2DecimalPlace());
             html = html.Replace("{{T_TotalVatAmount}}", T_TotalVatAmount.To2DecimalPlace());
-            
-             html = html.Replace("{{Remark}}", Bills.GetColValue("Remark"));
+
+            html = html.Replace("{{Remark}}", Bills.GetColValue("Remark"));
             html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
             html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
 
@@ -112,12 +112,14 @@ namespace HIMS.Data.Inventory
             html = html.Replace("{{StoreName}}", Bills.GetColValue("StoreName"));
 
             html = html.Replace("{{ToStreName}}", Bills.GetColValue("ToStreName"));
+            html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
+            html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
 
 
             //string finalamt = NumberToWords(T_TotalNETAmount.ToInt());
-            
 
-            string finalamt = words(T_TotalNETAmount.ToInt());
+
+            string finalamt = conversion(T_TotalNETAmount.ToString());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
             return html;
@@ -131,7 +133,7 @@ namespace HIMS.Data.Inventory
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@FromStoreId", FromStoreId) { DbType = DbType.String };
             para[3] = new SqlParameter("@ToStoreId", ToStoreId) { DbType = DbType.String };
-           
+
             var Bills = GetDataTableProc("rptReturnFromDepDateWise", para);
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
@@ -162,7 +164,7 @@ namespace HIMS.Data.Inventory
                 T_TotalMRPAmount += dr["MRPTotalAmount"].ConvertToDouble();
 
                 T_TotalPurchase += dr["PurchaseTotalAmount"].ConvertToDouble();
-               // T_TotalBalancepay += dr["BalanceAmount"].ConvertToDouble();
+                // T_TotalBalancepay += dr["BalanceAmount"].ConvertToDouble();
 
                 //   exec RptPharmacyCreditReport '11-01-2022','11-26-2023',11052,24879,0,10016
 
@@ -207,7 +209,7 @@ namespace HIMS.Data.Inventory
                 items.Append("<tr><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;text-align:center;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">").Append(dr["ReturnNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">").Append(dr["ReturnTime"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
-                
+
                 items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;vertical-align:middle;text-align: left;padding-left:10px;\">").Append(dr["FromStoreName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["ToStoreName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:0;height:10px;text-align:center;vertical-align:middle\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
@@ -237,7 +239,7 @@ namespace HIMS.Data.Inventory
             html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
             html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
 
-          
+
             return html;
         }
 
@@ -342,7 +344,7 @@ namespace HIMS.Data.Inventory
             html = html.Replace("{{T_TotalLRateAmount}}", T_TotalLRateAmount.To2DecimalPlace());
             html = html.Replace("{{T_TotalVatAmount}}", T_TotalVatAmount.To2DecimalPlace());
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
-            
+
             html = html.Replace("{{AddedByName}}", Bills.GetColValue("AddedByName").ToString());
 
             html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
@@ -360,7 +362,7 @@ namespace HIMS.Data.Inventory
             para[0] = new SqlParameter("@NonMovingDay", NonMovingDay) { DbType = DbType.Int64 };
             para[1] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
 
-            var Bills = GetDataTableProc("rptNonMovingItemList",para);
+            var Bills = GetDataTableProc("rptNonMovingItemList", para);
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
@@ -383,14 +385,14 @@ namespace HIMS.Data.Inventory
 
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["DaySales"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
-               
+
 
             }
-           
+
             html = html.Replace("{{Items}}", items.ToString());
             //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
-           
+
             html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
             html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
 
@@ -398,7 +400,7 @@ namespace HIMS.Data.Inventory
 
             return html;
 
-            
+
         }
 
         public string ViewExpItemlist(int ExpMonth, int ExpYear, int StoreID, string htmlFilePath, string htmlHeaderFilePath)
@@ -457,63 +459,68 @@ namespace HIMS.Data.Inventory
         //    MessageBox.Show(words(Convert.ToInt32(textBox1.Text)));
         //}
 
-        public string words(int numbers)
+        public string conversion(string amount)
         {
-            int number = numbers;
+            double m = Convert.ToInt64(Math.Floor(Convert.ToDouble(amount)));
+            double l = Convert.ToDouble(amount);
 
-            if (number == 0) return "Zero";
-            if (number == -2147483648) return "Minus Two Hundred and Fourteen Crore Seventy Four Lakh Eighty Three Thousand Six Hundred and Forty Eight";
-            int[] num = new int[4];
-            int first = 0;
-            int u, h, t;
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            if (number < 0)
+            double j = (l - m) * 100;
+            //string Word = " ";
+
+            var beforefloating = ConvertNumbertoWords(Convert.ToInt64(m));
+            var afterfloating = ConvertNumbertoWords(Convert.ToInt64(j));
+
+           // Word = beforefloating + '.' + afterfloating;
+
+            var Content = beforefloating + ' ' + " RUPEES" + ' ' + afterfloating + ' ' + " PAISE only";
+
+            return Content;
+        }
+
+        public string ConvertNumbertoWords(long number)
+        {
+            if (number == 0) return "ZERO";
+            if (number < 0) return "minus " + ConvertNumbertoWords(Math.Abs(number));
+            string words = "";
+            if ((number / 1000000) > 0)
             {
-                sb.Append("Minus ");
-                number = -number;
+                words += ConvertNumbertoWords(number / 100000) + " LAKES ";
+                number %= 1000000;
             }
-            string[] words0 = {"" ,"One ", "Two ", "Three ", "Four ",
-"Five " ,"Six ", "Seven ", "Eight ", "Nine "};
-            string[] words1 = {"Ten ", "Eleven ", "Twelve ", "Thirteen ", "Fourteen ",
-"Fifteen ","Sixteen ","Seventeen ","Eighteen ", "Nineteen "};
-            string[] words2 = {"Twenty ", "Thirty ", "Forty ", "Fifty ", "Sixty ",
-"Seventy ","Eighty ", "Ninety "};
-            string[] words3 = { "Thousand ", "Lakh ", "Crore " };
-            num[0] = number % 1000; // units
-            num[1] = number / 1000;
-            num[2] = number / 100000;
-            num[1] = num[1] - 100 * num[2]; // thousands
-            num[3] = number / 10000000; // crores
-            num[2] = num[2] - 100 * num[3]; // lakhs
-            for (int i = 3; i > 0; i--)
+            if ((number / 1000) > 0)
             {
-                if (num[i] != 0)
+                words += ConvertNumbertoWords(number / 1000) + " THOUSAND ";
+                number %= 1000;
+            }
+            if ((number / 100) > 0)
+            {
+                words += ConvertNumbertoWords(number / 100) + " HUNDRED ";
+                number %= 100;
+            }
+            //if ((number / 10) > 0)  
+            //{  
+            // words += ConvertNumbertoWords(number / 10) + " RUPEES ";  
+            // number %= 10;  
+            //}  
+            if (number > 0)
+            {
+                if (words != "") words += "AND ";
+                var unitsMap = new[]
+           {
+            "ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN", "NINETEEN"
+        };
+                var tensMap = new[]
+           {
+            "ZERO", "TEN", "TWENTY", "THIRTY", "FORTY", "FIFTY", "SIXTY", "SEVENTY", "EIGHTY", "NINETY"
+        };
+                if (number < 20) words += unitsMap[number];
+                else
                 {
-                    first = i;
-                    break;
+                    words += tensMap[number / 10];
+                    if ((number % 10) > 0) words += " " + unitsMap[number % 10];
                 }
             }
-            for (int i = first; i >= 0; i--)
-            {
-                if (num[i] == 0) continue;
-                u = num[i] % 10; // ones
-                t = num[i] / 10;
-                h = num[i] / 100; // hundreds
-                t = t - 10 * h; // tens
-                if (h > 0) sb.Append(words0[h] + "Hundred ");
-                if (u > 0 || t > 0)
-                {
-                    if (h > 0 || i == 0) sb.Append("and ");
-                    if (t == 0)
-                        sb.Append(words0[u]);
-                    else if (t == 1)
-                        sb.Append(words1[u]);
-                    else
-                        sb.Append(words2[t - 2] + words0[u]);
-                }
-                if (i != 0) sb.Append(words3[i - 1]);
-            }
-            return sb.ToString().TrimEnd();
+            return words;
         }
     }
 }

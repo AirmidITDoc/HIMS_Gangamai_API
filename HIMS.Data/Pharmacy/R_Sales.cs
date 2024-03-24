@@ -295,6 +295,15 @@ namespace HIMS.Data.Pharmacy
 
             TotalCollection = T_CashPayAmount.ConvertToDouble() + T_CardPayAmount.ConvertToDouble() + T_ChequePayAmount.ConvertToDouble() + T_NEFTPayAmount.ConvertToDouble() + T_PayTMAmount.ConvertToDouble();
 
+
+
+
+
+
+
+
+
+
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
@@ -425,41 +434,45 @@ namespace HIMS.Data.Pharmacy
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;border-bottom: 1px solid black;\">").Append(dr["UserName"].ConvertToString()).Append("</td></tr>");
 
                 FinalTotal = TotalCollectionSales.ConvertToDouble() - TotalCollectionSalesReturn.ConvertToDouble();
+
+
+                T_TotalBillAmount = G_SalesBillAmount.ConvertToDouble() - G_SalesReturnBillAmount.ConvertToDouble();
+                T_TotalDiscAmount = G_SalesDiscAmount.ConvertToDouble() - G_SalesReturnDiscAmount.ConvertToDouble();
+                T_TotalNETAmount = G_SalesNetAmount.ConvertToDouble() - G_SalesReturnNetAmount.ConvertToDouble();
+                T_TotalPaidAmount = G_SalesPaidAmount.ConvertToDouble() - G_SalesReturnPaidAmount.ConvertToDouble();
+                T_TotalBalAmount = G_SalesBalAmount.ConvertToDouble() - G_SalesReturnBalAmount.ConvertToDouble();
+                T_TotalCashAmount = G_SalesCashAmount.ConvertToDouble() - G_SalesReturnCashAmount.ConvertToDouble();
+                T_TotalCardAmount = G_SalesCardAmount.ConvertToDouble() - G_SalesReturnCardAmount.ConvertToDouble();
+                T_TotalChequeAmount = G_SalesChequeAmount.ConvertToDouble() - G_SalesReturnChequeAmount.ConvertToDouble();
+                T_TotalNEFTAmount = G_SalesTotalNEFTAmount.ConvertToDouble() - G_SalesReturnNEFTAmount.ConvertToDouble();
+                T_TotalOnlineAmount = G_SalesOnlineAmount.ConvertToDouble() - G_SalesReturnOnlineAmount.ConvertToDouble();
+                F_TotalColl = T_TotalCashAmount.ConvertToDouble() + T_TotalCardAmount.ConvertToDouble() + T_TotalChequeAmount.ConvertToDouble() + T_TotalNEFTAmount.ConvertToDouble() + T_TotalOnlineAmount.ConvertToDouble();
+
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
 
                     items.Append("<tr style='border:1px solid black;color:blue;font-weight:bold'><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Sales - Sales Return</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(GetSum(Bills, "TotalBillAmount").To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(GetSum(Bills, "DiscAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(GetSum(Bills, "NetAmount").To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(GetSum(Bills, "BalAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(GetSum(Bills, "PaidAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(GetSum(Bills, "CashPay").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                         .Append(GetSum(Bills, "CardPay").To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(GetSum(Bills, "ChequePay").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(GetSum(Bills, "NEFTPay").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(GetSum(Bills, "OnlinePay").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "T_TotalBillAmount").To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "T_TotalDiscAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "T_TotalNETAmount").To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "T_TotalBalAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "T_TotalPaidAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "T_TotalCashAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         .Append(GetSum(Bills, "T_TotalCardAmount").To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "T_TotalChequeAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "T_TotalNEFTAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(GetSum(Bills, "T_TotalOnlineAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(FinalTotal.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                      .Append(GetSum(Bills, "UserName").ToString()).Append("</td></tr>");
                 }
 
             }
 
-           
-            T_TotalBillAmount = G_SalesBillAmount.ConvertToDouble() - G_SalesReturnBillAmount.ConvertToDouble();
-            T_TotalDiscAmount = G_SalesDiscAmount.ConvertToDouble() - G_SalesReturnDiscAmount.ConvertToDouble();
-            T_TotalNETAmount = G_SalesNetAmount.ConvertToDouble() - G_SalesReturnNetAmount.ConvertToDouble();
-            T_TotalPaidAmount = G_SalesPaidAmount.ConvertToDouble() - G_SalesReturnPaidAmount.ConvertToDouble();
-            T_TotalBalAmount = G_SalesBalAmount.ConvertToDouble() - G_SalesReturnBalAmount.ConvertToDouble();
-            T_TotalCashAmount = G_SalesCashAmount.ConvertToDouble() - G_SalesReturnCashAmount.ConvertToDouble();
-            T_TotalCardAmount = G_SalesCardAmount.ConvertToDouble() - G_SalesReturnCardAmount.ConvertToDouble();
-            T_TotalChequeAmount = G_SalesChequeAmount.ConvertToDouble() - G_SalesReturnChequeAmount.ConvertToDouble();
-            T_TotalNEFTAmount = G_SalesTotalNEFTAmount.ConvertToDouble() - G_SalesReturnNEFTAmount.ConvertToDouble();
-            T_TotalOnlineAmount = G_SalesOnlineAmount.ConvertToDouble() - G_SalesReturnOnlineAmount.ConvertToDouble();
-            F_TotalColl = T_TotalCashAmount.ConvertToDouble() + T_TotalCardAmount.ConvertToDouble() + T_TotalChequeAmount.ConvertToDouble() + T_TotalNEFTAmount.ConvertToDouble() + T_TotalOnlineAmount.ConvertToDouble();
-
+          
 
             html = html.Replace("{{Items}}", items.ToString());
+
+
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{TotalBillAmount}}", T_TotalBillAmount.To2DecimalPlace());

@@ -278,6 +278,9 @@ namespace HIMS.Data.Inventory
             html = html.Replace("{{IndentNo}}", Bills.GetColValue("IndentNo"));
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
             html = html.Replace("{{IndentTime}}", Bills.GetColValue("IndentTime").ConvertToDateString("dd.MM.yyyy hhLmm tt"));
+
+            html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
+            html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
             return html;
         }
     }
