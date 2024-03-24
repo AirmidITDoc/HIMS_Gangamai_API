@@ -41,7 +41,7 @@ namespace HIMS.API.Controllers
         [Route("get-menus")]
         public ActionResult GetMenus(int RoleId)
         {
-            return Ok(PrepareMenu(RoleId,true));
+            return Ok(PrepareMenu(RoleId, true));
         }
         [HttpGet]
         [Route("get-permission-menu")]
@@ -94,7 +94,20 @@ namespace HIMS.API.Controllers
                         test.children = null;
                     }
                     if ((test?.children?.Count() ?? 0) > 0 || lData.IsView || !isActiveMenuOnly)
+                    {
+                        if (test.children != null)
+                        {
+                            if (test.children.Count > 0 && test.children.Count == test.children.Count(x => x.IsAdd))
+                                test.IsAdd = true;
+                            if (test.children.Count > 0 && test.children.Count == test.children.Count(x => x.IsEdit))
+                                test.IsEdit = true;
+                            if (test.children.Count > 0 && test.children.Count == test.children.Count(x => x.IsDelete))
+                                test.IsDelete = true;
+                            if (test.children.Count > 0 && test.children.Count == test.children.Count(x => x.IsView))
+                                test.IsView = true;
+                        }
                         obj.children.Add(test);
+                    }
                 }
                 if (obj.children.Count == 0)
                 {
@@ -103,7 +116,20 @@ namespace HIMS.API.Controllers
                     obj.children = null;
                 }
                 if ((obj?.children?.Count ?? 0) > 0 || ItemData.IsView || !isActiveMenuOnly)
+                {
+                    if (obj.children != null)
+                    {
+                        if (obj.children.Count > 0 && obj.children.Count == obj.children.Count(x => x.IsAdd))
+                            obj.IsAdd = true;
+                        if (obj.children.Count > 0 && obj.children.Count == obj.children.Count(x => x.IsEdit))
+                            obj.IsEdit = true;
+                        if (obj.children.Count > 0 && obj.children.Count == obj.children.Count(x => x.IsDelete))
+                            obj.IsDelete = true;
+                        if (obj.children.Count > 0 && obj.children.Count == obj.children.Count(x => x.IsView))
+                            obj.IsView = true;
+                    }
                     finalList.Add(obj);
+                }
             }
             return finalList;
         }
@@ -138,7 +164,20 @@ namespace HIMS.API.Controllers
                         objData.children = null;
                     }
                     if ((objData?.children?.Count ?? 0) > 0 || objItem.IsView || !isActiveMenuOnly)
+                    {
+                        if (objData.children != null)
+                        {
+                            if (objData.children.Count > 0 && objData.children.Count == objData.children.Count(x => x.IsAdd))
+                                objData.IsAdd = true;
+                            if (objData.children.Count > 0 && objData.children.Count == objData.children.Count(x => x.IsEdit))
+                                objData.IsEdit = true;
+                            if (objData.children.Count > 0 && objData.children.Count == objData.children.Count(x => x.IsDelete))
+                                objData.IsDelete = true;
+                            if (objData.children.Count > 0 && objData.children.Count == objData.children.Count(x => x.IsView))
+                                objData.IsView = true;
+                        }
                         lstChilds.Add(objData);
+                    }
                 }
             }
             catch (Exception ex)
