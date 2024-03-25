@@ -5,135 +5,136 @@
     <title></title>
 </head>
 <body>
-    <div>
-        <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
+    <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
 
-            {{HeaderName}}
-            <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
-                <div style="display:block;width:100%; align-items: center;">
-                    <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
-                        OPD PAYMENT RECEIPT
+        {{HospitalHeader}}
+        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+            <div style="display:block;width:100%; align-items: center;">
+                <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
+                    OPD PAYMENT RECEIPT
+                </div>
+                <span style="font-size: 16px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
+            </div>
+
+        </div>
+
+        <table>
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; font-size: 20px; margin-left: 20px;">UHID No.</span>
+                    <span style="font-size:15px; ">{{RegId}} </span>
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 100px; font-size: 20px;">Bill No</span>
+                    <span style="font-size:15px;"> {{BillNo}} </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; font-size: 20px; margin-left: 20px;">Receipt No.</span>
+                    <span style="font-size:15px;width:500px;">{{ReceiptNo}}</span>
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 100px; font-size: 20px;">Bill Date</span>
+                    <span style="font-size:15px;">{{BillDate}}</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; font-size: 20px; margin-left: 20px;">Patient Name </span>
+                    <span style="font-size:15px;">{{PatientName}}</span>
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 100px; font-size: 20px;">Age</span>
+                   <!-- <span style="font-size:15px;"></span>-->
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; font-size: 20px; width: 300px; margin-left: 20px;">Consult Doctor</span>
+                    <!-- <span style="font-size:15px;"></span>'-->
+                </td>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 100px; font-size: 20px;">Ref Doctor</span>
+                    <span style="font-size:15px;">{{PaymentDate}} </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span style="font-weight: 500; margin-right: 20px; font-size: 20px; width: 300px; margin-left: 20px;">Ref Doctor </span>
+                    <!-- <span style="font-size:15px;"></span>'-->
+                </td>
+
+            </tr>
+        </table>
+
+
+
+        <hr>
+        <div style="display: flex;">
+
+            <div>
+                <span style="vertical-align: top;padding:0 10px 10px;">
+
+                    <br />
+                    <div style="display:{{chkcashflag}}">
+                        <span style="font-weight: 500; margin-Left: 20px; font-size: 20px;">Cash Pay Amount:</span>
+                        <span style="width: 400px;font-size:18px;margin-left:10px;"> ₹{{CashPayAmount}}</span> <br>
                     </div>
-                    <span style="font-size: 18px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
-                </div>
-
-            </div>
-
-            <table>
-                <tr>
-                    <td>
-                        <span style="font-weight: 500; margin-right: 10px;margin-left:10px; font-size: 20px;">UHID No.</span>
-                        <span style="font-size:15px; ">{{RegId}} </span>
-                    </td>
-                    <td>
-                        <span style="font-weight: 500; margin-right: 10px; margin-left: 60px; font-size: 20px;">Bill No.</span>
-                        <span style="font-size:15px;"> {{BillNo}} </span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <span style="font-weight: 500; margin-right: 10px; margin-left: 10px; font-size: 20px;">Receipt No</span>
-                        <span style="font-size:15px;width:500px;">{{ReceiptNo}}</span>
-                    </td>
-                    <td>
-                        <span style="font-weight: 500; margin-right: 10px; margin-left: 60px; font-size: 20px;;">Bill Date</span>
-                        <span style="font-size:15px;">{{BillDate}}</span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <span style="font-weight: 500; margin-right: 10px; margin-left: 10px; font-size: 20px;">Patient Name</span>
-                        <span style="font-size:15px;">{{PatientName}}</span>
-                    </td>
-                    <td>
-                        <span style="font-weight: 500; margin-right: 10px; margin-left: 60px; font-size: 20px;">Age</span>
-                        <span style="font-size:15px;">{{AgeYear}}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span style="font-weight: 500; margin-right: 10px; margin-left: 10px; font-size: 20px;">Consult.Doctor</span>
-                        <!--<span style="font-size:15px;"></span>-->
-                    </td>
-                    <td>
-                        <span style="font-weight: 500; margin-right: 10px; margin-left: 60px; font-size: 20px;">PaymentDate</span>
-                        <span style="font-size:15px;">{{PaymentDate}}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span style="font-weight: 500; margin-right: 10px; margin-left: 10px; font-size: 20px;">Ref Doc</span>
-                        <!--<span style="font-size:15px;"></span>-->
-                    </td>
-
-                </tr>
-
-            </table>
-
-
-            <hr>
-            <div style="display: flex;">
-
-                <div>
-                    <span style="vertical-align: top;padding:0 10px 10px;">
-
-                        <br />
-                        <div style="display:{{chkcashflag}}">
-                            <span style="font-weight: 500; margin-Left: 20px; font-size: 20px;">Cash Pay Amount:</span>
-                            <span style="width: 400px;font-size:18px;margin-left:10px;"> ₹{{CashPayAmount}}</span> <br>
-                        </div>
-                        <div>
-                            <div style="display:{{chkcardflag}}">
-                                <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">Card Pay Amount:</span>
-                                <span style="font-size: 18px; margin-left: 10px;">
-                                    ₹{{CardPayAmount}}
-                                    <span style="margin-left:20px;">Card No : {{CardNo}}</span> <span style="margin-left:20px;">Card Date : {{CardDate}} </span><span style="margin-left:20px;">Card Bank Name :</span>
-                                </span>
-                            </div>
-                        </div> <br>
-                        <!--hidden="chkchequeflag"-->
-                        <div style="display:{{chkchequeflag}}">
-                            <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">ChequePayAmount :</span>
+                    <div>
+                        <div style="display:{{chkcardflag}}">
+                            <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">Card Pay Amount:</span>
                             <span style="font-size: 18px; margin-left: 10px;">
-                                ₹ {{ChequePayAmount}}
-                                <span style="margin-left:20px;">Cheque No : {{ChequeNo}}</span> <span style="margin-left:20px;">Cheque Date : {{ChequeDate}}</span>
+                                ₹{{CardPayAmount}}
+                                <span style="margin-left:20px;">Card No : {{CardNo}}</span> <span style="margin-left:20px;">Card Date : {{CardDate}} </span><span style="margin-left:20px;">Card Bank Name :</span>
                             </span>
-                        </div> <br>
-                        <div style="display:{{chkNeftflag}}">
-                            <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">NEFTPayAmount :</span>
-
-                            <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{NEFTPayAmount}}</span> <br>
                         </div>
-                        <div style="display:{{chkpaytmflag}}">
-                            <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">PayTMAmount :</span>
-                            <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{PayTMAmount}}</span> <br>
-                        </div>
-                        <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">Paid Amount :</span>
-                        <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{PaidAmount}}</span> <br>
+                    </div> <br>
+                    <!--hidden="chkchequeflag"-->
+                    <div style="display:{{chkchequeflag}}">
+                        <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">ChequePayAmount :</span>
+                        <span style="font-size: 18px; margin-left: 10px;">
+                            ₹ {{ChequePayAmount}}
+                            <span style="margin-left:20px;">Cheque No : {{ChequeNo}}</span> <span style="margin-left:20px;">Cheque Date : {{ChequeDate}}</span>
+                        </span>
+                    </div> <br>
+                    <div style="display:{{chkNeftflag}}">
+                        <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">NEFTPayAmount :</span>
 
-                    </span>
-                </div>
+                        <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{NEFTPayAmount}}</span> <br>
+                    </div>
+                    <div style="display:{{chkpaytmflag}}">
+                        <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">PayTMAmount :</span>
+                        <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{PayTMAmount}}</span> <br>
+                    </div>
+                    <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">Paid Amount :</span>
+                    <span style="width: 400px; font-size: 18px; margin-left: 10px;">₹ {{PaidAmount}}</span> <br>
 
+                </span>
             </div>
-            <hr>
-            <span style="font-weight: 500; font-size: 20px; margin-Left: 20px; "> Total Amount in words :-</span>
 
-            <div style="display: {{chkremarkflag}}">
-                <span style="font-weight: 500; font-size: 20px; margin-Left: 20px; ">Remark</span>
-                <span style="font-weight: 500; font-size: 20px; margin-Left: 20px; ">{{Remark}}</span>
-            </div>
-            <hr>
+        </div>
+        <hr>
+        <span style="font-weight: 500; font-size: 16px; margin-Left: 20px; "> Total Amount in words :-{{finalamt}}</span>
 
-            <div style="display:flex;justify-content:space-between;margin-left:180px;margin-top:50px;">
+        <div style="display: {{chkremarkflag}}">
+            <span style="font-weight: 500; font-size: 20px; margin-Left: 20px; ">Remark :-</span>
+            <span style="font-weight: 500; font-size: 20px; margin-Left: 20px; ">{{Remark}}</span>
+        </div>
+        <hr>
 
-                <div style="text-align:center;margin-left:30px;">
-                    <div style="font-weight:700;font-size:18px;">{{UserName}}</div>
-                    <div style="font-size:18px;">Cashier </div>
-                </div>
+        <div style="display:flex;justify-content:space-between;margin-left:180px;margin-top:50px;">
+
+            <div style="text-align:center;margin-left:30px;">
+                <div style="font-weight:700;font-size:18px;">{{UserName}}</div>
+                <div style="font-size:18px;">Cashier </div>
             </div>
         </div>
     </div>
+   
 </body>
 </html>
