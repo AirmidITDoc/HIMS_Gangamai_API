@@ -7,52 +7,67 @@ namespace HIMS.API.Utility
 {
     public class Numbertoword
     {
-        public static string NumberToWords(int number)
+        public string conversion(string amount)
         {
-            if (number == 0)
-                return "zero";
+            double m = Convert.ToInt64(Math.Floor(Convert.ToDouble(amount)));
+            double l = Convert.ToDouble(amount);
 
-            if (number < 0)
-                return "minus " + NumberToWords(Math.Abs(number));
+            double j = (l - m) * 100;
+            //string Word = " ";
 
+            var beforefloating = ConvertNumbertoWords(Convert.ToInt64(m));
+            var afterfloating = ConvertNumbertoWords(Convert.ToInt64(j));
+
+            // Word = beforefloating + '.' + afterfloating;
+
+            var Content = beforefloating + ' ' + " RUPEES" + ' ' + afterfloating + ' ' + " PAISE only";
+
+            return Content;
+        }
+
+        public string ConvertNumbertoWords(long number)
+        {
+            if (number == 0) return "ZERO";
+            if (number < 0) return "minus " + ConvertNumbertoWords(Math.Abs(number));
             string words = "";
-
             if ((number / 1000000) > 0)
             {
-                words += NumberToWords(number / 1000000) + " million ";
+                words += ConvertNumbertoWords(number / 100000) + " LAKES ";
                 number %= 1000000;
             }
-
             if ((number / 1000) > 0)
             {
-                words += NumberToWords(number / 1000) + " thousand ";
+                words += ConvertNumbertoWords(number / 1000) + " THOUSAND ";
                 number %= 1000;
             }
-
             if ((number / 100) > 0)
             {
-                words += NumberToWords(number / 100) + " hundred ";
+                words += ConvertNumbertoWords(number / 100) + " HUNDRED ";
                 number %= 100;
             }
-
+            //if ((number / 10) > 0)  
+            //{  
+            // words += ConvertNumbertoWords(number / 10) + " RUPEES ";  
+            // number %= 10;  
+            //}  
             if (number > 0)
             {
-                if (words != "")
-                    words += "and ";
-
-                var unitsMap = new[] { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
-                var tensMap = new[] { "zero", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
-
-                if (number < 20)
-                    words += unitsMap[number];
+                if (words != "") words += "AND ";
+                var unitsMap = new[]
+           {
+            "ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN", "NINETEEN"
+        };
+                var tensMap = new[]
+           {
+            "ZERO", "TEN", "TWENTY", "THIRTY", "FORTY", "FIFTY", "SIXTY", "SEVENTY", "EIGHTY", "NINETY"
+        };
+                if (number < 20) words += unitsMap[number];
                 else
                 {
                     words += tensMap[number / 10];
-                    if ((number % 10) > 0)
-                        words += "-" + unitsMap[number % 10];
+                    if ((number % 10) > 0) words += " " + unitsMap[number % 10];
                 }
             }
-
             return words;
         }
     }
