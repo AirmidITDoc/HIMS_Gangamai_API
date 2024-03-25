@@ -23,6 +23,8 @@ namespace HIMS.Data.HomeDelivery
 
             var disc3 = homeDeliveryOrderParams.HomeDeliveryOrderInsert.ToDictionary();
             disc3.Remove("OrderId");
+            if (disc3.ContainsKey("ImgFile"))
+                disc3.Remove("ImgFile");
             var IndentId = ExecNonQueryProcWithOutSaveChanges("m_insert_T_HomeDeliveryOrder_1", disc3, vIndentId);
 
             _unitofWork.SaveChanges();

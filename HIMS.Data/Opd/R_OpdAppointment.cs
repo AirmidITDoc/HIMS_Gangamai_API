@@ -23,10 +23,10 @@ namespace HIMS.Data.Opd
             //Add registration
             var outputId = new SqlParameter
             {
-              SqlDbType = SqlDbType.BigInt,
-             ParameterName = "@RegID",
-            Value = 0,
-            Direction = ParameterDirection.Output
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@RegID",
+                Value = 0,
+                Direction = ParameterDirection.Output
             };
 
             //Add registration
@@ -41,7 +41,7 @@ namespace HIMS.Data.Opd
 
             var dic = opdAppointmentParams.RegistrationSave.ToDictionary();
             dic.Remove("RegID");
-            var RegID=ExecNonQueryProcWithOutSaveChanges("insert_Registration_1_1", dic, outputId);
+            var RegID=ExecNonQueryProcWithOutSaveChanges("m_insert_Registration_1", dic, outputId);
             
              opdAppointmentParams.VisitSave.RegId = Convert.ToInt64(RegID);
              var dic1 = opdAppointmentParams.VisitSave.ToDictionary();
@@ -58,16 +58,10 @@ namespace HIMS.Data.Opd
 
             //ExecNonQueryProcWithOutSaveChanges("SMSRegistraion", dic);
 
-            //
-            //dic = new Dictionary<string, object>
-            //{
-            //    { "PatVisitID", Convert.ToInt64(visitId) }
-            //};
-
             //new code
             opdAppointmentParams.TokenNumberWithDoctorWiseSave.PatVisitID = Convert.ToInt64(VisitID);
             var disc3 = opdAppointmentParams.TokenNumberWithDoctorWiseSave.ToDictionary();
-           ExecNonQueryProcWithOutSaveChanges("Insert_TokenNumberWithDoctorWise",disc3);
+            ExecNonQueryProcWithOutSaveChanges("m_Insert_TokenNumber_DoctorWise", disc3);
            
             //  Insert_TokenNumberWithDoctorWise
             //commit transaction
@@ -102,33 +96,17 @@ namespace HIMS.Data.Opd
             var dic = opdAppointmentParams.RegistrationSavewithPhoto.ToDictionary();
             dic.Remove("RegID");
             dic.Remove("ImgFile");
-            var RegID = ExecNonQueryProcWithOutSaveChanges("insert_Registration_1_1", dic, outputId);
+            var RegID = ExecNonQueryProcWithOutSaveChanges("m_insert_Registration_1", dic, outputId);
 
             opdAppointmentParams.VisitSave.RegId = Convert.ToInt64(RegID);
             var dic1 = opdAppointmentParams.VisitSave.ToDictionary();
             dic1.Remove("VisitId");
-            var VisitID = ExecNonQueryProcWithOutSaveChanges("insert_VisitDetails_New_1", dic1, outputId1);
-
-            // insert_Registration_1_1
-            // var VisitID = ExecNonQueryProcWithOutSaveChanges("ps_Insert_VisitDetails", dic, outputId);
-            //add SMS ,,,insert_VisitDetails_New_1
-            //dic = new Dictionary<string, object>
-            //{
-            //    { "RegId", registerId }
-            //};
-
-            //ExecNonQueryProcWithOutSaveChanges("SMSRegistraion", dic);
-
-            //
-            //dic = new Dictionary<string, object>
-            //{
-            //    { "PatVisitID", Convert.ToInt64(visitId) }
-            //};
+            var VisitID = ExecNonQueryProcWithOutSaveChanges("m_insert_VisitDetails_1", dic1, outputId1);
 
             //new code
             opdAppointmentParams.TokenNumberWithDoctorWiseSave.PatVisitID = Convert.ToInt64(VisitID);
             var disc3 = opdAppointmentParams.TokenNumberWithDoctorWiseSave.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Insert_TokenNumberWithDoctorWise", disc3);
+            ExecNonQueryProcWithOutSaveChanges("m_Insert_TokenNumber_DoctorWise", disc3);
 
             //  Insert_TokenNumberWithDoctorWise
             //commit transaction
@@ -152,38 +130,20 @@ namespace HIMS.Data.Opd
 
             var dic = opdAppointmentParams.RegistrationUpdate.ToDictionary();
             //dic.Remove("RegId");
-            ExecNonQueryProcWithOutSaveChanges("update_RegForAppointment_1", dic);
-            // update_RegForAppointment_1
-            //add visit
-
+            ExecNonQueryProcWithOutSaveChanges("m_update_RegistrationForAppointment_1", dic);
           
+            //add visit
             var Reg = opdAppointmentParams.RegistrationUpdate.RegId;
             opdAppointmentParams.VisitUpdate.RegId = Convert.ToInt64(Reg);
             var dic1 = opdAppointmentParams.VisitSave.ToDictionary();
             dic1.Remove("VisitID");
             var VisitID = ExecNonQueryProcWithOutSaveChanges("insert_VisitDetails_New_1", dic1, outputId);
 
-            // insert_Registration_1_1
-            // var VisitID = ExecNonQueryProcWithOutSaveChanges("ps_Insert_VisitDetails", dic, outputId);
-            //add SMS ,,,insert_VisitDetails_New_1
-            //dic = new Dictionary<string, object>
-            //{
-            //    { "RegId", registerId }
-            //};
-
-            //ExecNonQueryProcWithOutSaveChanges("SMSRegistraion", dic);
-
-            //
-          /*  dic = new Dictionary<string, object>
-            {
-                { "PatVisitID", Convert.ToInt64(VisitID) }
-            };*/
-
-          opdAppointmentParams.TokenNumberWithDoctorWiseUpdate.PatVisitID = Convert.ToInt64(VisitID);
+            
+           opdAppointmentParams.TokenNumberWithDoctorWiseUpdate.PatVisitID = Convert.ToInt64(VisitID);
             var dic3 = opdAppointmentParams.TokenNumberWithDoctorWiseUpdate.ToDictionary();
             dic1.Remove("PatVisitID");
-            ExecNonQueryProcWithOutSaveChanges("Insert_TokenNumberWithDoctorWise", dic3);
-            //  Insert_TokenNumberWithDoctorWise
+            ExecNonQueryProcWithOutSaveChanges("m_Insert_TokenNumber_DoctorWise", dic3);
             //commit transaction
             _unitofWork.SaveChanges();
 

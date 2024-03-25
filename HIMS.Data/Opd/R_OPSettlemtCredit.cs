@@ -18,11 +18,11 @@ namespace HIMS.Data.Opd
         {
             // throw new NotImplementedException();
             var disc = OPSettlementCreditParam.UpdateBill.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_BillBalAmount_1", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_update_BillBalAmount_1", disc);
 
             var disc1 = OPSettlementCreditParam.PaymentCreditUpdate.ToDictionary();
             disc1["BillNo"] = OPSettlementCreditParam.UpdateBill.BillNo;
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_New_1", disc1);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_OPIP_1", disc1);
 
            
             //commit transaction

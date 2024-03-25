@@ -32,7 +32,6 @@ namespace HIMS.Model.Opd
         public long CompanyId { get; set; }
         public long AddedBy { get; set; }
         public long UpdatedBy { get; set; }
-
         public bool IsCancelled { get; set; }
         public long IsCancelledBy { get; set; }
         public DateTime IsCancelledDate { get; set; }
@@ -42,7 +41,6 @@ namespace HIMS.Model.Opd
         public int FirstFollowupVisit { get; set; }
         public long AppPurposeId { get; set; }
         public DateTime FollowupDate { get; set; }
-
         public int CrossConsulFlag { get; set; }
       //  public long PhoneAppId { get; set; }
     }
@@ -66,7 +64,7 @@ namespace HIMS.Model.Opd
         public string MobileNo { get; set; }
 
         public long AddedBy { get; set; }
-        public long UpdatedBy { get; set; }
+        //public long UpdatedBy { get; set; }
               
         public string AgeYear { get; set; }
         public string AgeMonth { get; set; }

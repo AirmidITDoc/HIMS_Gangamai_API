@@ -86,6 +86,13 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
+        [HttpPost("UpdateStockToMainStock")]
+        public IActionResult UpdateStockToMainStock(MaterialAcceptParams materialAcceptParams)
+        {
+            var SalesSave = _MaterialAcceptance.UpdateStockToMainStock(materialAcceptParams);
+            return Ok(true);
+
+        }
         [HttpPost("UpdateMaterialAcceptance")]
         public IActionResult UpdateMaterialAcceptance(MaterialAcceptParams materialAcceptParams)
         {
@@ -93,6 +100,7 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(true);
 
         }
+
         [HttpPost("InsertSalesReturnCredit")]
         public IActionResult InsertSalesReturnCredit(SalesReturnCreditParams salesReturnParams)
         {

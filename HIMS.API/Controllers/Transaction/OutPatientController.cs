@@ -144,26 +144,16 @@ namespace HIMS.API.Controllers.Transaction
 
 
         //OPDAppointment Insert 
-        [HttpPost("OPDAppointmentInsert")]
-        public IActionResult OPDAppointmentInsert(OpdAppointmentParams OpdAppointmentParams)
+        [HttpPost("AppointmentInsert")]
+        public IActionResult AppointmentInsert(OpdAppointmentParams OpdAppointmentParams)
         {
-            //if (OpdAppointmentParams.RegistrationSave.ImgFile != null)
-            //{
-            //    string NewFileName = Guid.NewGuid().ToString();
-            //    string FileName = await _IFileUtility.UploadDocument(OpdAppointmentParams.RegistrationSave.ImgFile, "PatientPhoto", NewFileName);
-            //    OpdAppointmentParams.RegistrationSave.Photo = FileName;
-            //}
-            //else
-            //{
-            //    OpdAppointmentParams.RegistrationSave.Photo = null;
-            //}
             var appoSave = _OpdAppointment.Save(OpdAppointmentParams);
             return Ok(appoSave);
         }
 
         //OPDAppointment Update 
-        [HttpPost("OPDAppointmentUpdate")]
-        public IActionResult OPDAppointmentUpdate(OpdAppointmentParams OpdAppointmentParams)
+        [HttpPost("AppointmentVisitUpdate")]
+        public IActionResult AppointmentVisitUpdate(OpdAppointmentParams OpdAppointmentParams)
         {
             var appoSave = _OpdAppointment.Update(OpdAppointmentParams);
             return Ok(appoSave);
@@ -469,7 +459,7 @@ namespace HIMS.API.Controllers.Transaction
             //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
-        [HttpPost("OPBilling")]
+        [HttpPost("OPBillWithPayment")]
         public String OPBilling(OPbillingparams OPbillingparams)
         {
             var SSR = _OPbilling.Insert(OPbillingparams);
@@ -477,7 +467,7 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
-        [HttpPost("OPBillingCredit")]
+        [HttpPost("OPBillingWithCredit")]
         public String OPBillingCredit(OPBillingCreditparam OPBillingCreditparam)
         {
             var SSR = _OPBillingCredit.Insert(OPBillingCreditparam);

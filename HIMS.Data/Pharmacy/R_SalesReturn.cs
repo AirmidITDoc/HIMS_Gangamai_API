@@ -107,7 +107,7 @@ namespace HIMS.Data.Pharmacy
             ExecNonQueryProcWithOutSaveChanges("Cal_GSTAmount_SalesReturn", vDiscCal);
 
             var vItemMovement = salesReturnParams.Insert_ItemMovementReport_Cursor.ToDictionary();
-            // vItemMovement["SalesReturnId"] = BillNo;
+            vItemMovement["Id"] = BillNo;
             ExecNonQueryProcWithOutSaveChanges("Insert_ItemMovementReport_Cursor", vItemMovement);
             
             var vPayment = salesReturnParams.SalesReturnPayment.ToDictionary();

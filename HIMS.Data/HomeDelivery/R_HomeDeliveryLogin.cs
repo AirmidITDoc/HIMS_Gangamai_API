@@ -26,10 +26,18 @@ namespace HIMS.Data.HomeDelivery
 
             var disc3 = homeDeliveryLoginParams.HomeDeliveryLoginCreate.ToDictionary();
             disc3.Remove("CustomerId");
-            var IndentId = ExecNonQueryProcWithOutSaveChanges("m_insert_SS_HomeDeliveryLogin_1", disc3, vIndentId);
+            var IndentId = ExecNonQueryProcWithOutSaveChanges("m_insert_SS_MobileAppLogin_1", disc3, vIndentId);
 
             _unitofWork.SaveChanges();
             return IndentId;
+        }
+        public bool HomeDeliveryProfileUpdate(HomeDeliveryLoginParams homeDeliveryLoginParams)
+        {
+            var disc3 = homeDeliveryLoginParams.HomeDeliveryLoginCreate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_SS_MobileAppProfileUpdate_1", disc3);
+
+            _unitofWork.SaveChanges();
+            return true;
         }
 
     }
