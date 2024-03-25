@@ -46,7 +46,7 @@ namespace HIMS.Data.Opd
              opdAppointmentParams.VisitSave.RegId = Convert.ToInt64(RegID);
              var dic1 = opdAppointmentParams.VisitSave.ToDictionary();
                dic1.Remove("VisitID");
-            var VisitID = ExecNonQueryProcWithOutSaveChanges("insert_VisitDetails_New_1", dic1, outputId1);
+            var VisitID = ExecNonQueryProcWithOutSaveChanges("m_insert_VisitDetails_1", dic1, outputId1);
 
             // insert_Registration_1_1
             // var VisitID = ExecNonQueryProcWithOutSaveChanges("ps_Insert_VisitDetails", dic, outputId);
@@ -134,14 +134,14 @@ namespace HIMS.Data.Opd
           
             //add visit
             var Reg = opdAppointmentParams.RegistrationUpdate.RegId;
-            opdAppointmentParams.VisitUpdate.RegId = Convert.ToInt64(Reg);
+            opdAppointmentParams.VisitSave.RegId = Convert.ToInt64(Reg);
             var dic1 = opdAppointmentParams.VisitSave.ToDictionary();
             dic1.Remove("VisitID");
-            var VisitID = ExecNonQueryProcWithOutSaveChanges("insert_VisitDetails_New_1", dic1, outputId);
+            var VisitID = ExecNonQueryProcWithOutSaveChanges("m_insert_VisitDetails_1", dic1, outputId);
 
             
-           opdAppointmentParams.TokenNumberWithDoctorWiseUpdate.PatVisitID = Convert.ToInt64(VisitID);
-            var dic3 = opdAppointmentParams.TokenNumberWithDoctorWiseUpdate.ToDictionary();
+           opdAppointmentParams.TokenNumberWithDoctorWiseSave.PatVisitID = Convert.ToInt64(VisitID);
+            var dic3 = opdAppointmentParams.TokenNumberWithDoctorWiseSave.ToDictionary();
             dic1.Remove("PatVisitID");
             ExecNonQueryProcWithOutSaveChanges("m_Insert_TokenNumber_DoctorWise", dic3);
             //commit transaction

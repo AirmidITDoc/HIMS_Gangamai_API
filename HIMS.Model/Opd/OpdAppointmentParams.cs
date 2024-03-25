@@ -12,8 +12,6 @@ namespace HIMS.Model.Opd
 
         public TokenNumberWithDoctorWiseSave TokenNumberWithDoctorWiseSave { get; set; }
         public RegistrationUpdate RegistrationUpdate { get; set; }
-        public VisitUpdate VisitUpdate { get; set; }
-
         public TokenNumberWithDoctorWiseUpdate TokenNumberWithDoctorWiseUpdate { get; set; }
     }
 
@@ -42,7 +40,7 @@ namespace HIMS.Model.Opd
         public long AppPurposeId { get; set; }
         public DateTime FollowupDate { get; set; }
         public int CrossConsulFlag { get; set; }
-      //  public long PhoneAppId { get; set; }
+        public long PhoneAppId { get; set; }
     }
 
     public class RegistrationSave
@@ -86,7 +84,7 @@ namespace HIMS.Model.Opd
         public string AadharCardNo { get; set; }
         public string PanCardNo { get; set; }
        // public String ImgFile { get; set; }
-      //  public string Photo { get; set; }
+        public string Photo { get; set; }
 
     }
 
@@ -135,48 +133,14 @@ namespace HIMS.Model.Opd
         public string Photo { get; set; }
 
     }
-
-
     public class TokenNumberWithDoctorWiseSave
     {
         public long PatVisitID { get; set; }
     }
 
-
-    //or Updation
-
-    public class VisitUpdate
-    {
-        public long VisitID { get; set; }
-        public long RegId { get; set; }
-        public DateTime VisitDate { get; set; }
-        public DateTime VisitTime { get; set; }
-        public long UnitId { get; set; }
-        public long PatientTypeId { get; set; }
-        public long ConsultantDocId { get; set; }
-        public long RefDocId { get; set; }
-        public long TariffId { get; set; }
-        public long CompanyId { get; set; }
-        public long AddedBy { get; set; }
-        public long UpdatedBy { get; set; }
-
-        public bool IsCancelled { get; set; }
-        public long IsCancelledBy { get; set; }
-        public DateTime IsCancelledDate { get; set; }
-        public long ClassId { get; set; }
-        public long DepartmentId { get; set; }
-        public long PatientOldNew { get; set; }
-        public int FirstFollowupVisit { get; set; }
-        public long AppPurposeId { get; set; }
-        public DateTime FollowupDate { get; set; }
-
-        public int CrossConsulFlag { get; set; }
-    }
-
     public class RegistrationUpdate
     {
         public long RegId { get; set; }
-      
         public long PrefixId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -213,12 +177,8 @@ namespace HIMS.Model.Opd
         public string AadharCardNo { get; set; }
         public string PanCardNo { get; set; }
         // public String ImgFile { get; set; }
-        //  public string Photo { get; set; }
+        public string Photo { get; set; }
 
     }
 
-    public class TokenNumberWithDoctorWiseUpdate
-    {
-        public long PatVisitID { get; set; }
-    }
 }
