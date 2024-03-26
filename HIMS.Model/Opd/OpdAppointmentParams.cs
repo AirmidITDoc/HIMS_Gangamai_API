@@ -6,13 +6,10 @@ namespace HIMS.Model.Opd
     public class OpdAppointmentParams
     {
         public RegistrationSave RegistrationSave { get; set; }
-
         public RegistrationSavewithPhoto RegistrationSavewithPhoto { get; set; }
         public VisitSave VisitSave { get; set; }
-
         public TokenNumberWithDoctorWiseSave TokenNumberWithDoctorWiseSave { get; set; }
         public RegistrationUpdate RegistrationUpdate { get; set; }
-        public TokenNumberWithDoctorWiseUpdate TokenNumberWithDoctorWiseUpdate { get; set; }
     }
 
 

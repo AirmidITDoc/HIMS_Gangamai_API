@@ -24,6 +24,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_IssuetoDepartment _IssuetoDepartment;
         public readonly I_InvMaterialConsumption _InvMaterialConsumption;
         public readonly I_ReturnFromDept _ReturnFromDept;
+        public readonly I_StockAdjustment _StockAdjustment;
         public InventoryTransactionController(
              I_Indent indent
             ,I_IssueTrackingInfo issueTrackingInfo
@@ -32,7 +33,7 @@ namespace HIMS.API.Controllers.Transaction
             , IFileUtility fileUtility
             , I_IssuetoDepartment issuetoDepartment,
              I_InvMaterialConsumption invMaterialConsumption,
-             I_ReturnFromDept returnFromDept )
+             I_ReturnFromDept returnFromDept,I_StockAdjustment stockAdjustment )
         {
             this._indent = indent;
             this._IssueTrackingInfo = issueTrackingInfo;
@@ -42,6 +43,7 @@ namespace HIMS.API.Controllers.Transaction
             _IssuetoDepartment = issuetoDepartment;
             _InvMaterialConsumption = invMaterialConsumption;
             _ReturnFromDept = returnFromDept;
+            _StockAdjustment = stockAdjustment;
         }
 
         [HttpPost("IndentSave")]
@@ -79,6 +81,19 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(Id);
         }
 
+        [HttpPost("StockAdjustment")]
+        public IActionResult StockAdjustment(StockAdjustmentParams stockAdjustmentParams)
+        {
+            var IndentInsert = _StockAdjustment.StockAdjustment(stockAdjustmentParams);
+            return Ok(IndentInsert);
+        }
+
+        [HttpPost("BatchAdjustment")]
+        public IActionResult BatchAdjustment(StockAdjustmentParams stockAdjustmentParams)
+        {
+            var Id = _StockAdjustment.BatchAdjustment(stockAdjustmentParams);
+            return Ok(Id);
+        }
 
 
         [HttpPost("IssueTrackerSave")]

@@ -138,7 +138,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PurchaseorderNew.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _PurchaseOrder.ViewPurchaseorder(PurchaseID, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PurchaseorderNew", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PurchaseorderNew", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
@@ -175,6 +175,14 @@ namespace HIMS.API.Controllers.Transaction
         {
             var SalesSave = _GRN.InsertGRNPurchase(grnParams);
             return Ok(SalesSave.ToString());
+
+        }
+
+        [HttpPost("UpdateGRNPurchase")]
+        public IActionResult UpdateGRNPurchase(GRNParams grnParams)
+        {
+            var SalesSave = _GRN.UpdateGRNPurchase(grnParams);
+            return Ok(true);
 
         }
 
