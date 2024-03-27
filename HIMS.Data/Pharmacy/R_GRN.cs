@@ -76,6 +76,39 @@ namespace HIMS.Data.Pharmacy
             return true;
 
         }
+        public bool UpdateGRNPurchase(GRNParams grnParams)
+        {
+
+            var vPurchaseOrderUdpate = grnParams.updateGRNHeader.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_GRNHeader_1", vPurchaseOrderUdpate);
+
+            var vPurchaseOrderDelete = grnParams.Delete_GRNDetails.ToDictionary();
+            vPurchaseOrderDelete["GRNId"] = grnParams.updateGRNHeader.GRNID;
+            ExecNonQueryProcWithOutSaveChanges("m_Delete_GRNDetails_1_1", vPurchaseOrderDelete);
+
+            foreach (var a in grnParams.GRNDetailSave)
+            {
+                var disc5 = a.ToDictionary();
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNDetails_1_New", disc5);
+            }
+            foreach (var a in grnParams.UpdateItemMasterGSTPer)
+            {
+                var vItemMasterGST = a.ToDictionary();
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_Update_M_ItemMaster_GSTPer_1", vItemMasterGST);
+            }
+            foreach (var a in grnParams.Update_PO_STATUS_AganistGRN)
+            {
+                var vPODet = a.ToDictionary();
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_Update_PO_STATUS_AganistGRN", vPODet);
+            }
+            foreach (var a in grnParams.Update_POHeader_Status_AganistGRN)
+            {
+                var vPOHeader = a.ToDictionary();
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_Update_POHeader_Status_AganistGRN", vPOHeader);
+            }
+            _unitofWork.SaveChanges();
+            return true;
+        }
         public string InsertGRNPurchase(GRNParams grnParams)
         {
             var outputId1 = new SqlParameter

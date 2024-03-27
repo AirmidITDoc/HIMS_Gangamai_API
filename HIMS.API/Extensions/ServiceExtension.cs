@@ -307,8 +307,11 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_HomeDeliveryOrder, R_HomeDeliveryOrder>();
             services.AddTransient<I_SalesReport, R_SalesReport>();
 
-          services.AddTransient<I_IPReports, R_IPReports>();
+            services.AddTransient<I_IPReports, R_IPReports>();
             services.AddTransient<I_OPBillingReport, R_OPBillingReport>();
+
+            services.AddTransient<I_StockAdjustment, R_StockAdjustment>();
+
             /* services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();
             services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
             services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
