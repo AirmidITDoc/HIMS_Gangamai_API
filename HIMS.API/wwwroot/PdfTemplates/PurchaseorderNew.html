@@ -30,64 +30,65 @@
             </div>-->
             {{HeaderName}}
             <span style="font-size: 20px; text-transform: uppercase;font-weight: 500;margin-top: 20px;margin-left: 60px;color:black">
-               PURCHASE ORDER
+                PURCHASE ORDER
             </span>
         </div>
         <!--  <hr>-->
 
     </div>
-    <table style="font-size:18px;">
+
+    <table>
         <tr>
             <td>
-                <span style="font-weight: 500;margin-right: 25px;">Supplier Name</span>
-                <span>{{SupplierName}}</span>
+                <span style="font-weight: 500;font-size: 20px;">PO No.:</span>
+                <span style="font-size: 15px; margin-left: 10px;">{{PurchaseNo}} </span>
             </td>
+
+
+
             <td>
-                <span style="font-weight: 500;margin-right: 35px;margin-left: 400px;">PO No.</span>
-                <span>{{PurchaseNo}} </span>
+                <span style="font-weight: 500;font-size:20px;margin-left:200px;">PO Date:</span>
+                <span style="font-size: 16px; margin-left: 10px;"> {{PurchaseTime}}  </span>
             </td>
+
 
         </tr>
 
         <tr>
             <td>
-                <span style="font-weight: 500;margin-right: 60px;">Address</span>
-                <span>{{Address}}</span>
+                <span style="font-weight: 500; font-size: 20px;">Supplier Name</span>
+                <span style="font-size: 15px; margin-left: 10px;">{{SupplierName}} </span>
+            </td>
+
+
+
+            <td>
+                <span style="font-weight: 500; font-size: 20px; margin-left: 200px;">Mobile No</span>
+                <span style="font-size: 16px; margin-left: 10px;">{{Mobile}} </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight: 500; font-size: 20px;">Address</span>
+                <span style="font-size: 15px; margin-left: 10px;">{{Address}} </span>
             </td>
             <td>
-                <span style="font-weight: 500;margin-right:27px;margin-left: 400px;">PO Date</span>
-                <span> {{PurchaseDate}} </span>
+                <span style="font-weight: 500; font-size: 20px; margin-left: 200px;">Email.</span>
+                <span style="font-size: 16px; margin-left: 10px;">{{Email}} </span>
             </td>
         </tr>
 
         <tr>
             <td>
-                <span style="font-weight: 500;margin-right: 60px;">Email Id</span>
-                <span>{{Email}}</span>
-            </td>
-            <td>
-                <span style="font-weight: 500;margin-right: 30px;margin-left: 400px;">GST No.</span>
-                <span>{{GSTNo}}</span>'
+                <span style="font-weight: 500;font-size: 20px;">GST No</span>
+                <span style="font-size: 16px; margin-left: 10px;">{{GSTNo}} </span>
             </td>
 
-        </tr>
-
-        <tr>
-            <td>
-                <span style="font-weight: 500;margin-right: 45px;">Mobile No.</span>
-                <span>{{Mobile}}</span>'
-            </td>
-            <td>
-                <span style="font-weight: 500;margin-right: 21px;margin-left: 400px;">Phone No</span>
-                <span>{{Phone}} </span>
-            </td>
         </tr>
     </table>
-
-
     <hr>
 
-    <table class="table6"style="width: 100%;  text-align: right;border-spacing: 1px;border-collapse: separate;border-color: gray;">
+    <table class="table6" style="width: 100%;  text-align: right;border-spacing: 1px;border-collapse: separate;border-color: gray;">
         <tr style="font-size:15px;">
 
             <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
@@ -99,36 +100,43 @@
 
                 Item Name
             </td>
-            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
                 color: black;">
                 Unit
             </td>
-            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
                 color: black;">
                 Qty
             </td>
-            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
                 color: black;">
                 MRP
             </td>
-            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
                 color: black;">
                 Rate
             </td>
-            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
                 color: black;">
                 Total Amount
             </td>
-            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
                 color: black;">
-                Disc
+                Disc%
             </td>
-            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
                 color: black;">
-                GST
+                CGST
             </td>
-
-            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
+                color: black;">
+                SGST
+            </td>
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
+                color: black;">
+                IGST
+            </td>
+            <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
               border-top-right-radius: 20px;color: black;">
                 Net Amount
             </td>
@@ -164,11 +172,11 @@
                 Transport Charges :-
                 <span>{{TransportChanges}}</span>
             </td>
-            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+            <td colspan="3" style="border: 1px solid gray;vertical-align: top;
             padding: 15px;text-align: left;">
                 Grand Total Amount
             </td>
-            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+            <td colspan="3" style="border: 1px solid gray;vertical-align: top;
             padding: 15px;height: 20px;text-align: right;">
                 {{TotalAmount}}
             </td>
@@ -185,13 +193,13 @@
                 Octri Amount :-
                 <span>{{OctriAmount}}</span>
             </td>
-            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+            <td colspan="3" style="border: 1px solid gray;vertical-align: top;
              padding: 15px;text-align: left;">
                 Discount Amount
             </td>
-            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+            <td colspan="3" style="border: 1px solid gray;vertical-align: top;
              padding: 15px;height: 20px;text-align: right;">
-                {{DiscAmount}}
+                {{T_TotalDiscAmount}}
             </td>
         </tr>
         <tr>
@@ -200,13 +208,13 @@
                 Remark :-
                 <span>{{Remarks}}</span>
             </td>
-            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+            <td colspan="3" style="border: 1px solid gray;vertical-align: top;
              padding: 15px;text-align: left;">
                 GST Amount
             </td>
-            <td colspan="2" style="border: 1px solid gray;vertical-align: top;
+            <td colspan="3" style="border: 1px solid gray;vertical-align: top;
              padding: 15px;height: 20px;text-align: right;">
-                {{VatAmount}}
+                {{TotalVatAmount}}
             </td>
         </tr>
 
@@ -214,13 +222,13 @@
             <td colspan="6" style="font-weight: 500;border: 1px solid gray;vertical-align: top;
             padding: 15px;text-align: left; border-bottom-left-radius: 20px;">
                 Total Amount in words :-
-                {{TotalAmount}}
+                {{finalamt}}
             </td>
-            <td colspan="2" style="border: 1px solid gray;vertical-align: top;text-align: left;font-weight:bold;
+            <td colspan="3" style="border: 1px solid gray;vertical-align: top;text-align: left;font-weight:bold;
              padding: 15px;color: black; ">
                 Total Net Amount
             </td>
-            <td colspan="2" style="border: 1px solid gray;vertical-align: top;text-align: right;font-weight:bold;
+            <td colspan="3" style="border: 1px solid gray;vertical-align: top;text-align: right;font-weight:bold;
              padding: 15px;height: 20px;color: black;border-bottom-right-radius: 20px;">
                 {{TotalNETAmount}}
             </td>
@@ -257,3 +265,15 @@
 
 </div>
 
+
+
+
+<!--GRN
+rptPrintGRN
+
+1.PO date time (Not present)
+2.NetPayble all same
+--------------
+rptPrintIssueToDepartment
+-------------
+rpt-->

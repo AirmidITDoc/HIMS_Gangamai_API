@@ -90,8 +90,10 @@ namespace HIMS.Data.Inventory
                 //   exec RptPharmacyCreditReport '11-01-2022','11-26-2023',11052,24879,0,10016
 
             }
-            //T_TotalNETAmount = T_TotalNETAmount.ConvertToDouble().To2DecimalPlace();
-            //html = html.Replace("{{Items}}", items.ToString());
+
+            T_TotalVatAmount = Math.Round(T_TotalVatAmount);
+            T_TotalNETAmount = Math.Round(T_TotalNETAmount);
+            html = html.Replace("{{Items}}", items.ToString());
             //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{TotalNETAmount}}", T_TotalNETAmount.To2DecimalPlace());

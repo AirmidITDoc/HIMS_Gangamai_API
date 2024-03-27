@@ -12,7 +12,7 @@ namespace HIMS.Model.Opd
 
         public TokenNumberWithDoctorWiseSave TokenNumberWithDoctorWiseSave { get; set; }
         public RegistrationUpdate RegistrationUpdate { get; set; }
-        public TokenNumberWithDoctorWiseUpdate TokenNumberWithDoctorWiseUpdate { get; set; }
+      //  public TokenNumberWithDoctorWiseUpdate TokenNumberWithDoctorWiseUpdate { get; set; }
     }
 
 

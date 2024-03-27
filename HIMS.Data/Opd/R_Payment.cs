@@ -41,7 +41,7 @@ namespace HIMS.Data.Opd
 
         }
 
-        public string ViewOPPaymentReceipt(int PaymentId, string htmlFilePath, string HeaderName)
+        public string ViewOPPaymentReceipt(int PaymentId, string htmlFilePath, string HospitalHeader)
         {
             // throw new NotImplementedException();
 
@@ -51,7 +51,7 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@PaymentId", PaymentId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptOPDPaymentReceiptPrint", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
+            string htmlHeader = File.ReadAllText(HospitalHeader);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");

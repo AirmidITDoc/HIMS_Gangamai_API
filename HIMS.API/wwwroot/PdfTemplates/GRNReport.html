@@ -1,299 +1,243 @@
-﻿<div  class="bill-template-wrapper" style="font-size: 30.25%;" >
+﻿<div class="bill-template-wrapper" style="font-size: 30.25%;">
 
-    
-        <div style=" align-items: center; margin-bottom:5px;text-align: center; ">
-            <div style="border: 1px solid black;width:95%x;height: 50px; background-color: red;border-top-right-radius: 110px;
+
+    <div style=" align-items: center; margin-bottom:5px;text-align: center; ">
+        <div style="border: 1px solid black;width:95%x;height: 50px; background-color: red;border-top-right-radius: 110px;
         margin-top: 0px;border-top-left-radius: 110px;padding: 3px ;">
-                <!--  <span style="text-transform: uppercase;font-weight:bolder;margin:0;text-align: center;color: white;padding-top: 6px;font-size:20px;">
-        jnanayogi shri siddeshwar
-        super speciality hospital
-    </span>-->
-            </div>
-                <div style="display: flex;">
-                    <!--<div style="border: 1px solid transparent;width: 700px;height: 50px; background-color: black;border-bottom-right-radius: 110px;">
-            <span style="text-transform: uppercase;font-size: 18px;font-weight: 500;text-align: center;color: white;">
-                (A Unit of Shri
-                Siddeshwar Loka Kalyana Charitable
-                Trust)
-            </span><br>
-            <span style="font-size:15px;font-weight: 500;text-align: center;color: white;">
-                Survey No.10/4, Near S-Hyper Mart, Vijayapur
-                586 101
-            </span><br>
-            <span style="font-size: 15px;font-weight: 500;text-align: center;color: white;padding-bottom:10px;">
-                Call :-08352-249399 | info@ jsshospitals.com
-                | www.jsshospitals.com
-                | Reg.No :-BIJ00467ALSSh
+            <!--  <span style="text-transform: uppercase;font-weight:bolder;margin:0;text-align: center;color: white;padding-top: 6px;font-size:20px;">
+                jnanayogi shri siddeshwar
+                super speciality hospital
+            </span>-->
+        </div>
+        <div style="display: flex;">
+            <!--<div style="border: 1px solid transparent;width: 700px;height: 50px; background-color: black;border-bottom-right-radius: 110px;">
+                <span style="text-transform: uppercase;font-size: 18px;font-weight: 500;text-align: center;color: white;">
+                    (A Unit of Shri
+                    Siddeshwar Loka Kalyana Charitable
+                    Trust)
+                </span><br>
+                <span style="font-size:15px;font-weight: 500;text-align: center;color: white;">
+                    Survey No.10/4, Near S-Hyper Mart, Vijayapur
+                    586 101
+                </span><br>
+                <span style="font-size: 15px;font-weight: 500;text-align: center;color: white;padding-bottom:10px;">
+                    Call :-08352-249399 | info@ jsshospitals.com
+                    | www.jsshospitals.com
+                    | Reg.No :-BIJ00467ALSSh
+                </span>
+
+            </div>-->
+            {{HeaderName}}
+            <span style="font-size: 20px; text-transform: uppercase;font-weight: 500;margin-top: 20px;margin-left: 60px;color:black">
+                GOODS RECEIPT NOTE
             </span>
+        </div>
+        <!--  <hr>-->
 
-        </div>-->
-                    {{HeaderName}}
-                    <span style="font-size: 20px; text-transform: uppercase;font-weight: 500;margin-top: 20px;margin-left: 60px;color:black">
-                       GOOD RECEIPT NOTE
-                    </span>
-                </div>
-                <!--  <hr>-->
+    </div>
+    <table>
+        <tr>
+            <td>
+                <span style="font-weight: 500;font-size: 20px;">Grn No.:</span>
+                <span style="font-size: 15px; margin-left: 10px;">{{GrnNumber}} </span>
+            </td>
 
-            </div>
-        <table>
-            <tr>
-                <td>
-                    <span style="font-weight: 500;margin-right: 20px;">Supplier Name</span>
+
+
+            <td>
+                <span style="font-weight: 500;font-size:20px;margin-left:200px;">GRN Date:</span>
+                <span style="font-size: 16px; margin-left: 10px;"> {{GRNDate}}  </span>
+            </td>
+
+         
+        </tr>
+
+        <tr>
+            <td>
+                <span style="font-weight: 500; font-size: 20px;">Store Name</span>
+                <span style="font-size: 15px; margin-left: 10px;">{{PrintStoreName}} </span>
+            </td>
+
+
+
+            <td>
+                <span style="font-weight: 500; font-size: 20px; margin-left: 200px;">Address</span>
+                <span style="font-size: 16px; margin-left: 10px;">{{Address}} </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight: 500; font-size: 20px;">Supplier Name</span>
+                <span style="font-size: 15px; margin-left: 10px;">{{SupplierName}} </span>
+            </td>
+            <td>
+                <span style="font-weight: 500; font-size: 20px; margin-left: 200px;">Mobile No.</span>
+                <span style="font-size: 16px; margin-left: 10px;">{{Mobile}} </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight: 500;font-size: 20px;">Invoice No.</span>
+                <span style="font-size: 16px; margin-left: 10px;">{{InvoiceNo}}</span>
+            </td>
+            <td>
+                <span style="font-weight: 500; font-size: 20px; margin-left: 200px;">Invoice Date:</span>
+                <span style="font-size: 16px; margin-left: 10px;">{{InvDate}}  </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight: 500;font-size: 20px;">Gate Entry No</span>
+                <span style="font-size: 16px; margin-left: 10px;">{{GSTNo}} </span>
+            </td>
+            <td>
+                <span style="font-weight: 500; font-size: 20px; margin-left: 200px;">PO Date</span>
+                <span style="font-size: 16px; margin-left: 10px;">{{GRNDate}}</span>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <table class="table6"
+               style="width: 100%;  text-align: right;border-spacing: 1px;border-collapse: separate;border-color: gray;">
+            <tr style="font-size:15px;">
+                <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
+                 border-top-left-radius: 20px;color: black;">
+                    Sr.No
                 </td>
-
-                <td colspan="4">
-                    <span>{{SupplierName}}</span>
+                <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
+                color: black;">
+                    Item Name
                 </td>
-
-                <td>
-                    <span style="font-weight: 500;margin-right: 20px;margin-left: 300px;">GRN Date</span>
+                <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                    Pack
                 </td>
-                <td colspan="2">
-                    <span> {{GRNDate}} </span>
+                <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                    MRP
+                </td>
+                <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                    Qty
+                </td>
+                <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                    F.Qty
+                </td>
+                <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                    PureRate
+                </td>
+                <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                    Disc%
+                </td>
+                <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                    CGST
+                </td>
+                <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                    SGST
+                </td>
+                <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                    GST Amt
+                </td>
+                <!-- <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+                color: black;">
+                Other Charge</td> -->
+                <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
+               border-top-right-radius: 20px;color: black;">
+                    Net Amt
                 </td>
             </tr>
-
-            <tr>
-                <td>
-                    <span style="font-weight: 500;margin-right: 20px;">Address</span>
+            {{Items}}
+            <tr style="height: 5px;">
+                <td colspan="7" style="border-bottom: 1px solid gray; border-left: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left; font-weight: 500;">
+                    Total CGST Amount :-
+                    {{T_TotalCGST}}
                 </td>
-
-                <td colspan="4">
-                    <span>{{Address}}</span>
+                <td colspan="3" style="border-bottom: 1px solid gray;border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left; ">
+                    Grand Total Amount
                 </td>
-
-                <td>
-                    <span style="font-weight: 500;margin-right: 20px;margin-left: 200px;">GRN Time</span>
-                </td>
-                <td colspan="2">
-                    <span> {{GRNDate}} </span>
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
-                    <span style="font-weight: 500;margin-right: 20px;">Email Id</span>
-                </td>
-
-                <td colspan="4">
-                    <span>{{Email}}</span>
-                </td>
-
-                <td>
-                    <span style="font-weight: 500;margin-right: 20px;margin-left: 200px;">GRN No.</span>
-                </td>
-                <td colspan="2">
-                    <span> {{GrnNumber}} </span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <span style="font-weight: 500;margin-right: 20px;">Mobile No.</span>
-                </td>
-                <td colspan="4">
-                    <span>{{Mobile}}</span>
-                </td>
-
-                <td>
-                    <span style="font-weight: 500;margin-right: 20px;margin-left: 200px;">PONo</span>
-                </td>
-                <td colspan="2">
-                    <span> {{PONo}} </span>
+                <td colspan="2" style="border-bottom: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; height: 20px; text-align: right;margin-right:2%;">
+                    {{GrandTotalAount}}
                 </td>
             </tr>
             <tr>
-                <td>
-                    <span style="font-weight: 500;margin-right: 20px;">Phone No</span>
+                <td colspan="7" style="border-bottom: 1px solid gray; border-left: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left; font-weight: 500;">
+                    Total SGST Amount :-
+                    {{T_TotalSGST}}
                 </td>
-                <td colspan="4">
-                    {{Phone}} <span></span>
+                <td colspan="3" style="border-bottom: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left;">
+                    Discount Amount
                 </td>
-
-                <td>
-                    <span style="font-weight: 500;margin-right: 20px;margin-left: 200px;">Eway Bill Date</span>
-                </td>
-                <td colspan="2">
-                    <span> {{EwayBillDate}}</span>
+                <td colspan="2" style="border-bottom: 1px solid gray;border-right: 1px solid gray; vertical-align: top; padding: 15px; height: 20px; text-align: right;">
+                    {{TotalDiscAmount}}
                 </td>
             </tr>
             <tr>
-                <td>
-                    <span style="font-weight: 500;margin-right: 20px;">GST NO</span>
+                <td colspan="7" style="border-bottom: 1px solid gray; border-left: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left; font-weight: 500;">
+                    OtherCharge :-
+                    {{OtherCharge}}
                 </td>
-                <td colspan="4">
-                    {{GSTNo}} <span></span>
+                <td colspan="3" style="border-bottom: 1px solid gray;border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left;">
+                    Credit Amount
                 </td>
-
-                <td>
-                    <span style="font-weight: 500;margin-right: 20px;margin-left: 200px;">Eway Bill No</span>
+                <td colspan="2" style="border-bottom: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; height: 20px; text-align: right;">
+                    {{CreditNote}}
                 </td>
-                <td colspan="2">
-                    <span> {{EwayBillNo}} </span>
+            </tr>
+            <tr>
+                <td colspan="7" style="border-bottom: 1px solid gray; border-left: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left; font-weight: 500;">
+                    Received By :-
+                    {{AddedByName}}
+                </td>
+                <td colspan="3" style="border-bottom: 1px solid gray; border-left: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left;">
+                    Debit Amount
+                </td>
+                <td colspan="2" style="border-bottom: 1px solid gray;border-right: 1px solid gray; vertical-align: top; padding: 10px; height: 20px; text-align: right;">
+                    {{DebitNote}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7" style="border-bottom: 1px solid gray; border-left: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left; font-weight: 500;">
+                    Remark :-
+                    {{Remark}}
+                </td>
+                <td colspan="3" style="border-bottom: 1px solid gray;border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left;">
+                    GST Amount
+                </td>
+                <td colspan="2" style="border-bottom: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 15px; height: 20px; text-align: right;">
+                    {{TotalVATAmount}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7" style="vertical-align: top;border: 1px solid gray;padding: 10px;text-align: left;font-weight: 500;font-weight:bold">
+                    Total Amount In Words :- {{finalamt}}
+                </td>
+                <td colspan="3" style="border-bottom: 1px solid gray; border-right: 1px solid gray; vertical-align: top; text-align: left; font-weight: bold; padding: 15px; color: black; ">
+                    Total Net Amount
+                </td>
+                <td colspan="2" style="border-bottom: 1px solid gray; border-right: 1px solid gray; vertical-align: top; text-align: right; font-weight: bold; padding: 10px; height: 20px; color: black; border-bottom-right-radius: 20px;">
+                    {{NetPayble}}
                 </td>
             </tr>
         </table>
-
-        <div>
-            <table class="table6"
-                   style="width: 100%;  text-align: right;border-spacing: 1px;border-collapse: separate;border-color: gray;">
-                <tr style="font-size:15px;">
-
-                    <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
-                 border-top-left-radius: 20px;color: black;">
-                        Sr.No
-                    </td>
-                    <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;
-                color: black;">
-
-                        Item Name
-                    </td>
-                    <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
-                color: black;">
-                        Unit
-                    </td>
-                    <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
-                color: black;">
-                        Qty
-                    </td>
-                    <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
-                color: black;">
-                        MRP
-                    </td>
-                    <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
-                color: black;">
-                        Rate
-                    </td>
-                    <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
-                color: black;">
-                        Total Amount
-                    </td>
-                    <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
-                color: black;">
-                        Disc Amount
-                    </td>
-                    <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
-                color: black;">
-                        CGST
-                    </td>
-                    <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
-                color: black;">
-                        SGST
-                    </td>
-                    <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
-                color: black;">
-                        GST Amount
-                    </td>
-                    <!-- <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
-            color: black;">
-            Other Charge</td> -->
-
-                    <td style="border: 1px solid gray;font-weight:bold;text-align:center;vertical-align: middle;padding:10px 5px;
-               border-top-right-radius: 20px;color: black;">
-                        Net Amount
-                    </td>
-                </tr>
-                {{Items}}
-                <tr style="height: 5px;">
-                    <td colspan="7" style="border-bottom: 1px solid gray; border-left: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left; font-weight: 500;">
-                        Total CGST Amount :-
-                        {{TotCGSTAmt}}
-                    </td>
-
-                    <td colspan="3" style="border-bottom: 1px solid gray;border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left; ">
-                        Grand Total Amount
-                    </td>
-                    <td colspan="2" style="border-bottom: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; height: 20px; text-align: right;margin-right:2%;">
-                        {{GrandTotalAount}}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="7" style="border-bottom: 1px solid gray; border-left: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left; font-weight: 500;">
-                        Total SGST Amount :-
-                        {{TotSGSTAmt}}
-                    </td>
-                    <td colspan="3" style="border-bottom: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left;">
-                        Discount Amount
-                    </td>
-                    <td colspan="2" style="border-bottom: 1px solid gray;border-right: 1px solid gray; vertical-align: top; padding: 15px; height: 20px; text-align: right;">
-                        {{TotalDiscAmount}}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="7" style="border-bottom: 1px solid gray; border-left: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left; font-weight: 500;">
-                        OtherCharge :-
-                        {{OtherCharge}}
-                    </td>
-                    <td colspan="3" style="border-bottom: 1px solid gray;border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left;">
-                        Credit Amount
-                    </td>
-                    <td colspan="2" style="border-bottom: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; height: 20px; text-align: right;">
-                        {{CreditNote}}
-                    </td>
-                </tr>
-                <tr>
-
-                    <td colspan="7" style="border-bottom: 1px solid gray; border-left: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left; font-weight: 500;">
-                        Received By :-
-                        {{AddedByName}}
-                    </td>
-                    <td colspan="3" style="border-bottom: 1px solid gray; border-left: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left;">
-                        Debit Amount
-                    </td>
-                    <td colspan="2" style="border-bottom: 1px solid gray;border-right: 1px solid gray; vertical-align: top; padding: 10px; height: 20px; text-align: right;">
-                        {{DebitNote}}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="7" style="border-bottom: 1px solid gray; border-left: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left; font-weight: 500;">
-                        Remark :-
-                        {{Remark}}
-                    </td>
-                    <td colspan="3" style="border-bottom: 1px solid gray;border-right: 1px solid gray; vertical-align: top; padding: 10px; text-align: left;">
-                        GST Amount
-                    </td>
-                    <td colspan="2" style="border-bottom: 1px solid gray; border-right: 1px solid gray; vertical-align: top; padding: 15px; height: 20px; text-align: right;">
-                        {{TotalVATAmount}}
-                    </td>
-                </tr>
-
-                <tr>
-                    <td colspan="7" style="vertical-align: top;border: 1px solid gray;padding: 10px;text-align: left;font-weight: 500;font-weight:bold">
-                        Total Amount In Words :- {{finalamt}}
-                    </td>
-                    <td colspan="3" style="border-bottom: 1px solid gray; border-right: 1px solid gray; vertical-align: top; text-align: left; font-weight: bold; padding: 15px; color: black; ">
-                        Total Net Amount
-                    </td>
-                    <td colspan="2" style="border-bottom: 1px solid gray; border-right: 1px solid gray; vertical-align: top; text-align: right; font-weight: bold; padding: 10px; height: 20px; color: black; border-bottom-right-radius: 20px;">
-                        {{NetPayble}}
-                    </td>
-                </tr>
-
-            </table>
-        </div>
-        <br>
-
-        <div style="display: flex;font-size:18px;margin-top:20px;">
-            <div>
-                <span style="font-weight: 500;margin-left: 95px;">{{AddedByName}}</span><br>
-                <span style="font-weight: 500;margin-left:82px;"> Added By</span>
-            </div>
-
-            <span style="margin-left: 790px; font-weight: 500;">Authorized Signature</span>
-        </div><br>
-
-
-        <div style="border: 1px solid black;width:95%;height: 30px;border-bottom-right-radius: 110px;
-    margin-top: 0px;border-bottom-left-radius: 110px;padding: 6px ;">
-            <div style="font-style: italic; opacity:1;text-align: center;font-size: 15px; margin-top: 8px; color: black;">
-                This is Computer generated invoice hence doesn’t require signature
-            </div>
-        </div>
-
-
-
-
-
-
     </div>
+    <br>
+    <div style="display: flex;font-size:18px;margin-top:20px;">
+        <div>
+            <span style="font-weight: 500;margin-left: 95px;">{{AddedByName}}</span><br>
+            <span style="font-weight: 500;margin-left:82px;"> Added By</span>
+        </div>
+        <span style="margin-left: 690px; font-weight: 500;">Authorized Signature</span>
+    </div><br>
+    <div style="border: 1px solid black;width:95%;height: 30px;border-bottom-right-radius: 110px;
+    margin-top: 0px;border-bottom-left-radius: 110px;padding: 6px ;">
+        <div style="font-style: italic; opacity:1;text-align: center;font-size: 15px; margin-top: 8px; color: black;">
+            This is Computer generated invoice hence doesn’t require signature
+        </div>
+    </div>
+</div>
