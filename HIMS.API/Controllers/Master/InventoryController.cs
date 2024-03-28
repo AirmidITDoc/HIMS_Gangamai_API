@@ -23,6 +23,7 @@ namespace HIMS.API.Controllers.Master
         public readonly I_ManufactureMaster _ManufactureMasterRep;
         public readonly I_UnitofMeasurementMaster _UnitofMeasurementMasterRep;
         public readonly I_StoreMaster _StoreMasterRep;
+      
         public readonly I_ItemMaster _ItemMaster;
         public readonly I_SupplierMaster _SupplierMasterRep;
         public readonly I_TaxMaster _TaxMasterRep;
@@ -174,21 +175,21 @@ namespace HIMS.API.Controllers.Master
 
         }
         //-------------------------------------------------------
-        [HttpPost("StoreSave")]
-        public IActionResult StoreSave(StoreMasterParams storeMasterParams)
-        {
-            var StoreSave = _StoreMaster.Insert(storeMasterParams);
-            return Ok(StoreSave);
+        //[HttpPost("StoreSave")]
+        //public IActionResult StoreSave(StoreMasterParams storeMasterParams)
+        //{
+        //    var StoreSave = _StoreMaster.Insert(storeMasterParams);
+        //    return Ok(StoreSave);
 
-        }
+        //}
 
-        [HttpPost("StoreUpdate")]
-        public IActionResult StoreUpdate(StoreMasterParams storeMasterParams)
-        {
-            var StoreUpdate = _StoreMaster.Update(storeMasterParams);
-            return Ok(StoreUpdate);
+        //[HttpPost("StoreUpdate")]
+        //public IActionResult StoreUpdate(StoreMasterParams storeMasterParams)
+        //{
+        //    var StoreUpdate = _StoreMaster.Update(storeMasterParams);
+        //    return Ok(StoreUpdate);
 
-        }
+        //}
         //-------------------------------------------------------
         [HttpPost("ItemMasterSave")]
         public IActionResult ItemMasterSave(ItemMasterParams ItemMasterParams)
@@ -266,6 +267,20 @@ namespace HIMS.API.Controllers.Master
         public IActionResult TermsofPaymentUpdate(TermsofPaymentMasterParams topMasterParams)
         {
             var TODUpdate = _TermsofPaymentMasterRep.Update(topMasterParams);
+            return Ok(TODUpdate);
+
+        }
+        [HttpPost("StoreMasterSave")]
+        public IActionResult StoreMasterSave(StoreMasterParams storeMasterParams)
+        {
+            var TODSave = _StoreMaster.Insert(storeMasterParams);
+            return Ok(TODSave);
+
+        }
+        [HttpPost("StoreMasterUpdate")]
+        public IActionResult StoreMasterUpdate(StoreMasterParams storeMasterParams)
+        {
+            var TODUpdate = _StoreMaster.Update(storeMasterParams);
             return Ok(TODUpdate);
 
         }
