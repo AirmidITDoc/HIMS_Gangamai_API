@@ -7,8 +7,8 @@
 <body>
     <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
 
-        {{HeaderName}}
-        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+        {{HospitalHeader}}
+        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: beige;">
             <div style="display:block;width:100%; align-items: center;">
                 <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
                     OP REFUND  OF BILL RECEIPT
@@ -60,14 +60,14 @@
 
             <span style="vertical-align: top;padding:0 10px 10px;font-size: 20px;">
                 <br />
-                
-                    <span style="font-weight: 500;margin-Left:80px;">
-                        Bill No : {{PBillNo}} 
-                        <span style="margin-Left: 270px;">Bill Date : {{BillDate}}</span>
 
-                        <span style="margin-Left: 270px;">Bill Amount : {{NetPayableAmt}}</span>
-                    </span>
-                
+                <span style="font-weight: 500;margin-Left:80px;">
+                    Bill No : {{PBillNo}}
+                    <span style="margin-Left: 270px;">Bill Date : {{BillDate}}</span>
+
+                    <span style="margin-Left: 270px;">Bill Amount : {{NetPayableAmt}}</span>
+                </span>
+
             </span>
         </div>
         <hr>
@@ -86,7 +86,7 @@
         </div>
 
         <br>  <hr>
-              <span style="font-weight: 500;font-size:18px;"> Total Amount in words :-{{finalamt}}</span>
+        <span style="font-weight: 500;font-size:18px;"> Total Amount in words :-{{finalamt}}</span>
         <hr>
         <!--<div style="display: flex;">
         <span style="font-weight: 500;">Remark</span>

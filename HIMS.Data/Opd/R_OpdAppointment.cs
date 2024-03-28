@@ -159,6 +159,8 @@ namespace HIMS.Data.Opd
 
             var Bills = GetDataTableProc("rptAppointmentPrint1", para);
             string html = File.ReadAllText(htmlFilePath);
+            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
+
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
@@ -170,7 +172,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
-            html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitDate").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
             html = html.Replace("{{ConsultantDoctorName}}", Bills.GetColValue("ConsultantDoctorName"));
 
@@ -210,6 +212,8 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@VisitId", VisitId) { DbType = DbType.String };
 
             var Bills = GetDataTableProc("rptAppointmentPrint1", para);
+            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
+
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));

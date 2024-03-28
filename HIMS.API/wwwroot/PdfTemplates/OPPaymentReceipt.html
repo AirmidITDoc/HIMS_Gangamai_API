@@ -26,7 +26,7 @@
                         <span style="font-size:15px; ">{{RegId}} </span>
                     </td>
                     <td>
-                        <span style="font-weight: 500; margin-right: 20px; margin-left: 100px; font-size: 20px;">Bill No</span>
+                        <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;">Bill No</span>
                         <span style="font-size:15px;"> {{BillNo}} </span>
                     </td>
                 </tr>
@@ -37,7 +37,7 @@
                         <span style="font-size:15px;width:500px;">{{ReceiptNo}}</span>
                     </td>
                     <td>
-                        <span style="font-weight: 500; margin-right: 20px; margin-left: 100px; font-size: 20px;">Bill Date</span>
+                        <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;">Bill Date</span>
                         <span style="font-size:15px;">{{BillDate}}</span>
                     </td>
                 </tr>
@@ -48,7 +48,7 @@
                         <span style="font-size:15px;">{{PatientName}}</span>
                     </td>
                     <td>
-                        <span style="font-weight: 500; margin-right: 20px; margin-left: 100px; font-size: 20px;">Age</span>
+                        <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;">Age</span>
                         <!-- <span style="font-size:15px;"></span>-->
                     </td>
                 </tr>
@@ -59,8 +59,8 @@
                         <!-- <span style="font-size:15px;"></span>'-->
                     </td>
                     <td>
-                        <span style="font-weight: 500; margin-right: 20px; margin-left: 100px; font-size: 20px;">Payment Date</span>
-                        <span style="font-size:15px;">{{PaymentDate}} </span>
+                        <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;">Payment Date</span>
+                        <span style="font-size:15px;">{{PaymentTime}} </span>
                     </td>
                 </tr>
 
@@ -86,7 +86,7 @@
                     <span style="font-weight: 500; margin-Left: 20px; font-size: 20px; width: 300px;">Cash Pay Amount:</span>
                     <span style="width: 400px;font-size:18px;margin-left:10px;"> {{CashPayAmount}}</span> <br>
                     <div style="display:{{chkcardflag}}">
-                        <span style="font-weight: 500; font-size: 20px; margin-Left: 10px; width: 300px;">Card Pay Amount:</span>
+                        <span style="font-weight: 500; font-size: 20px; margin-Left: 20px; width: 300px;">Card Pay Amount:</span>
                         <span style="width: 400px; font-size: 18px; margin-left: 10px;"> {{CardPayAmount}}</span>
                         <span style="margin-left: 20px; font-size: 18px;">Card No : {{CardNo}}</span> <span style="margin-left: 20px; font-size: 18px;">Card Date : {{CardDate}} </span><span style="margin-left: 20px; font-size: 18px;">Card Bank Name :</span>
 
@@ -118,14 +118,14 @@
         <span style="font-weight: 500; font-size: 15px; margin-Left: 20px; "> Total Amount in words :-{{finalamt}}</span>
         <hr>
         <div style="display:{{chkremarkflag}}">
-            <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;">Remark</span>
-
+            <span style="font-weight: 500; font-size: 20px; margin-Left: 20px;font-weight:400;">Remark</span>
+            <spn>{{Remark}}</spn>
         </div><br><br>
 
         <div style="display:flex;justify-content:space-between;margin-left:180px;">
 
             <div style="text-align:center;margin-left:30px;">
-                <div style="font-weight:700;font-size:18px;">{{Addedby}}</div>
+                <div style="font-weight:700;font-size:18px;">{{UserName}}</div>
                 <div style="font-size:18px;">Authorized By </div>
             </div>
         </div>

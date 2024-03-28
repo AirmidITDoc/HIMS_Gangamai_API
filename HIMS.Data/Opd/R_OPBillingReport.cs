@@ -28,8 +28,11 @@ namespace HIMS.Data.Opd
             para[3] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptIP_OP_Comman_DailyCollectionReport", para);
             string html = File.ReadAllText(htmlFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
+
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");

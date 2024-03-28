@@ -41,7 +41,7 @@ namespace HIMS.Data.Opd
 
         }
 
-        public string ViewOPPaymentReceipt(int PaymentId, string htmlFilePath, string HospitalHeader)
+        public string ViewOPPaymentReceipt(int PaymentId, string htmlFilePath, string htmlHeaderFilePath)
         {
             // throw new NotImplementedException();
 
@@ -50,8 +50,10 @@ namespace HIMS.Data.Opd
             //rptIPDPaymentReceiptPrint
             para[0] = new SqlParameter("@PaymentId", PaymentId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptOPDPaymentReceiptPrint", para);
+            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
+
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(HospitalHeader);// templates.Rows[0]["TempDesign"].ToString();
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
@@ -88,7 +90,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{ReceiptNo}}", Bills.GetColValue("ReceiptNo"));
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
             html = html.Replace("{{Remark}}", Bills.GetColValue("Remark"));
-            html = html.Replace("{{PaymentDate}}", Bills.GetColValue("PaymentDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy HH:mm tt"));
 
 
 

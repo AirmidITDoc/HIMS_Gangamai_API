@@ -65,9 +65,11 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@RefundId", RefundId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptOPRefundofBillPrint", para);
             string html = File.ReadAllText(htmlFilePath);
+            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
+
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -92,12 +94,12 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{MobileNo}}", Bills.GetColValue("PhoneNo"));
 
             html = html.Replace("{{RefundDate}}", Bills.GetColValue("RefundDate").ConvertToDateString());
-            html = html.Replace("{{RefundTime}}", Bills.GetColValue("RefundTime").ConvertToDateString("dd/mm/yyyy hh:mm"));
-            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString());
+            html = html.Replace("{{RefundTime}}", Bills.GetColValue("RefundTime").ConvertToDateString("dd/mm/yyyy hh:mm tt"));
+            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/mm/yyyy hh:mm tt"));
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
             html = html.Replace("{{PBillNo}}", Bills.GetColValue("PBillNo").ConvertToString());
-            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate").ConvertToDateString());
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate").ConvertToDateString("dd/mm/yyyy"));
             html = html.Replace("{{NetPayableAmt}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
 
 

@@ -133,10 +133,12 @@ namespace HIMS.Data.Opd
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@AddedById", AddedById) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptOPDailyCollectionReport", para);
+            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
+
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
 
             Boolean chkpaidflag = false, chkbalflag = false, chkremarkflag = false;
 
@@ -206,15 +208,19 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptBillPrint", para);
             string html = File.ReadAllText(htmlFilePath);
+            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
+
+
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
+         
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
 
             Boolean chkpaidflag = false, chkbalflag = false, chkremarkflag=false;
 
 
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
-            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount"));
+            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ConcessionAmt}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
             
@@ -242,12 +248,14 @@ namespace HIMS.Data.Opd
                 items.Append("<tr><td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["Price"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["Qty"].ConvertToDateString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["NetAmount"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
                 T_NetAmount += dr["NetAmount"].ConvertToDouble();
             }
+            T_NetAmount = Math.Round(T_NetAmount);
+
             html = html.Replace("{{Items}}", items.ToString());
 
 
@@ -270,7 +278,7 @@ namespace HIMS.Data.Opd
 
 
 
-            string finalamt = conversion(Bills.GetColValue("NetAmount").ConvertToDouble().To2DecimalPlace().ToString());
+            string finalamt = conversion(T_NetAmount.ToString());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 
