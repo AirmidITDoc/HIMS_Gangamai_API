@@ -8,6 +8,8 @@ namespace HIMS.Model.Pharmacy
     {
         public MaterialAcceptIssueHeader MaterialAcceptIssueHeader { get; set; }
         public List<MaterialAcceptIssueDetails> MaterialAcceptIssueDetails { get; set; }
+        public MaterialAcceptStockUpdate MaterialAcceptStockUpdate { get; set; }
+        public UpdateStockToMainStock UpdateStockToMainStock { get; set; }
 
     }
 
@@ -22,6 +24,19 @@ namespace HIMS.Model.Pharmacy
         public int IssueId { get; set; }
         public int IssueDetId { get; set; }
         public string Status { get; set; }
+    }
+    public class MaterialAcceptStockUpdate
+    {
+        public int IssueId { get; set; }
+
+    }
+    public class UpdateStockToMainStock
+    {
+        public long IssueId { get; set; }
+        public long IssueDetId { get; set; }
+        public int ReturnQty { get; set; }
+        public long StockId { get; set; }
+        public long StoreId { get; set; }
     }
 
 }

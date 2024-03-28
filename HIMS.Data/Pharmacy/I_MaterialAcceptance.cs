@@ -6,6 +6,7 @@ namespace HIMS.Data.Pharmacy
     {
         public bool UpdateMaterialAcceptance(MaterialAcceptParams materialAcceptParams);
 
+        public bool UpdateStockToMainStock(MaterialAcceptParams materialAcceptParams);
         string ViewMaterialReceivedfrDept(int IssueId, string htmlFilePath, string HeaderName);
     }
 }

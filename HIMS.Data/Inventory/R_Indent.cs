@@ -252,7 +252,7 @@ namespace HIMS.Data.Inventory
             html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
-
+            String Verify = " ";
 
 
             foreach (DataRow dr in Bills.Rows)
@@ -261,26 +261,26 @@ namespace HIMS.Data.Inventory
 
                 items.Append("<tr><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;border-bottom: 1px solid black;text-align:center;font-size:18px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;text-align:center;border-bottom: 1px solid black;font-size:18px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:0;height:10px;text-align:center;border-bottom: 1px solid black;font-size:18px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:0;border-right:1px solid #000;height:10px;text-align:center;border-bottom: 1px solid black;font-size:18px;\">").Append(dr["Qty"].ConvertToString()).Append("</td></tr>");
                 
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;border-bottom: 1px solid black;\">").Append("</td></tr>");
+             }
 
-
-
-            }
-            
+         
 
            html = html.Replace("{{Items}}", items.ToString());
             //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{FromStoreName}}", Bills.GetColValue("FromStoreName"));
             
-
-                html = html.Replace("{{Remark}}", Bills.GetColValue("Remark"));
+            html = html.Replace("{{VLabel}}", Bills.GetColValue("VLabel"));
+            html = html.Replace("{{Remark}}", Bills.GetColValue("Comments"));
             html = html.Replace("{{ToStoreName}}", Bills.GetColValue("ToStoreName"));
             html = html.Replace("{{IndentNo}}", Bills.GetColValue("IndentNo"));
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
             html = html.Replace("{{IndentTime}}", Bills.GetColValue("IndentTime").ConvertToDateString("dd.MM.yyyy hhLmm tt"));
+
+            html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
+            html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
             return html;
         }
     }

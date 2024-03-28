@@ -41,6 +41,17 @@ namespace HIMS.API.Controllers
         [Route("get-menus")]
         public ActionResult GetMenus(int RoleId)
         {
+            return Ok(PrepareMenu(RoleId, true));
+        }
+        [HttpGet]
+        [Route("get-permission-menu")]
+        public ActionResult GetPermissionMenus(int RoleId)
+        {
+            return Ok(PrepareMenu(RoleId, false));
+        }
+        [NonAction]
+        public List<MenuModel> PrepareMenu(int RoleId, bool isActiveMenuOnly)
+        {
             List<MenuMaster> lstMenu = i_MenuMaster.GetMenus(RoleId);
             List<MenuModel> finalList = new List<MenuModel>();
             var distinct = lstMenu.Where(x => x.UpId == 0);
@@ -75,15 +86,28 @@ namespace HIMS.API.Controllers
                         IsDelete = lData.IsDelete,
                         IsEdit = lData.IsEdit
                     };
-                    test.children = AddChildtems(lstMenu, test);
+                    test.children = AddChildtems(lstMenu, test, isActiveMenuOnly);
                     if (test.children.Count == 0)
                     {
                         test.type = "item";
                         test.url = lData.LinkAction;
                         test.children = null;
                     }
-                    if ((test?.children?.Count() ?? 0) > 0 || lData.IsView)
+                    if ((test?.children?.Count() ?? 0) > 0 || lData.IsView || !isActiveMenuOnly)
+                    {
+                        if (test.children != null)
+                        {
+                            if (test.children.Count > 0 && test.children.Count == test.children.Count(x => x.IsAdd))
+                                test.IsAdd = true;
+                            if (test.children.Count > 0 && test.children.Count == test.children.Count(x => x.IsEdit))
+                                test.IsEdit = true;
+                            if (test.children.Count > 0 && test.children.Count == test.children.Count(x => x.IsDelete))
+                                test.IsDelete = true;
+                            if (test.children.Count > 0 && test.children.Count == test.children.Count(x => x.IsView))
+                                test.IsView = true;
+                        }
                         obj.children.Add(test);
+                    }
                 }
                 if (obj.children.Count == 0)
                 {
@@ -91,14 +115,26 @@ namespace HIMS.API.Controllers
                     obj.url = ItemData.LinkAction;
                     obj.children = null;
                 }
-                if ((obj?.children?.Count ?? 0) > 0 || ItemData.IsView)
+                if ((obj?.children?.Count ?? 0) > 0 || ItemData.IsView || !isActiveMenuOnly)
+                {
+                    if (obj.children != null)
+                    {
+                        if (obj.children.Count > 0 && obj.children.Count == obj.children.Count(x => x.IsAdd))
+                            obj.IsAdd = true;
+                        if (obj.children.Count > 0 && obj.children.Count == obj.children.Count(x => x.IsEdit))
+                            obj.IsEdit = true;
+                        if (obj.children.Count > 0 && obj.children.Count == obj.children.Count(x => x.IsDelete))
+                            obj.IsDelete = true;
+                        if (obj.children.Count > 0 && obj.children.Count == obj.children.Count(x => x.IsView))
+                            obj.IsView = true;
+                    }
                     finalList.Add(obj);
+                }
             }
-
-            return Ok(finalList);
+            return finalList;
         }
         [NonAction]
-        private List<MenuModel> AddChildtems(List<MenuMaster> Data, MenuModel obj)
+        private List<MenuModel> AddChildtems(List<MenuMaster> Data, MenuModel obj, bool isActiveMenuOnly)
         {
             List<MenuModel> lstChilds = new List<MenuModel>();
             try
@@ -120,15 +156,28 @@ namespace HIMS.API.Controllers
                         IsDelete = objItem.IsDelete,
                         IsEdit = objItem.IsEdit
                     };
-                    objData.children = AddChildtems(Data, objData);
+                    objData.children = AddChildtems(Data, objData, isActiveMenuOnly);
                     if (objData.children.Count == 0)
                     {
                         objData.type = "item";
                         objData.url = objItem.LinkAction;
                         objData.children = null;
                     }
-                    if ((objData?.children?.Count ?? 0) > 0 || objItem.IsView)
+                    if ((objData?.children?.Count ?? 0) > 0 || objItem.IsView || !isActiveMenuOnly)
+                    {
+                        if (objData.children != null)
+                        {
+                            if (objData.children.Count > 0 && objData.children.Count == objData.children.Count(x => x.IsAdd))
+                                objData.IsAdd = true;
+                            if (objData.children.Count > 0 && objData.children.Count == objData.children.Count(x => x.IsEdit))
+                                objData.IsEdit = true;
+                            if (objData.children.Count > 0 && objData.children.Count == objData.children.Count(x => x.IsDelete))
+                                objData.IsDelete = true;
+                            if (objData.children.Count > 0 && objData.children.Count == objData.children.Count(x => x.IsView))
+                                objData.IsView = true;
+                        }
                         lstChilds.Add(objData);
+                    }
                 }
             }
             catch (Exception ex)

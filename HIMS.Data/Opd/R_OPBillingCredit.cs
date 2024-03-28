@@ -52,20 +52,20 @@ namespace HIMS.Data.Opd
 
             var disc3 = OPBillingCreditparam.InsertBillcreditupdatewithbillno.ToDictionary();
             disc3.Remove("BillNo");
-            var BillNo = ExecNonQueryProcWithOutSaveChanges("insert_Bill_UpdateWithBillNo_1_New", disc3, outputId1);
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_Bill_1", disc3, outputId1);
 
             foreach (var a in OPBillingCreditparam.ChargesDetailCreditInsert)
             {
                 var disc5 = a.ToDictionary();
                 disc5["BillNo"] = BillNo;
                 disc5.Remove("ChargeID");
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_OPAddCharges_1", disc5, VarChargeID);
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_OPAddCharges_1", disc5, VarChargeID);
 
                 // Dill Detail Table Insert 
                 Dictionary<string, Object> OPBillDet = new Dictionary<string, object>();
                 OPBillDet.Add("BillNo", BillNo);
                 OPBillDet.Add("ChargesID", ChargeID);
-                ExecNonQueryProcWithOutSaveChanges("insert_BillDetails_1", OPBillDet);
+                ExecNonQueryProcWithOutSaveChanges("m_insert_BillDetails_1", OPBillDet);
 
                 if (a.IsPathology)
                 {
@@ -83,7 +83,7 @@ namespace HIMS.Data.Opd
                     PathParams.Add("IsSamplecollection", 0);
                     PathParams.Add("TestType", 0);
 
-                    ExecNonQueryProcWithOutSaveChanges("insert_PathologyReportHeader_1", PathParams);
+                    ExecNonQueryProcWithOutSaveChanges("m_insert_PathologyReportHeader_1", PathParams);
                 }
                 if (a.IsRadiology)
                 {
@@ -101,7 +101,7 @@ namespace HIMS.Data.Opd
                     PathParams.Add("IsPrinted", 0);
                     PathParams.Add("TestType", 0);
 
-                    ExecNonQueryProcWithOutSaveChanges("insert_RadiologyReportHeader_1", PathParams);
+                    ExecNonQueryProcWithOutSaveChanges("m_insert_RadiologyReportHeader_1", PathParams);
                 }
             }
 

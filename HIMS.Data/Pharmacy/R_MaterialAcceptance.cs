@@ -25,6 +25,19 @@ namespace HIMS.Data.Pharmacy
                 var disc1 = a.ToDictionary();
                 ExecNonQueryProcWithOutSaveChanges("m_update_AcceptMaterialIssueDet_1", disc1);
             }
+            
+            var vMaterialAcceptStockUpdate = materialAcceptParams.MaterialAcceptStockUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_AcceptMaterialStock_1", vMaterialAcceptStockUpdate);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
+        public bool UpdateStockToMainStock(MaterialAcceptParams materialAcceptParams)
+        {
+            var vUpdateStockToMainStock = materialAcceptParams.UpdateStockToMainStock.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_StockToMainStore_1", vUpdateStockToMainStock);
+
             _unitofWork.SaveChanges();
             return true;
         }

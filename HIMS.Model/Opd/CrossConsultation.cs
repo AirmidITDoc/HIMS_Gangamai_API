@@ -12,8 +12,8 @@ namespace HIMS.Model.Opd
 
     public class CrossConsultationSave
     {
-        public long VisitId { get; set; }
-        public long RegID { get; set; }
+        public long VisitID { get; set; }
+        public long RegId { get; set; }
         public DateTime VisitDate { get; set; }
         public DateTime VisitTime { get; set; }
         public long UnitId { get; set; }
@@ -36,6 +36,5 @@ namespace HIMS.Model.Opd
         public DateTime FollowupDate { get; set; }
 
         public int CrossConsulFlag { get; set; }
-        public int PhoneAppId { get; set; }
     }
 }

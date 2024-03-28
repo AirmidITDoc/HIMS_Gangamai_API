@@ -61,20 +61,20 @@ namespace HIMS.Data.Opd
 
             var disc3 = OPbillingparams.InsertBillupdatewithbillno.ToDictionary();
             disc3.Remove("BillNo");
-            var BillNo = ExecNonQueryProcWithOutSaveChanges("insert_Bill_UpdateWithBillNo_1_New", disc3, outputId1);
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_Bill_1", disc3, outputId1);
 
             foreach (var a in OPbillingparams.ChargesDetailInsert)
             {
                 var disc5 = a.ToDictionary();
                 disc5["BillNo"] = BillNo;
                 disc5.Remove("ChargeID");
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_OPAddCharges_1", disc5, VarChargeID);
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_OPAddCharges_1", disc5, VarChargeID);
 
                 // Dill Detail Table Insert 
                 Dictionary<string, Object> OPBillDet = new Dictionary<string, object>();
                 OPBillDet.Add("BillNo", BillNo);
                 OPBillDet.Add("ChargesID", ChargeID);
-                ExecNonQueryProcWithOutSaveChanges("insert_BillDetails_1", OPBillDet);
+                ExecNonQueryProcWithOutSaveChanges("m_insert_BillDetails_1", OPBillDet);
 
                 if (a.IsPathology)
                 {
@@ -92,7 +92,7 @@ namespace HIMS.Data.Opd
                     PathParams.Add("IsSamplecollection", 0);
                     PathParams.Add("TestType", 0);
 
-                    ExecNonQueryProcWithOutSaveChanges("insert_PathologyReportHeader_1", PathParams);
+                    ExecNonQueryProcWithOutSaveChanges("m_insert_PathologyReportHeader_1", PathParams);
                 }
                 if (a.IsRadiology)
                 {
@@ -110,50 +110,13 @@ namespace HIMS.Data.Opd
                     PathParams.Add("IsPrinted", 0);
                     PathParams.Add("TestType", 0);
 
-                    ExecNonQueryProcWithOutSaveChanges("insert_RadiologyReportHeader_1", PathParams);
+                    ExecNonQueryProcWithOutSaveChanges("m_insert_RadiologyReportHeader_1", PathParams);
                 }
             }
 
             var disc7 = OPbillingparams.OPInsertPayment.ToDictionary();
             disc7["BillNo"] = (int)Convert.ToInt64(BillNo);
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", disc7);
-            
-            
-            // foreach (var a in OPbillingparams.InsertPathologyReportHeader)
-            // {
-            //     var disc1 = a.ToDictionary();
-            //     //disc5["BillNo"] = BillNo;
-            //     ExecNonQueryProcWithOutSaveChanges("insert_PathologyReportHeader_1", disc1);
-            // }
-
-            // foreach (var a in OPbillingparams.InsertRadiologyReportHeader)
-            // {
-            //     var disc2 = a.ToDictionary();
-            //    ExecNonQueryProcWithOutSaveChanges("insert_RadiologyReportHeader_1", disc2);
-            // }
-
-
-
-            // foreach (var a in OPbillingparams.OpBillDetailsInsert)
-            //{
-            //    var disc5 = a.ToDictionary();
-            //    disc5["BillNo"] = BillNo;
-            //    ExecNonQueryProcWithOutSaveChanges("insert_BillDetails_1", disc5);
-            // }
-
-            // var disc4 = OPbillingparams.OPoctorShareGroupAdmChargeDoc.ToDictionary();
-            // disc4["BillNo"] = (int)Convert.ToInt64(BillNo);
-            //disc4.Remove("BillNo");
-            //new  ExecNonQueryProcWithOutSaveChanges("ps_OP_Doctor_Share_Group_Adm_ChargeDoc_1", disc4);
-
-
-            //var disc6 = OPbillingparams.OPCalDiscAmountBill.ToDictionary();
-            //disc6["BillNo"] = (int)Convert.ToInt64(BillNo);
-            //ExecNonQueryProcWithOutSaveChanges("Cal_DiscAmount_OPBill", disc6);
-
-            //IPBillingParams.BillDetailsInsert.BillNo = (int)Convert.ToInt64(BillNo);
-
-
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc7);
 
             _unitofWork.SaveChanges();
             return BillNo;
@@ -177,29 +140,9 @@ namespace HIMS.Data.Opd
 
             Boolean chkpaidflag = false, chkbalflag = false, chkremarkflag = false;
 
-
-            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
-            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount"));
-            html = html.Replace("{{ConcessionAmt}}", Bills.GetColValue("ConcessionAmt"));
-            html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
-
-            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
-            html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
-            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate").ConvertToDateString());
-            html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
-            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
-            html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
-            html = html.Replace("{{ExtMobileNo}}", Bills.GetColValue("ExtMobileNo"));
-            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
-            html = html.Replace("{{EmailId}}", Bills.GetColValue("EmailId"));
-            html = html.Replace("{{Date}}", Bills.GetDateColValue("Date").ConvertToDateString());
-            html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitDate").ConvertToDateString());
-            html = html.Replace("{{PhoneNo}}", Bills.GetColValue("PhoneNo"));
-
-            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
-
+           
             StringBuilder items = new StringBuilder("");
-            int i = 0;
+            int i = 0,j=0;
             double T_NetAmount = 0, T_TotAmount=0, T_DiscAmount=0, T_PaidAmount=0,T_BalAmount=0, T_CashPayAmount = 0, T_CardPayAmount = 0, T_ChequePayAmount = 0;
             foreach (DataRow dr in Bills.Rows)
             {
@@ -229,6 +172,11 @@ namespace HIMS.Data.Opd
                 T_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
                 T_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
             }
+
+           
+
+            
+
             html = html.Replace("{{Items}}", items.ToString());
 
 
@@ -240,6 +188,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{T_CashPayAmount}}", T_CashPayAmount.To2DecimalPlace());
             html = html.Replace("{{T_CardPayAmount}}", T_CardPayAmount.To2DecimalPlace());
             html = html.Replace("{{T_ChequePayAmount}}", T_ChequePayAmount.To2DecimalPlace());
+
 
 
             html = html.Replace("{{FromDate}}", FromDate.ConvertToDateString());
@@ -302,24 +251,105 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{Items}}", items.ToString());
 
 
-            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
-            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount"));
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount").ConvertToDouble().To2DecimalPlace());
          
-            html = html.Replace("{{BalanceAmt}}", Bills.GetColValue("BalanceAmt"));
-            html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount"));
-            html = html.Replace("{{Price}}", Bills.GetColValue("Price"));
-            html = html.Replace("{{TotalGst}}", Bills.GetColValue("TotalGst"));
-            html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount"));
+            html = html.Replace("{{BalanceAmt}}", Bills.GetColValue("BalanceAmt").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{Price}}", Bills.GetColValue("Price").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{TotalGst}}", Bills.GetColValue("TotalGst").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{UserName}}", Bills.GetColValue("AddedByName").ConvertToString());
+            html = html.Replace("{{HospitalName}}", Bills.GetColValue("HospitalName").ConvertToString());
+
 
             html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "block" : "none");
             html = html.Replace("{{chkbalflag}}", Bills.GetColValue("BalanceAmt").ConvertToDouble() > 0 ? "block" : "none");
             //html = html.Replace("{{chkbalflag}}", Bills.GetColValue("BalanceAmt").ConvertToDouble() > 0 ? "block" : "none");
             html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "block" : "none");
-            
+
+
+
+            string finalamt = conversion(Bills.GetColValue("NetAmount").ConvertToDouble().To2DecimalPlace().ToString());
+            html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
+
+
             return html;
 
         }
 
+      
+        public double GetSum(DataTable dt, string ColName)
+        {
+            double cash = 0;
+            //double Return = dt.Compute("SUM(" + ColName + ")", "Label='Sales Return'").ConvertToDouble();
+            //double cash = dt.Compute("SUM(" + ColName + ")", "Label<>'Sales Return'").ConvertToDouble();
+            return cash;
+        }
+
+
+        public string conversion(string amount)
+        {
+            double m = Convert.ToInt64(Math.Floor(Convert.ToDouble(amount)));
+            double l = Convert.ToDouble(amount);
+
+            double j = (l - m) * 100;
+            //string Word = " ";
+
+            var beforefloating = ConvertNumbertoWords(Convert.ToInt64(m));
+            var afterfloating = ConvertNumbertoWords(Convert.ToInt64(j));
+
+            // Word = beforefloating + '.' + afterfloating;
+
+            var Content = beforefloating + ' ' + " RUPEES" + ' ' + afterfloating + ' ' + " PAISE only";
+
+            return Content;
+        }
+
+        public string ConvertNumbertoWords(long number)
+        {
+            if (number == 0) return "ZERO";
+            if (number < 0) return "minus " + ConvertNumbertoWords(Math.Abs(number));
+            string words = "";
+            if ((number / 1000000) > 0)
+            {
+                words += ConvertNumbertoWords(number / 100000) + " LAKES ";
+                number %= 1000000;
+            }
+            if ((number / 1000) > 0)
+            {
+                words += ConvertNumbertoWords(number / 1000) + " THOUSAND ";
+                number %= 1000;
+            }
+            if ((number / 100) > 0)
+            {
+                words += ConvertNumbertoWords(number / 100) + " HUNDRED ";
+                number %= 100;
+            }
+            //if ((number / 10) > 0)  
+            //{  
+            // words += ConvertNumbertoWords(number / 10) + " RUPEES ";  
+            // number %= 10;  
+            //}  
+            if (number > 0)
+            {
+                if (words != "") words += "AND ";
+                var unitsMap = new[]
+           {
+            "ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN", "NINETEEN"
+        };
+                var tensMap = new[]
+           {
+            "ZERO", "TEN", "TWENTY", "THIRTY", "FORTY", "FIFTY", "SIXTY", "SEVENTY", "EIGHTY", "NINETY"
+        };
+                if (number < 20) words += unitsMap[number];
+                else
+                {
+                    words += tensMap[number / 10];
+                    if ((number % 10) > 0) words += " " + unitsMap[number % 10];
+                }
+            }
+            return words;
+        }
     }
 }
