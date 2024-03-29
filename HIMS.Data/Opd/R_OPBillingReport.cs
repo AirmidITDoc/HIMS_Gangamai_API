@@ -12,6 +12,7 @@ namespace HIMS.Data.Opd
 {
     public class R_OPBillingReport : GenericRepository, I_OPBillingReport
     {
+        
         public R_OPBillingReport(IUnitofWork unitofWork) : base(unitofWork)
         {
 

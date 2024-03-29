@@ -27,7 +27,7 @@ namespace HIMS.Data.IPD
             return true;
         }
 
-        public string ViewLabRequest(int RequestId, string htmlFilePath, string HeaderName)
+        public string ViewLabRequest(int RequestId, string htmlFilePath, string htmlHeaderFilePath)
         {
             // throw new NotImplementedException();
 
@@ -36,10 +36,12 @@ namespace HIMS.Data.IPD
             para[0] = new SqlParameter("@RequestId", RequestId) { DbType = DbType.Int64 };
             
             var Bills = GetDataTableProc("rptLabRequestList", para);
+            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
+
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -60,7 +62,9 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{OPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{ReqDate}}", Bills.GetColValue("ReqDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
 
+            
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));

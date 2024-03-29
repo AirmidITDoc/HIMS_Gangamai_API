@@ -8,8 +8,8 @@
     <body>
         <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
 
-            {{HeaderName}}
-            <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+            {{HospitalHeader}}
+            <div style="border:1px solid grey;text-align:center;padding:2px;background-color: beige;">
                 <div style="display:block;width:100%; align-items: center;">
                     <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
                         IP FINAL BILL
@@ -18,7 +18,7 @@
                 </div>
 
             </div>
-          
+
             <hr />
             <table>
                 <tr>
@@ -92,7 +92,7 @@
                         <span style="font-size: 15px; margin-left: 10px;">{{PatientType}}</span>'
                     </td>
                     <td>
-                        <span style="font-weight: 500;font-size: 20px; margin-left: 300px;">Phone No:</span>
+                        <span style="font-weight: 500;font-size: 20px; margin-left: 300px;">Phone:</span>
                         <span style="font-size: 15px; margin-left: 10px;">{{Phone}} </span>
                     </td>
                 </tr>
@@ -151,9 +151,9 @@
                     <div style="display:{{chkpaidflag}}">
                         <span style="margin-left: 750px; font-weight: 500; margin-right: 10px; font-size: 20px">paid Amount</span>
                         <span style="width: 400px;font-size:18px;"> {{PaidAmount}}</span> <br>
-                        </div>
-                        <span style="margin-left: 750px; font-weight: 500; margin-right: 10px; font-size: 20px">Net Amount</span>
-                        <span style="width: 400px;font-size:18px;"> {{T_NetAmount}}</span> <br>
+                    </div>
+                    <span style="margin-left: 750px; font-weight: 500; margin-right: 10px; font-size: 20px">Net Amount</span>
+                    <span style="width: 400px;font-size:18px;"> {{T_NetAmount}}</span> <br>
                 </span>
 
             </div>
@@ -231,10 +231,16 @@
                 <div style="position:relative;top:100px;text-align:center">
                 </div>
                 <br />
-                <div style="display: flex;">
-                    <span style="font-weight: 500; font-size: 15px;">{{UserName}}</span>
-                    <span style="margin-left: 50px; font-weight: 500; font-size: 15px;">Authorized Signature</span>
-                </div><br />
+              
+                <div style="display:flex;justify-content:space-between;margin-left:280px;margin-top:50px;">
+
+                    <div style="text-align:center;margin-left:30px;">
+                        <div style="font-weight:700;font-size:18px;">{{UserName}}</div>
+                        <div style="font-size:18px;">Authorized Signature </div>
+                    </div>
+                </div>
+
+
                 <div style="border: 1px solid black;width: 1000px;height: 30px; background-color: red;border-bottom-right-radius: 110px;
     margin-top: 0px;border-bottom-left-radius: 110px;padding: 6px ;">
                     <div style="font-style: italic; opacity:1;text-align: center;font-size: 15px; margin-top: 8px; color: white;">
@@ -242,6 +248,6 @@
                     </div>
                 </div>
             </div>
-    </body>
+</body>
 </html>
 </div>
