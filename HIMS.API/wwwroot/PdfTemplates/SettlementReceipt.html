@@ -7,8 +7,8 @@
 <body>
     <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
 
-        {{HeaderName}}
-        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+        {{HospitalHeader}}
+        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: beige;">
             <div style="display:block;width:100%; align-items: center;">
                 <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
                     SETTELMENT RECEIPT
@@ -25,7 +25,7 @@
                     <span style="font-size:15px; ">{{ReceiptNo}} </span>
                 </td>
                 <td>
-                    <span style="font-weight: 500; margin-right: 10px; margin-left: 100px; font-size: 20px;">Date</span>
+                    <span style="font-weight: 500; margin-right: 10px; margin-left: 150px; font-size: 20px;">Date</span>
                     <span style="font-size:15px;"> {{PaymentDate}} </span>
                 </td>
             </tr>
@@ -36,7 +36,7 @@
                     <span style="font-size:15px;width:500px;">{{RegNo}}</span>
                 </td>
                 <td>
-                    <span style="font-weight: 500; margin-right: 10px; margin-left: 100px; font-size: 20px;;">IPD No</span>
+                    <span style="font-weight: 500; margin-right: 10px; margin-left: 150px; font-size: 20px;;">IPD No</span>
                     <span style="font-size:15px;">{{IPDNo}}</span>
                 </td>
             </tr>
@@ -47,12 +47,12 @@
                     <span style="font-size:15px;">{{PatientName}}</span>
                 </td>
                 <td>
-                    <span style="font-weight: 500; margin-right: 10px; margin-left: 100px; font-size: 20px;">Payment Date</span>
-                       <span style="font-size:15px;">{{PaymentDate}}</span>
+                    <span style="font-weight: 500; margin-right: 10px; margin-left: 150px; font-size: 20px;">Payment Date</span>
+                    <span style="font-size:15px;">{{PaymentDate}}</span>
                 </td>
             </tr>
 
-        
+
         </table>
 
 
@@ -81,12 +81,12 @@
         </div>
         <hr>
         <br>
-        <span style="font-weight: 500; font-size: 20px; margin-Left: 10px; "> Total Amount in words :-</span>
+        <span style="font-weight: 500; font-size: 20px; margin-Left: 10px; "> Total Amount in words :-{{finalamt}}</span>
         <hr>
         <div style="display: flex;">
-        <span style="font-weight: 500; font-size: 20px; margin-Left: 10px; ">Remark</span>
+            <span style="font-weight: 500; font-size: 20px; margin-Left: 10px; ">Remark</span>
 
-    </div>
+        </div>
         <br><br>
 
         <div style="display:flex;justify-content:space-between;margin-left:180px;margin-top:50px;">
