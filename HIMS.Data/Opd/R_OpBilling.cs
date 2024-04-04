@@ -133,9 +133,7 @@ namespace HIMS.Data.Opd
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@AddedById", AddedById) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptOPDailyCollectionReport", para);
-            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
-
-            string html = File.ReadAllText(htmlFilePath);
+                   string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HospitalHeader}}", htmlHeader);
@@ -208,9 +206,7 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptBillPrint", para);
             string html = File.ReadAllText(htmlFilePath);
-            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
-
-
+           
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
          
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));

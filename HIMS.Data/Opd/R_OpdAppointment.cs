@@ -159,11 +159,10 @@ namespace HIMS.Data.Opd
 
             var Bills = GetDataTableProc("rptAppointmentPrint1", para);
             string html = File.ReadAllText(htmlFilePath);
-            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
-
+           
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -212,12 +211,11 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@VisitId", VisitId) { DbType = DbType.String };
 
             var Bills = GetDataTableProc("rptAppointmentPrint1", para);
-            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
-
+         
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 

@@ -50,8 +50,7 @@ namespace HIMS.Data.Opd
             //rptIPDPaymentReceiptPrint
             para[0] = new SqlParameter("@PaymentId", PaymentId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptOPDPaymentReceiptPrint", para);
-            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
-
+           
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
