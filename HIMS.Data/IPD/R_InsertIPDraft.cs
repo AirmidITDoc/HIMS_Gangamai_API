@@ -59,7 +59,7 @@ namespace HIMS.Data.IPD
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0,j=0;
             double T_NetAmount = 0;

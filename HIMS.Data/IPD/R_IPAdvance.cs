@@ -76,8 +76,7 @@ namespace HIMS.Data.IPD
             para[0] = new SqlParameter("@AdvanceDetailID", AdvanceDetailID) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptIPDAdvancePrint", para);
             string html = File.ReadAllText(htmlFilePath);
-            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
-
+         
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HospitalHeader}}", htmlHeader);

@@ -59,8 +59,7 @@ namespace HIMS.Data.IPD
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@Reg_No", Reg_No) { DbType = DbType.Int64 };
             //para[1] = new SqlParameter("@PatientType", PatientType) { DbType = DbType.Int64 };
-            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
-
+           
             var Bills = GetDataTableProc("Rtrv_IPPrescriptionReturnListFromWard", para);
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();

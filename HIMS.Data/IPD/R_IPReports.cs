@@ -26,8 +26,7 @@ namespace HIMS.Data.IPD
             para[3] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("rptIP_OP_Comman_DailyCollectionReport", para);
-             htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
-
+           
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
@@ -236,8 +235,7 @@ namespace HIMS.Data.IPD
 
 
             var Bills = GetDataTableProc("rptIPDailyCollectionReport", para);
-             htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
-
+            
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
@@ -456,8 +454,7 @@ namespace HIMS.Data.IPD
             // SqlParameter[] para1 = new SqlParameter[0];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-             htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
-
+            
             var Bills = GetDataTableProc("rptOP_IP_BillSummaryReport", para);
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
