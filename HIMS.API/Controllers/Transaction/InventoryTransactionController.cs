@@ -188,7 +188,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewIssuetoDeptIssuewise(int IssueId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InvIssuetoDept.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
             var html = _IssuetoDepartment.ViewIssuetoDeptIssuewise(IssueId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvIssuetoDept", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
@@ -206,7 +206,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewIssuetoDeptSummary(DateTime FromDate, DateTime ToDate, int FromStoreId, int ToStoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InvIssuetodeptsummary.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
             var html = _IssuetoDepartment.ViewIssuetodeptsummary(FromDate, ToDate, FromStoreId, ToStoreId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvIssuetodeptsummary", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
