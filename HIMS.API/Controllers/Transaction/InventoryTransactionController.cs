@@ -292,7 +292,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewIndentewise(int IndentId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IndentReport.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
             var html = _indent.ViewIndentwise(IndentId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IndentReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
