@@ -27,10 +27,12 @@ namespace HIMS.Data.IPD
                 Direction = ParameterDirection.Output
             };
             var disc = IPDDischargeSummaryParams.InsertIPDDischargSummary.ToDictionary();
-            var DischargesummaryId=ExecNonQueryProcWithOutSaveChanges("insert_DischargeSummary_1", disc);
+            disc.Remove("DischargesummaryId");
+
+            var DischargesummaryId =ExecNonQueryProcWithOutSaveChanges("insert_DischargeSummary_1", disc, outputId);
                        
-            var disc3 = IPDDischargeSummaryParams.IPSMSInsert.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_DischargeSummary_1", disc3);
+            //var disc3 = IPDDischargeSummaryParams.IPSMSInsert.ToDictionary();
+            //ExecNonQueryProcWithOutSaveChanges("update_DischargeSummary_1", disc3);
 
 
            /*  var disc4 = IPDischargeParams.InsertIPSMSTemplete.ToDictionary();

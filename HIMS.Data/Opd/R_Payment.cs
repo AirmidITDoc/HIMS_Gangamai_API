@@ -85,7 +85,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{PayTMAmount}}", Bills.GetColValue("PayTMAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{PayTMTranNo}}", Bills.GetColValue("PayTMTranNo"));
             html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate").ConvertToDateString("dd/MM/yyyy"));
             html = html.Replace("{{ReceiptNo}}", Bills.GetColValue("ReceiptNo"));
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
             html = html.Replace("{{Remark}}", Bills.GetColValue("Remark"));

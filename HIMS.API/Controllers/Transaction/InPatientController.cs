@@ -288,7 +288,7 @@ namespace HIMS.API.Controllers.Transaction
         public String InsertIPDischarge(IPDischargeParams IPDischargeParams)
         {
             var IPD = _IPDischarge.Insert(IPDischargeParams);
-            return (IPD.ToString());
+            return (IPD);
         }
 
         [HttpPost("UpdateIPDischarge")]
@@ -303,7 +303,7 @@ namespace HIMS.API.Controllers.Transaction
         public String InsertIPDischargeSummary(IPDDischargeSummaryParams IPDDischargeSummaryParams)
         {
             var IPD = _IPDDischargeSummary.Insert(IPDDischargeSummaryParams);
-            return (IPD.ToString());
+            return (IPD);
         }
         [HttpPost("UpdateIPDischargeSummary")]
 
