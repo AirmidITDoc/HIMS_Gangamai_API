@@ -252,7 +252,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPCasepaper.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
             var html = _Admission.ViewAdmissionPaper(AdmissionId, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPCasepaper", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPAdmission", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
@@ -381,7 +381,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IpPrescription.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
             var html = _IPPrescription.ViewIPPrescriptionReceipt(OP_IP_ID, PatientType, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IpPrescription", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IpPrescription", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
@@ -397,7 +397,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPrescription.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
             var html = _IPPrescription.ViewOPPrescriptionReceipt(VisitId, PatientType, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
@@ -414,7 +414,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPPrescriptiondetail.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
             var html = _IPPrescription.ViewIPPrescriptionDetailReceipt(AdmissionID, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPPrescriptiondetail", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPPrescriptiondetail", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
@@ -431,7 +431,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Prescriptionsummarylist.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
             var html = _IPPrescription.ViewIPPrescriptionSummReceipt(AdmissionID, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Prescriptionsummarylist", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Prescriptionsummarylist", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
@@ -453,7 +453,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPPrescriptionReturn.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _IPPrescriptionReturn.ViewIPPrescriptionReturnReceipt(PresReId, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPPrescriptionReturn", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPPrescriptionReturn", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
@@ -469,7 +469,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PrescriptionReturnwardwise.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _IPPrescriptionReturn.ViewIPPrescriptionReturnfromwardReceipt(FromDate, ToDate, Reg_No, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PrescriptionReturnwardwise", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PrescriptionReturnwardwise", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
