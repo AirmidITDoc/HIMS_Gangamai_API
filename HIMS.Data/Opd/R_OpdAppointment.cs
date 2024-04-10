@@ -115,7 +115,7 @@ namespace HIMS.Data.Opd
             return VisitID;
         }
 
-        public bool Update(OpdAppointmentParams opdAppointmentParams)
+        public string Update(OpdAppointmentParams opdAppointmentParams)
         {
             //throw new NotImplementedException();
 
@@ -147,7 +147,7 @@ namespace HIMS.Data.Opd
             //commit transaction
             _unitofWork.SaveChanges();
 
-            return true;
+            return VisitID;
         }
 
         public string ViewOppatientAppointmentdetailsReceipt(int VisitId, string htmlFilePath, string htmlHeaderFilePath)
