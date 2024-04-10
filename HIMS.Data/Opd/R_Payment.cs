@@ -79,6 +79,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{CardPayAmount}}", Bills.GetColValue("CardPayAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{CardDate}}", Bills.GetColValue("CardDate").ConvertToDateString("dd/MM/yyyy"));
             html = html.Replace("{{CardNo}}", Bills.GetColValue("CardNo"));
+            html = html.Replace("{{CardBankName}}", Bills.GetColValue("CardBankName"));
             html = html.Replace("{{NEFTPayAmount}}", Bills.GetColValue("NEFTPayAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{NEFTNo}}", Bills.GetColValue("NEFTNo"));
             html = html.Replace("{{NEFTBankMaster}}", Bills.GetColValue("NEFTBankMaster"));
