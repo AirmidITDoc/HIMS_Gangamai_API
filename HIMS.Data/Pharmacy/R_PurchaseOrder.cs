@@ -144,9 +144,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{VatAmount}}", Bills.GetColValue("VatAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{DiscAmount}}", Bills.GetColValue("DiscAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{Remarks}}", Bills.GetColValue("Remarks"));
-            
             html = html.Replace("{{PurchaseDate}}", Bills.GetColValue("PurchaseDate").ConvertToDateString("dd/mm/yyyy hh:mm tt"));
-
             html = html.Replace("{{SupplierName}}", Bills.GetColValue("SupplierName").ConvertToString());
             html = html.Replace("{{PurchaseNo}}", Bills.GetColValue("PurchaseNo").ConvertToString());
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
@@ -159,7 +157,6 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
             html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
             html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
-
             html = html.Replace("{{PurchaseTime}}", Bills.GetColValue("PurchaseTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
 
             string finalamt = conversion(T_TotalNETAmount.ToString());

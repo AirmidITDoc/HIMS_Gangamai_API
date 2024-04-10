@@ -34,11 +34,11 @@ namespace HIMS.API.Controllers.Transaction
         private readonly I_PharmPaymentMode _PharmPaymentMode;
         private readonly I_GRNReturn _GRNReturn;
 
-        public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN, 
+        public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN,
             Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_Workorder workorder, I_Stokadjustment stokadjustment,
             I_Openingbalance openingbalance,
             I_Mrpadjustment mrpadjustment,
-            I_MaterialAcceptance materialAcceptance,I_PharmPaymentMode pharmPaymentMode,I_GRNReturn gRNReturn)
+            I_MaterialAcceptance materialAcceptance, I_PharmPaymentMode pharmPaymentMode, I_GRNReturn gRNReturn)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
@@ -58,9 +58,22 @@ namespace HIMS.API.Controllers.Transaction
         [HttpPost("SalesSaveWithPayment")]
         public IActionResult SalesSaveWithPayment(SalesParams salesParams)
         {
-            var SalesSave = _Sales.InsertSales(salesParams);
-            return Ok(SalesSave.ToString());
-
+            bool IsInStock = true;
+            foreach (UpdateCurStkSales objItem in salesParams.UpdateCurStkSales)
+            {
+                int CurrentStock = _Sales.GetCurrentStock(objItem.ItemId, objItem.StoreID, objItem.StkID);
+                if (CurrentStock < objItem.IssueQty)
+                    IsInStock = false;
+            }
+            if (IsInStock)
+            {
+                var SalesSave = _Sales.InsertSales(salesParams);
+                return Ok(SalesSave.ToString());
+            }
+            else
+            {
+                return Ok("-1");
+            }
         }
 
         [HttpPost("SalesSaveDraftBill")]
@@ -191,7 +204,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GRNReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _GRN.ViewGRNReport( GRNID, htmlFilePath, htmlHeaderFilePath);
+            var html = _GRN.ViewGRNReport(GRNID, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GRNReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
@@ -289,7 +302,7 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(true);
 
         }
-      
+
 
         //[HttpGet("view-pharmacy-daily-collection")]
         //public IActionResult ViewPharmaDailyCollection(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById)
@@ -307,7 +320,7 @@ namespace HIMS.API.Controllers.Transaction
         //    //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
         //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         //}
-                
+
 
         //[HttpGet("view-pharmacy-daily-collection_Summary")]
         //public IActionResult ViewPharmaDailyCollectionSummary(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById)
@@ -362,11 +375,11 @@ namespace HIMS.API.Controllers.Transaction
 
 
         [HttpGet("view-OPEXTDailycount_Report")]
-        public IActionResult viewOPExtdailycountReport(DateTime FromDate, DateTime ToDate,int StoreId)
+        public IActionResult viewOPExtdailycountReport(DateTime FromDate, DateTime ToDate, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharOPExtdailycount.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _Sales.ViewPharOPExtcountdailyReport(FromDate, ToDate,StoreId, htmlFilePath, htmlHeaderFilePath);
+            var html = _Sales.ViewPharOPExtcountdailyReport(FromDate, ToDate, StoreId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharOPExtdailycount", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             // write logic for send pdf in whatsapp
@@ -378,7 +391,7 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-CompanyCredit_Report")]
-        public IActionResult viewCompanycreditReport(int StoreId,DateTime FromDate, DateTime ToDate)
+        public IActionResult viewCompanycreditReport(int StoreId, DateTime FromDate, DateTime ToDate)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharCompanycreditlist.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
@@ -455,7 +468,7 @@ namespace HIMS.API.Controllers.Transaction
         //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         //}
 
-     
+
 
 
         //[HttpGet("view-SalesReturnSummary_Report")]
@@ -570,7 +583,7 @@ namespace HIMS.API.Controllers.Transaction
         //}
 
         [HttpGet("view-PharSalesCashBookReport")]
-        public IActionResult ViewPharSalesCashBookReport(DateTime FromDate, DateTime ToDate,string PaymentMode, int StoreId)
+        public IActionResult ViewPharSalesCashBookReport(DateTime FromDate, DateTime ToDate, string PaymentMode, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesCashBook.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
