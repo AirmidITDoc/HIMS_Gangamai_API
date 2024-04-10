@@ -173,10 +173,6 @@ namespace HIMS.Data.Opd
                 T_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
             }
 
-           
-
-            
-
             html = html.Replace("{{Items}}", items.ToString());
 
 
@@ -196,6 +192,10 @@ namespace HIMS.Data.Opd
 
             return html;
         }
+
+
+
+
 
         public String ViewOPBillReceipt(int BillNo, string htmlFilePath,string htmlHeaderFilePath)
         {
