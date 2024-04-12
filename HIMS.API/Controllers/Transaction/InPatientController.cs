@@ -610,8 +610,10 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+    
+
         [HttpGet("view-IP-InterimBillReceipt")]
-        public IActionResult ViewIpINterimBillReceipt(int BillNo)
+        public IActionResult ViewIpInterimBillReceipt(int BillNo)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPInterimBill.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
@@ -622,6 +624,8 @@ namespace HIMS.API.Controllers.Transaction
             //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+
+
 
         [HttpPost("IPInterimBillInsert")]
 
@@ -659,7 +663,7 @@ namespace HIMS.API.Controllers.Transaction
         public String IPAdvance(IPAdvanceParams IPAdvanceParams)
         {
             var AdvId = _IPAdvance.Insert(IPAdvanceParams);
-            return (AdvId.ToString());
+            return (AdvId);
         }
 
         [HttpPut("IPAdvanceEditProcess")]
