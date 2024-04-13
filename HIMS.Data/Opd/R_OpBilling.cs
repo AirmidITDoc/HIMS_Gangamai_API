@@ -136,7 +136,7 @@ namespace HIMS.Data.Opd
                    string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HospitalHeader}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
 
             Boolean chkpaidflag = false, chkbalflag = false, chkremarkflag = false;
 
@@ -210,7 +210,7 @@ namespace HIMS.Data.Opd
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
          
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HospitalHeader}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
 
             Boolean chkpaidflag = false, chkbalflag = false, chkremarkflag=false;
 

@@ -166,13 +166,13 @@ namespace HIMS.Data.IPD
             var AdmissionID = ExecNonQueryProcWithOutSaveChanges("insert_Admission_1", disc1, outputId);
 
             //BedUpdate
-         //  var BedId = AdmissionParams.BedUpdate.ToDictionary();
-           //ExecNonQueryProcWithOutSaveChanges("ps_Update_M_BedMaster_for_Admission", BedId);
+            var BedId = AdmissionParams.BedStatusUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_AdmissionBedstatus", BedId);
 
             //IpSMSTemplate
-           // var disc3 = AdmissionParams.IpSMSTemplateInsert.ToDictionary();
-          //  disc2.Remove("RegId");
-           //ExecNonQueryProcWithOutSaveChanges("Insert_IPSMSTemplete_1", disc3);
+            // var disc3 = AdmissionParams.IpSMSTemplateInsert.ToDictionary();
+            //  disc2.Remove("RegId");
+            //ExecNonQueryProcWithOutSaveChanges("Insert_IPSMSTemplete_1", disc3);
 
             //foreach (var a in itemMasterParams.InsertAssignItemToStore)
             //{
@@ -191,8 +191,22 @@ namespace HIMS.Data.IPD
         {
             // throw new NotImplementedException();
 
-            var dic = AdmissionParams.AdmissionNewUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_Admission_1", dic);
+            var outputId = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@AdmissionID",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+          
+            var disc1 = AdmissionParams.AdmissionNewInsert.ToDictionary();
+            disc1.Remove("AdmissionID");
+            var AdmissionID = ExecNonQueryProcWithOutSaveChanges("insert_Admission_1", disc1, outputId);
+            //BedUpdate
+            var BedId = AdmissionParams.BedStatusUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_AdmissionBedstatus", BedId);
+
 
             _unitofWork.SaveChanges();
             return true;

@@ -17,7 +17,17 @@ namespace HIMS.Data.Opd
         {
             //transaction and connection is open when you inject unitofwork
         }
-         
+
+        public bool AppointmentCancle(OpdAppointmentParams opdAppointmentParams)
+        {
+            //  throw new NotImplementedException();
+            
+            var disc3 = opdAppointmentParams.Appointmentcancle.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Cancle_Appointment", disc3);
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
         public String Save(OpdAppointmentParams opdAppointmentParams)
         {
             //Add registration
@@ -162,7 +172,7 @@ namespace HIMS.Data.Opd
            
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HospitalHeader}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 

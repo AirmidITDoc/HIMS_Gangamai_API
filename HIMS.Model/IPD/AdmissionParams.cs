@@ -10,16 +10,12 @@ namespace HIMS.Model.IPD
 
         public AdmissionNewInsert AdmissionNewInsert { get; set; }
 
-        //     public IpSMSTemplateInsert IpSMSTemplateInsert { get; set; }
+         public BedStatusUpdate BedStatusUpdate { get; set; }
         public AdmissionNewUpdate AdmissionNewUpdate { get; set; }
 
 
     }
-    public class BedUpdate
-    {
-        public int BedId { get; set; }
-    }
-
+   
     public class RegInsert
     {
         public long RegID { get; set; }
@@ -191,10 +187,9 @@ namespace HIMS.Model.IPD
         public Boolean IsOpToIPConv { get; set; }
         //public int AdmissionType { get; set; }
     }
-    public class IpSMSTemplateInsert
+    public class BedStatusUpdate
     {
-        public String VstCode { get; set; }
-        public int MsgId { get; set; }
-        public int PatientType { get; set; }
+        public int BedId { get; set; }
+        
     }
 }

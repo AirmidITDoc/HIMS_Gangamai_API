@@ -8,6 +8,8 @@ namespace HIMS.Model.Opd
         public RegistrationSave RegistrationSave { get; set; }
         public RegistrationSavewithPhoto RegistrationSavewithPhoto { get; set; }
         public VisitSave VisitSave { get; set; }
+
+        public Appointmentcancle Appointmentcancle { get; set; }
         public TokenNumberWithDoctorWiseSave TokenNumberWithDoctorWiseSave { get; set; }
         public RegistrationUpdate RegistrationUpdate { get; set; }
     }
@@ -60,7 +62,7 @@ namespace HIMS.Model.Opd
 
         public long AddedBy { get; set; }
         //public long UpdatedBy { get; set; }
-              
+
         public string AgeYear { get; set; }
         public string AgeMonth { get; set; }
         public string AgeDay { get; set; }
@@ -73,14 +75,14 @@ namespace HIMS.Model.Opd
         public bool IsCharity { get; set; }
         //  public string RegPrefix { get; set; }
         public long AreaId { get; set; }
-      //  public long VillageId { get; set; }
+        //  public long VillageId { get; set; }
         public bool IsSeniorCitizen { get; set; }
 
         //public long TalukaId { get; set; }
         // public double PatientWeight { get; set; }
         public string AadharCardNo { get; set; }
         public string PanCardNo { get; set; }
-       // public String ImgFile { get; set; }
+        // public String ImgFile { get; set; }
         public string Photo { get; set; }
 
     }
@@ -151,7 +153,7 @@ namespace HIMS.Model.Opd
         public string PhoneNo { get; set; }
         public string MobileNo { get; set; }
 
-       // public long AddedBy { get; set; }
+        // public long AddedBy { get; set; }
         public long UpdatedBy { get; set; }
 
         public string AgeYear { get; set; }
@@ -162,12 +164,12 @@ namespace HIMS.Model.Opd
         public long CityId { get; set; }
         public long MaritalStatusId { get; set; }
 
-       // public int ReligionId { get; set; }
+        // public int ReligionId { get; set; }
         public bool IsCharity { get; set; }
         //  public string RegPrefix { get; set; }
-       // public long AreaId { get; set; }
+        // public long AreaId { get; set; }
         //  public long VillageId { get; set; }
-      //  public bool IsSeniorCitizen { get; set; }
+        //  public bool IsSeniorCitizen { get; set; }
 
         //public long TalukaId { get; set; }
         // public double PatientWeight { get; set; }
@@ -176,6 +178,11 @@ namespace HIMS.Model.Opd
         // public String ImgFile { get; set; }
         public string Photo { get; set; }
 
+    }
+
+    public class Appointmentcancle{
+
+        public long VisitId { get; set; }
     }
 
 }

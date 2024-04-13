@@ -160,11 +160,19 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
+        //OPDAppointment Cancle 
+        [HttpPost("AppointmentCancle")]
+        public IActionResult AppointmentCancle(OpdAppointmentParams OpdAppointmentParams)
+        {
+            var appoSave = _OpdAppointment.AppointmentCancle(OpdAppointmentParams);
+            return Ok(appoSave);
+        }
+
         [HttpGet("view-PatientAppointment")]
         public IActionResult ViewPatientAppointment(int VisitId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPAppointmentDetails.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "AppointmentofOPPatient.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _OpdAppointment.ViewOppatientAppointmentdetailsReceipt(VisitId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPAppointmentDetails", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
@@ -311,7 +319,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewOPPaymentReceipt(int PaymentId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPaymentReceipt.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _Payment.ViewOPPaymentReceipt(PaymentId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPaymentReceipt", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
@@ -433,7 +441,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewOpBillReceipt(int BillNo)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpBillingReceipt.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _OPbilling.ViewOPBillReceipt(BillNo, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OpBillingReceipt", "OpBillingReceipt" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 

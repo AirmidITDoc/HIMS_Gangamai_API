@@ -255,8 +255,6 @@ namespace HIMS.Data.IPD
         public string ViewIPBillReceipt(int BillNo, string htmlFilePath,string htmlHeaderFilePath)
     {
       
-
-
             SqlParameter[] para = new SqlParameter[1];
         
             para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
