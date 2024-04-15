@@ -55,8 +55,8 @@ namespace HIMS.API.Controllers.Transaction
             _GRNReturn = gRNReturn;
         }
 
-        [HttpPost("SalesSaveWithPayment")]
-        public IActionResult SalesSaveWithPayment(SalesParams salesParams)
+        [HttpPost("SalesSaveWithPaymentwithStockCheck")]
+        public IActionResult SalesSaveWithPaymentwithStockCheck(SalesParams salesParams)
         {
             bool IsInStock = true;
             foreach (UpdateCurStkSales objItem in salesParams.UpdateCurStkSales)
@@ -74,6 +74,13 @@ namespace HIMS.API.Controllers.Transaction
             {
                 return Ok("-1");
             }
+        }
+
+        [HttpPost("SalesSaveWithPayment")]
+        public IActionResult SalesSaveWithPayment(SalesParams salesParams)
+        {
+            var SalesSave = _Sales.InsertSales(salesParams);
+            return Ok(SalesSave.ToString());
         }
 
         [HttpPost("SalesSaveDraftBill")]
