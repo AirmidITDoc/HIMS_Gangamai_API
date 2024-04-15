@@ -403,7 +403,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewOPRefundofbill(int RefundId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPRefundofbill.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _OPRefundBill.ViewOPRefundofBillReceipt(RefundId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPRefundofbill", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
