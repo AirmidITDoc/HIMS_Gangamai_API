@@ -9,5 +9,6 @@ namespace HIMS.Data.Pharmacy
     {
         public string InsertWorkOrder(Workorder Workorder);
         public bool UpdateWorkOrder(Workorder Workorder);
+        string ViewPurWorkorder(int WOID, string htmlFilePath, string HeaderName);
     }
 }

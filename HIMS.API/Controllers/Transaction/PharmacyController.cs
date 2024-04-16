@@ -156,7 +156,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewAdmittedPatientList(int PurchaseID)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PurchaseorderNew.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _PurchaseOrder.ViewPurchaseorder(PurchaseID, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PurchaseorderNew", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
@@ -175,6 +175,23 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(SalesSave.ToString());
 
         }
+
+        [HttpGet("view-Workorder")]
+        public IActionResult ViewWorkorderList(int WOID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PurWorkorder.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Workorder.ViewPurWorkorder(WOID, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Workorder", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
 
         [HttpPost("InsertGRNDirect")]
         public IActionResult InsertGRNDirect(GRNParams grnParams)
