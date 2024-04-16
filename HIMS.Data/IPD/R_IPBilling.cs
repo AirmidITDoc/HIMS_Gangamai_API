@@ -155,9 +155,10 @@ namespace HIMS.Data.IPD
             para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptIPDFinalBillWithDateWise", para);
             string html = File.ReadAllText(htmlFilePath);
+           
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
             
@@ -200,6 +201,10 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{ConcessionAmount}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{Qty}}", Bills.GetColValue("Qty"));
+
+            html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+
 
             html = html.Replace("{{chkcommflag}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble() > 0 ? "block" : "none");
             html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "block" : "none");
@@ -250,16 +255,15 @@ namespace HIMS.Data.IPD
         public string ViewIPBillReceipt(int BillNo, string htmlFilePath,string htmlHeaderFilePath)
     {
       
-
-
             SqlParameter[] para = new SqlParameter[1];
         
             para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptIPDFinalBill", para);
             string html = File.ReadAllText(htmlFilePath);
+           
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
             String[] GroupName;
@@ -302,6 +306,9 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{ConcessionAmount}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{Qty}}", Bills.GetColValue("Qty"));
+            html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+            
 
             html = html.Replace("{{chkcommflag}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble() > 0 ? "block" : "none");
             html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "block" : "none");
@@ -358,9 +365,10 @@ namespace HIMS.Data.IPD
             para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptIPDFinalBillWithDateWise", para);
             string html = File.ReadAllText(htmlFilePath);
+           
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -403,6 +411,9 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{ConcessionAmount}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{Qty}}", Bills.GetColValue("Qty"));
+            html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+
 
             html = html.Replace("{{chkcommflag}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble() > 0 ? "block" : "none");
             html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "block" : "none");
@@ -417,7 +428,7 @@ namespace HIMS.Data.IPD
                 {
                     j = 1;
                     Label = dr["RoomName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:15px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
                 previousLabel = dr["RoomName"].ConvertToString();
 
@@ -425,12 +436,12 @@ namespace HIMS.Data.IPD
                 {
 
                     i++;
-                    items.Append("<tr><td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(j).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
+                    items.Append("<tr><td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(j).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
 
                     T_NetAmount += dr["ChargesTotalAmt"].ConvertToDouble();
                     j++;

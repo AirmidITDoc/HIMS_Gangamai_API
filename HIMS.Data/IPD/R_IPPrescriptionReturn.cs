@@ -50,7 +50,7 @@ namespace HIMS.Data.IPD
             return true;
         }
 
-        public string ViewIPPrescriptionReturnfromwardReceipt(DateTime FromDate, DateTime ToDate, int Reg_No, string htmlFilePath, string HeaderName)
+        public string ViewIPPrescriptionReturnfromwardReceipt(DateTime FromDate, DateTime ToDate, int Reg_No, string htmlFilePath, string htmlHeaderFilePath)
         {
             // throw new NotImplementedException();
             SqlParameter[] para = new SqlParameter[3];
@@ -59,11 +59,12 @@ namespace HIMS.Data.IPD
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@Reg_No", Reg_No) { DbType = DbType.Int64 };
             //para[1] = new SqlParameter("@PatientType", PatientType) { DbType = DbType.Int64 };
+           
             var Bills = GetDataTableProc("Rtrv_IPPrescriptionReturnListFromWard", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -98,7 +99,7 @@ namespace HIMS.Data.IPD
             return html;
         }
 
-        public string ViewIPPrescriptionReturnReceipt(int PresReId, string htmlFilePath, string HeaderName)
+        public string ViewIPPrescriptionReturnReceipt(int PresReId, string htmlFilePath, string htmlHeaderFilePath)
         {
             // throw new NotImplementedException();
 
@@ -107,10 +108,12 @@ namespace HIMS.Data.IPD
             para[0] = new SqlParameter("@PresReId", PresReId) { DbType = DbType.Int64 };
             //para[1] = new SqlParameter("@PatientType", PatientType) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptIPPrescriptionReturnListPrint", para);
+            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
+
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 

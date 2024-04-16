@@ -27,10 +27,11 @@ namespace HIMS.Data.IPD
             para[3] = new SqlParameter("@WardId", WardId) { DbType = DbType.String };
            
             var Bills = GetDataTableProc("rptListofAdmission", para);
+            
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -49,14 +50,14 @@ namespace HIMS.Data.IPD
                 
                 
                 items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["AdmittedDocName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["RoomName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["BedName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["MobileNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["RoomName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["BedName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["MobileNo"].ConvertToString()).Append("</td>");
                 //items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["BalanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 //items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["CGSTAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 //items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["SGSTAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["AuthorityName"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["AuthorityName"].ConvertToString()).Append("</td></tr>");
 
 
               
@@ -80,19 +81,19 @@ namespace HIMS.Data.IPD
 
         }
 
-        public string ViewAdmissionPaper(int AdmissionId, string htmlFilePath, string HeaderName)
+        public string ViewAdmissionPaper(int AdmissionId, string htmlFilePath, string htmlHeaderFilePath)
         {
             //  throw new NotImplementedException();
 
             SqlParameter[] para = new SqlParameter[1];
            
             para[0] = new SqlParameter("@AdmissionId", AdmissionId) { DbType = DbType.String };
-
+           
             var Bills = GetDataTableProc("rptAdmissionPrint1", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -127,6 +128,9 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{IsMLC}}", Bills.GetColValue("IsMLC"));
             html = html.Replace("{{AdmittedDoctor1}}", Bills.GetColValue("AdmittedDoctor1"));
             html = html.Replace("{{MaritalStatusName}}", Bills.GetColValue("MaritalStatusName"));
+            html = html.Replace("{{AadharcardNo}}", Bills.GetColValue("AadharcardNo"));
+            html = html.Replace("{{TariffId}}", Bills.GetColValue("TariffId"));
+
             
             html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));
             html = html.Replace("{{LoginUserSurname}}", Bills.GetColValue("LoginUserSurname"));
@@ -162,13 +166,13 @@ namespace HIMS.Data.IPD
             var AdmissionID = ExecNonQueryProcWithOutSaveChanges("insert_Admission_1", disc1, outputId);
 
             //BedUpdate
-         //  var BedId = AdmissionParams.BedUpdate.ToDictionary();
-           //ExecNonQueryProcWithOutSaveChanges("ps_Update_M_BedMaster_for_Admission", BedId);
+            var BedId = AdmissionParams.BedStatusUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_AdmissionBedstatus", BedId);
 
             //IpSMSTemplate
-           // var disc3 = AdmissionParams.IpSMSTemplateInsert.ToDictionary();
-          //  disc2.Remove("RegId");
-           //ExecNonQueryProcWithOutSaveChanges("Insert_IPSMSTemplete_1", disc3);
+            // var disc3 = AdmissionParams.IpSMSTemplateInsert.ToDictionary();
+            //  disc2.Remove("RegId");
+            //ExecNonQueryProcWithOutSaveChanges("Insert_IPSMSTemplete_1", disc3);
 
             //foreach (var a in itemMasterParams.InsertAssignItemToStore)
             //{
@@ -187,8 +191,22 @@ namespace HIMS.Data.IPD
         {
             // throw new NotImplementedException();
 
-            var dic = AdmissionParams.AdmissionNewUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_Admission_1", dic);
+            var outputId = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@AdmissionID",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+          
+            var disc1 = AdmissionParams.AdmissionNewInsert.ToDictionary();
+            disc1.Remove("AdmissionID");
+            var AdmissionID = ExecNonQueryProcWithOutSaveChanges("insert_Admission_1", disc1, outputId);
+            //BedUpdate
+            var BedId = AdmissionParams.BedStatusUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_AdmissionBedstatus", BedId);
+
 
             _unitofWork.SaveChanges();
             return true;
@@ -204,12 +222,12 @@ namespace HIMS.Data.IPD
 
             para[0] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.String };
             para[1] = new SqlParameter("@WardId", WardId) { DbType = DbType.String };
-
+          
             var Bills = GetDataTableProc("rptCurrentAdmittedList", para);
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
             string previousLabel = "";
@@ -280,7 +298,7 @@ namespace HIMS.Data.IPD
 
             para[0] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.String };
             para[1] = new SqlParameter("@WardId", WardId) { DbType = DbType.String };
-
+           
             var Bills = GetDataTableProc("rptCurrentAdmittedList", para);
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();

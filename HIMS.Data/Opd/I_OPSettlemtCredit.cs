@@ -7,6 +7,6 @@ namespace HIMS.Data.Opd
 {
    public interface I_OPSettlemtCredit
     {
-        public bool Insert(OPSettlementCreditParam OPSettlementCreditParam);
+        public string Insert(OPSettlementCreditParam OPSettlementCreditParam);
     }
 }

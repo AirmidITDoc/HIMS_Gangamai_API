@@ -7,8 +7,8 @@
 <body>
     <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
 
-        {{HeaderName}}
-        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+        {{HospitalHeader}}
+        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: beige;">
             <div style="display:block;width:100%; align-items: center;">
                 <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
                     ADVANCE PAYMENT RECEIPT
@@ -36,7 +36,7 @@
                     <span style="font-size:15px;width:500px;">{{PatientName}}</span>
                 </td>
                 <td>
-                    <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;;">Age</span>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;">Age</span>
                     <span style="font-size:15px;">{{Age}}</span>
                 </td>
             </tr>
@@ -58,7 +58,7 @@
                     <!-- <span style="font-size:15px;">{{ConsultantDocName}}</span>'-->
                 </td>
                 <td>
-                    <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;">Phone No</span>
+                    <span style="font-weight: 500; margin-right: 20px; margin-left: 200px; font-size: 20px;">Phone</span>
                     <span style="font-size:15px;">{{Phone}} </span>
                 </td>
             </tr>
@@ -77,9 +77,9 @@
                 <span style="font-weight: 500; margin-Left: 10px; font-size: 20px; width: 300px;">Advance Amount :</span>
                 <span style="width: 400px;font-size:18px;margin-left:10px;"> {{AdvanceAmount}}</span> <br>
                 <div style="display:{{chkresonflag}}">
-                <span style="font-weight: 500; font-size: 20px; margin-Left: 10px; width: 300px;">Advance Reason :</span>
-                <span style="width: 400px; font-size: 18px; margin-left: 10px;"> {{reason}}</span> <br>
-                    </div>
+                    <span style="font-weight: 500; font-size: 20px; margin-Left: 10px; width: 300px;">Advance Reason :</span>
+                    <span style="width: 400px; font-size: 18px; margin-left: 10px;"> {{reason}}</span> <br>
+                </div>
             </span>
 
         </div>
@@ -93,7 +93,7 @@
         </div><br><br>
 
         <div style="display:flex;justify-content:space-between;margin-left:180px;">
-          
+
             <div style="text-align:center;margin-left:30px;">
                 <div style="font-weight:700;font-size:18px;">{{Addedby}}</div>
                 <div style="font-size:18px;">Authorized By </div>

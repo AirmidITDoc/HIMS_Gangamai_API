@@ -9,7 +9,9 @@ namespace HIMS.Data.Opd
         public string Save(OpdAppointmentParams opdAppointmentParams);
 
         public string SavewithPhoto(OpdAppointmentParams opdAppointmentParams);
-        public bool Update(OpdAppointmentParams opdAppointmentParams);
+
+          public bool AppointmentCancle(OpdAppointmentParams opdAppointmentParams);
+        public string Update(OpdAppointmentParams opdAppointmentParams);
 
 
         string ViewpatientAppointmentReceipt(int VisitId, string htmlFilePath, string htmlHeaderFilePath);

@@ -221,7 +221,7 @@ namespace HIMS.Data.Pharmacy
             //html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{TotalAmount}}", T_TotalAmount.To2DecimalPlace());
             html = html.Replace("{{TotalVatAmount}}", T_TotalVatAmount.To2DecimalPlace());
-            html = html.Replace("{{TotalDiscAmount}}", T_TotalDiscAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalDiscAmount}}", Bills.GetColValue("TotalDiscAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{TotalNETAmount}}", T_TotalNETAmount.To2DecimalPlace());
 
 
@@ -245,13 +245,13 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{T_TotalCGST}}",T_TotalCGST.ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{T_TotalSGST}}", T_TotalSGST.ConvertToDouble().To2DecimalPlace());
 
-            html = html.Replace("{{GRNDate}}", Bills.GetColValue("GRNDate").ConvertToDateString("dd/mm/yyyy"));
-            html = html.Replace("{{GRNTime}}", Bills.GetColValue("GRNDate").ConvertToDateString("dd/mm/yyyy"));
-            html = html.Replace("{{InvDate}}", Bills.GetColValue("InvDate").ConvertToDateString("dd/mm/yyyy"));
+            html = html.Replace("{{GRNDate}}", Bills.GetColValue("GRNDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{GRNTime}}", Bills.GetColValue("GRNDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{InvDate}}", Bills.GetColValue("InvDate").ConvertToDateString("dd/MM/yyyy"));
 
 
             html = html.Replace("{{GrnNumber}}", Bills.GetColValue("GrnNumber"));
-            html = html.Replace("{{EwayBillDate}}", Bills.GetColValue("EwayBillDate").ConvertToDateString("dd/mm/yyyy"));
+            html = html.Replace("{{EwayBillDate}}", Bills.GetColValue("EwayBillDate").ConvertToDateString("dd/MM/yyyy"));
             html = html.Replace("{{GSTNo}}", Bills.GetColValue("GSTNo").ConvertToString());
             html = html.Replace("{{EwayBillNo}}", Bills.GetColValue("EwayBillNo"));
 

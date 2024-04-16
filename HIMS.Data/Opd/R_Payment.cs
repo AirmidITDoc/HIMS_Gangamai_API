@@ -41,7 +41,7 @@ namespace HIMS.Data.Opd
 
         }
 
-        public string ViewOPPaymentReceipt(int PaymentId, string htmlFilePath, string HospitalHeader)
+        public string ViewOPPaymentReceipt(int PaymentId, string htmlFilePath, string htmlHeaderFilePath)
         {
             // throw new NotImplementedException();
 
@@ -50,10 +50,11 @@ namespace HIMS.Data.Opd
             //rptIPDPaymentReceiptPrint
             para[0] = new SqlParameter("@PaymentId", PaymentId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptOPDPaymentReceiptPrint", para);
+           
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(HospitalHeader);// templates.Rows[0]["TempDesign"].ToString();
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HospitalHeader}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
             
@@ -78,17 +79,18 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{CardPayAmount}}", Bills.GetColValue("CardPayAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{CardDate}}", Bills.GetColValue("CardDate").ConvertToDateString("dd/MM/yyyy"));
             html = html.Replace("{{CardNo}}", Bills.GetColValue("CardNo"));
+            html = html.Replace("{{CardBankName}}", Bills.GetColValue("CardBankName"));
             html = html.Replace("{{NEFTPayAmount}}", Bills.GetColValue("NEFTPayAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{NEFTNo}}", Bills.GetColValue("NEFTNo"));
             html = html.Replace("{{NEFTBankMaster}}", Bills.GetColValue("NEFTBankMaster"));
             html = html.Replace("{{PayTMAmount}}", Bills.GetColValue("PayTMAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{PayTMTranNo}}", Bills.GetColValue("PayTMTranNo"));
             html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate").ConvertToDateString("dd/MM/yyyy"));
             html = html.Replace("{{ReceiptNo}}", Bills.GetColValue("ReceiptNo"));
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
             html = html.Replace("{{Remark}}", Bills.GetColValue("Remark"));
-            html = html.Replace("{{PaymentDate}}", Bills.GetColValue("PaymentDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy HH:mm tt"));
 
 
 

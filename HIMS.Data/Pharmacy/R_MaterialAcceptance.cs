@@ -19,13 +19,13 @@ namespace HIMS.Data.Pharmacy
         {
             var vMaterialAcceptUdpate = materialAcceptParams.MaterialAcceptIssueHeader.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_update_AcceptMaterial_Store_1", vMaterialAcceptUdpate);
-            
+
             foreach (var a in materialAcceptParams.MaterialAcceptIssueDetails)
             {
                 var disc1 = a.ToDictionary();
                 ExecNonQueryProcWithOutSaveChanges("m_update_AcceptMaterialIssueDet_1", disc1);
             }
-            
+
             var vMaterialAcceptStockUpdate = materialAcceptParams.MaterialAcceptStockUpdate.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_update_AcceptMaterialStock_1", vMaterialAcceptStockUpdate);
 

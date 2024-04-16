@@ -160,13 +160,21 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
+        //OPDAppointment Cancle 
+        [HttpPost("AppointmentCancle")]
+        public IActionResult AppointmentCancle(OpdAppointmentParams OpdAppointmentParams)
+        {
+            var appoSave = _OpdAppointment.AppointmentCancle(OpdAppointmentParams);
+            return Ok(appoSave);
+        }
+
         [HttpGet("view-PatientAppointment")]
         public IActionResult ViewPatientAppointment(int VisitId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPAppointmentDetails.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "AppointmentofOPPatient.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _OpdAppointment.ViewOppatientAppointmentdetailsReceipt(VisitId, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPAppointmentDetails", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPAppointmentDetails", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
@@ -311,7 +319,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewOPPaymentReceipt(int PaymentId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPaymentReceipt.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _Payment.ViewOPPaymentReceipt(PaymentId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPaymentReceipt", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
@@ -395,9 +403,9 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewOPRefundofbill(int RefundId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPRefundofbill.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _OPRefundBill.ViewOPRefundofBillReceipt(RefundId, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPRefundofbill", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPRefundofbill", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
@@ -433,7 +441,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewOpBillReceipt(int BillNo)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpBillingReceipt.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _OPbilling.ViewOPBillReceipt(BillNo, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OpBillingReceipt", "OpBillingReceipt" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
@@ -443,22 +451,22 @@ namespace HIMS.API.Controllers.Transaction
             //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
-        [HttpGet("view-OPD-daily-collection")]
-        public IActionResult ViewOPDDailyCollection(DateTime FromDate, DateTime ToDate, int AddedById)
-        {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDDailyCollection.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _OPbilling.ViewOPBillDailyReportReceipt(FromDate, ToDate, AddedById, htmlFilePath, htmlHeaderFilePath);
-            // var html = _Sales.ViewDailyCollection(FromDate, ToDate, StoreId, AddedById, htmlFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDDailyCollection", "OPDDailyCollection", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+        //[HttpGet("view-OPD-daily-collection")]
+        //public IActionResult ViewOPDDailyCollection(DateTime FromDate, DateTime ToDate, int AddedById)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDDailyCollection.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+        //    var html = _OPbilling.ViewOPBillDailyReportReceipt(FromDate, ToDate, AddedById, htmlFilePath, htmlHeaderFilePath);
+        //    // var html = _Sales.ViewDailyCollection(FromDate, ToDate, StoreId, AddedById, htmlFilePath);
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDDailyCollection", "OPDDailyCollection", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
-            // write logic for send pdf in whatsapp
+        //    // write logic for send pdf in whatsapp
 
 
-            //if (System.IO.File.Exists(tuple.Item2))
-            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        }
+        //    //if (System.IO.File.Exists(tuple.Item2))
+        //    //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
         [HttpPost("OPBillWithPayment")]
         public String OPBilling(OPbillingparams OPbillingparams)
         {

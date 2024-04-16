@@ -17,7 +17,8 @@ namespace HIMS.Model.Pharmacy
     {
         public int IssueId { get; set; }
         public int AcceptedBy { get; set; }
-        
+        public int IsAccepted { get; set; }
+
     }
     public class MaterialAcceptIssueDetails
     {

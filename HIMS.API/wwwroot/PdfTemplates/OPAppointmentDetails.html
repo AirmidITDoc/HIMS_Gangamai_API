@@ -7,7 +7,7 @@
 <body>
     <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
 
-        {{HeaderName}}
+        {{HospitalHeader}}
         <!--<div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
         <div style="display:block;width:100%; align-items: center;">
             <div style="font-weight:400;font-size:22px;text-align:center;display:inline-block;margin-left:100px">
@@ -18,19 +18,19 @@
 
     </div>-->
 
-        <table  style="font-size:20px;border: 1px solid #000;width:100%;">
-          
-                <tr>
+        <table style="font-size:20px;border: 1px solid #000;width:100%;">
+
+            <tr>
                 <td>
                     <span style="font-weight: 500;font-size: 20px;margin-left:40px;">UHID No. :</span>
                     <span style="font-size:18px;margin-left:10px;">{{RegNo}} </span>
                 </td>
                 <td>
-                    <span style="font-weight: 500;margin-left: 350px;font-size:20px;">Visit Date : </span>
+                    <span style="font-weight: 500;margin-left: 100px;font-size:20px;">Visit Date : </span>
                     <span style="font-size: 18px; margin-left: 10px;"> {{VisitDate}} </span>
                 </td>
             </tr>
-          
+
 
             <tr>
                 <td>
@@ -38,7 +38,7 @@
                     <span style="font-size: 18px; margin-left: 10px;">{{OPDNo}}</span>
                 </td>
                 <td>
-                    <span style="font-weight: 500; margin-left: 350px; font-size: 20px;">Age</span>
+                    <span style="font-weight: 500; margin-left: 100px; font-size: 20px;">Age</span>
                     <span style="font-size: 18px; margin-left: 10px;">{{AgeYear}}/{{GenderName}}</span>
                 </td>
             </tr>
@@ -49,7 +49,7 @@
                     <span style="font-size: 18px; margin-left: 10px;">{{PatientName}}</span>
                 </td>
                 <td>
-                    <span style="font-weight: 500; margin-left: 350px; font-size: 20px;">DoctorName :</span>
+                    <span style="font-weight: 500; margin-left: 100px; font-size: 20px;">DoctorName :</span>
                     <span style="font-size: 18px; margin-left: 10px;">{{ConsultantDoctorName}}</span>
                 </td>
             </tr>
@@ -60,20 +60,20 @@
                     <span style="font-size: 18px; margin-left: 10px;">{{Expr1}}</span>
                 </td>
                 <td>
-                    <span style="font-weight: 500; margin-left: 350px; font-size: 20px;">Department Name :</span>
+                    <span style="font-weight: 500; margin-left: 100px; font-size: 20px;">Department Name :</span>
                     <span style="font-size: 18px; margin-left: 10px;">{{DepartmentName}}</span>
                 </td>
             </tr>
 
-        
+
             <tr>
                 <td>
                     <span style="font-weight: 500; font-size: 20px; margin-left: 40px">Ref DocName :</span>
                     <span style="font-size: 18px; margin-left: 10px;">{{RefDocName}}</span>'
                 </td>
                 <td>
-                    <span style="font-weight: 500;margin-left: 350px; font-size: 20px;">Phone No :</span>
-                    <span style="font-size: 18px; margin-left: 10px;">{{PhoneNo}} </span>
+                    <span style="font-weight: 500;margin-left: 100px; font-size: 20px;">Mobile No :</span>
+                    <span style="font-size: 18px; margin-left: 10px;">{{MobileNo}} </span>
                 </td>
             </tr>
         </table>

@@ -11,6 +11,9 @@ namespace HIMS.Data.IPD
 
         public bool Update(AdmissionParams AdmissionParams);
 
+        //public bool BedUpdate(AdmissionParams AdmissionParams);
+        
+
         string AdmissionListCurrent(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, string htmlFilePath, string HeaderName);
 
         string AdmissionListCurrentHospitaldetail(int DoctorId, int WardId, string htmlFilePath, string HeaderName);
