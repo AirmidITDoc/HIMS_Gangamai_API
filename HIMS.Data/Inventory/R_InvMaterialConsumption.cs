@@ -17,8 +17,6 @@ namespace HIMS.Data.Inventory
 
         public string Insert(MaterialConsumptionParam MaterialConsumptionParam)
         {
-            //throw new NotImplementedException();
-
 
             var MaterialConsumptionId = new SqlParameter
             {

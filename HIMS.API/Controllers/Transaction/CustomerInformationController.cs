@@ -15,14 +15,14 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_CustomerInformation _CustomerInformation;
         public readonly I_CustomerPayments _CustomerPayments;
         public readonly I_CustomerInvoiceRaise _CustomerInvoiceRaise;
-       
-        public CustomerInformationController(I_CustomerInformation customerInformation, I_CustomerPayments customerPayments, 
-            I_CustomerInvoiceRaise customerInvoiceRaise )
+
+        public CustomerInformationController(I_CustomerInformation customerInformation, I_CustomerPayments customerPayments,
+            I_CustomerInvoiceRaise customerInvoiceRaise)
         {
             this._CustomerInformation = customerInformation;
             _CustomerPayments = customerPayments;
             _CustomerInvoiceRaise = customerInvoiceRaise;
-             
+
         }
 
         [HttpPost("CustomerInformationSave")]
@@ -54,18 +54,19 @@ namespace HIMS.API.Controllers.Transaction
         [HttpPost("CustomerInvoiceRaiseSave")]
         public IActionResult CustomerInvoiceRaiseSave(CustomerInvoiceRaiseParam CustomerInvoiceRaiseParam)
         {
-            var Id =_CustomerInvoiceRaise.CustomerInvoiceRaiseInsert(CustomerInvoiceRaiseParam);
+            var Id = _CustomerInvoiceRaise.CustomerInvoiceRaiseInsert(CustomerInvoiceRaiseParam);
             return Ok(Id);
         }
         [HttpPost("CustomerInvoiceRaiseUpdate")]
         public IActionResult CustomerInvoiceRaiseUpdate(CustomerInvoiceRaiseParam customerInvoiceRaiseParam)
         {
-            var Id =_CustomerInvoiceRaise.CustomerInvoiceRaiseUpdate(customerInvoiceRaiseParam);
+            var Id = _CustomerInvoiceRaise.CustomerInvoiceRaiseUpdate(customerInvoiceRaiseParam);
             return Ok(true);
         }
 
-        
+
 
 
     }
 }
+
