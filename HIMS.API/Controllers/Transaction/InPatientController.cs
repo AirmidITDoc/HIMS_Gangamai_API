@@ -250,7 +250,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewPatientCasepaper(int AdmissionId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPCasepaper.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _Admission.ViewAdmissionPaper(AdmissionId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPAdmission", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
@@ -755,7 +755,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewSettlementReceipt(int PaymentId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SettlementReceipt.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IP_Settlement_Process.ViewSettlementReceipt(PaymentId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SettlementReceipt", "SettlementReceipt" + PaymentId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
