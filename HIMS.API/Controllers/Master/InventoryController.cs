@@ -23,7 +23,7 @@ namespace HIMS.API.Controllers.Master
         public readonly I_ManufactureMaster _ManufactureMasterRep;
         public readonly I_UnitofMeasurementMaster _UnitofMeasurementMasterRep;
         public readonly I_StoreMaster _StoreMasterRep;
-      
+
         public readonly I_ItemMaster _ItemMaster;
         public readonly I_SupplierMaster _SupplierMasterRep;
         public readonly I_TaxMaster _TaxMasterRep;
@@ -31,8 +31,9 @@ namespace HIMS.API.Controllers.Master
         public readonly I_TermsofPaymentMaster _TermsofPaymentMasterRep;
         public readonly I_StoreMaster _StoreMaster;
         public readonly I_SupplierMaster _SupplierMaster;
-        
-
+        public readonly I_OpeningTransaction _OpeningTransaction;
+        public readonly I_Constants _Constants;
+        //public readonly I_SMS_Config _SMS_Config;
         public InventoryController(I_CurrencyMaster currencyMaster,
                                    I_ItemCategoryMaster itemCategoryMaster,
                                    I_ItemClassMaster itemClassMaster,
@@ -45,7 +46,10 @@ namespace HIMS.API.Controllers.Master
                                    I_SupplierMaster supplierMaster,
                                    I_TaxMaster taxMaster,
                                    I_ModeofPaymentMaster mopMaster,
-                                   I_TermsofPaymentMaster topMaster, I_IssueTrackingInfo issueTrackingInfo)
+                                   I_TermsofPaymentMaster topMaster, I_IssueTrackingInfo issueTrackingInfo,
+                                   I_OpeningTransaction openingTransaction,
+                                   I_Constants constants)
+                                   //I_SMS_Config sMS_Config)
         {
             this._CurrencyMasterRep = currencyMaster;
             this._ItemCategoryMasterRep = itemCategoryMaster;
@@ -61,6 +65,9 @@ namespace HIMS.API.Controllers.Master
             this._ModeofPaymentMasterRep = mopMaster;
             this._TermsofPaymentMasterRep = topMaster;
             this._SupplierMaster = supplierMaster;
+            this._OpeningTransaction = openingTransaction;
+            this._Constants = constants;
+            //this._SMS_Config = sMS_Config;
         }
 
         [HttpPost("CurrencySave")]
@@ -68,7 +75,7 @@ namespace HIMS.API.Controllers.Master
         {
             var CurrencySave = _CurrencyMasterRep.Insert(currencyMasterParams);
             return Ok(CurrencySave);
-                
+
         }
 
         [HttpPost("CurrencyUpdate")]
@@ -78,7 +85,7 @@ namespace HIMS.API.Controllers.Master
             return Ok(CurrencyUpdate);
         }
 
-       
+
         [HttpPost("ItemCategorySave")]
         public IActionResult ItemCategorySave(ItemCategoryMasterParams itemCategoryMasterParams)
         {
@@ -284,5 +291,42 @@ namespace HIMS.API.Controllers.Master
             return Ok(TODUpdate);
 
         }
+        [HttpPost("OpeningTransactionSave")]
+        public IActionResult OpeningTransactionSave(OpeningTransactionParam OpeningTransactionParam)
+        {
+            var TODSave = _OpeningTransaction.Insert(OpeningTransactionParam);
+            return Ok(TODSave);
+
+        }
+        [HttpPost("Constantssave")]
+        public IActionResult Constantssave(ConstantsParam ConstantsParam)
+        {
+            var TODSave = _Constants.InsertConstantsParam(ConstantsParam);
+            return Ok(TODSave);
+
+        }
+        [HttpPost("ConstantsUpdate")]
+        public IActionResult ConstantsUpdate(ConstantsParam ConstantsParam)
+        {
+            var TODUpdate = _Constants.UpdateConstantsParam(ConstantsParam);
+            return Ok(TODUpdate);
+
+        }
+        ////[HttpPost("SMS_Configsave")]
+        ////public IActionResult SMS_Configsave(SMS_ConfigParam SMS_ConfigParam)
+        ////{
+        ////    var TODSave = _SMS_Config.InsertSMSConfig(SMS_ConfigParam);
+        ////    return Ok(TODSave);
+
+        ////}
+        ////[HttpPost("SMS_ConfigUpdate")]
+        ////public IActionResult SMS_ConfigUpdate(SMS_ConfigParam SMS_ConfigParam)  
+        ////{
+        ////    var TODUpdate = _SMS_Config.UpdateSMSConfigParam(SMS_ConfigParam);
+        ////    return Ok(TODUpdate);
+
+        ////}
     }
 }
+        
+

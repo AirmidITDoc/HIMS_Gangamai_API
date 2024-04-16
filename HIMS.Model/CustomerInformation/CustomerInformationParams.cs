@@ -13,20 +13,6 @@ namespace HIMS.Model.CustomerInformation
 
     public class CustomerInformationInsert
     {
-        public long CustomerId { get; set; }
-        public  string CustomerName { get; set; } 
-        public string CustomerAddress { get; set; }
-        public string CustomerMobileNO { get; set; }
-        public string CustomerPinCode { get; set; }
-        public string ContactPersonName { get; set; }
-        public string ContactPersonMobileNo { get; set; }
-        public DateTime InstallationDate { get; set; }
-        public DateTime AMCDate { get; set; }
-        public long  CreatedBy { get; set; }
-    }
-    public class CustomerInformationUpdate
-    {
-        public long CustomerId { get; set; }
         public string CustomerName { get; set; }
         public string CustomerAddress { get; set; }
         public string CustomerMobileNO { get; set; }
@@ -36,11 +22,24 @@ namespace HIMS.Model.CustomerInformation
         public DateTime InstallationDate { get; set; }
         public DateTime AMCDate { get; set; }
         public long CreatedBy { get; set; }
-        public DateTime CreatedDatetime { get; set; }
-        public long ModifiedBy { get; set; }
-        public DateTime Modifieddatetime { get; set; }
+        public long CustomerId { get; set; }
     }
-
+    public class CustomerInformationUpdate
+    {
+        public long CustomerId { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerAddress { set; get; }
+        public string CustomerMobileNO { set; get; }
+        public string CustomerPinCode { set; get; }
+        public string ContactPersonName { set; get; }
+        public string ContactPersonMobileNo { set; get; }
+        public DateTime InstallationDate { set; get; }
+        public DateTime AMCDate { set; get; }
+        public long CreatedBy { set; get; }
+        public DateTime CreatedDatetime { set; get; }
+        public long ModifiedBy { set; get; }
+        public DateTime Modifieddatetime { set; get; }
+    }
 }
 
-
+    

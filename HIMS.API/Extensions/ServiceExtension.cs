@@ -169,6 +169,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_ParameterMaster, R_ParameterMaster>();
             services.AddTransient<I_SupplierMaster, R_SupplierMaster>();
             //services.AddTransient<I_StoreMaster, R_StoreMaster>();
+            services.AddTransient<I_Constants, R_Constants>();
+
             services.AddTransient<I_DoctorTypeMaster, R_DoctorTypeMaster>();
             services.AddTransient<I_AdmissionReg, R_AdmissionReg>();
             services.AddTransient<I_RegisteredPatientAdmission, R_RegisteredPatientAdmission>();
@@ -255,6 +257,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_IP_Settlement_Process, R_IP_Settlement_Process>();
             services.AddTransient<I_DocumentAttachment, R_DocumentAttachment>();
             services.AddTransient<I_IP_SMSOutgoing, R_IP_SMSOutgoing>();
+            services.AddTransient<I_OpeningTransaction, R_OpeningTransaction>();
+
 
 
             services.AddTransient<I_OTTableDetail, R_OTTableDetail>();
@@ -274,6 +278,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_SubcompanyTPA, R_SubcompanyTPA>();
             services.AddTransient<I_Prepostopnote, R_Prepostopnote>();
             services.AddTransient<I_PatientFeedback, R_PatientFeedback>();
+            services.AddTransient<I_SMS_Config,R_SMSConfig>();
+
 
             services.AddTransient<I_ItemMaster, R_ItemMaster>();
             services.AddTransient<I_Sales, R_Sales>();
@@ -314,7 +320,10 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_OPBillingReport, R_OPBillingReport>();
 
             services.AddTransient<I_StockAdjustment, R_StockAdjustment>();
+            services.AddTransient<I_CustomerInformation, R_CustomerInformation>();
 
+            services.AddTransient<I_CustomerPayments, R_CustomerPayment>();
+            services.AddTransient<I_CustomerInvoiceRaise, R_CustomerInvoiceRaise>();
             /* services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();
             services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
             services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
@@ -322,9 +331,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_Itemmasterhome, R_Itemmasterhome>();
             services.AddTransient<I_SalesReport, R_SalesReport>();
 
-            services.AddTransient<I_CustomerInformation,R_CustomerInformation>();
-            services.AddTransient<I_CustomerPayments, R_CustomerPayment>();
-            services.AddTransient<I_CustomerInvoiceRaise, R_CustomerInvoiceRaise>();
+           
+          
             //services.AddTransient<I_StoreMaster, R_StoreMaster>();
 
             /*  services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();
