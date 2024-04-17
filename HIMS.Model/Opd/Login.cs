@@ -33,6 +33,10 @@
         public bool IsRefDocEditOpt { get; set; }
         public bool IsInchIndVfy { get; set; }
         public long WebRoleId { get; set; }
+        public long PharExtOpt { get; set; }
+        public long PharOPOpt { get; set; }
+        public long PharIPOpt { get; set; }
+
 
     }
 
