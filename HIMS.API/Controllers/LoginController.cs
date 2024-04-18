@@ -252,7 +252,10 @@ namespace HIMS.API.Controllers
                     IsRefDocEditOpt = user.IsRefDocEditOpt,
                     IsInchIndVfy = user.IsInchIndVfy,
                     IsPharBalClearnace = user.IsPharBalClearnace,
-                    WebRoleId = user.WebRoleId
+                    WebRoleId = user.WebRoleId,
+                    PharExtOpt = user.PharExtOpt,
+                    PharOPOpt = user.PharOPOpt,
+                    PharIPOpt = user.PharIPOpt
                 },
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 expires = token.ValidTo

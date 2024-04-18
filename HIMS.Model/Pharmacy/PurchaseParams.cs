@@ -72,6 +72,9 @@ namespace HIMS.Model.Pharmacy
 
     public class UpdatePurchaseOrderHeader
     {
+
+        public DateTime PurchaseDate { get; set; }
+        public DateTime PurchaseTime { get; set; }
         public long PurchaseID { get; set; }
         public long StoreId { get; set; }
         public long SupplierID { get; set; }
