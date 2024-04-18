@@ -60,6 +60,10 @@ namespace HIMS.Data.Pharmacy
                 var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_T_WorkOrderDetail_1", disc5);
             }
 
+            //var vPurchaseOrderDelete = Workorder.Delete_WorkDetails.ToDictionary();
+            //vPurchaseOrderDelete["WOId"] = Workorder.UpdateWorkOrderHeader.WOId;
+            //ExecNonQueryProcWithOutSaveChanges("Delete_WODetails_1", vPurchaseOrderDelete);
+
             _unitofWork.SaveChanges();
             return true;
         }

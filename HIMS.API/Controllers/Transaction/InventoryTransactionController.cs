@@ -25,6 +25,8 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_InvMaterialConsumption _InvMaterialConsumption;
         public readonly I_ReturnFromDept _ReturnFromDept;
         public readonly I_StockAdjustment _StockAdjustment;
+        public readonly I_IssueToDepartmentIndent _IssueToDepartmentIndent;
+
         public InventoryTransactionController(
              I_Indent indent
             ,I_IssueTrackingInfo issueTrackingInfo
@@ -33,7 +35,8 @@ namespace HIMS.API.Controllers.Transaction
             , IFileUtility fileUtility
             , I_IssuetoDepartment issuetoDepartment,
              I_InvMaterialConsumption invMaterialConsumption,
-             I_ReturnFromDept returnFromDept,I_StockAdjustment stockAdjustment )
+             I_ReturnFromDept returnFromDept,I_StockAdjustment stockAdjustment,
+             I_IssueToDepartmentIndent issueToDepartmentIndent )
         {
             this._indent = indent;
             this._IssueTrackingInfo = issueTrackingInfo;
@@ -44,6 +47,8 @@ namespace HIMS.API.Controllers.Transaction
             _InvMaterialConsumption = invMaterialConsumption;
             _ReturnFromDept = returnFromDept;
             _StockAdjustment = stockAdjustment;
+            this._IssueToDepartmentIndent = issueToDepartmentIndent;
+            
         }
 
         [HttpPost("IndentSave")]
@@ -312,6 +317,17 @@ namespace HIMS.API.Controllers.Transaction
             var IndentInsert = _InvMaterialConsumption.Insert(MaterialConsumptionParam);
             return Ok(IndentInsert);
         }
+
+        [HttpPost("IssueToDepartmentIndentUpdate")]
+        public IActionResult IssueToDepartmentIndentUpdate(IssueToDepartmentIndentParam IssueToDepartmentIndentParam)
+        {
+            var IndentUpdate = _IssueToDepartmentIndent.UpdateIndentStatusAganistIss(IssueToDepartmentIndentParam);
+            return Ok(IndentUpdate);
+        }
+
+
+
+
     }
 }
 

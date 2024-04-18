@@ -171,6 +171,8 @@ namespace HIMS.API.Extensions
             //services.AddTransient<I_StoreMaster, R_StoreMaster>();
             services.AddTransient<I_Constants, R_Constants>();
 
+
+            services.AddTransient<I_IssueToDepartmentIndent, R_IssueToDepartmentIndent>();
             services.AddTransient<I_DoctorTypeMaster, R_DoctorTypeMaster>();
             services.AddTransient<I_AdmissionReg, R_AdmissionReg>();
             services.AddTransient<I_RegisteredPatientAdmission, R_RegisteredPatientAdmission>();

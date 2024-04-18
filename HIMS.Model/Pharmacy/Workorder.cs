@@ -34,20 +34,22 @@ namespace HIMS.Model.Pharmacy
 
     public class WorkorderDetailInsert
     {
-      
 
-        public long WOId { get; set; }
-        public String ItemName { get; set; }
-        public float Qty { get; set; }
-        public float Rate { get; set; }
-        public float TotalAmount { get; set; }
-        public float DiscAmount { get; set; }
-        public float DiscPer { get; set; }
-        public float VatAmount { get; set; }
-        public float VatPer { get; set; }
-        public float NetAmount { get; set; }
-      
-        public String Remark { get; set; }
+
+        public DateTime Date { get; set; } 
+        public DateTime Time { get; set; } 
+        public long StoreId { get; set; } 
+        public long SupplierID { get; set; } 
+        public decimal TotalAmount { get; set; } 
+        public decimal VatAmount { get; set; } 
+        public decimal DiscAmount { get; set; } 
+        public decimal NetAmount { get; set; } 
+        public bool Isclosed { get; set; } 
+        public string Remarks { get; set; } 
+        public long AddedBy { get; set; } 
+        public bool IsCancelled { get; set; } 
+        public long IsCancelledBy { get; set; } 
+        public long WOId { get; set; } // long for WOId
     }
 
     public class UpdateWorkOrderHeader
@@ -57,9 +59,8 @@ namespace HIMS.Model.Pharmacy
         public long StoreId { get; set; }
         public long SupplierID { get; set; }
         public float TotalAmount { get; set; }
-
-        public float VatAmount { get; set; }
         public float DiscAmount { get; set; }
+        public float VatAmount { get; set; }
         public float NetAmount { get; set; }
         public bool Isclosed { get; set; }
         public string Remarks { get; set; }
@@ -68,7 +69,8 @@ namespace HIMS.Model.Pharmacy
     }
     public class Delete_WorkDetails
     {
-        public long WOID { get; set; }
+        public int WOID { get; set; }
+        
     }
 
    
