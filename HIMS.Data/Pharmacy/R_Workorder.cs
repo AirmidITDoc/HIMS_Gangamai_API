@@ -51,14 +51,13 @@ namespace HIMS.Data.Pharmacy
             ExecNonQueryProcWithOutSaveChanges("Update_WorkorderHeader", vPurchaseOrderUdpate);
 
             var vPurchaseOrderDelete = Workorder.Delete_WorkDetails.ToDictionary();
-            vPurchaseOrderDelete["WOId"] = Workorder.UpdateWorkOrderHeader.WOId;
             ExecNonQueryProcWithOutSaveChanges("Delete_WODetails_1", vPurchaseOrderDelete);
 
             foreach (var a in Workorder.WorkorderDetailInsert)
             {
                 var disc5 = a.ToDictionary();
                 disc5["WOId"] = Workorder.UpdateWorkOrderHeader.WOId;
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_T_WorkOrderDetail_1", disc5);
+                ExecNonQueryProcWithOutSaveChanges("insert_T_WorkOrderDetail_1", disc5);
             }
 
             //var vPurchaseOrderDelete = Workorder.Delete_WorkDetails.ToDictionary();
