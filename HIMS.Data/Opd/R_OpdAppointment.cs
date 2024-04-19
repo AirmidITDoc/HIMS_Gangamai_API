@@ -184,9 +184,8 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
             html = html.Replace("{{ConsultantDoctorName}}", Bills.GetColValue("ConsultantDoctorName"));
-
-
-
+            
+                html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
             html = html.Replace("{{Expr1}}", Bills.GetColValue("Expr1"));
             html = html.Replace("{{MobileNo}}", Bills.GetColValue("MobileNo"));
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
