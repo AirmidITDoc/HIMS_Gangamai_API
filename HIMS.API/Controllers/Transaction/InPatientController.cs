@@ -512,7 +512,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewIpBillReceipt(int BillNo)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPBillingReceipt.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPBilling.ViewIPBillReceipt(BillNo, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IpBillingReceipt", "IpBillingReceipt" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
