@@ -107,23 +107,23 @@
                                         <table style="width: 100%; border-collapse: collapse;">
                                             <tr>
 
-                                                <td style="border-bottom:1px solid #eee; padding: 6px;padding-left:70%;">Total Bill Amount</td>
+                                                <td style="border-bottom:1px solid #eee; padding: 6px;">Total Bill Amount</td>
                                                 <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{TotalBillAmount}}</td>
                                             </tr>
-                                            <tr>
-                                                <td style="border-bottom: 1px solid #eee; padding: 6px; padding-left: 70%;">Disc Amount</td>
+                                            <tr style="display:{{chkdiscflag}}">
+                                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Disc Amount</td>
                                                 <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{ConcessionAmt}}</td>
                                             </tr>
-                                            <tr>
-                                                <td style="border-bottom: 1px solid #eee; padding: 6px; padding-left: 70%;">paid Amount </td>
+                                            <tr style="display:{{chkpaidflag}}">
+                                                <td style="border-bottom: 1px solid #eee; padding: 6px;">paid Amount </td>
                                                 <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{PaidAmount}}</td>
                                             </tr>
-                                            <tr>
-                                                <td style="border-bottom: 1px solid #eee; padding: 6px; padding-left: 70%;">Bal Amount</td>
+                                            <tr style="display:{{chkbalflag}}">
+                                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Bal Amount</td>
                                                 <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{BalanceAmt}}</td>
                                             </tr>
                                             <tr>
-                                                <td style="border-bottom: 1px solid #eee; padding: 6px; padding-left: 70%;">Net Amount</td>
+                                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Net Amount</td>
                                                 <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{T_NetAmount}}</td>
                                             </tr>
                                         </table>
