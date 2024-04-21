@@ -6,16 +6,11 @@ namespace HIMS.Model.Inventory
 {
     public class IssueToDepartmentIndentParam
     {
-
         public InsertIssuetoDepartmentHeader1 insertIssuetoDepartmentHeader1 { get; set; }
         public List<InsertIssuetoDepartmentDetail1> InsertIssuetoDepartmentDetail1 { get; set; }
         public List<updateissuetoDepartmentStock1> UpdateissuetoDepartmentStock1 { get; set; }
-
         public Update_IndentHeader_Status Update_IndentHeader_Status { get; set; }
         public List<UpdateIndentStatusIndentDetails> updateIndentStatusIndentDetails { get; set; }
-
-
-
 
     }
     public class InsertIssuetoDepartmentHeader1
