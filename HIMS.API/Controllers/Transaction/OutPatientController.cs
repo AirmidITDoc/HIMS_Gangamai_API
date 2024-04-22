@@ -318,7 +318,8 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-OP-PaymentReceipt")]
         public IActionResult ViewOPPaymentReceipt(int PaymentId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPaymentReceipt.html");
+            //OPPaymentReceipt
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPReceipt.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _Payment.ViewOPPaymentReceipt(PaymentId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPaymentReceipt", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);

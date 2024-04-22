@@ -90,7 +90,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{RefundAmount}}", Bills.GetColValue("RefundAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
-            //html = html.Replace("{{MobileNo}}", Bills.GetColValue("MobileNo"));
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{MobileNo}}", Bills.GetColValue("PhoneNo"));
 
             html = html.Replace("{{RefundDate}}", Bills.GetColValue("RefundDate").ConvertToDateString());
