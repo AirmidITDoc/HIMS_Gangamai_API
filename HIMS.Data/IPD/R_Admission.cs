@@ -81,7 +81,7 @@ namespace HIMS.Data.IPD
 
         }
 
-        public string ViewAdmissionPaper(int AdmissionId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewAdmissionPaper(int AdmissionId, string htmlFilePath, string htmlHeader)
         {
             //  throw new NotImplementedException();
 
@@ -91,7 +91,6 @@ namespace HIMS.Data.IPD
            
             var Bills = GetDataTableProc("rptAdmissionPrint1", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");

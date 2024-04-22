@@ -14,6 +14,7 @@ using HIMS.Data.HomeTransaction;
 using HIMS.Model.HomeTransaction;
 using System.IO;
 using HIMS.API.Utility;
+using Microsoft.Extensions.Configuration;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -132,11 +133,11 @@ namespace HIMS.API.Controllers.Transaction
             {
                 string NewFileName = Guid.NewGuid().ToString();
                 string FileName = await _IFileUtility.UploadDocument(OpdAppointmentParams.RegistrationSavewithPhoto.ImgFile, "PatientPhoto", NewFileName);
-               // OpdAppointmentParams.RegistrationSave.Photo = FileName;
+                // OpdAppointmentParams.RegistrationSave.Photo = FileName;
             }
             else
             {
-               // OpdAppointmentParams.RegistrationSave.Photo = null;
+                // OpdAppointmentParams.RegistrationSave.Photo = null;
             }
             var appoSave = _OpdAppointment.Save(OpdAppointmentParams);
             return Ok(appoSave);
@@ -173,7 +174,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "AppointmentofOPPatient.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _OpdAppointment.ViewOppatientAppointmentdetailsReceipt(VisitId, htmlFilePath, htmlHeaderFilePath);
+            var html = _OpdAppointment.ViewOppatientAppointmentdetailsReceipt(VisitId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPAppointmentDetails", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
@@ -189,7 +190,7 @@ namespace HIMS.API.Controllers.Transaction
         [HttpPost("OPDCrossConsultationInsert")]
         public IActionResult OPDCrossconsultationInsert(CrossConsultation CrossConsultation)
         {
-          
+
             var Id = _CrossConsultation.Save(CrossConsultation);
             return Ok(Id);
         }
@@ -320,7 +321,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPaymentReceipt.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _Payment.ViewOPPaymentReceipt(PaymentId, htmlFilePath, htmlHeaderFilePath);
+            var html = _Payment.ViewOPPaymentReceipt(PaymentId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPaymentReceipt", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
@@ -404,7 +405,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPRefundofbill.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _OPRefundBill.ViewOPRefundofBillReceipt(RefundId, htmlFilePath, htmlHeaderFilePath);
+            var html = _OPRefundBill.ViewOPRefundofBillReceipt(RefundId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPRefundofbill", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
@@ -442,11 +443,8 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpBillingReceipt.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _OPbilling.ViewOPBillReceipt(BillNo, htmlFilePath, htmlHeaderFilePath);
+            var html = _OPbilling.ViewOPBillReceipt(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OpBillingReceipt", "OpBillingReceipt" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
-
-
-
             //if (System.IO.File.Exists(tuple.Item2))
             //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });

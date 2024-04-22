@@ -69,7 +69,7 @@ namespace HIMS.Data.Pharmacy
             return true;
         }
 
-        public string ViewPurchaseorder(int PurchaseID, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewPurchaseorder(int PurchaseID, string htmlFilePath, string htmlHeader)
         {
             //  throw new NotImplementedException();
 
@@ -79,7 +79,6 @@ namespace HIMS.Data.Pharmacy
           
             var Bills = GetDataTableProc("rptPrintPurchaseOrder", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
