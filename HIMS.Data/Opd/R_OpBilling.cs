@@ -16,7 +16,7 @@ using System.Text.Json;
 
 namespace HIMS.Data.Opd
 {
-   public class R_OpBilling :GenericRepository,I_OPbilling
+    public class R_OpBilling : GenericRepository, I_OPbilling
     {
         public R_OpBilling(IUnitofWork unitofWork) : base(unitofWork)
         {
@@ -33,13 +33,13 @@ namespace HIMS.Data.Opd
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
-            
+
             var outputId2 = new SqlParameter
             {
-                 SqlDbType = SqlDbType.BigInt,
-                 ParameterName = "@BillDetailId",
-                 Value = 0,
-                 Direction = ParameterDirection.Output
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@BillDetailId",
+                Value = 0,
+                Direction = ParameterDirection.Output
             };
 
             var VarChargeID = new SqlParameter
@@ -133,17 +133,17 @@ namespace HIMS.Data.Opd
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@AddedById", AddedById) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptOPDailyCollectionReport", para);
-                   string html = File.ReadAllText(htmlFilePath);
+            string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
 
             Boolean chkpaidflag = false, chkbalflag = false, chkremarkflag = false;
 
-           
+
             StringBuilder items = new StringBuilder("");
-            int i = 0,j=0;
-            double T_NetAmount = 0, T_TotAmount=0, T_DiscAmount=0, T_PaidAmount=0,T_BalAmount=0, T_CashPayAmount = 0, T_CardPayAmount = 0, T_ChequePayAmount = 0;
+            int i = 0, j = 0;
+            double T_NetAmount = 0, T_TotAmount = 0, T_DiscAmount = 0, T_PaidAmount = 0, T_BalAmount = 0, T_CashPayAmount = 0, T_CardPayAmount = 0, T_ChequePayAmount = 0;
             foreach (DataRow dr in Bills.Rows)
             {
                 i++;
@@ -156,11 +156,11 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["NetPayableAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PaidAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["BalanceAmt"].ConvertToDouble()).Append("</td>");
-                
+
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CashPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CardPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ChequePayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                
+
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["AdvanceUsedAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
                 T_TotAmount += dr["TotalAmt"].ConvertToDouble();
@@ -197,29 +197,19 @@ namespace HIMS.Data.Opd
 
 
 
-        public String ViewOPBillReceipt(int BillNo, string htmlFilePath,string htmlHeaderFilePath)
+        public String ViewOPBillReceipt(int BillNo, string htmlFilePath, string htmlHeader)
         {
-         
-
             SqlParameter[] para = new SqlParameter[1];
-
             para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptBillPrint", para);
             string html = File.ReadAllText(htmlFilePath);
-           
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
-         
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
-
-            Boolean chkpaidflag = false, chkbalflag = false, chkremarkflag=false;
-
-
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ConcessionAmt}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
-            
+
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
             html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy mm:hh tt"));
@@ -257,7 +247,7 @@ namespace HIMS.Data.Opd
 
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount").ConvertToDouble().To2DecimalPlace());
-         
+
             html = html.Replace("{{BalanceAmt}}", Bills.GetColValue("BalanceAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{Price}}", Bills.GetColValue("Price").ConvertToDouble().To2DecimalPlace());
@@ -285,7 +275,7 @@ namespace HIMS.Data.Opd
 
         }
 
-      
+
         public double GetSum(DataTable dt, string ColName)
         {
             double cash = 0;
