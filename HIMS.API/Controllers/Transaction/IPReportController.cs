@@ -30,9 +30,9 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewCommanDailycollectionReport(DateTime FromDate, DateTime ToDate, int AddedById,int DoctorId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanDailycollection.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewCommanDailyCollectionReceipt(FromDate, ToDate, AddedById, DoctorId, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CommanDailycollection", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CommanDailycollection", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
          
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -42,9 +42,9 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewIPDailycollectionReport(DateTime FromDate, DateTime ToDate, int AddedById)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPDDailycollection.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewIPDailyCollectionReceipt(FromDate, ToDate, AddedById, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDDailycollection", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDDailycollection", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -53,9 +53,9 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewOpIPBillsummaryReport(DateTime FromDate, DateTime ToDate)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPIPBillsummary.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewOPIPBillSummaryReceipt(FromDate, ToDate, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPIPBillsummary", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPIPBillsummary", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
