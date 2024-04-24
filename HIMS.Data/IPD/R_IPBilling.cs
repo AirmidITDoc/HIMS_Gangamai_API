@@ -252,7 +252,7 @@ namespace HIMS.Data.IPD
 
         }
 
-        public string ViewIPBillReceipt(int BillNo, string htmlFilePath,string htmlHeaderFilePath)
+        public string ViewIPBillReceipt(int BillNo, string htmlFilePath,string htmlHeader)
     {
       
             SqlParameter[] para = new SqlParameter[1];
@@ -261,7 +261,6 @@ namespace HIMS.Data.IPD
             var Bills = GetDataTableProc("rptIPDFinalBill", para);
             string html = File.ReadAllText(htmlFilePath);
            
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");

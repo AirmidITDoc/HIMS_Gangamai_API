@@ -19,7 +19,7 @@ namespace HIMS.Data.Opd
 
        
 
-        public bool Insert(OPDRegistrationParams OPDRegistrationParams)
+        public string Insert(OPDRegistrationParams OPDRegistrationParams)
         {
             //add registration
             var outputId = new SqlParameter
@@ -31,11 +31,11 @@ namespace HIMS.Data.Opd
             };
             var dic = OPDRegistrationParams.OPDRegistrationSave.ToDictionary();
             dic.Remove("RegID");
-            var RegID = ExecNonQueryProcWithOutSaveChanges("insert_Registration_1_1", dic, outputId);
+            var RegID = ExecNonQueryProcWithOutSaveChanges("m_insert_Registration_1", dic, outputId);
 
            _unitofWork.SaveChanges();
 
-            return true;
+            return RegID;
         }
 
         public bool Update(OPDRegistrationParams OPDRegistrationParams)
