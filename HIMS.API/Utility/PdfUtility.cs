@@ -25,7 +25,7 @@ namespace HIMS.API.Utility
         public string GetHeader(string filePath)
         {
             string htmlHeader = System.IO.File.ReadAllText(filePath);
-            return htmlHeader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl"));
+            return htmlHeader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
         }
         public Tuple<byte[], string> GeneratePdfFromHtml(string html, string FolderName, string FileName = "", Wkhtmltopdf.NetCore.Options.Orientation PageOrientation = Wkhtmltopdf.NetCore.Options.Orientation.Portrait)
         {
