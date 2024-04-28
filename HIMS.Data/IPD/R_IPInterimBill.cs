@@ -232,7 +232,7 @@ namespace HIMS.Data.IPD
             return words;
         }
 
-        public string ViewIPInterimBillReceipt(int BillNo, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewIPInterimBillReceipt(int BillNo, string htmlFilePath, string htmlHeader)
         {
 
             SqlParameter[] para = new SqlParameter[1];
@@ -241,9 +241,9 @@ namespace HIMS.Data.IPD
             var Bills = GetDataTableProc("rptIPDInterimBill", para);
             string html = File.ReadAllText(htmlFilePath);
 
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
+            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HospitalHeader}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
             String[] GroupName;
@@ -322,13 +322,15 @@ namespace HIMS.Data.IPD
                     j++;
                 }
 
-
+                
             }
+           // T_NetAmount = Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace();
+
             html = html.Replace("{{Items}}", items.ToString());
 
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
-            string finalamt = conversion(T_NetAmount.ConvertToDouble().To2DecimalPlace().ToString());
+            string finalamt = conversion(Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace().ToString());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 

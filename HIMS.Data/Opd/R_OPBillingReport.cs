@@ -19,7 +19,7 @@ namespace HIMS.Data.Opd
         }
 
        
-        public string ViewOPDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById, int DoctorId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewOPDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById, int DoctorId, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
             SqlParameter[] para = new SqlParameter[4];
@@ -30,8 +30,7 @@ namespace HIMS.Data.Opd
             var Bills = GetDataTableProc("rptIP_OP_Comman_DailyCollectionReport", para);
             string html = File.ReadAllText(htmlFilePath);// templates.Rows[0]["TempDesign"].ToString();
            
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
-
+            
             html = html.Replace("{{HospitalHeader}}", htmlHeader);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 

@@ -1,145 +1,74 @@
-﻿
-<html>
+﻿<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <style>
-        .watermark {
-            position: absolute;
-            top: 30%;
-            left: 30%;
-            opacity: .1;
-            z-index: 99;
-            color: #000;
-            font-size: 70px;
-            transform: translate(-50%,-50%) rotate(-45deg);
-            white-space: nowrap;
-            pointer-events: none
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
+
 <body>
-    <div class="bill-template-wrapper" style="font-size: 30.25%;">
-
-
-        {{HospitalHeader}}
-
-        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: beige;">
-            <div style="display:block;width:100%; align-items: center;">
-                <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;">
-                    COMMAN  DAILY COLLECTION REPORT
-                </div>
-                <span style="font-size: 18px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
-            </div>
-
-        </div>
-        <div style="margin-top:2px;">
-            <div style="font-weight: bold;font-size:18px;margin-left:10px;padding:5px;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
-        </div>
-        <table class="table" style="width:100%;border-collapse:collapse">
-            <tbody>
-
-                <tr style="font-size:10px;background-color: rgb(127, 174, 255);">
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        SR.NO
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Date
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        PBill
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Reg No
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Patient Name
-                    </td>
-
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Bill Amt
-                    </td>
-
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Cash Amt
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Cheque Amt
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Card Amt
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        NEFT Amt
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Online Amt
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Adv.used Amt
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Bal Amt
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        User Name
+    <div class="main-content-wrapper">
+        <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+            <table style="width: 100%;line-height: inherit;text-align: left;">
+                {{NewHeader}}
+                <tr class="title-date-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="font-size: 18px">
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>  COMMAN  DAILY COLLECTION REPORT</b></td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
 
-                {{Items}}
+                <tr class="bill-table-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <!--<thead style="font-size: 14px;">--><!--  -->
+                            <tr>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Payment Date</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">PBill</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Reg No</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Patient Name</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">   Bill Amt </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Cash Amt</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">   Cheque Amt</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">   Card Amt</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  NEFT Amt </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">   Online Amt </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Adv.used Amt</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Bal  Amt </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  User  Amt </td>
 
-                <tr style="border: 1px solid black;font-size: 18px;font-weight: bold;background-color:paleturquoise">
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Total Amt.
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        {{T_AddBillAmount}}
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        {{T_FinalCashPayAmount}}
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        {{T_FinalChequePayAmount}}
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        {{T_FinalCardPayAmount}}
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        {{T_FinalNEFTPayAmount}}
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        {{T_FinalPayTMAmount}}
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            </tr>
+                            {{Items}}
+                            <tr>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Total Amt.</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_AddBillAmount}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCashPayAmount}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalChequePayAmount}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> {{T_FinalCardPayAmount}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> {{T_FinalNEFTPayAmount}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalPayTMAmount}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
+               
 
-            </tbody>
-        </table>
-        <hr>
-
+            </table>
+        </div>
     </div>
-
 </body>
+
 </html>

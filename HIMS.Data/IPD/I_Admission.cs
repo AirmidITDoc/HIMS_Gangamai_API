@@ -9,7 +9,7 @@ namespace HIMS.Data.IPD
     {
         public String Insert(AdmissionParams AdmissionParams);
 
-        public bool Update(AdmissionParams AdmissionParams);
+        public string Update(AdmissionParams AdmissionParams);
 
         //public bool BedUpdate(AdmissionParams AdmissionParams);
         

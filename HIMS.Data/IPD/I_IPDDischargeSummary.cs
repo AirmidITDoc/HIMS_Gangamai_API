@@ -9,5 +9,6 @@ namespace HIMS.Data.IPD
     {
         public String Insert(IPDDischargeSummaryParams IPDDischargeSummaryParams);
         public bool Update(IPDDischargeSummaryParams IPDDischargeSummaryParams);
+        string ViewDischargeSummary(int AdmissionID, string htmlFilePath, string HeaderName);
     }
 }

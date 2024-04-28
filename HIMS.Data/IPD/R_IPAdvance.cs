@@ -69,7 +69,7 @@ namespace HIMS.Data.IPD
 
 
 
-        public string ViewAdvanceReceipt(int AdvanceDetailID, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewAdvanceReceipt(int AdvanceDetailID, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[1];
           
@@ -77,9 +77,9 @@ namespace HIMS.Data.IPD
             var Bills = GetDataTableProc("rptIPDAdvancePrint", para);
             string html = File.ReadAllText(htmlFilePath);
          
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HospitalHeader}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
             Boolean chkresonflag = false;

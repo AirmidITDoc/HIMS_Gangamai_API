@@ -37,7 +37,7 @@ namespace HIMS.Data.IPD
             return Id;
         }
 
-        public string ViewMaterialConsumptionReceipt(int MaterialConsumptionId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewMaterialConsumptionReceipt(int MaterialConsumptionId, string htmlFilePath, string htmlHeader)
         {
             //throw new NotImplementedException();
             SqlParameter[] para = new SqlParameter[1];
@@ -46,8 +46,7 @@ namespace HIMS.Data.IPD
             var Bills = GetDataTableProc("rptPrintMaterialConsumption", para);
            
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+                        html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;

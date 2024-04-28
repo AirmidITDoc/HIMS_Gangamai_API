@@ -23,20 +23,22 @@
 
         {{HeaderName}}
 
-        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
+        <div>
+            <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
 
-            <div style="display:flex; align-items: center;">
-                <div style="font-weight:400;font-size:15px;text-align:center;margin-left:18%;width:500px;">
-                   SALES RETURN PATIENTWISE REPORT
-                </div>
-                <span style="font-size: 9px;font-weight: 700;width: 20%;">
-                    PrintDate : {{
+                <div style="display:flex; align-items: center;">
+                    <div style="font-weight:400;font-size:15px;text-align:center;margin-left:18%;width:500px;">
+                        SALES RETURN PATIENTWISE REPORT
+                    </div>
+                    <span style="font-size: 9px;font-weight: 700;width: 20%;">
+                        PrintDate : {{
 currentDate | date:
                     'short'
-                    }}
-                </span>
-            </div>
+                        }}
+                    </span>
+                </div>
 
+            </div>
         </div>
        
         <table class="table" style="width:100%;border-collapse:collapse">

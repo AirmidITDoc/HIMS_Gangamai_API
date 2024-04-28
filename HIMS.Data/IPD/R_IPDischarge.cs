@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Text;
 
 namespace HIMS.Data.IPD
@@ -65,6 +66,31 @@ namespace HIMS.Data.IPD
 
             _unitofWork.SaveChanges();
             return true;
+        }
+
+        public string ViewDischargeReceipt(int AdmId, string htmlFilePath, string htmlHeader)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[1];
+
+            para[0] = new SqlParameter("@AdmId", AdmId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptDischargeCheckOutSlip", para);
+            string html = File.ReadAllText(htmlFilePath);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            
+            html = html.Replace("{{BillNo}}", Bills.GetColValue("PBillNo"));
+            html = html.Replace("{{DischargeTime}}", Bills.GetColValue("DischargeTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+
+            html = html.Replace("{{OPD_IPD_ID}}", Bills.GetColValue("OPD_IPD_ID"));
+            html = html.Replace("{{BillingUserName}}", Bills.GetColValue("BillingUserName"));
+                          
+
+            return html;
         }
     }
 }

@@ -9,5 +9,7 @@ namespace HIMS.Data.IPD
     {
         public String Insert(IPDischargeParams IPDischargeParams);
         public bool Update(IPDischargeParams IPDischargeParams);
+
+        string ViewDischargeReceipt(int AdmId, string htmlFilePath, string HeaderName);
     }
 }

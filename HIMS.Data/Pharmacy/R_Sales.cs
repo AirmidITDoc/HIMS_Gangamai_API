@@ -312,15 +312,6 @@ namespace HIMS.Data.Pharmacy
 
             TotalCollection = T_CashPayAmount.ConvertToDouble() + T_CardPayAmount.ConvertToDouble() + T_ChequePayAmount.ConvertToDouble() + T_NEFTPayAmount.ConvertToDouble() + T_PayTMAmount.ConvertToDouble();
 
-
-
-
-
-
-
-
-
-
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
@@ -999,7 +990,7 @@ namespace HIMS.Data.Pharmacy
 
         }
 
-        public string ViewSalesTaxReceipt(int SalesID, int OP_IP_Type, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesTaxReceipt(int SalesID, int OP_IP_Type, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[2];
 
@@ -1008,9 +999,8 @@ namespace HIMS.Data.Pharmacy
 
             var Bills = GetDataTableProc("rptSalesPrint", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -1555,7 +1545,7 @@ namespace HIMS.Data.Pharmacy
 
         }
 
-        public string ViewPharCompanycreditlistReport(int StoreId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewPharCompanycreditlistReport(int StoreId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -1567,9 +1557,9 @@ namespace HIMS.Data.Pharmacy
 
             var Bills = GetDataTableProc("rptPharmacyCompanyCreditListForTally", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -1603,7 +1593,7 @@ namespace HIMS.Data.Pharmacy
             return html;
         }
 
-        public string ViewPharcomwisepatientcreditReceipt(int StoreID, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewPharcomwisepatientcreditReceipt(int StoreID, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
             SqlParameter[] para = new SqlParameter[1];
@@ -1611,9 +1601,9 @@ namespace HIMS.Data.Pharmacy
 
             var Bills = GetDataTableProc("rptPharIpCompPatWiseCredit", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
             string Storename = "";

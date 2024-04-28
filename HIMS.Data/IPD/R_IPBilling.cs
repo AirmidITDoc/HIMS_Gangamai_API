@@ -145,7 +145,7 @@ namespace HIMS.Data.IPD
         }
 
       
-        public string ViewIPBillDatewiseReceipt(int BillNo, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewIPBillDatewiseReceipt(int BillNo, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -156,9 +156,9 @@ namespace HIMS.Data.IPD
             var Bills = GetDataTableProc("rptIPDFinalBillWithDateWise", para);
             string html = File.ReadAllText(htmlFilePath);
            
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
+            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HospitalHeader}}", htmlHeader);
+            html = html.Replace("{{NewHospital}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
             
@@ -227,12 +227,12 @@ namespace HIMS.Data.IPD
                 {
 
                     i++;
-                    items.Append("<tr><td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(j).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid black;vertical-align: top;padding: 0;height: 20px;font-size:15px;text-align:center;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
+                    items.Append("<tr><td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(j).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
 
                     T_NetAmount += dr["ChargesTotalAmt"].ConvertToDouble();
                     j++;
@@ -322,7 +322,7 @@ namespace HIMS.Data.IPD
                 {
                     j = 1;
                     Label = dr["GroupName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
                 previousLabel = dr["GroupName"].ConvertToString();
                 
@@ -330,7 +330,7 @@ namespace HIMS.Data.IPD
                 {
                    
                     i++;
-                    items.Append("<tr><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
+                    items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
                     items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
                     items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
                     items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
@@ -355,7 +355,7 @@ namespace HIMS.Data.IPD
 
     }
 
-        public string ViewIPBillWardwiseReceipt(int BillNo, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewIPBillWardwiseReceipt(int BillNo, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -365,9 +365,9 @@ namespace HIMS.Data.IPD
             var Bills = GetDataTableProc("rptIPDFinalBillWithDateWise", para);
             string html = File.ReadAllText(htmlFilePath);
            
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
+            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HospitalHeader}}", htmlHeader);
+            html = html.Replace("{{NewHospital}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
