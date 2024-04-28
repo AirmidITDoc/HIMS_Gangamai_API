@@ -1,4 +1,5 @@
 ﻿using HIMS.Model.Master;
+using HIMS.Model.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,8 @@ namespace HIMS.Data.Master
         bool Save(MenuMasterParams menuMasterParams);
 
         bool Update(MenuMasterParams menuMasterParams);
-        List<MenuMaster> GetMenus(int RoleId);
+        List<MenuModel> GetMenus(int RoleId, bool isActiveMenuOnly);
+        List<MenuModel> GetPermisison(int RoleId);
+        void SavePermission(List<PermissionModel> lst);
     }
 }
