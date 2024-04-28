@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using HIMS.Data.Users;
 using HIMS.Model.Users;
 using System.Collections.Generic;
+using HIMS.Data.Master;
 
 namespace HIMS.API.Controllers.Users
 {
@@ -11,9 +12,11 @@ namespace HIMS.API.Controllers.Users
     public class RoleController : ControllerBase
     {
         private readonly I_Role i_Role;
-        public RoleController(I_Role i_Role)
+        private readonly I_MenuMaster i_MenuMaster;
+        public RoleController(I_Role i_Role, I_MenuMaster i_MenuMaster)
         {
             this.i_Role = i_Role;
+            this.i_MenuMaster = i_MenuMaster;
         }
         [HttpGet]
         [Route("get-roles")]
@@ -32,13 +35,13 @@ namespace HIMS.API.Controllers.Users
         [Route("get-permissions")]
         public IActionResult GetPermission(int RoleId)
         {
-            return Ok(i_Role.GetPermisison(RoleId));
+            return Ok(i_MenuMaster.GetPermisison(RoleId));
         }
         [HttpPost]
         [Route("save-permission")]
         public IActionResult PostPermission(List<PermissionModel> obj)
         {
-            i_Role.SavePermission(obj);
+            i_MenuMaster.SavePermission(obj);
             return Ok();
         }
     }

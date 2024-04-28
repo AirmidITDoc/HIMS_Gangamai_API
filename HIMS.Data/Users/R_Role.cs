@@ -38,35 +38,6 @@ namespace HIMS.Data.Users
             para[0] = new SqlParameter("@RoleName", RoleName);
             return GetList<RoleModel>("SELECT RoleId,RoleName FROM RoleMaster WHERE IsActive=1 AND RoleName LIKE '%'+@RoleName+'%'", para);
         }
-        public List<MenuMaster> GetPermisison(int RoleId)
-        {
-            // return GetListBySp<MenuMaster>("SELECT M.* FROM MenuMaster M LEFT JOIN MenuMaster MM on M.Id=MM.UpId WHERE ISNULL(MM.Id,0)=0", new SqlParameter[0]);
-
-            SqlParameter[] sqlParameters = new SqlParameter[1];
-            sqlParameters[0] = new SqlParameter("@RoleId", RoleId);
-            var lst= GetListBySp<MenuMaster>("GET_PERMISSION", sqlParameters);
-            _unitofWork.SaveChanges();
-            return lst;
-        }
-        public void SavePermission(List<PermissionModel> lst)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("RoleID", typeof(int));
-            dt.Columns.Add("MenuId", typeof(int));
-            dt.Columns.Add("IsView", typeof(int));
-            dt.Columns.Add("IsAdd", typeof(int));
-            dt.Columns.Add("IsEdit", typeof(int));
-            dt.Columns.Add("IsDelete", typeof(int));
-            foreach (var item in lst)
-                dt.Rows.Add(item.RoleId, item.MenuId, item.IsView, item.IsAdd, item.IsEdit, item.IsDelete);
-            SqlParameter[] para = new SqlParameter[1];
-            para[0] = new SqlParameter("@tbl", SqlDbType.Structured)
-            {
-                Value = dt,
-                TypeName = "dbo.Permission"
-            };
-            object dd = ExecuteObjectBySP("Insert_Permission", para);
-        }
 
     }
 }

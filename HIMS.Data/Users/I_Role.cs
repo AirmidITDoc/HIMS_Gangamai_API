@@ -10,7 +10,5 @@ namespace HIMS.Data.Users
     {
         public string Insert(RoleModel indentparams);
         List<RoleModel> GetRoles(string RoleName);
-        List<MenuMaster> GetPermisison(int RoleId);
-        void SavePermission(List<PermissionModel> lst);
     }
 }
