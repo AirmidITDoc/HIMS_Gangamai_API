@@ -296,6 +296,7 @@ namespace HIMS.Data.IPD
             String Label = "";
 
 
+         
             foreach (DataRow dr in Bills.Rows)
             {
                 i++;
@@ -303,7 +304,7 @@ namespace HIMS.Data.IPD
                 {
                     j = 1;
                     Label = dr["GroupName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
                 previousLabel = dr["GroupName"].ConvertToString();
 
@@ -322,9 +323,9 @@ namespace HIMS.Data.IPD
                     j++;
                 }
 
-                
+
             }
-           // T_NetAmount = Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace();
+            // T_NetAmount = Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace();
 
             html = html.Replace("{{Items}}", items.ToString());
 
