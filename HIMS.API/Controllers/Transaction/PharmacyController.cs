@@ -254,6 +254,16 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(Id);
 
         }
+
+
+        [HttpPost("VerifyGRNReturn")]
+        public IActionResult VerifyGRNReturn(GRNReturnParam GRNReturnParam)
+        {
+            var SalesSave = _GRNReturn.VerifyGRNReturn(GRNReturnParam);
+            return Ok(SalesSave);
+
+        }
+
         [HttpPost("InsertWorkorder")]
         public IActionResult InsertWorkorder(Workorder Workorder)
         {
