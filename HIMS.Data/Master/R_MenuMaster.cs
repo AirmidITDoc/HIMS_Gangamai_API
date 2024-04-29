@@ -196,7 +196,7 @@ namespace HIMS.Data.Master
             sqlParameters[0] = new SqlParameter("@RoleId", RoleId);
             var lst = GetListBySp<MenuMaster>("GET_PERMISSION", sqlParameters);
             _unitofWork.SaveChanges();
-            return PrepareMenu(lst, true);
+            return PrepareMenu(lst, false);
         }
         public void SavePermission(List<PermissionModel> lst)
         {
