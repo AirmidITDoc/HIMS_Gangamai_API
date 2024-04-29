@@ -56,9 +56,9 @@ namespace HIMS.Data.Pharmacy
             return GrnReturnId;
         }
 
-        public bool VerifyGRNReturn(GRNReturnParam grnParams)
+        public bool VerifyGRNReturn(GRNReturnParam GRNReturnParam)
         {
-            var vGRNVerify = grnParams.UpdateGRNReturnVerifyStatus.ToDictionary();
+            var vGRNVerify = GRNReturnParam.UpdateGRNReturnVerifyStatus.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_Update_GRNReturn_Verify_Status_1", vGRNVerify);
 
             _unitofWork.SaveChanges();
