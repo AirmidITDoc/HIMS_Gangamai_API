@@ -14,6 +14,8 @@ namespace HIMS.Model.Dashboard
         public string name { get; set; }
         public string value { get; set; }
         public string color { get; set; }
-
+        public string extra1 { get; set; }
+        public string extra2 { get; set; }
+        public string extra3 { get; set; }
     }
 }

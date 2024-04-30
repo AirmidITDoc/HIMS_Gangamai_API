@@ -111,7 +111,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
 
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
-            html = html.Replace("{{Age}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
 
             html = html.Replace("{{AdmittedDoctorName}}", Bills.GetColValue("AdmittedDoctorName"));
             html = html.Replace("{{RefDoctorName}}", Bills.GetColValue("RefDoctorName"));
