@@ -206,8 +206,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
 
 
-            html = html.Replace("{{chkcommflag}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble() > 0 ? "block" : "none");
-            html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "block" : "none");
+            html = html.Replace("{{chkcommflag}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble() > 0 ? "block" : "table-row");
+            html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "block" : "table-row");
             string previousLabel = "";
             String Label = "";
 
@@ -274,9 +274,10 @@ namespace HIMS.Data.IPD
            
 
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
-            html = html.Replace("{{IPDNo}}", Bills.GetDateColValue("IPDNo"));
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
+            
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
-            html = html.Replace("{{AgeYear}}", Bills.GetDateColValue("AgeYear"));
+            html = html.Replace("{{AgeYear}}", Bills.GetDateColValue("AgeYear").ToString());
             html = html.Replace("{{GenderName}}", Bills.GetDateColValue("GenderName"));
             html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionDate").ConvertToDateString("dd/MM/yyyy"));
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
@@ -294,7 +295,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalAmt").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{PayTMPayAmount}}", Bills.GetColValue("PayTMPayAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{CardPayAmount}}", Bills.GetColValue("CardPayAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{CashPayAmount}}", Bills.GetColValue("CashPayAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ChequePayAmount}}", Bills.GetColValue("ChequePayAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{NEFTPayAmount}}", Bills.GetColValue("NEFTPayAmount").ConvertToDouble().To2DecimalPlace());
@@ -309,10 +310,13 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{Qty}}", Bills.GetColValue("Qty"));
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
-            
 
-            html = html.Replace("{{chkcommflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "block" : "none");
-            html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "block" : "none");
+
+            html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkbalflag}}", Bills.GetColValue("BalanceAmt").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row " : "none");
             string previousLabel = "";
             String Label ="";
 
@@ -340,6 +344,7 @@ namespace HIMS.Data.IPD
                     items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
 
                     T_NetAmount += dr["ChargesTotalAmt"].ConvertToDouble();
+                    //items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["Type"].ConvertToString()).Append("</td></tr>");
                     j++;
                 }
 
@@ -416,8 +421,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
 
 
-            html = html.Replace("{{chkcommflag}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble() > 0 ? "block" : "none");
-            html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "block" : "none");
+            html = html.Replace("{{chkcommflag}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble() > 0 ? "block" : "table-row");
+            html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "block" : "table-row");
             string previousLabel = "";
             String Label = "";
 

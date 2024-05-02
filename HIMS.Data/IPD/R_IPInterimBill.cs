@@ -255,7 +255,7 @@ namespace HIMS.Data.IPD
 
 
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
-            html = html.Replace("{{IPDNo}}", Bills.GetDateColValue("IPDNo"));
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{AgeYear}}", Bills.GetDateColValue("AgeYear"));
             html = html.Replace("{{GenderName}}", Bills.GetDateColValue("GenderName"));
@@ -277,6 +277,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{PayTMPayAmount}}", Bills.GetColValue("PayTMPayAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{CashPayAmount}}", Bills.GetColValue("CashPayAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{CardPayAmount}}", Bills.GetColValue("CardPayAmount").ConvertToDouble().To2DecimalPlace());
+            
             html = html.Replace("{{ChequePayAmount}}", Bills.GetColValue("ChequePayAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{NEFTPayAmount}}", Bills.GetColValue("NEFTPayAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{TotalAdvanceAmount}}", Bills.GetColValue("TotalAdvanceAmount").ConvertToDouble().To2DecimalPlace());
@@ -289,9 +291,11 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
 
+            html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "table-row " : "none");
 
-            html = html.Replace("{{chkcommflag}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble() > 0 ? "block" : "none");
-            html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "block" : "none");
+            html = html.Replace("{{chkbalflag}}", Bills.GetColValue("BalanceAmt").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble() > 0 ? "table-row " : "none");
             string previousLabel = "";
             String Label = "";
 

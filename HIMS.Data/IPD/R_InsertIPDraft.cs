@@ -69,35 +69,7 @@ namespace HIMS.Data.IPD
 
             var Bills = GetDataTableProc("rptIPDDraftBillPrintSummary", para);
 
-            html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
-            
-            html = html.Replace("{{RegNo}}", Bills.GetDateColValue("RegNo"));
-            html = html.Replace("{{IPDNo}}", Bills.GetDateColValue("IPDNo"));
-            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
-            html = html.Replace("{{AgeYear}}", Bills.GetDateColValue("AgeYear"));
-            html = html.Replace("{{GenderName}}", Bills.GetDateColValue("GenderName"));
-            html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionDate").ConvertToDateString("dd/MM/yyyy"));
-            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
-            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
-            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
-            html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
-            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
-            html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeDate").ConvertToDateString("dd/MM/yyyy"));
-            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate").ConvertToDateString("dd/MM/yyyy"));
-            html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
-
-            
-            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalAmt").ConvertToDouble().To2DecimalPlace());
-           
-            html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{AdvanceBalAmount}}", Bills.GetColValue("AdvanceBalAmount").ConvertToDouble().To2DecimalPlace());
-           
-            html = html.Replace("{{ConcessionAmount}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{Qty}}", Bills.GetColValue("Qty"));
-            html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
-            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
-
+          
 
 
             //foreach (DataRow dr in Bills.Rows)
@@ -139,8 +111,8 @@ namespace HIMS.Data.IPD
                     Label = dr["GroupName"].ConvertToString();
                     items.Append("<tr style=\"font-size:15px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
-                previousLabel = dr["GroupName"].ConvertToString();
 
+                previousLabel = dr["GroupName"].ConvertToString();
                 if (Label == previousLabel)
                 {
 
@@ -156,14 +128,48 @@ namespace HIMS.Data.IPD
                     j++;
                 }
 
-
+               
             }
+
+
             html = html.Replace("{{Items}}", items.ToString());
+
+            html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
+
+
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo").ToString());
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
+
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName").ToString());
+            html = html.Replace("{{AgeYear}}", Bills.GetDateColValue("AgeYear").ToString());
+            html = html.Replace("{{GenderName}}", Bills.GetDateColValue("GenderName").ToString());
+            html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName").ToString());
+            html = html.Replace("{{RefDoctorName}}", Bills.GetColValue("RefDoctorName").ToString());
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName").ToString());
+            html = html.Replace("{{BedName}}", Bills.GetColValue("BedName").ToString());
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName").ToString());
+            html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode").ToString());
+
+
+            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalAmt").ConvertToDouble().To2DecimalPlace());
+
+            html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{AdvanceBalAmount}}", Bills.GetColValue("AdvanceBalAmount").ConvertToDouble().To2DecimalPlace());
+
+            html = html.Replace("{{ConcessionAmount}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{Qty}}", Bills.GetColValue("Qty"));
+            html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+
 
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
             string finalamt = conversion(Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace().ToString());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
-
+            html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row " : "none");
 
             return html;
         }

@@ -558,7 +558,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewIpBillwardwiseReceipt(int BillNo)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPBillWardwiseReceipt.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPBilling.ViewIPBillWardwiseReceipt(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPBillWardwiseReceipt", "IPBillWardwiseReceipt" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
@@ -631,7 +631,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewIpInterimBillReceipt(int BillNo)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPInterimBill.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPInterimBill.ViewIPInterimBillReceipt(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPInterimBill", "IPInterimBill" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 

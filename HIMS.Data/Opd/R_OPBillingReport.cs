@@ -19,26 +19,26 @@ namespace HIMS.Data.Opd
         }
 
        
-        public string ViewOPDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById, int DoctorId, string htmlFilePath, string htmlHeader)
+        public string ViewOPDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
-            SqlParameter[] para = new SqlParameter[4];
+            SqlParameter[] para = new SqlParameter[3];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@AddedById", AddedById) { DbType = DbType.Int64 };
-            para[3] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("rptIP_OP_Comman_DailyCollectionReport", para);
+            
+            var Bills = GetDataTableProc("rptOPDailyCollectionReport", para);
             string html = File.ReadAllText(htmlFilePath);// templates.Rows[0]["TempDesign"].ToString();
            
             
-            html = html.Replace("{{HospitalHeader}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
             string previousLabel = "";
             double TotalCollection = 0;
-            double G_CashPayAmount = 0, G_CardPayAmount = 0, G_ChequePayAmount = 0, G_NETPayAmount = 0, G_NEFTPayAmount = 0, G_PayTMAmount = 0;
+            double G_CashPayAmount = 0, G_CardPayAmount = 0, G_ChequePayAmount = 0, G_NETPayAmount = 0, G_NEFTPayAmount = 0, G_PayTMAmount = 0, G_DiscAmount = 0, G_NETAmount = 0, G_PaidAmount = 0, G_BalAmount = 0, G_TotAmount=0;
             double T_CashPayAmount = 0, T_CardPayAmount = 0, T_ChequePayAmount = 0, T_NETPayAmount = 0, T_NEFTPayAmount = 0, T_PayTmAmount = 0;
 
             //double G_UserCashPayAmount = 0, G_UserCardPayAmount = 0, G_UserChequePayAmount = 0, G_UserNETPayAmount = 0;
@@ -46,7 +46,9 @@ namespace HIMS.Data.Opd
 
 
             double T_BillCash = 0, T_BillCard = 0, T_BillCheque = 0, T_BillNEFT = 0, T_BillPayTm = 0;
+           double T_TotAmount = 0, T_DiscAmount = 0, T_NetAmount = 0, T_BalAmount = 0,T_PaidAmount = 0;
             double T_BillReturnCash = 0, T_BillReturnCard = 0, T_BillReturnCheque = 0, T_BillReturnNEFT = 0, T_BillReturnPAYTM = 0;
+            double T_BillReturnTot = 0, T_BillReturnDisc = 0, T_BillReturnNet = 0, T_BillReturnPaid = 0, T_BillReturnBal = 0;
             double T_TotalCash = 0, T_TotalCard = 0, T_TotalCheque = 0, T_TotalNEFT = 0, T_TotalPAYTM = 0;
 
             foreach (DataRow dr in Bills.Rows)
@@ -56,7 +58,7 @@ namespace HIMS.Data.Opd
                 {
                     String Label;
                     Label = dr["Type"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"9\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"10\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
 
                 if (previousLabel != "" && previousLabel != dr["Type"].ConvertToString())
@@ -64,116 +66,114 @@ namespace HIMS.Data.Opd
                     j = 1;
 
 
-                    items.Append(G_NETPayAmount.To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:red;background-color:#fdfed3; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='6' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Type Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                      // .Append(G_TotAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                      //.Append(G_DiscAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(G_NETAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         //.Append(G_PaidAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        //.Append(G_BalAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(G_CashPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;border-bottom:1px solid #000;border-left:1px solid #000;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_NEFTPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;border-bottom:1px solid #000;border-left:1px solid #000;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_NEFTPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;border-bottom:1px solid #000;border-left:1px solid #000;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append("</td></tr>");
-                    G_CashPayAmount = 0; G_CardPayAmount = 0; G_ChequePayAmount = 0; G_NEFTPayAmount = 0; G_PayTMAmount = 0;
+                        .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td></tr>");
+                    G_TotAmount = 0; G_DiscAmount = 0; G_NETAmount = 0; G_PaidAmount = 0; G_BalAmount = 0; G_CashPayAmount = 0; G_CardPayAmount = 0; G_ChequePayAmount = 0; G_NEFTPayAmount = 0; G_PayTMAmount = 0;
 
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["Type"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:blue\"><td colspan=\"10\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["Type"].ConvertToString()).Append("</td></tr>");
                 }
 
-
+                G_TotAmount += dr["TotalAmt"].ConvertToDouble();
+                G_DiscAmount += dr["ConcessionAmt"].ConvertToDouble();
+                G_NETAmount += dr["NetPayableAmt"].ConvertToDouble();
+                G_PaidAmount += dr["PaidAmount"].ConvertToDouble();
+                G_BalAmount += dr["BalanceAmt"].ConvertToDouble();
                 G_NETPayAmount += dr["NetPayableAmt"].ConvertToDouble();
 
                 G_CashPayAmount += dr["CashPayAmount"].ConvertToDouble();
                 G_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
                 G_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
-                G_NEFTPayAmount += dr["NEFTPayAmount"].ConvertToDouble();
-                G_PayTMAmount += dr["PayTMAmount"].ConvertToDouble();
+              
 
-
-                T_CashPayAmount += dr["CashPayAmount"].ConvertToDouble();
-                T_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
-                T_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
-                T_NETPayAmount += dr["NetPayableAmt"].ConvertToDouble();
-                T_NEFTPayAmount += dr["NEFTPayAmount"].ConvertToDouble();
-                T_PayTmAmount += dr["PayTMAmount"].ConvertToDouble();
+                
+                //T_NEFTPayAmount += dr["NEFTPayAmount"].ConvertToDouble();
+                //T_PayTmAmount += dr["PayTMAmount"].ConvertToDouble();
 
                 previousLabel = dr["Type"].ConvertToString();
 
-                items.Append("<tr style=\"font-size:15px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border-bottom: 1px;\"><td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["PaymentDate"].ConvertToDateString("dd/MM/yy")).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;vertical-align:middle;text-align: center;margin-left: 5px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["NetPayableAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["CashPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;vertical-align:middle;text-align: center;margin-left: 5px;\">").Append(dr["ChequePayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;text-align:center;vertical-align:middle;text-align:center;padding:3px;height:10px;text-align:center\">").Append(dr["CardPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["AdvanceUsedAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
-
-                previousLabel = dr["Type"].ConvertToString();
-
-                items.Append("<tr style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(j).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PBillNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PaymentDate"].ConvertToDateString("dd/MM/yy")).Append("</td>");
+                items.Append("<tr style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(j).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Number"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PaymentTime"].ConvertToDateString("dd/MM/yy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+                
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ReceiptNo"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ReceiptNo"].ConvertToString()).Append("</td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["TotalAmt"].ConvertToString()).Append("</td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ConcessionAmt"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["NetPayableAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CashPayAmount"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CardPayAmount"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ChequePayAmount"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["NEFTPayAmount"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PayTMAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">").Append(dr["AddedByName"].ConvertToString()).Append("</td></tr>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PaidAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["BalanceAmt"].ConvertToDouble()).Append("</td>");
+
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CashPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ChequePayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CardPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
 
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
 
-                    //  items.Append("<tr style='border:1px solid black;color:red;background-color:#fdfed3'><td colspan='4' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"></td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //.Append("Total NetPay").Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
-                    //.Append("Total Cash").Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
-                    //.Append("Total Cheque").Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
-                    //.Append("Total Card").Append("</td></tr>");
 
+                    items.Append("<tr style='border:1px solid black;color:red;background-color:#fdfed3; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='6' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Type Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         // .Append(G_TotAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         //.Append(G_DiscAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         .Append(G_NETAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         //.Append(G_PaidAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         //.Append(G_BalAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         .Append(G_CashPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td></tr>");
 
-
-                    items.Append("<tr style='border:1px solid black; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color:#241571;background-color:#63C5DA''><td colspan='6' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_NETPayAmount.To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_CashPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;border-bottom:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_NEFTPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;border-bottom:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                       .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td>")
-                        .Append("<td style=\"border-right:1px solid #000;border-bottom:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\"></td></tr>");
-
-                    //items.Append("<tr style='border:1px solid black;color:blue;font-weight:bold'><td colspan='4' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Sales + Cash GRN - Sales Return</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //    .Append(GetSum(Bills, "NetPayAmount").To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //    .Append(GetSum(Bills, "CashPayAmount").To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //    .Append(GetSum(Bills, "ChequePayAmount").To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //    .Append(GetSum(Bills, "CardPayAmount").To2DecimalPlace()).Append("</td></tr>");
                 }
             }
 
-
+          
             foreach (DataRow dr in Bills.Rows)
             {
 
                 i++; j++;
                 if (dr["Type"].ConvertToString() == "OPD Bill")
                 {
+                    T_TotAmount += dr["TotalAmt"].ConvertToDouble();
+                    T_DiscAmount += dr["ConcessionAmt"].ConvertToDouble();
+                    T_NetAmount += dr["NetPayableAmt"].ConvertToDouble();
+                    T_BalAmount += dr["BalanceAmt"].ConvertToDouble();
+                    T_PaidAmount += dr["PaidAmount"].ConvertToDouble();
 
+                    T_CashPayAmount += dr["CashPayAmount"].ConvertToDouble();
+                    T_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
+                    T_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
+                    //T_NETPayAmount += dr["NetPayableAmt"].ConvertToDouble();
                     T_BillCash += dr["CashPayAmount"].ConvertToDouble();
                     T_BillCard += dr["CardPayAmount"].ConvertToDouble();
                     T_BillCheque += dr["ChequePayAmount"].ConvertToDouble();
-                    T_BillNEFT += dr["NEFTPayAmount"].ConvertToDouble();
-                    T_BillPayTm += dr["PayTMAmount"].ConvertToDouble();
+                    //T_BillNEFT += dr["NEFTPayAmount"].ConvertToDouble();
+                    //T_BillPayTm += dr["PayTMAmount"].ConvertToDouble();
 
 
                 }
-
+              
                 if (dr["Type"].ConvertToString() == "OP Refund of Bill")
                 {
 
+                    T_BillReturnTot += dr["TotalAmt"].ConvertToDouble();
+                    T_BillReturnDisc += dr["ConcessionAmt"].ConvertToDouble();
+                    T_BillReturnNet += dr["NetPayableAmt"].ConvertToDouble();
+                    T_BillReturnPaid += dr["PaidAmount"].ConvertToDouble();
+                    T_BillReturnBal += dr["BalanceAmt"].ConvertToDouble();
                     T_BillReturnCash += dr["CashPayAmount"].ConvertToDouble();
                     T_BillReturnCard += dr["CardPayAmount"].ConvertToDouble();
                     T_BillReturnCheque += dr["ChequePayAmount"].ConvertToDouble();
-                    T_BillReturnNEFT += dr["NEFTPayAmount"].ConvertToDouble();
-                    T_BillReturnPAYTM += dr["PayTMAmount"].ConvertToDouble();
+                    //T_BillReturnNEFT += dr["NEFTPayAmount"].ConvertToDouble();
+                    //T_BillReturnPAYTM += dr["PayTMAmount"].ConvertToDouble();
 
 
                 }
@@ -182,6 +182,11 @@ namespace HIMS.Data.Opd
             }
 
 
+            //T_FinalTotal = T_TotAmount.ConvertToDouble() - T_BillReturnTot.ConvertToDouble();
+            //T_FinalDisc= T_TotAmount.ConvertToDouble() - T_BillReturnTot.ConvertToDouble();
+            //T_FinalTotal = T_TotAmount.ConvertToDouble() - T_BillReturnTot.ConvertToDouble();
+            //T_FinalTotal = T_TotAmount.ConvertToDouble() - T_BillReturnTot.ConvertToDouble();
+            //T_FinalTotal = T_TotAmount.ConvertToDouble() - T_BillReturnTot.ConvertToDouble();
 
             T_TotalCash = T_BillCash.ConvertToDouble() - T_BillReturnCash.ConvertToDouble();
             T_TotalCard = T_BillCard.ConvertToDouble() - T_BillReturnCard.ConvertToDouble();
@@ -225,6 +230,8 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{T_TotalCheque}}", T_TotalCheque.To2DecimalPlace());
             html = html.Replace("{{T_TotalNEFT}}", T_TotalNEFT.To2DecimalPlace());
             html = html.Replace("{{T_TotalPAYTM}}", T_TotalPAYTM.To2DecimalPlace());
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName").ToString());
+            
 
             return html;
         }
