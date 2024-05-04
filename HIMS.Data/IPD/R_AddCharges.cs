@@ -35,7 +35,7 @@ namespace HIMS.Data.IPD
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
-            var dic = addChargesParams.ToDictionary();
+            var dic = addChargesParams.AddCharges.ToDictionary();
             dic.Remove("ChargeID");
             var ChargesId = ExecNonQueryProcWithOutSaveChanges("insert_IPAddCharges_1", dic, outputId);
 
