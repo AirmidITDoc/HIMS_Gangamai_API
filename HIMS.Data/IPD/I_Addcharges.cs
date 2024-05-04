@@ -8,5 +8,6 @@ namespace HIMS.Data.IPD
     public interface I_Addcharges
     {
         bool Save(AddChargesParams addChargesParams);
+        bool delete(AddChargesParams addChargesParams);
     }
 }

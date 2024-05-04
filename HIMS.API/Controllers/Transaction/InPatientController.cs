@@ -272,6 +272,15 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(RPAP);
         }
 
+        [HttpPost("DeleteIPCharges")]
+        public IActionResult DeleteIPCharges(AddChargesParams addChargesParams)
+        {
+            var RPAP = _Addcharges.delete(addChargesParams);
+            return Ok(RPAP);
+        }
+
+
+
         [HttpPost("InsertIPDischarge")]
 
         public String InsertIPDischarge(IPDischargeParams IPDischargeParams)

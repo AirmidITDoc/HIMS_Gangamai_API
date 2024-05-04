@@ -15,6 +15,16 @@ namespace HIMS.Data.IPD
             //transaction and connection is open when you inject unitofwork
         }
 
+        public bool delete(AddChargesParams AddChargesParams)
+        {
+            // throw new NotImplementedException();
+            var disc1 = AddChargesParams.DeleteCharges.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("Delete_IPAddcharges", disc1);
+            _unitofWork.SaveChanges();
+
+            return true;
+        }
+
         public bool Save(AddChargesParams addChargesParams)
         {
             // add AddCharges
@@ -30,16 +40,16 @@ namespace HIMS.Data.IPD
             var ChargesId = ExecNonQueryProcWithOutSaveChanges("insert_IPAddCharges_1", dic, outputId);
 
 
-           if (addChargesParams.IsPathology)
+           if (addChargesParams.AddCharges.IsPathology)
             {
                 Dictionary<string, Object> PathParams = new Dictionary<string, object>();
 
-                PathParams.Add("PathDate", addChargesParams.ChargesDate);
-                PathParams.Add("PathTime", addChargesParams.ChargesDate);
-                PathParams.Add("OPD_IPD_Type", addChargesParams.OPD_IPD_Type);
-                PathParams.Add("OPD_IPD_Id", addChargesParams.OPD_IPD_Id);
-                PathParams.Add("PathTestID", addChargesParams.ServiceId);
-                PathParams.Add("AddedBy", addChargesParams.AddedBy);
+                PathParams.Add("PathDate", addChargesParams.AddCharges.ChargesDate);
+                PathParams.Add("PathTime", addChargesParams.AddCharges.ChargesDate);
+                PathParams.Add("OPD_IPD_Type", addChargesParams.AddCharges.OPD_IPD_Type);
+                PathParams.Add("OPD_IPD_Id", addChargesParams.AddCharges.OPD_IPD_Id);
+                PathParams.Add("PathTestID", addChargesParams.AddCharges.ServiceId);
+                PathParams.Add("AddedBy", addChargesParams.AddCharges.AddedBy);
                 PathParams.Add("ChargeID", ChargesId);
                 PathParams.Add("IsCompleted", 0);
                 PathParams.Add("IsPrinted", 0);
