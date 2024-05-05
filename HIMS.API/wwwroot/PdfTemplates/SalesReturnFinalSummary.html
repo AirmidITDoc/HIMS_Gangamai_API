@@ -1,145 +1,97 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <style>
-        .watermark {
-            position: absolute;
-            top: 30%;
-            left: 30%;
-            opacity: .1;
-            z-index: 99;
-            color: #000;
-            font-size: 70px;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            white-space: nowrap;
-            pointer-events: none
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-    <div class="bill-template-wrapper" style="font-size: 30.25%;">
+    <div class="main-content-wrapper">
+        <div class="invoice-box" style="max-width: 1000px; margin: 0 auto; font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+            <table style="width: 100%;line-height: inherit;text-align: left;">
+                {{HeaderName}}
+                <tr class="title-date-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="font-size: 18px">
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>  SALES RETURN SUMMARY</b> </td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="bill-info-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <i style="font-size: 16px;"> From Date : {{FromDate}} -- To Date : {{ToDate}} </i>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+                <tr class="bill-table-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <!-- <thead style="font-size: 15px; text-align: center;">-->
+                            <tr>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">Sr.No</td>
+
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">Date </td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">TotalAmount</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">NetAmount</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">CGSTAmount</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">SCGSTAmount</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">IGSTAmount</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">BalanceAmount</td>
+
+                            </tr>
+                            <!-- </thead>-->
+                            {{Items}}
+                            <tr style="border: 1px solid black; background-color: rgb(127, 174, 255); color: red;">
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">
+                                </td>
+
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">
+                                    Total
+                                </td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">
+                                    {{TotalAmount}}
+                                </td>
+
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">
+                                    {{TotalNETAmount}}
+                                </td>
+
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">
+                                    {{TotalCGST}}
+                                </td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">
+                                    {{TotalSGST}}
+                                </td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">
+                                    {{TotalIGST}}
+                                </td>
+
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">
+                                    {{TotalBalancepay}}
+                                </td>
 
 
-        {{HeaderName}}
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+              
+              
 
-        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
-
-            <div style="display:flex; align-items: center;">
-                <div style="display:block;width:100%; align-items: center;">
-                    <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px;">
-                      SALES RETURN SUMMARY
-                    </div>
-                    <span style="font-size: 9px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
-                </div>
-            </div>
-
+            </table>
         </div>
-
-        <table class="table" style="width:100%;border-collapse:collapse">
-            <tbody>
-
-                <tr style="font-size:10px;background-color: rgb(127, 174, 255);">
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        SR.NO
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Date
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        TotalAmount
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        NetAmount
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        CGSTAmount
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        SCGSTAmount
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        IGSTAmount
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        BalanceAmount
-                    </td>
-
-                </tr>
-
-                {{Items}}
-                <tr style="border: 1px solid black; color: red;">
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Total Amount
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        NETAmount
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        CGST Amount
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        SGST Amount
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        IGST Amount
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Bal.pay Amount
-                    </td>
-
-
-                </tr>
-                <tr style="border: 1px solid black; background-color: rgb(127, 174, 255); color: red;">
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Total
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        {{TotalAmount}}
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        {{TotalNETAmount}}
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        {{TotalCGST}}
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        {{TotalSGST}}
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        {{TotalIGST}}
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        {{TotalBalancepay}}
-                    </td>
-
-
-                </tr>
-
-            </tbody>
-        </table>
-        <hr>
-
     </div>
-
 </body>
 
 </html>

@@ -57,19 +57,20 @@ namespace HIMS.Data.IPD
             para[0] = new SqlParameter("@AdmissionID", AdmissionID) { DbType = DbType.Int64 };
 
             string html = File.ReadAllText(htmlFilePath);
-            
+
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
-            int i = 0,j=0;
+            int i = 0, j = 0;
             double T_NetAmount = 0;
             string previousLabel = "";
             String Label = "";
-
+            String finalLabel = "";
+            int rowlength = 0;
 
             var Bills = GetDataTableProc("rptIPDDraftBillPrintSummary", para);
+            rowlength = Bills.Rows.Count;
 
-          
 
 
             //foreach (DataRow dr in Bills.Rows)
@@ -105,7 +106,15 @@ namespace HIMS.Data.IPD
             foreach (DataRow dr in Bills.Rows)
             {
                 i++;
-                if (i == 1 || Label != previousLabel)
+                if (i == 1)
+                 {
+                    j = 1;
+                    Label = dr["GroupName"].ConvertToString();
+                    items.Append("<tr style=\"font-size:15px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+
+
+                if  (( i !=1 && Label != previousLabel))
                 {
                     j = 1;
                     Label = dr["GroupName"].ConvertToString();
@@ -113,7 +122,7 @@ namespace HIMS.Data.IPD
                 }
 
                 previousLabel = dr["GroupName"].ConvertToString();
-                if (Label == previousLabel)
+                if (Label == previousLabel ||  finalLabel !=null)
                 {
 
                     i++;
@@ -128,7 +137,11 @@ namespace HIMS.Data.IPD
                     j++;
                 }
 
-               
+                if (i == rowlength)
+                {
+                    finalLabel = dr["GroupName"].ConvertToString();
+                }
+
             }
 
 
