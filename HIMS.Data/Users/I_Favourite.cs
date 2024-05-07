@@ -9,7 +9,7 @@ namespace HIMS.Data.Users
 {
     public interface I_Favourite
     {
-        public string Insert(JObject indentParams);
+        public string Insert(int UserId,int MenuId);
         List<FavouriteModel> GetFavMenus(int RoleId, int UserId);
     }
 }

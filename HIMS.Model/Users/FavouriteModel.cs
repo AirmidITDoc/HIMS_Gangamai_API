@@ -13,4 +13,10 @@ namespace HIMS.Model.Users
         public string Icon { get; set; }
         public bool IsFavourite { get; set; }
     }
+
+    public class FavouriteDto
+    {
+        public int UserId { get; set; }
+        public int MenuId { get; set; }
+    }
 }

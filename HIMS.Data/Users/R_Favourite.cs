@@ -18,9 +18,13 @@ namespace HIMS.Data.Users
         {
 
         }
-        public string Insert(JObject indentParams)
+        public string Insert(int UserId, int MenuId)
         {
-            var dic = indentParams.ToDictionary();
+            Dictionary<string, object> dic = new Dictionary<string, object>
+            {
+                { "UserId", UserId },
+                { "MenuId", MenuId }
+            };
             ExecScalarProc("IUD_FavouriteMenu", dic);
             return "Ok";
         }
@@ -29,7 +33,7 @@ namespace HIMS.Data.Users
             SqlParameter[] para = new SqlParameter[2];
             para[0] = new SqlParameter("@RoleId", RoleId);
             para[1] = new SqlParameter("@UserId", UserId);
-            return GetList<FavouriteModel>(@"select F.UserId,M.LinkName,M.Icon,M.LinkAction,P.MenuId,CONVERT(BIT,CASE WHEN F.FavouriteId>0 THEN 1 ELSE 0 END) IsFavourite from MenuMaster M
+            return GetList<FavouriteModel>(@"select @UserId UserId,M.LinkName,M.Icon,M.LinkAction,P.MenuId,CONVERT(BIT,CASE WHEN F.FavouriteId>0 THEN 1 ELSE 0 END) IsFavourite from MenuMaster M
 INNER JOIN PermissionMaster P ON M.Id=P.MenuId AND P.IsView=1 AND P.RoleId=@RoleId
 LEFT JOIN T_FavouriteUserList F ON M.Id=F.MenuId AND F.UserId=@UserId", para);
         }

@@ -25,9 +25,11 @@ namespace HIMS.API.Controllers.Users
         }
         [HttpPost]
         [Route("save")]
-        public IActionResult Save(JObject keyValuePairs)
+        public IActionResult Save(FavouriteDto obj)
         {
-            i_Favourite.Insert(keyValuePairs);
+            if (obj.UserId <= 0 || obj.MenuId <= 0)
+                return BadRequest("Invalid params.");
+            i_Favourite.Insert(obj.UserId,obj.MenuId);
             return Ok();
         }
     }
