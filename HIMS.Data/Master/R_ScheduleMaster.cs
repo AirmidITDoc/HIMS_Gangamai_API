@@ -26,7 +26,7 @@ namespace HIMS.Data.Master
 
         public string Insert(ScheduleMaster obj)
         {
-            SqlParameter[] para = new SqlParameter[9];
+            SqlParameter[] para = new SqlParameter[10];
             para[0] = new SqlParameter("@Custom", obj.Custom) { Size = -1 };
             para[1] = new SqlParameter("@Days", obj.Days) { Size = 250 };
             para[2] = new SqlParameter("@Id", obj.Id);
@@ -39,6 +39,7 @@ namespace HIMS.Data.Master
             para[6] = new SqlParameter("@Hours", obj.Hours) { Size = -1 };
             para[7] = new SqlParameter("@ScheduleType", obj.ScheduleType);
             para[8] = new SqlParameter("@StartDate", obj.StartDate);
+            para[9] = new SqlParameter("@ScheduleName", obj.ScheduleName);
             ExecuteObjectBySP("IUD_Scheduler", para);
             return "OK";
         }

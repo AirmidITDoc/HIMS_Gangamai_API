@@ -8,6 +8,7 @@ namespace HIMS.Model.Master
     public class ScheduleMaster
     {
         public int Id { get; set; }
+        public string ScheduleName { get; set; }
         public SchedulerTypes ScheduleType { get; set; }
         public string Hours { get; set; }
         public string Days { get; set; }
