@@ -33,7 +33,7 @@ namespace HIMS.Data.IPD
 
             IPDischargeParams.UpdateAdmission.AdmissionID = Convert.ToInt32(IPDischargeParams.InsertIPDDischarg.AdmissionId);
             var disc2 = IPDischargeParams.UpdateAdmission.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_Admission_3", disc2);
+            ExecNonQueryProcWithOutSaveChanges("m_update_Admission_3", disc2);
 
             var vDischargeBedRelease = IPDischargeParams.DischargeBedRelease.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_Update_DischargeBedRelease", vDischargeBedRelease);
