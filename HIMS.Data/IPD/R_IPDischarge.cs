@@ -20,7 +20,6 @@ namespace HIMS.Data.IPD
 
          public String Insert(IPDischargeParams IPDischargeParams)
         {
-            //throw new NotImplementedException();
             var outputId = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
@@ -30,23 +29,15 @@ namespace HIMS.Data.IPD
             };
             var dic = IPDischargeParams.InsertIPDDischarg.ToDictionary();
             dic.Remove("DischargeId");
-            var DischargeId = ExecNonQueryProcWithOutSaveChanges("insert_Discharge_1", dic, outputId);
-
+            var DischargeId = ExecNonQueryProcWithOutSaveChanges("m_insert_Discharge_1", dic, outputId);
 
             IPDischargeParams.UpdateAdmission.AdmissionID = Convert.ToInt32(IPDischargeParams.InsertIPDDischarg.AdmissionId);
             var disc2 = IPDischargeParams.UpdateAdmission.ToDictionary();
-           ExecNonQueryProcWithOutSaveChanges("update_Admission_3", disc2);
+            ExecNonQueryProcWithOutSaveChanges("m_update_Admission_3", disc2);
 
-           // IPDischargeParams.UpdateDischargeSummary.DischargeId = Convert.ToInt32(DischargeId);
-         //   IPDischargeParams.UpdateDischargeSummary.AdmissionId = IPDischargeParams.UpdateAdmission.AdmissionId;
+            var vDischargeBedRelease = IPDischargeParams.DischargeBedRelease.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_DischargeBedRelease", vDischargeBedRelease);
 
-          //  var disc3 = IPDischargeParams.UpdateDischargeSummary.ToDictionary();
-           // ExecNonQueryProcWithOutSaveChanges("update_DischargeSummary_1", disc3);
-
-
-           // var disc4 = IPDischargeParams.InsertIPSMSTemplete.ToDictionary();
-            //ExecNonQueryProcWithOutSaveChanges("Insert_IPSMSTemplete_1", disc4);
-            
             _unitofWork.SaveChanges();
             return DischargeId;
 
@@ -58,7 +49,6 @@ namespace HIMS.Data.IPD
 
             var disc4 = IPDischargeParams.UpdateIPDDischarg.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("update_Discharge_1", disc4);
-
 
             //IPDischargeParams.UpdateAdmission.AdmissionID = Convert.ToInt32(IPDischargeParams.UpdateIPDDischarg.AdmissionId);
             var disc2 = IPDischargeParams.UpdateAdmission.ToDictionary();
