@@ -319,6 +319,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row " : "none");
             string previousLabel = "";
             String Label ="";
+            String FinalLabel = "";
 
 
             foreach (DataRow dr in Bills.Rows)
@@ -348,7 +349,30 @@ namespace HIMS.Data.IPD
                     j++;
                 }
 
-               
+
+
+
+                if (i==Bills.Rows.Count)
+                {
+                    FinalLabel = Bills.Rows[i]["GroupName"].ConvertToString();
+                }
+
+                if (previousLabel == FinalLabel)
+                {
+
+                    i++;
+                    items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
+
+                    T_NetAmount += dr["ChargesTotalAmt"].ConvertToDouble();
+                    //items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["Type"].ConvertToString()).Append("</td></tr>");
+                    j++;
+                }
+
             }
         html = html.Replace("{{Items}}", items.ToString());
       

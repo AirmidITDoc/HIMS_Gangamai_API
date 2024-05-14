@@ -71,58 +71,19 @@ namespace HIMS.Data.IPD
             var Bills = GetDataTableProc("rptIPDDraftBillPrintSummary", para);
             rowlength = Bills.Rows.Count;
 
-
-
-            //foreach (DataRow dr in Bills.Rows)
-            //{
-            //    i++;
-            //    if (i == 1 || Label != previousLabel)
-            //    {
-            //        j = 1;
-            //        Label = dr["GroupName"].ConvertToString();
-            //        items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
-            //    }
-            //    previousLabel = dr["GroupName"].ConvertToString();
-
-            //    if (Label == previousLabel)
-            //    {
-
-            //        i++;
-            //        items.Append("<tr><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
-            //        items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
-            //        items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
-            //        items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
-            //        items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
-            //        items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["TotalAmt"].ConvertToDouble()).Append("</td></tr>");
-
-            //        T_NetAmount += dr["TotalAmt"].ConvertToDouble();
-            //        j++;
-            //    }
-
-
-            //}
-
-
+                 
             foreach (DataRow dr in Bills.Rows)
             {
                 i++;
-                if (i == 1)
-                 {
-                    j = 1;
-                    Label = dr["GroupName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:15px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
-                }
-
-
-                if  (( i !=1 && Label != previousLabel))
+                if (i == 1 || Label != previousLabel)
                 {
                     j = 1;
                     Label = dr["GroupName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:15px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
-
                 previousLabel = dr["GroupName"].ConvertToString();
-                if (Label == previousLabel ||  finalLabel !=null)
+
+                if (Label == previousLabel)
                 {
 
                     i++;
@@ -134,16 +95,12 @@ namespace HIMS.Data.IPD
                     items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["TotalAmt"].ConvertToDouble()).Append("</td></tr>");
 
                     T_NetAmount += dr["TotalAmt"].ConvertToDouble();
+                    //items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["Type"].ConvertToString()).Append("</td></tr>");
                     j++;
                 }
 
-                if (i == rowlength)
-                {
-                    finalLabel = dr["GroupName"].ConvertToString();
-                }
 
             }
-
 
             html = html.Replace("{{Items}}", items.ToString());
 
@@ -167,7 +124,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode").ToString());
 
 
-            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalAmt").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmt").ConvertToDouble().To2DecimalPlace());
 
             html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{AdvanceBalAmount}}", Bills.GetColValue("AdvanceBalAmount").ConvertToDouble().To2DecimalPlace());
@@ -182,7 +139,9 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
             string finalamt = conversion(Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace().ToString());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
-            html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row " : "none");
+            html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row" : "none");
+
+
 
             return html;
         }

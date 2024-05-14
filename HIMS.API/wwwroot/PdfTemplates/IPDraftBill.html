@@ -73,7 +73,7 @@
 
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>Ref.Doc Name.:</span>
+                                    <span>Consultant.Doc Name.:</span>
                                     <span>{{RefDoctorName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
@@ -106,35 +106,7 @@
                             <tbody style="font-size: 14px;">
                                 {{Items}}
 
-                                <tr style="margin-top: 12px;">
-                                    <td colspan="6"
-                                        style=" border-bottom: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                        Total
-                                        Amount in words :- {{finalamt}}
-                                    </td>
-                                </tr>
-                            
-
-                                <tr style="margin-top: 12px;">
-                                    <td colspan="6">
-                                        <table style="width: 100%; border-collapse: collapse;">
-                                            <tr>
-
-                                                <td style="border-bottom:1px solid #eee; padding: 6px;">Total Bill Amount</td>
-                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{TotalBillAmount}}</td>
-                                            </tr>
-                                            <tr style="display:{{chkdiscflag}}">
-                                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Concession Amount</td>
-                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{ConcessionAmount}}</td>
-                                            </tr>
-                                         
-                                            <tr>
-                                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Net Amount</td>
-                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{T_NetAmount}}</td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
+                         
                             </tbody>
                             </thead>
                         </table>
@@ -148,34 +120,36 @@
                                 <td>
                                     <table style="text-align: center; border-collapse: collapse; width: 100%;">
 
-                                        <tbody style="font-size: 14px;">
+                                      
                                             <tr>
-                                                <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                                    Total Bill Amount
+                                                <td colspan="6" style="border-bottom: 1px solid #eee; padding: 6px;">
+                                                    Amount in words :-
                                                 </td>
-                                                <!-- <div></div> -->
                                                 <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                    {{TotalBillAmount}}
-                                                </td>
-                                            </tr>
-                                            <tr style="display:{{chkcommflag}}">
-                                                <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                                    Concession Ampunt
-                                                </td> <!-- <div></div> -->
-                                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                    {{ConcessionAmount}}
+                                                    {{finalamt}}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                                    Net PayableAmount
-                                                </td> <!-- <div></div> -->
-                                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                    {{T_NetAmount}}
+                                                <td colspan="6" style="border-bottom: 1px solid #eee; padding: 6px;">
+                                                    Remark :-
                                                 </td>
+                                            </tr>
+                                         
+
+                                            <tr>
+                                                <td  colspan="6" style="border-bottom: 1px solid #eee; padding: 6px;">Total Bill Amount </td>
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{TotalBillAmount}}</td>
+                                            </tr>
+                                            <tr style="display:{{chkdiscflag}}">
+                                                <td  colspan="6"style="border-bottom: 1px solid #eee; padding: 6px;">Disc Amount</td>
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{ConcessionAmount}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  colspan="6" style="border-bottom: 1px solid #eee; padding: 6px;">Net Amount</td>
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{T_NetAmount}}</td>
                                             </tr>
 
-                                        </tbody>
+                                        
                                     </table>
                                 </td>
                             </tr>
