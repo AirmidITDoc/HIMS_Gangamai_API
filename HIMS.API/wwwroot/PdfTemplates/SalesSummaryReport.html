@@ -37,72 +37,64 @@
                 <tr class="bill-table-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
-                            <!-- <thead style="font-size: 15px; text-align: center;">-->
-                            <tr>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                           
+                <!-- <thead style="font-size: 15px; text-align: center;">-->
+                <tr style="font-size:10px;background-color: rgb(127, 174, 255);">
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
 
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sales No </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Patient Name</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Mobile No</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Address</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Net Amt</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Balance Amt</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> User Name</td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sales No </td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Date</td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Total Amt</td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Disc Amt</td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Net Amt</td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">CGST Amt</td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> SGST Amt</td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> IGST Amt</td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Balance Amt</td>
+                </tr>
+                <!-- </thead>-->
+                {{Items}}
+                
+                        <tr style="border: 1px solid black; background-color: palevioletred">
 
-                            </tr>
-                            <!-- </thead>-->
-                            {{Items}}
-                            <tr style="border: 1px solid black; background-color: #4083d5; ">
 
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    Total NET Amt
-                                </td>
+                        
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                            </td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                            </td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                Total
+                            </td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                {{TotalAmount}}
+                            </td>
 
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    Total Balance pay
-                                </td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                {{TotalDiscAmount}}
+                            </td>
 
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                </td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                {{TotalNETAmount}}
+                            </td>
 
-                            </tr>
-                            <tr style="border: 1px solid black; background-color: palevioletred">
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                {{TotalCGST}}
+                            </td>
 
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    Total
-                                </td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                {{TotalSGST}}
+                            </td>
 
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    {{TotalNETAmount}}
-                                </td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                {{TotalIGST}}
+                            </td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                {{TotalBalancepay}}
+                            </td>
 
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    {{TotalBalancepay}}
-                                </td>
-
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                </td>
-
-                            </tr>
-                        </table>
+                        </tr>
+            </table>
                     </td>
                 </tr>
 
