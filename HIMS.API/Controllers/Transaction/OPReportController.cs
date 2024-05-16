@@ -190,17 +190,7 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
         }
-        [HttpGet("view-DoctorWiseOpdCountSummary")]
-        public IActionResult ViewDoctorWiseOpdCountSummary(DateTime FromDate, DateTime ToDate)
-        {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPReport_DoctorWiseOpdCountSummary.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _OPbilling.ViewDoctorWiseOpdCountSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorWiseOpdCountSummary", "DoctorWiseOpdCountSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
-
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-
-        }
+       
     }
    
 

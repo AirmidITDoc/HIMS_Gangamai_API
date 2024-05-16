@@ -516,18 +516,21 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
+             double   T_Count=0;
 
             foreach (DataRow dr in Bills.Rows)
             {
-                i++;
+                i++;j++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td>");
-              
-                
-               
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Lbl"].ConvertToString()).Append("</td></tr>");
+
+                T_Count += dr["Lbl"].ConvertToDouble(); 
             }
 
+
+            html = html.Replace("{{T_Count}}", T_Count.ToString());
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));

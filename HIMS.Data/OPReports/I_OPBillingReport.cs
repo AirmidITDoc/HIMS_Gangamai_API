@@ -22,7 +22,7 @@ namespace HIMS.Data.OPReports
         string ViewDayWiseOpdCountDetails(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewDayWiseOpdCountSummry(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewDepartmentWiseOpdCountSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-        string (DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader); (DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+       
 
 
     }
