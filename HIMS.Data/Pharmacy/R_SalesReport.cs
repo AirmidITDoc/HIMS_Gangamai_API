@@ -467,19 +467,19 @@ namespace HIMS.Data.Pharmacy
             {
                 i++;
 
-                items.Append("<tr><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["SalesId"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["Date"].ConvertToDateString("dd/MM/yy")).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;vertical-align:middle;text-align: center;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;vertical-align:middle;text-align: left;margin-left: 5px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;\">").Append(dr["TotalAmount"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["VatAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["DiscAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["BalanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["CGSTAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["SGSTAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["IGSTAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+                items.Append("<tr style=\"font - family: Calibri, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans - serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["SalesId"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["TotalAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["VatAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["DiscAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["BalanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CGSTAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["SGSTAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["IGSTAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
 
                 T_TotalAmount += dr["TotalAmount"].ConvertToDouble();
@@ -496,7 +496,7 @@ namespace HIMS.Data.Pharmacy
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{TotalAmount}}", T_TotalAmount.To2DecimalPlace());
             html = html.Replace("{{TotalVatAmount}}", T_TotalVatAmount.To2DecimalPlace());
             html = html.Replace("{{TotalDiscAmount}}", T_TotalDiscAmount.To2DecimalPlace());
@@ -602,7 +602,7 @@ namespace HIMS.Data.Pharmacy
                     // .Append("Total BalAmt").Append("</td></tr>");
 
 
-                    items.Append("<tr style='border:1px solid black;color:red;background-color:#fdfed3;font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='4' style=\"border-left:1px solid #000;border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:red;background-color:#fdfed3;font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='4' style=\"border-left:1px solid #000;border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle;margin-center:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                         .Append(G_CashPayAmount.To2DecimalPlace()).Append(" </td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
@@ -664,19 +664,19 @@ namespace HIMS.Data.Pharmacy
                 {
 
 
-                    items.Append("<tr style='font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border:1px solid black;color:red;background-color:#fdfed3'><td colspan='4' style=\"border: 1px solid #d4c3c3; padding: 6px;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    .Append(G_CashPayAmount.To2DecimalPlace()).Append(" </td><td style=\"border: 1px solid #d4c3c3; padding: 6px;\">")
-                    .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; padding: 6px;\">")
-                    .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; padding: 6px;\">")
-                    .Append(G_NEFTPayAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; padding: 6px;\">")
-                    .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; padding: 6px;\">")
-                    .Append(G_AdvanceUsedAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; padding: 6px;\">")
+                    items.Append("<tr style='font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border:1px solid black;color:red;background-color:#fdfed3'><td colspan='4' style=\"border: 1px solid #d4c3c3;text-align:center;padding: 6px;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    .Append(G_CashPayAmount.To2DecimalPlace()).Append(" </td><td style=\"border: 1px solid #d4c3c3; text-align: center;padding: 6px;\">")
+                    .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3;text-align: center; padding: 6px;\">")
+                    .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3;text-align: center; padding: 6px;\">")
+                    .Append(G_NEFTPayAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3;text-align: center; padding: 6px;\">")
+                    .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3;text-align: center; padding: 6px;\">")
+                    .Append(G_AdvanceUsedAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3;text-align: center; padding: 6px;\">")
                     .Append(G_BalanceAmount.To2DecimalPlace()).Append("</td></tr>");
                     G_CashPayAmount = 0; G_CardPayAmount = 0; G_ChequePayAmount = 0; G_NEFTPayAmount = 0; G_PayTMAmount = 0; G_AdvanceUsedAmount = 0; G_BalanceAmount = 0;
 
 
 
-                    items.Append("<tr style='border:1px solid black;color:blue;font-weight:bold;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='4' style=\"border: 1px solid #d4c3c3; padding: 6px;\">Sales - Sales Return</td><td style=\"border: 1px solid #d4c3c3; padding: 6px;\">")
+                    items.Append("<tr style='border:1px solid black;color:blue;font-weight:bold;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='4' style=\"border: 1px solid #d4c3c3;text-align:center; padding: 6px;\">Sales - Sales Return</td><td style=\"border: 1px solid #d4c3c3;text-align:center; padding: 6px;\">")
                          .Append(T_TotalCashAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                          .Append(T_TotalCardAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(T_TotalChequeAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
@@ -812,8 +812,8 @@ namespace HIMS.Data.Pharmacy
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ChequePay"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["NEFTPay"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["OnlinePay"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(TotalCollection.ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["UserName"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(TotalCollection.ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["UserName"].ConvertToString()).Append("</td></tr>");
 
                 FinalTotal = TotalCollectionSales.ConvertToDouble() - TotalCollectionSalesReturn.ConvertToDouble();
 
@@ -832,7 +832,7 @@ namespace HIMS.Data.Pharmacy
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
 
-                    items.Append("<tr style='font - family: Calibri, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans - serif;border:1px solid black;color:blue;font-weight:bold'><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">Sales - Sales Return</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                    items.Append("<tr style='font - family: Calibri, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans - serif;border:1px solid black;color:blue;font-weight:bold'><td style=\"border: 1px solid #d4c3c3;text-align:center;padding: 6px;\">Sales - Sales Return</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                         .Append(T_TotalBillAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(T_TotalDiscAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(T_TotalNETAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
@@ -843,8 +843,7 @@ namespace HIMS.Data.Pharmacy
                         .Append(T_TotalChequeAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(T_TotalNEFTAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(T_TotalOnlineAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
-                        .Append(FinalTotal.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
-                        .Append("</td></tr>");
+                        .Append(FinalTotal.To2DecimalPlace()).Append("</td></tr>");
 
                   
                 }
@@ -1010,7 +1009,7 @@ namespace HIMS.Data.Pharmacy
                 if (previousLabel != "" && previousLabel != dr["Label"].ConvertToString())
                 {
                     j = 1;
-                    items.Append("<tr style='font - family: Calibri, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans - serif;border:1px solid black;color:red;background-color:#fdfed3'><td colspan='3' style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                    items.Append("<tr style='font - family: Calibri, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans - serif;border:1px solid black;color:red;background-color:#fdfed3'><td colspan='3' style=\"border: 1px solid #d4c3c3;text-align:center;padding: 6px;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                    .Append(T_BillAmount.To2DecimalPlace()).Append(" </td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                    .Append(T_DiscAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                    .Append(T_NetAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")

@@ -403,8 +403,8 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewIPPrescription(int OP_IP_ID, int PatientType)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IpPrescription.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
-            var html = _IPPrescription.ViewIPPrescriptionReceipt(OP_IP_ID, PatientType, htmlFilePath, htmlHeaderFilePath);
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPPrescription.ViewIPPrescriptionReceipt(OP_IP_ID, PatientType, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IpPrescription", "IpPrescription"+ OP_IP_ID.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
@@ -436,8 +436,8 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewIPPrescriptionDetails(int AdmissionID)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPPrescriptiondetail.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
-            var html = _IPPrescription.ViewIPPrescriptionDetailReceipt(AdmissionID, htmlFilePath, htmlHeaderFilePath);
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPPrescription.ViewIPPrescriptionDetailReceipt(AdmissionID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPPrescriptiondetail", "IPPrescriptiondetail"+ AdmissionID.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
@@ -453,8 +453,8 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult VieIOPPrescriptionSummarylist(int  AdmissionID)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Prescriptionsummarylist.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
-            var html = _IPPrescription.ViewIPPrescriptionSummReceipt(AdmissionID, htmlFilePath, htmlHeaderFilePath);
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPPrescription.ViewIPPrescriptionSummReceipt(AdmissionID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Prescriptionsummarylist", "Prescriptionsummarylist"+ AdmissionID.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -475,8 +475,8 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewIPPrescriptionReturn(int PresReId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPPrescriptionReturn.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPrescriptionReturn.ViewIPPrescriptionReturnReceipt(PresReId, htmlFilePath, htmlHeaderFilePath);
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPPrescriptionReturn.ViewIPPrescriptionReturnReceipt(PresReId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPPrescriptionReturn", "IPPrescriptionReturn"+ PresReId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp

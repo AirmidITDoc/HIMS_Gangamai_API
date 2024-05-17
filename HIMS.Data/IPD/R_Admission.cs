@@ -129,7 +129,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{MaritalStatusName}}", Bills.GetColValue("MaritalStatusName"));
             html = html.Replace("{{AadharcardNo}}", Bills.GetColValue("AadharcardNo"));
             html = html.Replace("{{TariffId}}", Bills.GetColValue("TariffId"));
-
+            html = html.Replace("{{DOA}}", Bills.GetColValue("DOA"));
             
             html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));
             html = html.Replace("{{LoginUserSurname}}", Bills.GetColValue("LoginUserSurname"));

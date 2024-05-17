@@ -1,124 +1,119 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
+
 <body>
-    <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
-
-        {{HospitalHeader}}
-        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: beige;">
-            <div style="display:block;width:100%; align-items: center;">
-                <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
-                    IP PRESCRIPTION
-                </div>
-                <span style="font-size: 16px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
-            </div>
-
-        </div>
-
-        <table>
-            <tr>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; font-size: 20px;">RegNo</span>
-                    <span style="font-size:18px; ">{{RegNo}} </span>
-                </td>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; margin-left: 400px; font-size: 20px;;">PDate</span>
-                    <span style="font-size:18px;"> {{PDate}} </span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; font-size: 20px;">Patient Name</span>
-                    <span style="font-size:18px;width:500px;">{{PatientName}}</span>
-                </td>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; margin-left: 400px; font-size: 20px;;">IP NO</span>
-                    <span style="font-size:18px;">{{OPDNo}}</span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; font-size: 20px; width: 300px;">ConsultantDocName</span>
-                    <!-- <span style="font-size:15px;">{{ConsultantDocName}}</span>'-->
-                </td>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; margin-left: 400px; font-size: 20px;">Age</span>
-                    <span style="font-size:18px;">{{AgeYear}} </span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; font-size: 20px;">Address</span>
-                    <span style="font-size:18px;">{{Address}}</span>
-                </td>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; margin-left: 400px; font-size: 20px;">GenderName</span>
-                    <span style="font-size:18px;">{{GenderName}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; font-size: 20px;">DepartmentName</span>
-                    <span style="font-size:18px;">{{DepartmentName}}</span>
-                </td>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; margin-left: 400px; font-size: 20px;">WardName</span>
-                    <span style="font-size:18px;">{{WardName}}</span>
-                </td>
-            </tr>
-
-        </table>
-
-
-        <hr>
-
-
-
-        <table class="table" style="width:100%;border-collapse:collapse">
-            <tbody>
-
-                <tr style="font-size:18px;background-color: rgb(127, 174, 255);">
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
-                        SR.NO
+    <div class="main-content-wrapper">
+        <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+            <table style="width: 100%;line-height: inherit;text-align: left;">
+                {{NewHeader}}
+                <tr class="title-date-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="font-size: 18px">
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>IP PRESCRIPTION</b></td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                            </tr>
+                        </table>
                     </td>
+                </tr>
+                <tr class="bill-info-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Reg No. : </span>
+                                    <span>{{RegNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>PDate : </span>
+                                    <span> {{PDate}}</span>
+                                </td>
+                            </tr>
 
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:50%;">
-                        Drug
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Patient Name : </span>
+                                    <span>{{PatientName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Age / Gender : </span>
+                                    <span> {{AgeYear}} / {{GenderName}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>OPD No : </span>
+                                    <span>{{OPDNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Address : </span>
+                                    <span>{{Expr1}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>IPMedID : </span>
+                                    <span>{{IPMedID}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>WardName  : </span>
+                                    <span>{{WardName}}</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>DoctorName  : </span>
+                                    <span> {{ConsultantDocName}}</span>
+                                </td>
+                                <!--<td style="padding: 2px;">
+                                    <span>Mobile No  : </span>
+                                    <span>{{MobileNo}}</span>
+                                </td>-->
+                            </tr>
+
+                        </table>
                     </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:20%;">
-                        Dose
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:15%;">
-                        Total Qty
-                    </td>
-                    <!-- <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:15%;">
-                    BalanceAmount
-                </td>-->
-
                 </tr>
 
-                {{Items}}
+                <tr class="bill-table-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead style="font-size: 14px;">
+                                <tr>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        Drug
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        Dose
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Total Qty</td>
+
+                                </tr>
+                                {{Items}}
+                            </thead>
+
+                        </table>
+                    </td>
+                </tr>
 
 
-            </tbody>
-        </table>
-        <br>
-
-        <div style="display:flex;justify-content:space-between;margin-left:580px;margin-top:250px;">
-
-            <div style="text-align:center;margin-left:30px;">
-                <div style="font-weight:700;font-size:18px;">{{PreparedBy}}</div>
-                <div style="font-size:18px;">Prepared By </div>
-            </div>
+                <tr>
+                    <td style="padding: 6px; text-align: right;">
+                        <span>{{UserName}}</span><br>
+                        <span>Authorized Signature</span>
+                    </td>
+                </tr>
+            </table>
         </div>
-
     </div>
 </body>
+
 </html>

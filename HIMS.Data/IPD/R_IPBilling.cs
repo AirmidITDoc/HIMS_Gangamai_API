@@ -264,12 +264,12 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
-            int i = 0;
+            int i = 0,j=0;
             String[] GroupName;
             object GroupName1="";
             Boolean chkcommflag = false, chkpaidflag = false;
             double T_NetAmount = 0;
-            int j = Bills.Rows.Count;
+            //int j = Bills.Rows.Count;
 
            
 
@@ -319,40 +319,52 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row " : "none");
             string previousLabel = "";
             String Label ="";
+            String FinalLabel = "";
+            double T_TotAmount = 0;
+
 
 
             foreach (DataRow dr in Bills.Rows)
             {
-                i++; 
-                if (i == 1 || Label != previousLabel)
+                i++; j++;
+                if (i == 1)
+                {
+
+                    Label = dr["GroupName"].ConvertToString();
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"6\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+
+                if (previousLabel != "" && previousLabel != dr["GroupName"].ConvertToString())
                 {
                     j = 1;
-                    Label = dr["GroupName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+
+                    items.Append("<tr style='border:1px solid black;color:#241571;background-color:#63C5DA'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Group Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+
+                    .Append(T_TotAmount.To2DecimalPlace()).Append("</td></tr>");
+
+                    T_NetAmount += dr["TotalAmt"].ConvertToDouble();
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:blue\"><td colspan=\"6\" style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["GroupName"].ConvertToString()).Append("</td></tr>");
                 }
+
+
+
+                T_TotAmount += dr["TotalAmt"].ConvertToDouble();
+
+
                 previousLabel = dr["GroupName"].ConvertToString();
-                
-                if (Label == previousLabel)
-                {
-                   
-                    i++;
-                    items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
 
-                    T_NetAmount += dr["ChargesTotalAmt"].ConvertToDouble();
-                    //items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["Type"].ConvertToString()).Append("</td></tr>");
-                    j++;
-                }
-
-               
+                items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Price"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ChargesTotalAmt"].ConvertToDouble()).Append("</td></tr>");
             }
-        html = html.Replace("{{Items}}", items.ToString());
+
+
+             html = html.Replace("{{Items}}", items.ToString());
       
-        html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
+             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
             string finalamt = conversion(T_NetAmount.ConvertToDouble().To2DecimalPlace().ToString());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());

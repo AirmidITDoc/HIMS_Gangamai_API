@@ -12,5 +12,7 @@ namespace HIMS.Data.IPD
 
         string ViewOPIPBillSummaryReceipt(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
 
+        string ViewIPCreditReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
+
     }
 }
