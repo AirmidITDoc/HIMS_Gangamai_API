@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Text;
 
 namespace HIMS.Data.IPD
@@ -19,7 +20,6 @@ namespace HIMS.Data.IPD
 
          public String Insert(IPDischargeParams IPDischargeParams)
         {
-            //throw new NotImplementedException();
             var outputId = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
@@ -29,23 +29,15 @@ namespace HIMS.Data.IPD
             };
             var dic = IPDischargeParams.InsertIPDDischarg.ToDictionary();
             dic.Remove("DischargeId");
-            var DischargeId = ExecNonQueryProcWithOutSaveChanges("insert_Discharge_1", dic, outputId);
-
+            var DischargeId = ExecNonQueryProcWithOutSaveChanges("m_insert_Discharge_1", dic, outputId);
 
             IPDischargeParams.UpdateAdmission.AdmissionID = Convert.ToInt32(IPDischargeParams.InsertIPDDischarg.AdmissionId);
             var disc2 = IPDischargeParams.UpdateAdmission.ToDictionary();
-           ExecNonQueryProcWithOutSaveChanges("update_Admission_3", disc2);
+            ExecNonQueryProcWithOutSaveChanges("m_update_Admission_3", disc2);
 
-           // IPDischargeParams.UpdateDischargeSummary.DischargeId = Convert.ToInt32(DischargeId);
-         //   IPDischargeParams.UpdateDischargeSummary.AdmissionId = IPDischargeParams.UpdateAdmission.AdmissionId;
+            var vDischargeBedRelease = IPDischargeParams.DischargeBedRelease.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_DischargeBedRelease", vDischargeBedRelease);
 
-          //  var disc3 = IPDischargeParams.UpdateDischargeSummary.ToDictionary();
-           // ExecNonQueryProcWithOutSaveChanges("update_DischargeSummary_1", disc3);
-
-
-           // var disc4 = IPDischargeParams.InsertIPSMSTemplete.ToDictionary();
-            //ExecNonQueryProcWithOutSaveChanges("Insert_IPSMSTemplete_1", disc4);
-            
             _unitofWork.SaveChanges();
             return DischargeId;
 
@@ -58,13 +50,37 @@ namespace HIMS.Data.IPD
             var disc4 = IPDischargeParams.UpdateIPDDischarg.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("update_Discharge_1", disc4);
 
-
             //IPDischargeParams.UpdateAdmission.AdmissionID = Convert.ToInt32(IPDischargeParams.UpdateIPDDischarg.AdmissionId);
             var disc2 = IPDischargeParams.UpdateAdmission.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("update_Admission_3", disc2);
 
             _unitofWork.SaveChanges();
             return true;
+        }
+
+        public string ViewDischargeReceipt(int AdmId, string htmlFilePath, string htmlHeader)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[1];
+
+            para[0] = new SqlParameter("@AdmId", AdmId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptDischargeCheckOutSlip", para);
+            string html = File.ReadAllText(htmlFilePath);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            
+            html = html.Replace("{{BillNo}}", Bills.GetColValue("PBillNo"));
+            html = html.Replace("{{DischargeTime}}", Bills.GetColValue("DischargeTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+
+            html = html.Replace("{{OPD_IPD_ID}}", Bills.GetColValue("OPD_IPD_ID"));
+            html = html.Replace("{{BillingUserName}}", Bills.GetColValue("BillingUserName"));
+                          
+
+            return html;
         }
     }
 }

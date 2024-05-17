@@ -12,15 +12,13 @@
         <div class="invoice-box"
             style="margin: auto;font-size: 13px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table cellpadding="5" cellspacing="5" style="width: 100%;line-height: inherit;text-align: left;">
-                <tr class="top-header-row">
-                    <td>Title</td>
-                </tr>
+               {{NewHeader}}
                 <tr class="title-date-row">
                     <td>
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 16px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; "><b>IP FINAL BILL
-                                        WardewisePrint</b></td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; "><b>IP BILL WARD WISE
+                                        </b></td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; text-align: right;"><b>Print
                                         Date : {{CurrentDate}}</b></td>
                             </tr>
@@ -114,16 +112,7 @@
                               
                             <tbody style="font-size: 14px;">
                                 {{Items}}
-                                 <!--<tr>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">1</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">Test service
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">Test doctor
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">399</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">3</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">300</td>
-                                </tr>-->8
+                               
                                 <tr style="margin-top: 12px;">
                                     <td colspan="6"
                                         style=" border-bottom: 1px solid #d4c3c3; text-align: left; padding: 6px;">
@@ -143,7 +132,7 @@
                                                     {{TotalBillAmount}}
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr style="display:{{chkcommflag}}">
                                                 <td style="border-bottom:1px solid #eee; padding: 6px;">
                                                     Concession
                                                     Amount
@@ -152,7 +141,7 @@
                                                     {{ConcessionAmount}}
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr style="display:{{ chkpaidflag }}">
                                                 <td style="border-bottom:1px solid #eee; padding: 6px;">
                                                     paid Amount
                                                 </td>
@@ -180,23 +169,7 @@
                             <tr>
                                 <td>
                                     <table style="text-align:center; border-collapse: collapse; width: 100%;">
-                                        <thead style="font-size: 14px;">
-                                            <tr>
-                                                <th style=" border: 1px solid #d4c3c3; text-align: center;" colspan="2">
-                                                    <h4 style="margin: 12px 0px; font-size: 15px;">Payment Information
-                                                    </h4>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                                    Type Of Transaction
-                                                </th>
-                                                <th
-                                                    style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                                    Amount
-                                                </th>
-                                            </tr>
-                                        </thead>
+                                       
                                         <tbody style="font-size: 14px;">
                                             <tr>
                                                 <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">

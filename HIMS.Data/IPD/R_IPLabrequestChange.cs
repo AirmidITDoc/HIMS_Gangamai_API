@@ -27,7 +27,7 @@ namespace HIMS.Data.IPD
             return true;
         }
 
-        public string ViewLabRequest(int RequestId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewLabRequest(int RequestId, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -38,9 +38,9 @@ namespace HIMS.Data.IPD
             var Bills = GetDataTableProc("rptLabRequestList", para);
            
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HospitalHeader}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -48,8 +48,8 @@ namespace HIMS.Data.IPD
             {
                 i++;
 
-                items.Append("<tr><td style=\"border-left: 1px solid black;border-bottom:1px solid #000;vertical-align:border-bottom:1px solid #000; top;padding: 0;height: 20px;font-size:18px;text-align:center;\">").Append(i).Append("</td>");
-              items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:center;font-size:18px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td></tr>");
+                items.Append("<tr style\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(i).Append("</td>");
+              items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td></tr>");
 
             }
 

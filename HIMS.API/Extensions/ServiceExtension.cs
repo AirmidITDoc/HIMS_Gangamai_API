@@ -303,6 +303,7 @@ namespace HIMS.API.Extensions
 
             services.AddTransient<I_Role, R_Role>();
             services.AddTransient<I_Dashboard, R_Dashboard>();
+            services.AddTransient<I_Favourite, R_Favourite>();
 
             services.AddTransient<I_Stokadjustment, R_Stockadjustment>();
             services.AddTransient<I_Mrpadjustment, R_Mrpadjustment>();

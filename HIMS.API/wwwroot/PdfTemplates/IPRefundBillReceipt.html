@@ -1,95 +1,156 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
+
 <body>
-    <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
+    <div class="main-content-wrapper">
+        <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+            <table style="width: 100%;line-height: inherit;text-align: left;">
 
-        {{HeaderName}}
-        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
-            <div style="display:block;width:100%; align-items: center;">
-                <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
-                    IP REFUND  OF BILL RECEIPT
-                </div>
-                <span style="font-size: 9px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
-            </div>
+                {{NewHeader}}
+                <tr class="title-date-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="font-size: 18px">
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b> IP REFUND  OF BILL RECEIPT</b></td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="bill-info-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Refund No. : </span>
+                                    <span>{{RefundNo}} </span>
+                                </td>
 
-        </div>
+                            
 
-        <table>
-            <tr>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px;margin-left:10px; font-size: 20px;">Refund No.</span>
-                    <span style="font-size:18px; ">{{RefundNo}} </span>
-                </td>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; margin-left: 100px;font-size:20px;">IPD No</span>
-                    <span style="font-size:18px;"> {{RegNo}} </span>
-                </td>
-            </tr>
+                                <td style="padding: 2px;">
+                                    <span>IPD No : </span>
+                                    <span>{{RegNo}}</span>
+                                </td>
+                            </tr>
 
-            <tr>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; margin-left: 10px; font-size: 20px;">Patient Name</span>
-                    <span style="font-size:18px;">{{PatientName}}</span>
-                </td>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; margin-left: 100px; font-size: 20px;">Age</span>
-                    <span style="font-size:18px;">{{AgeYear}}</span>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; margin-left: 10px; font-size: 20px;">Refund Date</span>
-                    <span style="font-size:18px;">{{RefundDate}}</span>'
-                </td>
-                <td>
-                    <span style="font-weight: 500; margin-right: 20px; margin-left: 100px; font-size: 20px;">Phone No</span>
-                    <span style="font-size:18px;">{{MobileNo}} </span>
-                </td>
-            </tr>
-        </table>
-
-
-        <hr>
+                            <!--<tr>
+                                <td style="padding: 2px;">
+                                    <span>Payment Date: </span>
+                                    <span>{{PaymentTime}} </span>
+                                </td>
 
 
 
-        <div style="display: flex;">
+                            </tr>-->
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Patient Name : </span>
+                                    <span>{{PatientName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Age / Gender : </span>
+                                    <span> {{AgeYear}} / {{GenderName}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Refund Date : </span>
+                                    <span>{{RefundDate}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Phone : </span>
+                                    <span> {{Phone}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
 
-            <span style="vertical-align: top;padding:0 10px 10px;">
-                <br />
-                <span style="font-weight: 500;margin-Left:10px;font-size:20px">Bill Amount : </span>
-                <span style="width: 400px;font-size:18px;"> {{NetPayableAmt}}</span> <br>
-                <span style="font-weight: 500;margin-Left: 10px;font-size:20px">Payment Date :</span>
-                <span style="width: 400px;font-size:18px;"> {{PaymentTime}}</span> <br>
-                <span style="font-weight: 500;margin-Left: 10px;font-size:20px">Refund Amount :</span>
-                <span style="width: 400px;font-size:18px;"> {{RefundAmount}}</span> <br>
-                <span style="font-weight: 500; font-size: 20px; margin-Left: 10px;">Refund Reason :</span>
-                <span style="width: 400px;font-size:18px;"> {{Remark}}</span> <br>
 
-            </span>
+                <tr class="payment-info-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td>
+                                    <table style="text-align:center; border-collapse: collapse; width: 100%;">
 
-        </div>
+                                        <tbody style="font-size: 14px;">
+                                            <tr>
+                                                <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                                    Bill Amount :
+                                                </td>
+                                                <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{NetPayableAmt}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                                    Refund Amount :
+                                                </td>
+                                                <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{RefundAmount}}
+                                                </td>
+                                            </tr>
+                                         
+                                            <tr>
+                                                <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                                    Total Amount in words :
+                                                </td>
+                                                <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{finalamt}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                                    Remark
+                                                </td>
+                                                <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{Remark}}
+                                                </td>
+                                            </tr>
 
-        <br>  <hr>
-        <span style="font-weight: 500;font-size:18px;"> Total Amount in words :-</span>
-        <hr>
-        <!--<div style="display: flex;">
-        <span style="font-weight: 500;">Remark</span>
+                                        </tbody>
+                                    </table>
+                                </td>
 
-    </div><br><br>-->
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
 
-        <div style="display:flex;justify-content:space-between;margin-left:580px;margin-top:250px;">
 
-            <div style="text-align:center;margin-left:30px;">
-                <div style="font-weight:700;font-size:18px;">{{UserName}}</div>
-                <div style="font-size:18px;">Prepared By </div>
-            </div>
+
+                <tr>
+                    <table style="width: 100%; border-collapse: collapse;margin-top:20px;">
+
+                        <tr style="margin-top: 12px;">
+                        <tr>
+                            <td style="padding: 6px;font-size: 12px;">This is Computer generated invoice hence doesn’t require signature</td>
+                        </tr>
+                        <tr></tr>
+                        <tr style="padding: 6px; text-align: right;">
+                            <td>
+
+                                <span>
+                                    {{Addedby}}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr style="padding: 6px; text-align: right;">
+                            <td>
+                                <span>Prepared By </span>
+                            </td>
+                        </tr>
+                    </table>
+                </tr>
+            </table>
         </div>
     </div>
 </body>
