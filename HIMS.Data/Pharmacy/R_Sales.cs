@@ -69,12 +69,12 @@ namespace HIMS.Data.Pharmacy
             foreach (var a in salesParams.UpdateCurStkSales)
             {
                 var disc1 = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("Update_T_CurStk_Sales_Id_1", disc1);
+                ExecNonQueryProcWithOutSaveChanges("m_Update_T_CurStk_Sales_Id_1", disc1);
             }
 
             var vDiscCal = salesParams.Cal_DiscAmount_Sales.ToDictionary();
             vDiscCal["SalesID"] = BillNo;
-            ExecNonQueryProcWithOutSaveChanges("Cal_DiscAmount_Sales", vDiscCal);
+            ExecNonQueryProcWithOutSaveChanges("m_Cal_DiscAmount_Sales", vDiscCal);
 
             var vGSTCal = salesParams.Cal_GSTAmount_Sales.ToDictionary();
             vGSTCal["SalesID"] = BillNo;
@@ -82,7 +82,7 @@ namespace HIMS.Data.Pharmacy
 
             var vPayment = salesParams.SalesPayment.ToDictionary();
             vPayment["BillNo"] = BillNo;
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_Pharmacy_New_1", vPayment);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_Pharmacy_New_1", vPayment);
 
             var vDaraftStatus = salesParams.SalesDraftStatusUpdate.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_Update_T_SalDraHeader_IsClosed_1", vDaraftStatus);
@@ -139,39 +139,39 @@ namespace HIMS.Data.Pharmacy
                 Direction = ParameterDirection.Output
             };
 
-            var outputId3 = new SqlParameter
-            {
-                SqlDbType = SqlDbType.BigInt,
-                ParameterName = "@PaymentId",
-                Value = 0,
-                Direction = ParameterDirection.Output
-            };
+            //var outputId3 = new SqlParameter
+            //{
+            //    SqlDbType = SqlDbType.BigInt,
+            //    ParameterName = "@PaymentId",
+            //    Value = 0,
+            //    Direction = ParameterDirection.Output
+            //};
 
 
             var disc3 = salesCreditParams.SalesInsertCredit.ToDictionary();
             disc3.Remove("SalesId");
-            var BillNo = ExecNonQueryProcWithOutSaveChanges("insert_Sales_1", disc3, outputId1);
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_Sales_1", disc3, outputId1);
 
             foreach (var a in salesCreditParams.SalesDetailInsertCredit)
             {
                 var disc5 = a.ToDictionary();
                 disc5["SalesID"] = BillNo;
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_SalesDetails_1", disc5);
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_SalesDetails_1", disc5);
             }
 
             foreach (var a in salesCreditParams.UpdateCurStkSalesCredit)
             {
                 var disc1 = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("Update_T_CurStk_Sales_Id_1", disc1);
+                ExecNonQueryProcWithOutSaveChanges("m_Update_T_CurStk_Sales_Id_1", disc1);
             }
 
             var vDiscCal = salesCreditParams.Cal_DiscAmount_SalesCredit.ToDictionary();
             vDiscCal["SalesID"] = BillNo;
-            ExecNonQueryProcWithOutSaveChanges("Cal_DiscAmount_Sales", vDiscCal);
+            ExecNonQueryProcWithOutSaveChanges("m_Cal_DiscAmount_Sales", vDiscCal);
 
             var vGSTCal = salesCreditParams.Cal_GSTAmount_SalesCredit.ToDictionary();
             vGSTCal["SalesID"] = BillNo;
-            ExecNonQueryProcWithOutSaveChanges("m_Cal_GSTAmount_Sales", vDiscCal);
+            ExecNonQueryProcWithOutSaveChanges("m_Cal_GSTAmount_Sales", vGSTCal);
 
             _unitofWork.SaveChanges();
             return BillNo;
@@ -181,10 +181,10 @@ namespace HIMS.Data.Pharmacy
         {
             var vPayment = salesParams.SalesPayment.ToDictionary();
             vPayment.Remove("PaymentID");
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_Pharmacy_New_1", vPayment);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_Pharmacy_New_1", vPayment);
 
             var vUpdateHeader = salesParams.update_Pharmacy_BillBalAmount.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_Pharmacy_BillBalAmount_1", vUpdateHeader);
+            ExecNonQueryProcWithOutSaveChanges("m_update_Pharmacy_BillBalAmount_1", vUpdateHeader);
 
             _unitofWork.SaveChanges();
             return true;
