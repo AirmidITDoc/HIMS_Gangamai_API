@@ -39,6 +39,8 @@ using HIMS.Data.WhatsAppEmail;
 using HIMS.Data.HomeDelivery;
 using HIMS.Data.CustomerInformation;
 using HIMS.Data.CustomerPayment;
+using HIMS.Data.OPReports;
+
 
 namespace HIMS.API.Extensions
 {

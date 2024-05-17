@@ -86,9 +86,10 @@
                 </tr>
                 <tr class="bill-table-row">
                     <td>
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead style="font-size: 14px;">
-                                <tr>
+                        <div>
+                            <table style="width: 100%; border-collapse: collapse;">
+
+                                <tr style="background-color: #63C5DA;">
                                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
                                     <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
                                         Service Name
@@ -103,29 +104,30 @@
                                     </td>
                                 </tr>
 
-                            <tbody style="font-size: 14px;">
-                                {{Items}}
+                                <tbody style="font-size: 14px;">
+                                    {{Items}}
 
-                         
-                            </tbody>
-                            </thead>
-                        </table>
+
+                                </tbody>
+
+                            </table>
+                        </div>
                     </td>
                 </tr>
                 <tr class="payment-info-row">
-                    <td>
+                 
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
 
                                 <td>
-                                    <table style="text-align: center; border-collapse: collapse; width: 100%;">
+                                    <table style="text-align: left; border-collapse: collapse; width: 100%;">
 
                                       
                                             <tr>
                                                 <td colspan="6" style="border-bottom: 1px solid #eee; padding: 6px;">
                                                     Amount in words :-
                                                 </td>
-                                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                <td style="border-bottom: 1px solid #eee; text-align: right; padding: 6px;">
                                                     {{finalamt}}
                                                 </td>
                                             </tr>
@@ -154,7 +156,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </td>
+                 
                 </tr>
                 <tr>
                     <table style="width: 100%; border-collapse: collapse;margin-top:20px;">

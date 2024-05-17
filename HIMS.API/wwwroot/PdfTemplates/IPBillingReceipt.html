@@ -175,8 +175,8 @@
                 <tr class="bill-table-row">
                     <td>
                         <table style="width: 100%; border-collapse: collapse;">
-                            <thead style="font-size: 14px;">
-                                <tr>
+                            
+                                <tr style="background-color: #63C5DA;">
                                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
                                     <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
                                         Service Name
@@ -215,7 +215,7 @@
                                                 <td style="border-bottom: 1px solid #eee; padding: 6px;">Concession Amount</td>
                                                 <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{ConcessionAmount}}</td>
                                             </tr>
-                                            <tr>
+                                            <tr style="display:{{chkpaidflag}}">
                                                 <td style="border-bottom: 1px solid #eee; padding: 6px;">paid Amount </td>
                                                 <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{PaidAmount}}</td>
                                             </tr>
@@ -228,7 +228,7 @@
                                     </td>
                                 </tr>
                             </tbody>
-                            </thead>
+                            
                         </table>
                     </td>
                 </tr>

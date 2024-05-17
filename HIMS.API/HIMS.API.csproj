@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\PdfTemplates\ReegistrationList.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Properties\launchSettings.json" />
   </ItemGroup>
 
