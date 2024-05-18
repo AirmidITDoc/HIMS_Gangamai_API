@@ -19,9 +19,11 @@ namespace HIMS.Data.Master
             command = _unitofWork.CreateCommand();
         }
 
-        public List<ScheduleMaster> Get()
+        public List<ScheduleMaster> Get(string ScheduleName)
         {
-            return GetList<ScheduleMaster>("SELECT * FROM ScheduleMaster WHERE IsActive=1", new SqlParameter[0]);
+            SqlParameter[] para = new SqlParameter[1];
+            para[0] = new SqlParameter("@ScheduleName", string.IsNullOrWhiteSpace(ScheduleName) ? "" : ScheduleName);
+            return GetList<ScheduleMaster>("SELECT * FROM ScheduleMaster WHERE IsActive=1 AND ScheduleName LIKE '%'+@ScheduleName+'%'", para);
         }
 
         public string Insert(ScheduleMaster obj)
@@ -55,9 +57,11 @@ namespace HIMS.Data.Master
         }
         public string Delete(int Id)
         {
-            SqlParameter[] para = new SqlParameter[1];
-            para[0] = new SqlParameter("@Id", Id);
-            GetList<ScheduleMaster>("UPDATE ScheduleMaster SET IsActive=0 WHERE Id=@Id", para);
+            Dictionary<string, object> dic = new Dictionary<string, object>
+            {
+                { "Id", Id }
+            };
+            ExecNonQuery("UPDATE ScheduleMaster SET IsActive=0 WHERE Id=@Id", dic);
             return "OK";
         }
     }

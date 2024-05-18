@@ -9,7 +9,7 @@ namespace HIMS.Data.Master
   public  interface I_ScheduleMaster
     {
         string Insert(ScheduleMaster obj);
-        List<ScheduleMaster> Get();
+        List<ScheduleMaster> Get(string ScheduleName);
         string Delete(int Id);
     }
 }

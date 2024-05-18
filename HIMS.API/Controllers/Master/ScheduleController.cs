@@ -19,9 +19,9 @@ namespace HIMS.API.Controllers.Master
         }
         [HttpGet]
         [Route("get-schedulers")]
-        public IActionResult GetSchedulers()
+        public IActionResult GetSchedulers(string ScheduleName)
         {
-            return Ok(_I_ScheduleMaster.Get());
+            return Ok(_I_ScheduleMaster.Get(ScheduleName));
         }
         [HttpPost]
         [Route("save")]
@@ -35,7 +35,8 @@ namespace HIMS.API.Controllers.Master
         [Route("remove-scheduler")]
         public IActionResult RemoveScheduler(int Id)
         {
-            return Ok(_I_ScheduleMaster.Delete(Id));
+            _I_ScheduleMaster.Delete(Id);
+            return Ok();
         }
     }
 }
