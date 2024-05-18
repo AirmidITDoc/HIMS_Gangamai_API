@@ -28,6 +28,7 @@ namespace HIMS.API.Controllers.Master
         public IActionResult Save(ScheduleMaster obj)
         {
             _I_ScheduleMaster.Insert(obj);
+            obj.Id = 1;
             return Ok(obj);
         }
         [HttpDelete]

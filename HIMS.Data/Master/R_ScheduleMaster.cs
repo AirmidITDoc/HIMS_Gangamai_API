@@ -27,11 +27,21 @@ namespace HIMS.Data.Master
         public string Insert(ScheduleMaster obj)
         {
             SqlParameter[] para = new SqlParameter[10];
-            para[0] = new SqlParameter("@Custom", obj.Custom) { Size = -1 };
-            para[1] = new SqlParameter("@Days", obj.Days) { Size = 250 };
+            if (!string.IsNullOrWhiteSpace(obj.Custom))
+                para[0] = new SqlParameter("@Custom", obj.Custom) { Size = -1 };
+            else
+                para[0] = new SqlParameter("@Custom", DBNull.Value);
+            if (!string.IsNullOrWhiteSpace(obj.Days))
+                para[1] = new SqlParameter("@Days", obj.Days) { Size = 250 };
+            else
+                para[1] = new SqlParameter("@Days", DBNull.Value);
             para[2] = new SqlParameter("@Id", obj.Id);
             para[3] = new SqlParameter("@Query", obj.Query) { Size = -1 };
-            para[4] = new SqlParameter("@Dates", obj.Dates) { Size = -1 };
+
+            if (!string.IsNullOrWhiteSpace(obj.Dates))
+                para[4] = new SqlParameter("@Dates", obj.Dates) { Size = -1 };
+            else
+                para[4] = new SqlParameter("@Dates", DBNull.Value);
             if (obj.EndDate.HasValue)
                 para[5] = new SqlParameter("@EndDate", obj.EndDate.Value);
             else
