@@ -18,8 +18,8 @@ namespace HIMS.Data.IPD
 
         public bool Insert(IPPrescriptionParams IPPrescriptionParams)
         {
-            var OP_IP_ID = IPPrescriptionParams.DeleteIP_Prescription.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Delete_T_IP_Prescription", OP_IP_ID);
+            //var OP_IP_ID = IPPrescriptionParams.DeleteIP_Prescription.ToDictionary();
+            //ExecNonQueryProcWithOutSaveChanges("Delete_T_IP_Prescription", OP_IP_ID);
 
             var outputId1 = new SqlParameter
             {
