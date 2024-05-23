@@ -201,7 +201,6 @@ namespace HIMS.API.Controllers.Transaction
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DayWiseOpdCountDetails", "ViewDayWiseOpdCountDetails", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
         //[HttpGet("view-OPDoctorwiseNewoldpatientReport")]
         //public IActionResult ViewOPDoctortwisenewoldpatientReport(DateTime FromDate, DateTime ToDate)
