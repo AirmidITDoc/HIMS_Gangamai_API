@@ -7,7 +7,7 @@ namespace HIMS.Data.Master.Pathology
 {
     public interface I_ParameterMasterAgeWise
     {
-       public bool Insert(ParameterMasterAgeWiseParams paraMasterAgeParams);
-       public bool Update(ParameterMasterAgeWiseParams paraMasterAgeParams);
+       public bool Insert(PathParameterMasterParams pathParameterMasterParams);
+        public bool Update(PathParameterMasterParams pathParameterMasterParams);
     }
 }

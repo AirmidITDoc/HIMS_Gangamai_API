@@ -168,7 +168,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_ConsessionReasonMaster, R_ConsessionReasonMaster>();
             services.AddTransient<I_CompanyTypeMaster, R_CompanyTypeMaster>();
             //services.AddTransient<I_ItemMaster, R_ItemMaster>();
-            services.AddTransient<I_ParameterMaster, R_ParameterMaster>();
+            services.AddTransient<I_ParameterMasterAgeWise, R_ParameterMasterAgeWise>();
             services.AddTransient<I_SupplierMaster, R_SupplierMaster>();
             //services.AddTransient<I_StoreMaster, R_StoreMaster>();
             services.AddTransient<I_Constants, R_Constants>();
