@@ -63,8 +63,12 @@ namespace HIMS.Data.Master.Pathology
                 var D_Det = pathParameterMasterParams.ParameterRangeWithAgeMasterDelete.ToDictionary();
                 ExecNonQueryProcWithOutSaveChanges("Delete_RangeParameterWithAgeMaster_1", D_Det);
 
-                var disc2 = pathParameterMasterParams.ParameterRangeWithAgeMasterInsert.ToDictionary();
-                var ParaId = ExecNonQueryProcWithOutSaveChanges("Insert_ParameterRangeWithAgeMaster_1", disc2);
+                foreach (var a in pathParameterMasterParams.ParameterRangeWithAgeMasterInsert)
+                {
+                    var disc = a.ToDictionary();
+                    ExecNonQueryProcWithOutSaveChanges("Insert_ParameterRangeWithAgeMaster_1", disc);
+                }
+
 
             }
             else

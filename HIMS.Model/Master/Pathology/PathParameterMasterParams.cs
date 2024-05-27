@@ -53,8 +53,6 @@ namespace HIMS.Model.Master.Pathology
     {
         public int ParameterId { get; set; }
     }
-
-
     public class ParameterRangeWithAgeMasterDelete
     {
         public int ParameterId { get; set; }
