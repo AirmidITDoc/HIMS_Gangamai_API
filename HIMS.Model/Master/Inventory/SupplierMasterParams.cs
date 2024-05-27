@@ -28,36 +28,16 @@ namespace HIMS.Model.Master.Inventory
         public string Email { get; set; }
         public int ModeofPayment { get; set; }
         public int TermsofPayment { get; set; }
+        public int CurrencyId {  get; set; }
+        public int Octroi {  get; set; }   
+        public int Freight {  get; set; }
+        public long IsDeleted {  get; set; }          
+        public int Addedby {  get; set; }
+        public string GSTNo { get; set; }    
+        public int SupplierId {  get; set; }
+        public  string PanNo {  get; set; }
 
-        public int TaxNature { get; set; }
-        public int CurrencyId { get; set; }
-        public int Octroi { get; set; }
-        public int Freight { get; set; }
-        public bool IsDeleted { get; set; }
-        public int AddedBy { get; set; }
-        public string GSTNo { get; set; }
-        public int SupplierId { get; set; }
-        public string PanNo { get; set; }
-
-        public string PinCode { get; set; }
-        public int Taluka { get; set; }
-        public String LicNo { get; set; }
-        public DateTime ExpDate { get; set; }
-        public String DlNo { get; set; }
-
-        public int BankId { get; set; }
-        public string Bankname { get; set; }
-        public string Branch { get; set; }
-        public int BankNo { get; set; }
-
-        public string Ifsccode { get; set; }
-        public int VenderTypeId { get; set; }
-
-
-        public float OpeningBalance { get; set; }
-       
-
-    }
+ }
     public class UpdateSupplierMaster
     {
         public int SupplierID { get; set; }
@@ -74,33 +54,14 @@ namespace HIMS.Model.Master.Inventory
         public string Email { get; set; }
         public int ModeofPayment { get; set; }
         public int TermsofPayment { get; set; }
-        public int TaxNature { get; set; }
-        public int CurrencyId { get; set; }
-        public int Octroi { get; set; }
-        public int Freight { get; set; }
-        public bool IsDeleted { get; set; }
-        public int UpdatedBy { get; set; }
-        public string GSTNo { get; set; }
+        public int CurrencyId {  get; set; }
+        public int Octroi {  get; set; }      
+        public int Freight {  get; set; }
+        public long IsDeleted {  get; set; }      
+        public int UpdatedBy {  get; set; }  
+        public string GSTNo {  get; set; }  
         public string PanNo { get; set; }
-
-
-        public string PinCode { get; set; }
-        public int Taluka { get; set; }
-        public String LicNo { get; set; }
-        public DateTime ExpDate { get; set; }
-        public String DlNo { get; set; }
-
-        public int BankId { get; set; }
-        public string Bankname { get; set; }
-        public string Branch { get; set; }
-        public int BankNo { get; set; }
-
-        public string Ifsccode { get; set; }
-        public int VenderTypeId { get; set; }
-
-
-        public float OpeningBalance { get; set; }
-    }
+ }
     public class DeleteAssignSupplierToStore
     {
         public long SupplierId { get; set; }
