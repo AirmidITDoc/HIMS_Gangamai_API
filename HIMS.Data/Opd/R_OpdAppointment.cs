@@ -160,7 +160,7 @@ namespace HIMS.Data.Opd
             return VisitID;
         }
 
-        public string ViewOppatientAppointmentdetailsReceipt(int VisitId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewOppatientAppointmentdetailsReceipt(int VisitId, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
             SqlParameter[] para = new SqlParameter[1];
@@ -170,7 +170,6 @@ namespace HIMS.Data.Opd
             var Bills = GetDataTableProc("rptAppointmentPrint1", para);
             string html = File.ReadAllText(htmlFilePath);
            
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
@@ -184,9 +183,8 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
             html = html.Replace("{{ConsultantDoctorName}}", Bills.GetColValue("ConsultantDoctorName"));
-
-
-
+            
+                html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
             html = html.Replace("{{Expr1}}", Bills.GetColValue("Expr1"));
             html = html.Replace("{{MobileNo}}", Bills.GetColValue("MobileNo"));
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
@@ -265,5 +263,7 @@ namespace HIMS.Data.Opd
             return html;
 
         }
+
+       
     }
 }

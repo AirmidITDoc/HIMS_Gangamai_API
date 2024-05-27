@@ -57,7 +57,7 @@ namespace HIMS.Data.Opd
             return RefundId;
         }
 
-        public string ViewOPRefundofBillReceipt(int RefundId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewOPRefundofBillReceipt(int RefundId, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
             SqlParameter[] para = new SqlParameter[1];
@@ -67,7 +67,6 @@ namespace HIMS.Data.Opd
             string html = File.ReadAllText(htmlFilePath);
             //htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
 
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
@@ -90,7 +89,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{RefundAmount}}", Bills.GetColValue("RefundAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
-            //html = html.Replace("{{MobileNo}}", Bills.GetColValue("MobileNo"));
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{MobileNo}}", Bills.GetColValue("PhoneNo"));
 
             html = html.Replace("{{RefundDate}}", Bills.GetColValue("RefundDate").ConvertToDateString());

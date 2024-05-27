@@ -49,9 +49,9 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewPathTemplate(int PathReportId, int OP_IP_Type)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathTemplate.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _PathologyTemplateResult.ViewPathTemplateReceipt( PathReportId, OP_IP_Type, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTemplate", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _PathologyTemplateResult.ViewPathTemplateReceipt( PathReportId, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTemplate", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
@@ -83,9 +83,9 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewPathReportMultiple(int OP_IP_Type)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathTestReport.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _Pathresultentry.ViewPathTestReport(OP_IP_Type, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTestReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Pathresultentry.ViewPathTestReport(OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTestReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 

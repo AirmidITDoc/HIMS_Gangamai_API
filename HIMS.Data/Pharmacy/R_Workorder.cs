@@ -51,14 +51,13 @@ namespace HIMS.Data.Pharmacy
             ExecNonQueryProcWithOutSaveChanges("Update_WorkorderHeader", vPurchaseOrderUdpate);
 
             var vPurchaseOrderDelete = Workorder.Delete_WorkDetails.ToDictionary();
-            vPurchaseOrderDelete["WOId"] = Workorder.UpdateWorkOrderHeader.WOId;
             ExecNonQueryProcWithOutSaveChanges("Delete_WODetails_1", vPurchaseOrderDelete);
 
             foreach (var a in Workorder.WorkorderDetailInsert)
             {
                 var disc5 = a.ToDictionary();
                 disc5["WOId"] = Workorder.UpdateWorkOrderHeader.WOId;
-                var ChargeID = ExecNonQueryProcWithOutSaveChanges("insert_T_WorkOrderDetail_1", disc5);
+                ExecNonQueryProcWithOutSaveChanges("insert_T_WorkOrderDetail_1", disc5);
             }
 
             //var vPurchaseOrderDelete = Workorder.Delete_WorkDetails.ToDictionary();
@@ -69,7 +68,7 @@ namespace HIMS.Data.Pharmacy
             return true;
         }
 
-        public string ViewPurWorkorder(int WOID, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewPurWorkorder(int WOID, string htmlFilePath, string htmlHeader)
         {
             //  throw new NotImplementedException();
             
@@ -80,7 +79,6 @@ namespace HIMS.Data.Pharmacy
 
             var Bills = GetDataTableProc("rptWorkOrderPrint", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
@@ -93,14 +91,14 @@ namespace HIMS.Data.Pharmacy
             {
                 i++;
 
-                items.Append("<tr style=\" font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border-left: 1px solid black;vertical-align: top;padding: 0;height: 20px;text-align:center;border-bottom:1px solid #000;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:0px;height:10px;text-align:center;vertical-align:middle;border-bottom:1px solid #000;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:0px;height:10px;vertical-align:middle;text-align: center;border-bottom:1px solid #000;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+                items.Append("<tr style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\"><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
                 
-                items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:0px;height:10px;text-align:center;border-bottom:1px solid #000;\">").Append(dr["Rate"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:0px;height:10px;text-align: center;border-bottom:1px solid #000;\">").Append(dr["TotalAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:0px;height:10px;text-align: center;border-bottom:1px solid #000;\">").Append(dr["DiscPer"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:0px;height:10px;text-align: center;border-bottom:1px solid #000;\">").Append(dr["VATPer"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;;\">").Append(dr["Rate"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["TotalAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["DiscPer"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["VATPer"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align: center;border-bottom:1px solid #000;\">").Append(dr["WoNetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 

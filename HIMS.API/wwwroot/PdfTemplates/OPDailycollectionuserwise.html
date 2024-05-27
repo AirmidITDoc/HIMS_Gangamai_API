@@ -21,11 +21,11 @@
     <div class="bill-template-wrapper" style="font-size: 30.25%;">
 
 
-        {{HospitalHeader}}
+        {{NewHeader}}
         <div style="border:1px solid grey;text-align:center;padding:2px;background-color: beige;">
             <div style="display:block;width:100%; align-items: center;">
                 <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
-                    OP DAILY COLLCTION UESERWISE REPORT
+                    OP DAILY COLLCTION  REPORT
                 </div>
                 <span style="font-size: 15px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
             </div>
@@ -39,14 +39,14 @@
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                         SR.NO
                     </td>
-
+                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                        Bill No
+                    </td>
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                         Date
                     </td>
 
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                        Bill No
-                    </td>
+
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                         Reg No
                     </td>
@@ -71,12 +71,12 @@
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                         Card Amt
                     </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                    <!--<td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                         NEFT Amt
                     </td>
                     <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                         PAYTM Amt
-                    </td>
+                    </td>-->
                 </tr>
 
                 {{Items}}

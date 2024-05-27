@@ -1,114 +1,79 @@
-﻿<html>
-
-<head>
-    <style>
-        .watermark {
-            position: absolute;
-            top: 30%;
-            left: 30%;
-            opacity: .1;
-            z-index: 99;
-            color: #000;
-            font-size: 70px;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            white-space: nowrap;
-            pointer-events: none
-        }
-    </style>
-</head>
-
-<body>
-    <div class="bill-template-wrapper" style="font-size: 30.25%;">
-
-
-        {{HeaderName}}
-        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: gray;">
-            <div style="display:block;width:100%; align-items: center;">
-                <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
-                   Pharmacy Company Credit List
-                </div>
-                <span style="font-size: 9px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
-            </div>
-
-        </div>
-        <div style="margin-top:2px;">
-            <div style="font-weight: bold;font-size:16px;margin-left:10px;font-style:italic;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
-        </div>
-        <table class="table" style="width:100%;border-collapse:collapse">
-            <tbody>
-
-                <tr style="font-size:10px;background-color: rgb(127, 174, 255);">
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:5%;">
-                        SR.NO
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:8%;">
-                        Date
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
-                        NetAmount
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
-                        Debit
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
-                        Credit
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:25%;">
-                        PatientName
-                    </td>
-
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
-                        IPDNo
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:25%;">
-                        Print Store
-                    </td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;width:10%;">
-                        SalesNo
-                    </td>
-                </tr>
-
-                {{Items}}
-
-            <tr style="border: 1px solid black;">
-
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+﻿<div class="main-content-wrapper" #WorkorderTemplate>
+    <div class="invoice-box" style="max-width: 1000px; margin: 0 auto; font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+        <table style="width: 100%;line-height: inherit;text-align: left;">
+            <tr class="top-header-row">
+                {{HeaderName}}
+            </tr>
+            <tr class="title-date-row">
+                <td>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="font-size: 16px">
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; ">
+                                <b>
+                                    Pharmacy Company Credit List
+                                </b>
+                            </td>
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; text-align: right;">
+                                <b>
+                                    Print
+                                    Date : {{CurrentDate}}
+                                </b>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
-
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;color:cornflowerblue;">
-                    Total
+            </tr>
+          
+          
+            <tr class="bill-table-row">
+                <td style="padding: 6px;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead style="font-size: 15px; text-align: center;">
+                            <tr>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">Sr.No</th>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">Date</th>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">NetAmount</th>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">Debit</th>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">Credit</th>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">PatientName</th>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">IPDNo</th>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">Print Store</th>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">SalesNo</th>
+                            </tr>
+                        </thead>
+                        {{Items}}
+                    </table>
                 </td>
-
-                <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; color: cornflowerblue;">
-                    {{TotalNETAmount}}
+            </tr>
+           
+            <tr class="signature-line-row">
+                <td>
+                    <span style="padding: 6px; text-align: center; font-size: 12px; padding:15px 100px 15px 330px">
+                        This is Computer generated invoice hence doesn’t require signature
+                    </span>
                 </td>
-
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                </td>
-
-
             </tr>
 
-            </tbody>
+
+            <tr class="footer-row">
+                <td style="padding: 6px;">
+                    <table style="width: 100%; border-collapse: collapse;margin-top:50px;">
+                        <tbody style="font-size: 14px;">
+                            <tr>
+                                <td style="padding: 6px; text-align: left;">
+                                    {{UserName}}  <br> Added By
+                                </td>
+                                <td style="padding: 6px; text-align: center;">
+                                    {{UserName}}  <br> Checked By
+                                </td>
+                                <td style="padding: 6px; text-align: right;">
+                                    {{UserName}} <br> Authorized Signature
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
         </table>
-        <hr>
-
     </div>
-
-</body>
-
-</html>
+</div> 

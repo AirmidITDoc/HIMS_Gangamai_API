@@ -5,9 +5,7 @@
         <table style="width: 100%;line-height: inherit;text-align: left;">
             <tr class="top-header-row">
                 <td style="padding: 6px;">
-                    <table style="width: 100%; border-collapse: collapse;">
                         {{NewHeader}}
-                    </table>
                 </td>
             </tr>
             <tr class="title-date-row">
@@ -21,45 +19,47 @@
                 </td>
             </tr>
             <tr class="bill-info-row">
-                <table style="font-size: 14px;">
-                    <tr>
-                        <td style="padding: 2px;">
-                            <span>PO No. : </span>
-                            <span>{{PurchaseNo}}</span>
-                        </td>
-                        <td style="padding: 2px;">
-                            <span>PO Date : </span>
-                            <span>{{PurchaseTime}} </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 2px;">
-                            <span>Supplier Name : </span>
-                            <span>{{SupplierName}}</span>
-                        </td>
-                        <td style="padding: 2px;">
-                            <span>Mobile No. : </span>
-                            <span>{{Mobile}}</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 2px;">
-                            <span>Address: </span>
-                            <span>{{Address}} </span>
-                        </td>
-                        <td style="padding: 2px;">
-                            <span>Email : </span>
-                            <span>{{Email}}</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 2px;">
-                            <span>GST No. : </span>
-                            <span>{{GSTNo}} </span>
-                        </td>
+                <td>
+                    <table style="font-size: 14px;">
+                        <tr>
+                            <td style="padding: 2px;">
+                                <span>PO No. : </span>
+                                <span>{{PurchaseNo}}</span>
+                            </td>
+                            <td style="padding: 2px;">
+                                <span>PO Date : </span>
+                                <span>{{PurchaseTime}} </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px;">
+                                <span>Supplier Name : </span>
+                                <span>{{SupplierName}}</span>
+                            </td>
+                            <td style="padding: 2px;">
+                                <span>Mobile No. : </span>
+                                <span>{{Mobile}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px;">
+                                <span>Address: </span>
+                                <span>{{Address}} </span>
+                            </td>
+                            <td style="padding: 2px;">
+                                <span>Email : </span>
+                                <span>{{Email}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px;">
+                                <span>GST No. : </span>
+                                <span>{{GSTNo}} </span>
+                            </td>
 
-                    </tr>
-                </table>
+                        </tr>
+                    </table>
+                </td>
             </tr>
 
             <tr class="bill-table-row">
@@ -119,8 +119,8 @@
                             </tr>
                             <tr>
                                 <td colspan="6" style="border: 1px solid gray;vertical-align: top;padding: 15px;text-align: left;font-weight: 500;">
-                                    Remark :-
-                                    <pre>{{Remarks}}</pre>
+                                    <!--Remark :-
+                                    <pre>{{Remarks}}</pre>-->
                                 </td>
                                 <td colspan="3" style="border: 1px solid gray;vertical-align: top;padding: 15px;text-align: left;">
                                     GST Amount
@@ -142,6 +142,13 @@
                                     {{TotalNETAmount}}
                                 </td>
                             </tr>
+
+                            <tr rowspan="2">
+                                <td colspan="12" style="border: 1px solid gray;vertical-align: top;padding: 15px;text-align: left;font-weight: 500;">
+                                    Remark :-
+                                    <pre>{{Remarks}}</pre>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </td>
@@ -155,18 +162,18 @@
 
 
             <tr class="footer-row">
-                <td style="padding: 6px;">
+                <td style="padding: 6px;margin-top:10px;">
                     <table style="width: 100%; border-collapse: collapse;">
                         <tbody style="font-size: 14px;">
                             <tr>
                                 <td style="padding: 6px; text-align: left;">
-                                    {{AddedbyName}}  <br> Added By
+                                    {{AddedByName}}  <br> Added By
                                 </td>
                                 <td style="padding: 6px; text-align: center;">
-                                    {{AddedbyName}}  <br> Checked By
+                                    {{AddedByName}}  <br> Checked By
                                 </td>
                                 <td style="padding: 6px; text-align: right;">
-                                    {{AddedbyName}} <br> Authorized Signature
+                                    {{AddedByName}} <br> Authorized Signature
                                 </td>
                             </tr>
                         </tbody>

@@ -30,30 +30,39 @@ namespace HIMS.Data.Pharmacy
 
             var disc3 = GRNReturnParam.GRNReturnSave.ToDictionary();
             disc3.Remove("GRNReturnId");
-            var GrnReturnId = ExecNonQueryProcWithOutSaveChanges("insert_GRNReturnH_GrnReturnNo_1", disc3, outputId2);
+            var GrnReturnId = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNReturnH_GrnReturnNo_1", disc3, outputId2);
 
             foreach (var a in GRNReturnParam.GRNReturnDetailSave)
             {
                 var disc5 = a.ToDictionary();
                 //   disc5.Remove("GRNDetID");
                 disc5["GrnReturnId"] = GrnReturnId;
-                var GrnDetID = ExecNonQueryProcWithOutSaveChanges("insert_GRNReturnDetails_1", disc5);
+                var GrnDetID = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNReturnDetails_1", disc5);
             }
             foreach (var a in GRNReturnParam.GRNReturnUpdateCurrentStock)
             {
                 var disc6 = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("Update_T_CurrentStock_GRNReturn_1", disc6);
+                ExecNonQueryProcWithOutSaveChanges("m_Update_T_CurrentStock_GRNReturn_1", disc6);
             }
 
 
             foreach (var a in GRNReturnParam.GRNReturnUpateReturnQty)
             {
                 var disc7 = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("Update_GrnReturnQty_GrnTbl_1", disc7);
+                ExecNonQueryProcWithOutSaveChanges("m_Update_GrnReturnQty_GrnTbl_1", disc7);
             }
            
             _unitofWork.SaveChanges();
             return GrnReturnId;
+        }
+
+        public bool VerifyGRNReturn(GRNReturnParam GRNReturnParam)
+        {
+            var vGRNVerify = GRNReturnParam.UpdateGRNReturnVerifyStatus.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_GRNReturn_Verify_Status_1", vGRNVerify);
+
+            _unitofWork.SaveChanges();
+            return true;
         }
     }
 }

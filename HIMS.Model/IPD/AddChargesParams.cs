@@ -6,6 +6,13 @@ namespace HIMS.Model.IPD
 {
     public class AddChargesParams
     {
+
+        public AddCharges AddCharges { get; set; }
+
+        public DeleteCharges DeleteCharges { get; set; }
+    }
+
+    public class AddCharges { 
         public long ChargeID { get; set; }
         public DateTime ChargesDate { get; set; }
         public long OPD_IPD_Type { get; set; }
@@ -34,5 +41,11 @@ namespace HIMS.Model.IPD
         public long PackageId { get; set; }
         public DateTime ChargeTime { get; set; }
         public long ClassId { get; set; }
+    }
+
+    public class DeleteCharges
+    {
+        public long ChargesId { get; set; }
+        public long UserId { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace HIMS.Model.Pharmacy
         public List<GRNReturnDetailSave> GRNReturnDetailSave { get; set; }
         public List<GRNReturnUpdateCurrentStock> GRNReturnUpdateCurrentStock { get; set; }
         public List<GRNReturnUpateReturnQty> GRNReturnUpateReturnQty { get; set; }
+        public UpdateGRNReturnVerifyStatus UpdateGRNReturnVerifyStatus { get; set; }
     }
 
 
@@ -22,14 +23,11 @@ namespace HIMS.Model.Pharmacy
         public DateTime GRNReturnTime { get; set; }
         public long StoreId { get; set; }
         public long SupplierID { get; set; }
-      
         public float TotalAmount { get; set; }
         public float GrnReturnAmount { get; set; }
-
         public float TotalDiscAmount { get; set; }
         public float TotalVATAmount { get; set; }
         public float TotalOtherTaxAmount { get; set; }
-
         public float TotalOctroiAmount { get; set; }
         public float NetAmount { get; set; }
         public bool Cash_Credit { get; set; }
@@ -87,5 +85,11 @@ namespace HIMS.Model.Pharmacy
         public int GRNDetID { get; set; }
         public float ReturnQty { get; set; }
        
+    }
+
+    public class UpdateGRNReturnVerifyStatus
+    {
+        public long GRNReturnId { get; set; }
+        public long IsVerifiedUserId { get; set; }
     }
 }

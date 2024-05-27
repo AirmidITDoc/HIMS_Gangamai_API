@@ -7,7 +7,7 @@ namespace HIMS.Data.Opd
 {
    public interface I_OPDRegistration
     {
-        bool Insert(OPDRegistrationParams OPDRegistrationParams);
+        string Insert(OPDRegistrationParams OPDRegistrationParams);
         bool Update(OPDRegistrationParams OPDRegistrationParams);
     }
 }

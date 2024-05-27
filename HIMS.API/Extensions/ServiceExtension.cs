@@ -39,6 +39,8 @@ using HIMS.Data.WhatsAppEmail;
 using HIMS.Data.HomeDelivery;
 using HIMS.Data.CustomerInformation;
 using HIMS.Data.CustomerPayment;
+using HIMS.Data.OPReports;
+
 
 namespace HIMS.API.Extensions
 {
@@ -166,7 +168,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_ConsessionReasonMaster, R_ConsessionReasonMaster>();
             services.AddTransient<I_CompanyTypeMaster, R_CompanyTypeMaster>();
             //services.AddTransient<I_ItemMaster, R_ItemMaster>();
-            services.AddTransient<I_ParameterMaster, R_ParameterMaster>();
+            services.AddTransient<I_ParameterMasterAgeWise, R_ParameterMasterAgeWise>();
             services.AddTransient<I_SupplierMaster, R_SupplierMaster>();
             //services.AddTransient<I_StoreMaster, R_StoreMaster>();
             services.AddTransient<I_Constants, R_Constants>();
@@ -301,6 +303,7 @@ namespace HIMS.API.Extensions
 
             services.AddTransient<I_Role, R_Role>();
             services.AddTransient<I_Dashboard, R_Dashboard>();
+            services.AddTransient<I_Favourite, R_Favourite>();
 
             services.AddTransient<I_Stokadjustment, R_Stockadjustment>();
             services.AddTransient<I_Mrpadjustment, R_Mrpadjustment>();
@@ -326,6 +329,7 @@ namespace HIMS.API.Extensions
 
             services.AddTransient<I_CustomerPayments, R_CustomerPayment>();
             services.AddTransient<I_CustomerInvoiceRaise, R_CustomerInvoiceRaise>();
+            services.AddTransient<I_ScheduleMaster, R_ScheduleMaster>();
             /* services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();
             services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
             services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();

@@ -7,7 +7,7 @@ namespace HIMS.Data.Inventory
 {
     public  interface I_IssueToDepartmentIndent
     {
-        public bool UpdateIndentStatusAganistIss(IssueToDepartmentIndentParam IssueToDepartmentIndentParam);
+        public string UpdateIndentStatusAganistIss(IssueToDepartmentIndentParam IssueToDepartmentIndentParam);
 
     }
 }

@@ -6,7 +6,7 @@ namespace HIMS.Model.IPD
 {
     public class IPPrescriptionParams
     {
-        public DeleteIP_Prescription DeleteIP_Prescription { get; set; }
+        //public DeleteIP_Prescription DeleteIP_Prescription { get; set; }
         public InsertIP_MedicalRecord InsertIP_MedicalRecord { get; set; }
         public List<InsertIP_Prescription> InsertIP_Prescription { get; set; }
     }

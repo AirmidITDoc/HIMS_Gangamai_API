@@ -1,106 +1,183 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
+
 <body>
-    <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
+    <div class="main-content-wrapper">
+        <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+            <table style="width: 100%;line-height: inherit;text-align: left;">
+                <tr class="top-header-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            {{NewHeader}}
+                        </table>
+                    </td>
+                </tr>
+                <tr class="title-date-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="font-size: 18px">
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b> SETTELMENT RECEIPT</b></td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="bill-info-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Receipt No : </span>
+                                    <span>{{ReceiptNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span> Date : </span>
+                                    <span> {{AdmissionTime}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Reg No : </span>
+                                    <span>{{RegNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>IPDNo : </span>
+                                    <span>{{IPDNo}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Patient Name : </span>
+                                    <span>{{PatientName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Payment Date : </span>
+                                    <span> {{PaymentDate}}</span>
+                                </td>
+                            </tr>
 
-        {{HospitalHeader}}
-        <div style="border:1px solid grey;text-align:center;padding:2px;background-color: beige;">
-            <div style="display:block;width:100%; align-items: center;">
-                <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;margin-left:100px">
-                    SETTELMENT RECEIPT
-                </div>
-                <span style="font-size: 16px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
-            </div>
 
+                        </table>
+                    </td>
+                </tr>
+
+                <tr class="payment-info-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td>
+                                    <table style="text-align:center; border-collapse: collapse; width: 100%;">
+                                        <thead style="font-size: 14px;">
+                                            <tr>
+                                                <th style=" border: 1px solid #d4c3c3; text-align: center;" colspan="2">
+                                                    <h4 style="margin: 12px 0px; font-size: 15px;">
+                                                        Bill Information
+                                                    </h4>
+                                                </th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody style="font-size: 14px;">
+                                            <tr>
+                                                <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                                    Bill No
+                                                </td> <!-- <div></div> -->
+                                                <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{PBillNo}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                                    Bill Date
+                                                </td> <!-- <div></div> -->
+                                                <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{BillDate}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                                    Bill Amount
+                                                </td> <!-- <div></div> -->
+                                                <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{TotalAmt}}
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table style="text-align: center; border-collapse: collapse; width: 100%;">
+                                        <thead style="font-size: 14px;">
+                                            <tr>
+                                                <th style=" border: 1px solid #d4c3c3; text-align: center;" colspan="2">
+                                                    <h4 style="margin: 12px 0px; font-size: 15px;">
+                                                        Payment Information
+                                                    </h4>
+                                                </th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody style="font-size: 14px;">
+                                            <tr>
+                                                <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                                    Paid Amount
+                                                </td>
+                                                <!-- <div></div> -->
+                                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{PaidAmount}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                                    remark
+                                                </td> <!-- <div></div> -->
+                                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{Remark}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                                    Cash Pay
+                                                </td> <!-- <div></div> -->
+                                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{CashPayAmount}}
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 6px; text-align: left; font-size: 12px;">This is Computer generated invoice hence doesn’t require signature</td>
+                </tr>
+               
+                <tr style="padding: 6px; text-align: right;">
+                    <td>
+
+                        <span>{{UserName}}</span>
+                    </td>
+                </tr>
+                <tr style="padding: 6px; text-align: right;">
+
+                    <td>
+
+                        <span>Cashier</span>
+                    </td>
+                </tr>
+            </table>
         </div>
-
-        <table>
-            <tr>
-                <td>
-                    <span style="font-weight: 500; font-size: 20px; margin-Left: 20px; ">Receipt No.</span>
-                    <span style="font-size:15px; ">{{ReceiptNo}}  </span>
-                </td>
-                <td>
-                    <span style="font-weight: 500;margin-left: 150px; font-size: 20px;">Date</span>
-                    <span style="font-size:15px;">  {{AdmissionTime}}</span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <span style="font-weight: 500; font-size: 20px; margin-Left: 20px; ">RegNo</span>
-                    <span style="font-size:15px;width:500px;">{{RegNo}}</span>
-                </td>
-                <td>
-                    <span style="font-weight: 500;margin-left: 150px; font-size: 20px;">IPDNo</span>
-                    <span style="font-size:15px;">{{IPDNo}}</span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <span style="font-weight: 500; font-size: 20px; margin-Left: 20px; ">Patient Name</span>
-                    <span style="font-size:15px;">{{PatientName}}</span>
-                </td>
-                <td>
-                    <span style="font-weight: 500;margin-left: 150px; font-size: 20px;">Payment Date</span>
-                    <span style="font-size:15px;">{{PaymentDate}}</span>
-                </td>
-            </tr>
-
-
-        </table>
-
-        <hr>
-        <span style="font-weight: 500; margin-right: 20px;margin-left:50px; font-size: 20px;">Bill No</span>
-        <span style="font-size:15px;">{{PBillNo}}</span>
-        <span style="font-weight: 500; margin-right: 20px; font-size: 20px;margin-left:150px;">Bill Date</span>
-        <span style="font-size:15px;">{{BillDate}}</span>
-        <span style="font-weight: 500; margin-right: 20px; font-size: 20px; margin-left: 150px;">Bill Amount</span>
-        <span style="font-size:15px;">{{TotalAmt}}</span>
-        <hr>
-        <div style="display: flex;">
-
-            <span style="vertical-align: top;padding:0 10px 10px;">
-
-                <br />
-                <span style="font-weight: 500; margin-Left: 20px; font-size: 20px; width: 300px;">Paid Amount :</span>
-                <span style="width: 400px;font-size:18px;margin-left:10px;"> {{PaidAmount}}</span> <br>
-                <span style="font-weight: 500; font-size: 20px; margin-Left: 20px; width: 300px;">Remark :</span>
-                <span style="width: 400px; font-size: 18px; margin-left: 10px;"> {{Remark}}</span> <br>
-                <span style="font-weight: 500; font-size: 20px; margin-Left: 20px; width: 300px;">Cash Pay :</span>
-                <span style="width: 400px; font-size: 18px; margin-left: 10px;"> {{CashPayAmount}}</span> <br>
-
-            </span>
-
-        </div>
-        <hr>
-        <br>
-        <span style="font-weight: 500; font-size: 20px; margin-Left: 10px; "> Total Amount in words :-{{finalamt}}</span>
-        <hr>
-        <div style="display: flex;">
-            <span style="font-weight: 500; font-size: 20px; margin-Left: 10px; ">Remark</span>
-
-        </div>
-        <br><br>
-
-        <div style="display:flex;justify-content:space-between;margin-left:180px;margin-top:50px;">
-
-            <div style="text-align:center;margin-left:30px;">
-                <div style="font-weight:700;font-size:18px;">{{UserName}}</div>
-                <div style="font-size:18px;">Cashier </div>
-            </div>
-        </div>
-        <!--<div style="border: 1px solid black;width: 1000px;height: 30px; background-color: red;border-bottom-right-radius: 110px;
-        margin-top: 40px;border-bottom-left-radius: 110px;padding: 6px ;">
-                <div style="font-style: italic; opacity:1;text-align: center;font-size: 15px; margin-top: 8px; color: white;">
-                    This is Computer generated invoice hence doesn’t require signature
-                </div>
-            </div>-->
     </div>
 </body>
+
 </html>

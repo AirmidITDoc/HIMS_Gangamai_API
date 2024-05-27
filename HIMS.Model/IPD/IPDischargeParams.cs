@@ -8,10 +8,8 @@ namespace HIMS.Model.Opd
     {
         public InsertIPDDischarg InsertIPDDischarg { get; set; }
         public UpdateAdmission UpdateAdmission { get; set; }
-
-         public UpdateIPDDischarg UpdateIPDDischarg { get; set; }
-
-        //  public InsertIPSMSTemplete InsertIPSMSTemplete { get; set; }
+        public UpdateIPDDischarg UpdateIPDDischarg { get; set; }
+        public DischargeBedRelease DischargeBedRelease { get; set; }
     }
 
     public class InsertIPDDischarg
@@ -20,34 +18,24 @@ namespace HIMS.Model.Opd
         public long AdmissionId { get; set; }
         public DateTime DischargeDate { get; set; }
         public DateTime DischargeTime { get; set; }
-     
         public int DischargeTypeId { get; set; }
         public int DischargedDocId { get; set; }
         public int DischargedRMOID { get; set; }
-
-      //  public String Modeofdischarge { get; set; }
-
-        public int UpdatedBy { get; set; }
         public int AddedBy { get; set; }
 
-       
     }
-
-
+    public class DischargeBedRelease
+    {
+        public long BedId { get; set; }
+    }
     public class UpdateIPDDischarg
     {
-      
-        // public long AdmissionId { get; set; }
         public long DischargeId { get; set; }
         public DateTime DischargeDate { get; set; }
         public DateTime DischargeTime { get; set; }
-
         public int DischargeTypeId { get; set; }
         public int DischargedDocId { get; set; }
         public int DischargedRMOID { get; set; }
-
-     //   public String Modeofdischarge { get; set; }
-     
         public int UpdatedBy { get; set; }
 
     }
@@ -65,10 +53,8 @@ namespace HIMS.Model.Opd
     public class UpdateDischargeSummary
     { 
         public int DischargesummaryId { get; set; }
-      //  public int AdmissionId { get; set; }
         public int DischargeId { get; set; }
         public String History { get; set; }
-
         public String Diagnosis { get; set; }
         public String Investigation { get; set; }
         public String ClinicalFinding { get; set; }
@@ -78,7 +64,6 @@ namespace HIMS.Model.Opd
         public DateTime Followupdate { get; set; }
         public String Remark { get; set; }
         public DateTime OPDate { get; set; }
-
         public DateTime OPTime { get; set; }
         public int DischargeDoctor1 { get; set; }
         public int DischargeDoctor2 { get; set; }
@@ -91,7 +76,6 @@ namespace HIMS.Model.Opd
     {
         public String VstCode { get; set; }
         public int MsgId { get; set; }
-
         public int PatientType { get; set; }
     }
 }

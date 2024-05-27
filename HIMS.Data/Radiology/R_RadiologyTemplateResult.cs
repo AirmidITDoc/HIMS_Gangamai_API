@@ -28,7 +28,7 @@ namespace HIMS.Data.Radiology
             return true;
         }
 
-        public string ViewRadiologyTemplateReceipt(int RadReportId, int OP_IP_Type, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewRadiologyTemplateReceipt(int RadReportId, int OP_IP_Type, string htmlFilePath, string htmlHeader)
         {
             //  throw new NotImplementedException();
 
@@ -39,9 +39,9 @@ namespace HIMS.Data.Radiology
             para[1] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptRadiologyReportPrint", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
             Boolean chkresonflag = false;

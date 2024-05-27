@@ -47,23 +47,49 @@ namespace HIMS.Data.Inventory
             return IssueId;
         }
 
-        public Boolean UpdateIndentStatusAganistIss(IssueToDepartmentIndentParam IssueToDepartmentIndentParam)
+        public string UpdateIndentStatusAganistIss(IssueToDepartmentIndentParam IssueToDepartmentIndentParam)
         {
-           
 
-                var disc3 = IssueToDepartmentIndentParam.Update_IndentHeader_Status.ToDictionary();
-                var IssueId = ExecNonQueryProcWithOutSaveChanges("Update_IndentHeader_Status_AganistIssue", disc3);
+            var vIssueId = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@IssueId",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+
+            var disc3 = IssueToDepartmentIndentParam.insertIssuetoDepartmentHeader1.ToDictionary();
+            disc3.Remove("IssueId");
+            var IssueId = ExecNonQueryProcWithOutSaveChanges("m_Insert_IssueToDepartmentHeader_1_New", disc3, vIssueId);
+
+            foreach (var a in IssueToDepartmentIndentParam.InsertIssuetoDepartmentDetail1)
+            {
+                var disc5 = a.ToDictionary();
+                disc5["IssueId"] = IssueId;
+                ExecNonQueryProcWithOutSaveChanges("m_insert_IssueToDepartmentDetails_1", disc5);
+
+            }
+            foreach (var a in IssueToDepartmentIndentParam.UpdateissuetoDepartmentStock1)
+            {
+                var disc5 = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_upd_T_Curstk_issdpt_1", disc5);
+
+            }
+
+            var vIndentHeaderStatus = IssueToDepartmentIndentParam.Update_IndentHeader_Status.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("Update_IndentHeader_Status_AganistIssue", vIndentHeaderStatus);
             
             foreach (var a in IssueToDepartmentIndentParam.updateIndentStatusIndentDetails)
             {
-                var disc5 = a.ToDictionary();
-                disc5["IndentId"] = disc3["IndentId"];
-                ExecNonQueryProcWithOutSaveChanges("Update_Indent_Status_AganistIss", disc5);
+                var vIndentDet = a.ToDictionary();
+                //vIndentDet["IndentId"] = disc3["IndentId"];
+                ExecNonQueryProcWithOutSaveChanges("Update_Indent_Status_AganistIss", vIndentDet);
 
             }
             
             _unitofWork.SaveChanges();
-            return true;
+            return IssueId;
         }
 
        
