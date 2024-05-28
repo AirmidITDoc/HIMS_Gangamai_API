@@ -283,6 +283,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_Prepostopnote, R_Prepostopnote>();
             services.AddTransient<I_PatientFeedback, R_PatientFeedback>();
             services.AddTransient<I_SMS_Config,R_SMSConfig>();
+            services.AddTransient<I_InvOpeningBalance, R_InvOpeningBalance>();
 
 
             services.AddTransient<I_ItemMaster, R_ItemMaster>();
