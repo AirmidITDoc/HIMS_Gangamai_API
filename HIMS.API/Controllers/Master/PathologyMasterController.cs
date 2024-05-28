@@ -19,14 +19,15 @@ namespace HIMS.API.Controllers.Master
         public readonly I_PathologyTemplateMaster _PathologyTemplateMasterRep;
         public readonly I_UnitMaster _UnitMasterRep;
         public readonly I_PathologyTestMaster _PathologyTestMasterRep;
-        public readonly I_ParameterMaster _ParameterMaster;
+        public readonly I_ParameterMasterAgeWise _ParameterMaster;
 
         public PathologyMasterController(I_PathParameterMaster PathParameterMasterParams,
                                    I_ParameterMasterAgeWise parameterMasterAgeWise,
                                    I_PathologyCategoryMaster pathologyCategoryMaster,
                                    I_PathologyTemplateMaster pathologyTemplateMaster,
                                    I_UnitMaster unitMaster,
-                                   I_PathologyTestMaster pathologyTestMaster,I_ParameterMaster parameterMaster
+                                   I_PathologyTestMaster pathologyTestMaster,
+                                   I_ParameterMasterAgeWise parameterMaster
                                  )
         {
             this._PathParameterMaster = PathParameterMasterParams;
@@ -39,20 +40,20 @@ namespace HIMS.API.Controllers.Master
         }
 
 
-        [HttpPost("ParameterSave")]
-        public IActionResult ParameterSave(ParameterMasterParams ParameterMasterParams)
-        {
-            var ParameterSave = _ParameterMaster.Insert(ParameterMasterParams);
-            return Ok(ParameterSave);
+        //[HttpPost("ParameterSave")]
+        //public IActionResult ParameterSave(PathParameterMasterParams pathParameterMasterParams)
+        //{
+        //    var ParameterSave = _ParameterMaster.Insert(pathParameterMasterParams);
+        //    return Ok(ParameterSave);
 
-        }
+        //}
 
-        [HttpPost("ParameterUpdate")]
-        public IActionResult ParameterUpdate(ParameterMasterParams ParameterMasterParams)
-        {
-            var ParameterUpdate = _ParameterMaster.Update(ParameterMasterParams);
-            return Ok(ParameterUpdate);
-        }
+        //[HttpPost("ParameterUpdate")]
+        //public IActionResult ParameterUpdate(ParameterMasterParams ParameterMasterParams)
+        //{
+        //    var ParameterUpdate = _ParameterMaster.Update(ParameterMasterParams);
+        //    return Ok(ParameterUpdate);
+        //}
 
 
         /*[HttpPost("pathParameterSave")]
@@ -76,17 +77,17 @@ namespace HIMS.API.Controllers.Master
         //--------------------------------------------------------------------------------
 
         [HttpPost("ParameterAgeWiseMasterSave")]
-        public IActionResult ParameterAgeWiseMasterSave(ParameterMasterAgeWiseParams ParameterMasterAgeWiseParams)
+        public IActionResult ParameterAgeWiseMasterSave(PathParameterMasterParams pathParameterMasterParams)
         {
-            var ParameterAgeWiseMasterSave = _ParameterMasterAgeWise.Insert(ParameterMasterAgeWiseParams);
+            var ParameterAgeWiseMasterSave = _ParameterMasterAgeWise.Insert(pathParameterMasterParams);
             return Ok(ParameterAgeWiseMasterSave);
 
         }
 
         [HttpPost("ParameterAgeWiseMasterUpdate")]
-        public IActionResult ParameterAgeWiseMasterUpdate(ParameterMasterAgeWiseParams ParameterMasterAgeWiseParams)
+        public IActionResult ParameterAgeWiseMasterUpdate(PathParameterMasterParams pathParameterMasterParams)
         {
-            var ParameterAgeWiseMasterUpdate = _ParameterMasterAgeWise.Update(ParameterMasterAgeWiseParams);
+            var ParameterAgeWiseMasterUpdate = _ParameterMasterAgeWise.Update(pathParameterMasterParams);
             return Ok(ParameterAgeWiseMasterUpdate);
 
         }
