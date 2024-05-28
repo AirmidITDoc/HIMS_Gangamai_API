@@ -40,6 +40,7 @@ using HIMS.Data.HomeDelivery;
 using HIMS.Data.CustomerInformation;
 using HIMS.Data.CustomerPayment;
 using HIMS.Data.OPReports;
+using HIMS.Data.CommanReports;
 
 
 namespace HIMS.API.Extensions
@@ -330,28 +331,28 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_CustomerPayments, R_CustomerPayment>();
             services.AddTransient<I_CustomerInvoiceRaise, R_CustomerInvoiceRaise>();
             services.AddTransient<I_ScheduleMaster, R_ScheduleMaster>();
-            /* services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();
-            services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
-            services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
-            services.AddTransient<I_BillingClassMasterHome, R_BillingClassMasterHome>();
-            services.AddTransient<I_Itemmasterhome, R_Itemmasterhome>();
-            services.AddTransient<I_SalesReport, R_SalesReport>();
-
-           
-          
-            //services.AddTransient<I_StoreMaster, R_StoreMaster>();
-
-            /*  services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();
-             services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();
-             services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
+            services.AddTransient<I_CommanReport, R_CommanReport>();
+            /*  services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
              services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
              services.AddTransient<I_BillingClassMasterHome, R_BillingClassMasterHome>();
              services.AddTransient<I_Itemmasterhome, R_Itemmasterhome>();
+             services.AddTransient<I_SalesReport, R_SalesReport>();
 
-            services.AddTransient<I_ItemCategoryMasterHome, R_ItemCategoryMasterHome>();
-            services.AddTransient<I_MenuMasterHome, R_MenuMasterHome>();
-            services.AddTransient<I_MenuMasterDetailsHome, R_MenuMasterDetailsHome>();
-            services.AddTransient<I_MenuMasterDetails_DetailsHome, R_MenuMasterDetails_DetailsHome>();*/
+
+
+             //services.AddTransient<I_StoreMaster, R_StoreMaster>();
+
+             /*  services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();
+              services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();
+              services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
+              services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
+              services.AddTransient<I_BillingClassMasterHome, R_BillingClassMasterHome>();
+              services.AddTransient<I_Itemmasterhome, R_Itemmasterhome>();
+
+             services.AddTransient<I_ItemCategoryMasterHome, R_ItemCategoryMasterHome>();
+             services.AddTransient<I_MenuMasterHome, R_MenuMasterHome>();
+             services.AddTransient<I_MenuMasterDetailsHome, R_MenuMasterDetailsHome>();
+             services.AddTransient<I_MenuMasterDetails_DetailsHome, R_MenuMasterDetails_DetailsHome>();*/
 
             // services.AddTransient<>();
 
