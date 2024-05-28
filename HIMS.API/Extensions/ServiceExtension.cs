@@ -330,8 +330,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_CustomerPayments, R_CustomerPayment>();
             services.AddTransient<I_CustomerInvoiceRaise, R_CustomerInvoiceRaise>();
             services.AddTransient<I_ScheduleMaster, R_ScheduleMaster>();
-            /* services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();
-            services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
+            services.AddTransient<I_Itemmovement, R_Itemmovement>();
+            /* services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
             services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
             services.AddTransient<I_BillingClassMasterHome, R_BillingClassMasterHome>();
             services.AddTransient<I_Itemmasterhome, R_Itemmasterhome>();

@@ -9,5 +9,6 @@ namespace HIMS.Data.Pharmacy
     {
         public string InsertGRNReturn(GRNReturnParam GRNReturnParam);
         public bool VerifyGRNReturn(GRNReturnParam GRNReturnParam);
+        string ViewGRNReturnReport(int GRNReturnId, string htmlFilePath, string HeaderName);
     }
 }

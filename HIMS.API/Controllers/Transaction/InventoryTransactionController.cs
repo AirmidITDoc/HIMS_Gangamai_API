@@ -26,7 +26,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_ReturnFromDept _ReturnFromDept;
         public readonly I_StockAdjustment _StockAdjustment;
         public readonly I_IssueToDepartmentIndent _IssueToDepartmentIndent;
-
+        public readonly I_Itemmovement _Itemmovement;
         public InventoryTransactionController(
              I_Indent indent
             ,I_IssueTrackingInfo issueTrackingInfo
@@ -36,7 +36,7 @@ namespace HIMS.API.Controllers.Transaction
             , I_IssuetoDepartment issuetoDepartment,
              I_InvMaterialConsumption invMaterialConsumption,
              I_ReturnFromDept returnFromDept,I_StockAdjustment stockAdjustment,
-             I_IssueToDepartmentIndent issueToDepartmentIndent )
+             I_IssueToDepartmentIndent issueToDepartmentIndent,I_Itemmovement itemmovement )
         {
             this._indent = indent;
             this._IssueTrackingInfo = issueTrackingInfo;
@@ -48,7 +48,7 @@ namespace HIMS.API.Controllers.Transaction
             _ReturnFromDept = returnFromDept;
             _StockAdjustment = stockAdjustment;
             this._IssueToDepartmentIndent = issueToDepartmentIndent;
-            
+            this._Itemmovement = itemmovement;
         }
 
         [HttpPost("IndentSave")]
@@ -136,8 +136,22 @@ namespace HIMS.API.Controllers.Transaction
             //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+      
 
 
+        [HttpGet("view-InvItemmovement")]
+        public IActionResult ViewInvItemmovement(DateTime FromDate, DateTime ToDate, int ItemId, int FromStoreID, int ToStoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InvItemMovement.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Itemmovement.ViewItemmovement(FromDate, ToDate, ItemId, FromStoreID, ToStoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvItemMovement", "InvItemMovement", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+          return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+       
         [HttpGet("view-InvDaywiseStock")]
         public IActionResult ViewInvDaywise(DateTime LedgerDate, int StoreId)
         {
@@ -189,22 +203,35 @@ namespace HIMS.API.Controllers.Transaction
 
 
 
+        //[HttpGet("view-IssuetoDeptIssuewise")]
+        //public IActionResult ViewIssuetoDeptIssuewise(int IssueId)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InvIssuetoDept.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+        //    var html = _IssuetoDepartment.ViewIssuetoDeptIssuewise(IssueId, htmlFilePath, htmlHeaderFilePath);
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvIssuetoDept", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+        //    // write logic for send pdf in whatsapp
+
+
+        //    //if (System.IO.File.Exists(tuple.Item2))
+        //    //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
+
         [HttpGet("view-IssuetoDeptIssuewise")]
         public IActionResult ViewIssuetoDeptIssuewise(int IssueId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InvIssuetoDept.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
-            var html = _IssuetoDepartment.ViewIssuetoDeptIssuewise(IssueId, htmlFilePath, htmlHeaderFilePath);
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvIssuetoDept", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IssuetoDepartment.ViewIssuetoDeptIssuewise(IssueId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "InvIssuetoDept", "InvIssuetoDept" + IssueId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
-
-
             //if (System.IO.File.Exists(tuple.Item2))
             //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
-
 
 
         [HttpGet("view-IssuetoDeptSummary")]
