@@ -33,6 +33,7 @@ namespace HIMS.API.Controllers.Master
         public readonly I_SupplierMaster _SupplierMaster;
         public readonly I_OpeningTransaction _OpeningTransaction;
         public readonly I_Constants _Constants;
+        public readonly I_InvOpeningBalance _InvOpeningBalance;
         //public readonly I_SMS_Config _SMS_Config;
         public InventoryController(I_CurrencyMaster currencyMaster,
                                    I_ItemCategoryMaster itemCategoryMaster,
@@ -47,9 +48,9 @@ namespace HIMS.API.Controllers.Master
                                    I_TaxMaster taxMaster,
                                    I_ModeofPaymentMaster mopMaster,
                                    I_TermsofPaymentMaster topMaster, I_IssueTrackingInfo issueTrackingInfo,
-                                   I_OpeningTransaction openingTransaction,
+                                   I_OpeningTransaction openingTransaction, I_InvOpeningBalance invOpeningBalance,
                                    I_Constants constants)
-                                   //I_SMS_Config sMS_Config)
+        //I_SMS_Config sMS_Config)
         {
             this._CurrencyMasterRep = currencyMaster;
             this._ItemCategoryMasterRep = itemCategoryMaster;
@@ -67,6 +68,7 @@ namespace HIMS.API.Controllers.Master
             this._SupplierMaster = supplierMaster;
             this._OpeningTransaction = openingTransaction;
             this._Constants = constants;
+            this._InvOpeningBalance = invOpeningBalance;
             //this._SMS_Config = sMS_Config;
         }
 
@@ -312,6 +314,15 @@ namespace HIMS.API.Controllers.Master
             return Ok(TODUpdate);
 
         }
+
+
+        [HttpPost("Invopeningbalance")]
+        public IActionResult Invopeningbalance(OpeningBalanceParam OpeningBalanceParam)
+        {
+            var TODUpdate = _InvOpeningBalance.OpeningBalanceParamInsert(OpeningBalanceParam);
+            return Ok(TODUpdate);
+
+        }
         ////[HttpPost("SMS_Configsave")]
         ////public IActionResult SMS_Configsave(SMS_ConfigParam SMS_ConfigParam)
         ////{
@@ -327,6 +338,8 @@ namespace HIMS.API.Controllers.Master
 
         ////}
     }
+
+
 }
-        
+
 
