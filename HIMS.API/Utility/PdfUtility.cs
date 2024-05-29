@@ -8,6 +8,8 @@ using Wkhtmltopdf.NetCore;
 
 using Aspose.Cells;
 using Wkhtmltopdf.NetCore.Options;
+using HIMS.Data.Master;
+using HIMS.Model.Master;
 
 namespace HIMS.API.Utility
 {
@@ -16,15 +18,24 @@ namespace HIMS.API.Utility
         public readonly I_Sales _Sales;
         public readonly IGeneratePdf _generatePdf;
         public readonly IConfiguration _configuration;
-        public PdfUtility(I_Sales sales, IGeneratePdf generatePdf, IConfiguration configuration)
+        public readonly I_Hospital _Hospital;
+        public PdfUtility(I_Sales sales, IGeneratePdf generatePdf, IConfiguration configuration, I_Hospital i_Hospital)
         {
             _Sales = sales;
             _generatePdf = generatePdf;
             _configuration = configuration;
+            _Hospital = i_Hospital;
         }
-        public string GetHeader(string filePath)
+        public string GetHeader(string filePath, int HospitalId=0)
         {
             string htmlHeader = System.IO.File.ReadAllText(filePath);
+            HospitalMaster objHospital = _Hospital.GetHospitalById(HospitalId);
+            htmlHeader = htmlHeader.Replace("{{HospitalName}}", objHospital?.HospitalName ?? "");
+            htmlHeader = htmlHeader.Replace("{{Address}}", objHospital?.HospitalAddress ?? "");
+            htmlHeader = htmlHeader.Replace("{{City}}", objHospital?.City ?? "");
+            htmlHeader = htmlHeader.Replace("{{Pin}}", objHospital?.Pin ?? "");
+            htmlHeader = htmlHeader.Replace("{{Phone}}", objHospital?.Phone ?? "");
+            htmlHeader = htmlHeader.Replace("{{Display}}", (objHospital?.HospitalId ?? 0) > 0 ? "visible" : "hidden");
             return htmlHeader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
         }
         public Tuple<byte[], string> GeneratePdfFromHtml(string html, string FolderName, string FileName = "", Wkhtmltopdf.NetCore.Options.Orientation PageOrientation = Wkhtmltopdf.NetCore.Options.Orientation.Portrait)
