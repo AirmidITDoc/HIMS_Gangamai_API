@@ -135,7 +135,10 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{DL_NO}}", Bills.GetColValue("DL_NO"));
 
             html = html.Replace("{{SalesNo}}", Bills.GetColValue("SalesNo"));
-            html = html.Replace("{{Date}}", Bills.GetColValue("Date"));
+           // html = html.Replace("{{Date}}", Bills.GetColValue("Date"));
+
+            html = html.Replace("{{Date}}", Bills.GetColValue("Time").ConvertToDateString("dd/M/yyyy hh:mm tt"));
+
             html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
             html = html.Replace("{{DL_NO}}", Bills.GetColValue("DL_NO"));
 
