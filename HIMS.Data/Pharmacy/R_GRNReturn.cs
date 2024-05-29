@@ -92,23 +92,23 @@ namespace HIMS.Data.Pharmacy
                 items.Append("<tr  style=\"font-size:15px;border: 1px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828 \"><td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Conversion"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["LandedRate"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ReturnQty"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["LandedTotalAmount"].ConvertToString()).Append("</td>");
 
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BatchNo"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                //items.Append("<td style=\"border-left:1px solid #000;vertical-align:middle;padding:0px;height:10px;text-align: center;border-bottom:1px solid #000;\">").Append(dr["TotalAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BatchExpiryDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["LandedRate"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ReturnQty"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["LandedTotalAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["VatPercentage"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["VatAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalVatAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GrnReturnAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalDiscAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
 
                 T_TotalAmount += dr["TotalAmount"].ConvertToDouble();
                 T_TotalVatAmount += dr["VatAmount"].ConvertToDouble();
                 T_TotalDiscAmount += dr["TotalDiscAmount"].ConvertToDouble();
-               // T_TotalNETAmount += dr["GrnReturnAmount"].ConvertToDouble();
+                T_TotalNETAmount += dr["NetAmount"].ConvertToDouble();
                 //T_TotalBalancepay += dr["BalanceAmount"].ConvertToDouble();
                 //T_TotalCGST += dr["CGSTAmt"].ConvertToDouble();
                 //T_TotalSGST += dr["SGSTAmt"].ConvertToDouble();
@@ -128,7 +128,7 @@ namespace HIMS.Data.Pharmacy
 
 
             html = html.Replace("{{TotCGSTAmt}}", Bills.GetColValue("TotCGSTAmt").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{GrandTotalAount}}", Bills.GetColValue("GrandTotalAount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{GrandTotalAount}}", Bills.GetColValue("TotalAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{TotalAmount}}", Bills.GetColValue("TotalAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{HandlingCharges}}", Bills.GetColValue("HandlingCharges").ConvertToDouble().To2DecimalPlace());
 
@@ -148,13 +148,13 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{T_TotalSGST}}", T_TotalSGST.ConvertToDouble().To2DecimalPlace());
 
             html = html.Replace("{{GRNDate}}", Bills.GetColValue("GRNDate").ConvertToDateString("dd/MM/yyyy"));
-            html = html.Replace("{{GRNTime}}", Bills.GetColValue("GRNDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{GRNTime}}", Bills.GetColValue("GRNReturnTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{PurchaseTime}}", Bills.GetColValue("PurchaseTime").ConvertToDateString("dd/MM/yyyy"));
 
             html = html.Replace("{{InvDate}}", Bills.GetColValue("InvDate").ConvertToDateString("dd/MM/yyyy"));
 
 
-            html = html.Replace("{{GrnNumber}}", Bills.GetColValue("GrnNumber"));
+            html = html.Replace("{{GrnNumber}}", Bills.GetColValue("GRNReturnNo"));
             html = html.Replace("{{EwayBillDate}}", Bills.GetColValue("EwayBillDate").ConvertToDateString("dd/MM/yyyy"));
             html = html.Replace("{{GSTNo}}", Bills.GetColValue("GSTNo").ConvertToString());
             html = html.Replace("{{EwayBillNo}}", Bills.GetColValue("EwayBillNo"));

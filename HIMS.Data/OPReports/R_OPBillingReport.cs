@@ -1070,9 +1070,31 @@ namespace HIMS.Data.Opd
 
         }
 
-        
-        
+        public string ViewDoctorWiseNewAndOldPatientReport(DateTime fromDate, DateTime toDate, string htmlFilePath, string v)
+        {
+            throw new NotImplementedException();
         }
+
+        public string ViewOPDailyCollectionReceipt(DateTime fromDate, DateTime toDate, int addedById, string htmlFilePath, string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ViewpatientAppointmentwithserviceavailed(DateTime fromDate, DateTime toDate, string htmlFilePath, string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ViewOPDeptwisecountsummaryReport(DateTime fromDate, DateTime toDate, string htmlFilePath, string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ViewOPDoctorwisecountsummaryReport(DateTime fromDate, DateTime toDate, string htmlFilePath, string v)
+        {
+            throw new NotImplementedException();
+        }
+    }
     }
 
 
