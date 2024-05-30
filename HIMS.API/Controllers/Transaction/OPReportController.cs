@@ -39,39 +39,39 @@ namespace HIMS.API.Controllers.Transaction
         //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         //}
 
-        //[HttpGet("view-OPDeptwisecountsummaryReport")]
-        //public IActionResult ViewOPDeptwisecountsummaryReport(DateTime FromDate, DateTime ToDate)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDeptwisecountsummary.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _OPbilling.ViewOPdeptwisecountsummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDeptwisecountsummary", "OPDeptwisecountsummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        [HttpGet("view-OPDeptwisecountsummaryReport")]
+        public IActionResult ViewOPDeptwisecountsummaryReport(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDeptwisecountsummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _OPbilling.ViewOPDeptwisecountsummaryReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDeptwisecountsummaryReport", "OPDeptwisecountsummaryReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        //}
-        //[HttpGet("view-OPDoctorwisecountsummaryReport")]
-        //public IActionResult ViewOPDoctortwisecountsummaryReport(DateTime FromDate, DateTime ToDate)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpDctorwisecountsummary.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _OPbilling.ViewOPDoctorwisecountsummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OpDctorwisecountsummary", "OpDctorwisecountsummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpGet("view-OPDoctorwisecountsummaryReport")]
+        public IActionResult ViewOPDoctortwisecountsummaryReport(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpDctorwisecountsummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _OPbilling.ViewOPDoctorwisecountsummaryReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDoctorwisecountsummaryReport", "OPDoctorwisecountsummaryReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        //}
-        //[HttpGet("view-OPAppointmentwithserviceAvailedReport")]
-        //public IActionResult ViewOPAppointmentwithserviceavailedReport(DateTime FromDate, DateTime ToDate)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Appointmentlistwithserviceavailed.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _OPbilling.ViewpatientAppointmentwithserviceavailed(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Appointmentlistwithserviceavailed", "Appointmentlistwithserviceavailed", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpGet("view-OPAppointmentwithserviceAvailedReport")]
+        public IActionResult ViewOPAppointmentwithserviceavailedReport(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Appointmentlistwithserviceavailed.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _OPbilling.ViewpatientAppointmentwithserviceavailed(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Appointmentlistwithserviceavailed", "Appointmentlistwithserviceavailed", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        //}
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         [HttpGet("view-RegistrationReport ")]
         public IActionResult ViewRegistrationReport(DateTime FromDate, DateTime ToDate)
@@ -202,13 +202,13 @@ namespace HIMS.API.Controllers.Transaction
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
-        //[HttpGet("view-OPDoctorwiseNewoldpatientReport")]
-        //public IActionResult ViewOPDoctortwisenewoldpatientReport(DateTime FromDate, DateTime ToDate)
+        //[HttpGet("view-OPDoctorWiseNewOldPatientReport")]
+        //public IActionResult ViewOPDoctorWiseNewOldPatientReport(DateTime FromDate, DateTime ToDate)
         //{
         //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDoctorwisenewoldpatient.html");
         //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _OPbilling.ViewOPDoctorwisenewoldpatient(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDoctorwisenewoldpatient", "OPDoctorwisenewoldpatient", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        //    var html = _OPbilling.ViewOPDoctorWiseNewOldPatientReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDoctorWiseNewOldPatientReport", "OPDoctorWiseNewOldPatientReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
         //}
         [HttpGet("view-DayWiseOpdCountSummry")]
@@ -256,17 +256,17 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
         }
-        //[HttpGet("view-BillReportSummary")]
-        //public IActionResult ViewBillReportSummary(DateTime FromDate, DateTime ToDate)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPReport_BillReportSummary.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _OPbilling.ViewBillReportSummary(FromDate, ToDate,  AddedById, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "BillReportSummary", "BillReportSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        [HttpGet("view-BillReportSummary")]
+        public IActionResult ViewBillReportSummary(DateTime FromDate, DateTime ToDate, int AddedById)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPReport_BillReportSummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _OPbilling.ViewBillReportSummary(FromDate, ToDate, AddedById, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "BillReportSummary", "BillReportSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
-        //}
+        }
 
         [HttpGet("view-OPDBillBalanceReport")]
         public IActionResult ViewOPDBillBalanceReport(DateTime FromDate, DateTime ToDate)

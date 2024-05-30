@@ -40,6 +40,7 @@ namespace HIMS.Model.Master.Pathology
         public string AgeType { get; set; }
 
     }
+
     public class ParameterDescriptiveMasterInsert
     {
         public int ParameterID { get; set; }

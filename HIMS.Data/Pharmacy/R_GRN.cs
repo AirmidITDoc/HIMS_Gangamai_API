@@ -181,6 +181,7 @@ namespace HIMS.Data.Pharmacy
             StringBuilder items = new StringBuilder("");
             int i = 0;
             Boolean chkdiscflag = false;
+            Boolean chkponoflag = false;
 
             double T_TotalAmount = 0, T_TotalVatAmount = 0, T_TotalDiscAmount = 0, T_TotalNETAmount = 0, T_TotalBalancepay = 0, T_TotalCGST = 0, T_TotalSGST = 0, T_TotalIGST = 0;
 
@@ -247,6 +248,8 @@ namespace HIMS.Data.Pharmacy
 
             html = html.Replace("{{GRNDate}}", Bills.GetColValue("GRNDate").ConvertToDateString("dd/MM/yyyy"));
             html = html.Replace("{{GRNTime}}", Bills.GetColValue("GRNDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{PurchaseTime}}", Bills.GetColValue("PurchaseTime").ConvertToDateString("dd/MM/yyyy"));
+            
             html = html.Replace("{{InvDate}}", Bills.GetColValue("InvDate").ConvertToDateString("dd/MM/yyyy"));
 
 
@@ -268,12 +271,17 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{VatAmount}}", Bills.GetColValue("VatAmount").ConvertToString());
             html = html.Replace("{{Mobile}}", Bills.GetColValue("Mobile"));
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
+            html = html.Replace("{{PONo}}", Bills.GetColValue("PONo"));
 
             html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
             string finalamt = NumberToWords(Bills.GetColValue("NetPayble").ConvertToDouble().To2DecimalPlace().ToInt());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
             html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("T_TotalDiscAmount").ConvertToDouble() > 0 ? "block" : "none");
+
+
+            html = html.Replace("{{chkponoflag}}", Bills.GetColValue("PONo").ConvertToDouble() != 0 ? "table-row " : "none");
+
 
             return html;
         }
