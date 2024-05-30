@@ -20,22 +20,38 @@ namespace HIMS.Model.Inventory
         public long OpeningHId { get; set; }
     }
     public class OpeningTransactionInsert
-    {
-        public long StoreId { get; set; }
-        public DateTime OpeningDate { get; set; }
-        public DateTime OpeningTime { get; set; }
-        public long OpeningDocNo { get; set; }
-        public long ItemId { get; set; }
-        public string BatchNo { get; set; }
-        public DateTime BatchExpDate { get; set; }
-        public long PerUnitPurRate { get; set; }
-        public long PerUnitMrp { get; set; }
-        public long VatPer { get; set; }
-        public long  BalQty { get; set; }
-        public long Addedby { get; set; }
-        //public long OpeningId { get; set; }
 
-    }
+    //public long StoreId { get; set; }
+    //public DateTime OpeningDate { get; set; }
+    //public DateTime OpeningTime { get; set; }
+    //public long OpeningDocNo { get; set; }
+    //public long ItemId { get; set; }
+    //public string BatchNo { get; set; }
+    //public DateTime BatchExpDate { get; set; }
+    //public long PerUnitPurRate { get; set; }
+    //public long PerUnitMrp { get; set; }
+    //public long VatPer { get; set; }
+    //public long BalQty { get; set; }
+    //public long Addedby { get; set; }
+    //public long OpeningId { get; set; }
+   {
+
+       public long StoreId { get; set; }   
+    public DateTime OpeningDate { get; set; }           
+    public DateTime OpeningTime { get; set; }    
+    public long OpeningDocNo { get; set; }               
+    public long ItemId { get; set; }    
+    public string BatchNo { get; set; }  
+    public DateTime BatchExpDate { get; set; }    
+    public long PerUnitPurRate { get; set; }      
+    public long PerUnitMrp { get; set; }      
+    public long VatPer { get; set; }     
+    public long BalQty { get; set; }     
+    public long Addedby { get; set; } 
+    public long updatedby { get; set; }
+    public long OpeningId { get; set; }              
+              
+}
     
     public class Insert_Update_OpeningTran_ItemStock_1
     {
