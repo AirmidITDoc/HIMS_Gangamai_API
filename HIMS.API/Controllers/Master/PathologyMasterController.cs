@@ -40,40 +40,6 @@ namespace HIMS.API.Controllers.Master
         }
 
 
-        //[HttpPost("ParameterSave")]
-        //public IActionResult ParameterSave(PathParameterMasterParams pathParameterMasterParams)
-        //{
-        //    var ParameterSave = _ParameterMaster.Insert(pathParameterMasterParams);
-        //    return Ok(ParameterSave);
-
-        //}
-
-        //[HttpPost("ParameterUpdate")]
-        //public IActionResult ParameterUpdate(ParameterMasterParams ParameterMasterParams)
-        //{
-        //    var ParameterUpdate = _ParameterMaster.Update(ParameterMasterParams);
-        //    return Ok(ParameterUpdate);
-        //}
-
-
-        /*[HttpPost("pathParameterSave")]
-        public IActionResult pathParameterSave(PathParameterMasterParams pathParameterMasterParams)
-        {
-            var ParameterSave = _PathParameterMaster.Save(pathParameterMasterParams);
-            return Ok(ParameterSave);
-
-        }
-
-        [HttpPost("pathParameterUpdate")]
-        public IActionResult ParameterUpdate(PathParameterMasterParams pathParameterMasterParams)
-        {
-            var ParameterUpdate = _PathParameterMaster.Update(pathParameterMasterParams);
-            return Ok(ParameterUpdate);
-        }
-        */
-
-
-
         //--------------------------------------------------------------------------------
 
         [HttpPost("ParameterAgeWiseMasterSave")]
