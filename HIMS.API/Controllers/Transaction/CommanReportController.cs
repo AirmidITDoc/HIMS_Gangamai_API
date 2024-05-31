@@ -159,6 +159,17 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
         }
+        //[HttpGet("view-GroupWiseCollectionReport")]
+        //public IActionResult ViewGroupWiseCollectionReport(DateTime FromDate, DateTime ToDate, int GroupId)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_GroupWiseCollectionReport.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    var html = _IPComman.ViewGroupWiseCollectionReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GroupWiseCollectionReport", "GroupWiseCollectionReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        //}
     }
 }
 

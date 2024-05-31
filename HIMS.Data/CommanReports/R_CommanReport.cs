@@ -11,6 +11,7 @@ namespace HIMS.Data.Opd
 {
     public class R_CommanReport : GenericRepository, I_CommanReport
     {
+       
 
         public R_CommanReport(IUnitofWork unitofWork) : base(unitofWork)
         {
@@ -18,7 +19,7 @@ namespace HIMS.Data.Opd
         }
 
 
-        public string ViewDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate,int DoctorID, string htmlFilePath, string htmlHeader)
+        public string ViewDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate, int DoctorID, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -35,8 +36,8 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
-            int i = 0, j = 0,Ipcount=0,OPcount=0;
-            
+            int i = 0, j = 0, Ipcount = 0, OPcount = 0;
+
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -44,20 +45,22 @@ namespace HIMS.Data.Opd
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientType"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientType"].ConvertToString()).Append("</td>");
-                
-
-                
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Ipcount"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Opcount"].ConvertToString()).Append("</td>");
 
 
-                if (dr["PatientType"].ConvertToString() == "IP Patient")      {
+
+
+
+                if (dr["PatientType"].ConvertToString() == "IP Patient")
+                {
                     Ipcount++;
-                }else  if (dr["PatientType"].ConvertToString() == "OP Patient")
+                }
+                else if (dr["PatientType"].ConvertToString() == "OP Patient")
                 {
                     OPcount++;
                 }
-                
+
             }
 
             html = html.Replace("{{Ipcount}}", Ipcount.ToString());
@@ -65,7 +68,7 @@ namespace HIMS.Data.Opd
 
 
 
-            
+
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
@@ -98,7 +101,7 @@ namespace HIMS.Data.Opd
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefDoctorName"].ConvertToString()).Append("</td>");
-                
+
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["OP Patient"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Lbl"].ConvertToString()).Append("</td>");
 
@@ -173,7 +176,7 @@ namespace HIMS.Data.Opd
             SqlParameter[] para = new SqlParameter[2];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            
+
             var Bills = GetDataTableProc("rptOP_IP_CreditBills", para);
 
 
@@ -191,7 +194,7 @@ namespace HIMS.Data.Opd
                 i++; j++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                
+
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PBillNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
@@ -228,11 +231,11 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
-            
+
 
             foreach (DataRow dr in Bills.Rows)
             {
-                i++; 
+                i++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
@@ -251,7 +254,7 @@ namespace HIMS.Data.Opd
             }
 
 
-            
+
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
@@ -348,7 +351,7 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefundAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ConcessionReason"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CompanyName"].ConvertToString()).Append("</td>");
-                
+
 
 
 
@@ -395,7 +398,7 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IPDNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefDocName"].ConvertToString()).Append("</td>");
-                
+
 
 
 
@@ -442,7 +445,7 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["OPBillRefund"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IPBillRefund"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IPAdvRefund"].ConvertToDouble()).Append("</td>");
-                
+
 
 
 
@@ -511,20 +514,7 @@ namespace HIMS.Data.Opd
 
         }
 
-        public string ViewDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string ViewReferenceDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string ViewConcessionReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
-        {
-            throw new NotImplementedException();
-        }
+      
 
         public string ViewIPCompanyWiseCreditReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
@@ -574,7 +564,17 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-    }
+
+        public string ViewReferenceDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ViewConcessionReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        {
+            throw new NotImplementedException();
+        }
+    }  
 }
     
 
