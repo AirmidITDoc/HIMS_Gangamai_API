@@ -30,9 +30,14 @@ namespace HIMS.Data.OPReports
         string ViewOPDRefundOfBill(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewDepartmentServiceGroupWiseCollectionSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewDoctorWiseNewAndOldPatientReport(DateTime fromDate, DateTime toDate, string htmlFilePath, string v);
-        string ViewOPDailyCollectionReceipt(DateTime fromDate, DateTime toDate, int addedById, string htmlFilePath, string v);
+        
         string ViewpatientAppointmentwithserviceavailed(DateTime fromDate, DateTime toDate, string htmlFilePath, string v);
         string ViewOPDeptwisecountsummaryReport(DateTime fromDate, DateTime toDate, string htmlFilePath, string v);
         string ViewOPDoctorwisecountsummaryReport(DateTime fromDate, DateTime toDate, string htmlFilePath, string v);
+
+
+        string ViewOPCreditReport(DateTime fromDate, DateTime toDate, string htmlFilePath, string htmlHeader);
+
+        string ViewOPrefundbilllistReport(DateTime fromDate, DateTime toDate, string htmlFilePath, string htmlHeader);
     }
 }
