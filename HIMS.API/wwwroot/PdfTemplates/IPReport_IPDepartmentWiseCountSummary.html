@@ -12,16 +12,15 @@
         <div class="invoice-box" style="max-width: 1000px; margin: 0 auto; font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
 
-                {{HospitalHeader}}
+                {{NewHeader}}
 
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>IP Bill GeneratedAnd Payment Due Report</b> </td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>IPD Department Wise Count Summary</b> </td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
-                            
                         </table>
                     </td>
                 </tr>
@@ -41,22 +40,14 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <thead style="font-size: 15px; text-align: center;">
                                 <tr>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill Date</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Discharge Date</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Payment Date</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill No</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Total Amt</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Cons Amt</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">NetPay Amt</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Paid Amt</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Balance Amt</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Department Name</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Count</th>
+                                    
 
 
 
                                 </tr>
-                    
                             </thead>
                             <tbody style="font-size: 14px;">
                                 {{Items}}
@@ -73,33 +64,11 @@
                                     </td>
 
                                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                        {{TotalTotalAmt}}
+                                        {{T_Count}}
                                     </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                        {{TotalConcessionAmt}}
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                        {{}}
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                        {{TotalNetPayableAmt}}
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                        {{TotalPaidAmt}}
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                        {{TotalBalanceAmt}}
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-
                                 </tr>
                             </tbody>
                         </table>
-                       
                     </td>
                 </tr>
             </table>

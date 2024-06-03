@@ -241,9 +241,11 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
-            int i = 0, j = 0;
-            
-            double TotalCollection = 0;
+            int i = 0;
+            double T_TotalTotalAmt = 0, T_TotalConcessionAmt = 0, T_TotalNetPayableAmt = 0, T_TotalPaidAmount = 0, T_TotalBalanceAmt = 0;
+
+
+
 
 
             foreach (DataRow dr in Bills.Rows)
@@ -263,7 +265,14 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["NetPayableAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PaidAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["BalanceAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["AdmittedDoctorName"].ConvertToString()).Append("</td></tr>"); 
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["AdmittedDoctorName"].ConvertToString()).Append("</td></tr>");
+
+
+                T_TotalTotalAmt += dr["TotalAmt"].ConvertToDouble();
+                T_TotalConcessionAmt += dr["ConcessionAmt"].ConvertToDouble();
+                T_TotalNetPayableAmt += dr["NetPayableAmt"].ConvertToDouble();
+                T_TotalPaidAmount += dr["PaidAmount"].ConvertToDouble();
+                T_TotalBalanceAmt += dr["BalanceAmt"].ConvertToDouble();
 
 
 
@@ -273,6 +282,11 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{TotalTotalAmt}}", T_TotalTotalAmt.To2DecimalPlace());
+            html = html.Replace("{{TotalConcessionAmt}}", T_TotalConcessionAmt.To2DecimalPlace());
+            html = html.Replace("{{TotalNetPayableAmt}}", T_TotalNetPayableAmt.To2DecimalPlace());
+            html = html.Replace("{{TotalPaidAmount}}", T_TotalPaidAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalBalanceAmt}}", T_TotalBalanceAmt.To2DecimalPlace());
 
 
 
@@ -660,7 +674,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
-            int i = 0, j = 0;
+            int i = 0;
+            double T_Count = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -670,12 +685,14 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CompanyName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Count"].ConvertToString()).Append("</td>");
 
-
+                T_Count += dr["Count"].ConvertToDouble();
             }
-
+            html = html.Replace("{{Count}}", T_Count.To2DecimalPlace());
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+
+           
             return html;
 
         }
@@ -696,7 +713,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
-            int i = 0, j = 0;
+            int i = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -705,10 +722,10 @@ namespace HIMS.Data.IPD
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["AdmissionDate"].ConvertToDateString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["AdmissionTime"].ConvertToDateString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IsMarkForDisNurDateTime"].ConvertToDateString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DischargeDate"].ConvertToDateString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DischargeDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DischargeTime"].ConvertToDateString()).Append(" </td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DiffTimeInHr"].ConvertToString()).Append("</td>");
 
@@ -739,7 +756,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
-            int i = 0, j = 0;
+            int i = 0;
+            double T_TotalTotalAmt = 0, T_TotalConcessionAmt = 0, T_TotalNetPayableAmt = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -749,12 +767,12 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IPDNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["AdmissionDate"].ConvertToDateString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DischargeDate"].ConvertToDateString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DischargeDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DischargeTypeName"].ConvertToDateString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append(" </td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PBillNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillDate"].ConvertToDateString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalAmt"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ConcessionAmt"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetPayableAmt"].ConvertToDouble()).Append("</td>");
@@ -762,12 +780,19 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CompanyName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Diagnosis"].ConvertToString()).Append("</td>");
 
+                T_TotalTotalAmt += dr["TotalAmt"].ConvertToDouble();
+                T_TotalConcessionAmt += dr["ConcessionAmt"].ConvertToDouble();
+                T_TotalNetPayableAmt += dr["NetPayableAmt"].ConvertToDouble();
 
             }
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+
+            html = html.Replace("{{TotalTotalAmt}}", T_TotalTotalAmt.To2DecimalPlace());
+            html = html.Replace("{{TotalConcessionAmt}}", T_TotalConcessionAmt.To2DecimalPlace());
+            html = html.Replace("{{TotalNetPayableAmt}}", T_TotalNetPayableAmt.To2DecimalPlace());
             return html;
 
         }
@@ -789,12 +814,12 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
-            int i = 0, j = 0;
+            int i = 0;
             double T_Count = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
-                i++;j++;
+                i++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td>");
@@ -831,12 +856,12 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
-            int i = 0, j = 0;
+            int i = 0;
             double T_Count = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
-                i++;j++;
+                i++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DocName"].ConvertToString()).Append("</td>");
@@ -872,7 +897,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
-            int i = 0, j = 0;
+            int i = 0;
+            double T_TotalMedical = 0, T_TotalPathologyAmount = 0, T_TotalRadiologyAmt = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -885,13 +911,18 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Medical"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PathologyAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RadiologyAmt"].ConvertToDouble()).Append("</td>");
-               
+                T_TotalMedical += dr["Medical"].ConvertToDouble();
+                T_TotalPathologyAmount += dr["PathologyAmount"].ConvertToDouble();
+                T_TotalRadiologyAmt += dr["RadiologyAmt"].ConvertToDouble();
 
             }
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{TotalMedical}}", T_TotalMedical.To2DecimalPlace());
+            html = html.Replace("{{TotalPathologyAmount}}", T_TotalPathologyAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalRadiologyAmt}}", T_TotalRadiologyAmt.To2DecimalPlace());
             return html;
 
         }
