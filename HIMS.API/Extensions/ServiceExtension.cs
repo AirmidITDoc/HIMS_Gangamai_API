@@ -23,7 +23,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Net;
@@ -41,6 +40,8 @@ using HIMS.Data.CustomerInformation;
 using HIMS.Data.CustomerPayment;
 using HIMS.Data.OPReports;
 using HIMS.Data.CommanReports;
+
+
 
 
 namespace HIMS.API.Extensions

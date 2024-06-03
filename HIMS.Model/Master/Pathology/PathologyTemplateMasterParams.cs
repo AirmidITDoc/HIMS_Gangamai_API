@@ -12,14 +12,22 @@ namespace HIMS.Model.Master.Pathology
     public class InsertPathologyTemplateMaster
     {
 
+        
 
-        public long TestId { get; set; }
-        public long TemplateId { get; set; }
+        public string TemplateName { get; set; }
+        public string TemplateDesc { get; set; }
+        public bool IsDeleted { get; set; }
+      
+        public int AddedBy { get; set; }
     }
     public class UpdatePathologyTemplateMaster
     {
-        public int PTemplateId  {get;set;}
-        public long TestId { get; set; }
+
+        public string TemplateName { get; set; }
+        public string TemplateDesc { get; set; }
+        public bool IsDeleted { get; set; }
+
+        public int UpdatedBy { get; set; }
         public long TemplateId { get; set; }
     }
 }

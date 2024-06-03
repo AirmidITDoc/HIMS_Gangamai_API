@@ -33,19 +33,10 @@
                         </td>
                         <td style="padding: 2px;">
                             <span>GRN Date : </span>
-                            <span>{{GRNDate}}</span>
+                            <span>{{GRNTime}}</span>
                         </td>
                     </tr>
-                    <tr>
-                        <td style="padding: 2px;">
-                            <span>PO NO : </span>
-                            <span>{{PONo}}</span>
-                        </td>
-                        <td style="padding: 2px;">
-                            <span>PO Date : </span>
-                            <span>{{PurchaseTime}}</span>
-                        </td>
-                    </tr>
+                   
                     <tr>
                         <td style="padding: 2px;">
                             <span>Store Name : </span>
@@ -94,18 +85,20 @@
                     <table style="width: 100%; border-collapse: collapse;">
                         <thead style="font-size: 15px; text-align: center;">
                             <tr>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">Sr.No</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">ItemName</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">Packing</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">MRP</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">RQty</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">Total Amt</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">BatchNo</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">BatchExpDate</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">VAT %</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">Vat Amt</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">GST Amt</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">Net Amt</th>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">Sr.No</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">ItemName</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">Packing</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">BatchNo</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">BatchExpDate</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">MRP</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">RQty</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">Total Amt</td>
+
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">GST %</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">GST Amt</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">Disc Amt</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">Net Amt</td>
+                                
                             </tr>
                         </thead>
                         {{Items}}

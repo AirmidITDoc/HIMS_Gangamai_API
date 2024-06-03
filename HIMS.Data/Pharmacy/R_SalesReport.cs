@@ -59,7 +59,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
 
             html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
-            html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
+            html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress")); 
 
             return html;
 
