@@ -12,7 +12,7 @@
         <div class="invoice-box" style="max-width: 1000px; margin: 0 auto; font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
 
-                {{HospitalHeader}}
+                {{NewHeader}}
 
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
@@ -23,7 +23,7 @@
                             </tr>
                             <tr style="font-size: 18px">
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>IP Concession Poor Patient</b> </td>
-                               
+
                             </tr>
                         </table>
                     </td>
@@ -63,13 +63,64 @@
 
 
                                 </tr>
-                    
+
                             </thead>
                             <tbody style="font-size: 14px;">
                                 {{Items}}
+                                <tr style="border: 1px solid black; background-color: white">
+
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+                                    
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        Total
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        {{TotalTotalAmt}}
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        {{TotalConcessionAmt}}
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        {{TotalNetPayableAmt}}
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        {{TotalAdvanceUseAmount}}
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        {{TotalCashPayAmount}}
+
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        {{TotalChequePayAmount}}
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        {{TotalCardPayAmount}}
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        {{TotalNEFTPayAmount}}
+                                    </td>
+
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        {{TotalPayTMPayAmount}}
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+
+                                </tr>
                             </tbody>
                         </table>
-                        Grand Total Amount
+
                     </td>
                 </tr>
             </table>

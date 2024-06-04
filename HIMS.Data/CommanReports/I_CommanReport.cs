@@ -10,8 +10,8 @@ namespace HIMS.Data.CommanReports
     {
 
         string ViewDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate,int DoctorID, string htmlFilePath, string htmlHeader);
-        string ViewReferenceDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-        string ViewConcessionReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewReferenceDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate, int DoctorID, string htmlFilePath, string htmlHeader);
+        string ViewConcessionReport(DateTime FromDate, DateTime ToDate, int OP_IP_Type, int DoctorID, string htmlFilePath, string htmlHeader);
         string ViewCreditReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewIPDischargeBillGenerationPendingReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewIPBillGenerationPaymentDueReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
@@ -20,24 +20,8 @@ namespace HIMS.Data.CommanReports
         string ViewDailyCollectionSummaryReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewIPCompanyWiseBillReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewIPCompanyWiseCreditReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-
-
-
-
-        string ViewServicewisepatinetamtReport(DateTime FromDate, DateTime ToDate,int ServiceId, string htmlFilePath, string htmlHeader);
-
-        string ViewServicewiseReportwithbill(int ServiceId,DateTime FromDate, DateTime ToDate,string htmlFilePath, string htmlHeader);
-
-        string ViewCanclechargeslist(DateTime FromDate, DateTime ToDate,string htmlFilePath, string htmlHeader);
-
-        string ViewgroupwisecollectionReport(DateTime FromDate, DateTime ToDate,int GroupId, string htmlFilePath, string htmlHeader);
-        string ViewGroupwiseSummary(DateTime FromDate, DateTime ToDate,int GroupId, string htmlFilePath, string htmlHeader);
-
-        string ViewGroupwiseRevenuSummary(DateTime FromDate, DateTime ToDate,string htmlFilePath, string htmlHeader);
-        string ViewBillSummarytwolakhamt(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-       
-        string ViewBillSummarywithtcs(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-
-       
+        //string ViewGroupWiseCollectionReport(DateTime FromDate, DateTime ToDate, int GroupId, string htmlFilePath, string htmlHeader);
+        //string ViewGroupWiseCollectionReport(DateTime fromDate, DateTime toDate, string htmlFilePath, string v);
+        //string ViewGroupWiseCollectionReport(DateTime fromDate, DateTime toDate, string htmlFilePath, string v);
     }
 }

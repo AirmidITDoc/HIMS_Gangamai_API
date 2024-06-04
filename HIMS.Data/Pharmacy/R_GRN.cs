@@ -265,7 +265,7 @@ namespace HIMS.Data.Pharmacy
             
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
             html = html.Replace("{{Email}}", Bills.GetColValue("Email").ConvertToString());
-            html = html.Replace("{{GateEnteryNo}}", Bills.GetColValue("GateEnteryNo").ConvertToString());
+            html = html.Replace("{{GSTNo}}", Bills.GetColValue("GSTNo").ConvertToString());
             html = html.Replace("{{Mobile}}", Bills.GetColValue("Mobile"));
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
             html = html.Replace("{{VatAmount}}", Bills.GetColValue("VatAmount").ConvertToString());

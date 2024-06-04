@@ -18,7 +18,7 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>OP To IP Converted List With Service Availed</b> </td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>IPD Department Wise Count Summary</b> </td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
                         </table>
@@ -41,12 +41,8 @@
                             <thead style="font-size: 15px; text-align: center;">
                                 <tr>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Doctor Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">RefDoctor Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Medical</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Pathology</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Radiology</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Department Name</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Count</th>
 
 
 
@@ -55,6 +51,21 @@
                             </thead>
                             <tbody style="font-size: 14px;">
                                 {{Items}}
+
+                                <tr style="border: 1px solid black; background-color: white">
+
+
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        Total Count
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        {{T_Count}}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </td>
