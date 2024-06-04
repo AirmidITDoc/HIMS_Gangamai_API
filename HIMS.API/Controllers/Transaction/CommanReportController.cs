@@ -40,11 +40,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-ReferenceDoctorWisePatientCountReport")]
-        public IActionResult ViewReferenceDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewReferenceDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate, int DoctorID)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_RefDoctorWisePatientCountReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPComman.ViewReferenceDoctorWisePatientCountReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPComman.ViewReferenceDoctorWisePatientCountReport(FromDate, ToDate, DoctorID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ReferenceDoctorWisePatientCountReport", "ReferenceDoctorWisePatientCountReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -52,11 +52,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-ConcessionReport")]
-        public IActionResult ViewConcessionReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewConcessionReport(DateTime FromDate, DateTime ToDate, int OP_IP_Type, int DoctorID)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_ConcessionReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPComman.ViewConcessionReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPComman.ViewConcessionReport(FromDate, ToDate, OP_IP_Type, DoctorID,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ConcessionReport", "ConcessionReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });

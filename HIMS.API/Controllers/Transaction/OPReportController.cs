@@ -27,17 +27,17 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
-        //[HttpGet("view-OPDailyCollectionReport")]
-        //public IActionResult ViewOPDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById, int DoctorId);
-        //public IActionResult ViewOPDailycollectionReport(DateTime FromDate, DateTime ToDate, int AddedById)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDailycollectionuserwise.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _OPbilling.ViewOPDailyCollectionReceipt(FromDate, ToDate, AddedById, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPNewDailycollection", "OPNewDailycollection", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        [HttpGet("view-OPDailyCollectionReport")]
+        
+        public IActionResult ViewOPDailycollectionReport(DateTime FromDate, DateTime ToDate, int AddedById,int doctorId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDailycollectionuserwise.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _OPbilling.ViewOPDailyCollectionReceipt(FromDate, ToDate, AddedById, doctorId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPNewDailycollection", "OPNewDailycollection", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        //}
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         [HttpGet("view-DepartmentWisecountSummury")]
         public IActionResult ViewOPDeptwisecountsummaryReport(DateTime FromDate, DateTime ToDate)
@@ -268,8 +268,8 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
         }
-        [HttpGet("view-BillReportSummary")]
-        public IActionResult ViewBillReportSummary(DateTime FromDate, DateTime ToDate, int AddedById)
+        [HttpGet("view-OpBillReportSummary")]
+        public IActionResult ViewOpBillReportSummary(DateTime FromDate, DateTime ToDate, int AddedById)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPReport_BillReportSummary.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
@@ -313,6 +313,34 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
         }
+
+
+        //[HttpGet("view-OpPatientCreditList")]
+        //public IActionResult ViewOpPatinetcreditlist(DateTime FromDate, DateTime ToDate)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPD_Creditreport.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    var html = _OPbilling.ViewOpPatientCreditList(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPD_Creditreport", "OPD_Creditreport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+
+        //}
+
+
+
+        //[HttpGet("view-OpRefundofbillList")]
+        //public IActionResult ViewOpRefundofbilllist(DateTime FromDate, DateTime ToDate)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Op_RefundofBill.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    var html = _OPbilling.ViewOPrefundbilllistReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Op_RefundofBill", "Op_RefundofBill", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        //}
     }
 }
 

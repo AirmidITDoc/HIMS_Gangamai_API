@@ -15,10 +15,20 @@ namespace HIMS.Data.IPD
 
         string ViewIPCreditReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewIPDAdmissionListCompanyWiseSummary(DateTime FromDate, DateTime ToDate, BigInteger DoctorId, BigInteger WardId, string htmlFilePath, string HeaderName);
+
+        string ViewIPDAdmissionWardWiseCharges(int DoctorId, int WardId,int CompanyId, string htmlFilePath, string HeaderName);
+
+
         string ViewIPDDischargeReportWithMarkStatus(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewIPDDischargeReportWithBillSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewDepartmentWiseCountSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewDoctorWiseCountSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
+
+        string ViewCurrentrefadmittedlist(int DoctorId, string htmlFilePath, string HeaderName);
+
+        string ViewIPDDischargetypewise(int DoctorId, DateTime FromDate, DateTime ToDate,int DischargeTypeId, string htmlFilePath, string HeaderName);
+
+
         string ViewOPToIPConvertedListWithServiceAvailed(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
 
     }

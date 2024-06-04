@@ -10,8 +10,8 @@ namespace HIMS.Data.CommanReports
     {
 
         string ViewDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate,int DoctorID, string htmlFilePath, string htmlHeader);
-        string ViewReferenceDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-        string ViewConcessionReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewReferenceDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate, int DoctorID, string htmlFilePath, string htmlHeader);
+        string ViewConcessionReport(DateTime FromDate, DateTime ToDate, int OP_IP_Type, int DoctorID, string htmlFilePath, string htmlHeader);
         string ViewCreditReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewIPDischargeBillGenerationPendingReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewIPBillGenerationPaymentDueReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
