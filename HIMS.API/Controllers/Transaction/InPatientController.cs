@@ -174,6 +174,7 @@ namespace HIMS.API.Controllers.Transaction
             this._IFileUtility = fileUtility;
             this._WhatsappSms = whatsappSms;
             this._DoctorShare = doctorShare;
+            this._BedTransfer = bedTransfer;
             
         }
 

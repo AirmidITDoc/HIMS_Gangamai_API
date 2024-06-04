@@ -252,10 +252,10 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{Price}}", Bills.GetColValue("Price").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{TotalGst}}", Bills.GetColValue("TotalGst").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{NetPayableAmt}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{UserName}}", Bills.GetColValue("AddedByName").ConvertToString());
             html = html.Replace("{{HospitalName}}", Bills.GetColValue("HospitalName").ConvertToString());
-
+            html = html.Replace("{{DiscComments}}", Bills.GetColValue("DiscComments").ConvertToString());
 
             html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "table-row " : "none");
           
