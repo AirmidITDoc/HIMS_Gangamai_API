@@ -100,6 +100,13 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(Id);
         }
 
+        [HttpPost("GSTAdjustment")]
+        public IActionResult GSTAdjustment(StockAdjustmentParams stockAdjustmentParams)
+        {
+            var Id = _StockAdjustment.GSTAdjustment(stockAdjustmentParams);
+            return Ok(Id);
+        }
+
 
         [HttpPost("IssueTrackerSave")]
         public IActionResult IssueTrackerSave(IssueTrackerParams issueTrackerParams)
