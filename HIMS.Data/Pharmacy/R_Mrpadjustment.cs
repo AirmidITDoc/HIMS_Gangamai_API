@@ -19,8 +19,6 @@ namespace HIMS.Data.Pharmacy
             var disc1 = MRPAdjustment.InsertMRPAdju.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("insert_T_MrpAdjustment_1", disc1);
 
-            
-
             var disc2 = MRPAdjustment.InsertMRPAdjuNew.ToDictionary();
             disc2["StoreId"] = Convert.ToInt32(MRPAdjustment.InsertMRPAdju.StoreId);
             disc2["ItemId"] = Convert.ToInt32(MRPAdjustment.InsertMRPAdju.ItemId);

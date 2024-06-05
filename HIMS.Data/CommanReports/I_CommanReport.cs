@@ -21,7 +21,10 @@ namespace HIMS.Data.CommanReports
         string ViewIPCompanyWiseBillReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewIPCompanyWiseCreditReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         //string ViewGroupWiseCollectionReport(DateTime FromDate, DateTime ToDate, int GroupId, string htmlFilePath, string htmlHeader);
-        //string ViewGroupWiseCollectionReport(DateTime fromDate, DateTime toDate, string htmlFilePath, string v);
-        //string ViewGroupWiseCollectionReport(DateTime fromDate, DateTime toDate, string htmlFilePath, string v);
+        string ViewGroupwiseRevenueSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+
+        string ViewServiceWiseReportWithoutBill(int ServiceId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+
+        string ViewDoctorVisitAdmittedWiseGroupReport(DateTime FromDate, DateTime ToDate,int DoctorId, string htmlFilePath, string htmlHeader);
     }
 }

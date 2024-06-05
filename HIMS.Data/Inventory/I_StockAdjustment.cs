@@ -9,5 +9,6 @@ namespace HIMS.Data.Inventory
     {
         public string StockAdjustment(StockAdjustmentParams stockAdjustmentParams);
         public bool BatchAdjustment(StockAdjustmentParams stockAdjustmentParams);
+        public bool GSTAdjustment(StockAdjustmentParams stockAdjustmentParams);
     }
 }

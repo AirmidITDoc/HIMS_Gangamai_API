@@ -46,5 +46,15 @@ namespace HIMS.Data.Inventory
             return true;
         }
 
+        public bool GSTAdjustment(StockAdjustmentParams stockAdjustmentParams)
+        {
+
+            var vGSTAdjustment = stockAdjustmentParams.GSTAdjustment.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_CurrentStock_GSTAdjustment", vGSTAdjustment);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
     }
 }
