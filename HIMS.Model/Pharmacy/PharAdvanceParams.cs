@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HIMS.Model.IPD
+namespace HIMS.Model.Pharmacy
 {
-    public class IPAdvanceParams
+    public class PharAdvanceParams
     {
-        public AdvanceHeaderInsert AdvanceHeaderInsert { get; set; }
-        public AdvanceDetailInsert AdvanceDetailInsert { get; set; }
-        public IPPaymentInsert IPPaymentInsert { get; set; }
+        public PharAdvanceHeaderInsert PharAdvanceHeaderInsert { get; set; }
+        public PharAdvanceDetailInsert PharAdvanceDetailInsert { get; set; }
+        public PharPaymentInsert PharPaymentInsert { get; set; }
 
-     
     }
 
-    public class AdvanceHeaderInsert
+
+    public class PharAdvanceHeaderInsert
     {
         public int AdvanceId { get; set; }
         public DateTime Date { get; set; }
         public int RefId { get; set; }
         public int OPD_IPD_Type { get; set; }
-        public int OPD_IPD_Id { get; set; }      
+        public int OPD_IPD_Id { get; set; }
         public float AdvanceAmount { get; set; }
         public float AdvanceUsedAmount { get; set; }
-        public float BalanceAmount { get; set; }       
+        public float BalanceAmount { get; set; }
         public int AddedBy { get; set; }
         public Boolean IsCancelled { get; set; }
         public int IsCancelledBy { get; set; }
@@ -30,14 +30,14 @@ namespace HIMS.Model.IPD
 
     }
 
-    public class AdvanceDetailInsert
+    public class PharAdvanceDetailInsert
     {
         public int AdvanceDetailID { get; set; }
         public DateTime Date { get; set; }
         public DateTime Time { get; set; }
         public int AdvanceId { get; set; }
         public int RefId { get; set; }
-        public int TransactionId {get;set;}
+        public int TransactionId { get; set; }
         public int OPD_IPD_Id { get; set; }
         public int OPD_IPD_Type { get; set; }
         public float AdvanceAmount { get; set; }
@@ -50,12 +50,12 @@ namespace HIMS.Model.IPD
         public int IsCancelledBy { get; set; }
         public DateTime IsCancelledDate { get; set; }
 
-      //  public int CashCounterId { get; set; }
+        //  public int CashCounterId { get; set; }
         public string Reason { get; set; }
- 
+
     }
 
-    public class IPPaymentInsert
+    public class PharPaymentInsert
     {
         // public int PaymentId { get; set; }
         public int BillNo { get; set; }
@@ -79,12 +79,7 @@ namespace HIMS.Model.IPD
         public int AddBy { get; set; }
         public Boolean IsCancelled { get; set; }
         public int IsCancelledBy { get; set; }
-        
         public DateTime IsCancelledDate { get; set; }
-      /*  public int CashCounterId { get; set; }
-        public int IsSelfORCompany { get; set; }
-        public int CompanyId { get; set; }*/
-
         public float NEFTPayAmount { get; set; }
         public string NEFTNo { get; set; }
         public string NEFTBankMaster { get; set; }
@@ -94,6 +89,5 @@ namespace HIMS.Model.IPD
         public DateTime PayTMDate { get; set; }
 
     }
-   
-   
+
 }
