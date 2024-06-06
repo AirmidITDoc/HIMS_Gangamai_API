@@ -13,7 +13,7 @@ namespace HIMS.API.Utility
 
         Tuple<byte[], string> CreateExel(string html, string FolderName, string FileName = "", Wkhtmltopdf.NetCore.Options.Orientation PageOrientation = Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
         //bool CreateExel();
-        string GetHeader(string filePath,int HospitalId=0);
+        string GetHeader(string filePath,long HospitalId=0);
     }
 }
 
