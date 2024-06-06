@@ -170,6 +170,44 @@ namespace HIMS.API.Controllers.Transaction
         //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
         //}
+
+
+        [HttpGet("view-GroupwiseRevenueSummary")]
+        public IActionResult ViewGroupwiseRevenueSummary(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommonReport_GroupwiseRevenusummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPComman.ViewGroupwiseRevenueSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GroupwiseRevenueSummary", "GroupwiseRevenueSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+        [HttpGet("view-ServiceWiseReportWithoutBill")]
+        public IActionResult ViewServiceWiseReportWithoutBill(int ServiceId, DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommonReport_GroupwiseRevenusummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPComman.ViewServiceWiseReportWithoutBill(ServiceId, FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GroupwiseRevenueSummary", "GroupwiseRevenueSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+
+        [HttpGet("view-DoctorVisitAdmittedWiseGroupReport")]
+        public IActionResult ViewDoctorVisitAdmittedWiseGroupReport(DateTime FromDate, DateTime ToDate,int DoctorId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_DoctorWiseVisitAndAdmittedGroupReport .html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPComman.ViewDoctorVisitAdmittedWiseGroupReport(FromDate, ToDate, DoctorId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorVisitAdmittedWiseGroupReport", "DoctorVisitAdmittedWiseGroupReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
     }
 }
 
