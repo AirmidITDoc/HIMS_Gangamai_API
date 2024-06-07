@@ -100,13 +100,13 @@ namespace HIMS.Data.Pharmacy
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["DiscPer"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["VATPer"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 
-                items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align: center;border-bottom:1px solid #000;\">").Append(dr["WoNetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
 
                 T_TotalAmount += dr["TotalAmount"].ConvertToDouble();
                 T_TotalVatAmount += dr["VATAmount"].ConvertToDouble();
                 T_TotalDiscAmount += dr["DiscAmount"].ConvertToDouble();
-                T_TotalNETAmount += dr["WoNetAmount"].ConvertToDouble();
+                T_TotalNETAmount += dr["NetAmount"].ConvertToDouble();
                 //T_TotalBalancepay += dr["BalanceAmount"].ConvertToDouble();
                 //T_TotalCGST += dr["CGSTAmt"].ConvertToDouble();
                 //T_TotalSGST += dr["SGSTAmt"].ConvertToDouble();

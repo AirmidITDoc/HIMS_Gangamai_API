@@ -341,6 +341,8 @@ namespace HIMS.API.Controllers.Transaction
         //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
         //}
+
+        
     }
 }
 
