@@ -70,7 +70,7 @@ namespace HIMS.Data.IPD
 
             var Bills = GetDataTableProc("rptIPDDraftBillPrintSummary", para);
             rowlength = Bills.Rows.Count;
-
+            double Tot_AfterAdvused = 0,Tot_Wothoutdedu=0, Tot_Balamt = 0, Tot_Advamt = 0, Tot_Advusedamt = 0;
 
            
             String Label;
@@ -113,7 +113,15 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["TotalAmt"].ConvertToDouble()).Append("</td></tr>");
 
+
+                Tot_Balamt += dr["BalanceAmt"].ConvertToDouble();
+                Tot_Advamt += dr["BalanceAmt"].ConvertToDouble();
+
+
             }
+
+            //Tot_AfterAdvused = dr["BalanceAmt"].ConvertToDouble() - dr["BalanceAmt"].ConvertToDouble()
+            //Tot_Wothoutdedu =
 
             html = html.Replace("{{Items}}", items.ToString());
 
