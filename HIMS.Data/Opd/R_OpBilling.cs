@@ -220,7 +220,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{Date}}", Bills.GetDateColValue("Date").ConvertToDateString());
-            html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy mm:hh tt"));
+            html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{PhoneNo}}", Bills.GetColValue("PhoneNo"));
 
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));

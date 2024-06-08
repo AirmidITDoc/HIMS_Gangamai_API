@@ -11,12 +11,12 @@
     <div class="main-content-wrapper">
         <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
-                {{HospitalHeader}}
+                {{NewHeader}}
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>IP DAILY COLLECTION</b></td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>IP DAILY COLLECTION REPORT</b></td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
                         </table>
@@ -32,11 +32,11 @@
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Payment Date</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Reg No</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Patient Name</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">   Net Amt </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Net Amt </td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Cash Amt</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">   Cheque Amt</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Cheque Amt</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Card Amt </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Adv.used Amt</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Adv used Amt</td>
 
                             </tr>
                             {{Items}}
@@ -86,8 +86,8 @@
                                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalChequePayAmount}}</td>
                                 </tr>
                                 <tr>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; color: blueviolet;" colspan='2'>Total Collection Amount</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; color: palevioletred;" colspan='2'>{{TotalCollection}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; color: black;" colspan='2'>Total Collection Amount</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; color: black;" colspan='2'>{{TotalCollection}}</td>
                                 </tr>
                             </tbody>
                         </table>
