@@ -70,41 +70,45 @@ namespace HIMS.Data.IPD
 
             var Bills = GetDataTableProc("rptIPDDraftBillPrintSummary", para);
             rowlength = Bills.Rows.Count;
-            double Tot_AfterAdvused = 0,Tot_Wothoutdedu=0, Tot_Balamt = 0, Tot_Advamt = 0, Tot_Advusedamt = 0;
+            double Tot_AfterAdvused = 0,Tot_Wothoutdedu=0, Tot_Balamt = 0, Tot_Advamt = 0, Tot_Advusedamt = 0, T_TotalAmount=0, F_TotalAmount=0, balafteradvuseAmount=0, BalancewdudcAmt=0;
 
            
-            String Label;
+            
             double T_TotAmount = 0;
+
 
             foreach (DataRow dr in Bills.Rows)
             {
+
                 i++; j++;
+
+
                 if (i == 1)
                 {
-
+                    String Label;
                     Label = dr["GroupName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"6\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
-
                 if (previousLabel != "" && previousLabel != dr["GroupName"].ConvertToString())
                 {
                     j = 1;
+                    items.Append("<tr style='border:1px solid black;color:#241571;background-color:#63C5DA'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Group Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
 
+                   .Append(T_TotalAmount.To2DecimalPlace()).Append("</td></tr>");
+                    T_TotalAmount = 0;
 
-                    items.Append("<tr style='border:1px solid black;color:#241571;background-color:#63C5DA'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Group Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                   
-                    .Append(T_TotAmount.To2DecimalPlace()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["GroupName"].ConvertToString()).Append("</td></tr>");
 
-                    T_NetAmount += dr["TotalAmt"].ConvertToDouble();
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:blue\"><td colspan=\"6\" style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["GroupName"].ConvertToString()).Append("</td></tr>");
                 }
 
 
-
-                T_TotAmount += dr["TotalAmt"].ConvertToDouble();
-              
+                T_TotalAmount += dr["TotalAmt"].ConvertToDouble();
+                F_TotalAmount += dr["TotalAmt"].ConvertToDouble();
+                //ChargesTotalamt += dr["ChargesTotalAmt"].ConvertToDouble();
+               
 
                 previousLabel = dr["GroupName"].ConvertToString();
+
 
                 items.Append("<tr><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
@@ -114,12 +118,24 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["TotalAmt"].ConvertToDouble()).Append("</td></tr>");
 
 
-                Tot_Balamt += dr["BalanceAmt"].ConvertToDouble();
-                Tot_Advamt += dr["BalanceAmt"].ConvertToDouble();
+                //TotalAmt += dr["BalanceAmt"].ConvertToDouble();
+                Tot_Advamt += dr["AdvanceAmount"].ConvertToDouble();
+                balafteradvuseAmount = (Tot_Balamt - Tot_Advamt).ConvertToDouble();
+
+
+                if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
+                {
+
+                    items.Append("<tr style='border:1px solid black;color:blue;font-weight:bold'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Grand Total Amount</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(T_TotalAmount.To2DecimalPlace()).Append("</td></tr>");
+                    items.Append("<tr style='border:1px solid black;color:#241571;background-color:#63C5DA'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-center:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    .Append(F_TotalAmount.To2DecimalPlace()).Append("</td></tr>");
+
+                }
+
 
 
             }
-
             //Tot_AfterAdvused = dr["BalanceAmt"].ConvertToDouble() - dr["BalanceAmt"].ConvertToDouble()
             //Tot_Wothoutdedu =
 
