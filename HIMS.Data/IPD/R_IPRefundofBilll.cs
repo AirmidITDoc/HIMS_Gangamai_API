@@ -107,9 +107,10 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
-
-            html = html.Replace("{{RefundDate}}", Bills.GetColValue("RefundDate").ConvertToDateString());
-            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString());
+            html = html.Replace("{{PBillNo}}", Bills.GetColValue("PBillNo"));
+            
+            html = html.Replace("{{RefundTime}}", Bills.GetColValue("RefundTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
             string finalamt = conversion(Bills.GetColValue("RefundAmount").ConvertToDouble().To2DecimalPlace().ToString());

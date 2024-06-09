@@ -97,7 +97,7 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
-            html = html.Replace("{{AdmissinDate}}", Bills.GetColValue("AdmissinDate"));
+            html = html.Replace("{{AdmissinDate}}", Bills.GetColValue("AdmissinDate").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvanceAmount").ConvertToDouble().To2DecimalPlace().ToString());
             html = html.Replace("{{RefundAmount}}", Bills.GetColValue("RefundAmount").ConvertToDouble().To2DecimalPlace().ToString());
@@ -105,8 +105,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
             
-            html = html.Replace("{{RefundDate}}", Bills.GetColValue("RefundDate").ConvertToDateString());
-            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString());
+            html = html.Replace("{{RefundDate}}", Bills.GetColValue("RefundDate").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{AddedBy}}", Bills.GetColValue("AddedBy"));
 
             string finalamt = conversion(Bills.GetColValue("RefundAmount").ConvertToDouble().To2DecimalPlace().ToString());
