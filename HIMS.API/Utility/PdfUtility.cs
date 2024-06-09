@@ -26,10 +26,10 @@ namespace HIMS.API.Utility
             _configuration = configuration;
             _Hospital = i_Hospital;
         }
-        public string GetHeader(string filePath, int HospitalId=0)
+        public string GetHeader(string filePath, long HospitalId=0)
         {
             string htmlHeader = System.IO.File.ReadAllText(filePath);
-            HospitalMaster objHospital = _Hospital.GetHospitalById(HospitalId);
+            HospitalMaster objHospital = _Hospital.GetHospitalById(1);
             htmlHeader = htmlHeader.Replace("{{HospitalName}}", objHospital?.HospitalName ?? "");
             htmlHeader = htmlHeader.Replace("{{Address}}", objHospital?.HospitalAddress ?? "");
             htmlHeader = htmlHeader.Replace("{{City}}", objHospital?.City ?? "");

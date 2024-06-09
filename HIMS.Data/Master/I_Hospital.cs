@@ -8,6 +8,6 @@ namespace HIMS.Data.Master
 {
     public interface I_Hospital
     {
-        HospitalMaster GetHospitalById(int Id);
+        HospitalMaster GetHospitalById(long Id);
     }
 }

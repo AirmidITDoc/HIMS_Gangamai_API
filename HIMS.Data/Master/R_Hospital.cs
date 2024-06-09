@@ -18,7 +18,7 @@ namespace HIMS.Data.Master
         {
 
         }
-        public HospitalMaster GetHospitalById(int Id)
+        public HospitalMaster GetHospitalById(long Id)
         {
             if (Id == 0) return new HospitalMaster();
             SqlParameter[] para = new SqlParameter[1];
