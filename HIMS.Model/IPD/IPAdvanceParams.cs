@@ -7,6 +7,7 @@ namespace HIMS.Model.IPD
     public class IPAdvanceParams
     {
         public AdvanceHeaderInsert AdvanceHeaderInsert { get; set; }
+        
         public AdvanceDetailInsert AdvanceDetailInsert { get; set; }
         public IPPaymentInsert IPPaymentInsert { get; set; }
 

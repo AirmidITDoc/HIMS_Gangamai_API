@@ -26,11 +26,10 @@ namespace HIMS.API.Utility
             _configuration = configuration;
             _Hospital = i_Hospital;
         }
-
-        public string GetHeader(string filePath, long HospitalId=0)
+        public string GetHeader(string filePath, int HospitalId=0)
         {
             string htmlHeader = System.IO.File.ReadAllText(filePath);
-            HospitalMaster objHospital = _Hospital.GetHospitalById(1);
+            HospitalMaster objHospital = _Hospital.GetHospitalById(HospitalId);
             htmlHeader = htmlHeader.Replace("{{HospitalName}}", objHospital?.HospitalName ?? "");
             htmlHeader = htmlHeader.Replace("{{Address}}", objHospital?.HospitalAddress ?? "");
             htmlHeader = htmlHeader.Replace("{{City}}", objHospital?.City ?? "");
@@ -39,7 +38,6 @@ namespace HIMS.API.Utility
             htmlHeader = htmlHeader.Replace("{{Display}}", (objHospital?.HospitalId ?? 0) > 0 ? "visible" : "hidden");
             return htmlHeader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
         }
-
         public Tuple<byte[], string> GeneratePdfFromHtml(string html, string FolderName, string FileName = "", Wkhtmltopdf.NetCore.Options.Orientation PageOrientation = Wkhtmltopdf.NetCore.Options.Orientation.Portrait)
         {
             var options = new ConvertOptions

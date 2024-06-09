@@ -238,7 +238,7 @@ namespace HIMS.Data.Inventory
             return html;
         }
 
-        public string ViewIndentwise(int IndentId, string htmlFilePath, string htmlHeader)
+        public string ViewIndentwise(int IndentId, string htmlFilePath, string htmlHeaderFilePath)
         {
             // throw new NotImplementedException();
 
@@ -247,9 +247,9 @@ namespace HIMS.Data.Inventory
             para[0] = new SqlParameter("@IndentId", IndentId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptPrintIndent", para);
             string html = File.ReadAllText(htmlFilePath);
-            
+            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{HospitalHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
             String Verify = " ";
@@ -278,8 +278,6 @@ namespace HIMS.Data.Inventory
             html = html.Replace("{{IndentNo}}", Bills.GetColValue("IndentNo"));
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
             html = html.Replace("{{IndentTime}}", Bills.GetColValue("IndentTime").ConvertToDateString("dd.MM.yyyy hhLmm tt"));
-            html = html.Replace("{{Isverify}}", Bills.GetColValue("Isverify"));
-            html = html.Replace("{{Comments}}", Bills.GetColValue("Comments"));
 
             html = html.Replace("{{PrintStoreName}}", Bills.GetColValue("PrintStoreName"));
             html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));

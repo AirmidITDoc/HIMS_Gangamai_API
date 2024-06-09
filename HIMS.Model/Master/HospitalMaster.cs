@@ -6,7 +6,7 @@ namespace HIMS.Model.Master
 {
     public class HospitalMaster
     {
-        public long HospitalId { get; set; }
+        public int HospitalId { get; set; }
         public string HospitalName { get; set; }
         public string HospitalAddress { get; set; }
         public string City { get; set; }

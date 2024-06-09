@@ -253,7 +253,6 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{InvDate}}", Bills.GetColValue("InvDate").ConvertToDateString("dd/MM/yyyy"));
 
 
-            html = html.Replace("{{GateEntryNo}}", Bills.GetColValue("GateEntryNo"));
             html = html.Replace("{{GrnNumber}}", Bills.GetColValue("GrnNumber"));
             html = html.Replace("{{EwayBillDate}}", Bills.GetColValue("EwayBillDate").ConvertToDateString("dd/MM/yyyy"));
             html = html.Replace("{{GSTNo}}", Bills.GetColValue("GSTNo").ConvertToString());
@@ -266,7 +265,7 @@ namespace HIMS.Data.Pharmacy
             
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
             html = html.Replace("{{Email}}", Bills.GetColValue("Email").ConvertToString());
-            html = html.Replace("{{GSTNo}}", Bills.GetColValue("GSTNo").ConvertToString());
+            html = html.Replace("{{GateEnteryNo}}", Bills.GetColValue("GateEnteryNo").ConvertToString());
             html = html.Replace("{{Mobile}}", Bills.GetColValue("Mobile"));
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
             html = html.Replace("{{VatAmount}}", Bills.GetColValue("VatAmount").ConvertToString());

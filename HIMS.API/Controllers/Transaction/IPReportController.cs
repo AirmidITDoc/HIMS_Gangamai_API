@@ -30,21 +30,6 @@ namespace HIMS.API.Controllers.Transaction
      
 
 
-        [HttpGet("view-CommanDailyCollectionReport")]
-        public IActionResult ViewCommanDailycollectionReport(DateTime FromDate, DateTime ToDate, int AddedById, int DoctorId)
-        {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_CommanDailycollection.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPReports.ViewCommanDailyCollectionReceipt(FromDate, ToDate, AddedById, DoctorId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CommanDailycollection", "CommanDailycollection", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
-
-            // write logic for send pdf in whatsapp
-
-
-            //if (System.IO.File.Exists(tuple.Item2))
-            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        }
 
 
         //[HttpGet("view-IPAdmitPatientwardwisechargesReport")]
@@ -187,6 +172,166 @@ namespace HIMS.API.Controllers.Transaction
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewOPToIPConvertedListWithServiceAvailed(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPToIPConvertedListWithServiceAvailed", "OPToIPConvertedListWithServiceAvailed", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+        [HttpGet("view-DateWiseAdmissionCount")]
+        public IActionResult ViewDateWiseAdmissionCount(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_DatewiseAdmissionCount.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewDateWiseAdmissionCount(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DateWiseAdmissionCount", "DateWiseAdmissionCount", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+        [HttpGet("view-MonthWiseAdmissionCount")]
+        public IActionResult ViewMonthWiseAdmissionCount(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_MonthwiseAdmissionCount.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewMonthWiseAdmissionCount(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "MonthWiseAdmissionCount", "MonthWiseAdmissionCount", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+        [HttpGet("view-DateWiseDoctorWiseAdmissionCountDetail")]
+        public IActionResult ViewDateWiseDoctorWiseAdmissionCountDetail(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_DateWiseDoctorWiseAdmissionCountDetails.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewDateWiseDoctorWiseAdmissionCountDetail(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DateWiseDoctorWiseAdmissionCountDetail", "DateWiseDoctorWiseAdmissionCountDetail", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+        [HttpGet("view-DateWiseDoctorWiseAdmissionCountSummary")]
+        public IActionResult ViewDateWiseDoctorWiseAdmissionCountSummary(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_DateWiseDoctorWiseAdmissionCountSummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewDateWiseDoctorWiseAdmissionCountSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DateWiseDoctorWiseAdmissionCountSummary", "DateWiseDoctorWiseAdmissionCountSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+        [HttpGet("view-DateWiseDepartmentWiseAdmissionCountDetail")]
+        public IActionResult ViewDateWiseDepartmentWiseAdmissionCountDetail(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_DateWiseDepartmentWiseAdmissionCountDetails .html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewDateWiseDepartmentWiseAdmissionCountDetail(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DateWiseDepartmentWiseAdmissionCountDetail", "DateWiseDepartmentWiseAdmissionCountDetail", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+        [HttpGet("view-DateWiseDepartmentWiseAdmissionCountSummary")]
+        public IActionResult ViewDateWiseDepartmentWiseAdmissionCountSummary(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_DateWiseDepartmentWiseAdmissionCountSummary .html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewDateWiseDepartmentWiseAdmissionCountSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DateWiseDepartmentWiseAdmissionCountSummary", "DateWiseDepartmentWiseAdmissionCountSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+        [HttpGet("view-DrWiseCollectionDetail")]
+        public IActionResult ViewDrWiseCollectionDetail(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_DrWiseCollectionDetail.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewDrWiseCollectionDetail(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DrWiseCollectionDetail", "DrWiseCollectionDetail", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+
+        [HttpGet("view-DrWiseCollectionSummary")]
+        public IActionResult ViewDrWiseCollectionSummary(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_DrWiseCollectionSummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewDrWiseCollectionSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DrWiseCollectionSummary", "DrWiseCollectionSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+        
+
+                [HttpGet("view-DepartmentWiseCollectionDetail")]
+        public IActionResult ViewDepartmentWiseCollectionDetail(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_DepartmentWiseCollectionDetails.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewDepartmentWiseCollectionDetail(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DepartmentWiseCollectionDetail", "DepartmentWiseCollectionDetail", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+
+        [HttpGet("view-DepartmentWiseCollectionSummary")]
+        public IActionResult ViewDepartmentWiseCollectionSummary(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_DepartmentWiseCollectionSummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewDepartmentWiseCollectionSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DepartmentWiseCollectionSummary", "DepartmentWiseCollectionSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+
+        [HttpGet("view-CompanyWiseAdmissionCountDetail")]
+        public IActionResult ViewCompanyWiseAdmissionCountDetail(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_CompanyWiseAdmissionCountDetail.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewCompanyWiseAdmissionCountDetail(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DateCompanyWiseAdmissionCountDetail", "DateCompanyWiseAdmissionCountDetail", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+
+        [HttpGet("view-CompanyWiseAdmissionSummary")]
+        public IActionResult ViewDateWiseAdmissionC(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_CompanyWiseAdmissionCountSummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewCompanyWiseAdmissionSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DateCompanyWiseAdmissionSummary", "DateCompanyWiseAdmissionSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });

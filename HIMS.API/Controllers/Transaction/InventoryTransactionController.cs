@@ -12,7 +12,7 @@ namespace HIMS.API.Controllers.Transaction
     [Route("api/[controller]")]
     public class InventoryTransactionController : Controller
     {
-        /* public IActionResult Index()wise
+        /* public IActionResult Index()
          {
              return View();
          }*/
@@ -331,8 +331,8 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewIndentewise(int IndentId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IndentReport.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _indent.ViewIndentwise(IndentId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            var html = _indent.ViewIndentwise(IndentId, htmlFilePath, htmlHeaderFilePath);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IndentReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             // write logic for send pdf in whatsapp
