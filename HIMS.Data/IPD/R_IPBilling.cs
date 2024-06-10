@@ -273,7 +273,7 @@ namespace HIMS.Data.IPD
             string previousLabel = "";
             
             String FinalLabel = "";
-            double T_TotAmount = 0, ChargesTotalamt = 0, T_TotalAmount=0, F_TotalAmount=0;
+            double T_TotAmount = 0, ChargesTotalamt = 0, T_TotalAmount=0, F_TotalAmount=0.0;
 
 
 
@@ -383,6 +383,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{Qty}}", Bills.GetColValue("Qty"));
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+            html = html.Replace("{{F_TotalAmount}}", F_TotalAmount.ConvertToDouble().To2DecimalPlace());
+            
 
             html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "table-row " : "none");
             html = html.Replace("{{chkAdvflag}}", Bills.GetColValue("TotalAdvanceAmount").ConvertToDouble() > 0 ? "table-row " : "none");
