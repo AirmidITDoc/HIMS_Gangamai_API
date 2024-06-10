@@ -39,18 +39,18 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-        [HttpGet("view-DepartmentWisecountSummury")]
-        public IActionResult ViewOPDeptwisecountsummaryReport(DateTime FromDate, DateTime ToDate)
-        {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDeptwisecountsummary.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _OPbilling.ViewDepartmentWisecountSummury(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DepartmentWisecountSummury", "DepartmentWisecountSummury", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        //[HttpGet("view-DepartmentWisecountSummury")]
+        //public IActionResult ViewOPDeptwisecountsummaryReport(DateTime FromDate, DateTime ToDate)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDeptwisecountsummary.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    var html = _OPbilling.ViewDepartmentWisecountSummury(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DepartmentWisecountSummury", "DepartmentWisecountSummury", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        }
-        [HttpGet("view-OPDoctorWiseVisitCountSummary")]
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
+        //[HttpGet("view-OPDoctorWiseVisitCountSummary")]
         public IActionResult ViewDoctorWiseVisitCountSummary(DateTime FromDate, DateTime ToDate)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpDctorwisecountsummary.html");
