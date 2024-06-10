@@ -123,24 +123,22 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo").ToString());
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
 
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName").ToString());
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear").ToString());
+
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName").ToString());
-            html = html.Replace("{{AgeYear}}", Bills.GetDateColValue("AgeYear").ToString());
-            html = html.Replace("{{GenderName}}", Bills.GetDateColValue("GenderName").ToString());
-            html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionDate").ConvertToDateString("dd/MM/yyyy"));
+
+            html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName").ToString());
             html = html.Replace("{{RefDoctorName}}", Bills.GetColValue("RefDoctorName").ToString());
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName").ToString());
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName").ToString());
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName").ToString());
-            html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeDate").ConvertToDateString("dd/MM/yyyy"));
-            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode").ToString());
 
-     
-
-
-
-            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmt").ConvertToDouble().To2DecimalPlace());
+                html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmt").ConvertToDouble().To2DecimalPlace());
 
                 html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount").ConvertToDouble().To2DecimalPlace());
                 html = html.Replace("{{AdvanceBalAmount}}", Bills.GetColValue("AdvanceBalAmount").ConvertToDouble().To2DecimalPlace());
