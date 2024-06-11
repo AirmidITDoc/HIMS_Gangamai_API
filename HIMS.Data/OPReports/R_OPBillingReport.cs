@@ -75,7 +75,8 @@ namespace HIMS.Data.Opd
                         //.Append(G_BalAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(G_CashPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td></tr>");
+                        .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td></tr>");
                     G_TotAmount = 0; G_DiscAmount = 0; G_NETAmount = 0; G_PaidAmount = 0; G_BalAmount = 0; G_CashPayAmount = 0; G_CardPayAmount = 0; G_ChequePayAmount = 0; G_NEFTPayAmount = 0; G_PayTMAmount = 0;
 
                     items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:black\"><td colspan=\"10\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["Type"].ConvertToString()).Append("</td></tr>");
@@ -91,6 +92,7 @@ namespace HIMS.Data.Opd
                 G_CashPayAmount += dr["CashPayAmount"].ConvertToDouble();
                 G_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
                 G_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
+                G_ChequePayAmount += dr["PayTMAmount"].ConvertToDouble();
 
 
 
@@ -115,8 +117,9 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CashPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
 
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ChequePayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CardPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
 
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CardPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PayTMAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
 
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
@@ -131,7 +134,8 @@ namespace HIMS.Data.Opd
                          //.Append(G_BalAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                          .Append(G_CashPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                          .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                         .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td></tr>");
+                         .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td></tr>");
 
                 }
             }
@@ -157,7 +161,7 @@ namespace HIMS.Data.Opd
                     T_BillCard += dr["CardPayAmount"].ConvertToDouble();
                     T_BillCheque += dr["ChequePayAmount"].ConvertToDouble();
                     //T_BillNEFT += dr["NEFTPayAmount"].ConvertToDouble();
-                    //T_BillPayTm += dr["PayTMAmount"].ConvertToDouble();
+                    T_BillPayTm += dr["PayTMAmount"].ConvertToDouble();
 
 
                 }
@@ -174,7 +178,7 @@ namespace HIMS.Data.Opd
                     T_BillReturnCard += dr["CardPayAmount"].ConvertToDouble();
                     T_BillReturnCheque += dr["ChequePayAmount"].ConvertToDouble();
                     //T_BillReturnNEFT += dr["NEFTPayAmount"].ConvertToDouble();
-                    //T_BillReturnPAYTM += dr["PayTMAmount"].ConvertToDouble();
+                    T_BillReturnPAYTM += dr["PayTMAmount"].ConvertToDouble();
 
 
                 }
