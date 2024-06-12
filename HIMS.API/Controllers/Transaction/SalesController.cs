@@ -226,6 +226,16 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        [HttpGet("view-PatientStatement")]
+        public IActionResult viewPatientstatementReport(int OP_IP_ID, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacySalesStatement.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Sales.ViewPharSalesstatement(OP_IP_ID, StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmacySalesStatement", "PharmacySalesStatement"+ OP_IP_ID.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
     }
 }

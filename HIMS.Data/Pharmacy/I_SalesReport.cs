@@ -34,5 +34,6 @@ namespace HIMS.Data.Pharmacy
 
 
         string ViewPharcomwisepatientcreditReceipt(int StoreId, string htmlFilePath, string HeaderName);
+        string ViewPharSalesstatement(int OP_IP_ID, int StoreId, string htmlFilePath, string HeaderName);
     }
 }
