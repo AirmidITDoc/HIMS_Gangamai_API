@@ -81,13 +81,14 @@ namespace HIMS.Model.Opd
         public long CountryId { get; set; }
         public long StateId { get; set; }
         public long CityId { get; set; }
+        public long AreaId { get; set; }
         public long MaritalStatusId { get; set; }
 
-       // public long ReligionId { get; set; }
-        public bool IsCharity { get; set; }
-
+        public long ReligionId { get; set; }
+     
         public string Aadharcardno { get; set; }
         public string Pancardno { get; set; }
+        public bool IsCharity { get; set; }
         //public string Photo { get; set; }
 
     }
