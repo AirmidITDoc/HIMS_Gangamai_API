@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace HIMS.Data.OPReports
@@ -32,5 +33,12 @@ namespace HIMS.Data.OPReports
         string ViewDepartmentServiceGroupWiseCollectionSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
 
 
+
+
+        string ViewDepartmentWiseOPDCount(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewDrWiseOPDCountDetail(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewDrWiseOPDCollectionDetails(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewDepartmentWiseOPDCollectionDetails(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewDepartmentServiceGroupWiseCollectionDetails(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
     }
 }

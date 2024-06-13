@@ -38,6 +38,7 @@ namespace HIMS.API.Utility
             htmlHeader = htmlHeader.Replace("{{Display}}", (objHospital?.HospitalId ?? 0) > 0 ? "visible" : "hidden");
             return htmlHeader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
         }
+
         public Tuple<byte[], string> GeneratePdfFromHtml(string html, string FolderName, string FileName = "", Wkhtmltopdf.NetCore.Options.Orientation PageOrientation = Wkhtmltopdf.NetCore.Options.Orientation.Portrait)
         {
             var options = new ConvertOptions
