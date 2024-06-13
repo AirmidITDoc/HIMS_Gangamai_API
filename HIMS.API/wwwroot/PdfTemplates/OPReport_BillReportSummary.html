@@ -18,7 +18,7 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Bill Report Summary</b> </td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>OP Bill Report Summary</b> </td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
                         </table>
@@ -40,27 +40,51 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <thead style="font-size: 15px; text-align: center;">
                                 <tr>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill No</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Toatal Amount</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Con Amt</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Net Amount</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Paid Amount</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bal Amt</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Cash Pay</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Cheque Pay</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Card Pay</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">NEFT Pay</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">PayTM Pay</th>
-                                    
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">UHID</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Bill No</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Toatal Amount</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Con Amt</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Net Amount</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Paid Amount</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Bal Amt</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Cash Pay</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Cheque Pay</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Card Pay</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">NEFT Pay</td>
+                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">PayTM Pay</td>
+
 
                                 </tr>
                             </thead>
                             <tbody style="font-size: 14px;">
                                 {{Items}}
                             </tbody>
+           
+                            <tr>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_BillAmt}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> {{T_ConcessionAmt}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> {{T_NetPayableAmt}}</td>
+
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> {{T_PaidAmount}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_BalanceAmt}}</td>
+
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> {{T_CashPay}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_ChequePay}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_CardPay}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_NeftPay}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_PayTMPay}}</td>
+                               
+
+                            </tr>
+
+
+                           
                         </table>
                     </td>
                 </tr>

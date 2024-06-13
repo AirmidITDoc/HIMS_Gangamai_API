@@ -1,15 +1,10 @@
 ﻿using HIMS.API.Utility;
-using HIMS.Data.IPD;
 using HIMS.Data.Pharmacy;
 using HIMS.Data.WhatsAppEmail;
 using HIMS.Model.WhatsAppEmail;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using HIMS.Data.Opd;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -23,9 +18,10 @@ namespace HIMS.API.Controllers.Transaction
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
         private readonly I_GRN _GRN;
         private readonly I_PurchaseOrder _PurchaseOrder;
-
+        public readonly I_OPbilling _OPbilling;
         public WhatsappEmailController(I_Sales sales, I_WhatsappSms whatsappSms, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment ,IPdfUtility pdfUtility,
-            I_GRN gRN,I_PurchaseOrder purchaseOrder)
+            I_GRN gRN,I_PurchaseOrder purchaseOrder,
+            I_OPbilling oPbilling)
         {
             this._Sales = sales;
             this._WhatsappSms = whatsappSms;
@@ -33,7 +29,7 @@ namespace HIMS.API.Controllers.Transaction
             this._pdfUtility = pdfUtility;
             this._GRN = gRN;
             this._PurchaseOrder = purchaseOrder;
-
+            this._OPbilling = oPbilling;
         }
 
 
@@ -75,6 +71,18 @@ namespace HIMS.API.Controllers.Transaction
                 var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnReceipt", "SalesReturnReceipt" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
                 WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
 
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "Appointment")
+            {
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = "";
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "OPBill")
+            {
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpBillingReceipt.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                var html = _OPbilling.ViewOPBillReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath,_pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OpBillingReceipt", "OpBilling" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
             }
 
             var Id = _WhatsappSms.Insert(WhatsappSmsparam);

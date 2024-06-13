@@ -18,7 +18,7 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Department Wise Opd Collection Summary</b> </td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Doctor Wise OPD Collection Details </b> </td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
                         </table>
@@ -40,10 +40,19 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <thead style="font-size: 15px; text-align: center;">
                                 <tr>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Sr.No</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Department Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill Amount</th>
-                                    
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">SR No</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">AgeYear</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">DepartmentName</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">DoctorName</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">RefDoctorName</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">CompanyName</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">BillNo</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">BillDate</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">BillAmt</th>
+
+
                                 </tr>
                             </thead>
                             <tbody style="font-size: 14px;">
@@ -51,6 +60,10 @@
                             </tbody>
                         </table>
                     </td>
+                </tr>
+                <tr>
+
+                    <td>{{T_Count}}</td>
                 </tr>
             </table>
         </div>
