@@ -51,16 +51,21 @@ namespace HIMS.API.Controllers.Transaction
         //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         //}
         //[HttpGet("view-OPDoctorWiseVisitCountSummary")]
-        public IActionResult ViewDoctorWiseVisitCountSummary(DateTime FromDate, DateTime ToDate)
-        {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpDctorwisecountsummary.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _OPbilling.ViewOPDoctorWiseVisitCountSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDoctorWiseVisitCountSummary", "OPDoctorWiseVisitCountSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+        //need to chk
+        //public IActionResult ViewDoctorWiseVisitCountSummary(DateTime FromDate, DateTime ToDate)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpDctorwisecountsummary.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    var html = _OPbilling.ViewOPDoctorWiseVisitCountSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDoctorWiseVisitCountSummary", "OPDoctorWiseVisitCountSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        }
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
+        
+        
+        
         //[HttpGet("view-OPAppoinmentListWithServiseAvailed")]
         //public IActionResult ViewOPAppoinmentListWithServiseAvailed(DateTime FromDate, DateTime ToDate)
         //{
@@ -341,6 +346,8 @@ namespace HIMS.API.Controllers.Transaction
         //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
         //}
+
+        ///
         [HttpGet("view-DepartmentWiseOPDCount")]
         public IActionResult ViewDepartmentWiseOPDCount(DateTime FromDate, DateTime ToDate)
         {

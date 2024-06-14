@@ -177,6 +177,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{AdvanceBalAmount}}", Bills.GetColValue("AdvanceBalAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{AdvanceRefundAmount}}", Bills.GetColValue("AdvanceRefundAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ConcessionAmount}}", Bills.GetColValue("ConcessionAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{DiscComments}}", Bills.GetColValue("DiscComments"));
             html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{Qty}}", Bills.GetColValue("Qty"));
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
