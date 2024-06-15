@@ -20,7 +20,7 @@ namespace HIMS.Data.Opd
         }
 
 
-        public string ViewOPDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById, int doctorId, string htmlFilePath, string htmlHeader)
+        public string ViewOPDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
             SqlParameter[] para = new SqlParameter[3];
@@ -58,12 +58,12 @@ namespace HIMS.Data.Opd
                 if (i == 1)
                 {
                     String Label;
-                    Label = dr["DoctorName"].ConvertToString();
+                    Label = dr["BillAddedByName"].ConvertToString();
                     //Label = dr["Type"].ConvertToString();
                     items.Append("<tr style=\"font-size:20px;border: 1px;color:black; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"10\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
 
-                if (previousLabel != "" && previousLabel != dr["DoctorName"].ConvertToString())
+                if (previousLabel != "" && previousLabel != dr["BillAddedByName"].ConvertToString())
                 {
                     j = 1;
 
@@ -75,12 +75,12 @@ namespace HIMS.Data.Opd
                         //.Append(G_PaidAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         //.Append(G_BalAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(G_CashPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td></tr>");
+                        //.Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        //.Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td></tr>");
                     G_TotAmount = 0; G_DiscAmount = 0; G_NETAmount = 0; G_PaidAmount = 0; G_BalAmount = 0; G_CashPayAmount = 0; G_CardPayAmount = 0; G_ChequePayAmount = 0; G_NEFTPayAmount = 0; G_PayTMAmount = 0;
 
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:black\"><td colspan=\"10\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["DoctorName"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:black\"><td colspan=\"10\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["BillAddedByName"].ConvertToString()).Append("</td></tr>");
                 }
 
                 G_TotAmount += dr["TotalAmt"].ConvertToDouble();
@@ -93,14 +93,14 @@ namespace HIMS.Data.Opd
                 G_CashPayAmount += dr["CashPayAmount"].ConvertToDouble();
                 G_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
                 G_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
-                G_ChequePayAmount += dr["PayTMAmount"].ConvertToDouble();
+                //G_ChequePayAmount += dr["PayTMAmount"].ConvertToDouble();
 
 
 
                 //T_NEFTPayAmount += dr["NEFTPayAmount"].ConvertToDouble();
                 //T_PayTmAmount += dr["PayTMAmount"].ConvertToDouble();
 
-                previousLabel = dr["DoctorName"].ConvertToString();
+                previousLabel = dr["BillAddedByName"].ConvertToString();
 
                 //items.Append("<tr style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(j).Append("</td>");
 
@@ -122,9 +122,9 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CashPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
 
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ChequePayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CardPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CardPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PayTMAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PayTMAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
 
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
@@ -139,8 +139,8 @@ namespace HIMS.Data.Opd
                          //.Append(G_BalAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                          .Append(G_CashPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                          .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                         .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                         .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td></tr>");
+                         //.Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td></tr>");
 
                 }
             }
@@ -150,7 +150,7 @@ namespace HIMS.Data.Opd
             {
 
                 i++; j++;
-                if (dr["DoctorName"].ConvertToString() == "OPD Bill")
+                if (dr["ConsultantDoctorName"].ConvertToString() == "OPD Bill")
                 {
                     T_TotAmount += dr["TotalAmt"].ConvertToDouble();
                     T_DiscAmount += dr["ConcessionAmt"].ConvertToDouble();
@@ -166,12 +166,12 @@ namespace HIMS.Data.Opd
                     T_BillCard += dr["CardPayAmount"].ConvertToDouble();
                     T_BillCheque += dr["ChequePayAmount"].ConvertToDouble();
                     //T_BillNEFT += dr["NEFTPayAmount"].ConvertToDouble();
-                    T_BillPayTm += dr["PayTMAmount"].ConvertToDouble();
+                    //T_BillPayTm += dr["PayTMAmount"].ConvertToDouble();
 
 
                 }
 
-                if (dr["DoctorName"].ConvertToString() == "OP Refund of Bill")
+                if (dr["ConsultantDoctorName"].ConvertToString() == "OP Refund of Bill")
                 {
 
                     T_BillReturnTot += dr["TotalAmt"].ConvertToDouble();
@@ -183,7 +183,7 @@ namespace HIMS.Data.Opd
                     T_BillReturnCard += dr["CardPayAmount"].ConvertToDouble();
                     T_BillReturnCheque += dr["ChequePayAmount"].ConvertToDouble();
                     //T_BillReturnNEFT += dr["NEFTPayAmount"].ConvertToDouble();
-                    T_BillReturnPAYTM += dr["PayTMAmount"].ConvertToDouble();
+                    //T_BillReturnPAYTM += dr["PayTMAmount"].ConvertToDouble();
 
 
                 }
@@ -202,7 +202,7 @@ namespace HIMS.Data.Opd
             T_TotalCard = T_BillCard.ConvertToDouble() - T_BillReturnCard.ConvertToDouble();
             T_TotalCheque = T_BillCheque.ConvertToDouble() - T_BillReturnCheque.ConvertToDouble();
             T_TotalNEFT = T_BillNEFT.ConvertToDouble() - T_BillReturnNEFT.ConvertToDouble();
-            T_TotalPAYTM = T_BillPayTm.ConvertToDouble() - T_BillReturnPAYTM.ConvertToDouble();
+            //T_TotalPAYTM = T_BillPayTm.ConvertToDouble() - T_BillReturnPAYTM.ConvertToDouble();
 
 
             TotalCollection = T_CashPayAmount.ConvertToDouble() + T_CardPayAmount.ConvertToDouble() + T_ChequePayAmount.ConvertToDouble() + T_TotalNEFT.ConvertToDouble() + T_TotalPAYTM.ConvertToDouble();
@@ -231,9 +231,16 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{T_TotalCard}}", T_TotalCard.To2DecimalPlace());
             html = html.Replace("{{T_TotalCheque}}", T_TotalCheque.To2DecimalPlace());
             html = html.Replace("{{T_TotalNEFT}}", T_TotalNEFT.To2DecimalPlace());
-            html = html.Replace("{{T_TotalPAYTM}}", T_TotalPAYTM.To2DecimalPlace());
+            //html = html.Replace("{{T_TotalPAYTM}}", T_TotalPAYTM.To2DecimalPlace());
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName").ToString());
 
+
+
+
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
 
             return html;
         }
@@ -1277,10 +1284,7 @@ namespace HIMS.Data.Opd
         //    return html;
         //}
 
-        public string ViewOPDailyCollectionReceipt(DateTime fromDate, DateTime toDate, int addedById, string htmlFilePath, string v)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         
 
