@@ -247,8 +247,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_MenuMaster, R_MenuMaster>();
             services.AddTransient<I_MenuMasterDetails, R_MenuMasterDetails>();
             services.AddTransient<I_MenuMasterDetails_Details, R_MenuMasterDetails_Details>();
-            //services.AddTransient<I_PayTranModeMaster, R_PayTranModeMaster>();
-
+            
+            services.AddTransient<I_CanteenRequest,R_CanteenRequest>();
 
             services.AddTransient<I_InsertIPDraft, R_InsertIPDraft>();
             services.AddTransient<I_IPPathOrRadiRequest, R_IPPathOrRadiRequest>();
