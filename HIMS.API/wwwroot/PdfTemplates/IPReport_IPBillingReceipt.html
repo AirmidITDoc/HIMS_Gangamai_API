@@ -10,7 +10,7 @@
 <body>
     <div class="main-content-wrapper">
         <div class="invoice-box"
-             style="margin: auto;font-size: 13px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+             style="margin: auto;font-size: 14px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table cellpadding="5" cellspacing="5" style="width: 100%;line-height: inherit;text-align: left;">
                 <tr class="top-header-row">
                     {{NewHeader}}
@@ -116,7 +116,7 @@
                     <td>
                         <table style="width: 100%; border-collapse: collapse;">
                             
-                                <tr style="background-color: #63C5DA;">
+                                <tr style="font-weight:bold">
                                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
                                     <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
                                         Service Name
@@ -149,11 +149,11 @@
                                                     <td style="border-bottom:1px solid #eee; padding: 6px;">Total  Amount</td>
                                                     <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{F_TotalAmount}}</td>
                                                 </tr>
-                                                <tr>
+                                                <tr style="display:{{chkadminchargeflag}}">
 
                                                     <td style="border-bottom:1px solid #eee; padding: 6px;">Admin Charges</td>
 
-                                                    <!--<td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{ChargesTotalamt}}</td>-->
+                                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{AdminChares}}</td>
                                                 </tr>
                                                 <tr>
 

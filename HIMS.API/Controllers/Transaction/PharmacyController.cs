@@ -33,12 +33,13 @@ namespace HIMS.API.Controllers.Transaction
         private readonly I_MaterialAcceptance _MaterialAcceptance;
         private readonly I_PharmPaymentMode _PharmPaymentMode;
         private readonly I_GRNReturn _GRNReturn;
+        private readonly I_PHAdvance _PHAdvance;
 
         public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN,
             Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_Workorder workorder, I_Stokadjustment stokadjustment,
             I_Openingbalance openingbalance,
             I_Mrpadjustment mrpadjustment,
-            I_MaterialAcceptance materialAcceptance, I_PharmPaymentMode pharmPaymentMode, I_GRNReturn gRNReturn)
+            I_MaterialAcceptance materialAcceptance, I_PharmPaymentMode pharmPaymentMode, I_GRNReturn gRNReturn,I_PHAdvance pHAdvance)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
@@ -53,6 +54,7 @@ namespace HIMS.API.Controllers.Transaction
             _MaterialAcceptance = materialAcceptance;
             _PharmPaymentMode = pharmPaymentMode;
             _GRNReturn = gRNReturn;
+            _PHAdvance = pHAdvance;
         }
 
         [HttpPost("SalesSaveWithPaymentwithStockCheck")]
@@ -709,5 +711,21 @@ namespace HIMS.API.Controllers.Transaction
 
 
 
+
+        [HttpPost("Insert_PhAdvance")]
+        public IActionResult PhAdvanceInsert(PHAdvanceparam PHAdvanceparam)
+        {
+            var PhSave = _PHAdvance.Insert(PHAdvanceparam);
+            return Ok(PhSave);
+
+        }
+        [HttpPost("Update_PhAdvance")]
+        public IActionResult Update_PhAdvance(PHAdvanceparam PHAdvanceparam)
+        {
+            var Id = _PHAdvance.Update(PHAdvanceparam);
+            return Ok(Id);
+
+        }
+        
     }
 }

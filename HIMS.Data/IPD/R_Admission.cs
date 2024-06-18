@@ -89,7 +89,7 @@ namespace HIMS.Data.IPD
            
             para[0] = new SqlParameter("@AdmissionId", AdmissionId) { DbType = DbType.String };
            
-            var Bills = GetDataTableProc("rptAdmissionPrint1", para);
+            var Bills = GetDataTableProc("m_rptAdmissionPrint", para);
             string html = File.ReadAllText(htmlFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
@@ -126,10 +126,14 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{IsMLC}}", Bills.GetColValue("IsMLC"));
             html = html.Replace("{{AdmittedDoctor1}}", Bills.GetColValue("AdmittedDoctor1"));
+            html = html.Replace("{{AdmittedDoctorName}}", Bills.GetColValue("AdmittedDoctorName"));
+            
             html = html.Replace("{{MaritalStatusName}}", Bills.GetColValue("MaritalStatusName"));
             html = html.Replace("{{AadharcardNo}}", Bills.GetColValue("AadharcardNo"));
-            html = html.Replace("{{TariffId}}", Bills.GetColValue("TariffId"));
-            html = html.Replace("{{DOA}}", Bills.GetColValue("DOA"));
+            html = html.Replace("{{TariffName}}", Bills.GetColValue("TariffName"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+            
+            html = html.Replace("{{DOA}}", Bills.GetColValue("DOT").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             
             html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));
             html = html.Replace("{{LoginUserSurname}}", Bills.GetColValue("LoginUserSurname"));
