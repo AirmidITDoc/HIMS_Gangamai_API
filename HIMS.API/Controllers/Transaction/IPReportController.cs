@@ -342,7 +342,7 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-CompanyWiseBillDetailReport")]
         public IActionResult ViewCompanyWiseBillDetailReport(DateTime FromDate, DateTime ToDate)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_CompanyWiseAdmissionCountSummary.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_CompanyWiseBillDetailReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewCompanyWiseBillDetailReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CompanyWiseBillDetailReport", "CompanyWiseBillDetailReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
@@ -357,7 +357,7 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-CompanyWiseBillSummaryReport")]
         public IActionResult ViewCompanyWiseBillSummaryReport(DateTime FromDate, DateTime ToDate)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_CompanyWiseAdmissionCountSummary.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_CompanyWiseBillSummaryReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewCompanyWiseBillSummaryReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CompanyWiseBillSummaryReport", "CompanyWiseBillSummaryReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
@@ -372,7 +372,7 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-CompanyWiseCreditReportDetail")]
         public IActionResult ViewCompanyWiseCreditReportDetail(DateTime FromDate, DateTime ToDate)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_CompanyWiseAdmissionCountSummary.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_CompanyWiseCreditReportDetail.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewCompanyWiseCreditReportDetail(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CompanyWiseCreditReportDetail", "CompanyWiseCreditReportDetail", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
@@ -386,7 +386,7 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-CompanyWiseCreditReportSummary")]
         public IActionResult ViewCompanyWiseCreditReportSummary(DateTime FromDate, DateTime ToDate)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_CompanyWiseAdmissionCountSummary.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_CompanyWiseCreditReportSummary.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewCompanyWiseCreditReportSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CompanyWiseCreditReportSummary", "CompanyWiseCreditReportSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);

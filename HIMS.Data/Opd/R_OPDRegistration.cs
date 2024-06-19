@@ -41,7 +41,7 @@ namespace HIMS.Data.Opd
         public bool Update(OPDRegistrationParams OPDRegistrationParams)
         {
             var disc1 = OPDRegistrationParams.OPDRegistrationUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_RegForAppointment_1", disc1);
+            ExecNonQueryProcWithOutSaveChanges("m_update_RegForAppointment_1", disc1);
 
                        /*
             var disc = OPDRegistrationParams.OPDRegistrationUpdate.ToDictionary();

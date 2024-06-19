@@ -48,26 +48,31 @@ namespace HIMS.API.Controllers.Transaction
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DepartmentWisecountSummury", "DepartmentWisecountSummury", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        }
-        [HttpGet("view-OPDoctorWiseVisitCountSummary")]
-        public IActionResult ViewDoctorWiseVisitCountSummary(DateTime FromDate, DateTime ToDate)
-        {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpDctorwisecountsummary.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _OPbilling.ViewOPDoctorWiseVisitCountSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDoctorWiseVisitCountSummary", "OPDoctorWiseVisitCountSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
+        //[HttpGet("view-OPDoctorWiseVisitCountSummary")]
+
+        //need to chk
+        //public IActionResult ViewDoctorWiseVisitCountSummary(DateTime FromDate, DateTime ToDate)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpDctorwisecountsummary.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    var html = _OPbilling.ViewOPDoctorWiseVisitCountSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDoctorWiseVisitCountSummary", "OPDoctorWiseVisitCountSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        }
-        [HttpGet("view-OPAppoinmentListWithServiseAvailed")]
-        public IActionResult ViewOPAppoinmentListWithServiseAvailed(DateTime FromDate, DateTime ToDate)
-        {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Appointmentlistwithserviceavailed.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _OPbilling.ViewOPAppoinmentListWithServiseAvailed(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPAppoinmentListWithServiseAvailed", "OPAppoinmentListWithServiseAvailed", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
+        
+        
+        
+        //[HttpGet("view-OPAppoinmentListWithServiseAvailed")]
+        //public IActionResult ViewOPAppoinmentListWithServiseAvailed(DateTime FromDate, DateTime ToDate)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Appointmentlistwithserviceavailed.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    var html = _OPbilling.ViewOPAppoinmentListWithServiseAvailed(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPAppoinmentListWithServiseAvailed", "OPAppoinmentListWithServiseAvailed", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -349,7 +354,16 @@ namespace HIMS.API.Controllers.Transaction
             //            var html = _OPbilling.ViewDepartmentWiseOPDCount(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             //            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DepartmentWiseOPDCount", "DepartmentWiseOPDCount", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-            //            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
+
+        ///
+        [HttpGet("view-DepartmentWiseOPDCount")]
+        public IActionResult ViewDepartmentWiseOPDCount(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPReport_OPReport_DepartmentWiseOPDCount.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _OPbilling.ViewDepartmentWiseOPDCount(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DepartmentWiseOPDCount", "DepartmentWiseOPDCount", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             //        }
             //        [HttpGet("view-DrWiseOPDCountDetail")]
