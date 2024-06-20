@@ -526,5 +526,245 @@ namespace HIMS.Data.Inventory
             }
             return words;
         }
+
+        public string ViewIssuetoDeptItemwise(DateTime FromDate, DateTime ToDate, int FromStoreId, int ToStoreId, int ItemId, string htmlFilePath, string htmlHeader)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[5];
+
+
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@FromStoreId", FromStoreId) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@ToStoreId", ToStoreId) { DbType = DbType.Int64 };
+            para[4] = new SqlParameter("@ItemId", ItemId) { DbType = DbType.Int64 };
+
+
+            var Bills = GetDataTableProc("rptIssueToDepartmentDetails", para);
+            string html = File.ReadAllText(htmlFilePath);
+            //string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+           
+            int i = 0, j = 0;
+            string previousLabel = "";
+            double TotalCollection = 0;
+           
+            double G_TotAmount = 0, G_DiscAmount = 0, G_NETAmount = 0, T_BalAmount = 0, T_PaidAmount = 0;
+          
+          
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+
+                i++; j++;
+
+
+                if (i == 1)
+                {
+                    String Label;
+                    Label = dr["ItemName"].ConvertToString();
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+                if (previousLabel != "" && previousLabel != dr["UserName"].ConvertToString())
+                {
+                    j = 1;
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='9' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Type Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                        // .Append(G_TotAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        //.Append(G_DiscAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                       .Append(G_NETAmount.To2DecimalPlace()).Append("</td></tr>");
+                    G_TotAmount = 0; G_DiscAmount = 0; G_NETAmount = 0;
+
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:black\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["ItemName"].ConvertToString()).Append("</td></tr>");
+
+                }
+
+                G_TotAmount += dr["TotalAmount"].ConvertToDouble();
+                G_DiscAmount += dr["VatAmount"].ConvertToDouble();
+                G_NETAmount += dr["NetAmount"].ConvertToDouble();
+                //G_PaidAmount += dr["PaidAmount"].ConvertToDouble();
+                //G_BalAmount += dr["BalanceAmt"].ConvertToDouble();
+                //G_NETPayAmount += dr["NetPayableAmt"].ConvertToDouble();
+
+                //G_CashPayAmount += dr["CashPayAmount"].ConvertToDouble();
+                //G_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
+                //G_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
+                //G_PayTMAmount += dr["PayTMAmount"].ConvertToDouble();
+
+
+
+                previousLabel = dr["ItemName"].ConvertToString();
+
+                items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
+
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["FromStoreName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ToStoreName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["IssueTime"].ConvertToDateString("dd/MM/yy")).Append("</td>");
+                
+
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["IssueQty"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PerUnitLandedRate"].ConvertToString()).Append("</td>");
+              
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["TotalAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["VatPercentage"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["VatAmount"].ConvertToString()).Append("</td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["BalanceAmt"].ConvertToDouble()).Append("</td>");
+
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CashPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ChequePayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CardPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+
+                if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
+                {
+
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='9' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Type Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                        //.Append(G_TotAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        //.Append(G_DiscAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                       .Append(G_NETAmount.To2DecimalPlace()).Append("</td></tr>");
+
+
+                }
+
+            }
+
+
+          
+
+           
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+           
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName").ToString());
+
+            return html;
+        }
+
+        public string ViewItemwiseSupplierlist(int StoreId, int SupplierId, int ItemId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        {
+            SqlParameter[] para = new SqlParameter[5];
+
+            para[0] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            para[1] = new SqlParameter("@SupplierId", SupplierId) { DbType = DbType.Int64 };
+            para[2] = new SqlParameter("@ItemId", ItemId) { DbType = DbType.Int64 };
+
+            para[3] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[4] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+          
+
+            var Bills = GetDataTableProc("rptItemWiseGrnList", para);
+            string html = File.ReadAllText(htmlFilePath);
+            //string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+
+            int i = 0, j = 0;
+            string previousLabel = "";
+            double TotalCollection = 0, T_TotalQty=0;
+
+
+            double G_TotAmount = 0, G_DiscAmount = 0, G_NETAmount = 0, T_BalAmount = 0, T_PaidAmount = 0;
+
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+
+                i++; j++;
+
+
+                if (i == 1)
+                {
+                    String Label;
+                    Label = dr["ItemName"].ConvertToString();
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+                if (previousLabel != "" && previousLabel != dr["ItemName"].ConvertToString())
+                {
+                    j = 1;
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='8' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Type Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                         .Append(G_TotAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                        .Append(G_DiscAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                       .Append(G_NETAmount.To2DecimalPlace()).Append("</td></tr>");
+                    G_TotAmount = 0; G_DiscAmount = 0; G_NETAmount = 0;
+
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:black\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["ItemName"].ConvertToString()).Append("</td></tr>");
+
+                }
+
+                G_TotAmount += dr["TotalAmount"].ConvertToDouble();
+                G_DiscAmount += dr["VatAmount"].ConvertToDouble();
+                T_TotalQty += dr["TotalQty"].ConvertToDouble();
+                //G_PaidAmount += dr["PaidAmount"].ConvertToDouble();
+                //G_BalAmount += dr["BalanceAmt"].ConvertToDouble();
+                //G_NETPayAmount += dr["NetPayableAmt"].ConvertToDouble();
+
+                //G_CashPayAmount += dr["CashPayAmount"].ConvertToDouble();
+                //G_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
+                //G_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
+                //G_PayTMAmount += dr["PayTMAmount"].ConvertToDouble();
+
+
+
+                previousLabel = dr["ItemName"].ConvertToString();
+
+                items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
+
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["GrnNumber"].ConvertToString()).Append("</td>");
+                
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["GRNTime"].ConvertToDateString("dd/MM/yy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["StoreName"].ConvertToString()).Append("</td>");
+
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["SupplierName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["InvoiceNo"].ConvertToString()).Append("</td>");
+
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ReceiveQty"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Rate"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["TotalAmount"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["VatAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["TotalQty"].ConvertToDouble()).Append("</td>");
+
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CashPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ChequePayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CardPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+
+               items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["BalanceQty"].ConvertToString()).Append("</td></tr>");
+
+                if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
+                {
+
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='8' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle;margin-right:20px;font-weight:bold;\">Type Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_TotAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                        .Append(G_DiscAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                         .Append(T_TotalQty.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                       .Append("</td></tr>");
+
+
+                }
+
+            }
+
+
+
+
+
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName").ToString());
+
+            return html;
+        }
     }
 }

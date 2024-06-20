@@ -86,7 +86,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_Prepostopnote _Prepostopnote;
 
         public readonly I_DoctorShare _DoctorShare;
-
+        public readonly I_CanteenRequest _CanteenRequest;
        
         public InPatientController(
             IWebHostEnvironment environment,
@@ -119,7 +119,7 @@ namespace HIMS.API.Controllers.Transaction
             , I_NeroSurgeryOTNotes neroSurgeryOTNotes, I_DoctorNote doctorNote, I_NursingTemplate nursingTemplate, I_Mrdmedicalcertificate mrdmedicalcertificate,
             I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote,I_WhatsappSms whatsappSms,
             I_Sales sales,I_DoctorShare doctorShare,
-            Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility
+            Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility ,I_CanteenRequest canteenRequest
             )
         {
             this._Sales = sales;
@@ -175,6 +175,7 @@ namespace HIMS.API.Controllers.Transaction
             this._WhatsappSms = whatsappSms;
             this._DoctorShare = doctorShare;
             this._BedTransfer = bedTransfer;
+            this._CanteenRequest = canteenRequest;
             
         }
 
@@ -748,9 +749,14 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(RequestId);
         }
 
+        [HttpPost("CanteenRequest")]
+        public IActionResult CanteenRequest(CanteenRequestParams canteenRequestParams)
+        {
+            var RequestId = _CanteenRequest.Insert(canteenRequestParams);
+            return Ok(RequestId);
+        }
 
         [HttpPost("IPMLCInsert")]
-
         public IActionResult IPMLCInsert(MLCInfoParams MLCInfoParams)
         {
             var RequestId = _MLCInfo.Insert(MLCInfoParams);

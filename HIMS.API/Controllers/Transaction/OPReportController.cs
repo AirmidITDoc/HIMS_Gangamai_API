@@ -27,14 +27,14 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
-        [HttpGet("view-OPDailyCollectionReceipt")]
-
-        public IActionResult ViewOPDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById)
+        [HttpGet("view-OPDailyCollectionReport")]
+        
+        public IActionResult ViewOPDailycollectionReport(DateTime FromDate, DateTime ToDate, int AddedById)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDailycollectionuserwise.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _OPbilling.ViewOPDailyCollectionReceipt(FromDate, ToDate, AddedById, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDailyCollectionReceipt", "OPDailyCollectionReceipt"+ AddedById, Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPNewDailycollection", "OPNewDailycollection", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }

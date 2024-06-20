@@ -9,8 +9,10 @@ namespace HIMS.Data.Inventory
 
         string ViewIssuetoDeptIssuewise(int IssueId, string htmlFilePath, string HeaderName);
 
-
+        string ViewIssuetoDeptItemwise(DateTime FromDate, DateTime ToDate, int FromStoreId,int ToStoreId,int ItemId, string htmlFilePath, string HeaderName);
         string ViewIssuetodeptsummary(DateTime FromDate, DateTime ToDate, int FromStoreId, int ToStoreId, string htmlFilePath, string HeaderName);
+
+        string ViewItemwiseSupplierlist(int StoreId, int SupplierId,int ItemId , DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewReturnfromDeptReturnIdwise(int ReturnId, string htmlFilePath, string HeaderName);
 
 
