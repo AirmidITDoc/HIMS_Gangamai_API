@@ -14,6 +14,5 @@ namespace HIMS.Data.MISReports
         string ViewDepartmentandDoctorWiseIPBillingReport(DateTime FromDate, DateTime ToDate, int OP_IP_Type, int DoctorID, string htmlFilePath, string htmlHeader);
         string ViewDepartmentWiseOPRevenueReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewDepartmentWiseIPRevenueReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-       
     }
 }
