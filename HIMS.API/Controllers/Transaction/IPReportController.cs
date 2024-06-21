@@ -81,6 +81,7 @@ namespace HIMS.API.Controllers.Transaction
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDDailycollection", "IPDDailycollection", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
+
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
         [HttpGet("view-OPIPBILLSummaryReport")]
