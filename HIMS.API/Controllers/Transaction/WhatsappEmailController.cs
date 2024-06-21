@@ -5,6 +5,8 @@ using HIMS.Model.WhatsAppEmail;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using HIMS.Data.Opd;
+using HIMS.Data.IPD;
+using HIMS.Model.IPD;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -19,9 +21,11 @@ namespace HIMS.API.Controllers.Transaction
         private readonly I_GRN _GRN;
         private readonly I_PurchaseOrder _PurchaseOrder;
         public readonly I_OPbilling _OPbilling;
+        public readonly I_IPAdvance _IPAdvance;
         public WhatsappEmailController(I_Sales sales, I_WhatsappSms whatsappSms, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment ,IPdfUtility pdfUtility,
             I_GRN gRN,I_PurchaseOrder purchaseOrder,
-            I_OPbilling oPbilling)
+            I_OPbilling oPbilling,
+            I_IPAdvance ipAdvance)
         {
             this._Sales = sales;
             this._WhatsappSms = whatsappSms;
@@ -30,6 +34,7 @@ namespace HIMS.API.Controllers.Transaction
             this._GRN = gRN;
             this._PurchaseOrder = purchaseOrder;
             this._OPbilling = oPbilling;
+            this._IPAdvance = ipAdvance;
         }
 
 
@@ -82,6 +87,33 @@ namespace HIMS.API.Controllers.Transaction
                 string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
                 var html = _OPbilling.ViewOPBillReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath,_pdfUtility.GetHeader(htmlHeaderFilePath));
                 var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OpBillingReceipt", "OpBilling" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "IPAdvance")
+            {
+
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "AdvanceReceipt.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                var html = _IPAdvance.ViewAdvanceReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IP_Advance", "IP_Advance_" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "IPBill")
+            {
+
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "AdvanceReceipt.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                var html = _IPAdvance.ViewAdvanceReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IP_Advance", "IP_Advance_" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "IPInterim")
+            {
+
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "AdvanceReceipt.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                var html = _IPAdvance.ViewAdvanceReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IP_Advance", "IP_Advance_" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
                 WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
             }
 

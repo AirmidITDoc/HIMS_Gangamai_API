@@ -40,7 +40,8 @@ using HIMS.Data.CustomerInformation;
 using HIMS.Data.CustomerPayment;
 using HIMS.Data.OPReports;
 using HIMS.Data.CommanReports;
-
+using HIMS.Data.MISReports;
+//using HIMS.Data.InventoryReports;
 
 
 

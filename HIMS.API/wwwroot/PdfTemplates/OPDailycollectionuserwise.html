@@ -21,16 +21,22 @@
     <div class="bill-template-wrapper" style="font-size: 14px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; ">
 
 
-        {{NewHeader}}
+        {{HospitalHeader}}
         <table style="width: 100%;line-height: inherit;text-align: left;">
             <tr class="title-date-row">
                 <td style="padding: 6px;">
+
                     <table style="width: 100%; border-collapse: collapse;">
+
                         <tr style="font-size: 18px">
                             <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>OP DAILY COLLECTION REPORT</b></td>
                             <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                         </tr>
+                        >
                     </table>
+                    <div style="margin-top:2px;">
+                        <div style="font-weight: bold;font-size:18px;margin-left:10px;padding:5px;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
+                    </div>
                 </td>
             </tr>
 
@@ -77,7 +83,10 @@
                         NEFT Amt
                     </td>-->
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                            PAYTM Amt
+                            Online Amt
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            User Name
                         </td>
                     </tr>
 
@@ -89,13 +98,13 @@
 
             <table class="table" style="width:100%;border-collapse:collapse;margin-top:10px;">
                 <tbody>
-                    <tr style="font-size:18px;color:blue">
+                    <tr style="font-size:18px;color:black">
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;"></td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Cash Amount</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Checque Amount</td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Cheque Amount</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Card Amount</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">NEFT Amount</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">PATTM Amount</td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Online Amount</td>
                     </tr>
                     <tr>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">OP Bill</td>
@@ -123,7 +132,7 @@
                     </tr>
                 </tbody>
             </table>
-            </table>
+        </table>
     </div>
 
 </body>

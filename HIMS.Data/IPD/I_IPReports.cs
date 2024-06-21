@@ -46,5 +46,9 @@ namespace HIMS.Data.IPD
         string ViewDepartmentWiseCollectionSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewCompanyWiseAdmissionCountDetail(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewCompanyWiseAdmissionSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
+        string ViewCompanyWiseBillDetailReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
+        string ViewCompanyWiseBillSummaryReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
+        string ViewCompanyWiseCreditReportDetail(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
+        string ViewCompanyWiseCreditReportSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
     }
 }

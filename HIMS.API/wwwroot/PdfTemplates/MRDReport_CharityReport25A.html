@@ -1,5 +1,4 @@
-﻿
-;plokijuhygtfr <!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,13 +12,13 @@
         <div class="invoice-box" style="max-width: 1000px; margin: 0 auto; font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
 
-                {{HospitalHeader}}
+                {{NewHeader}}
 
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>ViewAppoinment List With Service</b> </td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Charity Report 25A</b> </td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
                         </table>
@@ -42,13 +41,19 @@
                             <thead style="font-size: 15px; text-align: center;">
                                 <tr>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Reg NO</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Doctor Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">RefDoctor Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Medical</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Pathology </th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Radiology</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Name of the Patient With Full Address</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Sex and Age of Patient</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Annual Income of Patient</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Whether belongs to indient category (having annual income to exceeding Rs.50000)</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Whether belongs to weaker category(having annual income to exceeding Rs.100000)</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Sign of the officer verifying and recording particulars and his Stamp</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Name of Department</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">DOA</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">DOD</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">IPDNo</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Initial and Sign of Officer after Discharge of Patient</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Amount spent for treatment in Rs.</th>
 
                                 </tr>
                             </thead>
@@ -59,10 +64,8 @@
                     </td>
                 </tr>
                 <tr>
-                    
-                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Medical}}</td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Pathology}}</td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Radiology}}</td>
+                    <td>Total Count :</td>
+                    <td>{{TotalAmt}}</td>
                 </tr>
             </table>
         </div>

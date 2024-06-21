@@ -7,23 +7,42 @@
     <title>Document</title>
 </head>
 
+<body>
+    <div class="main-content-wrapper">
+        <div class="invoice-box" style="font-size: 15px;line-height: 25px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: black;">
+            <table style="width: 100%;line-height: inherit;text-align: left;">
+                {{NewHeader}}
+                <tr class="title-date-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="font-size: 20px">
 
-        {{NewHeader}}
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>COMMAN DAILY COLLECTION REPORT</b></td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                            </tr>
 
-        <div style="border:1px solid black;text-align:center;padding:2px;background-color: white;">
-            <div style="display:block;width:100%; align-items: center;">
-                <div style="font-weight:400;font-size:18px;text-align:center;display:inline-block;">
-                    COMMAN  DAILY COLLECTION REPORT
+                        </table>
+                        <div style="margin-top:2px;">
+                            <div style="font-weight: bold;font-size:18px;margin-left:10px;padding:5px;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
+                        </div>
+                    </td>
+                </tr>
+                <!--
+
+                <div style="border:1px solid black;text-align:center;padding:2px;background-color: white;">
+                    <div style="display:block;width:100%; align-items: center;">
+                        <div style="font-weight:400;font-size:20px;text-align:center;display:inline-block;">
+                            COMMAN  DAILY COLLECTION REPORT
+                        </div>
+                        <span style="font-size: 20px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : </span>
+                    </div>
+
                 </div>
-                <span style="font-size: 18px;font-weight: 700;float: right;margin-top:5px; margin-right:10px;">Print Date : {{CurrentDate}}</span>
-            </div>
-
-        </div>
-        <div style="margin-top:2px;">
-            <div style="font-weight: bold;font-size:18px;margin-left:10px;padding:5px;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
-        </div>
-        <table class="table" style="width:100%;border-collapse:collapse">
-            <tbody>
+                <div style="margin-top:2px;">
+                    <div style="font-weight: bold;font-size:18px;margin-left:10px;padding:5px;">From Date :  -- To Date :</div>
+                </div>
+                <table class="table" style="width:100%;border-collapse:collapse">
+                    <tbody>-->
 
 
                 <tr class="bill-table-row">
@@ -34,17 +53,17 @@
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Payment Date</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">PBill</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Reg No</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">UHID</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Patient Name</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">   Bill Amt </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Bill Amt </td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Cash Amt</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">   Cheque Amt</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">   Card Amt</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Cheque Amt</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Card Amt</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  NEFT Amt </td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">   Online Amt </td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Adv.used Amt</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Bal  Amt </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  User  Amt </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Bal Amt </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  User Name </td>
 
                             </tr>
                             {{Items}}
@@ -73,76 +92,96 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <tbody style="font-size: 14px;">
                                 <tr>
+                                    <!--<th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></th>
                                     <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></th>
                                     <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></th>
                                     <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></th>
-                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></th>
+                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></th>-->
                                     <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Bill Amount</th>
                                     <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Cash Amount</th>
                                     <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Cheque Amount</th>
                                     <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Card Amount</th>
                                     <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">NEFTPay Amount</th>
                                     <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">PayTMAmount</th>
+                                    <!--<th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Adv.used Amt</th>
+                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Bal Amt </th>-->
+                                    <!--<th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></th>-->
                                 </tr>
 
                                 <tr>
                                     <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">OP Bill</th>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillCashPayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillChequePayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillCardPayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillNEFTPayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillPayTMAmount}}</td>
-                                </tr>
-                                <tr>
-                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IP Bill</th>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillCashPayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillChequePayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillCardPayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillNEFTPayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillPayTMAmount}}</td>
-                                </tr>
-                                <tr>
-                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IP Advance</th>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_AdvCashPayAmount}}</td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_AdvChequePayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_AdvCardPayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_AdvNEFTPayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_AdvPayTMAmount}}</td>
-                                </tr>
-                                <tr>
-                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IP Refund of Bill</th>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundCashPayAmount}}</td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundChequePayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundCardPayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundNEFTPayAmount}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundPayTMAmount}}</td>
-                                </tr>
-                                <tr>
-                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IP Refund of Advance</th>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundAdvCash}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundAdvCheque}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundAdvCard}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundAdvCNEFT}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundAdvPayTMAmount}}</td>
-                                </tr>
-                                <tr>
-                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Net Amount</th>
+                                    <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillAmount}}</td>-->
                                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCashPayAmount}}</td>
                                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalChequePayAmount}}</td>
                                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCardPayAmount}}</td>
                                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalNEFTPayAmount}}</td>
                                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalPayTMAmount}}</td>
+                                    <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalBillPayTMAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillPayTMAmount}}</td>-->
+                                </tr>
+                                <tr>
+                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IP Bill</th>
+                                    <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillAmount}}</td>-->
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCashPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalChequePayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCardPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalNEFTPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalPayTMAmount}}</td>
+                                    <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillPayTMAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillPayTMAmount}}</td>-->
+                                </tr>
+                                <tr>
+                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IP Advance</th>
+                                    <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillAmount}}</td>-->
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCashPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalChequePayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCardPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalNEFTPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalPayTMAmount}}</td>
+                                    <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_AdvPayTMAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_AdvPayTMAmount}}</td>-->
+                                </tr>
+                                <tr>
+                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IP Refund of Bill</th>
+                                    <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillAmount}}</td>-->
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCashPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalChequePayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCardPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalNEFTPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalPayTMAmount}}</td>
+                                    <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundPayTMAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundPayTMAmount}}</td>-->
+                                </tr>
+                                <tr>
+                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IP Refund of Advance</th>
+                                    <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_BillAmount}}</td>-->
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCashPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalChequePayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCardPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalNEFTPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalPayTMAmount}}</td>
+                                    <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundAdvPayTMAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{G_RefundAdvPayTMAmount}}</td>-->
+                                </tr>
+                                <tr>
+                                    <th style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Net Amount</th>
+                                    <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCashPayAmount}}</td>-->
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCashPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalChequePayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalCardPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalNEFTPayAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalPayTMAmount}}</td>
+                                    <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalPayTMAmount}}</td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_FinalPayTMAmount}}</td>-->
                                 </tr>
                                 <tr>
                                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; color: black;" colspan='2'>Total Collection Amount</td>
                                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; color: black;" colspan='2'>{{TotalCollection}}</td>
                                 </tr>
 
-</table>
-                        </div>
-                        </div>
-                        </body>
+                        </table>
+        </div>
+    </div>
+</body>
 
 </html>

@@ -37,6 +37,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\PdfTemplates\OPReport_DepartmentWiseOPDCount.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Rotativa\Windows\wkhtmltopdf.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
