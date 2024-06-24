@@ -46,7 +46,8 @@ namespace HIMS.Data.Opd
             // throw new NotImplementedException();
 
             SqlParameter[] para = new SqlParameter[1];
-            Boolean chkchequeflag = false, chkNeftflag = true, chkcardflag = true, chkpaytmflag = true, chkcashflag = false, chkremarkflag=false;
+            Boolean chkchequeflag = false, chkNeftflag = false, chkcardflag = true, chkpaytmflag = true, chkcashflag = false, chkremarkflag=false;
+
             //rptIPDPaymentReceiptPrint
             para[0] = new SqlParameter("@PaymentId", PaymentId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptOPDPaymentReceiptPrint", para);
@@ -57,12 +58,7 @@ namespace HIMS.Data.Opd
             StringBuilder items = new StringBuilder("");
             int i = 0;
             
-            html = html.Replace("{{chkchequeflag}}", Bills.GetColValue("ChequePayAmount").ConvertToDouble() > 0 ? "block" : "none");
-            html = html.Replace("{{chkcashflag}}", Bills.GetColValue("CashPayAmount").ConvertToDouble() > 0 ? "block" : "none");
-            html = html.Replace("{{chkcardflag}}", Bills.GetColValue("CardPayAmount").ConvertToDouble() > 0 ? "block" : "none");
-            html = html.Replace("{{chkNeftflag}}", Bills.GetColValue("NEFTPayAmount").ConvertToDouble() > 0 ? "block" : "none");
-            html = html.Replace("{{chkpaytmflag}}", Bills.GetColValue("PayTMAmount").ConvertToDouble() > 0 ? "block" : "none");
-            html = html.Replace("{{chkremarkflag}}", Bills.GetColValue("Remark").ConvertToString() != null ? "block" : "none");
+
 
 
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
@@ -95,6 +91,23 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{TotalAmt}}", Bills.GetColValue("TotalAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ConcessionAmt}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{NetPayableAmt}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
+
+
+            html = html.Replace("{{chkcashflag}}", Bills.GetColValue("CashPayAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkcardflag}}", Bills.GetColValue("CardPayAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkchequeflag}}", Bills.GetColValue("ChequePayAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkneftflag}}", Bills.GetColValue("NEFTPayAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkpaytmflag}}", Bills.GetColValue("PayTMAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+            html = html.Replace("{{chkremarkflag}}", Bills.GetColValue("Remark").ConvertToDouble() !=' ' ? "table-row " : "none");
+
+
+            
+
+
 
             string finalamt = conversion(Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace().ToString());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());

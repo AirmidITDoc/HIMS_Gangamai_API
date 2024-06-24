@@ -87,7 +87,7 @@ namespace HIMS.API.Controllers.Transaction
 
         public readonly I_DoctorShare _DoctorShare;
         public readonly I_CanteenRequest _CanteenRequest;
-       
+        public readonly I_CompanyInformation _CompanyInformation;
         public InPatientController(
             IWebHostEnvironment environment,
             IFileUtility fileUtility,
@@ -119,7 +119,7 @@ namespace HIMS.API.Controllers.Transaction
             , I_NeroSurgeryOTNotes neroSurgeryOTNotes, I_DoctorNote doctorNote, I_NursingTemplate nursingTemplate, I_Mrdmedicalcertificate mrdmedicalcertificate,
             I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote,I_WhatsappSms whatsappSms,
             I_Sales sales,I_DoctorShare doctorShare,
-            Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility ,I_CanteenRequest canteenRequest
+            Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility ,I_CanteenRequest canteenRequest,I_CompanyInformation companyInformation
             )
         {
             this._Sales = sales;
@@ -176,7 +176,7 @@ namespace HIMS.API.Controllers.Transaction
             this._DoctorShare = doctorShare;
             this._BedTransfer = bedTransfer;
             this._CanteenRequest = canteenRequest;
-            
+            this._CompanyInformation = companyInformation;
         }
 
         //New AdmissionSave
@@ -684,6 +684,22 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+
+
+        [HttpGet("view-IP-AdvanceSummaryReceipt")]
+        public IActionResult ViewAdvanceSummaryReceipt(int AdmissionID)
+        {
+
+
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPAdvancesummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPAdvance.ViewAdvanceSummaryReceipt(AdmissionID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPReport_IPAdvancesummary", "IPReport_IPAdvancesummary" + AdmissionID.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
         [HttpPost("IPAdvance")]
         public String IPAdvance(IPAdvanceParams IPAdvanceParams)
         {
@@ -770,6 +786,24 @@ namespace HIMS.API.Controllers.Transaction
             var RequestId = _MLCInfo.Update(MLCInfoParams);
             return Ok(RequestId);
         }
+
+
+        [HttpGet("view-IP_MLCReport")]
+        public IActionResult ViewIPMlcReport(int AdvanceDetailID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_MLCReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _MLCInfo.ViewMlcReport(AdvanceDetailID, htmlFilePath, htmlHeaderFilePath);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPReport_MLCReport", "IPReport_MLCReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
 
 
         [HttpPost("IPSettlement")]
@@ -1104,6 +1138,16 @@ namespace HIMS.API.Controllers.Transaction
             var Id = _DoctorShare.Insert(Doctorshareparam);
             return Ok(Id);
         }
+
+       
+
+        [HttpPost("CompanyInformationUpdate")]
+        public IActionResult CompanyUpdate(CompanyInformationparam CompanyInformationparam)
+        {
+            var Id = _CompanyInformation.Update(CompanyInformationparam);
+            return Ok(Id);
+        }
+
     }
 
 }

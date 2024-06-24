@@ -50,43 +50,84 @@
                                 </td>
 
                             </tr>
+                            <tr style="display:{{chkcashflag}}">
+
+                                <td style="padding: 2px;">
+                                    Cash Amount :  {{CashPayAmount}}
+                                </td>
+                                <!--<td style="padding: 2px;">
+                                  
+                                </td>
+                                <td></td>
+                                <td></td>-->
+
+                            </tr>
+                            <tr style="display:{{chkchequeflag}}">
+                                <td style="padding: 2px;">
+                                    Cheque Amount:  {{ChequePayAmount}} &nbsp; &nbsp; Cheque No: {{ChequeNo}} &nbsp; &nbsp; Cheque Date: {{ChequeDate}}
+                                </td>
+                                <!--<td style="padding: 2px;">
+                                  
+                                </td>-->
+
+                            </tr>
+                            <tr style="display:{{chkcardflag}}">
+                                <td style="padding: 2px;">
+                                    Card Amount:  {{CardPayAmount}} &nbsp; &nbsp;  Card No: {{CardNo}} &nbsp; &nbsp;  Bank Name : {{CardBankName}}
+                                </td>
+                                <!--<td style="padding: 2px;">
+                                
+                                </td>-->
+
+                            </tr>
+                            <tr style="display:{{chkneftflag}}">
+                                <td style="padding: 2px;">
+                                    NEFT Amount: {{NEFTPayAmount}} &nbsp; &nbsp;   NEFT No:  {{NEFTNo}} &nbsp; &nbsp;  Bank Name:  {{NEFTBankMaster}}
+                                </td>
+                                <!--<td style="padding: 2px;">
+                                  
+                                </td>-->
+
+                            </tr>
+                            <tr style="display:{{chkpaytmflag}}">
+                                <td style="padding: 2px;">
+                                    Online Amount:  {{PayTMAmount}} &nbsp; &nbsp; Trans No {{PayTMTranNo}}
+                                </td>
+                                <!--<td style="padding: 2px;">
+                                   
+                                </td>-->
+
+                            </tr>
                             <tr>
                                 <td style="padding: 2px;">
                                     <span>Received With Thanks From : </span>
                                     <span>{{PatientName}}</span>
                                 </td>
-                             
+
                             </tr>
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>Cash Amount: </span>
-                                    <span>{{CashPayAmount}}</span>
-                                </td>
-                             
-                            </tr>
-                            <tr>
+
+                            <tr style="display:{{chkremarkflag}}">
                                 <td style="padding: 2px;">
                                     <span>Remark : </span>
                                     <span> {{Remark}}</span>
                                 </td>
                             </tr>
+                            <tr class="payment-info-row">
+                                <td style="padding: 6px;">
+                                    <table style="width: 100%; border-collapse: collapse;">
+                                        <tr>
+                                            <td>Total Amount in words :-{{finalamt}}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
                         </table>
                     </td>
                 </tr>
-
-        
+            
                 <tr>
                     <table style="width: 100%; border-collapse: collapse;margin-top:20px;">
-                        <tr class="payment-info-row">
-                            <td style="padding: 6px;">
-                                <table style="width: 100%; border-collapse: collapse;">
-                                    <tr>
-                                        <td>Total Amount in words :-{{finalamt}}</td>
-                                    </tr>
-
-                                </table>
-                            </td>
-                        </tr>
+                       
                         <tr style="margin-top: 12px;">
                         <tr>
                             <td style="padding: 6px;font-size: 12px;">This is Computer generated invoice hence doesn’t require signature</td>
@@ -94,23 +135,18 @@
                         <tr></tr>
                         <tr style="padding: 6px; text-align: right;">
                             <td>
-
                                 <span>{{UserName}}</span>
                             </td>
                         </tr>
                         <tr style="padding: 6px; text-align: right;">
-                           
                             <td>
-
                                 <span>Cashier</span>
                             </td>
                         </tr>
-
                     </table>
                 </tr>
             </table>
         </div>
     </div>
 </body>
-
 </html>

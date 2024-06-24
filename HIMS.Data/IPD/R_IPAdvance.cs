@@ -202,5 +202,51 @@ namespace HIMS.Data.IPD
             }
             return words;
         }
+
+        public string ViewAdvanceSummaryReceipt(int AdmissionID, string htmlFilePath, string htmlHeader)
+        {
+            SqlParameter[] para = new SqlParameter[1];
+            para[0] = new SqlParameter("@AdmissionID", AdmissionID) { DbType = DbType.Int64 };
+            //para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+
+            var Bills = GetDataTableProc("[rptIPAdvanceSummary]", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["AdvanceNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["AdvanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["UsedAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["BalanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["RefundAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+               
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["DischargeDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["DischargeTime"].ConvertToDateString()).Append(" </td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["DiffTimeInHr"].ConvertToString()).Append("</td>");
+
+
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName").ConvertToString());
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ConvertToString());
+            html = html.Replace("{{DOA}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm"));
+
+            return html;
+        }
     }
 }
