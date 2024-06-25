@@ -31,19 +31,12 @@ namespace HIMS.Data.IPD
             disc.Remove("DischargesummaryId");
 
             var DischargesummaryId =ExecNonQueryProcWithOutSaveChanges("insert_DischargeSummary_1", disc, outputId);
-                       
-            //var disc3 = IPDDischargeSummaryParams.IPSMSInsert.ToDictionary();
-            //ExecNonQueryProcWithOutSaveChanges("update_DischargeSummary_1", disc3);
 
-
-           /*  var disc4 = IPDischargeParams.InsertIPSMSTemplete.ToDictionary();
-             ExecNonQueryProcWithOutSaveChanges("update_Admission_2", disc4);
-
-
-            IPDDischargeSummaryParams.UpdateAdmisionDischargeSummary.AdmissionId = Convert.ToInt32(IPDDischargeSummaryParams.InsertIPDDischargSummary.AdmissionId);
-            var disc2 = IPDDischargeSummaryParams.UpdateAdmisionDischargeSummary.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_Admission_2", disc2);*/
-
+            foreach (var a in IPDDischargeSummaryParams.InsertIPPrescriptionDischarge)
+            {
+                var vPrescDisc = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_insert_T_IP_Prescription_Discharge_1", vPrescDisc);
+            }
 
             _unitofWork.SaveChanges();
             return DischargesummaryId;
@@ -56,6 +49,14 @@ namespace HIMS.Data.IPD
             var disc3 = IPDDischargeSummaryParams.UpdateIPDDischargSummary.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("update_DischargeSummary_1", disc3);
 
+            var vDeletePres = IPDDischargeSummaryParams.DeleteIPPrescriptionDischarge.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Delete_T_IP_Prescription_Discharge", vDeletePres);
+
+            foreach (var a in IPDDischargeSummaryParams.InsertIPPrescriptionDischarge)
+            {
+                var vPrescDisc = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_insert_T_IP_Prescription_Discharge_1", vPrescDisc);
+            }
 
             _unitofWork.SaveChanges();
             return true;

@@ -36,8 +36,6 @@ namespace HIMS.Data.IPD
                 ExecNonQueryProcWithOutSaveChanges("insert_T_DLabRequest_1", disc);
             }
 
-          
-
             _unitofWork.SaveChanges();
             return RequestId;
 
