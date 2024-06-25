@@ -48,7 +48,7 @@ namespace HIMS.Data.IPD
             // new NotImplementedException();
 
             var disc4 = IPDischargeParams.UpdateIPDDischarg.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_Discharge_1", disc4);
+            ExecNonQueryProcWithOutSaveChanges("m_update_Discharge_1", disc4);
 
             //IPDischargeParams.UpdateAdmission.AdmissionID = Convert.ToInt32(IPDischargeParams.UpdateIPDDischarg.AdmissionId);
             var disc2 = IPDischargeParams.UpdateAdmission.ToDictionary();
