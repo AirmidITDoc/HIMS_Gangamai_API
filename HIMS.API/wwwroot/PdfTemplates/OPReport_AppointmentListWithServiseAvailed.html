@@ -1,5 +1,4 @@
-﻿
-;plokijuhygtfr <!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,7 +18,7 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>ViewAppoinment List With Service</b> </td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Appoinment List With Service</b> </td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
                         </table>
@@ -54,16 +53,23 @@
                             </thead>
                             <tbody style="font-size: 14px;">
                                 {{Items}}
+
+                                <tr>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                   
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Medical}}</td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Pathology}}</td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Radiology}}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </td>
                 </tr>
-                <tr>
-                    
-                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Medical}}</td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Pathology}}</td>
-                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Radiology}}</td>
-                </tr>
+                
             </table>
         </div>
     </div>

@@ -21,7 +21,8 @@ namespace HIMS.Model.Opd
         public int DischargeTypeId { get; set; }
         public int DischargedDocId { get; set; }
         public int DischargedRMOID { get; set; }
-        public int AddedBy { get; set; }
+        public int ModeOfDischargeId { get; set; }
+        public int CreatedBy { get; set; }
 
     }
     public class DischargeBedRelease
@@ -36,7 +37,8 @@ namespace HIMS.Model.Opd
         public int DischargeTypeId { get; set; }
         public int DischargedDocId { get; set; }
         public int DischargedRMOID { get; set; }
-        public int UpdatedBy { get; set; }
+        public int ModeOfDischargeId { get; set; }
+        public int ModifiedBy { get; set; }
 
     }
 

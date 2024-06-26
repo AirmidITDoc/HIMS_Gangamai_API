@@ -43,6 +43,7 @@
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill No</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill Date</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">Net Amount</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">Paid Amount</th>
@@ -54,6 +55,17 @@
                             </thead>
                             <tbody style="font-size: 14px;">
                                 {{Items}}
+                                <tr>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">Total Amount</td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_NetPayableAmt}}</td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_PaidAmount}}</td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_BalanceAmt}}</td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_TotalAmt}}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </td>
