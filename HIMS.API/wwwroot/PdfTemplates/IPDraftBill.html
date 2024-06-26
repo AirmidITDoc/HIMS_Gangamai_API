@@ -39,15 +39,34 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>MR No.:</span>
+                                    <span>Bill No.:</span>
+                                    <span>{{BillNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Bill Date /Time:</span>
+                                    <span>{{BillDate}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>UHID No:</span>
                                     <span>{{RegNo}}</span>
                                 </td>
+                                <td style="padding: 2px;">
+                                    <span>DOA /Time:</span>
+                                    <span>{{AdmissionDate}}</span>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td style="padding: 2px;">
                                     <span>IPD No.:</span>
                                     <span>{{IPDNo}}</span>
                                 </td>
+                                <td style="padding: 2px;">
+                                    <span>DOD /Time:</span>
+                                    <span>{{DischargeDate}}</span>
+                                </td>
                             </tr>
-
                             <tr>
                                 <td style="padding: 2px;">
                                     <span>Patient Name:</span>
@@ -55,30 +74,39 @@
                                 </td>
                                 <td style="padding: 2px;">
                                     <span>Age/Gender:</span>
-                                    <span>{{AgeYear}} / {{GenderName}} </span>
+                                    <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D / {{GenderName}}</span>
                                 </td>
                             </tr>
                             <tr>
 
                                 <td style="padding: 2px;">
-                                    <span>Admission Date:</span>
-                                    <span>{{AdmissionDate}}</span>
+                                    <span>Doctor Name:</span>
+                                    <span>{{DoctorName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
                                     <span>Ward/Bed Name: </span>
-                                    <span>{{RoomName}}/{{BedName}}</span>
+                                    <span>{{RoomName}} | {{BedName}}</span>
                                 </td>
                             </tr>
                             <tr>
 
-                            <tr>
                                 <td style="padding: 2px;">
-                                    <span>Consultant.Doc Name.:</span>
-                                    <span>{{RefDoctorName}}</span>
+                                    <span>Dr.Department Name.:</span>
+                                    <span>{{DepartmentName}} </span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Phone :</span>
-                                    <span>{{Phone}}</span>
+                                    <span>Patient Type:</span>
+                                    <span>{{PatientType}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Ref.Doctor Name.:</span>
+                                    <span>{{RefDocName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Company Name :</span>
+                                    <span>{{CompanyName}}</span>
                                 </td>
                             </tr>
                         </table>
