@@ -57,9 +57,7 @@
                             <!--<thead style="font-size: 14px;">--><!--  -->
                             <tr style="color:cadetblue">
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Date</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">PatientName</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Advance N0</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Advance No</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Advance Amount </td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Advance Used</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Balance Amount</td>
@@ -68,7 +66,19 @@
                             </tr>
                             {{Items}}
                             <!--</thead>-->
+
+                            <tr style="font-weight:bold">
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Total </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;text-align:right;">{{T_AdvanceAmount}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; text-align: right;">{{T_UsedAmount}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; text-align: right;">{{T_BalanceAmount}}</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; text-align: right;">{{T_RefundAmount}}</td>
+
+                            </tr>
                         </table>
+
+
                     </td>
                 </tr>
 

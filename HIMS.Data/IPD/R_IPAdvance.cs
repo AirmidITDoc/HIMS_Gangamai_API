@@ -220,25 +220,38 @@ namespace HIMS.Data.IPD
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
+            double T_AdvanceAmount = 0, T_UsedAmount = 0, T_BalanceAmount = 0, T_RefundAmount = 0;
+
             foreach (DataRow dr in Bills.Rows)
             {
                 i++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["AdvanceNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["AdvanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["UsedAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["BalanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["RefundAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-               
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["AdvanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["UsedAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["BalanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["RefundAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+
                 //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["DischargeDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["DischargeTime"].ConvertToDateString()).Append(" </td>");
                 //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["DiffTimeInHr"].ConvertToString()).Append("</td>");
 
 
+                T_AdvanceAmount += dr["AdvanceAmount"].ConvertToDouble();
+                T_UsedAmount += dr["UsedAmount"].ConvertToDouble();
+                T_BalanceAmount += dr["BalanceAmount"].ConvertToDouble();
+                T_RefundAmount += dr["RefundAmount"].ConvertToDouble();
+
+
             }
 
+
             html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{T_AdvanceAmount}}", T_AdvanceAmount.ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{T_UsedAmount}}", T_UsedAmount.ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{T_BalanceAmount}}", T_BalanceAmount.ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{T_RefundAmount}}", T_RefundAmount.ConvertToDouble().To2DecimalPlace());
             //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName").ConvertToString());
