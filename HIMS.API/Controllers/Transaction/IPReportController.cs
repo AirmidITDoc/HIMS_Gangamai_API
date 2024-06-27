@@ -27,22 +27,22 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
         }
 
-     
 
 
 
 
-        //[HttpGet("view-IPAdmitPatientwardwisechargesReport")]
-        //public IActionResult ViewIPAdmitpatientwardwisechargesReport(int DoctorId, int WardId, int CompanyId)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReports_AdmittedPatientWardwisecharges.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _IPReports.ViewIPAdmitPatientwardwisechargesReport(DoctorId, WardId, CompanyId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPReports_AdmittedPatientWardwisecharges", "IPReports_AdmittedPatientWardwisecharges"+ WardId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-         
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        //}
+        [HttpGet("view-IPAdmitPatientwardwisechargesReport")]
+        public IActionResult ViewIPAdmitpatientwardwisechargesReport(int DoctorId, int WardId, int CompanyId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReports_AdmittedPatientWardwisecharges.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPAdmitPatientwardwisechargesReport(DoctorId, WardId, CompanyId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPReports_AdmittedPatientWardwisecharges", "IPReports_AdmittedPatientWardwisecharges" + WardId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         [HttpGet("view-IPCurrentrefadmittedReport")]
         public IActionResult ViewIPCurrentrefadmittedReport(int DoctorId)
