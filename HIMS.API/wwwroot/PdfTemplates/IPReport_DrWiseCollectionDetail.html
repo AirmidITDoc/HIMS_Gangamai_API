@@ -41,14 +41,15 @@
                             <thead style="font-size: 15px; text-align: center;">
                                 <tr>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">SR No</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill Date</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">BillNo</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">AgeYear</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">IPD No</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">Department Name</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">RefDoctor Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill Date</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">BillNo</th>
+
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">Total Amt</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">Disc Amt</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">Net Amt</th>
@@ -58,14 +59,57 @@
                             </thead>
                             <tbody style="font-size: 14px;">
                                 {{Items}}
+
+                                <tr style="border: 1px solid black; background-color: white">
+
+
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        Total Amount
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                        {{T_TotalAmt}}
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                        {{T_ConcessionAmt}}
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                        {{T_NetPayableAmt}}
+                                    </td>
+
+
+                                </tr>
                             </tbody>
                         </table>
                     </td>
                 </tr>
-                <tr>
-
-                    <td>{{Count}}</td>
-                </tr>
+               
             </table>
         </div>
     </div>
