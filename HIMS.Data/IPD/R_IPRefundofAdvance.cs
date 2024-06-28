@@ -105,7 +105,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
             
-            html = html.Replace("{{RefundDate}}", Bills.GetColValue("RefundDate").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{RefundDate}}", Bills.GetColValue("RefundTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{AddedBy}}", Bills.GetColValue("AddedBy"));
 
