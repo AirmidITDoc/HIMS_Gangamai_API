@@ -89,9 +89,17 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{PDate}}", Bills.GetColValue("PDate").ConvertToDateString());
 
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
-            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
+            html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
+            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
+            html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
+
+
             html = html.Replace("{{PreparedBy}}", Bills.GetColValue("PreparedBy"));
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
 
@@ -99,7 +107,7 @@ namespace HIMS.Data.IPD
             return html;
         }
 
-        public string ViewIPPrescriptionReturnReceipt(int PresReId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewIPPrescriptionReturnReceipt(int PresReId, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -108,12 +116,12 @@ namespace HIMS.Data.IPD
             para[0] = new SqlParameter("@PresReId", PresReId) { DbType = DbType.Int64 };
             //para[1] = new SqlParameter("@PatientType", PatientType) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptIPPrescriptionReturnListPrint", para);
-            htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
+            //htmlHeaderFilePath = "F:\\AirmidHIMS\\HIMS_Gangamai_API\\HIMS.API\\wwwroot\\PdfTemplates\\HospitalHeader.html";
 
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            //string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HospitalHeader}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -131,16 +139,27 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
-            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{Age}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
 
-            html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
-            html = html.Replace("{{PresTime}}", Bills.GetColValue("PresTime").ConvertToDateString());
+            html = html.Replace("{{PresReId}}", Bills.GetColValue("PresReId"));
+            html = html.Replace("{{PresTime}}", Bills.GetColValue("PresTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{Date}}", Bills.GetColValue("Date").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            
 
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
+            html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
+            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
+            html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
+            html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString());
+
             html = html.Replace("{{PreparedBy}}", Bills.GetColValue("PreparedBy"));
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
 
