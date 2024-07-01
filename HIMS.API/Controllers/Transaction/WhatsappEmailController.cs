@@ -22,8 +22,16 @@ namespace HIMS.API.Controllers.Transaction
         private readonly I_PurchaseOrder _PurchaseOrder;
         public readonly I_OPbilling _OPbilling;
         public readonly I_IPAdvance _IPAdvance;
+        public readonly I_Payment _Payment;
+        public readonly I_OPRefundBill _OPRefundBill;
+        public readonly I_IPRefundofBilll _IPRefundofBilll;
+        public readonly I_IPRefundofAdvance _IPRefundofAdvance;
+        public readonly I_IP_Settlement_Process _IP_Settlement_Process;
+        public readonly I_IPInterimBill _IPInterimBill;
+        public readonly I_IPBilling _IPBilling;
         public WhatsappEmailController(I_Sales sales, I_WhatsappSms whatsappSms, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment ,IPdfUtility pdfUtility,
-            I_GRN gRN,I_PurchaseOrder purchaseOrder,
+            I_GRN gRN,I_PurchaseOrder purchaseOrder, I_Payment Payment, I_OPRefundBill oPRefundBill, I_IPRefundofAdvance iPRefundofAdvance, I_IP_Settlement_Process iP_Settlement_Process, I_IPInterimBill ipinterimbill,
+            I_IPRefundofBilll iPRefundofBilll, I_IPBilling iPBilling,
             I_OPbilling oPbilling,
             I_IPAdvance ipAdvance)
         {
@@ -35,6 +43,13 @@ namespace HIMS.API.Controllers.Transaction
             this._PurchaseOrder = purchaseOrder;
             this._OPbilling = oPbilling;
             this._IPAdvance = ipAdvance;
+            this._OPRefundBill = oPRefundBill;
+            this._Payment = Payment;
+            this._IPRefundofAdvance = iPRefundofAdvance;
+            this._IPRefundofBilll = iPRefundofBilll;
+            this._IP_Settlement_Process = iP_Settlement_Process;
+            this._IPInterimBill = ipinterimbill;
+            this._IPBilling = iPBilling;
         }
 
 
@@ -77,18 +92,7 @@ namespace HIMS.API.Controllers.Transaction
                 WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
 
             }
-            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "Appointment")
-            {
-                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = "";
-            }
-            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "OPBill")
-            {
-                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpBillingReceipt.html");
-                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-                var html = _OPbilling.ViewOPBillReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath,_pdfUtility.GetHeader(htmlHeaderFilePath));
-                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OpBillingReceipt", "OpBilling" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
-                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
-            }
+          
             else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "IPAdvance")
             {
 
@@ -101,19 +105,83 @@ namespace HIMS.API.Controllers.Transaction
             else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "IPBill")
             {
 
-                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "AdvanceReceipt.html");
+              
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPBillingReceipt.html");
                 string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-                var html = _IPAdvance.ViewAdvanceReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IP_Advance", "IP_Advance_" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                var html = _IPBilling.ViewIPBillReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IpBillingReceipt", "IpBillingReceipt" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
                 WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
             }
             else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "IPInterim")
             {
 
-                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "AdvanceReceipt.html");
+             
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPInterimBill.html");
                 string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-                var html = _IPAdvance.ViewAdvanceReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IP_Advance", "IP_Advance_" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                var html = _IPInterimBill.ViewIPInterimBillReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPInterimBill", "IPInterimBill" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "IPREFADVANCE")
+            {
+
+              
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "RefundofAdvanceReceipt.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                var html = _IPRefundofAdvance.ViewIPRefundofAdvanceReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RefundofAdvanceReceipt", "RefundofAdvanceReceipt" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "IPREFBILL")
+            {
+
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPRefundBillReceipt.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                var html = _IPRefundofBilll.ViewIPRefundofBillReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPRefundBillReceipt", "IPRefundBillReceipt" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "IPRECEIPT")
+            {
+
+              
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SettlementReceipt.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                var html = _IP_Settlement_Process.ViewSettlementReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SettlementReceipt", "SettlementReceipt" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+            }
+            //Op Part
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "Appointment")
+            {
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = "";
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "OPBill")
+            {
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpBillingReceipt.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                var html = _OPbilling.ViewOPBillReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OpBillingReceipt", "OpBilling" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "OPREFBILL")
+            {
+             
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPRefundofbill.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                var html = _OPRefundBill.ViewOPRefundofBillReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPRefundofbill", "OPRefundofbill" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "OPRECEIPT")
+            {
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpBillingReceipt.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                var html = _OPbilling.ViewOPBillReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OpBillingReceipt", "OpBilling" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
                 WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
             }
 
