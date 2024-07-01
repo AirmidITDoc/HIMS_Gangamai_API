@@ -30,7 +30,7 @@ namespace HIMS.Data.IPD
             var disc = IPDDischargeSummaryParams.InsertIPDDischargSummary.ToDictionary();
             disc.Remove("DischargesummaryId");
 
-            var DischargesummaryId =ExecNonQueryProcWithOutSaveChanges("insert_DischargeSummary_1", disc, outputId);
+            var DischargesummaryId =ExecNonQueryProcWithOutSaveChanges("m_insert_DischargeSummary_1", disc, outputId);
 
             foreach (var a in IPDDischargeSummaryParams.InsertIPPrescriptionDischarge)
             {
@@ -47,7 +47,7 @@ namespace HIMS.Data.IPD
           //  throw new NotImplementedException();
 
             var disc3 = IPDDischargeSummaryParams.UpdateIPDDischargSummary.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_DischargeSummary_1", disc3);
+            ExecNonQueryProcWithOutSaveChanges("m_update_DischargeSummary_1", disc3);
 
             var vDeletePres = IPDDischargeSummaryParams.DeleteIPPrescriptionDischarge.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_Delete_T_IP_Prescription_Discharge", vDeletePres);
