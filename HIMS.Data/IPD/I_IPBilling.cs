@@ -16,6 +16,7 @@ namespace HIMS.Data.IPD
 
         string ViewIPBillWardwiseReceipt(int BillNo, string htmlFilePath, string HeaderName);
 
-       
+        public bool BillDiscountAfterUpdate(BillDiscountAfterParams billDiscountAfterParams);
+
     }
 }
