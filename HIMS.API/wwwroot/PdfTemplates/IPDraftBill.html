@@ -109,114 +109,113 @@
                                     <span>{{CompanyName}}</span>
                                 </td>
                             </tr>
+
                         </table>
                     </td>
                 </tr>
+
                 <tr class="bill-table-row">
                     <td>
-                        <div>
-                            <table style="width: 100%; border-collapse: collapse;">
+                        <table style="width: 100%; border-collapse: collapse;">
 
-                                <tr style="font-weight:bold">
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                        Service Name
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                        Doctor Name
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">Price</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">Qty </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                        Net Amount
+                            <tr style="font-weight:bold">
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                    Service Name
+                                </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                    Doctor Name
+                                </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">Price</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">Qty </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                    Net Amount
+                                </td>
+                            </tr>
+
+                            <tbody style="font-size: 14px;">
+                                {{Items}}
+
+
+
+                                <tr style="margin-top: 12px;">
+                                    <td colspan="6">
+                                        <table style="width: 100%; border-collapse: collapse;">
+                                            <tr>
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">Amount</td>
+                                            </tr>
+                                            <!--<tr>
+
+        <td style="border-bottom:1px solid #eee; padding: 6px;">Total  Amount</td>
+        <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{TotalAmt}}</td>
+    </tr>-->
+                                            <tr>
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px;">Total Bill Amount</td>
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{TotalBillAmount}}</td>
+                                            </tr>
+                                            <tr style="display:{{chkadminchargeflag}}">
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px;">Admin Charges</td>
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{AdminChares}}</td>
+                                            </tr>
+
+
+                                            <tr style="display:{{chkdiscflag}}">
+                                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Concession Amount</td>
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{ConcessionAmount}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Net Amount</td>
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{T_NetAmount}}</td>
+                                            </tr>
+
+                                            <tr style="display:{{chkAdvflag}}">
+                                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Advance Amount</td>
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{TotalAdvanceAmount}}</td>
+                                            </tr>
+                                            <tr style="display:{{chkpaidflag}}">
+                                                <td style="border-bottom: 1px solid #eee; padding: 6px;">paid Amount </td>
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{PaidAmount}}</td>
+                                            </tr>
+
+                                            <tr style="display:{{chkbalflag}}">
+                                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Bal Amount -After Advance Used</td>
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{balafteradvuseAmount}}</td>
+                                            </tr>
+
+                                            <tr style="display:{{chkbalflag}}">
+                                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Bal Amount -Without Deduction</td>
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{BalancewdudcAmt}}</td>
+                                            </tr>
+
+                                        </table>
                                     </td>
                                 </tr>
 
-                                <tbody style="font-size: 14px;">
-                                    {{Items}}
+                                <tr style="margin-top: 12px;">
+                                    <td colspan="6"
+                                        style=" border-bottom: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                        Total
+                                        Amount in words :- {{finalamt}}
+                                    </td>
+                                </tr>
+                            </tbody>
 
-
-                                </tbody>
-
-                            </table>
-                        </div>
-                    </td>
-                </tr>
-
-
-                <tr style="margin-top: 12px;">
-                    <td colspan="6">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <tr>
-
-                                <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">Amount</td>
-                            </tr>
-                            <tr>
-
-                                <td style="border-bottom:1px solid #eee; padding: 6px;">Total  Amount</td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{TotalAmt}}</td>
-                            </tr>
-                            <tr>
-
-                                <td style="border-bottom:1px solid #eee; padding: 6px;">Admin Charges</td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
-                                <!--<td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{ChargesTotalamt}}</td>-->
-                            </tr>
-                            <tr>
-
-                                <td style="border-bottom:1px solid #eee; padding: 6px;">Total Bill Amount</td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{TotalBillAmount}}</td>
-                            </tr>
-
-                            <tr style="display:{{chkdiscflag}}">
-                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Concession Amount</td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{ConcessionAmount}}</td>
-                            </tr>
-                            <tr>
-                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Net Amount</td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{T_NetAmount}}</td>
-                            </tr>
-
-
-                            <tr style="display:{{chkpaidflag}}">
-                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Advance Balance </td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{TotalAdvanceAmount}}</td>
-                            </tr>
-                            <tr style="display:{{chkpaidflag}}">
-                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Bal Amount -After Advance Used </td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{balafteradvuseAmount}}</td>
-                            </tr>
-
-                            <tr style="display:{{chkbalflag}}">
-                                <td style="border-bottom: 1px solid #eee; padding: 6px;">Bal Amount -Without Deduction </td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
-                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{BalancewdudcAmt}}</td>
-                            </tr>
-
-                            <tr>
-                                <td colspan="6" style="border-bottom: 1px solid #eee; padding: 6px;">
-                                    Amount in words :-
-                                </td>
-                                <td style="border-bottom: 1px solid #eee; text-align: right; padding: 6px;">
-                                    {{finalamt}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="6" style="border-bottom: 1px solid #eee; padding: 6px;">
-                                    Remark :-
-                                </td>
-                            </tr>
                         </table>
                     </td>
                 </tr>
+           
                 <tr>
                     <table style="width: 100%; border-collapse: collapse;margin-top:20px;">
 

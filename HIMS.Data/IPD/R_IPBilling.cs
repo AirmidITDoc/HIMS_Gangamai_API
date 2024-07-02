@@ -277,9 +277,6 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 
-
-
-
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
 
