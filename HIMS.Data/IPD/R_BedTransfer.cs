@@ -23,14 +23,14 @@ namespace HIMS.Data.IPD
                // throw new NotImplementedException();
 
                var dic = BedTransferParams.UpdateBedtransferSetFix.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_M_BedMasterTofreebed", dic);
+            ExecNonQueryProcWithOutSaveChanges("m_Update_M_BedMasterTofreebed", dic);
 
             var disc3 = BedTransferParams.UpdateBedtransferSetFree.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_BedMaster", disc3);
+            ExecNonQueryProcWithOutSaveChanges("m_Update_BedMaster", disc3);
 
             BedTransferParams.UpdateAdmissionBedtransfer.BedId = BedTransferParams.UpdateBedtransferSetFix.BedId;
             var disc2 = BedTransferParams.UpdateAdmissionBedtransfer.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_AdmissionforBedMaster", disc2);
+            ExecNonQueryProcWithOutSaveChanges("m_Update_AdmissionforBedMaster", disc2);
 
                         
             BedTransferParams.UpdateBedtransfer.AdmissionID = BedTransferParams.UpdateAdmissionBedtransfer.AdmissionID;
@@ -39,7 +39,7 @@ namespace HIMS.Data.IPD
             BedTransferParams.UpdateBedtransfer.ToClassId = BedTransferParams.UpdateAdmissionBedtransfer.ClassId;
 
             var disc4 = BedTransferParams.UpdateBedtransfer.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Insert_BedTransferDetails_1", disc4);
+            ExecNonQueryProcWithOutSaveChanges("m_Insert_BedTransferDetails_1", disc4);
 
             _unitofWork.SaveChanges();
             return true;
