@@ -16,7 +16,7 @@ namespace HIMS.Data.Opd
         public bool Insert(OpdCasePaperParams opdCasePaperParams)
         {
             var disc = opdCasePaperParams.InsertOpdCasePaper.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Insert_T_OPDCasePaper", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_Insert_T_OPDCasePaper", disc);
             _unitofWork.SaveChanges();
             return true;
         }
@@ -24,7 +24,7 @@ namespace HIMS.Data.Opd
         public bool Update(OpdCasePaperParams opdCasePaperParams)
         {
             var disc = opdCasePaperParams.UpdateOpdCasePaper.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_Update_T_OPDCasePaper", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_Update_T_OPDCasePaper", disc);
             _unitofWork.SaveChanges();
             return true;
         }

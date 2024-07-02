@@ -7,12 +7,15 @@ namespace HIMS.Data.IPD
 {
     public interface I_Admission
     {
-        public String Insert(AdmissionParams AdmissionParams);
+        public String AdmissionNewInsert(AdmissionParams AdmissionParams);
 
-        public bool Update(AdmissionParams AdmissionParams);
+        public string AdmissionRegistredInsert(AdmissionParams AdmissionParams);
+
+
+        public bool AdmissionUpdate(AdmissionParams AdmissionParams);
 
         //public bool BedUpdate(AdmissionParams AdmissionParams);
-        
+
 
         string AdmissionListCurrent(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, string htmlFilePath, string HeaderName);
 

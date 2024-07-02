@@ -181,22 +181,31 @@ namespace HIMS.API.Controllers.Transaction
 
         //New AdmissionSave
 
-        [HttpPost("NewAdmissionSave")]
-        public IActionResult NewAdmissionSave(AdmissionParams admissionParams)
+        [HttpPost("AdmissionNewInsert")]
+        public IActionResult AdmissionNewInsert(AdmissionParams admissionParams)
         {
-            var AdmissionS = _Admission.Insert(admissionParams);
+            var AdmissionS = _Admission.AdmissionNewInsert(admissionParams);
             return Ok(AdmissionS);
         }
 
 
 
 
-        [HttpPost("NewAdmissionUpdate")]
-        public IActionResult NewAdmissionUpdate(AdmissionParams admissionParams)
+        [HttpPost("AdmissionRegistredInsert")]
+        public IActionResult AdmissionRegistredInsert(AdmissionParams admissionParams)
         {
-            var AdmissionS = _Admission.Update(admissionParams);
+            var AdmissionS = _Admission.AdmissionRegistredInsert(admissionParams);
             return Ok(AdmissionS);
         }
+
+        [HttpPost("AdmissionUpdate")]
+        public IActionResult AdmissionUpdate(AdmissionParams admissionParams)
+        {
+            var AdmissionS = _Admission.AdmissionUpdate(admissionParams);
+            return Ok(AdmissionS);
+        }
+
+
 
 
         [HttpGet("view-Admitted_PatientList")]
@@ -253,19 +262,19 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-        [HttpPost("RegisteredAdmissionSave")]
-        public IActionResult AdmissionSave(RegisteredPatientAdmissionParams RegisteredPatientAdmissionParams)
-        {
-            var regAdmissionS = _RegisteredPatientAdmission1.Update(RegisteredPatientAdmissionParams);
-            return Ok(regAdmissionS);
-        }
+        //[HttpPost("RegisteredAdmissionSave")]
+        //public IActionResult AdmissionSave(RegisteredPatientAdmissionParams RegisteredPatientAdmissionParams)
+        //{
+        //    var regAdmissionS = _RegisteredPatientAdmission1.Update(RegisteredPatientAdmissionParams);
+        //    return Ok(regAdmissionS);
+        //}
 
-        [HttpPost("UpdateRegisteredPatientAdmission")]
-        public IActionResult RegisteredPatientAdmission(RegisteredPatientAdmissionParams RegisteredPatientAdmissionParams)
-        {
-            var AdmissionS = _RPA.Update(RegisteredPatientAdmissionParams);
-            return Ok(AdmissionS);
-        }
+        //[HttpPost("UpdateRegisteredPatientAdmission")]
+        //public IActionResult RegisteredPatientAdmission(RegisteredPatientAdmissionParams RegisteredPatientAdmissionParams)
+        //{
+        //    var AdmissionS = _RPA.Update(RegisteredPatientAdmissionParams);
+        //    return Ok(AdmissionS);
+        //}
 
         [HttpPost("AddIPCharges")]
         public IActionResult AddIPCharges(AddChargesParams addChargesParams)
@@ -578,6 +587,13 @@ namespace HIMS.API.Controllers.Transaction
             //if (System.IO.File.Exists(tuple.Item2))
             //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpPost("BillDiscountAfter")]
+        public String BillDiscountAfterUpdate(BillDiscountAfterParams billDiscountAfterParams)
+        {
+            var IPBill = _IPBilling.BillDiscountAfterUpdate(billDiscountAfterParams);
+            return (IPBill.ToString());
         }
 
         [HttpPost("IPBillingInsert")]

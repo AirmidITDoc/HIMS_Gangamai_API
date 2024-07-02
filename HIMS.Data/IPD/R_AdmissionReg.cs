@@ -57,13 +57,7 @@ namespace HIMS.Data.IPD
             _unitofWork.SaveChanges();
             return true;
 
-         //   New Admission
-//1.insert_Registration_1_1
-//2.insert_Admission_1
-//3.Insert_IPSMSTemplete_1 === IP Admission Msg For Patient
-//4.Insert_IPSMSTemplete_1 === 'IP Admission Msg For Doctor
-//5.Insert_IPSMSTemplete_1 === '  IP Admission Msg For RefDoctor
-//6.UpdateQuery = "Update BedMaster set IsAvailible=0 where Bedid=" + txtBedID.Text.Trim + ""
+        
         }
 
         public bool Update(AdmissionParams AdmissionParams)

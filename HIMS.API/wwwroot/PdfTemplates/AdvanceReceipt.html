@@ -36,7 +36,7 @@
                                     <span>{{PaymentTime}}</span>
                                 </td>
                             </tr>
-                            <tr>
+                            <!--<tr>
                                 <td style="padding: 2px;">
                                     <span>UHID No:</span>
                                     <span>{{RegNo}}</span>
@@ -45,21 +45,21 @@
                                     <span>DOA /Time:</span>
                                     <span>{{AdmissionTime}}</span>
                                 </td>
-                            </tr>
+                            </tr>-->
                             <tr>
                                 <td style="padding: 2px;">
                                     <span>IPD No.:</span>
                                     <span>{{IPDNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>DOD /Time:</span>
-                                    <!--<span>{{DischargeDate}}</span>-->
+                                    <span>DOA /Time:</span>
+                                    <span>{{AdmissionTime}}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>Patient Name:</span>
-                                    <span>{{PatientName}}</span>
+                                    <span>UHID | Patient Name:</span>
+                                    <span>{{RegNo}}|{{PatientName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
                                     <span>Age/Gender:</span>
@@ -73,11 +73,11 @@
                                     <span>{{DoctorName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Ward/Bed Name: </span>
-                                    <span>{{RoomName}} | {{BedName}}</span>
+                                    <span>Department Name |Ward/Bed Name: </span>
+                                    <span>{{DepartmentName}}}{{RoomName}} | {{BedName}}</span>
                                 </td>
                             </tr>
-                            <tr>
+                            <!--<tr>
 
                                 <td style="padding: 2px;">
                                     <span>Dr.Department Name.:</span>
@@ -87,15 +87,15 @@
                                     <span>Patient Type:</span>
                                     <span>{{PatientType}}</span>
                                 </td>
-                            </tr>
+                            </tr>-->
                             <tr>
                                 <td style="padding: 2px;">
                                     <span>Ref.Doctor Name.:</span>
                                     <span>{{RefDocName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Company Name :</span>
-                                    <span>{{CompanyName}}</span>
+                                    <span>Patient Type | Company Name :</span>
+                                    <span>{{PatientType}} | {{CompanyName}}</span>
                                 </td>
                             </tr>
 
