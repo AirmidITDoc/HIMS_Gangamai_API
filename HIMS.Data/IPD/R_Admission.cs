@@ -145,7 +145,24 @@ namespace HIMS.Data.IPD
 
         }
 
-        public String Insert(AdmissionParams AdmissionParams)
+       
+       
+
+          public bool AdmissionUpdate(AdmissionParams AdmissionParams)
+        {
+            // throw new NotImplementedException();
+
+            var disc1 = AdmissionParams.AdmissionNewUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("update_Admission_1", disc1);
+
+
+            _unitofWork.SaveChanges();
+            return true;
+
+
+        }
+
+        public String AdmissionNewInsert(AdmissionParams AdmissionParams)
         {
             var outputId = new SqlParameter
             {
@@ -193,16 +210,29 @@ namespace HIMS.Data.IPD
             return (AdmissionID);
         }
 
-        public bool Update(AdmissionParams AdmissionParams)
+        public string AdmissionRegistredInsert(AdmissionParams AdmissionParams)
         {
             // throw new NotImplementedException();
-          
-            var disc1 = AdmissionParams.AdmissionNewUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_Admission_1", disc1);
+
+            var outputId = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@AdmissionID",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+
+            var disc1 = AdmissionParams.AdmissionNewInsert.ToDictionary();
+            disc1.Remove("AdmissionID");
+            var AdmissionID = ExecNonQueryProcWithOutSaveChanges("insert_Admission_1", disc1, outputId);
+            //BedUpdate
+            var BedId = AdmissionParams.BedStatusUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_AdmissionBedstatus", BedId);
 
 
             _unitofWork.SaveChanges();
-            return true;
+            return AdmissionID;
 
 
         }
