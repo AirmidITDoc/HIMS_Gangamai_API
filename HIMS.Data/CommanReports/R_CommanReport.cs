@@ -1473,7 +1473,77 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
-            double T_Netamt = 0, T_paidamt = 0, T_discamt = 0, T_creditamt = 0;
+            double T_NetAmt = 0, T_PaidAmt = 0, T_DiscAmt = 0, T_CreditAmt = 0;
+         
+           
+
+            string previousLabel = "";
+
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++; j++;
+                if (i == 1)
+                {
+                    String Label;
+                    Label = dr["OP Revenue"].ConvertToString();
+                    Label = dr["IP Revenue"].ConvertToString();
+                    items.Append("<tr style=\"font-size:20px;border: 1;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"5\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td>");
+                    items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(j).Append("</td></tr>");
+                }
+
+                if (previousLabel != "" && previousLabel != dr["OP Revenue"].ConvertToString())
+                {
+                    j = 1;
+
+
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='4' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">New And Follow Up</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+
+                            .Append("</td></tr>");
+
+
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["OP Revenue"].ConvertToString()).Append("</td></tr>");
+                }
+
+                if (previousLabel != "" && previousLabel != dr["IP Revenue"].ConvertToString())
+                {
+                    j = 1;
+
+
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='4' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">OP Revenue</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+
+                            .Append("</td></tr>");
+
+
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["IP Revenue"].ConvertToString()).Append("</td></tr>");
+                }
+
+
+                previousLabel = dr["OP Revenue"].ConvertToString();
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GroupName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetAmt"].ConvertToDouble()).Append("</td></tr>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["OPDNo"].ConvertToString()).Append("</td></tr>");
+
+
+
+                T_NetAmt += dr["NetAmt"].ConvertToDouble();
+                T_DiscAmt += dr["DiscAmt"].ConvertToDouble();
+                T_PaidAmt += dr["PaidAmt"].ConvertToDouble();
+                T_CreditAmt += dr["CreditAmt"].ConvertToDouble();
+               
+            }
+
+
+            html = html.Replace("{{T_NetAmt}}", T_NetAmt.ToString());
+            html = html.Replace("{{T_DiscAmt}}", T_DiscAmt.ToString());
+            html = html.Replace("{{T_PaidAmt}}", T_PaidAmt.ToString());
+            html = html.Replace("{{T_CreditAmt}}", T_CreditAmt.ToString());
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -1487,18 +1557,20 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DiscAmt"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CreditAmt"].ConvertToDouble()).Append("</td></tr>");
 
-                T_Netamt += dr["NetAmt"].ConvertToDouble();
-                T_paidamt += dr["PaidAmt"].ConvertToDouble();
-                T_discamt += dr["DiscAmt"].ConvertToDouble();
-                T_creditamt += dr["CreditAmt"].ConvertToDouble();
+                T_NetAmt += dr["NetAmt"].ConvertToDouble();
+                T_DiscAmt += dr["DiscAmt"].ConvertToDouble();
+                T_PaidAmt += dr["PaidAmt"].ConvertToDouble();
+               
+                T_CreditAmt += dr["CreditAmt"].ConvertToDouble();
 
 
             }
 
-            html = html.Replace("{{T_Netamt}}", T_Netamt.ToString());
-            html = html.Replace("{{T_paidamt}}", T_paidamt.ToString());
-            html = html.Replace("{{T_discamt}}", T_discamt.ToString());
-            html = html.Replace("{{T_creditamt}}", T_creditamt.ToString());
+            html = html.Replace("{{T_NetAmt}}", T_NetAmt.ToString());
+            html = html.Replace("{{T_DiscAmt}}", T_DiscAmt.ToString());
+            html = html.Replace("{{T_PaidAmt}}", T_PaidAmt.ToString());
+         
+            html = html.Replace("{{T_CreditAmt}}", T_CreditAmt.ToString());
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
