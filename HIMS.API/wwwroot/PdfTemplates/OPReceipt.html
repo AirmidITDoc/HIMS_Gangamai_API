@@ -22,7 +22,7 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b> RECEIPT</b></td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>OP PAYMENT RECEIPT</b></td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
                         </table>
@@ -32,43 +32,88 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
+
                                 <td style="padding: 2px;">
                                     <span>Receipt No : </span>
                                     <span>{{ReceiptNo}}</span>
                                 </td>
-
-
                                 <td style="padding: 2px;">
-                                    <span>Reg No : </span>
-                                    <span>{{RegId}}</span>
+                                    <span>OPD No: </span>
+                                    <span>{{PatientName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span> Date | Time : </span>
+                                    <span>{{PaymentTime}}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span> Date : </span>
-                                    <span> {{PaymentTime}}</span>
+                                    <span>UHID : </span>
+                                    <span>{{RegNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Age | Sex: </span>
+                                    <span>{{AgeYear}} Y |{{AgeMonth}} M|{{AgeDay}} D | {{GenderName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>OPD | Time : </span>
+                                    <span>{{VisitDate}}</span>
                                 </td>
 
                             </tr>
-                            <tr style="display:{{chkcashflag}}">
+                            <tr>
+
+                                <td style="padding: 2px;">
+                                    <span>Patient Name : </span>
+                                    <span>{{PatientName}}</span>
+                                </td>
+
+                                <td style="padding: 2px;">
+                                    <span>Patient Type : </span>
+                                    <!--<span>{{BillDate}}</span>-->
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Company Name : </span>
+                                    <!-- <span>{{ConsultantDocName}}</span>-->
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Doctor Name : </span>
+                                    <span>{{ConsultantDocName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Department :</span>
+                                    <span>{{DepartmentName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Ref Dr Name : </span>
+                                    <span>{{RefDocName}}</span>
+                                </td>
+                            </tr>
+
+
+
+                            <div><tr style="display:{{chkcashflag}}">
 
                                 <td style="padding: 2px;">
                                     Cash Amount :  {{CashPayAmount}}
                                 </td>
                                 <!--<td style="padding: 2px;">
-                                  
-                                </td>
-                                <td></td>
-                                <td></td>-->
 
-                            </tr>
+        </td>
+        <td></td>
+        <td></td>-->
+
+                            </tr></div>
                             <tr style="display:{{chkchequeflag}}">
                                 <td style="padding: 2px;">
                                     Cheque Amount:  {{ChequePayAmount}} &nbsp; &nbsp; Cheque No: {{ChequeNo}} &nbsp; &nbsp; Cheque Date: {{ChequeDate}}
                                 </td>
                                 <!--<td style="padding: 2px;">
-                                  
-                                </td>-->
+
+        </td>-->
 
                             </tr>
                             <tr style="display:{{chkcardflag}}">
@@ -76,8 +121,8 @@
                                     Card Amount:  {{CardPayAmount}} &nbsp; &nbsp;  Card No: {{CardNo}} &nbsp; &nbsp;  Bank Name : {{CardBankName}}
                                 </td>
                                 <!--<td style="padding: 2px;">
-                                
-                                </td>-->
+
+        </td>-->
 
                             </tr>
                             <tr style="display:{{chkneftflag}}">
@@ -85,8 +130,8 @@
                                     NEFT Amount: {{NEFTPayAmount}} &nbsp; &nbsp;   NEFT No:  {{NEFTNo}} &nbsp; &nbsp;  Bank Name:  {{NEFTBankMaster}}
                                 </td>
                                 <!--<td style="padding: 2px;">
-                                  
-                                </td>-->
+
+        </td>-->
 
                             </tr>
                             <tr style="display:{{chkpaytmflag}}">
@@ -94,8 +139,8 @@
                                     Online Amount:  {{PayTMAmount}} &nbsp; &nbsp; Trans No {{PayTMTranNo}}
                                 </td>
                                 <!--<td style="padding: 2px;">
-                                   
-                                </td>-->
+
+        </td>-->
 
                             </tr>
                             <tr>

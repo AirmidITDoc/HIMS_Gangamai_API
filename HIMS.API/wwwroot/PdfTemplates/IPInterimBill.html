@@ -9,9 +9,8 @@
 
 <body>
     <div class="main-content-wrapper">
-        <div class="invoice-box"
-             style="margin: auto;font-size: 14px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
-            <table cellpadding="5" cellspacing="5" style="width: 100%;line-height: inherit;text-align: left;">
+        <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+            <table style="width: 100%;line-height: inherit;text-align: left;">
                 <tr class="top-header-row">
                     {{NewHeader}}
                 </tr>
@@ -39,11 +38,15 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>Bill No.:</span>
+                                    <span>Bill No:</span>
                                     <span>{{BillNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Bill Date /Time:</span>
+                                    <span>IPD No:</span>
+                                    <span>{{IPDNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span> Date | Time:</span>
                                     <span>{{BillDate}}</span>
                                 </td>
                             </tr>
@@ -53,28 +56,31 @@
                                     <span>{{RegNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>DOA /Time:</span>
+                                    <span>Age | Gender:</span>
+                                    <span> {{Age}} Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>DOA | Time:</span>
                                     <span>{{AdmissionDate}}</span>
                                 </td>
                             </tr>
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>IPD No.:</span>
-                                    <span>{{IPDNo}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>DOD /Time:</span>
-                                    <span>{{DischargeDate}}</span>
-                                </td>
-                            </tr>
+
                             <tr>
                                 <td style="padding: 2px;">
                                     <span>Patient Name:</span>
                                     <span>{{PatientName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Age/Gender:</span>
-                                    <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D / {{GenderName}}</span>
+                                    <span>Patient Type:</span>
+                                    <span>{{PatientType}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>DOD | Time:</span>
+                                    <span>{{DischargeDate}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Company Name :</span>
+                                    <span>{{CompanyName}}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -83,32 +89,20 @@
                                     <span>Doctor Name:</span>
                                     <span>{{DoctorName}}</span>
                                 </td>
+                                <!--<td style="padding: 2px;">
+                                <span>Ward/Bed Name: </span>
+                                <span>{{RoomName}} | {{BedName}}</span>
+                            </td>-->
                                 <td style="padding: 2px;">
-                                    <span>Ward/Bed Name: </span>
-                                    <span>{{RoomName}} | {{BedName}}</span>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td style="padding: 2px;">
-                                    <span>Dr.Department Name.:</span>
+                                    <span>Department :</span>
                                     <span>{{DepartmentName}} </span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Patient Type:</span>
-                                    <span>{{PatientType}}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>Ref.Doctor Name.:</span>
+                                    <span>Ref.Doctor Name:</span>
                                     <span>{{RefDocName}}</span>
                                 </td>
-                                <td style="padding: 2px;">
-                                    <span>Company Name :</span>
-                                    <span>{{CompanyName}}</span>
-                                </td>
                             </tr>
+
 
                         </table>
                     </td>
@@ -116,21 +110,21 @@
                 <tr class="bill-table-row">
                     <td>
                         <table style="width: 100%; border-collapse: collapse;">
-                          
-                                <tr style="font-weight:bold">
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                        Service Name
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                        Doctor Name
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">Price</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">Qty </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                        Net Amount
-                                    </td>
-                                </tr>
+
+                            <tr style="font-weight:bold">
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                    Service Name
+                                </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                                    Doctor Name
+                                </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">Price</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">Qty </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                    Net Amount
+                                </td>
+                            </tr>
 
                             <tbody style="font-size: 14px;">
                                 {{Items}}
@@ -153,7 +147,7 @@
                                             <tr style="display:{{chkdiscflag}}">
                                                 <td style="border-bottom: 1px solid #eee; padding: 6px;">Concession Amount</td>
                                                 <td style="border-bottom: 1px solid #eee; padding: 6px;">Reason ({{DiscComments}})</td>
-                                                
+
                                                 <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{ConcessionAmount}}</td>
                                             </tr>
                                             <tr style="display:{{chkpaidflag}}">
@@ -169,7 +163,7 @@
                                     </td>
                                 </tr>
                             </tbody>
-                            
+
                         </table>
                     </td>
                 </tr>

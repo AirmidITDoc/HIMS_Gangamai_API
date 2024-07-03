@@ -28,60 +28,67 @@
                             <td style="padding: 6px;">
                                 <table style="width: 100%; border-collapse: collapse;">
                                     <tr>
+
+                                        <td style="padding: 2px;">
+                                            <span>Bill No : </span>
+                                            <span>{{BillNo}}</span>
+                                        </td>
+                                        <td style="padding: 2px;">
+                                            <span>OPD No: </span>
+                                            <!--<span>{{PatientName}}</span>-->
+                                        </td>
+                                        <td style="padding: 2px;">
+                                            <span> Date | Time : </span>
+                                            <span>{{BillDate}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td style="padding: 2px;">
                                             <span>UHID : </span>
                                             <span>{{RegNo}}</span>
                                         </td>
                                         <td style="padding: 2px;">
-                                            <span>Bill No : </span>
-                                            <span>{{BillNo}}</span>
+                                            <span>Age | Sex: </span>
+                                            <span>{{AgeYear}} Y |{{AgeYear}} M|{{AgeYear}} D | {{GenderName}}</span>
                                         </td>
-
+                                        <td style="padding: 2px;">
+                                            <span>OPD | Time : </span>
+                                            <span>{{VisitDate}}</span>
+                                        </td>
+                                      
                                     </tr>
                                     <tr>
+
                                         <td style="padding: 2px;">
                                             <span>Patient Name : </span>
                                             <span>{{PatientName}}</span>
                                         </td>
 
                                         <td style="padding: 2px;">
-                                            <span>Bill Date : </span>
-                                            <span>{{BillDate}}</span>
+                                            <span>Patient Type : </span>
+                                            <!--<span>{{BillDate}}</span>-->
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 2px;">
-                                            <span>Visit Date : </span>
-                                            <span>{{VisitDate}}</span>
-                                        </td>
-                                        <td style="padding: 2px;">
-                                            <span>Age: </span>
-                                            <span>{{AgeYear}}/{{GenderName}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 2px;">
-                                            <span>Con.Doc Name : </span>
-                                            <span>{{ConsultantDocName}}</span>
-                                        </td>
-                                        <td style="padding: 2px;">
-                                            <span>Department Name : </span>
-                                            <span>{{DepartmentName}} </span>
-                                        </td>
-                                    </tr>
-
-                                    <!--<tr style="display:{{chkRefdrflag}}">
-                                        <td style="padding: 2px;">
-                                            <span>Ref.Doc Name : </span>
-                                            <span>{{ConsultantDocName}}</span>
-                                        </td>
-                                        </tr>
-                                    <tr style="display:{{chkCompanyflag}}">
                                         <td style="padding: 2px;">
                                             <span>Company Name : </span>
-                                            <span>{{DepartmentName}} </span>
+                                            <!-- <span>{{ConsultantDocName}}</span>-->
                                         </td>
-                                    </tr>-->
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td style="padding: 2px;">
+                                            <span>Doctor Name : </span>
+                                            <span>{{ConsultantDocName}}</span>
+                                        </td>
+                                        <td style="padding: 2px;">
+                                            <span>Department :</span>
+                                                <span>{{DepartmentName}}</span>
+                                        </td>
+                                        <td style="padding: 2px;">
+                                            <span>Ref Dr Name : </span>
+                                            <span>{{RefDocName}}</span>
+                                        </td>
+                                    </tr>
+                                   
                                 </table>
                             </td>
                         </tr>
@@ -154,9 +161,7 @@
                                     <tr>
                                         <td>Total Amount in words :-{{finalamt}}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Remark :-</td>
-                                    </tr>
+                                  
                                 </table>
                             </td>
                         </tr>

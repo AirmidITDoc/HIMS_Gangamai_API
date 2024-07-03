@@ -11,7 +11,6 @@
     <div class="main-content-wrapper">
         <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
-
                 {{NewHeader}}
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
@@ -28,12 +27,16 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>Refund No.:</span>
+                                    <span>Refund No :</span>
                                     <span>{{RefundNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Payment Date /Time:</span>
-                                    <span>{{PaymentTime}}</span>
+                                    <span>IPD No :</span>
+                                    <span>{{IPDNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Date | Time:</span>
+                                    <span>{{RefundTime}}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -42,28 +45,27 @@
                                     <span>{{RegNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>DOA /Time:</span>
+                                    <span>Age | Gender:</span>
+                                    <span> {{AgeYear}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>DOA | Time:</span>
                                     <span>{{AdmissionTime}}</span>
                                 </td>
                             </tr>
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>IPD No.:</span>
-                                    <span>{{IPDNo}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>DOD /Time:</span>
-                                    <span>{{DischargeDate}}</span>
-                                </td>
-                            </tr>
+
                             <tr>
                                 <td style="padding: 2px;">
                                     <span>Patient Name:</span>
                                     <span>{{PatientName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Age/Gender:</span>
-                                    <span> {{Age}} Y| {{AgeMonth}} M|{{AgeDay}} D / {{GenderName}}</span>
+                                    <span>Patient Type :</span>
+                                    <span>{{PatientType}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span> Company Name :</span>
+                                    <span>{{CompanyName}}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -73,39 +75,12 @@
                                     <span>{{DoctorName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Ward/Bed Name: </span>
-                                    <span>{{RoomName}} | {{BedName}}</span>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td style="padding: 2px;">
-                                    <span>Dr.Department Name.:</span>
-                                    <span>{{DepartmentName}} </span>
+                                    <span>Department: </span>
+                                    <span>{{DepartmentName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Patient Type:</span>
-                                    <span>{{PatientType}}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>Ref.Doctor Name.:</span>
+                                    <span>Ref.Doctor Name:</span>
                                     <span>{{RefDocName}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>Company Name :</span>
-                                    <span>{{CompanyName}}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>PBill No:</span>
-                                    <span>{{PBillNo}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>RefundTime:</span>
-                                    <span>{{RefundTime}}</span>
                                 </td>
                             </tr>
                         </table>
@@ -178,7 +153,8 @@
                             <td>
 
                                 <span>
-                                    {{AddedBy}}</span>
+                                    {{AddedBy}}
+                                </span>
                             </td>
                         </tr>
                         <tr style="padding: 6px; text-align: right;">

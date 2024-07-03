@@ -209,7 +209,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ConcessionAmt}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
-
+            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
             html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy H:mm"));
@@ -223,7 +223,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{PhoneNo}}", Bills.GetColValue("PhoneNo"));
 
-            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
+          
 
             StringBuilder items = new StringBuilder("");
             int i = 0;
