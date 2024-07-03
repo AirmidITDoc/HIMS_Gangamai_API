@@ -331,7 +331,7 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
-        //Prescription Update 
+        //New Prescription Insert 
         [HttpPost("PrescriptionInsert")]
         public IActionResult PrescriptionInsert(OPDPrescriptionParams OPDPrescriptionParams)
         {

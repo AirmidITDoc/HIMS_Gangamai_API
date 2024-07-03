@@ -95,9 +95,9 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{RefundNo}}", Bills.GetColValue("RefundNo"));
             html = html.Replace("{{Addedby}}", Bills.GetColValue("Addedby"));
 
-            html = html.Replace("{{Age}}", Bills.GetColValue("Age"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
-            html = html.Replace("{{AdmissinDate}}", Bills.GetColValue("AdmissinDate").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{AdmissinDate}}", Bills.GetColValue("AdmissinDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvanceAmount").ConvertToDouble().To2DecimalPlace().ToString());
             html = html.Replace("{{RefundAmount}}", Bills.GetColValue("RefundAmount").ConvertToDouble().To2DecimalPlace().ToString());
@@ -117,11 +117,11 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{PBillNo}}", Bills.GetColValue("PBillNo"));
 
-            html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeDate").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
 
-            html = html.Replace("{{RefundTime}}", Bills.GetColValue("RefundTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{RefundTime}}", Bills.GetColValue("RefundTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{AddedBy}}", Bills.GetColValue("AddedBy"));
 
             string finalamt = conversion(Bills.GetColValue("RefundAmount").ConvertToDouble().To2DecimalPlace().ToString());

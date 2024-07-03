@@ -27,37 +27,66 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
-                                <td style="padding: 2px;">
-                                    <span>Refund No. : </span>
-                                    <span>{{RefundNo}} </span>
-                                </td>
 
                                 <td style="padding: 2px;">
-                                    <span>Refund Time: </span>
-                                    <span>{{RefundTime}} </span>
+                                    <span>Refund No : </span>
+                                    <span>{{RefundNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>OPD No: </span>
+                                    <!--<span>{{PatientName}}</span>-->
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span> Date | Time : </span>
+                                    <span>{{RefundTime}}</span>
                                 </td>
                             </tr>
-
                             <tr>
-
                                 <td style="padding: 2px;">
-                                    <span>Reg No : </span>
+                                    <span>UHID : </span>
                                     <span>{{RegNo}}</span>
                                 </td>
-
                                 <td style="padding: 2px;">
-                                    <span>Age / Gender : </span>
-                                    <span> {{AgeYear}} / {{GenderName}}</span>
+                                    <span>Age | Sex: </span>
+                                    <span>{{AgeYear}} Y |{{AgeYear}} M|{{AgeYear}} D | {{GenderName}}</span>
                                 </td>
+                                <td style="padding: 2px;">
+                                    <span>OPD | Time : </span>
+                                    <span>{{VisitDate}}</span>
+                                </td>
+
                             </tr>
                             <tr>
+
                                 <td style="padding: 2px;">
                                     <span>Patient Name : </span>
                                     <span>{{PatientName}}</span>
                                 </td>
 
+                                <td style="padding: 2px;">
+                                    <span>Patient Type : </span>
+                                    <!--<span>{{BillDate}}</span>-->
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Company Name : </span>
+                                    <!-- <span>{{ConsultantDocName}}</span>-->
+                                </td>
                             </tr>
 
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Doctor Name : </span>
+                                    <span>{{ConsultantDocName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Department :</span>
+                                    <span>{{DepartmentName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Ref Dr Name : </span>
+                                    <span>{{RefDocName}}</span>
+                                </td>
+                            </tr>
                         </table>
                     </td>
                 </tr>

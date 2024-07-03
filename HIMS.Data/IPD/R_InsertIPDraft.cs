@@ -70,7 +70,7 @@ namespace HIMS.Data.IPD
 
             var Bills = GetDataTableProc("rptIPDDraftBillPrintSummary", para);
             rowlength = Bills.Rows.Count;
-            double Tot_AfterAdvused = 0,Tot_Wothoutdedu=0, Tot_Balamt = 0, Tot_Advamt = 0, Tot_Advusedamt = 0, T_TotalAmount=0, F_TotalAmount=0, balafteradvuseAmount=0, BalancewdudcAmt=0,AdminChares = 0;
+            double Tot_AfterAdvused = 0,Tot_Wothoutdedu=0, Tot_Balamt = 0, Tot_Advamt = 0, Tot_Advusedamt = 0, T_TotalAmount=0, F_TotalAmount=0, balafteradvuseAmount=0, BalancewdudcAmt=0,AdminChares = 0, TotalNetPayAmt = 0;
 
            
             
@@ -87,7 +87,7 @@ namespace HIMS.Data.IPD
                 {
                     String Label;
                     Label = dr["GroupName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:15px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
                 if (previousLabel != "" && previousLabel != dr["GroupName"].ConvertToString())
                 {
@@ -97,7 +97,7 @@ namespace HIMS.Data.IPD
                    .Append(T_TotalAmount.To2DecimalPlace()).Append("</td></tr>");
                     T_TotalAmount = 0;
 
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["GroupName"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:15px;border-bottom: 1px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["GroupName"].ConvertToString()).Append("</td></tr>");
 
                 }
 
@@ -118,9 +118,17 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["TotalAmt"].ConvertToDouble()).Append("</td></tr>");
 
 
-                //TotalAmt += dr["BalanceAmt"].ConvertToDouble();
-                Tot_Advamt += dr["AdvanceAmount"].ConvertToDouble();
-                balafteradvuseAmount = (Tot_Balamt - Tot_Advamt).ConvertToDouble();
+                TotalNetPayAmt = dr["NetPayableAmt"].ConvertToDouble();
+                Tot_Advamt = dr["AdvanceAmount"].ConvertToDouble();
+                if (Tot_Advamt.ConvertToDouble() > TotalNetPayAmt.ConvertToDouble())
+                {
+                    balafteradvuseAmount = (Tot_Advamt - TotalNetPayAmt).ConvertToDouble();
+                }
+                if (Tot_Advamt.ConvertToDouble() < TotalNetPayAmt.ConvertToDouble())
+                {
+                    BalancewdudcAmt = (TotalNetPayAmt - Tot_Advamt).ConvertToDouble();
+                }
+                
 
 
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
@@ -131,13 +139,14 @@ namespace HIMS.Data.IPD
                     items.Append("<tr style='border:1px solid black;'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-center:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                     .Append(F_TotalAmount.To2DecimalPlace()).Append("</td></tr>");
 
+                  
                 }
 
 
 
             }
-            //Tot_AfterAdvused = dr["BalanceAmt"].ConvertToDouble() - dr["BalanceAmt"].ConvertToDouble()
-            //Tot_Wothoutdedu =
+         
+            
 
             html = html.Replace("{{Items}}", items.ToString());
 
@@ -156,42 +165,45 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName").ToString());
 
-            html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName").ToString());
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
-            html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode").ToString());
 
-                html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmt").ConvertToDouble().To2DecimalPlace());
+                html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmt").ConvertToDouble().ToString("0.00"));
 
-                html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount").ConvertToDouble().To2DecimalPlace());
-                html = html.Replace("{{AdvanceBalAmount}}", Bills.GetColValue("AdvanceBalAmount").ConvertToDouble().To2DecimalPlace());
-
-                html = html.Replace("{{ConcessionAmount}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().To2DecimalPlace());
-                html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
+                html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount").ConvertToDouble().ToString("0.00"));
+                html = html.Replace("{{AdvanceBalAmount}}", balafteradvuseAmount.ConvertToDouble().ToString("0.00"));
+                 html = html.Replace("{{BalancewdudcAmt}}", BalancewdudcAmt.ConvertToDouble().ToString("0.00"));
+                html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvanceAmount").ConvertToDouble().ToString("0.00"));
+                 html = html.Replace("{{TaxAmount}}", Bills.GetColValue("TaxAmount").ConvertToDouble().ToString("0.00"));
+                html = html.Replace("{{ConcessionAmount}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().ToString("0.00"));
+                html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().ToString("0.00"));
                 html = html.Replace("{{Qty}}", Bills.GetColValue("Qty"));
                 html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
                 html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
-
-
                 html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
-                string finalamt = conversion(Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace().ToString());
-            html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
+                string finalamt = conversion(Bills.GetColValue("NetPayableAmt").ConvertToDouble().ToString("0.00"));
+                  html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
             html = html.Replace("{{balafteradvuseAmount}}", balafteradvuseAmount.ToString());
             html = html.Replace("{{BalancewdudcAmt}}", BalancewdudcAmt.ToString());
                 html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row" : "none");
 
             html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "table-row " : "none");
-            html = html.Replace("{{chkAdvflag}}", Bills.GetColValue("TotalAdvanceAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+            html = html.Replace("{{chkAdvflag}}", Bills.GetColValue("AdvanceAmount").ConvertToDouble() > 0 ? "table-row " : "none");
 
             html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row " : "none");
 
-            html = html.Replace("{{chkbalflag}}", Bills.GetColValue("BalanceAmt").ConvertToDouble() > 0 ? "table-row " : "none");
+            html = html.Replace("{{chkbalflag}}", balafteradvuseAmount.ConvertToDouble() > 0 ? "table-row " : "none");
 
+            html = html.Replace("{{chkbalafterdudcflag}}", BalancewdudcAmt.ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkadminflag}}", Bills.GetColValue("TaxAmount").ConvertToDouble() > 0 ? "table-row " : "none");
             html = html.Replace("{{chkadminchargeflag}}", AdminChares.ConvertToDouble() > 0 ? "table-row " : "none");
 
 
@@ -202,7 +214,7 @@ namespace HIMS.Data.IPD
         {
             double m = Convert.ToInt64(Math.Floor(Convert.ToDouble(amount)));
             double l = Convert.ToDouble(amount);
-
+             
             double j = (l - m) * 100;
             //string Word = " ";
 
