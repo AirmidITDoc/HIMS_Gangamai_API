@@ -70,7 +70,7 @@ namespace HIMS.Data.IPD
 
             var Bills = GetDataTableProc("rptIPDDraftBillPrintSummary", para);
             rowlength = Bills.Rows.Count;
-            double Tot_AfterAdvused = 0,Tot_Wothoutdedu=0, Tot_Balamt = 0, Tot_Advamt = 0, Tot_Advusedamt = 0, T_TotalAmount=0, F_TotalAmount=0, balafteradvuseAmount=0, BalancewdudcAmt=0;
+            double Tot_AfterAdvused = 0,Tot_Wothoutdedu=0, Tot_Balamt = 0, Tot_Advamt = 0, Tot_Advusedamt = 0, T_TotalAmount=0, F_TotalAmount=0, balafteradvuseAmount=0, BalancewdudcAmt=0,AdminChares = 0;
 
            
             
@@ -180,12 +180,22 @@ namespace HIMS.Data.IPD
 
                 html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
                 string finalamt = conversion(Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace().ToString());
-                html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
+            html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
+            html = html.Replace("{{balafteradvuseAmount}}", balafteradvuseAmount.ToString());
+            html = html.Replace("{{BalancewdudcAmt}}", BalancewdudcAmt.ToString());
                 html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row" : "none");
 
+            html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+            html = html.Replace("{{chkAdvflag}}", Bills.GetColValue("TotalAdvanceAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkbalflag}}", Bills.GetColValue("BalanceAmt").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkadminchargeflag}}", AdminChares.ConvertToDouble() > 0 ? "table-row " : "none");
 
 
-                return html;
+            return html;
             }
         
         public string conversion(string amount)
@@ -201,7 +211,7 @@ namespace HIMS.Data.IPD
 
             // Word = beforefloating + '.' + afterfloating;
 
-            var Content = beforefloating + ' ' + " RUPEES" + ' ' + afterfloating + ' ' + " PAISE only";
+            var Content = beforefloating + ' ' + " RUPEES" + ' '  + " only";
 
             return Content;
         }

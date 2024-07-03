@@ -589,12 +589,21 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        //[HttpPost("BillDiscountAfter")]
+        //public String BillDiscountAfterUpdate(BillDiscountAfterParams billDiscountAfterParams)
+        //{
+        //    var IPBill = _IPBilling.BillDiscountAfterUpdate(billDiscountAfterParams);
+        //    return (IPBill.ToString());
+        //}
+
         [HttpPost("BillDiscountAfter")]
-        public String BillDiscountAfterUpdate(BillDiscountAfterParams billDiscountAfterParams)
+
+        public IActionResult BillDiscountAfterUpdate(BillDiscountAfterParams BillDiscountAfterParams)
         {
-            var IPBill = _IPBilling.BillDiscountAfterUpdate(billDiscountAfterParams);
-            return (IPBill.ToString());
+            var IP = _IPBilling.BillDiscountAfterUpdate(BillDiscountAfterParams);
+            return Ok(IP);
         }
+
 
         [HttpPost("IPBillingInsert")]
 
