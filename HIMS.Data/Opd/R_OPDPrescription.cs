@@ -18,14 +18,14 @@ namespace HIMS.Data.Opd
 
         public bool Insert(OPDPrescriptionParams OPDPrescriptionParams)
         {
-            // throw new NotImplementedException();
-          
-            //var dic = OPDPrescriptionParams.UpdateOPDPrescription.ToDictionary();
-            //ExecNonQueryProcWithOutSaveChanges("ps_Update_T_Prescription", dic);
+            foreach (var a in OPDPrescriptionParams.InsertOPDPrescription)
+            {
+                var disc1 = a.ToDictionary();
+                //var dic1 = OPDPrescriptionParams.InsertOPDPrescription.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("insert_Prescription_1", disc1);
 
+            }
 
-            var dic1 = OPDPrescriptionParams.InsertOPDPrescription.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("insert_Prescription_1", dic1);
 
             _unitofWork.SaveChanges();
 

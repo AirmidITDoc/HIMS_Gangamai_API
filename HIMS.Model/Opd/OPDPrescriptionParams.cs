@@ -7,7 +7,7 @@ namespace HIMS.Model.Opd
     public class OPDPrescriptionParams
     {
         public UpdateOPDPrescription UpdateOPDPrescription { get; set; }
-        public InsertOPDPrescription InsertOPDPrescription { get; set; }
+        public List<InsertOPDPrescription> InsertOPDPrescription { get; set; }
     }
 
   
