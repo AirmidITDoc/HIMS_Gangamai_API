@@ -55,7 +55,7 @@ namespace HIMS.API.Controllers.Transaction
         
         public IActionResult ViewDoctorWiseVisitCountSummary(DateTime FromDate, DateTime ToDate)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpDctorwisecountsummary.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPReport_DoctorWiseVisitSummury.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _OPbilling.ViewOPDoctorWiseVisitCountSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPDoctorWiseVisitCountSummary", "OPDoctorWiseVisitCountSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
@@ -251,7 +251,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPReport_OPCollectionReportSummary.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _OPbilling.ViewOPCollectionSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPCollectionSummary", "OPCollectionSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPCollectionSummary", "OPCollectionSummary", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 

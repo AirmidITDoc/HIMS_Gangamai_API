@@ -53,4 +53,3 @@ namespace HIMS.Data.IPD
         string ViewIPAdmitPatientwardwisechargesReport(int DoctorId, int WardId, int CompanyId, string htmlFilePath, string HeaderName);
     }
 }
-git
