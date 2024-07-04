@@ -35,7 +35,6 @@ namespace HIMS.Data.Opd
             {
                 var disc2 = a.ToDictionary();
                 disc2["RefundID"] = RefundId;
-                disc2["RefundAmount"] = OPRefundBillParams.InsertRefund.RefundAmount;
                 ExecNonQueryProcWithOutSaveChanges("m_insert_T_RefundDetails_1", disc2);
             }
 
@@ -43,7 +42,6 @@ namespace HIMS.Data.Opd
             {
 
                 var disc3 = a.ToDictionary();
-                disc3["RefundAmount"] = OPRefundBillParams.InsertRefund.RefundAmount;
                 ExecNonQueryProcWithOutSaveChanges("m_Update_AddCharges_RefundAmt", disc3);
             }
 
