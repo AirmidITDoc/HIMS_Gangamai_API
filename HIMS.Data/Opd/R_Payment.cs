@@ -63,12 +63,10 @@ namespace HIMS.Data.Opd
 
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
-            html = html.Replace("{{RegId}}", Bills.GetColValue("RegId"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{CashPayAmount}}", Bills.GetColValue("CashPayAmount").ConvertToDouble().To2DecimalPlace());
-
             html = html.Replace("{{ChequePayAmount}}", Bills.GetColValue("ChequePayAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ChequeDate}}", Bills.GetColValue("ChequeDate").ConvertToDateString("dd/MM/yyyy"));
-
             html = html.Replace("{{ChequeNo}}", Bills.GetColValue("ChequeNo"));
 
             html = html.Replace("{{CardPayAmount}}", Bills.GetColValue("CardPayAmount").ConvertToDouble().To2DecimalPlace());
@@ -81,12 +79,22 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{PayTMAmount}}", Bills.GetColValue("PayTMAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{PayTMTranNo}}", Bills.GetColValue("PayTMTranNo"));
             html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{ReceiptNo}}", Bills.GetColValue("ReceiptNo"));
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
             html = html.Replace("{{Remark}}", Bills.GetColValue("Remark"));
-            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy HH:mm tt"));
+            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy | HH:mm tt"));
 
+
+            html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
+            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
+            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+            html = html.Replace("{{Date}}", Bills.GetDateColValue("Date").ConvertToDateString());
+            html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
 
             html = html.Replace("{{TotalAmt}}", Bills.GetColValue("TotalAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ConcessionAmt}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().To2DecimalPlace());

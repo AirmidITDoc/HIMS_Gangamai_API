@@ -7,7 +7,7 @@ namespace HIMS.Model.Opd
     public class OPDPrescriptionParams
     {
         public UpdateOPDPrescription UpdateOPDPrescription { get; set; }
-        public InsertOPDPrescription InsertOPDPrescription { get; set; }
+        public List<InsertOPDPrescription> InsertOPDPrescription { get; set; }
     }
 
   
@@ -37,9 +37,11 @@ namespace HIMS.Model.Opd
         public int IsAddBy { get; set; }
         public String SpO2 { get; set; }
         public int StoreId { get; set; }
-         public int RefDoctorId { get; set; }
-    
-
+         public int DoseOption2 { get; set; }
+        public int DaysOption2 { get; set; }
+        public int DoseOption3 { get; set; }
+        public int DaysOption3 { get; set; }
+        
     }
 
     public class UpdateOPDPrescription

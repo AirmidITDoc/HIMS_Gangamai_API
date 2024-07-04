@@ -36,7 +36,6 @@ namespace HIMS.Data.IPD
             {
                 var disc2 = a.ToDictionary();
                 disc2["RefundID"] = RefundId;
-                disc2["RefundAmount"] = IPRefundofBilllparams.InsertIPRefundofNew.RefundAmount;
                 ExecNonQueryProcWithOutSaveChanges("insert_T_RefundDetails_1", disc2);
             }
 
@@ -44,7 +43,6 @@ namespace HIMS.Data.IPD
             {
 
                 var disc3 = a.ToDictionary();
-                disc3["RefundAmount"] = IPRefundofBilllparams.InsertIPRefundofNew.RefundAmount;
                 ExecNonQueryProcWithOutSaveChanges("Update_AddCharges_RefundAmt", disc3);
             }
 
@@ -119,10 +117,10 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
 
-            html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeDate").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{RefundTime}}", Bills.GetColValue("RefundTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{RefundTime}}", Bills.GetColValue("RefundTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
             string finalamt = conversion(Bills.GetColValue("RefundAmount").ConvertToDouble().To2DecimalPlace().ToString());

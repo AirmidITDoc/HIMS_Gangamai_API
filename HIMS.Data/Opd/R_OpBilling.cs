@@ -209,21 +209,23 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ConcessionAmt}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
-
+            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
-            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy H:mm"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy | H:mm tt"));
             html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{ExtMobileNo}}", Bills.GetColValue("ExtMobileNo"));
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
             html = html.Replace("{{Date}}", Bills.GetDateColValue("Date").ConvertToDateString());
-            html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{PhoneNo}}", Bills.GetColValue("PhoneNo"));
 
-            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
+          
 
             StringBuilder items = new StringBuilder("");
             int i = 0;
@@ -257,6 +259,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{HospitalName}}", Bills.GetColValue("HospitalName").ConvertToString());
             html = html.Replace("{{DiscComments}}", Bills.GetColValue("DiscComments").ConvertToString());
 
+           
             html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "table-row " : "none");
           
             html = html.Replace("{{chkbalflag}}", Bills.GetColValue("BalanceAmt").ConvertToDouble() > 0 ? "table-row " : "none");
