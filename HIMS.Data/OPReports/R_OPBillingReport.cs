@@ -1958,10 +1958,7 @@ namespace HIMS.Data.Opd
             return html;
         }
 
-        public string ViewOpPatientCreditList(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public string ViewOPrefundbilllistReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
@@ -1969,6 +1966,10 @@ namespace HIMS.Data.Opd
         }
 
         public string ViewOPDoctorWiseNewOldPatientReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        {
+            throw new NotImplementedException();
+        }
+        public string ViewOpPatientCreditList(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             throw new NotImplementedException();
         }
