@@ -341,6 +341,17 @@ namespace HIMS.API.Controllers.Transaction
 
 
 
+        [HttpGet("view-OP_Prescription")]
+        public IActionResult ViewOPPrescription(int VisitId, int PatientType)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPrescription.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _OPDPrescription.ViewOPPrescriptionReceipt(VisitId, PatientType, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "OPPrescription" + VisitId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
         /*[HttpPost("OPDAppointmentList")]
         public IActionResult OPDAppointmentList(AppointmentList AppointmentList)
         {

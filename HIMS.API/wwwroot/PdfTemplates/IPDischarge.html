@@ -29,70 +29,71 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>Advance No.:</span>
-                                    <span>{{AdvanceNo}}</span>
+                                    <span>Bill No :</span>
+                                    <span>{{BillNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Payment Date /Time:</span>
-                                    <span>{{PaymentTime}}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>UHID No:</span>
-                                    <span>{{RegNo}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>DOA /Time:</span>
-                                    <span>{{AdmissionTime}}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>IPD No.:</span>
+                                    <span>IPD No :</span>
                                     <span>{{IPDNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>DOD /Time:</span>
-                                    <!--<span>{{DischargeDate}}</span>-->
+                                    <span> Date | Time:</span>
+                                    <span>{{BillTime}}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>Patient Name:</span>
+                                    <span>UHID No :</span>
+                                    <span>{{RegNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Age | Gender :</span>
+                                    <span> {{AgeYear}} Y | {{AgeMonth}} M|{{AgeDay}} D | {{GenderName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>DOA | Time :</span>
+                                    <span>{{AdmissionTime}}</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Patient Name :</span>
                                     <span>{{PatientName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Age/Gender:</span>
-                                    <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D / {{GenderName}}</span>
+                                    <span>Patient Type :</span>
+                                    <span>{{PatientType}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>DOD | Time :</span>
+                                    <span>{{DischargeTime}}</span>
                                 </td>
                             </tr>
                             <tr>
 
                                 <td style="padding: 2px;">
-                                    <span>Doctor Name:</span>
+                                    <span>Doctor Name :</span>
                                     <span>{{DoctorName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Ward/Bed Name: </span>
-                                    <span>{{RoomName}} | {{BedName}}</span>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td style="padding: 2px;">
-                                    <span>Dr.Department Name.:</span>
+                                    <span>Department :</span>
                                     <span>{{DepartmentName}} </span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Patient Type:</span>
-                                    <span>{{PatientType}}</span>
+                                    <span>Ward | Bed Name : </span>
+                                    <span>{{RoomName}}|{{BedName}}</span>
                                 </td>
                             </tr>
+                           
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>Ref.Doctor Name.:</span>
+                                    <span>Ref.Doctor Name :</span>
                                     <span>{{RefDocName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Follw Up Date | Time:</span>
+                                    <span>{{Followupdate}}</span>
                                 </td>
                                 <td style="padding: 2px;">
                                     <span>Company Name :</span>
@@ -103,18 +104,18 @@
                         </table>
                     </td>
                 </tr>
-
+                <hr />
                 <tr>
                     <div style="font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;font-size:18px;">
 
                         <div>
                             <div style="display:flex;margin-top:10px;margin-left:20px;font-size:18px;">
-                                <div style="padding-top:10px;">This Is Certify that {{PatientName}}</div>
+                                <div style="padding-top:10px;">This Is Certify that <span style="font-weight:bold">{{PatientName}}</span></div>
 
                                 <div style="padding-top:10px;">
-                                    Is being dischared / Left Againt medical advice /dead today on date:{{DischargeTime}}
+                                    Is being dischared / Left Againt medical advice /dead today on date : {{DischargeTime}}
                                 </div>
-                                <div style="padding-top:10px;">   His / Her is Bill Generated Vide Bill No :{{BillNo}}</div>
+                                <div style="padding-top:10px;">   His / Her is Bill Generated Vide Bill No : {{BillNo}}</div>
                                 <div style="padding-top:10px;"> The Patient is Allowed to check out.</div>
                             </div>
 
@@ -126,8 +127,7 @@
                         </div>
 
                     </div>
-                    <br />
-                    <br />
+                  
                 </tr>
                 <tr>
                     <div>
