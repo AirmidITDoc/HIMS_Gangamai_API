@@ -8,5 +8,7 @@ namespace HIMS.Data.Opd
    public interface I_OPDPrescription
     {
         bool Insert(OPDPrescriptionParams OPDPrescriptionParams);
+
+        string ViewOPPrescriptionReceipt(int VisitId, int PatientType, string htmlFilePath, string HeaderName);
     }
 }

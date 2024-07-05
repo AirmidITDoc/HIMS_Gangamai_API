@@ -211,7 +211,7 @@ namespace HIMS.Data.IPD
             string previousLabel = "";
             
             String FinalLabel = "";
-            double T_TotAmount = 0, ChargesTotalamt = 0, T_TotalAmount=0, F_TotalAmount=0.0,AdminChares=0;
+            double T_TotAmount = 0, ChargesTotalamt = 0, T_TotalAmount=0, F_TotalAmount=0.0,AdminChares=0, Tot_paidamt=0;
 
 
 
@@ -265,16 +265,17 @@ namespace HIMS.Data.IPD
                 }
 
                 TotalNetPayAmt = dr["NetPayableAmt"].ConvertToDouble();
-                Tot_Advamt = dr["AdvanceBalAmount"].ConvertToDouble();
-                if (Tot_Advamt.ConvertToDouble() > TotalNetPayAmt.ConvertToDouble())
-                {
-                    balafteradvuseAmount = (Tot_Advamt - TotalNetPayAmt).ConvertToDouble();
-                }
+                Tot_Advamt = dr["AdvanceUsedAmount"].ConvertToDouble();
+                Tot_paidamt = dr["PaidAmount"].ConvertToDouble();
+                //if (Tot_Advamt.ConvertToDouble() > TotalNetPayAmt.ConvertToDouble())
+                //{
+                //    balafteradvuseAmount = (Tot_Advamt - TotalNetPayAmt).ConvertToDouble();
+                //}
                 if (Tot_Advamt.ConvertToDouble() < TotalNetPayAmt.ConvertToDouble())
                 {
-                    BalancewdudcAmt = (TotalNetPayAmt - Tot_Advamt).ConvertToDouble();
+                    BalancewdudcAmt = (TotalNetPayAmt - Tot_Advamt - Tot_paidamt).ConvertToDouble();
                 }
-
+                
             }
 
 
@@ -328,6 +329,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{AdvanceBalAmount}}", Bills.GetColValue("AdvanceBalAmount").ConvertToDouble().ToString("0.00"));
             html = html.Replace("{{AdvanceRefundAmount}}", Bills.GetColValue("AdvanceRefundAmount").ConvertToDouble().ToString("0.00"));
             html = html.Replace("{{ConcessionAmount}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{BalanceAmt}}", Bills.GetColValue("BalanceAmt").ConvertToDouble().ToString("0.00"));
 
 
             html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().ToString("0.00"));
@@ -343,7 +345,7 @@ namespace HIMS.Data.IPD
 
 
             html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "table-row " : "none");
-            html = html.Replace("{{chkAdvflag}}", Bills.GetColValue("TotalAdvanceAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+            html = html.Replace("{{chkAdvflag}}", Bills.GetColValue("AdvanceUsedAmount").ConvertToDouble() > 0 ? "table-row " : "none");
 
             html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row " : "none");
 
