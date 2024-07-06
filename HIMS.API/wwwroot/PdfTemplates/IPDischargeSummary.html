@@ -27,20 +27,7 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
 
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>Bill No :</span>
-                                    <span>{{BillNo}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>IPD No :</span>
-                                    <span>{{IPDNo}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span> Date | Time:</span>
-                                    <span>{{BillDate}}</span>
-                                </td>
-                            </tr>
+
                             <tr>
                                 <td style="padding: 2px;">
                                     <span>UHID No :</span>
@@ -52,7 +39,7 @@
                                 </td>
                                 <td style="padding: 2px;">
                                     <span>DOA | Time :</span>
-                                    <span>{{AdmissionDate}}</span>
+                                    <span>{{AdmissionTime}}</span>
                                 </td>
                             </tr>
 
@@ -61,13 +48,14 @@
                                     <span>Patient Name :</span>
                                     <span>{{PatientName}}</span>
                                 </td>
+
                                 <td style="padding: 2px;">
-                                    <span>Patient Type :</span>
-                                    <span>{{PatientType}}</span>
+                                    <span>IPD No :</span>
+                                    <span>{{IPDNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
                                     <span>DOD | Time :</span>
-                                    <span>{{DischargeDate}}</span>
+                                    <span>{{DischargeTime}}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -93,8 +81,8 @@
                                     <span>{{RefDocName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Follw Up Date | Time:</span>
-                                    <span>{{Followupdate}}</span>
+                                    <span>Patient Type :</span>
+                                    <span>{{PatientType}}</span>
                                 </td>
                                 <td style="padding: 2px;">
                                     <span>Company Name :</span>
@@ -169,6 +157,8 @@
             </td>
             </tr>
 
+
+            <tr><td colspan="3" style="font-weight:bold">Prescription Details :-</td></tr>
             <tr class="bill-table-row">
                 <td style="padding: 6px;">
                     <table style="width: 100%; border-collapse: collapse;">
@@ -181,7 +171,8 @@
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
                                     Dose
                                 </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Total Qty</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">DoseName</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Total Days</td>
 
                             </tr>
                             {{Items}}
@@ -190,7 +181,22 @@
                     </table>
                 </td>
             </tr>
+            <tr>
+                <table style="width: 100%; border-collapse: collapse;margin-top:50px;">
+
+                 
+                    <tr style="padding: 6px; text-align: right;">
+                        <td>
+
+                            <span>Doctor Signature</span>
+                        </td>
+                    </tr>
+
+                </table>
+            </tr>
             </table>
+          
+
         </div>
     </div>
 </body>
