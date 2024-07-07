@@ -814,11 +814,11 @@ namespace HIMS.API.Controllers.Transaction
 
 
         [HttpGet("view-IP_MLCReport")]
-        public IActionResult ViewIPMlcReport(int AdvanceDetailID)
+        public IActionResult ViewIPMlcReport(int MLCId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_MLCReport.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _MLCInfo.ViewMlcReport(AdvanceDetailID, htmlFilePath, htmlHeaderFilePath);
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _MLCInfo.ViewMlcReport(MLCId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPReport_MLCReport", "IPReport_MLCReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
