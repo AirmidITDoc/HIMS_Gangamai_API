@@ -70,11 +70,14 @@ namespace HIMS.Data.IPD
 
             para[0] = new SqlParameter("@AdmissionID", AdmissionID) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptDischargeSummaryPrint_New", para);
-
+            
+            
+            var Bills1 = GetDataTableProc("m_Rtrv_IP_Prescription_Discharge", para);
             string html = File.ReadAllText(htmlFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
+            int i = 0;
 
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
@@ -106,6 +109,24 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
+
+
+
+            foreach (DataRow dr in Bills1.Rows)
+            {
+                i++;
+                items.Append("<tr style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["DoseName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["DoseNameInEnglish"].ConvertToString()).Append("</td>");
+                
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Days"].ConvertToString()).Append("</td></tr>");
+
+             
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+
 
 
             //html = html.Replace("{{OpertiveNotes}}", Bills.GetColValue("OpertiveNotes"));

@@ -136,6 +136,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{TariffName}}", Bills.GetColValue("TariffName"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
             
+                html = html.Replace("{{AdmittedDoctor1}}", Bills.GetColValue("AdmittedDoctor1"));
+
             html = html.Replace("{{DOA}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             
             html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));

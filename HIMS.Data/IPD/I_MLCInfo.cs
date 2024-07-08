@@ -11,6 +11,6 @@ namespace HIMS.Data.IPD
 
         public bool Update(MLCInfoParams MLCInfoParams);
 
-        string ViewMlcReport(int AdvanceNo, string htmlFilePath, string HeaderName);
+        string ViewMlcReport(int MLCId, string htmlFilePath, string HeaderName);
     }
 }
