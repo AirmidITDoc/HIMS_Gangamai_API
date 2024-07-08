@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Content Remove="Properties\launchSettings.json" />
+    <Content Remove="wwwroot\PdfTemplates\CommonReport_BillsummarywithTcs.html" />
   </ItemGroup>
 
   <ItemGroup>
