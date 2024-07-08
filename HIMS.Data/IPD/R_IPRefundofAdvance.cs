@@ -44,25 +44,22 @@ namespace HIMS.Data.IPD
             IPRefundofAdvanceParams.UpdateAdvanceHeader.AdvanceId = Convert.ToInt32(IPRefundofAdvanceParams.InsertIPRefundofAdvance.AdvanceId);
             var disc2 = IPRefundofAdvanceParams.UpdateAdvanceHeader.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("update_AdvanceHeader_1", disc2);
-          
 
-          
-            var dic3 = IPRefundofAdvanceParams.InsertIPRefundofAdvanceDetail.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("insert_AdvRefundDetail_1", dic3);
+            foreach (var a in IPRefundofAdvanceParams.InsertIPRefundofAdvanceDetail)
+            {
+                var disc = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("insert_AdvRefundDetail_1", disc);
+            }
 
-            IPRefundofAdvanceParams.UpdateAdvanceDetailBalAmount.AdvanceDetailID = IPRefundofAdvanceParams.InsertIPRefundofAdvanceDetail.AdvDetailId;
-            IPRefundofAdvanceParams.UpdateAdvanceDetailBalAmount.RefundAmount = IPRefundofAdvanceParams.InsertIPRefundofAdvance.RefundAmount;
-            IPRefundofAdvanceParams.UpdateAdvanceDetailBalAmount.BalanceAmount = IPRefundofAdvanceParams.UpdateAdvanceHeader.BalanceAmount;
-            var disc4 = IPRefundofAdvanceParams.UpdateAdvanceDetailBalAmount.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_AdvanceDetailBalAmount_1", disc4);
+            foreach (var a in IPRefundofAdvanceParams.UpdateAdvanceDetailBalAmount)
+            {
+                var disc = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("update_AdvanceDetailBalAmount_1", disc);
+            }
 
-           // outputId.ParameterName = "@PaymentID";
-            IPRefundofAdvanceParams.InsertPayment.BillNo = Convert.ToInt32(IPRefundofAdvanceParams.InsertIPRefundofAdvance.BillId);
-            IPRefundofAdvanceParams.InsertPayment.AdvanceId = IPRefundofAdvanceParams.UpdateAdvanceHeader.AdvanceId;
-            IPRefundofAdvanceParams.InsertPayment.RefundId = IPRefundofAdvanceParams.InsertIPRefundofAdvance.RefundId;
-            var dic6 = IPRefundofAdvanceParams.InsertPayment.ToDictionary();
-            //dic6.Remove("PaymentId");
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", dic6);
+            var vPayment = IPRefundofAdvanceParams.InsertPayment.ToDictionary();
+            vPayment["RefundId"] = RefundId;
+            ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", vPayment);
 
             _unitofWork.SaveChanges();
             return RefundId;
