@@ -116,6 +116,16 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{PBillNo}}", Bills.GetColValue("PBillNo"));
+            html = html.Replace("{{RefundAmount}}", Bills.GetColValue("RefundAmount"));
+            html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount"));
+
+            html = html.Replace("{{BalanceAmount}}", Bills.GetColValue("BalanceAmount"));
+            html = html.Replace("{{CashPayAmount}}", Bills.GetColValue("CashPayAmount"));
+            html = html.Replace("{{CardPayAmount}}", Bills.GetColValue("CardPayAmount"));
+            html = html.Replace("{{ChequePayAmount}}", Bills.GetColValue("ChequePayAmount"));
+            html = html.Replace("{{NEFTPayAmount}}", Bills.GetColValue("NEFTPayAmount"));
+            html = html.Replace("{{PayTMPayAmount}}", Bills.GetColValue("PayTMPayAmount"));
+
 
             html = html.Replace("{{DischargeDate}}", Bills.GetColValue("DischargeDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
