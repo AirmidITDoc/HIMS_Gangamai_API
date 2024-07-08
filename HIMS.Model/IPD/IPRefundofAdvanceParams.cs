@@ -8,10 +8,9 @@ namespace HIMS.Model.IPD
         public class IPRefundofAdvanceParams
         {
             public InsertIPRefundofAdvance InsertIPRefundofAdvance { get; set; }
-
             public UpdateAdvanceHeader UpdateAdvanceHeader { get; set; }
-            public InsertIPRefundofAdvanceDetail InsertIPRefundofAdvanceDetail { get; set; }
-            public UpdateAdvanceDetailBalAmount UpdateAdvanceDetailBalAmount { get; set; }
+            public List<InsertIPRefundofAdvanceDetail> InsertIPRefundofAdvanceDetail { get; set; }
+            public List<UpdateAdvanceDetailBalAmount> UpdateAdvanceDetailBalAmount { get; set; }
             public InsertPayment InsertPayment { get; set; }
 
         
@@ -21,7 +20,6 @@ namespace HIMS.Model.IPD
         {
             public DateTime RefundDate { get; set; }
             public DateTime RefundTime { get; set; }
-          //  public String RefundNo { get; set; }
             public int BillId { get; set; }
             public long AdvanceId { get; set; }
             public int OPD_IPD_Type { get; set; }
