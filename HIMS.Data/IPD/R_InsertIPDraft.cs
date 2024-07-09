@@ -194,7 +194,8 @@ namespace HIMS.Data.IPD
                   html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
             html = html.Replace("{{balafteradvuseAmount}}", balafteradvuseAmount.ToString());
             html = html.Replace("{{BalancewdudcAmt}}", BalancewdudcAmt.ToString());
-
+            
+                html = html.Replace("{{AdvanceRefundAmount}}", Bills.GetColValue("AdvanceRefundAmount").ConvertToDouble().ToString("0.00"));
             html = html.Replace("{{CardPayAmount}}", Bills.GetColValue("CardPayAmount").ConvertToDouble().ToString("0.00"));
             html = html.Replace("{{CashPayAmount}}", Bills.GetColValue("CashPayAmount").ConvertToDouble().ToString("0.00"));
             html = html.Replace("{{ChequePayAmount}}", Bills.GetColValue("ChequePayAmount").ConvertToDouble().ToString("0.00"));

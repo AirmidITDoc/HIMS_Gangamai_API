@@ -84,7 +84,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{Age}}", Bills.GetColValue("Age"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
-            html = html.Replace("{{DischargeTime}}", Bills.GetColValue("DischargeTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{DischargeTime}}", Bills.GetColValue("AdmDisTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{Followupdate}}", Bills.GetColValue("Followupdate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             
@@ -97,7 +97,9 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{Investigation}}", Bills.GetColValue("Investigation"));
 
             html = html.Replace("{{DischargeTypeName}}", Bills.GetColValue("DischargeTypeName"));
+            html = html.Replace("{{TreatmentAdvisedAfterDischarge}}", Bills.GetColValue("TreatmentAdvisedAfterDischarge"));
             
+
 
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
@@ -146,6 +148,14 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{chkInvestigationflag}}", Bills.GetColValue("Investigation").ConvertToDouble() != ' ' ? "table-row " : "none");
 
+            
+
+            html = html.Replace("{{chkaftdischargeflag}}", Bills.GetColValue("TreatmentAdvisedAfterDischarge").ConvertToDouble() != ' ' ? "table-row " : "none");
+
+            html = html.Replace("{{chkTreatmentflag}}", Bills.GetColValue("TreatmentGiven").ConvertToDouble() != ' ' ? "table-row " : "none");
+
+
+            html = html.Replace("{{chkInvestigationflag}}", Bills.GetColValue("Investigation").ConvertToDouble() != ' ' ? "table-row " : "none");
 
             return html;
         }

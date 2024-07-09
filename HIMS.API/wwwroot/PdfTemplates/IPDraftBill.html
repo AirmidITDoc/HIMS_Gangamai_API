@@ -136,7 +136,7 @@
 
                                                     <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{TotalBillAmount}}</td>
                                                 </tr>
-                                                <tr style="display:{{ chkadminflag }}">
+                                                <tr style="display:{{chkadminflag}}">
 
                                                     <td style="border-bottom:1px solid #eee; padding: 6px;">Admin Charges</td>
 
@@ -158,7 +158,7 @@
                                                 <tr style="display:{{chkAdvflag}}">
                                                     <td style="border-bottom: 1px solid #eee; padding: 6px;">Advance Amount</td>
 
-                                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{AdvanceBalAmount}}</td>
+                                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{AdvanceAmount}}</td>
                                                 </tr>
                                                 <tr style="display:{{chkpaidflag}}">
                                                     <td style="border-bottom: 1px solid #eee; padding: 6px;">paid Amount </td>
@@ -184,146 +184,155 @@
                                     </tr>
                                     <div>
                                         <div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </tbody>
+
+                            </table>
+                        </td>
+                    </tr>
+
+
+
+
+                    <tr>
+                    <tr>
+                        <th style=" text-align: left;" colspan="6">
+                            <h4 style="margin: 12px 0px; font-size: 15px;">
+                                Payment Information
+                            </h4>
+                        </th>
+                    </tr>
+
+                    <td colspan="6">
+                        <table style="text-align: center; border-collapse: collapse; width: 100%;">
+                            <thead style="font-size: 14px;">
+
+                                <tr>
+                                    <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        Cash Amount
+                                    </th>
+                                    <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        Card amount
+                                    </th>
+                                    <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        Cheque Amount
+                                    </th>
+
+                                    <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        Online amount
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size: 14px;">
+                                <tr>
+                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                        {{CashPayAmount}}
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                        {{CardPayAmount}}
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                        {{ChequePayAmount}}
+                                    </td>
+
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                        {{PayTMPayAmount}}
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </td>
+
+
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <th style="text-align: left;" colspan="6">
+                            <h4 style="margin: 12px 0px; font-size: 15px;">
+                                Advance Information
+                            </h4>
+                        </th>
+                    </tr>
+                    <tr style="margin-top:10px;">
+
+
+                        <td colspan="6">
+                            <table style="text-align: center; border-collapse: collapse; width: 100%;">
+                                <thead style="font-size: 14px;">
+
                                     <tr>
-
-
-                                        <td colspan="2">
-                                            <table style="text-align: center; border-collapse: collapse; width: 100%;">
-                                                <thead style="font-size: 14px;">
-                                                    <tr>
-                                                        <th style=" border: 1px solid #d4c3c3; text-align: center;" colspan="5">
-                                                            <h4 style="margin: 12px 0px; font-size: 15px;">
-                                                                Payment Information
-                                                            </h4>
-                                                        </th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                                            Cash Amount
-                                                        </th>
-                                                        <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                                            Card amount
-                                                        </th>
-                                                        <th style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                                            Cheque Amount
-                                                        </th>
-                                                        <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                                            NEFT amount
-                                                        </th>
-                                                        <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                                            Online amount
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="font-size: 14px;">
-                                                    <tr>
-                                                        <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                                            {{CashPayAmount}}
-                                                        </td>
-
-                                                        <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                            {{CardPayAmount}}
-                                                        </td>
-                                                        <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                                                            {{ChequePayAmount}}
-                                                        </td>
-
-                                                        <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                            {{NEFTPayAmount}}
-                                                        </td>
-                                                        <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                            {{PayTMPayAmount}}
-                                                        </td>
-
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
-                                        </td>
+                                        <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            Advance Amount
+                                        </th>
+                                        <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            Advance Used Amount
+                                        </th>
+                                        <div>
+                                        <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            Advance Balance Amount
+                                        </th>
+                                        <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            Advance Refund Amount
+                                        </th>
 
 
                                     </tr>
-            </div>
+                                </thead>
+                                <tbody style="font-size: 14px;">
+                                    <tr>
+                                        <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                            {{AdvanceAmount}}
+                                        </td>
+
+                                        <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                            {{AdvanceUsedAmount}}
+                                        </td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                            {{AdvanceBalAmount}}
+                                        </td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                            {{AdvanceRefundAmount}}
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </td>
 
 
-            <tr style="margin-top:10px;">
+                    </tr>
 
+                    <tr>
+                        <table style="width: 100%; border-collapse: collapse;margin-top:20px;">
 
-                <td colspan="2">
-                    <table style="text-align: center; border-collapse: collapse; width: 100%;">
-                        <thead style="font-size: 14px;">
-                            <div>
+                            <tr style="margin-top: 12px;">
                             <tr>
-                                <th style=" border: 1px solid #d4c3c3; text-align: center;" colspan="3">
-                                    <h4 style="margin: 12px 0px; font-size: 15px;">
-                                        Advance Information
-                                    </h4>
-                                </th>
+                                <td style="padding: 6px;font-size: 12px;">This is Computer generated invoice hence doesn’t require signature</td>
                             </tr>
-                          </div>
-        <tr>
-            <th style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                Advance Amount
-            </th>
-            <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                Advance Used Amount
-            </th>
-            <th style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                Advance Balance Amount
-            </th>
+                            <tr></tr>
+                            <tr style="padding: 6px; text-align: right;">
+                                <td>
 
-        </tr>
-        </thead>
-        <tbody style="font-size: 14px;">
-            <tr>
-                <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                    {{CashPayAmount}}
-                </td>
-
-                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                    {{CardPayAmount}}
-                </td>
-                <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                    {{ChequePayAmount}}
-                </td>
-
-
-            </tr>
-
-        </tbody>
-        </table>
-        </td>
-
-
-        </tr>
-</div>
-                              
-                            </tbody>
+                                    <span>Authorized Signature</span>
+                                </td>
+                            </tr>
 
                         </table>
-                    </td>
-                </tr>
-
-                <tr>
-                    <table style="width: 100%; border-collapse: collapse;margin-top:20px;">
-
-                        <tr style="margin-top: 12px;">
-                        <tr>
-                            <td style="padding: 6px;font-size: 12px;">This is Computer generated invoice hence doesn’t require signature</td>
-                        </tr>
-                        <tr></tr>
-                        <tr style="padding: 6px; text-align: right;">
-                            <td>
-
-                                <span>Authorized Signature</span>
-                            </td>
-                        </tr>
-
-                    </table>
-                </tr>
-            </table>
+                    </tr>
+                </table>
+            </div>
         </div>
-    </div>
-</body></div>
+    </body>
+</div>
 
 </html>
