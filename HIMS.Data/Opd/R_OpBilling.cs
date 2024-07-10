@@ -225,9 +225,10 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{PhoneNo}}", Bills.GetColValue("PhoneNo"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
-
-
+            html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
             
+
+
             StringBuilder items = new StringBuilder("");
             int i = 0;
             double T_NetAmount = 0;
