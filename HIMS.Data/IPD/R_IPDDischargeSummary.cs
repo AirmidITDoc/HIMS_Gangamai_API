@@ -69,7 +69,7 @@ namespace HIMS.Data.IPD
             SqlParameter[] para = new SqlParameter[1];
 
             para[0] = new SqlParameter("@AdmissionID", AdmissionID) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("rptDischargeSummaryPrint_New", para);
+            var Bills = GetDataTableProc("m_rptDischargeSummaryPrint_New", para);
             
             
             var Bills1 = GetDataTableProc("m_Rtrv_IP_Prescription_Discharge", para);

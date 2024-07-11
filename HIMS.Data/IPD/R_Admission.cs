@@ -136,7 +136,10 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{TariffName}}", Bills.GetColValue("TariffName"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
             
-                html = html.Replace("{{AdmittedDoctor1}}", Bills.GetColValue("AdmittedDoctor1"));
+            html = html.Replace("{{AdmittedDoctor1}}", Bills.GetColValue("AdmittedDoctor1"));
+
+            html = html.Replace("{{chkMLCflag}}", Bills.GetColValue("IsMLC").ToBool() ==true ? "table-row " : "none");
+            html = html.Replace("{{chkMLCflag1}}", Bills.GetColValue("IsMLC").ToBool()==false ? "table-row " : "none");
 
             html = html.Replace("{{DOA}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             

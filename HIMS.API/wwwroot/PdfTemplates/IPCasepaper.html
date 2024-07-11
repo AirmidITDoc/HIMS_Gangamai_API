@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 </head>
 
 <body>
@@ -102,7 +104,7 @@
                                     <span>{{TariffName}} </span>
                                 </td>
                             </tr>
-                        
+
                             <tr>
                                 <td style="padding: 2px;">
                                     <span>AdmittedDoctor Name : </span>
@@ -134,15 +136,29 @@
                                     <span> {{RelationshipName}}</span>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="display:{{chkMLCflag}}">
                                 <td style="padding: 2px;">
                                     <span>Relative PhoneNo : </span>
                                     <span>{{RelativePhoneNo}}</span>
                                 </td>
-                                <td style="padding: 2px;">
+                                <td>
                                     <span>IsMLC: </span>
-                                    <span>{{IsMLC}}</span>
+                                    <!--<span>{{IsMLC}}</span>-->
+                                    <span><i class="fa fa-cloud"></i></span>
                                 </td>
+
+                            </tr>
+                            <tr style="display:{{chkMLCflag1}}">
+                                <td style="padding: 2px;">
+                                    <span>Relative PhoneNo : </span>
+                                    <span>{{RelativePhoneNo}}</span>
+                                </td>
+                                <td>
+                                    <span>IsMLC: </span>
+                                    <span><i class="fa fa-heart"></i></span>
+
+                                </td>
+
                             </tr>
                         </table>
                     </td>

@@ -225,17 +225,17 @@ namespace HIMS.Data.IPD
                 {
                     String Label;
                     Label = dr["GroupName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:15px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:15px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;\"><td colspan=\"13\" style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
                 if (previousLabel != "" && previousLabel != dr["GroupName"].ConvertToString())
                 {
                     j = 1;
-                    items.Append("<tr style='border:1px solid black;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Group Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='5' style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Group Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                   
                    .Append(T_TotalAmount.To2DecimalPlace()).Append("</td></tr>");
                     T_TotalAmount = 0;
 
-                    items.Append("<tr style=\"font-size:15px;border-bottom: 1px;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">").Append(dr["GroupName"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:15px;border-bottom: 1px;\"><td colspan=\"13\" style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">").Append(dr["GroupName"].ConvertToString()).Append("</td></tr>");
 
                 }
 
@@ -257,9 +257,9 @@ namespace HIMS.Data.IPD
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
                   
-                    items.Append("<tr style='border:1px solid black;font-weight:bold'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Grand Total Amount</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                    items.Append("<tr style='font-weight:bold'><td colspan='5' style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Grand Total Amount</td><td style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(T_TotalAmount.To2DecimalPlace()).Append("</td></tr>");
-                    items.Append("<tr style='border:1px solid black;'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-center:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;'><td colspan='5' style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-center:20px;font-weight:bold;\">Total</td><td style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                     .Append(F_TotalAmount.To2DecimalPlace()).Append("</td></tr>");
 
                 }
@@ -283,7 +283,7 @@ namespace HIMS.Data.IPD
       
              html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
-            string finalamt = conversion(T_NetAmount.ConvertToDouble().To2DecimalPlace().ToString());
+            string finalamt = conversion(Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace().ToString());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 
@@ -488,7 +488,7 @@ namespace HIMS.Data.IPD
 
             // Word = beforefloating + '.' + afterfloating;
 
-            var Content = beforefloating + ' ' + " RUPEES" + ' ' + afterfloating + ' ' + " PAISE only";
+            var Content = beforefloating + ' ' + " RUPEES" + ' ' + "only";
 
             return Content;
         }

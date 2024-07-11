@@ -165,7 +165,7 @@ namespace HIMS.Data.IPD
 
             // Word = beforefloating + '.' + afterfloating;
 
-            var Content = beforefloating + ' ' + " RUPEES" + ' ' + afterfloating + ' ' + " PAISE only";
+            var Content = beforefloating + ' ' + " RUPEES" +  ' ' + " PAISE only";
 
             return Content;
         }
