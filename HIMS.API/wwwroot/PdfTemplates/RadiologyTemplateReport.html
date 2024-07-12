@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 
 <head>
@@ -85,7 +86,13 @@
                             <div style="display:flex;width:100%;margin-left:10px;height:auto">
                                 <div [innerHtml]="PathTemplateDetailsResult"></div>
                                 {{ResultEntry}}
+                                <div [innerHtml]="{{ResultEntry}}"></div>
                             </div>
+
+                            <template>
+                                <div class="myClass">{{ResultEntry}}.[innerHtml]</div>
+                            </template>
+
                         </div>
                     </div>
                 </tr>

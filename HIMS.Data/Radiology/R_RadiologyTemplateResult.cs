@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Text;
 
+
 namespace HIMS.Data.Radiology
 {
     public class R_RadiologyTemplateResult:GenericRepository,I_RadiologyTemplateResult
@@ -61,8 +62,13 @@ namespace HIMS.Data.Radiology
             html = html.Replace("{{ResultEntry}}", Bills.GetColValue("ResultEntry").ConvertToString());
             html = html.Replace("{{PrintTestName}}", Bills.GetColValue("PrintTestName"));
             html = html.Replace("{{SuggestionNotes}}", Bills.GetColValue("SuggestionNotes"));
-            
-            //String v = Bills.GetColValue("PathTemplateDetailsResult").innerHTML;
+
+            //String v = Bills.GetColValue("ResultEntry").innerHtml.Tostring();
+            //html = html.Replace("{{ResultEntry}}", ineerHTML.v);
+
+
+
+
             //{ { PathTemplateDetailsResult || innerHTML} }
             //{ { PathTemplateDetailsResult} }.innerHTML
 

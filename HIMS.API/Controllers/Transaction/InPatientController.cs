@@ -814,12 +814,12 @@ namespace HIMS.API.Controllers.Transaction
 
 
         [HttpGet("view-IP_MLCReport")]
-        public IActionResult ViewIPMlcReport(int MLCId)
+        public IActionResult ViewIPMlcReport(int AdmissionID)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_MLCReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _MLCInfo.ViewMlcReport(MLCId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPReport_MLCReport", "IPReport_MLCReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var html = _MLCInfo.ViewMlcReport(AdmissionID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPReport_MLCReport", "IPReport_MLCReport" +AdmissionID, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
 
@@ -1082,10 +1082,6 @@ namespace HIMS.API.Controllers.Transaction
             var html = _MaterialConsumption.ViewMaterialConsumptionReceipt(MaterialConsumptionId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "MaterialConsumptionReport", "MaterialConsumptionReport" + MaterialConsumptionId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-
-
-            //if (System.IO.File.Exists(tuple.Item2))
-            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
@@ -1164,14 +1160,24 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(Id);
         }
 
-       
-
         [HttpPost("CompanyInformationUpdate")]
-        public IActionResult CompanyUpdate(CompanyInformationparam CompanyInformationparam)
+        public IActionResult CompanyInformationUpdate(CompanyInformationparam CompanyInformationparam)
         {
             var Id = _CompanyInformation.Update(CompanyInformationparam);
             return Ok(Id);
         }
+
+        [HttpGet("view-CompanyInformation")]
+        public IActionResult ViewCompanyInformationReceipt(int AdmissionId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CompanyInformation.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _CompanyInformation.ViewCompanyInformationReceipt(AdmissionId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CompanyInformation", "CompanyInformation" + AdmissionId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
 
     }
 

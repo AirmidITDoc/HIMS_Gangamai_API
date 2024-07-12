@@ -40,11 +40,11 @@ namespace HIMS.Data.IPD
             return true;
         }
 
-        public string ViewMlcReport(int MLCId, string htmlFilePath, string htmlHeader)
+        public string ViewMlcReport(int AdmissionID, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[1];
 
-            para[0] = new SqlParameter("@MLCId", MLCId) { DbType = DbType.Int64 };
+            para[0] = new SqlParameter("@AdmissionID", AdmissionID) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("m_MLCCasePaperPrint", para);
             string html = File.ReadAllText(htmlFilePath);
 
@@ -72,25 +72,16 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvanceAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
-            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{ReportingDate}}", Bills.GetColValue("ReportingTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
 
-            html = html.Replace("{{CashPayAmount}}", Bills.GetColValue("CashPayAmount").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{ChequePayAmount}}", Bills.GetColValue("ChequePayAmount").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{ChequeNo}}", Bills.GetColValue("ChequeNo").ConvertToString());
-            html = html.Replace("{{CardPayAmount}}", Bills.GetColValue("CardPayAmount").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{CardBankName}}", Bills.GetColValue("CardBankName").ConvertToString());
-            html = html.Replace("{{CardNo}}", Bills.GetColValue("CardNo").ConvertToString());
-            html = html.Replace("{{BankName}}", Bills.GetColValue("BankName").ConvertToString());
-            html = html.Replace("{{NEFTPayAmount}}", Bills.GetColValue("PatientType").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{NEFTNo}}", Bills.GetColValue("NEFTNo").ConvertToString());
-            html = html.Replace("{{NEFTBankMaster}}", Bills.GetColValue("NEFTBankMaster").ConvertToString());
-            html = html.Replace("{{PayTMAmount}}", Bills.GetColValue("PayTMAmount").ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{PayTMTranNo}}", Bills.GetColValue("PayTMTranNo").ConvertToString());
-            html = html.Replace("{{PayTMDate}}", Bills.GetColValue("PayTMDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
-
-
-
+           
+            html = html.Replace("{{MLCNo}}", Bills.GetColValue("MLCNo").ConvertToString());
+           
+            html = html.Replace("{{AuthorityName}}", Bills.GetColValue("AuthorityName").ConvertToString());
+            html = html.Replace("{{BuckleNo}}", Bills.GetColValue("BuckleNo").ConvertToString());
+            html = html.Replace("{{PoliceStation}}", Bills.GetColValue("PoliceStation").ConvertToString());
+          
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
             html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));

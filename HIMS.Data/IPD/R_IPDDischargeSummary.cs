@@ -98,8 +98,26 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{DischargeTypeName}}", Bills.GetColValue("DischargeTypeName"));
             html = html.Replace("{{TreatmentAdvisedAfterDischarge}}", Bills.GetColValue("TreatmentAdvisedAfterDischarge"));
-            
 
+            html = html.Replace("{{ClinicalConditionOnAdmisssion}}", Bills.GetColValue("ClinicalConditionOnAdmisssion"));
+          
+            html = html.Replace("{{OtherConDrOpinions}}", Bills.GetColValue("OtherConDrOpinions"));
+           
+            html = html.Replace("{{PainManagementTechnique}}", Bills.GetColValue("PainManagementTechnique"));
+            html = html.Replace("{{LifeStyle}}", Bills.GetColValue("LifeStyle"));
+
+            html = html.Replace("{{WarningSymptoms}}", Bills.GetColValue("WarningSymptoms"));
+            html = html.Replace("{{ConditionAtTheTimeOfDischarge}}", Bills.GetColValue("ConditionAtTheTimeOfDischarge"));
+
+
+
+
+            html = html.Replace("{{DoctorAssistantName}}", Bills.GetColValue("DoctorAssistantName"));
+            html = html.Replace("{{PreOthNumber}}", Bills.GetColValue("PreOthNumber"));
+            html = html.Replace("{{SurgeryProcDone}}", Bills.GetColValue("SurgeryProcDone"));
+            html = html.Replace("{{ICD10CODE}}", Bills.GetColValue("ICD10CODE"));
+            html = html.Replace("{{Radiology}}", Bills.GetColValue("Radiology"));
+           
 
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
@@ -109,7 +127,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
-            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
+            html = html.Replace("{{DischargeDoctor1}}", Bills.GetColValue("DischargeDoctor1"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
 
 
