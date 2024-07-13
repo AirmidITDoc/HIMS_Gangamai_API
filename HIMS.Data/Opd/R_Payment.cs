@@ -33,7 +33,7 @@ namespace HIMS.Data.Opd
             // throw new NotImplementedException();
             var disc = PaymentParams.PaymentInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_New_1", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_New_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();
