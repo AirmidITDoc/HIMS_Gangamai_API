@@ -23,8 +23,10 @@ namespace HIMS.Model.IPD
             public String AuthorityName { get; set; }
             public String BuckleNo { get; set; }
             public String PoliceStation { get; set; }
-            
-        }
+        public String DetailGiven { get; set; }
+        public String Remark { get; set; }
+
+    }
 
 
     public class UpdateMLCInfo
@@ -37,6 +39,8 @@ namespace HIMS.Model.IPD
         public String AuthorityName { get; set; }
         public String BuckleNo { get; set; }
         public String PoliceStation { get; set; }
+        public String DetailGiven { get; set; }
+        public String Remark { get; set; }
 
     }
 }
