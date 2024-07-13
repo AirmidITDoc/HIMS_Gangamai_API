@@ -24,7 +24,7 @@ namespace HIMS.Data.IPD
 
             var dic = MLCInfoParams.InsertMLCInfo.ToDictionary();
          // dic.Remove("MLCId");
-            ExecNonQueryProcWithOutSaveChanges("insert_MLCInfo_1", dic);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_MLCInfo_1", dic);
 
                      
             _unitofWork.SaveChanges();
@@ -34,7 +34,7 @@ namespace HIMS.Data.IPD
         public bool Update(MLCInfoParams MLCInfoParams)
         {
             var disc1 = MLCInfoParams.UpdateMLCInfo.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_MLCInfo_1", disc1);
+            ExecNonQueryProcWithOutSaveChanges("m_update_MLCInfo_1", disc1);
 
             _unitofWork.SaveChanges();
             return true;
