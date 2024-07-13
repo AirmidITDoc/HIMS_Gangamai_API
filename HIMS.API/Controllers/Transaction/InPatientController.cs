@@ -662,6 +662,7 @@ namespace HIMS.API.Controllers.Transaction
         }
 
     
+    
 
         [HttpGet("view-IP-InterimBillReceipt")]
         public IActionResult ViewIpInterimBillReceipt(int BillNo)

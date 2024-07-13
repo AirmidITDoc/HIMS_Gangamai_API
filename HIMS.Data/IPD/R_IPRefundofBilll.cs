@@ -41,14 +41,9 @@ namespace HIMS.Data.IPD
 
              foreach (var a in IPRefundofBilllparams.UpdateAddChargesDetails)
             {
-
                 var disc3 = a.ToDictionary();
                 ExecNonQueryProcWithOutSaveChanges("Update_AddCharges_RefundAmt", disc3);
             }
-
-           /* IPRefundofBilllparams.IPDocShareGroupAdmRefundofBillDoc.RefundId = Convert.ToInt32(RefundId);
-            var disc4 = IPRefundofBilllparams.IPDocShareGroupAdmRefundofBillDoc.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("ps_IP_DocShare_Group_Adm_RefundofBill_Doc_1", disc4);*/
 
             var outputId2 = new SqlParameter
             {
@@ -63,7 +58,7 @@ namespace HIMS.Data.IPD
             disc5["RefundId"] = RefundId;
             disc5["BillNo"] = IPRefundofBilllparams.InsertIPRefundofNew.BillId;
             disc5["AdvanceId"] = IPRefundofBilllparams.InsertIPRefundofNew.AdvanceId;
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", disc5);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc5);
 
             _unitofWork.SaveChanges();
             return RefundId;

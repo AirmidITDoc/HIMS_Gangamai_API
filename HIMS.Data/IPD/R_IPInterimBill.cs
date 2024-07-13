@@ -51,7 +51,7 @@ namespace HIMS.Data.IPD
 
             var disc2 = IPInterimBillParams.IPIntremPaymentInsert.ToDictionary();
             disc2["BillNo"]=BillNo1;
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", disc2);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc2);
 
             _unitofWork.SaveChanges();
             return BillNo1;

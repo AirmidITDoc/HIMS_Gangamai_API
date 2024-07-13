@@ -95,6 +95,7 @@ namespace HIMS.Model.IPD
             public long PayTMAmount { get; set; }
             public String PayTMTranNo { get; set; }
             public DateTime PayTMDate { get; set; }
+            public float TDSAmount { get; set; }
 
     }
 

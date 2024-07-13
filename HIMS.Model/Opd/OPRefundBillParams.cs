@@ -86,6 +86,7 @@ namespace HIMS.Model.Opd
         public long PayTMAmount { get; set; }
         public String PayTMTranNo { get; set; }
         public DateTime PayTMDate { get; set; }
+        public long TDSAmount { get; set; }
 
     }
 }

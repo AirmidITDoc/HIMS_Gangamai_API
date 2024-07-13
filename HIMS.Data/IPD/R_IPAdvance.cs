@@ -58,8 +58,7 @@ namespace HIMS.Data.IPD
 
             IPAdvanceParams.IPPaymentInsert.AdvanceId = (int)Convert.ToInt64(AdvanceDetailID);
             var disc3 = IPAdvanceParams.IPPaymentInsert.ToDictionary();
-        
-           ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", disc3);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc3);
 
 
             _unitofWork.SaveChanges();
