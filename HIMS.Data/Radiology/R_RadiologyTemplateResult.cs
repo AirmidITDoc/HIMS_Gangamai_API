@@ -53,9 +53,9 @@ namespace HIMS.Data.Radiology
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
 
-            html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
-            html = html.Replace("{{PathTime}}", Bills.GetColValue("PathTime").ConvertToDateString());
-            html = html.Replace("{{ReportTime}}", Bills.GetColValue("ReportTime").ConvertToDateString());
+            html = html.Replace("{{ConsultantName}}", Bills.GetColValue("ConsultantName"));
+          //  html = html.Replace("{{ReportTime}}", Bills.GetColValue("ReportTime").ConvertToDateString());
+            html = html.Replace("{{ReportTime}}", Bills.GetColValue("ReportTime").ConvertToDateString("dd/MM/yy | hh:mm tt"));
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{RadiologyDocName}}", Bills.GetColValue("RadiologyDocName"));
@@ -63,8 +63,12 @@ namespace HIMS.Data.Radiology
             html = html.Replace("{{PrintTestName}}", Bills.GetColValue("PrintTestName"));
             html = html.Replace("{{SuggestionNotes}}", Bills.GetColValue("SuggestionNotes"));
 
-            //String v = Bills.GetColValue("ResultEntry").innerHtml.Tostring();
-            //html = html.Replace("{{ResultEntry}}", ineerHTML.v);
+
+
+           // String v = Bills.GetColValue("ResultEntry").Con);
+            //String v1= Bills.GetColValue("ResultEntry")
+
+            //html = html.Replace("{{ResultEntry}}", v);
 
 
 

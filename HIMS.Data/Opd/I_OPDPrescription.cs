@@ -9,6 +9,6 @@ namespace HIMS.Data.Opd
     {
         bool Insert(OPDPrescriptionParams OPDPrescriptionParams);
 
-        string ViewOPPrescriptionReceipt(int VisitId, int PatientType, string htmlFilePath, string HeaderName);
+        string ViewOPPrescriptionReceipt(int VisitId, string htmlFilePath, string HeaderName);
     }
 }

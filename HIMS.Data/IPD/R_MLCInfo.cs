@@ -64,7 +64,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{AdvanceNo}}", Bills.GetColValue("AdvanceNo"));
             html = html.Replace("{{Addedby}}", Bills.GetColValue("Addedby"));
 
-            html = html.Replace("{{Age}}", Bills.GetColValue("Age"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
 
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
@@ -92,7 +92,13 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
+            html = html.Replace("{{Remark}}", Bills.GetColValue("Remark"));
+            html = html.Replace("{{DetailGiven}}", Bills.GetColValue("DetailGiven"));
 
+
+            html = html.Replace("{{chkRemarkflag}}", Bills.GetColValue("Remark") !=null ? "table-row " : "none");
+
+            html = html.Replace("{{chkgivenflag}}", Bills.GetColValue("DetailGiven").ConvertToString() != "" ? "table -row " : "none");
 
             html = html.Replace("{{chkcashflag}}", Bills.GetColValue("CashPayAmount").ConvertToDouble() > 0 ? "table-row " : "none");
 

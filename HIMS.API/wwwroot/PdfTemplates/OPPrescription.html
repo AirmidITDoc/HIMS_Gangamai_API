@@ -88,23 +88,29 @@
                         </table>
                     </td>
                 </tr>
-
+                <hr/>
                 <tr class="bill-table-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <thead style="font-size: 14px;">
                                 <tr>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                        Drug
+                                    <td style="text-align: center; padding: 6px;font-weight:bold;font-size:22px;">Dignosis :</td>
+                                    <td style="text-align: center; padding: 6px;">
+                                        {{ChiefComplaint}}
                                     </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                        Dose
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Total Qty</td>
 
                                 </tr>
-                                {{Items}}
+                                <tr>
+                                    <td style="font-size:28px; font-style:italic;padding:10px;font-weight:bold;">Rx</td>
+                                   
+                                    
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="padding:10px;font-weight:bold;text-align:center;font-size:18px;">Days</td>
+                                </tr>
+                                    {{Items}}
                             </thead>
 
                         </table>
@@ -112,28 +118,23 @@
                 </tr>
 
 
+                <tfoot>
+                    <tr>
+                        <table style="width: 100%; border-collapse: collapse;margin-top:30px;">
 
-                <tr>
-                    <table style="width: 100%; border-collapse: collapse;margin-top:20px;">
+                            <tr style="margin-top: 12px;">
 
-                        <tr style="margin-top: 12px;">
-                        <tr>
-                            <td style="padding: 6px;font-size: 12px;">This is Computer generated invoice hence doesn’t require signature</td>
-                        </tr>
-                        <tr></tr>
-                        <tr style="padding: 6px; text-align: right;">
-                            <td>
+                            <tr></tr>
+                            <tr style="padding: 6px; text-align: right;">
+                                <td>
 
-                                <span>{{PreparedBy}}</span>
-                            </td>
-                        </tr>
-                        <tr style="padding: 6px; text-align: right;">
-                            <td>
-                                <span>Prepared By</span>
-                            </td>
-                        </tr>
-                    </table>
-                </tr>
+                                    <span>{{ConsultantDocName}}</span>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

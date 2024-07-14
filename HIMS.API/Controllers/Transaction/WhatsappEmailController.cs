@@ -244,11 +244,11 @@ namespace HIMS.API.Controllers.Transaction
             else if (WhatsappSmsparam.InsertEamil.EmailType == "SalesReturn")
             {
               
-                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPrescription.html");
-                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-                var html = _OPDPrescription.ViewOPPrescriptionReceipt(WhatsappSmsparam.InsertEamil.TranNo, WhatsappSmsparam.InsertEamil.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "OPPrescription" + WhatsappSmsparam.InsertEamil.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
-                WhatsappSmsparam.InsertEamil.AttachmentLink = tuple.Item2;
+                //string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPrescription.html");
+                //string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                //var html = _OPDPrescription.ViewOPPrescriptionReceipt(WhatsappSmsparam.InsertEamil.TranNo, WhatsappSmsparam.InsertEamil.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                //var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "OPPrescription" + WhatsappSmsparam.InsertEamil.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                //WhatsappSmsparam.InsertEamil.AttachmentLink = tuple.Item2;
             }
 
             var Id = _WhatsappSms.InsertEmail(WhatsappSmsparam);

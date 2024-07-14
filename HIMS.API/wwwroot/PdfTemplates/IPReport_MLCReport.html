@@ -17,7 +17,7 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>MLC RECEIPT</b></td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>MLC PRINT</b></td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
                         </table>
@@ -47,7 +47,7 @@
                                 </td>
                                 <td style="padding: 2px;">
                                     <span>Age | Gender:</span>
-                                    <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
+                                    <span> {{AgeYear}} Y | {{AgeMonth}} M |{{AgeDay}} D | {{GenderName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
                                     <span>DOA | Time:</span>
@@ -89,7 +89,7 @@
                 </tr>
 
                 <hr />
-              
+
 
                 <tr class="bill-info-row">
                     <td style="padding: 6px;">
@@ -125,63 +125,33 @@
                                     <span>Police Station:</span>
                                     <span>{{PoliceStation}}</span>
                                 </td>
-                               
+
                             </tr>
-                         
+
                         </table>
                     </td>
                 </tr>
+                <tr></tr>
+                <br/>
+                <tr style="display:{{chkgivenflag}}">
+                    <td colspan="2">
+                        <table style="text-align: center; border-collapse: collapse; width: 100%;">
+                            <tbody style="font-size: 14px;">
+                                <tr>
 
+                                    <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;width:50%">
 
-                <tr>
-                    <th style=" text-align: left;" colspan="5">
-                        <h4 style="margin: 12px 0px; font-size: 15px;">
-                            Remark
-                        </h4>
-                    </th>
-                </tr>
+                                        <span style="font-weight:bold;">Remark: </span> {{Remark}}
+                                    </td>
+                                    <td></td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: left; padding: 6px;width:50%" ">
+                                        <span style="font-weight:bold;">Given Details : </span>{{DetailGiven}}
+                                    </td>
 
-                <td colspan="2">
-                    <table style="text-align: center; border-collapse: collapse; width: 100%;">
-
-                        <tbody style="font-size: 14px;">
-                            <tr>
-                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                    <!--{{CashPayAmount}}-->
-                                </td>
-
-
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </td>
-                </td>
-                <td>
-                <tr>
-                    <th style=" text-align: left;" colspan="5">
-                        <h4 style="margin: 12px 0px; font-size: 15px;">
-                            Detail Given
-                        </h4>
-                    </th>
-                </tr>
-
-                <td colspan="2">
-                    <table style="text-align: center; border-collapse: collapse; width: 100%;">
-
-                        <tbody style="font-size: 14px;">
-                            <tr>
-                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                    <!--{{CashPayAmount}}-->
-                                </td>
-
-
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </td>
-                </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
                 </tr>
 
                 <tr>
@@ -206,7 +176,7 @@
                     </table>
                 </tr>
             </table>
-        </div>
+    </div>
     </div>
 </body>
 </html>
