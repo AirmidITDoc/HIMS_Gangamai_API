@@ -45,7 +45,7 @@ namespace HIMS.Data.IPD
             var vAdDetParam = IPAdvanceUpdateParams.IPPaymentInsert1.ToDictionary();
             vAdDetParam.Remove("AdvanceId");
             vAdDetParam.Add("AdvanceId", AdvanceDetailID);
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", vAdDetParam);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", vAdDetParam);
 
             _unitofWork.SaveChanges();
             return AdvanceDetailID;

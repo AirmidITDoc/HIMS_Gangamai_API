@@ -72,7 +72,7 @@ namespace HIMS.Model.IPD
         public float PayTMAmount { get; set; }
         public string PayTMTranNo { get; set; }
         public DateTime PayTMDate { get; set; }
-
+        public float TDSAmount { get; set; }
 
     }
 

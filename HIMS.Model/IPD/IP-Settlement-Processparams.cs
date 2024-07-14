@@ -49,10 +49,9 @@ namespace HIMS.Model.IPD
         public String NEFTBankMaster { get; set; }
         public DateTime NEFTDate { get; set; }
         public long PayTMAmount { get; set; }
-
         public String PayTMTranNo { get; set; }
-
         public DateTime PayTMDate { get; set; }
+        public float TDSAmount { get; set; }
 
 
     }

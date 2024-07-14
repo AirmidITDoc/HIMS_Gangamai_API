@@ -28,7 +28,6 @@ namespace HIMS.Model.Opd
         public String CardBankName { get; set; }
         public DateTime CardDate { get; set; }
         public long AdvanceUsedAmount { get; set; }
-
         public int AdvanceId { get; set; }
         public int RefundId { get; set; }
         public int TransactionType { get; set; }
@@ -37,20 +36,15 @@ namespace HIMS.Model.Opd
         public bool IsCancelled { get; set; }
         public int IsCancelledBy { get; set; }
         public DateTime IsCancelledDate { get; set; }
-      
         public int OPD_IPD_Type { get; set; }
-    //    public Boolean IsSelfORCompany { get; set; }
-      //  public int CompanyId { get; set; }
         public long NEFTPayAmount { get; set; }
         public String NEFTNo { get; set; }
         public String NEFTBankMaster { get; set; }
         public DateTime NEFTDate { get; set; }
         public long PayTMAmount { get; set; }
-        
         public String PayTMTranNo { get; set; }
-
         public DateTime PayTMDate { get; set; }
-
+        public float TDSAmount { get; set; }
 
     }
 

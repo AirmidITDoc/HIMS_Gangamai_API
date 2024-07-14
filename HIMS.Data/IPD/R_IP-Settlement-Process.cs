@@ -31,25 +31,21 @@ namespace HIMS.Data.IPD
             var disc1 = IP_Settlement_Processparams.IPPaymentCreditUpdate.ToDictionary();
             disc1["BillNo"] = IP_Settlement_Processparams.UpdateIpBill.BillNo;
             disc1.Remove("PaymentId");
-            var paymentid = ExecNonQueryProcWithOutSaveChanges("insert_Payment_New_1", disc1, outputId1);
+            var paymentid = ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_New_1", disc1, outputId1);
 
             var disc = IP_Settlement_Processparams.UpdateIpBill.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_BillBalAmount_1", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_update_BillBalAmount_1", disc);
 
 
             foreach (var a in IP_Settlement_Processparams.IPsettlementAdvanceDetailUpdate)
             {
                 var disc2 = a.ToDictionary();
-                //  disc["BillNo"] = BillNo;
                 ExecNonQueryProcWithOutSaveChanges("update_AdvanceDetail_1", disc2);
             }
 
 
             var disc4 = IP_Settlement_Processparams.IPsettlementAdvanceHeaderUpdate.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("update_AdvanceHeader_1", disc4);
-
-
-
 
             //commit transaction
             _unitofWork.SaveChanges();

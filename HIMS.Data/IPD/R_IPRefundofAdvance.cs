@@ -59,7 +59,7 @@ namespace HIMS.Data.IPD
 
             var vPayment = IPRefundofAdvanceParams.InsertPayment.ToDictionary();
             vPayment["RefundId"] = RefundId;
-            ExecNonQueryProcWithOutSaveChanges("insert_Payment_1", vPayment);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", vPayment);
 
             _unitofWork.SaveChanges();
             return RefundId;

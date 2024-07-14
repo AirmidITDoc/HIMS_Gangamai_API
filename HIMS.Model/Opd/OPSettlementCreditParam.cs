@@ -51,6 +51,7 @@ namespace HIMS.Model.Opd
         public String PayTMTranNo { get; set; }
 
         public DateTime PayTMDate { get; set; }
+        public float TDSAmount { get; set; }
 
 
     }
