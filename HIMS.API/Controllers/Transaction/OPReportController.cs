@@ -112,7 +112,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPReport_DoctorWiseVisitReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _OPbilling.ViewDoctorWiseVisitReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorWiseVisitReport ", "DoctorWiseVisitReport ", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorWiseVisitReport ", "DoctorWiseVisitReport ", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
@@ -131,6 +131,7 @@ namespace HIMS.API.Controllers.Transaction
         }
 
      
+
 
         [HttpGet("view-CrossConsultationReport")]
         public IActionResult ViewCrossConsultationReport(DateTime FromDate, DateTime ToDate)
@@ -320,17 +321,17 @@ namespace HIMS.API.Controllers.Transaction
 
 
 
-        [HttpGet("view-OpRefundofbillList")]
-        public IActionResult ViewOpRefundofbilllist(DateTime FromDate, DateTime ToDate)
-        {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Op_RefundofBill.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _OPbilling.ViewOPrefundbilllistReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Op_RefundofBill", "Op_RefundofBill", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        //[HttpGet("view-OpRefundofbillList")]
+        //public IActionResult ViewOpRefundofbilllist(DateTime FromDate, DateTime ToDate)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Op_RefundofBill.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    var html = _OPbilling.ViewOPrefundbilllistReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Op_RefundofBill", "Op_RefundofBill", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
-        }
+        //}
 
 
 

@@ -8,14 +8,25 @@ namespace HIMS.Data.IPD
 {
    public interface I_IPReports
     {
+
+       
         string ViewIPDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById, string htmlFilePath, string HeaderName);
 
-        
 
+        string ViewIPDAdvanceReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
+        string ViewBillReport(DateTime FromDate, DateTime ToDate, int AddedById, string htmlFilePath, string HeaderName);
+        string ViewBillSummaryReport(DateTime FromDate, DateTime ToDate,  string htmlFilePath, string HeaderName);
+
+        string ViewRefundofAdvanceReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
+
+        string ViewRefundofBillReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
+        string ViewIPDischargeAndBillGenerationPendingReport(DateTime FromDate, DateTime ToDate,string htmlFilePath, string HeaderName);
+
+        string ViewIPBillGenerationPaymentDueReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewOPIPBillSummaryReceipt(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
 
         string ViewIPCreditReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
-        string ViewIPDAdmissionListCompanyWiseSummary(DateTime FromDate, DateTime ToDate, BigInteger DoctorId, BigInteger WardId, string htmlFilePath, string HeaderName);
+        string ViewIPDAdmissionListCompanyWiseSummary(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, string htmlFilePath, string HeaderName);
 
         //string ViewIPDAdmissionWardWiseCharges(int DoctorId, int WardId,int CompanyId, string htmlFilePath, string HeaderName);
 
