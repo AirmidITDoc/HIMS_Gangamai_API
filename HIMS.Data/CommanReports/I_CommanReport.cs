@@ -31,5 +31,8 @@ namespace HIMS.Data.CommanReports
         string ViewCanclechargeslist(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
 
         string ViewServicewiseReportwithbill(int ServiceId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+
+        string ViewBillSummaryReportfor2LakhAmount(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewDoctorAndDepartmentWiseMonthlyCollectionReport(int DepartmentId,int DoctorId,DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
     }
 }

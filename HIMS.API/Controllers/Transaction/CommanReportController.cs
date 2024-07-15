@@ -259,6 +259,30 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
         }
+
+        [HttpGet("view-BillSummaryReportfor2LakhAmount")]
+        public IActionResult ViewBillSummaryReportfor2LakhAmount(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommonReport_BillSummary2lakhamt.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPComman.ViewBillSummaryReportfor2LakhAmount(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "BillSummaryReportfor2LakhAmount", "BillSummaryReportfor2LakhAmount", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+
+        [HttpGet("view-DoctorAndDepartmentWiseMonthlyCollectionReport")]
+        public IActionResult ViewDoctorAndDepartmentWiseMonthlyCollectionReport(int DepartmentId, int DoctorId, DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_DoctorandDepartmentWiseMonthlyCollection.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPComman.ViewDoctorAndDepartmentWiseMonthlyCollectionReport(DepartmentId, DoctorId, FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorAndDepartmentWiseMonthlyCollectionReport", "DoctorAndDepartmentWiseMonthlyCollectionReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
     }
 }
 
