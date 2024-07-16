@@ -158,7 +158,7 @@
 
                                                     <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{TaxAmount}}</td>
                                                 </tr>
-                                              
+
                                                 <tr style="display:{{chkdiscflag}}">
                                                     <td style="border-bottom: 1px solid #eee; padding: 6px;">Concession Amount</td>
 
@@ -167,7 +167,7 @@
                                                 <tr>
                                                     <td style="border-bottom: 1px solid #eee; padding: 6px;">Net Amount</td>
 
-                                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{T_NetAmount}}</td>
+                                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;font-weight:bold;"> {{T_NetAmount}}</td>
                                                 </tr>
 
                                                 <tr style="display:{{chkAdvflag}}">
@@ -176,7 +176,7 @@
                                                     <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{AdvanceUsedAmount}}</td>
                                                 </tr>
                                                 <tr style="display:{{chkpaidflag}}">
-                                                    <td style="border-bottom: 1px solid #eee; padding: 6px;">paid Amount </td>
+                                                    <td style="border-bottom: 1px solid #eee; padding: 6px;">Paid Amount </td>
 
                                                     <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{PaidAmount}}</td>
                                                 </tr>
@@ -189,10 +189,10 @@
                                                 </tr>
 
                                                 <!--<tr style="display:{{ chkbalafterdudcflag }}">
-                                        <td style="border-bottom: 1px solid #eee; padding: 6px;">Bal Amount -Without Deduction</td>
+                                    <td style="border-bottom: 1px solid #eee; padding: 6px;">Bal Amount -Without Deduction</td>
 
-                                        <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{BalancewdudcAmt}}</td>
-                                    </tr>-->
+                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{BalancewdudcAmt}}</td>
+                                </tr>-->
 
                                             </table>
                                         </td>
@@ -289,14 +289,14 @@
                                         <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
                                             Advance Used Amount
                                         </th>
-                                       
+
                                         <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
                                             Advance Balance Amount
                                         </th>
                                         <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
                                             Advance Refund Amount
                                         </th>
-                                        
+
 
                                     </tr>
                                 </thead>
@@ -324,6 +324,7 @@
 
 
                     </tr>
+
                     <tr>
                         <table style="width: 100%; border-collapse: collapse;margin-top:20px;">
 
@@ -335,10 +336,14 @@
                             <tr style="padding: 6px; text-align: right;">
                                 <td>
 
-                                    <span>Authorized Signature</span>
+                                    <span>{{UserName}}</span>
                                 </td>
                             </tr>
-
+                            <tr style="padding: 6px; text-align: right;">
+                                <td>
+                                    <span>Authorized By</span>
+                                </td>
+                            </tr>
                         </table>
                     </tr>
                 </table>
