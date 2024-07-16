@@ -84,7 +84,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{Age}}", Bills.GetColValue("Age"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
-            html = html.Replace("{{DischargeTime}}", Bills.GetColValue("AdmDisTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{DischargeTime}}", Bills.GetColValue("DischargeTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{Followupdate}}", Bills.GetColValue("Followupdate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             
@@ -129,8 +129,9 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
             html = html.Replace("{{DischargeDoctor1}}", Bills.GetColValue("DischargeDoctor1"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
+            html = html.Replace("{{AddedBy}}", Bills.GetColValue("AddedBy"));
 
-
+            
 
             foreach (DataRow dr in Bills1.Rows)
             {
