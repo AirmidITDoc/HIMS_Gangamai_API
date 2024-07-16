@@ -30,7 +30,21 @@ namespace HIMS.Data.IPD
 
         //string ViewIPDAdmissionWardWiseCharges(int DoctorId, int WardId,int CompanyId, string htmlFilePath, string HeaderName);
 
+        //string ViewDepartmentWiseCountSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
+        //string ViewDoctorWiseCountSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
+        string ViewIPDDischargeTypeCompanyWise(DateTime FromDate, DateTime ToDate, int DoctorId, int DischargeTypeId, string htmlFilePath, string HeaderName);
+        string ViewIPDDischargeTypeCompanyWiseCount(DateTime FromDate, DateTime ToDate, int DoctorId, int DischargeTypeId, string htmlFilePath, string HeaderName);
+        string ViewIPDRefDoctorWise(DateTime FromDate, DateTime ToDate,  string htmlFilePath, string HeaderName);
+        string ViewIPDDischargeDetails(DateTime FromDate, DateTime ToDate, int DischargeTypeId, string htmlFilePath, string HeaderName);
 
+
+
+
+        string ViewIPDAdmissionList(DateTime FromDate, DateTime ToDate,int DoctorId, int WardId, string htmlFilePath, string HeaderName);
+
+        string ViewIPDAdmissionListCompanyWiseDetails(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, string htmlFilePath, string HeaderName);
+        string ViewIPDCurrentAdmittedList(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId,int CompanyId, string htmlFilePath, string HeaderName);
+        string ViewIPDCurrentAdmittedWardWiseCharges(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, int CompanyId, string htmlFilePath, string HeaderName);
         string ViewIPDDischargeReportWithMarkStatus(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewIPDDischargeReportWithBillSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewDepartmentWiseCountSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);

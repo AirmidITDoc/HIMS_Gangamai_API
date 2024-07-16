@@ -352,11 +352,6 @@ namespace HIMS.Data.Opd
 
         }
 
-        public string ViewCityWiseIPPatientCountReport(DateTime FromDate, DateTime ToDate, int AddedById, int DoctorId, string htmlFilePath, string HeaderName)
-        {
-            throw new NotImplementedException();
-        }
-
         public string ViewDepartmentWiseOPandIPRevenueReport(DateTime FromDate, DateTime ToDate, int DoctorID, string htmlFilePath, string htmlHeader)
         {
             throw new NotImplementedException();

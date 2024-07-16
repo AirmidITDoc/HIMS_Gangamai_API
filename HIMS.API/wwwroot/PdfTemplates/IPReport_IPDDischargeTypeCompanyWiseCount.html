@@ -18,7 +18,7 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Department Wise Opd Collection Summary</b> </td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>IPD Current Admitted - Ward Wise </b> </td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
                         </table>
@@ -35,27 +35,27 @@
                         </table>
                     </td>
                 </tr>
-                <tr class="bill-table-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead style="font-size: 15px; text-align: center;">
-                                <tr>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Sr.No</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Department Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill Amount</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody style="font-size: 14px;">
-                                {{Items}}
-                                <tr>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">Total Amt</td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_TotalAmt}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
+              
+
+
+                <table class="table" style="width:100%;border-collapse:collapse">
+                    <tbody>
+
+                        <tr style="font-size: 18px; background-color: white; font-weight: 700;">
+                       
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">DischargeType Name</td>
+
+                        </tr>
+
+                        {{Items}}
+                    </tbody>
+                </table>
+                </td>
+                <tr>
+                    <td>Patient Count :</td>
+                    <td>{{T_Count}}</td>
+                </tr>
                 </tr>
             </table>
         </div>

@@ -379,7 +379,7 @@ namespace HIMS.Data.Opd
             SqlParameter[] para = new SqlParameter[2];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            var Bills = GetDataTableProc("RptRefDoctorWiseAdmission", para);
+            var Bills = GetDataTableProc("rptReferenceDoctor", para);
 
 
             string html = File.ReadAllText(htmlFilePath);
@@ -427,11 +427,11 @@ namespace HIMS.Data.Opd
 
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegId"].ConvertToString()).Append("</td>");
                
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
               
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["AdmittedDoctorName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefDoctorName"].ConvertToString()).Append("</td></tr>");
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
@@ -692,10 +692,10 @@ namespace HIMS.Data.Opd
                 if (i == 1)
                 {
                     String Label;
-                    Label = dr["New"].ConvertToString();
+                    Label = dr["PatientOldAndNew"].ConvertToString();
                     items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
-                if (previousLabel != "" && previousLabel != dr["Old"].ConvertToString())
+                if (previousLabel != "" && previousLabel != dr["PatientOldAndNew"].ConvertToString())
                 {
                     j = 1;
 
@@ -703,14 +703,14 @@ namespace HIMS.Data.Opd
                        .Append(Dcount.ToString()).Append("</td></tr>");
 
                     Dcount = 0;
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["New"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["PatientOldNew"].ConvertToString()).Append("</td></tr>");
 
                 }
 
                 Dcount = Dcount + 1;
                 T_Count = T_Count + 1;
 
-                previousLabel = dr["New"].ConvertToString();
+                previousLabel = dr["PatientOldAndNew"].ConvertToString();
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 //items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["VisitDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
@@ -762,6 +762,7 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
+            double T_TotalAmt = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -770,10 +771,10 @@ namespace HIMS.Data.Opd
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append(" </td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalAmt"].ConvertToDouble()).Append("</td></tr>");
-               
+                T_TotalAmt += dr["TotalAmt"].ConvertToDouble();
 
             }
-
+            html = html.Replace("{{T_TotalAmt}}", T_TotalAmt.ToString());
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
@@ -1208,6 +1209,67 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{T_CardPay}}", T_CardPay.ToString());
             html = html.Replace("{{T_NeftPay}}", T_NeftPay.ToString());
             html = html.Replace("{{T_PayTMPay}}", T_PayTMPay.ToString());
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            return html;
+
+        }
+
+        public string ViewBillReportSummarySummary(DateTime FromDate, DateTime ToDate,  string htmlFilePath, string htmlHeader)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[2];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+         
+            var Bills = GetDataTableProc("rptBillDetails", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            double T_Count = 0, T_BillAmt = 0, T_ConcessionAmt = 0, T_NetPayableAmt = 0, T_PaidAmount = 0, T_BalanceAmt = 0, T_CashPay = 0, T_ChequePay = 0, T_CardPay = 0, T_NeftPay = 0, T_PayTMPay = 0;
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Price"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ConcessionAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PaidAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalanceAmt"].ConvertToDouble()).Append("</td></tr>");
+               
+
+                T_BillAmt += dr["BillAmt"].ConvertToDouble();
+                T_ConcessionAmt += dr["ConcessionAmt"].ConvertToDouble();
+         
+                T_PaidAmount += dr["PaidAmount"].ConvertToDouble();
+                T_BalanceAmt += dr["BalanceAmt"].ConvertToDouble();
+               
+            }
+
+
+            html = html.Replace("{{T_BillAmt}}", T_BillAmt.ToString());
+            html = html.Replace("{{T_ConcessionAmt}}", T_ConcessionAmt.ToString());
+        
+            html = html.Replace("{{T_PaidAmount}}", T_PaidAmount.ToString());
+            html = html.Replace("{{T_BalanceAmt}}", T_BalanceAmt.ToString());
+            
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));

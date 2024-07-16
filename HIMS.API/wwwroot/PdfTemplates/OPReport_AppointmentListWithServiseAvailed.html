@@ -60,13 +60,51 @@
                                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
                                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
                                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                   
+
                                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Medical}}</td>
                                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Pathology}}</td>
                                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Radiology}}</td>
                                 </tr>
                             </tbody>
                         </table>
+
+                        <script>
+                            // Example data (could be fetched from server or another source)
+                            var transactions = [
+                                { Description: "T_Medical", Amount: 123.4567 }
+                              
+                            ];
+
+                            // Function to round amounts
+                            function roundAmounts() {
+                                transactions.forEach(function (transaction) {
+                                    transaction.Amount = Math.round(transaction.Amount * 100) / 100; // Round to 2 decimal places
+                                });
+                            }
+
+                            // Function to populate table with data
+                            function populateTable() {
+                                var tableBody = document.getElementById("transactionTable");
+                                tableBody.innerHTML = ""; // Clear existing rows
+
+                                transactions.forEach(function (transaction) {
+                                    var row = document.createElement("tr");
+                                    var descriptionCell = document.createElement("td");
+                                    var amountCell = document.createElement("td");
+
+                                    descriptionCell.textContent = transaction.Description;
+                                    amountCell.textContent = "$" + transaction.Amount.toFixed(2); // Format amount to 2 decimal places
+
+                                    row.appendChild(descriptionCell);
+                                    row.appendChild(amountCell);
+                                    tableBody.appendChild(row);
+                                });
+                            }
+
+                            // Initial round and populate
+                            roundAmounts();
+                            populateTable();
+                        </script>
                     </td>
                 </tr>
                 

@@ -28,7 +28,7 @@ namespace HIMS.Data.OPReports
         string ViewDoctorWiseOpdCollectionSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewOPCollectionSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewBillReportSummary(DateTime FromDate, DateTime ToDate, int AddedById, string htmlFilePath, string htmlHeader);
-
+        string ViewBillReportSummarySummary(DateTime FromDate, DateTime ToDate,string htmlFilePath, string htmlHeader);
         string ViewOPDBillBalanceReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewOPDRefundOfBill(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewDepartmentServiceGroupWiseCollectionSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);

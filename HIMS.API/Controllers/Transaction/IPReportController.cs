@@ -29,13 +29,62 @@ namespace HIMS.API.Controllers.Transaction
 
 
 
+        [HttpGet("view-IPDDischargeTypeCompanyWise")]
+        public IActionResult ViewIPDDischargeTypeCompanyWise(DateTime FromDate, DateTime ToDate, int DoctorId, int DischargeTypeId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPDDischargeTypeCompanyWise.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPDDischargeTypeCompanyWise(FromDate, ToDate, DoctorId, DischargeTypeId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDDischargeTypeCompanyWise", "IPDDischargeTypeCompanyWise", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpGet("view-IPDDischargeTypeCompanyWiseCount")]
+        public IActionResult ViewIPDDischargeTypeCompanyWiseCount(DateTime FromDate, DateTime ToDate, int DoctorId, int DischargeTypeId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPDDischargeTypeCompanyWiseCount.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPDDischargeTypeCompanyWiseCount(FromDate, ToDate, DoctorId, DischargeTypeId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDDischargeTypeCompanyWiseCount", "IPDDischargeTypeCompanyWiseCount", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpGet("view-IPDRefDoctorWise")]
+        public IActionResult ViewIPDRefDoctorWise(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPDRefDoctorWise.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPDRefDoctorWise(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDRefDoctorWise", "IPDRefDoctorWise", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-IPDDischargeDetails")]
+        public IActionResult ViewIPDDischargeDetails(DateTime FromDate, DateTime ToDate, int DischargeTypeId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPDDischargeDetails.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPDDischargeDetails(FromDate, ToDate, DischargeTypeId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDDischargeDetails", "IPDDischargeDetails", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+       
+
         [HttpGet("view-IPDAdvanceReport")]
         public IActionResult ViewIPDAdvanceReport(DateTime FromDate, DateTime ToDate)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPAdvanceReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPReports.ViewIPDAdvanceReport( FromDate,  ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDAdvanceReport", "IPDAdvanceReport" , Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var html = _IPReports.ViewIPDAdvanceReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDAdvanceReport", "IPDAdvanceReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -46,7 +95,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_BillReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPReports.ViewBillReport(FromDate, ToDate,  AddedById, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPReports.ViewBillReport(FromDate, ToDate, AddedById, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "BillReport", "BillReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
@@ -58,7 +107,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_RefunfOfAdvanceReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPReports.ViewRefundofAdvanceReport(FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPReports.ViewRefundofAdvanceReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RefundofAdvanceReport", "RefundofAdvanceReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
@@ -153,12 +202,12 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-IPDAdmissionListCompanyWiseSummary")]
-        public IActionResult ViewIPDAdmissionListCompanyWiseSummary(DateTime FromDate, DateTime ToDate,int DoctorId, int  WardId)
+        public IActionResult ViewIPDAdmissionListCompanyWiseSummary(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPDAdmissionListCompanyWiseSummary.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewIPDAdmissionListCompanyWiseSummary(FromDate, ToDate, DoctorId, WardId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewIPDAdmissionListCompanyWiseSummary", "ViewIPDAdmissionListCompanyWiseSummary", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDAdmissionListCompanyWiseSummary", "IPDAdmissionListCompanyWiseSummary", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
 
@@ -200,17 +249,58 @@ namespace HIMS.API.Controllers.Transaction
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
-        //[HttpGet("view-IPDAdmissionListCompanyWiseSummary")]
-        //public IActionResult ViewIPDAdmissionListCompanyWiseSummary(DateTime FromDate, DateTime ToDate, BigInteger DoctorId, BigInteger WardId)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPDAdmissionListCompanyWiseSummary.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _IPReports.ViewIPDAdmissionListCompanyWiseSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDAdmissionListCompanyWiseSummary", "IPDAdmissionListCompanyWiseSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        //}
+        [HttpGet("view-IPDAdmissionList")]
+        public IActionResult ViewIPDAdmissionList(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPDAdmissionList.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPDAdmissionList(FromDate, ToDate, DoctorId, WardId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDAdmissionList", "IPDAdmissionList", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-IPDAdmissionListCompanyWiseDetails")]
+        public IActionResult ViewIPDAdmissionListCompanyWiseDetails(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPDAdmissionListCompanyWiseDetails.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPDAdmissionListCompanyWiseDetails(FromDate, ToDate, DoctorId, WardId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDAdmissionListCompanyWiseDetails", "IPDAdmissionListCompanyWiseDetails", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-IPDCurrentAdmittedList")]
+        public IActionResult ViewIPDCurrentAdmittedList(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, int CompanyId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPDCurrentAdmittedList.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPDCurrentAdmittedList(FromDate, ToDate, DoctorId, WardId, CompanyId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDCurrentAdmittedList", "IPDCurrentAdmittedList", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-IPDCurrentAdmittedWardWiseCharges")]
+        public IActionResult ViewIPDCurrentAdmittedWardWiseCharges(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, int CompanyId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPDCurrentAdmittedWardWiseChanges.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPDCurrentAdmittedWardWiseCharges(FromDate, ToDate, DoctorId, WardId, CompanyId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDCurrentAdmittedWardWiseCharges", "IPDCurrentAdmittedWardWiseCharges", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
+
         [HttpGet("view-IPDDischargeReportWithMarkStatus")]
         public IActionResult ViewIPDDischargeReportWithMarkStatus(DateTime FromDate, DateTime ToDate)
         {
@@ -376,9 +466,9 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
-        
 
-                [HttpGet("view-DepartmentWiseCollectionDetail")]
+
+        [HttpGet("view-DepartmentWiseCollectionDetail")]
         public IActionResult ViewDepartmentWiseCollectionDetail(DateTime FromDate, DateTime ToDate)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_DepartmentWiseCollectionDetails.html");
@@ -492,3 +582,7 @@ namespace HIMS.API.Controllers.Transaction
         }
     }
 }
+    
+
+
+      
