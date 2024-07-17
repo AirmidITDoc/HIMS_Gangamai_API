@@ -12,5 +12,9 @@ namespace HIMS.Model.Master
         public string City { get; set; }
         public string Pin { get; set; }
         public string Phone { get; set; }
+        public string HospitalHeaderLine { get; set; }
+        public string EmailID { get; set; }
+        public string WebSiteInfo { get; set; }
+
     }
 }
