@@ -9,5 +9,6 @@ namespace HIMS.Data.Master
     public interface I_Hospital
     {
         HospitalMaster GetHospitalById(long Id);
+        HospitalStoreMaster GetHospitalStoreById(long Id);
     }
 }

@@ -338,7 +338,8 @@ namespace HIMS.API.Extensions
              services.AddTransient<I_Hospital, R_Hospital>();
            services.AddTransient<I_CommanReport, R_CommanReport>();
             services.AddTransient<I_PHAdvance, R_PHAdvance>();
-          services.AddTransient<I_CompanyInformation, R_CompanyInformation>();
+            services.AddTransient<I_PHAdvanceRefund, R_PHAdvanceRefund>();
+            services.AddTransient<I_CompanyInformation, R_CompanyInformation>();
             /*   services.AddTransient<I_SalesReport, R_SalesReport>();
 
 

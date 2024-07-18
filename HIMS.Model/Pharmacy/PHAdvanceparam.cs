@@ -8,10 +8,8 @@ namespace HIMS.Model.Pharmacy
     {
 
         public InsertPHAdvance InsertPHAdvance { get; set; }
-
-        public List<InsertPHAdvanceDetail> InsertPHAdvanceDetail { get; set; }
+        public InsertPHAdvanceDetail InsertPHAdvanceDetail { get; set; }
         public UpdatePHAdvance UpdatePHAdvance { get; set; }
-
         public InsertPHPayment InsertPHPayment { get; set; }
     }
 
@@ -21,17 +19,14 @@ namespace HIMS.Model.Pharmacy
         public DateTime Date { get; set; }
         public int RefId { get; set; }
         public int OPD_IPD_Type { get; set; }
-
         public int OPD_IPD_Id { get; set; }
         public long AdvanceAmount { get; set; }
-
         public long AdvanceUsedAmount { get; set; }
         public long BalanceAmount { get; set; }
         public int AddedBy { get; set; }
         public bool IsCancelled { get; set; }
         public int IsCancelledBy { get; set; }
         public DateTime IsCancelledDate { get; set; }
-
         public int AdvanceID { get; set; }
 
     }

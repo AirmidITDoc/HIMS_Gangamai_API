@@ -17,4 +17,17 @@ namespace HIMS.Model.Master
         public string WebSiteInfo { get; set; }
 
     }
+
+    public class HospitalStoreMaster
+    {
+        public long StoreId { get; set; }
+        public string StorePrintName { get; set; }
+        public string StoreAddress { get; set; }
+        public string HospitalMobileNo { get; set; }
+        public string HospitalEmailId { get; set; }
+        public string PrintStoreUnitName { get; set; }
+        public string DL_NO { get; set; }
+        public string GSTIN { get; set; }
+
+    }
 }
