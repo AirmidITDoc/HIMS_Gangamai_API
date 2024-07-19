@@ -23,12 +23,19 @@ namespace HIMS.API.Controllers
         private readonly I_LoginManager _loginManager;
         private readonly IConfiguration configuration;
         private readonly I_MenuMaster i_MenuMaster;
+        private readonly I_Hospital i_Hospital;
 
-        public LoginController(I_LoginManager loginManager, IConfiguration configuration, I_MenuMaster i_MenuMaster)
+        public LoginController(I_LoginManager loginManager, IConfiguration configuration, I_MenuMaster i_MenuMaster, I_Hospital i_Hospital)
         {
             _loginManager = loginManager;
             this.configuration = configuration;
             this.i_MenuMaster = i_MenuMaster;
+            this.i_Hospital = i_Hospital;
+        }
+        [HttpGet("test-hospital")]
+        public ActionResult Test(int Id)
+        {
+            return Ok(i_Hospital.GetHospitalStoreById(Id));
         }
 
         [HttpGet]
@@ -49,7 +56,7 @@ namespace HIMS.API.Controllers
         public ActionResult GetPermissionMenus(int RoleId)
         {
             //return Ok(PrepareMenu(RoleId, false));
-            return Ok(i_MenuMaster.GetMenus(RoleId,false));
+            return Ok(i_MenuMaster.GetMenus(RoleId, false));
         }
         //[NonAction]
         //public List<MenuModel> PrepareMenu(int RoleId, bool isActiveMenuOnly)
