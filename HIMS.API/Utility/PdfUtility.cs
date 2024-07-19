@@ -43,15 +43,15 @@ namespace HIMS.API.Utility
         public string GetStoreHeader(string filePath, long StoreId = 0)
         {
             string htmlHeader = System.IO.File.ReadAllText(filePath);
-            HospitalStoreMaster objStoreHospital = _Hospital.GetHospitalStoreById(2);
-            htmlHeader = htmlHeader.Replace("{{StorePrintName}}", objStoreHospital?.StorePrintName ?? "");
-            htmlHeader = htmlHeader.Replace("{{StoreAddress}}", objStoreHospital?.StoreAddress ?? "");
-            htmlHeader = htmlHeader.Replace("{{HospitalMobileNo}}", objStoreHospital?.HospitalMobileNo ?? "");
-            htmlHeader = htmlHeader.Replace("{{HospitalEmailId}}", objStoreHospital?.HospitalEmailId ?? "");
-            htmlHeader = htmlHeader.Replace("{{PrintStoreUnitName}}", objStoreHospital?.PrintStoreUnitName ?? "");
-            htmlHeader = htmlHeader.Replace("{{DL_NO}}", objStoreHospital?.DL_NO ?? "");
-            htmlHeader = htmlHeader.Replace("{{GSTIN}}", objStoreHospital?.GSTIN ?? "");
-            htmlHeader = htmlHeader.Replace("{{Display}}", (objStoreHospital?.StoreId ?? 0) > 0 ? "visible" : "hidden");
+            HospitalMaster objStoreHospital = _Hospital.GetHospitalStoreById(2);
+            htmlHeader = htmlHeader.Replace("{{HospitalName}}", objStoreHospital?.HospitalName ?? "");
+            htmlHeader = htmlHeader.Replace("{{HospitalAddress}}", objStoreHospital?.HospitalAddress ?? "");
+            htmlHeader = htmlHeader.Replace("{{Phone}}", objStoreHospital?.Phone ?? "");
+            //htmlHeader = htmlHeader.Replace("{{HospitalEmailId}}", objStoreHospital?.HospitalEmailId ?? "");
+            //htmlHeader = htmlHeader.Replace("{{PrintStoreUnitName}}", objStoreHospital?.PrintStoreUnitName ?? "");
+            //htmlHeader = htmlHeader.Replace("{{DL_NO}}", objStoreHospital?.DL_NO ?? "");
+            //htmlHeader = htmlHeader.Replace("{{GSTIN}}", objStoreHospital?.GSTIN ?? "");
+            htmlHeader = htmlHeader.Replace("{{Display}}", (objStoreHospital?.HospitalId ?? 0) > 0 ? "visible" : "hidden");
             return htmlHeader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
         }
 
