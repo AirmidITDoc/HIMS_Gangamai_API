@@ -35,6 +35,73 @@
                     </td>
                 </tr>
 
+                <tr class="bill-info-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Advance No :</span>
+                                    <span>{{AdvanceNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>IPD No :</span>
+                                    <span>{{IPDNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Date | Time:</span>
+                                    <span>{{PaymentTime}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>UHID No:</span>
+                                    <span>{{RegNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Age | Gender:</span>
+                                    <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>DOA | Time:</span>
+                                    <span>{{AdmissionTime}}</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Patient Name:</span>
+                                    <span>{{PatientName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Patient Type :</span>
+                                    <span>{{PatientType}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span> Company Name :</span>
+                                    <span>{{CompanyName}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td style="padding: 2px;">
+                                    <span>Doctor Name:</span>
+                                    <span>{{DoctorName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Department: </span>
+                                    <span>{{DepartmentName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Ref.Doctor Name:</span>
+                                    <span>{{RefDocName}}</span>
+                                </td>
+                            </tr>
+
+
+                        </table>
+                    </td>
+                </tr>
+
 
                 <tr class="bill-table-row">
                     <td>
@@ -107,12 +174,12 @@
                                         <tr>
                                             <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: left; ">Concession Amount</td>
 
-                                            <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: right;">  {{T_Discamt}}</td>
+                                            <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: right;">  {{DiscAmount}}</td>
                                         </tr>
                                         <tr>
                                             <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: left; ">Net Amount</td>
 
-                                            <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: right;"> {{T_Netamt}}</td>
+                                            <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: right;"> {{NetAmount}}</td>
                                         </tr>
 
                                         <tr>
@@ -152,7 +219,7 @@
                                                     Advance Amount
                                                 </td>
                                                 <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                    {{T_Advamt}}
+                                                    {{AdvAmount}}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -168,7 +235,7 @@
                                                     Advance Used Amount
                                                 </td>
                                                 <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                    {{T_Advusedamt}}
+                                                    {{AdvUsedAmt}}
                                                 </td>
                                             </tr>
 
@@ -177,7 +244,7 @@
                                                     Advance Bal Ampunt
                                                 </td>
                                                 <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                    {{T_AdvBalamt}}
+                                                    {{BalAdvAmount}}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -185,7 +252,7 @@
                                                     Cash Pay Amount
                                                 </td>
                                                 <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                    {{T_Cashpayamt}}
+                                                    {{CashPay}}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -193,7 +260,7 @@
                                                     Online Pay Amount
                                                 </td>
                                                 <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                    {{T_Onlinepayamt}}
+                                                    {{PayTMAmount}}
                                                 </td>
                                             </tr>
                                         </tbody>

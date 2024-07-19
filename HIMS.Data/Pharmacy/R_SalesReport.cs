@@ -1451,6 +1451,14 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{T_Chequepayamt}}", T_Chequepayamt.To2DecimalPlace());
             html = html.Replace("{{T_Neftpayamt}}", T_Neftpayamt.To2DecimalPlace());
 
+            
+            html = html.Replace("{{DiscAmount}}", Bills.GetColValue("DiscAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{DiscAmount}}", Bills.GetColValue("DiscAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount").ConvertToDouble().To2DecimalPlace());
+
+
+
 
 
             html = html.Replace("{{StoreName}}", Bills.GetColValue("StoreName"));
@@ -1472,7 +1480,38 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
             html = html.Replace("{{DL_NO}}", Bills.GetColValue("DL_NO"));
 
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{AdvanceNo}}", Bills.GetColValue("AdvanceNo"));
+            html = html.Replace("{{Addedby}}", Bills.GetColValue("Addedby"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{Age}}", Bills.GetColValue("Age"));
 
+            html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvUsedAmt").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
+
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
+            html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
+            html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
+            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
+            html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
+
+
+            html = html.Replace("{{AdvUsedAmt}}", Bills.GetColValue("AdvUsedAmt").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{BalAdvAmount}}", Bills.GetColValue("BalAdvAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{AdvAmount}}", Bills.GetColValue("AdvAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{CashPay}}", Bills.GetColValue("CashPay").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{PayTMAmount}}", Bills.GetColValue("PayTMAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvUsedAmt").ConvertToDouble().To2DecimalPlace());
 
             return html;
         }

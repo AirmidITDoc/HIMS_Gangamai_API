@@ -49,7 +49,7 @@ namespace HIMS.Data.Pathology
 
             para[0] = new SqlParameter("@PathReportId", PathReportId) { DbType = DbType.Int64 };
             para[1] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("rptPrintPathologyReportTemplate", para);
+            var Bills = GetDataTableProc("m_rptPrintPathologyReportTemplate", para);
             string html = File.ReadAllText(htmlFilePath);
             
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
@@ -93,11 +93,9 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{Path_RefDoctorName}}", Bills.GetColValue("Path_RefDoctorName"));
             html = html.Replace("{{PathTemplateDetailsResult}}", Bills.GetColValue("PathTemplateDetailsResult").ConvertToString());
             html = html.Replace("{{PrintTestName}}", Bills.GetColValue("PrintTestName"));
+            html = html.Replace("{{Path_DoctorName}}", Bills.GetColValue("Path_DoctorName"));
 
-            //String v = Bills.GetColValue("PathTemplateDetailsResult").innerHTML;
-            //{ { PathTemplateDetailsResult || innerHTML} }
-            //{ { PathTemplateDetailsResult} }.innerHTML
-
+            
 html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
             //html = html.Replace("{{chkresonflag}}", Bills.GetColValue("reason").ConvertToString() != null ? "block" : "none");
             return html;

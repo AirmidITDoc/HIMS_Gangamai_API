@@ -10,5 +10,7 @@ namespace HIMS.Data.Pathology
         public bool Insert(pathresultentryparam pathresultentryparam);
 
         string ViewPathTestReport(int OP_IP_Type, string htmlFilePath, string HeaderName);
+
+        string ViewPathTestMultipleReport(int OP_IP_Type, string htmlFilePath, string HeaderName);
     }
 }
