@@ -25,12 +25,12 @@ namespace HIMS.Data.Master
             para[0] = new SqlParameter("@Id", Id);
             return GetList<HospitalMaster>("SELECT * FROM HospitalMaster WHERE HospitalId=@Id", para).FirstOrDefault();
         }
-        public HospitalMaster GetHospitalStoreById(long Id)
+        public HospitalStoreMaster GetHospitalStoreById(long Id)
         {
-            if (Id == 0) return new HospitalMaster();
+            if (Id == 0) return new HospitalStoreMaster();
             SqlParameter[] para = new SqlParameter[1];
             para[0] = new SqlParameter("@Id", Id);
-            return GetList<HospitalMaster>("SELECT StoreId HospitalId,PrintStoreName HospitalName,StoreAddress HospitalAddress,HospitalMobileNo Phone FROM M_StoreMaster WHERE StoreId=@Id", para).FirstOrDefault();
+            return GetList<HospitalStoreMaster>("SELECT StoreId,PrintStoreName,StoreAddress,HospitalMobileNo,HospitalEmailId,PrintStoreUnitName,DL_NO,GSTIN FROM M_StoreMaster WHERE StoreId=@Id", para).FirstOrDefault();
         }
     }
 }

@@ -10,6 +10,6 @@ namespace HIMS.Data.Master
     {
         HospitalMaster GetHospitalById(long Id);
 
-        HospitalMaster GetHospitalStoreById(long Id);
+        HospitalStoreMaster GetHospitalStoreById(long Id);
     }
 }

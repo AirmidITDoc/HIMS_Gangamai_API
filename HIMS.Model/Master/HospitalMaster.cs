@@ -21,7 +21,7 @@ namespace HIMS.Model.Master
     public class HospitalStoreMaster
     {
         public long StoreId { get; set; }
-        public string StorePrintName { get; set; }
+        public string PrintStoreName { get; set; }
         public string StoreAddress { get; set; }
         public string HospitalMobileNo { get; set; }
         public string HospitalEmailId { get; set; }
