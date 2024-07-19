@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Wkhtmltopdf.NetCore;
-
 using Aspose.Cells;
 using Wkhtmltopdf.NetCore.Options;
 using HIMS.Data.Master;
@@ -39,6 +38,20 @@ namespace HIMS.API.Utility
             htmlHeader = htmlHeader.Replace("{{EmailID}}", objHospital?.EmailID ?? "");
             htmlHeader = htmlHeader.Replace("{{WebSiteInfo}}", objHospital?.WebSiteInfo ?? "");
             htmlHeader = htmlHeader.Replace("{{Display}}", (objHospital?.HospitalId ?? 0) > 0 ? "visible" : "hidden");
+            return htmlHeader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+        }
+        public string GetStoreHeader(string filePath, long StoreId = 0)
+        {
+            string htmlHeader = System.IO.File.ReadAllText(filePath);
+            HospitalStoreMaster objStoreHospital = _Hospital.GetHospitalStoreById(2);
+            htmlHeader = htmlHeader.Replace("{{PrintStoreName}}", objStoreHospital?.PrintStoreName ?? "");
+            htmlHeader = htmlHeader.Replace("{{StoreAddress}}", objStoreHospital?.StoreAddress ?? "");
+            htmlHeader = htmlHeader.Replace("{{HospitalMobileNo}}", objStoreHospital?.HospitalMobileNo ?? "");
+            htmlHeader = htmlHeader.Replace("{{HospitalEmailId}}", objStoreHospital?.HospitalEmailId ?? "");
+            htmlHeader = htmlHeader.Replace("{{PrintStoreUnitName}}", objStoreHospital?.PrintStoreUnitName ?? "");
+            htmlHeader = htmlHeader.Replace("{{DL_NO}}", objStoreHospital?.DL_NO ?? "");
+            htmlHeader = htmlHeader.Replace("{{GSTIN}}", objStoreHospital?.GSTIN ?? "");
+            htmlHeader = htmlHeader.Replace("{{Display}}", (objStoreHospital?.StoreId ?? 0) > 0 ? "visible" : "hidden");
             return htmlHeader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
         }
 

@@ -34,12 +34,13 @@ namespace HIMS.API.Controllers.Transaction
         private readonly I_PharmPaymentMode _PharmPaymentMode;
         private readonly I_GRNReturn _GRNReturn;
         private readonly I_PHAdvance _PHAdvance;
+        private readonly I_PHAdvanceRefund _PHAdvanceRefund;
 
         public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN,
             Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_Workorder workorder, I_Stokadjustment stokadjustment,
             I_Openingbalance openingbalance,
             I_Mrpadjustment mrpadjustment,
-            I_MaterialAcceptance materialAcceptance, I_PharmPaymentMode pharmPaymentMode, I_GRNReturn gRNReturn,I_PHAdvance pHAdvance)
+            I_MaterialAcceptance materialAcceptance, I_PharmPaymentMode pharmPaymentMode, I_GRNReturn gRNReturn,I_PHAdvance pHAdvance, I_PHAdvanceRefund pHAdvanceRefund)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
@@ -55,6 +56,7 @@ namespace HIMS.API.Controllers.Transaction
             _PharmPaymentMode = pharmPaymentMode;
             _GRNReturn = gRNReturn;
             _PHAdvance = pHAdvance;
+            _PHAdvanceRefund = pHAdvanceRefund;
         }
 
         [HttpPost("SalesSaveWithPaymentwithStockCheck")]
@@ -230,7 +232,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GRNReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _GRN.ViewGRNReport(GRNID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _GRN.ViewGRNReport(GRNID, htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GRNReport", "GRNReport"+ GRNID, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
@@ -271,7 +273,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GRNReturn.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _GRNReturn.ViewGRNReturnReport(GRNReturnId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _GRNReturn.ViewGRNReturnReport(GRNReturnId, htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GRNReturn", "GRNReturn" + GRNReturnId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
@@ -709,9 +711,6 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-
-
-
         [HttpPost("Insert_PhAdvance")]
         public IActionResult PhAdvanceInsert(PHAdvanceparam PHAdvanceparam)
         {
@@ -726,6 +725,13 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(Id);
 
         }
-        
+
+        [HttpPost("InsertPharRefundofAdvance")]
+        public String InsertIPRefundofAdvance(PharRefundofAdvanceParams pharRefundofAdvanceParams)
+        {
+            var IPD = _PHAdvanceRefund.Insert(pharRefundofAdvanceParams);
+            return (IPD.ToString());
+        }
+
     }
 }

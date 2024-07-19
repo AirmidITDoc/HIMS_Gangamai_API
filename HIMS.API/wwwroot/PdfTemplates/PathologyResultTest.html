@@ -23,13 +23,14 @@
                         </table>
                     </td>
                 </tr>
+                <tr><td></td><td>DEPARTMENT OF PATHOLOGY</td><td></td></tr>
                 <tr class="bill-info-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>PathReport No :</span>
-                                    <span>{{PathReportId}}</span>
+                                    <span>UHID No:</span>
+                                    <span>{{RegNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
                                     <span>IPD No :</span>
@@ -40,7 +41,7 @@
                                     <span>{{PathTime}}</span>
                                 </td>
                             </tr>
-                            <tr>
+                            <!--<tr>
                                 <td style="padding: 2px;">
                                     <span>UHID No:</span>
                                     <span>{{RegNo}}</span>
@@ -53,22 +54,24 @@
                                     <span>DOA | Time:</span>
                                     <span>{{AdmissionTime}}</span>
                                 </td>
-                            </tr>
+                            </tr>-->
 
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>Patient Name:</span>
-                                    <span>{{PatientName}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>Patient Type :</span>
-                                    <span>{{PatientType}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span> Company Name :</span>
-                                    <span>{{CompanyName}}</span>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td style="padding: 2px;">
+                                <span>Patient Name:</span>
+                                <span>{{PatientName}}</span>
+                            </td>
+
+                            <td style="padding: 2px;">
+                                <span>Age | Gender:</span>
+                                <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
+                            </td>
+                            <td style="padding: 2px;">
+                                <span>Patient Type :</span>
+                                <span>{{PatientType}}</span>
+                            </td>
+                         
+                        </tr>
                             <tr>
 
                                 <td style="padding: 2px;">
@@ -88,28 +91,25 @@
                         </table>
                     </td>
                 </tr>
+                <tr><td></td></tr>
 
-             
                 <tr class="bill-table-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
-                          <!-- // <thead style="font-size: 14px;">-->
-                                <tr>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                        PathTime
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                        Report Time
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Parameter</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Result </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Normal Range</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">  Doctor Namet</td>
-                                 
+                            <!-- // <thead style="font-size: 14px;">-->
+                            <tr>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                  INVESTIGATION
+                                </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                   PATIENTS VALUE
+                                </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">NORMAL VALUES</td>
+                               
                                 {{Items}}
-                          <!-- // </thead>-->
-                           
+                                <!-- // </thead>-->
+
                         </table>
                     </td>
                 </tr>
@@ -121,7 +121,7 @@
                 <tr>
                     <table style="width: 100%; border-collapse: collapse;margin-top:20px;">
 
-                      
+
                         <tr style="padding: 6px; text-align: right;">
                             <td>
 

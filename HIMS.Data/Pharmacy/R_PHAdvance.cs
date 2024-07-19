@@ -38,17 +38,14 @@ namespace HIMS.Data.Pharmacy
             disc1.Remove("AdvanceID");
             var AdvID = ExecNonQueryProcWithOutSaveChanges("insert_T_PHAdvanceHeader_1", disc1, outputId1);
 
-            foreach (var a in PHAdvanceparam.InsertPHAdvanceDetail)
-            {
-                var disc5 = a.ToDictionary();
-                disc5.Remove("AdvanceDetailID");
-                disc5["AdvanceId"] = AdvID;
-                var AdvdetailID = ExecNonQueryProcWithOutSaveChanges("insert_TPHAdvanceDetail_1", disc5, outputId2);
-            }
+            var vPhAdvDet = PHAdvanceparam.InsertPHAdvanceDetail.ToDictionary();
+            vPhAdvDet.Remove("AdvanceDetailID");
+            vPhAdvDet["AdvanceId"] = AdvID;
+            var AdvdetailID = ExecNonQueryProcWithOutSaveChanges("insert_TPHAdvanceDetail_1", vPhAdvDet, outputId2);
 
-            var disc2 = PHAdvanceparam.InsertPHPayment.ToDictionary();
-            var ID = ExecNonQueryProcWithOutSaveChanges("insert_I_PHPayment_1", disc2);
-
+            var vPhPay = PHAdvanceparam.InsertPHPayment.ToDictionary();
+            vPhPay["AdvanceId"] = AdvdetailID;
+            ExecNonQueryProcWithOutSaveChanges("insert_I_PHPayment_1", vPhPay);
 
             _unitofWork.SaveChanges();
             return true;
@@ -66,22 +63,16 @@ namespace HIMS.Data.Pharmacy
                 Direction = ParameterDirection.Output
             };
 
-
             var disc3 = PHAdvanceparam.UpdatePHAdvance.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_Update_T_PHAdvanceHeader", disc3);
 
-
-            foreach (var a in PHAdvanceparam.InsertPHAdvanceDetail)
-            {
-                var disc5 = a.ToDictionary();
-                disc5.Remove("AdvanceDetailID");
-                disc5["AdvanceId"] = PHAdvanceparam.UpdatePHAdvance.AdvanceId;
-                var AdvdetailID = ExecNonQueryProcWithOutSaveChanges("insert_TPHAdvanceDetail_1", disc5, outputId1);
-            }
+            var vPhAdvDet = PHAdvanceparam.InsertPHAdvanceDetail.ToDictionary();
+            vPhAdvDet.Remove("AdvanceDetailID");
+            var AdvdetailID = ExecNonQueryProcWithOutSaveChanges("insert_TPHAdvanceDetail_1", vPhAdvDet, outputId1);
 
             var disc2 = PHAdvanceparam.InsertPHPayment.ToDictionary();
-            var ID = ExecNonQueryProcWithOutSaveChanges("insert_I_PHPayment_1", disc2);
-
+            disc2["AdvanceId"] = AdvdetailID;
+            ExecNonQueryProcWithOutSaveChanges("insert_I_PHPayment_1", disc2);
 
             _unitofWork.SaveChanges();
             return true;
