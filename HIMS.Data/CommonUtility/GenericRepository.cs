@@ -295,19 +295,24 @@ namespace HIMS.Data
                 {
                     if (pro.Name.ToLower().Split('_')[0] == dr.GetName(i).ToLower().Split('_')[0])
                     {
-                        if (!string.IsNullOrEmpty(Convert.ToString(dr[i])))
+                        try
                         {
-                            if (pro.PropertyType.Name == "String")
-                                pro.SetValue(obj, Convert.ToString(dr[i]));
-                            else if (pro.PropertyType.Name == "Byte[]" && string.IsNullOrEmpty(Convert.ToString(dr[i])))
-                                pro.SetValue(obj, new byte[0]);
+                            if (!string.IsNullOrEmpty(Convert.ToString(dr[i])))
+                            {
+                                if (pro.PropertyType.Name == "String")
+                                    pro.SetValue(obj, Convert.ToString(dr[i]));
+                                else if (pro.PropertyType.Name == "Byte[]" && string.IsNullOrEmpty(Convert.ToString(dr[i])))
+                                    pro.SetValue(obj, new byte[0]);
+                                else
+                                    pro.SetValue(obj, dr[i]);
+                            }
                             else
-                                pro.SetValue(obj, dr[i]);
+                            {
+                                if (pro.PropertyType.Name == "String")
+                                    pro.SetValue(obj, "");
+                            }
                         }
-                        else
-                        {
-                            if (pro.PropertyType.Name == "String")
-                                pro.SetValue(obj, "");
+                        catch (Exception) { 
                         }
                         break;
                     }

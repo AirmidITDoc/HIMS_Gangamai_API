@@ -18,8 +18,12 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Date Wise Doctor Wise Admission Count Details </b> </td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Credit Report</b> </td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                            </tr>
+                            <tr style="font-size: 18px">
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Cash OP Credit Bill</b> </td>
+
                             </tr>
                         </table>
                     </td>
@@ -40,38 +44,54 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <thead style="font-size: 15px; text-align: center;">
                                 <tr>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">SR No</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Admission Date</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>
+
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill No</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
                                     <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">AgeYear</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Department Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Doctor Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">RefDoctor Name</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Net Amt</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Paid Amt</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Balance Amt</th>
 
 
                                 </tr>
+
                             </thead>
                             <tbody style="font-size: 14px;">
                                 {{Items}}
-                                <tr>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">DAY WISE COUNT</td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Count}}</td>
+                                <tr style="border: 1px solid black; background-color: white">
+
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                        Total
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                        {{TotalNetPayableAmt}}
+                                    </td>
+                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                        {{TotalPaidAmount}}
+                                    </td>
+
+                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                        {{TotalBalanceAmt}}
+                                    </td>
+
+                                    
+
                                 </tr>
+
                             </tbody>
                         </table>
+
                     </td>
                 </tr>
-                <!--<tr>
-                    <td>Day Wise Count :</td>
-                    <td>{{T_Count}}</td>
-                </tr>-->
             </table>
         </div>
     </div>
