@@ -12,7 +12,7 @@
         <div class="invoice-box" style="max-width: 1000px; margin: 0 auto; font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
 
-                {{HospitalHeader}}
+                {{NewHeader}}
 
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
@@ -35,39 +35,44 @@
                         </table>
                     </td>
                 </tr>
-              
-
-
-                                <table class="table" style="width:100%;border-collapse:collapse">
-                                    <tbody>
-
-                                        <tr style="font-size: 18px; background-color: white; font-weight: 700;">
 
 
 
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Item Name</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Supplier Name</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">GRN No</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">GRN Date </td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">BatchNo</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Exp Date</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Qty</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Free Qty</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Last Date</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Last Price</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Rate</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">TotalAmt</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">CGST Amt</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">SGST Amt</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IGST Amt</td>
-                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Net Amt</td>
-                                        </tr>
+                <table class="table" style="width:100%;border-collapse:collapse">
+                    <tbody>
 
-                                        {{Items}}
-                                    </tbody>
-                                </table>
-</td>
+                        <tr style="font-size: 18px; background-color: white; font-weight: 700;">
+
+
+
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Item Name</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Supplier Name</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">GRN No</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">GRN Date </td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">BatchNo</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Exp Date</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Qty</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Free Qty</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Last Date</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Last Price</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Rate</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">TotalAmt</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">CGST Amt</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">SGST Amt</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IGST Amt</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Net Amt</td>
+                        </tr>
+
+                        {{Items}}
+                        <tr>
+                            <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                            <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">Total</td>
+                            <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_NetAmount}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </td>
                 </tr>
             </table>
         </div>
