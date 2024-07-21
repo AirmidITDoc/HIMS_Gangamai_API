@@ -9,27 +9,17 @@
 
 <body>
     <div class="main-content-wrapper">
-        <div class="invoice-box"
-             style="margin: auto;font-size: 13px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
-            <table cellpadding="5" cellspacing="5" style="width: 100%;line-height: inherit;text-align: left;">
-                <tr class="top-header-row">
-                    {{NewHeader}}
-                </tr>
+        <div class="invoice-box" style="max-width: 1000px; margin: 0 auto; font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+            <table style="width: 100%;line-height: inherit;text-align: left;">
+
+                {{NewHeader}}
+
                 <tr class="title-date-row">
-                    <td>
+                    <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
-                            <tr style="font-size: 16px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; ">
-                                    <b>
-                                        Patient Sales Statement
-                                    </b>
-                                </td>
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; text-align: right;">
-                                    <b>
-                                        Print
-                                        Date : {{CurrentDate}}
-                                    </b>
-                                </td>
+                            <tr style="font-size: 18px">
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Patient Sales Statement,</b> </td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
                         </table>
                     </td>
@@ -39,18 +29,12 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
-                                <td style="padding: 2px;">
-                                    <span>Advance No :</span>
-                                    <span>{{AdvanceNo}}</span>
-                                </td>
+
                                 <td style="padding: 2px;">
                                     <span>IPD No :</span>
                                     <span>{{IPDNo}}</span>
                                 </td>
-                                <td style="padding: 2px;">
-                                    <span>Date | Time:</span>
-                                    <span>{{PaymentTime}}</span>
-                                </td>
+
                             </tr>
                             <tr>
                                 <td style="padding: 2px;">
@@ -107,7 +91,7 @@
                     <td>
                         <table style="width: 100%; border-collapse: collapse;">
 
-                            <tr style="color:cadetblue">
+                            <tr>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Date</td>
                                 <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Bill No</td>-->
@@ -126,22 +110,6 @@
                             </tr>
                             <tbody style="font-size: 14px;">
                                 {{Items}}
-                                <tr>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Total Amount</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_Totalamt}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_Discamt}} </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_Netamt}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_paidamt}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_Creditreturnamt}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_Refundamt}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_Cashpayamt}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_Cardpayamt}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_Chequepayamt}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_Neftpayamt}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_Onlinepayamt}}</td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_Advusedamt}}</td>
-                                </tr>
 
 
                             </tbody>
@@ -161,7 +129,7 @@
                     <td>
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
-                                <td style="border: 1px solid #d4c3c3;">
+                                <td style="border: 1px solid #cccc;">
                                     <table style="text-align:center; border-collapse: collapse; width: 100%;">
 
                                         <tr>
@@ -174,12 +142,12 @@
                                         <tr>
                                             <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: left; ">Concession Amount</td>
 
-                                            <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: right;">  {{DiscAmount}}</td>
+                                            <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: right;">  {{salesdisc}}</td>
                                         </tr>
                                         <tr>
                                             <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: left; ">Net Amount</td>
 
-                                            <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: right;"> {{NetAmount}}</td>
+                                            <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: right;"> {{salesnet}}</td>
                                         </tr>
 
                                         <tr>
@@ -190,7 +158,7 @@
                                         <tr>
                                             <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: left; ">Cash Return</td>
 
-                                            <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: right;"> {{T_Cashreturnamt}}</td>
+                                            <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: right;"> {{salesreturncashTotal}}</td>
                                         </tr>
 
                                         <tr>
@@ -252,7 +220,7 @@
                                                     Cash Pay Amount
                                                 </td>
                                                 <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                    {{CashPay}}
+                                                    {{salescashTotal}}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -260,7 +228,7 @@
                                                     Online Pay Amount
                                                 </td>
                                                 <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                    {{PayTMAmount}}
+                                                    {{salesonline}}
                                                 </td>
                                             </tr>
                                         </tbody>

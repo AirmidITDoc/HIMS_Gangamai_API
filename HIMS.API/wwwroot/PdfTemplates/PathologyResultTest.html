@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div class="main-content-wrapper">
+    <div class="main-content-wrapper" style="height:1400px">
         <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
 
@@ -56,22 +56,22 @@
                                 </td>
                             </tr>-->
 
-                        <tr>
-                            <td style="padding: 2px;">
-                                <span>Patient Name:</span>
-                                <span>{{PatientName}}</span>
-                            </td>
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Patient Name:</span>
+                                    <span>{{PatientName}}</span>
+                                </td>
 
-                            <td style="padding: 2px;">
-                                <span>Age | Gender:</span>
-                                <span> {{AgeYear}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
-                            </td>
-                            <td style="padding: 2px;">
-                                <span>Patient Type :</span>
-                                <span>{{PatientType}}</span>
-                            </td>
-                         
-                        </tr>
+                                <td style="padding: 2px;">
+                                    <span>Age | Gender:</span>
+                                    <span> {{AgeYear}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Patient Type :</span>
+                                    <span>{{PatientType}}</span>
+                                </td>
+
+                            </tr>
                             <tr>
 
                                 <td style="padding: 2px;">
@@ -98,15 +98,15 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <!-- // <thead style="font-size: 14px;">-->
                             <tr>
-                                
+
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                  INVESTIGATION
+                                    INVESTIGATION
                                 </td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                   PATIENTS VALUE
+                                    PATIENTS VALUE
                                 </td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">NORMAL VALUES</td>
-                               
+
                                 {{Items}}
                                 <!-- // </thead>-->
 
@@ -118,7 +118,7 @@
 
 
 
-                <tr>
+                <!--<tr>
                     <table style="width: 100%; border-collapse: collapse;margin-top:20px;">
 
 
@@ -137,10 +137,14 @@
                         </tr>
 
                     </table>
-                </tr>
+                </tr>-->
+
             </table>
         </div>
     </div>
+
+    <footer style="margin-left:80%"> <p>{{PathResultDr1}}</p></footer>
+    <footer style="margin-left:80%"> <p>Pathology Doc Name</p></footer>
 </body>
 
 </html>
