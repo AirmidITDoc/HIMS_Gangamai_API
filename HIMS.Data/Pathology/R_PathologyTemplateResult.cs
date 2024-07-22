@@ -70,7 +70,7 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
             html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
-            html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
+            html = html.Replace("{{BedName}}", Bills.GetColValue("bedName"));
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
