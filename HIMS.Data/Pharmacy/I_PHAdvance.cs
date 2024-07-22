@@ -9,5 +9,7 @@ namespace HIMS.Data.Pharmacy
     {
         bool Insert(PHAdvanceparam PHAdvanceparam);
         bool Update(PHAdvanceparam PHAdvanceparam);
+
+        string ViewPharmaAdvanceReceipt(int RefundId, string htmlFilePath, string HeaderName);
     }
 }

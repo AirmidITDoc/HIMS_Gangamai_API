@@ -726,12 +726,44 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
+
+        [HttpGet("view-IP-PharmaAdvanceReceipt")]
+        public IActionResult ViewPharmaAdvanceReceipt(int AdvanceDetailID)
+        {
+
+
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaAdvanceReceipt.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _PHAdvance.ViewPharmaAdvanceReceipt(AdvanceDetailID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaAdvanceReceipt", "PharmaAdvanceReceipt" + AdvanceDetailID.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+
         [HttpPost("InsertPharRefundofAdvance")]
         public String InsertIPRefundofAdvance(PharRefundofAdvanceParams pharRefundofAdvanceParams)
         {
             var IPD = _PHAdvanceRefund.Insert(pharRefundofAdvanceParams);
             return (IPD.ToString());
         }
+
+
+        [HttpGet("view-IP-PharmaAdvanceReturnReceipt")]
+        public IActionResult ViewPahrmaAdvanceReturnReceipt(int RefundId)
+        {
+
+
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmaRefundofadvancereceipt.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _PHAdvanceRefund.ViewIPPharmaRefundofAdvanceReceipt(RefundId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmaAdvanceRefundReceipt", "PharmaAdvanceRefundReceipt" + RefundId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
 
     }
 }
