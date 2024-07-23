@@ -50,7 +50,7 @@ namespace HIMS.Data.Opd
 
             //rptIPDPaymentReceiptPrint
             para[0] = new SqlParameter("@PaymentId", PaymentId) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("rptOPDPaymentReceiptPrint", para);
+            var Bills = GetDataTableProc("m_rptOPDPaymentReceiptPrint", para);
            
             string html = File.ReadAllText(htmlFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
@@ -86,9 +86,9 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy | HH:mm tt"));
 
 
-            html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
+            html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("DoctorName"));
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
-            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
+            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDoctorName"));
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
             html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
