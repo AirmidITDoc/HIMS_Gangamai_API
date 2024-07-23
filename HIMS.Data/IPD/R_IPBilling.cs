@@ -196,7 +196,7 @@ namespace HIMS.Data.IPD
             SqlParameter[] para = new SqlParameter[1];
         
             para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("rptIPDFinalBill", para);
+            var Bills = GetDataTableProc("m_rptIPDFinalBill", para);
             string html = File.ReadAllText(htmlFilePath);
            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));

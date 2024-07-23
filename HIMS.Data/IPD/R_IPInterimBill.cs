@@ -128,7 +128,7 @@ namespace HIMS.Data.IPD
             SqlParameter[] para = new SqlParameter[1];
 
             para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("rptIPDInterimBill", para);
+            var Bills = GetDataTableProc("m_rptIPDInterimBill", para);
             string html = File.ReadAllText(htmlFilePath);
 
             
