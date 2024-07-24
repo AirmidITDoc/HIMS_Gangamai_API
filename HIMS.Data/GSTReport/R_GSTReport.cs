@@ -486,45 +486,529 @@ namespace HIMS.Data.Opd
 
 
 
-        public string ViewPurchaseReturnGSTReportSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewPurchaseReturnGSTReportSummary(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptPurchaseReturnGSTReport", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            double T_NetAmount = 0;
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+
+                //items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GRNReturnDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CGST"].ConvertToString()).Append("</td>");
+
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CGSTAmt"].ConvertToDouble()).Append("</td>");
+
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SGSTAmt"].ConvertToDouble()).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IGSTAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalAmount"].ConvertToDouble()).Append("</td></tr>");
+
+
+
+                T_NetAmount += dr["TotalAmount"].ConvertToDouble();
+
+            }
+
+
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
+
+
+            return html;
+
         }
 
-        public string ViewSalesGSTReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewSalesGSTReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("RptSalesVatReport", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            double T_NetAmount = 0, T_IGSTAmt = 0, T_SGSTAmt = 0, T_CGSTAmt = 0, T_GrossAmount =0;
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+
+              
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SalesNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GrossAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CGSTPer"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CGSTAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SGSTPer"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SGSTAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IGSTPer"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IGSTAmt"].ConvertToDouble()).Append("</td>");
+                //items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["MRP"].ConvertToDouble()).Append("</td>");
+                //items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PTR"].ConvertToDouble()).Append("</td>");
+                //items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalDiscAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["MRPAmount"].ConvertToDouble()).Append("</td></tr>");
+
+
+
+                T_NetAmount += dr["MRPAmount"].ConvertToDouble();
+                T_IGSTAmt += dr["IGSTAmt"].ConvertToDouble();
+                T_SGSTAmt += dr["SGSTAmt"].ConvertToDouble();
+                T_CGSTAmt += dr["CGSTAmt"].ConvertToDouble();
+                T_GrossAmount += dr["GrossAmount"].ConvertToDouble();
+            }
+
+
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
+            html = html.Replace("{{T_IGSTAmt}}", T_IGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_SGSTAmt}}", T_SGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_CGSTAmt}}", T_CGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_GrossAmount}}", T_GrossAmount.To2DecimalPlace());
+
+            return html;
+
         }
 
-        public string ViewSalesGSTDateWiseReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewSalesGSTDateWiseReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("RptSalesVatReport", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            double T_NetAmount = 0, T_IGSTAmt = 0, T_SGSTAmt = 0, T_CGSTAmt = 0, T_GrossAmount = 0;
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+
+
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+               
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GrossAmount"].ConvertToDouble()).Append("</td>");
+           
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CGSTAmt"].ConvertToDouble()).Append("</td>");
+          
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SGSTAmt"].ConvertToDouble()).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IGSTAmt"].ConvertToDouble()).Append("</td>");
+
+                //items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalDiscAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["MRPAmount"].ConvertToDouble()).Append("</td></tr>");
+
+
+
+                T_NetAmount += dr["MRPAmount"].ConvertToDouble();
+                T_IGSTAmt += dr["IGSTAmt"].ConvertToDouble();
+                T_SGSTAmt += dr["SGSTAmt"].ConvertToDouble();
+                T_CGSTAmt += dr["CGSTAmt"].ConvertToDouble();
+                T_GrossAmount += dr["GrossAmount"].ConvertToDouble();
+            }
+
+
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
+            html = html.Replace("{{T_IGSTAmt}}", T_IGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_SGSTAmt}}", T_SGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_CGSTAmt}}", T_CGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_GrossAmount}}", T_GrossAmount.To2DecimalPlace());
+
+            return html;
+
         }
 
-        public string ViewSalesReturnGSTReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+
+        public string ViewSalesReturnGSTReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("RptSalesReturnVatReport", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            double T_NetAmount = 0, T_IGSTAmt = 0, T_SGSTAmt = 0, T_CGSTAmt = 0, T_GrossAmount = 0, T_VatAmount = 0;
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+
+
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SalesReturnNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["VatAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CGSTPer"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CGSTAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SGSTPer"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SGSTAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IGSTPer"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IGSTAmt"].ConvertToDouble()).Append("</td>");
+                //items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["MRP"].ConvertToDouble()).Append("</td>");
+                //items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PTR"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DiscAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GrossAmount"].ConvertToDouble()).Append("</td></tr>");
+
+
+                T_VatAmount += dr["VatAmount"].ConvertToDouble();
+                T_NetAmount += dr["DiscAmount"].ConvertToDouble();
+                T_IGSTAmt += dr["IGSTAmt"].ConvertToDouble();
+                T_SGSTAmt += dr["SGSTAmt"].ConvertToDouble();
+                T_CGSTAmt += dr["CGSTAmt"].ConvertToDouble();
+                T_GrossAmount += dr["GrossAmount"].ConvertToDouble();
+            }
+
+
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_VatAmount}}", T_VatAmount.To2DecimalPlace());
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
+            html = html.Replace("{{T_IGSTAmt}}", T_IGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_SGSTAmt}}", T_SGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_CGSTAmt}}", T_CGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_GrossAmount}}", T_GrossAmount.To2DecimalPlace());
+
+            return html;
         }
 
-        public string ViewSalesReturnGSTDateWiseReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewSalesReturnGSTDateWiseReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("RptSalesReturnVatReport", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            double T_NetAmount = 0, T_IGSTAmt = 0, T_SGSTAmt = 0, T_CGSTAmt = 0, T_GrossAmount = 0;
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+
+
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GrossAmount"].ConvertToDouble()).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CGSTAmt"].ConvertToDouble()).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SGSTAmt"].ConvertToDouble()).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IGSTAmt"].ConvertToDouble()).Append("</td>");
+
+                //items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalDiscAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["MRPAmount"].ConvertToDouble()).Append("</td></tr>");
+
+
+
+                T_NetAmount += dr["MRPAmount"].ConvertToDouble();
+                T_IGSTAmt += dr["IGSTAmt"].ConvertToDouble();
+                T_SGSTAmt += dr["SGSTAmt"].ConvertToDouble();
+                T_CGSTAmt += dr["CGSTAmt"].ConvertToDouble();
+                T_GrossAmount += dr["GrossAmount"].ConvertToDouble();
+            }
+
+
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
+            html = html.Replace("{{T_IGSTAmt}}", T_IGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_SGSTAmt}}", T_SGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_CGSTAmt}}", T_CGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_GrossAmount}}", T_GrossAmount.To2DecimalPlace());
+
+            return html;
+
         }
 
-        public string ViewHSNCodeWiseReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+
+
+        public string ViewHSNCodeWiseReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("hsnCodeWiseSalesReport", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            double T_NetAmount = 0, T_IGSTAmt = 0, T_SGSTAmt = 0, T_CGSTAmt = 0, T_GrossAmount = 0;
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+
+
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["HSNcode"].ConvertToString()).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Descrption"].ConvertToDouble()).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Qty"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GrossAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TaxableValue"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CGSTAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SGSTAmt"].ConvertToDouble()).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IGSTAmt"].ConvertToDouble()).Append("</td></tr>");
+
+
+
+                T_NetAmount += dr["TaxableValue"].ConvertToDouble();
+                T_IGSTAmt += dr["IGSTAmt"].ConvertToDouble();
+                T_SGSTAmt += dr["SGSTAmt"].ConvertToDouble();
+                T_CGSTAmt += dr["CGSTAmt"].ConvertToDouble();
+                T_GrossAmount += dr["GrossAmount"].ConvertToDouble();
+            }
+
+
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
+            html = html.Replace("{{T_IGSTAmt}}", T_IGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_SGSTAmt}}", T_SGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_CGSTAmt}}", T_CGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_GrossAmount}}", T_GrossAmount.To2DecimalPlace());
+
+            return html;
+
         }
 
-        public string ViewGSTRZAPurchaseReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+
+        public string ViewGSTRZAPurchaseReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptGSTR2APurchase", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            double T_NetAmount = 0, T_IGSTAmt = 0, T_SGSTAmt = 0, T_CGSTAmt = 0, T_GrossAmount = 0;
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+
+
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SupplierName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GSTNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["InvoiceNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["InvDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GrnNumber"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["InvoiceValue"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GSTPer"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TaxableValue"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CGSTAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SGSTAmt"].ConvertToDouble()).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IGSTAmt"].ConvertToDouble()).Append("</td></tr>");
+
+
+
+                T_NetAmount += dr["TaxableValue"].ConvertToDouble();
+                T_IGSTAmt += dr["IGSTAmt"].ConvertToDouble();
+                T_SGSTAmt += dr["SGSTAmt"].ConvertToDouble();
+                T_CGSTAmt += dr["CGSTAmt"].ConvertToDouble();
+                //T_GrossAmount += dr["GrossAmount"].ConvertToDouble();
+            }
+
+
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
+            html = html.Replace("{{T_IGSTAmt}}", T_IGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_SGSTAmt}}", T_SGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_CGSTAmt}}", T_CGSTAmt.To2DecimalPlace());
+            //html = html.Replace("{{T_GrossAmount}}", T_GrossAmount.To2DecimalPlace());
+
+            return html;
+
         }
 
-        public string ViewGSTR2ASupplierWisePurchaseReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+
+
+        public string ViewGSTR2ASupplierWisePurchaseReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptGSTR2APurchase", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+            double T_NetAmount = 0, T_IGSTAmt = 0, T_SGSTAmt = 0, T_CGSTAmt = 0, T_GrossAmount = 0;
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+
+
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SupplierName"].ConvertToString()).Append("</td>");
+              
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GSTNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["InvoiceValue"].ConvertToString()).Append("</td>");
+             
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TaxableValue"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CGSTAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SGSTAmt"].ConvertToDouble()).Append("</td>");
+
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IGSTAmt"].ConvertToDouble()).Append("</td></tr>");
+
+
+
+                T_NetAmount += dr["TaxableValue"].ConvertToDouble();
+                T_IGSTAmt += dr["IGSTAmt"].ConvertToDouble();
+                T_SGSTAmt += dr["SGSTAmt"].ConvertToDouble();
+                T_CGSTAmt += dr["CGSTAmt"].ConvertToDouble();
+                //T_GrossAmount += dr["GrossAmount"].ConvertToDouble();
+            }
+
+
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
+            html = html.Replace("{{T_IGSTAmt}}", T_IGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_SGSTAmt}}", T_SGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_CGSTAmt}}", T_CGSTAmt.To2DecimalPlace());
+            //html = html.Replace("{{T_GrossAmount}}", T_GrossAmount.To2DecimalPlace());
+
+            return html;
+
         }
+
     }
 }
 
