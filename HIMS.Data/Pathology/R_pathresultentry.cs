@@ -19,24 +19,47 @@ namespace HIMS.Data.Pathology
         public bool Insert(pathresultentryparam pathresultentryparam)
         {
             // throw new NotImplementedException();
-            var disc1 = pathresultentryparam.Deletepathreportheader.ToDictionary();
-            var PathReportId = disc1["PathReportID"];
+
+
+
+            //foreach (var a in pathresultentryparam.Insertpathreportdetail)
+            //{
+                var disc1 = pathresultentryparam.Deletepathreportheader.ToDictionary();
+           // var PathReportId = disc1["PathReportID"];
             ExecNonQueryProcWithOutSaveChanges("Delete_T_PathologyReportDetails", disc1);
-//for
+              //}
             
           
-            foreach (var a in pathresultentryparam.Insertpathreportdetail)
+            foreach (var a1 in pathresultentryparam.Insertpathreportdetail)
             {
 
-                var disc2 = a.ToDictionary();
-                disc2["PathReportId"] = (int)Convert.ToInt64(PathReportId);
+                var disc2 = a1.ToDictionary();
+               // disc2["PathReportId"] = (int)Convert.ToInt64(PathReportId);
                 ExecNonQueryProcWithOutSaveChanges("insert_PathRrptDet_1", disc2);
             }
 
+            //foreach (var a2 in pathresultentryparam.Insertpathreportdetail)
+            //{
+                var disc3 = pathresultentryparam.Updatepathreportheader.ToDictionary();
+               // disc3["PathReportID"] = (int)Convert.ToInt64(PathReportId);
+                ExecNonQueryProcWithOutSaveChanges("update_T_PathologyReportHeader_1", disc3);
+            //}
+            
+            
+            
+            
+            _unitofWork.SaveChanges();
+            return true;
+        }
 
-            var disc3 = pathresultentryparam.Updatepathreportheader.ToDictionary();
-            disc3["PathReportID"] = (int)Convert.ToInt64(PathReportId);
-            ExecNonQueryProcWithOutSaveChanges("update_T_PathologyReportHeader_1", disc3);
+        public bool PrintInsert(pathresultentryparam pathresultentryparam)
+        {
+          //  foreach (var a6 in pathresultentryparam.PrintInsert)
+           // {
+                var disc9 = pathresultentryparam.PrintInsert.ToDictionary();
+                // disc3["PathReportID"] = (int)Convert.ToInt64(PathReportId);
+                ExecNonQueryProcWithOutSaveChanges("m_Insert_Temp_PathReportId", disc9);
+           // }
             _unitofWork.SaveChanges();
             return true;
         }
