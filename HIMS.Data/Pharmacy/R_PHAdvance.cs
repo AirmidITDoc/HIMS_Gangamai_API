@@ -17,7 +17,7 @@ namespace HIMS.Data.Pharmacy
         }
 
    
-        public bool Insert(PHAdvanceparam PHAdvanceparam)
+        public string Insert(PHAdvanceparam PHAdvanceparam)
         {
             var outputId1 = new SqlParameter
             {
@@ -49,7 +49,7 @@ namespace HIMS.Data.Pharmacy
             ExecNonQueryProcWithOutSaveChanges("insert_I_PHPayment_1", vPhPay);
 
             _unitofWork.SaveChanges();
-            return true;
+            return AdvID;
         }
 
     
