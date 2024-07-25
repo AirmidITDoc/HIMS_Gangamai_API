@@ -43,23 +43,55 @@
                         <tr style="font-size: 18px; background-color: white; font-weight: 700;">
 
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
-                        
+
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 10%;"> Date </td>
                             <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">GRN No</td>-->
-                         
+
 
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">GrossAmt</td>
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">CGST Amt</td>
-                          
+
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">SGST Amt</td>
 
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IGST Amt</td>
-                           
+
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Net Amount</td>
 
                         </tr>
 
                         {{Items}}
+                        <tr style="border: 1px solid black; background-color: white">
+
+
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                            </td>
+
+
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                Total Amount
+                            </td>
+
+                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                {{T_GrossAmount}}
+                            </td>
+
+                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                {{T_CGSTAmt}}
+                            </td>
+
+
+                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                {{T_SGSTAmt}}
+                            </td>
+
+                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                {{T_IGSTAmt}}
+                            </td>
+
+                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                {{T_NetAmount}}
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 </td>

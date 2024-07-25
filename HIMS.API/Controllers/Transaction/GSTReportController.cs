@@ -116,11 +116,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-PurchaseReturnGSTReportSummary")]
-        public IActionResult ViewPurchaseReturnGSTReportSummary(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewPurchaseReturnGSTReportSummary(DateTime FromDate, DateTime ToDate, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_PurchaseReturnGSTReportSummary.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPGST.ViewPurchaseReturnGSTReportSummary(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPGST.ViewPurchaseReturnGSTReportSummary(FromDate, ToDate,  StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PurchaseReturnGSTReportSummary", "PurchaseReturnGSTReportSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -138,44 +138,44 @@ namespace HIMS.API.Controllers.Transaction
         //}
 
         [HttpGet("view-SalesGSTReport")]
-        public IActionResult ViewSalesGSTReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewSalesGSTReport(DateTime FromDate, DateTime ToDate, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_SalesGSTReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPGST.ViewSalesGSTReport(FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPGST.ViewSalesGSTReport(FromDate, ToDate,  StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesGSTReport", "SalesGSTReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
         [HttpGet("view-SalesGSTDateWiseReport")]
-        public IActionResult ViewSalesGSTDateWiseReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewSalesGSTDateWiseReport(DateTime FromDate, DateTime ToDate, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_SalesGSTDateWiseReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPGST.ViewSalesGSTDateWiseReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPGST.ViewSalesGSTDateWiseReport(FromDate, ToDate, StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesGSTDateWiseReport", "SalesGSTDateWiseReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
         [HttpGet("view-SalesReturnGSTReport")]
-        public IActionResult ViewSalesReturnGSTReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewSalesReturnGSTReport(DateTime FromDate, DateTime ToDate, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_SalesReturnGSTReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPGST.ViewSalesReturnGSTReport(FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPGST.ViewSalesReturnGSTReport(FromDate, ToDate,  StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnGSTReport", "SalesReturnGSTReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
         [HttpGet("view-SalesReturnGSTDateWiseReport")]
-        public IActionResult ViewSalesReturnGSTDateWiseReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewSalesReturnGSTDateWiseReport(DateTime FromDate, DateTime ToDate, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_SalesReturnGSTDateWiseReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPGST.ViewSalesReturnGSTDateWiseReport(FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPGST.ViewSalesReturnGSTDateWiseReport(FromDate, ToDate,  StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReturnGSTDateWiseReport", "SalesReturnGSTDateWiseReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -192,11 +192,11 @@ namespace HIMS.API.Controllers.Transaction
         //}
 
         [HttpGet("view-HSNCodeWiseReport")]
-        public IActionResult ViewHSNCodeWiseReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewHSNCodeWiseReport(DateTime FromDate, DateTime ToDate, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_HSNCodeWiseReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPGST.ViewHSNCodeWiseReport(FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPGST.ViewHSNCodeWiseReport(FromDate, ToDate, StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "HSNCodeWiseReport", "HSNCodeWiseReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -222,22 +222,22 @@ namespace HIMS.API.Controllers.Transaction
         //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         //}
         [HttpGet("view-GSTRZAPurchaseReport")]
-        public IActionResult ViewGSTRZAPurchaseReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewGSTRZAPurchaseReport(DateTime FromDate, DateTime ToDate, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_GSTRZAPurchaseReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPGST.ViewGSTRZAPurchaseReport(FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPGST.ViewGSTRZAPurchaseReport(FromDate, ToDate,  StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GSTRZAPurchaseReport", "GSTRZAPurchaseReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
         [HttpGet("view-ViewGSTR2ASupplierWisePurchaseReport")]
-        public IActionResult ViewGSTR2ASupplierWisePurchaseReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewGSTR2ASupplierWisePurchaseReport(DateTime FromDate, DateTime ToDate, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_GSTRZASupplierWisePurchaseReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPGST.ViewGSTR2ASupplierWisePurchaseReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPGST.ViewGSTR2ASupplierWisePurchaseReport(FromDate, ToDate,  StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GSTR2ASupplierWisePurchaseReport", "GSTR2ASupplierWisePurchaseReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
