@@ -16,43 +16,10 @@ namespace HIMS.Data.Pathology
 
         }
 
-        //public bool Insert(pathresultentryparam pathresultentryparam)
-        //{
-        //    // throw new NotImplementedException();
-
-        //    var disc1 = pathresultentryparam.Deletepathreportheader.ToDictionary();
-        //    ExecNonQueryProcWithOutSaveChanges("Delete_T_PathologyReportDetails", disc1);
-
-
-        //    foreach (var a1 in pathresultentryparam.Insertpathreportdetail)
-        //    {
-
-        //        var disc2 = a1.ToDictionary();
-        //        ExecNonQueryProcWithOutSaveChanges("insert_PathRrptDet_1", disc2);
-        //    }
-
-        //    var disc3 = pathresultentryparam.Updatepathreportheader.ToDictionary();
-        //   ExecNonQueryProcWithOutSaveChanges("update_T_PathologyReportHeader_1", disc3);
-
-        //    _unitofWork.SaveChanges();
-        //    return true;
-        //}
+       
 
         public bool Insert(pathresultentryparam pathresultentryparam)
         {
-
-
-            //List<string> lang1 = new List<string>() { "C", "C++" };
-            //List<string> lang2 = new List<string>() { "Java", "C#" };
-
-            //List<List<string>> listOfLists = new List<List<string>>();
-            //listOfLists.Add(lang1);
-            //listOfLists.Add(lang2);
-
-            //foreach (var list in listOfLists)
-            //{
-            //    Console.WriteLine(String.Join(", ", list));
-            //}
 
 
             foreach (var a2 in pathresultentryparam.Deletepathreportheader)
@@ -83,12 +50,11 @@ namespace HIMS.Data.Pathology
 
         public bool PrintInsert(pathresultentryparam pathresultentryparam)
         {
-          //  foreach (var a6 in pathresultentryparam.PrintInsert)
-           // {
-                var disc9 = pathresultentryparam.PrintInsert.ToDictionary();
-                // disc3["PathReportID"] = (int)Convert.ToInt64(PathReportId);
-                ExecNonQueryProcWithOutSaveChanges("m_Insert_Temp_PathReportId", disc9);
-           // }
+            foreach (var a6 in pathresultentryparam.PrintInsert)
+            {
+                var disc9 = a6.ToDictionary();
+              ExecNonQueryProcWithOutSaveChanges("m_Insert_Temp_PathReportId", disc9);
+            }
             _unitofWork.SaveChanges();
             return true;
         }
