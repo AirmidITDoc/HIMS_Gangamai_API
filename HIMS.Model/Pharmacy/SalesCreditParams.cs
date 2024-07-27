@@ -46,6 +46,7 @@ namespace HIMS.Model.Pharmacy
         public long SalesTypeId { get; set; }
         public long SalesId { get; set; }
         public string ExtMobileNo { get; set; }
+        public int IsItem_Header_disc { get; set; }
 
     }
     public class SalesDetailInsertCredit

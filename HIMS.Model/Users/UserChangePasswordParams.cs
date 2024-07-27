@@ -52,6 +52,11 @@ namespace HIMS.Model.Users
         // public bool IsRefDocEditOpt { get; set; }
         public bool IsInchIndVfy { get; set; }
         public int WebRoleId { get; set; }
+        public bool PharExtOpt { get; set; }
+        public bool PharOPOpt { get; set; }
+        public bool PharIPOpt { get; set; }
+        public int UnitId { get; set; }
+        public long MobileNo { get; set; }
     }
 
 
@@ -61,11 +66,9 @@ namespace HIMS.Model.Users
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
-      // public string Password { get; set; }
         public long AddedBy { get; set; }
         public bool IsActive { get; set; }
         public long RoleId { get; set; }
-     //   public string Role { get; set; }
         public long StoreId { get; set; }
         public bool IsDoctorType { get; set; }
         public long DoctorId { get; set; }
@@ -88,5 +91,10 @@ namespace HIMS.Model.Users
         // public bool IsRefDocEditOpt { get; set; }
         public bool IsInchIndVfy { get; set; }
         public int WebRoleId { get; set; }
+        public bool PharExtOpt { get; set; }
+        public bool PharOPOpt { get; set; }
+        public bool PharIPOpt { get; set; }
+        public int UnitId { get; set; }
+        public long MobileNo { get; set; }
     }
 }

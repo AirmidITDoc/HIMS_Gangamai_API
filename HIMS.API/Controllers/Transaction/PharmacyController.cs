@@ -83,8 +83,25 @@ namespace HIMS.API.Controllers.Transaction
         [HttpPost("SalesSaveWithPayment")]
         public IActionResult SalesSaveWithPayment(SalesParams salesParams)
         {
-            var SalesSave = _Sales.InsertSales(salesParams);
-            return Ok(SalesSave.ToString());
+            bool IsInStock = true;
+            foreach (UpdateCurStkSales objItem in salesParams.UpdateCurStkSales)
+            {
+                int CurrentStock = _Sales.GetCurrentStock(objItem.ItemId, objItem.StoreID, objItem.StkID);
+                if (CurrentStock < objItem.IssueQty)
+                    IsInStock = false;
+            }
+            if (IsInStock)
+            {
+                var SalesSave = _Sales.InsertSales(salesParams);
+                return Ok(SalesSave.ToString());
+            }
+            else
+            {
+                return Ok("-1");
+            }
+
+            //var SalesSave = _Sales.InsertSales(salesParams);
+            //return Ok(SalesSave.ToString());
         }
 
         [HttpPost("SalesSaveDraftBill")]
