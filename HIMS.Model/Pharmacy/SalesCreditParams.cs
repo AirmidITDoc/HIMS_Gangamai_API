@@ -7,8 +7,9 @@ namespace HIMS.Model.Pharmacy
     public class SalesCreditParams
     {
         public SalesInsert SalesInsertCredit { get; set; }
-        public List<SalesDetailInsertCredit> SalesDetailInsertCredit { get; set; }
         public List<UpdateCurStkSalesCredit> UpdateCurStkSalesCredit { get; set; }
+        public List<SalesDetailInsertCredit> SalesDetailInsertCredit { get; set; }
+        //public List<UpdateCurStkSalesCreditCheck> UpdateCurStkSalesCreditCheck { get; set; }
         public Cal_DiscAmount_SalesCredit Cal_DiscAmount_SalesCredit { get; set; }
         public Cal_GSTAmount_SalesCredit Cal_GSTAmount_SalesCredit { get; set; }
     }
@@ -48,6 +49,13 @@ namespace HIMS.Model.Pharmacy
         public string ExtMobileNo { get; set; }
         public int IsItem_Header_disc { get; set; }
 
+    }
+    public class UpdateCurStkSalesCreditCheck
+    {
+        public long ItemId { get; set; }
+        public long IssueQty { get; set; }
+        public long StoreID { get; set; }
+        public long StkID { get; set; }
     }
     public class SalesDetailInsertCredit
     {

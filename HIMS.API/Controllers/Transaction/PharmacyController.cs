@@ -115,14 +115,32 @@ namespace HIMS.API.Controllers.Transaction
         [HttpPost("SalesSaveWithCredit")]
         public IActionResult SalesSaveWithCredit(SalesCreditParams salesCreditParams)
         {
+            //bool IsInStock = true;
+            //foreach (UpdateCurStkSalesCredit objItem in SalesCreditParams.UpdateCurStkSalesCredit)
+            //{
+            //    int CurrentStock = _Sales.GetCurrentStock(objItem.ItemId, objItem.StoreID, objItem.StkID);
+            //    if (CurrentStock < objItem.IssueQty)
+            //        IsInStock = false;
+            //}
+            //if (IsInStock)
+            //{
+
+            //    var SalesSave = _Sales.InsertSalesWithCredit(salesCreditParams);
+            //    return Ok(SalesSave.ToString());
+            //}
+            //else
+            //{
+            //    return Ok("-1");
+            //}
+
             var SalesSave = _Sales.InsertSalesWithCredit(salesCreditParams);
             return Ok(SalesSave.ToString());
 
         }
         [HttpPost("PaymentSettlement")]
-        public IActionResult PaymentSettlement(SalesParams salesParams)
+        public IActionResult PaymentSettlement(SalesPaymentParams salesPaymentParams)
         {
-            var PaymentSettlement = _Sales.PaymentSettlement(salesParams);
+            var PaymentSettlement = _Sales.PaymentSettlement(salesPaymentParams);
             return Ok(PaymentSettlement);
 
         }

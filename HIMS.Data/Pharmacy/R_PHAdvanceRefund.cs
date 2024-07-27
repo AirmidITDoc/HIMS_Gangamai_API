@@ -48,13 +48,13 @@ namespace HIMS.Data.Pharmacy
             foreach (var a in pharRefundofAdvanceParams.InsertPharRefundofAdvanceDetail)
             {
                 var disc = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("insert_T_PHAdvRefundDetail_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("m_insert_T_PHAdvRefundDetail_1", disc);
             }
 
             foreach (var a in pharRefundofAdvanceParams.UpdatePharAdvanceDetailBalAmount)
             {
                 var disc = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("update_T_PHAdvanceDetailBalAmount_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("m_update_T_PHAdvanceDetailBalAmount_1", disc);
             }
 
             var vPayment = pharRefundofAdvanceParams.InsertPharPayment.ToDictionary();
