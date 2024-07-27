@@ -16,38 +16,67 @@ namespace HIMS.Data.Pathology
 
         }
 
+        //public bool Insert(pathresultentryparam pathresultentryparam)
+        //{
+        //    // throw new NotImplementedException();
+
+        //    var disc1 = pathresultentryparam.Deletepathreportheader.ToDictionary();
+        //    ExecNonQueryProcWithOutSaveChanges("Delete_T_PathologyReportDetails", disc1);
+
+
+        //    foreach (var a1 in pathresultentryparam.Insertpathreportdetail)
+        //    {
+
+        //        var disc2 = a1.ToDictionary();
+        //        ExecNonQueryProcWithOutSaveChanges("insert_PathRrptDet_1", disc2);
+        //    }
+
+        //    var disc3 = pathresultentryparam.Updatepathreportheader.ToDictionary();
+        //   ExecNonQueryProcWithOutSaveChanges("update_T_PathologyReportHeader_1", disc3);
+
+        //    _unitofWork.SaveChanges();
+        //    return true;
+        //}
+
         public bool Insert(pathresultentryparam pathresultentryparam)
         {
-            // throw new NotImplementedException();
 
 
+            //List<string> lang1 = new List<string>() { "C", "C++" };
+            //List<string> lang2 = new List<string>() { "Java", "C#" };
 
-            //foreach (var a in pathresultentryparam.Insertpathreportdetail)
+            //List<List<string>> listOfLists = new List<List<string>>();
+            //listOfLists.Add(lang1);
+            //listOfLists.Add(lang2);
+
+            //foreach (var list in listOfLists)
             //{
-                var disc1 = pathresultentryparam.Deletepathreportheader.ToDictionary();
-           // var PathReportId = disc1["PathReportID"];
-            ExecNonQueryProcWithOutSaveChanges("Delete_T_PathologyReportDetails", disc1);
-              //}
-            
-          
-            foreach (var a1 in pathresultentryparam.Insertpathreportdetail)
-            {
+            //    Console.WriteLine(String.Join(", ", list));
+            //}
 
-                var disc2 = a1.ToDictionary();
-               // disc2["PathReportId"] = (int)Convert.ToInt64(PathReportId);
-                ExecNonQueryProcWithOutSaveChanges("insert_PathRrptDet_1", disc2);
+
+            foreach (var a2 in pathresultentryparam.Deletepathreportheader)
+            {
+                var disc1 = a2.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("Delete_T_PathologyReportDetails", disc1);
             }
 
-            //foreach (var a2 in pathresultentryparam.Insertpathreportdetail)
-            //{
-                var disc3 = pathresultentryparam.Updatepathreportheader.ToDictionary();
-               // disc3["PathReportID"] = (int)Convert.ToInt64(PathReportId);
+            foreach (var a1 in pathresultentryparam.Insertpathreportdetail)
+            {
+               
+                    var disc3 = a1.ToDictionary();
+                    ExecNonQueryProcWithOutSaveChanges("insert_PathRrptDet_1", disc3);
+                
+            }
+            foreach (var a3 in pathresultentryparam.Updatepathreportheader)
+            {
+                var disc3 = a3.ToDictionary();
                 ExecNonQueryProcWithOutSaveChanges("update_T_PathologyReportHeader_1", disc3);
-            //}
-            
-            
-            
-            
+            }
+
+
+
+
             _unitofWork.SaveChanges();
             return true;
         }

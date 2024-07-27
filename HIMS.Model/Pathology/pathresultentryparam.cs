@@ -6,10 +6,17 @@ namespace HIMS.Model.Pathology
 {
    public class pathresultentryparam
     {
-        public Deletepathreportheader Deletepathreportheader { get; set; }
+        public List<Deletepathreportheader> Deletepathreportheader { get; set; }
 
+        //List<List<string>> listOfLists = new List<List<string>>();
         public List<Insertpathreportdetail> Insertpathreportdetail { get; set; }
-        public Updatepathreportheader Updatepathreportheader { get; set; }
+        public List<Updatepathreportheader> Updatepathreportheader { get; set; }
+
+        //public Deletepathreportheader Deletepathreportheader { get; set; }
+
+        //public List<Insertpathreportdetail> Insertpathreportdetail { get; set; }
+        //public Updatepathreportheader Updatepathreportheader { get; set; }
+
 
         public PrintInsert PrintInsert { get; set; }
     }
