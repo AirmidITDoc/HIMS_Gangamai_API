@@ -78,6 +78,13 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(PTR1);
         }
 
+        [HttpPost("PathPrintResultentryInsert")]
+        public IActionResult PrintPathResultentryInsert(pathresultentryparam pathresultentryparam)
+        {
+            var PTR1 = _Pathresultentry.PrintInsert(pathresultentryparam);
+            return Ok(PTR1);
+        }
+
 
         [HttpGet("view-PathReportMultiple")]
         public IActionResult ViewPathReportMultiple(int OP_IP_Type)

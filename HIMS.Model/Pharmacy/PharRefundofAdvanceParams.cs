@@ -27,6 +27,8 @@ namespace HIMS.Model.Pharmacy
         public Boolean IsCancelled { get; set; }
         public int IsCancelledBy { get; set; }
         public DateTime IsCancelledDate { get; set; }
+
+        public int StrId { get; set; }
         public int RefundId { get; set; }
 
     }

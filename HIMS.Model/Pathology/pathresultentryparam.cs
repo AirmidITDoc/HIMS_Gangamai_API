@@ -10,6 +10,8 @@ namespace HIMS.Model.Pathology
 
         public List<Insertpathreportdetail> Insertpathreportdetail { get; set; }
         public Updatepathreportheader Updatepathreportheader { get; set; }
+
+        public PrintInsert PrintInsert { get; set; }
     }
 
 
@@ -53,6 +55,11 @@ namespace HIMS.Model.Pathology
         public string SuggestionNotes { get; set; }
         public int AdmVisitDoctorID { get; set; }
         public int RefDoctorID { get; set; }
+    }
+
+    public class  PrintInsert
+    {
+        public int PathReportId { get; set; }
     }
 }
 
