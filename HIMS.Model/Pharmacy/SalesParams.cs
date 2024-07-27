@@ -8,7 +8,6 @@ namespace HIMS.Model.Pharmacy
     {
             public SalesInsert SalesInsert { get; set; }
             public List<SalesDetailInsert> SalesDetailInsert { get; set; }
-           
             public List<SalesDraftbillDetailInsert> SalesDraftbillDetailInsert { get; set; }
             public List<UpdateCurStkSales> UpdateCurStkSales { get; set; }
             public Cal_DiscAmount_Sales Cal_DiscAmount_Sales { get; set; }
@@ -17,7 +16,6 @@ namespace HIMS.Model.Pharmacy
             public update_Pharmacy_BillBalAmount update_Pharmacy_BillBalAmount { get; set; }
             public List<update_T_PHAdvanceDetail> update_T_PHAdvanceDetail { get; set; }
             public update_T_PHAdvanceHeader update_T_PHAdvanceHeader { get; set; }
-
             public SalesDraftbillInsert SalesDraftbillInsert { get; set; }
             public SalesDraftStatusUpdate SalesDraftStatusUpdate { get; set; }
 
