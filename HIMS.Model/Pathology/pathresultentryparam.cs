@@ -13,7 +13,7 @@ namespace HIMS.Model.Pathology
 
 
         public List<PrintInsert> PrintInsert { get; set; }
-       // public PrintInsert PrintInsert { get; set; }
+        public RollbackReport RollbackReport { get; set; }
     }
 
 
@@ -60,6 +60,11 @@ namespace HIMS.Model.Pathology
     }
 
     public class  PrintInsert
+    {
+        public int PathReportId { get; set; }
+    }
+
+    public class RollbackReport
     {
         public int PathReportId { get; set; }
     }

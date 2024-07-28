@@ -7,6 +7,7 @@ using System.IO;
 using HIMS.Data.Opd;
 using HIMS.Data.IPD;
 using HIMS.Model.IPD;
+using HIMS.Data.Pathology;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -31,11 +32,12 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_IPBilling _IPBilling;
         public readonly I_OPDPrescription _OPDPrescription;
         public readonly I_IPPrescription _IPPrescription;
-        
+        public readonly I_pathresultentry _Pathresultentry;
+        public readonly I_PathologyTemplateResult _PathologyTemplateResult;
 
         public WhatsappEmailController(I_Sales sales, I_WhatsappSms whatsappSms, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment ,IPdfUtility pdfUtility,
             I_GRN gRN,I_PurchaseOrder purchaseOrder, I_Payment Payment, I_OPRefundBill oPRefundBill, I_IPRefundofAdvance iPRefundofAdvance, I_IP_Settlement_Process iP_Settlement_Process, I_IPInterimBill ipinterimbill,
-            I_IPRefundofBilll iPRefundofBilll, I_IPBilling iPBilling, I_OPDPrescription oPDPrescription, I_IPPrescription iPPrescription,
+            I_IPRefundofBilll iPRefundofBilll, I_IPBilling iPBilling, I_OPDPrescription oPDPrescription, I_IPPrescription iPPrescription, I_pathresultentry pathresultentry, I_PathologyTemplateResult pathologyTemplateResult,
             I_OPbilling oPbilling,
             I_IPAdvance ipAdvance)
         {
@@ -56,6 +58,8 @@ namespace HIMS.API.Controllers.Transaction
             this._IPBilling = iPBilling;
             this._IPPrescription = iPPrescription;
             this._OPDPrescription = oPDPrescription;
+            this._Pathresultentry = pathresultentry;
+            this._PathologyTemplateResult = pathologyTemplateResult;
         }
 
 
@@ -207,6 +211,22 @@ namespace HIMS.API.Controllers.Transaction
                 var html = _OPbilling.ViewOPBillReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
                 var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OpBillingReceipt", "OpBilling" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
                 WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "PathlogyTestResult")
+            {
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathologyResultTest.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                var html = _Pathresultentry.ViewPathTestMultipleReport(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathologyResultTest", "PathologyResultTest" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
+            }
+            else if (WhatsappSmsparam.InsertWhatsappsmsInfo.SMSType == "PathlogyTemplateResult")
+            {
+              //  string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathTemplate.html");
+             //   string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+              //  var html = _PathologyTemplateResult.ViewPathTemplateReceipt(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo);
+                //var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTemplate", "PathTemplate" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                //WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
             }
 
             var Id = _WhatsappSms.Insert(WhatsappSmsparam);

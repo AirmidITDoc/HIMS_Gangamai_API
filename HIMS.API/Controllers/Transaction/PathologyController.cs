@@ -85,6 +85,14 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(PTR1);
         }
 
+        [HttpPost("PathResultentryrollback")]
+        public IActionResult PathResultentryRollback(pathresultentryparam pathresultentryparam)
+        {
+            var PTR1 = _Pathresultentry.Rollback(pathresultentryparam);
+            return Ok(PTR1);
+        }
+
+
 
         [HttpGet("view-PathReportMultiple")]
         public IActionResult ViewPathReportMultiple(int OP_IP_Type)

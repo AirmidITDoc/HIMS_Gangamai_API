@@ -64,6 +64,16 @@ namespace HIMS.Data.Pathology
             return true;
         }
 
+        public bool Rollback(pathresultentryparam pathresultentryparam)
+        {
+           
+                var Roll = pathresultentryparam.RollbackReport.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("RollBack_TestForResult", Roll);
+            
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
         public string ViewPathTestMultipleReport(int OP_IP_Type, string htmlFilePath, string htmlHeader)
         {
             //throw new NotImplementedException();
