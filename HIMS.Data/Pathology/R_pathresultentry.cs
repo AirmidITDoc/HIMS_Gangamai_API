@@ -50,9 +50,14 @@ namespace HIMS.Data.Pathology
 
         public bool PrintInsert(pathresultentryparam pathresultentryparam)
         {
+            foreach (var a7 in pathresultentryparam.PrintInsert)
+            {
+                var vParam = a7.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_truncate_Temp_PathReportId", vParam);
+            }
             foreach (var a6 in pathresultentryparam.PrintInsert)
             {
-                var disc9 = a6.ToDictionary();
+              var disc9 = a6.ToDictionary();
               ExecNonQueryProcWithOutSaveChanges("m_Insert_Temp_PathReportId", disc9);
             }
             _unitofWork.SaveChanges();

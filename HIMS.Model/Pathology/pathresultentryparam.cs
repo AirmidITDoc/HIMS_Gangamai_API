@@ -11,9 +11,9 @@ namespace HIMS.Model.Pathology
         public List<Insertpathreportdetail> Insertpathreportdetail { get; set; }
         public List<Updatepathreportheader> Updatepathreportheader { get; set; }
 
-       
 
         public List<PrintInsert> PrintInsert { get; set; }
+       // public PrintInsert PrintInsert { get; set; }
     }
 
 
