@@ -1401,7 +1401,7 @@ namespace HIMS.Data.Pharmacy
             double G_NetPayableAmt = 0, G_TotalAmount = 0, G_discAmount = 0 ,G_balAmount = 0 ,G_RefundAmount = 0 ,G_PaidAmount = 0, G_cashAmount = 0, G_chequeAmount = 0, G_neftAmount = 0, G_cardAmount = 0, G_onlineAmount = 0, G_AdvAmount=0;
             double G_BalTotalamt = 0, T_Totalamt = 0, T_Discamt = 0, T_Netamt = 0, T_paidamt = 0, T_Balamt = 0, T_Refundamt = 0, T_Creditreturnamt = 0, T_Cashreturnamt = 0, T_Advamt = 0, T_Advrefundamt = 0, T_Advusedamt = 0, T_AdvBalamt = 0, T_Cashpayamt = 0, T_Cardpayamt = 0, T_Chequepayamt = 0, T_Onlinepayamt = 0, T_Neftpayamt = 0, Net_Billamount =0, Total_PaidAmount = 0;
             double Total_Cash = 0, Total_card = 0, Total_cheque = 0, Total_neft = 0, Total_online = 0;
-
+            string Lablecount = "";
 
 
             string previousLabel = "";
@@ -1410,12 +1410,12 @@ namespace HIMS.Data.Pharmacy
             {
 
                 i++; j++;
-
-
+              
                 if (i == 1)
                 {
                     String Label;
                     Label = dr["Label"].ConvertToString();
+                    Lablecount = dr["Label"].ConvertToString();
                     items.Append("<tr style=\"font-size:20px;border: 1px;color:black;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
                 if (previousLabel != "" && previousLabel != dr["Label"].ConvertToString())
@@ -1477,63 +1477,23 @@ namespace HIMS.Data.Pharmacy
 
 
 
-                foreach (DataRow dr1 in Bills.Rows)
-                {
+             
 
-                    i++; j++;
-                    if (dr1["Label"].ConvertToString() == "Sales")
-                    {
+               // salesTotal= salesTotal - 
 
-                        salesTotal += dr1["TotalAmount"].ConvertToDouble();
-                        salesdisc += dr1["DiscAmount"].ConvertToDouble();
-                        salesnet += dr1["NetAmount"].ConvertToDouble();
-                        salesbal += dr1["BalanceAmount"].ConvertToDouble();
-                        salesrefund += dr1["RefundAmt"].ConvertToDouble();
-                        salespaid += dr1["PaidAmount"].ConvertToDouble();
-
-                        salescashTotal += dr1["CashPay"].ConvertToDouble();
-                        salescard += dr1["CardPay"].ConvertToDouble();
-                        salescheque += dr1["ChequePay"].ConvertToDouble();
-                        salesneft += dr1["NEFTPayAmount"].ConvertToDouble();
-                        salesonline += dr1["PayTMAmount"].ConvertToDouble();
-                        salesadv += dr1["AdvUsedAmt"].ConvertToDouble();
-
-                    }
-
-                    if (dr["Label"].ConvertToString() == "Sales Return")
-                    {
-                        salesrefundTotal += dr1["TotalAmount"].ConvertToDouble();
-                        salesrefunddisc += dr1["DiscAmount"].ConvertToDouble();
-                        salesrefundnet += dr1["NetAmount"].ConvertToDouble();
-                        salesrefundbal += dr1["BalanceAmount"].ConvertToDouble();
-                        salesrefundrefund += dr1["RefundAmt"].ConvertToDouble();
-                        salesrefundpaid += dr1["PaidAmount"].ConvertToDouble();
+                //Total_Total = salesTotal.ConvertToDouble() - salesrefundTotal.ConvertToDouble();
+                //Total_disc = salesdisc.ConvertToDouble() - salesrefunddisc.ConvertToDouble();
+                //Total_net = salesnet.ConvertToDouble() - salesrefundnet.ConvertToDouble();
+                //Total_bal = salesbal.ConvertToDouble() - salesrefundbal.ConvertToDouble();
+                //Total_refund = salesrefund.ConvertToDouble() - salesrefundrefund.ConvertToDouble();
+                //Total_PaidAmount = salespaid.ConvertToDouble() - salesrefundpaid.ConvertToDouble();
 
 
-                        salesreturncashTotal += dr1["CashPay"].ConvertToDouble();
-                        salesreturncard += dr1["CardPay"].ConvertToDouble();
-                        salesreturncheque += dr1["ChequePay"].ConvertToDouble();
-                        salesreturnneft += dr1["NEFTPayAmount"].ConvertToDouble();
-                        salesreturnonline += dr1["PayTMAmount"].ConvertToDouble();
-                    }
-
-
-                }
-
-
-                Total_Total = salesTotal.ConvertToDouble() - salesrefundTotal.ConvertToDouble();
-                Total_disc = salesdisc.ConvertToDouble() - salesrefunddisc.ConvertToDouble();
-                Total_net = salesnet.ConvertToDouble() - salesrefundnet.ConvertToDouble();
-                Total_bal = salesbal.ConvertToDouble() - salesrefundbal.ConvertToDouble();
-                Total_refund = salesrefund.ConvertToDouble() - salesrefundrefund.ConvertToDouble();
-                Total_PaidAmount = salespaid.ConvertToDouble() - salesrefundpaid.ConvertToDouble();
-
-
-                Total_Cash = salescashTotal.ConvertToDouble() - salesreturncashTotal.ConvertToDouble();
-                Total_card = salescard.ConvertToDouble() - salesreturncard.ConvertToDouble();
-                Total_cheque = salescheque.ConvertToDouble() - salesreturncheque.ConvertToDouble();
-                Total_neft = salesneft.ConvertToDouble() - salesreturnneft.ConvertToDouble();
-                Total_online = salesonline.ConvertToDouble() - salesreturnonline.ConvertToDouble();
+                //Total_Cash = salescashTotal.ConvertToDouble() - salesreturncashTotal.ConvertToDouble();
+                //Total_card = salescard.ConvertToDouble() - salesreturncard.ConvertToDouble();
+                //Total_cheque = salescheque.ConvertToDouble() - salesreturncheque.ConvertToDouble();
+                //Total_neft = salesneft.ConvertToDouble() - salesreturnneft.ConvertToDouble();
+                //Total_online = salesonline.ConvertToDouble() - salesreturnonline.ConvertToDouble();
 
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
@@ -1552,31 +1512,60 @@ namespace HIMS.Data.Pharmacy
                                         .Append("</td></tr>");
 
 
-                    //items.Append("<tr style='border:1px solid black;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='2' style=\"border-right:1px solid #ccc;border-top:1px solid black;padding:3px;height:15px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Sales - Sales Return</td><td style=\"border-right:1px solid #ccc;padding:3px;height:15px;text-align:right;vertical-align:middle\">")
-                    //                   .Append(Total_Total.To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //                   .Append(Total_disc.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //                    .Append(Total_net.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //                   .Append(Total_PaidAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //                    .Append(Total_bal.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //                   .Append(Total_refund.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //                    .Append(Total_Cash.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //                   .Append(Total_card.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //                    .Append(Total_cheque.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //                //   .Append(Total_neft.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //                   .Append(Total_online.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                    //                    .Append("</td></tr>");
-
+                    
                 }
+
+              
 
             }
 
-          
+
+            foreach (DataRow dr1 in Bills.Rows)
+            {
+
+                //i++; j++;
+                if (dr1["Label"].ConvertToString() == "Sales")
+                {
+
+                    salesTotal += dr1["TotalAmount"].ConvertToDouble();
+                    salesdisc += dr1["DiscAmount"].ConvertToDouble();
+                    salesnet += dr1["NetAmount"].ConvertToDouble();
+                    salesbal += dr1["BalanceAmount"].ConvertToDouble();
+                    salesrefund += dr1["RefundAmt"].ConvertToDouble();
+                    salespaid += dr1["PaidAmount"].ConvertToDouble();
+
+                    salescashTotal += dr1["CashPay"].ConvertToDouble();
+                    salescard += dr1["CardPay"].ConvertToDouble();
+                    salescheque += dr1["ChequePay"].ConvertToDouble();
+                    salesneft += dr1["NEFTPayAmount"].ConvertToDouble();
+                    salesonline += dr1["PayTMAmount"].ConvertToDouble();
+                    salesadv += dr1["AdvUsedAmt"].ConvertToDouble();
+
+                }
+
+                if (dr1["Label"].ConvertToString() == "Sales Return")
+                {
+                    salesrefundTotal += dr1["TotalAmount"].ConvertToDouble();
+                    salesrefunddisc += dr1["DiscAmount"].ConvertToDouble();
+                    salesrefundnet += dr1["NetAmount"].ConvertToDouble();
+                    salesrefundbal += dr1["BalanceAmount"].ConvertToDouble();
+                    salesrefundrefund += dr1["RefundAmt"].ConvertToDouble();
+                    salesrefundpaid += dr1["PaidAmount"].ConvertToDouble();
 
 
-            //
+                    salesreturncashTotal += dr1["CashPay"].ConvertToDouble();
+                    salesreturncard += dr1["CardPay"].ConvertToDouble();
+                    salesreturncheque += dr1["ChequePay"].ConvertToDouble();
+                    salesreturnneft += dr1["NEFTPayAmount"].ConvertToDouble();
+                    salesreturnonline += dr1["PayTMAmount"].ConvertToDouble();
+                }
+
+
+            }
+
+            salesnet = salesTotal.ConvertToDouble() - salesdisc.ConvertToDouble();
 
             G_BalTotalamt = salesnet.ConvertToDouble()-(T_Creditreturnamt.ConvertToDouble()+ salesadv.ConvertToDouble()+ salescashTotal.ConvertToDouble()+ salesonline.ConvertToDouble());
-
 
 
             //TotalCollection = T_CashPayAmount.ConvertToDouble() + T_CardPayAmount.ConvertToDouble() + T_ChequePayAmount.ConvertToDouble() + T_TotalNEFT.ConvertToDouble() + T_TotalPAYTM.ConvertToDouble();
@@ -1607,24 +1596,8 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{T_Cashpayamt}}", T_Cashpayamt.ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{T_Onlinepayamt}}", T_Onlinepayamt.ConvertToDouble().To2DecimalPlace());
 
-            //html = html.Replace("{{Net_Billamount}}", Net_Billamount.To2DecimalPlace());
-            //html = html.Replace("{{T_Balamt}}", T_Balamt.To2DecimalPlace());
             html = html.Replace("{{G_BalTotalamt}}", G_BalTotalamt.To2DecimalPlace());
-            //html = html.Replace("{{T_Refundamt}}", T_Refundamt.To2DecimalPlace());
-
-            //html = html.Replace("{{T_Cardpayamt}}", T_Cardpayamt.To2DecimalPlace());
-            //html = html.Replace("{{T_Chequepayamt}}", T_Chequepayamt.To2DecimalPlace());
-            //html = html.Replace("{{T_Neftpayamt}}", T_Neftpayamt.To2DecimalPlace());
-
             
-            //html = html.Replace("{{DiscAmount}}", Bills.GetColValue("DiscAmount").ConvertToDouble().To2DecimalPlace());
-            //html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount").ConvertToDouble().To2DecimalPlace());
-            //html = html.Replace("{{DiscAmount}}", Bills.GetColValue("DiscAmount").ConvertToDouble().To2DecimalPlace());
-            //html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount").ConvertToDouble().To2DecimalPlace());
-
-
-
-
 
             html = html.Replace("{{StoreName}}", Bills.GetColValue("StoreName"));
             html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
@@ -1677,7 +1650,8 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{CashPay}}", Bills.GetColValue("CashPay").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{PayTMAmount}}", Bills.GetColValue("PayTMAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvUsedAmt").ConvertToDouble().To2DecimalPlace());
-
+            html = html.Replace("{{creditreturnamt}}", Bills.GetColValue("creditreturnamt").ConvertToDouble().To2DecimalPlace());
+            
             return html;
         }
     }
