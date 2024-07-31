@@ -53,6 +53,7 @@ namespace HIMS.Data.Pathology
             string html = File.ReadAllText(htmlFilePath);
             
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+                // html = html.Replace("{{KamalHeader}}", Bills.GetColValue("HeaderName"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
