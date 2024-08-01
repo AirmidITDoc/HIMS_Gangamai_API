@@ -15,7 +15,7 @@ namespace HIMS.Data.Pharmacy
 
         }
 
-        public string ViewSalesCreditReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int CreditReasonId, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesCreditReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int CreditReasonId, int StoreId, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[6];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
@@ -26,10 +26,12 @@ namespace HIMS.Data.Pharmacy
             para[5] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.String };
 
             var Bills = GetDataTableProc("RptPharmacyCreditReport", para);
+
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
+
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -148,7 +150,7 @@ namespace HIMS.Data.Pharmacy
         }
 
 
-        public string ViewSalesSummaryReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesSummaryReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[6];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
@@ -159,7 +161,7 @@ namespace HIMS.Data.Pharmacy
             para[5] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("RptSalesReport", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
@@ -172,7 +174,7 @@ namespace HIMS.Data.Pharmacy
                 i++;
 
 
-                items.Append("<tr style=\"font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color:#241571;\"><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["SalesNo"].ConvertToString()).Append("</td>");
+                items.Append("<tr style=\"font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["SalesNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["SalesNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yy")).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["TotalAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
@@ -213,7 +215,7 @@ namespace HIMS.Data.Pharmacy
         }
 
 
-        public string ViewSalesReportPatientWise(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesReportPatientWise(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[6];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
@@ -224,10 +226,12 @@ namespace HIMS.Data.Pharmacy
             para[5] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("RptSalesReport", para);
+
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
+
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -266,7 +270,7 @@ namespace HIMS.Data.Pharmacy
             return html;
 
         }
-        public string ViewSalesReturnSummaryReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesReturnSummaryReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[5];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
@@ -275,10 +279,11 @@ namespace HIMS.Data.Pharmacy
             para[3] = new SqlParameter("@SalesToNumber", SalesToNumber) { DbType = DbType.String };
             para[4] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("RptSalesReturnReport", para);
+            
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+          
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -323,7 +328,7 @@ namespace HIMS.Data.Pharmacy
         }
 
 
-        public string ViewSalesReturnPatientwiseReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesReturnPatientwiseReport(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int StoreId, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[5];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
@@ -332,10 +337,12 @@ namespace HIMS.Data.Pharmacy
             para[3] = new SqlParameter("@SalesToNumber", SalesToNumber) { DbType = DbType.String };
             para[4] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("RptSalesReturnReport", para);
+          
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
+
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -372,7 +379,7 @@ namespace HIMS.Data.Pharmacy
         }
 
 
-        public string ViewSalesReturnReceipt(int SalesReturnId, int OP_IP_Type, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewSalesReturnReceipt(int SalesReturnId, int OP_IP_Type, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[2];
 
@@ -381,7 +388,7 @@ namespace HIMS.Data.Pharmacy
 
             var Bills = GetDataTableProc("m_rptSalesReturnPrint", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
+            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
@@ -516,7 +523,7 @@ namespace HIMS.Data.Pharmacy
 
         }
 
-        public string ViewDailyCollection(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewDailyCollection(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[4];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
@@ -524,9 +531,10 @@ namespace HIMS.Data.Pharmacy
             para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
             para[3] = new SqlParameter("@AddedById", AddedById) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("RptSalesDailyCollection", para);
-            string html = File.ReadAllText(htmlFilePath);// templates.Rows[0]["TempDesign"].ToString();
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
+
+            string html = File.ReadAllText(htmlFilePath);
             html = html.Replace("{{HeaderName}}", htmlHeader);
+
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
@@ -589,7 +597,7 @@ namespace HIMS.Data.Pharmacy
                 {
                     String Label;
                     Label = dr["Label"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
 
                 if (previousLabel != "" && previousLabel != dr["Label"].ConvertToString())
@@ -605,7 +613,7 @@ namespace HIMS.Data.Pharmacy
                     // .Append("Total BalAmt").Append("</td></tr>");
 
 
-                    items.Append("<tr style='border:1px solid black;color:red;background-color:#fdfed3;font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='4' style=\"border-left:1px solid #000;border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle;margin-center:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='4' style=\"border-left:1px solid #000;border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle;margin-center:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                         .Append(G_CashPayAmount.To2DecimalPlace()).Append(" </td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
@@ -615,7 +623,7 @@ namespace HIMS.Data.Pharmacy
                         .Append(G_BalanceAmount.To2DecimalPlace()).Append("</td></tr>");
                     G_CashPayAmount = 0; G_CardPayAmount = 0; G_ChequePayAmount = 0; G_NEFTPayAmount = 0; G_PayTMAmount = 0; G_AdvanceUsedAmount = 0; G_BalanceAmount = 0;
 
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:blue\"><td colspan=\"13\" style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Label"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;\"><td colspan=\"13\" style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Label"].ConvertToString()).Append("</td></tr>");
                 }
                 G_CashPayAmount += dr["CashPayAmount"].ConvertToDouble();
                 G_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
@@ -667,7 +675,7 @@ namespace HIMS.Data.Pharmacy
                 {
 
 
-                    items.Append("<tr style='font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border:1px solid black;color:red;background-color:#fdfed3'><td colspan='4' style=\"border: 1px solid #d4c3c3;text-align:center;padding: 6px;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border:1px solid black;'><td colspan='4' style=\"border: 1px solid #d4c3c3;text-align:center;padding: 6px;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                     .Append(G_CashPayAmount.To2DecimalPlace()).Append(" </td><td style=\"border: 1px solid #d4c3c3; text-align: center;padding: 6px;\">")
                     .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3;text-align: center; padding: 6px;\">")
                     .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3;text-align: center; padding: 6px;\">")
@@ -679,7 +687,7 @@ namespace HIMS.Data.Pharmacy
 
 
 
-                    items.Append("<tr style='border:1px solid black;color:blue;font-weight:bold;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='4' style=\"border: 1px solid #d4c3c3;text-align:center; padding: 6px;\">Sales - Sales Return</td><td style=\"border: 1px solid #d4c3c3;text-align:center; padding: 6px;\">")
+                    items.Append("<tr style='border:1px solid black;font-weight:bold;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='4' style=\"border: 1px solid #d4c3c3;text-align:center; padding: 6px;\">Sales - Sales Return</td><td style=\"border: 1px solid #d4c3c3;text-align:center; padding: 6px;\">")
                          .Append(T_TotalCashAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                          .Append(T_TotalCardAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(T_TotalChequeAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
@@ -715,7 +723,7 @@ namespace HIMS.Data.Pharmacy
         }
 
 
-        public string ViewDailyCollectionSummary(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewDailyCollectionSummary(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[4];
             
@@ -725,10 +733,12 @@ namespace HIMS.Data.Pharmacy
             para[3] = new SqlParameter("@AddedById", AddedById) { DbType = DbType.Int64 };
             
             var Bills = GetDataTableProc("m_rptSalesDailyColSummary", para);
+
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
+
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
             
@@ -835,7 +845,7 @@ namespace HIMS.Data.Pharmacy
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
 
-                    items.Append("<tr style='font - family: Calibri, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans - serif;border:1px solid black;color:blue;font-weight:bold'><td style=\"border: 1px solid #d4c3c3;text-align:center;padding: 6px;\">Sales - Sales Return</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='font - family: Calibri, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans - serif;border:1px solid black;font-weight:bold'><td style=\"border: 1px solid #d4c3c3;text-align:center;padding: 6px;\">Sales - Sales Return</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                         .Append(T_TotalBillAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(T_TotalDiscAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(T_TotalNETAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
@@ -884,7 +894,7 @@ namespace HIMS.Data.Pharmacy
 
         }
 
-        public string ViewPharSalesCashBookReport(DateTime FromDate, DateTime ToDate, string PaymentMode, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewPharSalesCashBookReport(DateTime FromDate, DateTime ToDate, string PaymentMode, int StoreId, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[4];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
@@ -894,7 +904,7 @@ namespace HIMS.Data.Pharmacy
 
             var Bills = GetDataTableProc("m_rptSalesCashbook", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
+            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
@@ -944,7 +954,7 @@ namespace HIMS.Data.Pharmacy
             return cash;
         }
 
-        public string ViewPharmsDailyCollectionsummaryDayandUserwise(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById, string htmlFilePath, string HeaderName)
+        public string ViewPharmsDailyCollectionsummaryDayandUserwise(DateTime FromDate, DateTime ToDate, int StoreId, int AddedById, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[4];
             // SqlParameter[] para1 = new SqlParameter[0];
@@ -955,9 +965,10 @@ namespace HIMS.Data.Pharmacy
             // var HospAddress = GetDataTableProc("rtrv_UnitMaster_1",para1);
             var Bills = GetDataTableProc("m_rptSalesDailyColSummary_DayWise", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
+
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
             string previousLabel = "";
@@ -1006,13 +1017,13 @@ namespace HIMS.Data.Pharmacy
 
                 if (i == 1)
                 {
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append("Sales").Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append("Sales").Append("</td></tr>");
                 }
 
                 if (previousLabel != "" && previousLabel != dr["Label"].ConvertToString())
                 {
                     j = 1;
-                    items.Append("<tr style='font - family: Calibri, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans - serif;border:1px solid black;color:red;background-color:#fdfed3'><td colspan='3' style=\"border: 1px solid #d4c3c3;text-align:center;padding: 6px;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                    items.Append("<tr style='font - family: Calibri, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans - serif;border:1px solid black;'><td colspan='3' style=\"border: 1px solid #d4c3c3;text-align:center;padding: 6px;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                    .Append(T_BillAmount.To2DecimalPlace()).Append(" </td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                    .Append(T_DiscAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                    .Append(T_NetAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
@@ -1025,7 +1036,7 @@ namespace HIMS.Data.Pharmacy
                    .Append(T_OnlineAmount.To2DecimalPlace()).Append("</td></tr>");
                     T_BillAmount = 0; T_DiscAmount = 0; T_NetAmount = 0; T_BalAmount = 0; T_PaidAmount = 0; T_CashAmount = 0; T_CardAmount = 0; T_ChequeAmount = 0; T_NEFTAmount = 0; T_OnlineAmount = 0;
 
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:blue\"><td colspan=\"13\" style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["Label"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;\"><td colspan=\"13\" style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["Label"].ConvertToString()).Append("</td></tr>");
 
                 }
 
@@ -1058,7 +1069,7 @@ namespace HIMS.Data.Pharmacy
 
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
-                    items.Append("<tr style='border:1px solid black;color:red;background-color:#fdfed3'><td colspan='3' style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;'><td colspan='3' style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                         .Append(T_BillAmount.To2DecimalPlace()).Append(" </td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(T_DiscAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
                         .Append(T_NetAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">")
@@ -1126,7 +1137,7 @@ namespace HIMS.Data.Pharmacy
 
 
         }
-        public string ViewPurchaseorderReceipt(int PurchaseID, string htmlFilePath, string HeaderName)
+        public string ViewPurchaseorderReceipt(int PurchaseID, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[1];
 
@@ -1134,9 +1145,12 @@ namespace HIMS.Data.Pharmacy
 
             var Bills = GetDataTableProc("rptPrintPurchaseOrder", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
+
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+        
+
+
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -1202,7 +1216,7 @@ namespace HIMS.Data.Pharmacy
         }
 
 
-        public string ViewPharOPExtcountdailyReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewPharOPExtcountdailyReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -1213,9 +1227,12 @@ namespace HIMS.Data.Pharmacy
 
             var Bills = GetDataTableProc("rptPharmacyOP_External_CountDaily", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
+
+             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+
+
+           
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -1225,7 +1242,7 @@ namespace HIMS.Data.Pharmacy
 
                 if (i == 0)
 
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue;font - family: Calibri, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans - serif;\"><td colspan=\"6\" style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["Type"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;font - family: Calibri, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans - serif;\"><td colspan=\"6\" style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["Type"].ConvertToString()).Append("</td></tr>");
                 i++;
 
                 items.Append("<tr style=\"font - family: Calibri, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans - serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(i).Append("</td>");
@@ -1246,7 +1263,7 @@ namespace HIMS.Data.Pharmacy
 
         }
 
-        public string ViewPharCompanycreditlistReport(int StoreId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewPharCompanycreditlistReport(int StoreId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -1258,9 +1275,9 @@ namespace HIMS.Data.Pharmacy
 
             var Bills = GetDataTableProc("rptPharmacyCompanyCreditListForTally", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -1294,7 +1311,7 @@ namespace HIMS.Data.Pharmacy
             return html;
         }
 
-        public string ViewPharcomwisepatientcreditReceipt(int StoreID, string htmlFilePath, string htmlHeaderFilePath)
+        public string ViewPharcomwisepatientcreditReceipt(int StoreID, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
             SqlParameter[] para = new SqlParameter[1];
@@ -1302,9 +1319,10 @@ namespace HIMS.Data.Pharmacy
 
             var Bills = GetDataTableProc("rptPharIpCompPatWiseCredit", para);
             string html = File.ReadAllText(htmlFilePath);
-            string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{HeaderName}}", htmlHeader);
+
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            
             StringBuilder items = new StringBuilder("");
             int i = 0;
             string Storename = "";
@@ -1317,7 +1335,7 @@ namespace HIMS.Data.Pharmacy
             {
                 if (i == 0)
                 {
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"11\" style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["PrintStoreName"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;\"><td colspan=\"11\" style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["PrintStoreName"].ConvertToString()).Append("</td></tr>");
                 }
                 i++;
 
@@ -1383,7 +1401,7 @@ namespace HIMS.Data.Pharmacy
             double G_NetPayableAmt = 0, G_TotalAmount = 0, G_discAmount = 0 ,G_balAmount = 0 ,G_RefundAmount = 0 ,G_PaidAmount = 0, G_cashAmount = 0, G_chequeAmount = 0, G_neftAmount = 0, G_cardAmount = 0, G_onlineAmount = 0, G_AdvAmount=0;
             double G_BalTotalamt = 0, T_Totalamt = 0, T_Discamt = 0, T_Netamt = 0, T_paidamt = 0, T_Balamt = 0, T_Refundamt = 0, T_Creditreturnamt = 0, T_Cashreturnamt = 0, T_Advamt = 0, T_Advrefundamt = 0, T_Advusedamt = 0, T_AdvBalamt = 0, T_Cashpayamt = 0, T_Cardpayamt = 0, T_Chequepayamt = 0, T_Onlinepayamt = 0, T_Neftpayamt = 0, Net_Billamount =0, Total_PaidAmount = 0;
             double Total_Cash = 0, Total_card = 0, Total_cheque = 0, Total_neft = 0, Total_online = 0;
-
+            string Lablecount = "";
 
 
             string previousLabel = "";
@@ -1392,12 +1410,12 @@ namespace HIMS.Data.Pharmacy
             {
 
                 i++; j++;
-
-
+              
                 if (i == 1)
                 {
                     String Label;
                     Label = dr["Label"].ConvertToString();
+                    Lablecount = dr["Label"].ConvertToString();
                     items.Append("<tr style=\"font-size:20px;border: 1px;color:black;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
                 if (previousLabel != "" && previousLabel != dr["Label"].ConvertToString())
@@ -1458,6 +1476,25 @@ namespace HIMS.Data.Pharmacy
                 items.Append("<td style=\"border-left:1px solid #ccc;border-bottom:1px solid #ccc;border-right:1px solid #ccc;border-bottom:1px solid #ccc;padding:0;height:10px;vertical-align:middle;text-align: right;\">").Append(dr["AdvUsedAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
 
+
+             
+
+               // salesTotal= salesTotal - 
+
+                //Total_Total = salesTotal.ConvertToDouble() - salesrefundTotal.ConvertToDouble();
+                //Total_disc = salesdisc.ConvertToDouble() - salesrefunddisc.ConvertToDouble();
+                //Total_net = salesnet.ConvertToDouble() - salesrefundnet.ConvertToDouble();
+                //Total_bal = salesbal.ConvertToDouble() - salesrefundbal.ConvertToDouble();
+                //Total_refund = salesrefund.ConvertToDouble() - salesrefundrefund.ConvertToDouble();
+                //Total_PaidAmount = salespaid.ConvertToDouble() - salesrefundpaid.ConvertToDouble();
+
+
+                //Total_Cash = salescashTotal.ConvertToDouble() - salesreturncashTotal.ConvertToDouble();
+                //Total_card = salescard.ConvertToDouble() - salesreturncard.ConvertToDouble();
+                //Total_cheque = salescheque.ConvertToDouble() - salesreturncheque.ConvertToDouble();
+                //Total_neft = salesneft.ConvertToDouble() - salesreturnneft.ConvertToDouble();
+                //Total_online = salesonline.ConvertToDouble() - salesreturnonline.ConvertToDouble();
+
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
                     items.Append("<tr style='border:1px solid black;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='2' style=\"border-right:1px solid #ccc;border-left:1px solid #ccc;border-top:1px solid #ccc;padding:3px;height:15px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #ccc;padding:3px;height:15px;text-align:right;vertical-align:middle\">")
@@ -1475,88 +1512,60 @@ namespace HIMS.Data.Pharmacy
                                         .Append("</td></tr>");
 
 
-                    items.Append("<tr style='border:1px solid black;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='2' style=\"border-right:1px solid #ccc;border-top:1px solid black;padding:3px;height:15px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Sales - Sales Return</td><td style=\"border-right:1px solid #ccc;padding:3px;height:15px;text-align:right;vertical-align:middle\">")
-                                       .Append(Total_Total.To2DecimalPlace()).Append(" </td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                                       .Append(Total_disc.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                                        .Append(Total_net.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                                       .Append(Total_PaidAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                                        .Append(Total_bal.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                                       .Append(Total_refund.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                                        .Append(Total_Cash.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                                       .Append(Total_card.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                                        .Append(Total_cheque.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                                    //   .Append(Total_neft.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                                       .Append(Total_online.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #ccc;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                                        .Append("</td></tr>");
-
+                    
                 }
+
+              
 
             }
 
-          
-            foreach (DataRow dr in Bills.Rows)
+
+            foreach (DataRow dr1 in Bills.Rows)
             {
 
-                i++; j++;
-                if (dr["Label"].ConvertToString() == "Sales")
+                //i++; j++;
+                if (dr1["Label"].ConvertToString() == "Sales")
                 {
 
-                    salesTotal += dr["TotalAmount"].ConvertToDouble();
-                    salesdisc += dr["DiscAmount"].ConvertToDouble();
-                    salesnet += dr["NetAmount"].ConvertToDouble();
-                    salesbal += dr["BalanceAmount"].ConvertToDouble();
-                    salesrefund += dr["RefundAmt"].ConvertToDouble();
-                    salespaid += dr["PaidAmount"].ConvertToDouble();
+                    salesTotal += dr1["TotalAmount"].ConvertToDouble();
+                    salesdisc += dr1["DiscAmount"].ConvertToDouble();
+                    salesnet += dr1["NetAmount"].ConvertToDouble();
+                    salesbal += dr1["BalanceAmount"].ConvertToDouble();
+                    salesrefund += dr1["RefundAmt"].ConvertToDouble();
+                    salespaid += dr1["PaidAmount"].ConvertToDouble();
 
-                    salescashTotal += dr["CashPay"].ConvertToDouble();
-                    salescard += dr["CardPay"].ConvertToDouble();
-                    salescheque += dr["ChequePay"].ConvertToDouble();
-                    salesneft += dr["NEFTPayAmount"].ConvertToDouble();
-                    salesonline += dr["PayTMAmount"].ConvertToDouble();
-                    salesadv += dr["AdvUsedAmt"].ConvertToDouble();
+                    salescashTotal += dr1["CashPay"].ConvertToDouble();
+                    salescard += dr1["CardPay"].ConvertToDouble();
+                    salescheque += dr1["ChequePay"].ConvertToDouble();
+                    salesneft += dr1["NEFTPayAmount"].ConvertToDouble();
+                    salesonline += dr1["PayTMAmount"].ConvertToDouble();
+                    salesadv += dr1["AdvUsedAmt"].ConvertToDouble();
 
                 }
 
-                if (dr["Label"].ConvertToString() == "Sales Return")
+                if (dr1["Label"].ConvertToString() == "Sales Return")
                 {
-                    salesrefundTotal += dr["TotalAmount"].ConvertToDouble();
-                    salesrefunddisc += dr["DiscAmount"].ConvertToDouble();
-                    salesrefundnet += dr["NetAmount"].ConvertToDouble();
-                    salesrefundbal += dr["BalanceAmount"].ConvertToDouble();
-                    salesrefundrefund += dr["RefundAmt"].ConvertToDouble();
-                    salesrefundpaid += dr["PaidAmount"].ConvertToDouble();
+                    salesrefundTotal += dr1["TotalAmount"].ConvertToDouble();
+                    salesrefunddisc += dr1["DiscAmount"].ConvertToDouble();
+                    salesrefundnet += dr1["NetAmount"].ConvertToDouble();
+                    salesrefundbal += dr1["BalanceAmount"].ConvertToDouble();
+                    salesrefundrefund += dr1["RefundAmt"].ConvertToDouble();
+                    salesrefundpaid += dr1["PaidAmount"].ConvertToDouble();
 
 
-                    salesreturncashTotal += dr["CashPay"].ConvertToDouble();
-                    salesreturncard += dr["CardPay"].ConvertToDouble();
-                    salesreturncheque += dr["ChequePay"].ConvertToDouble();
-                    salesreturnneft += dr["NEFTPayAmount"].ConvertToDouble();
-                    salesreturnonline += dr["PayTMAmount"].ConvertToDouble();
+                    salesreturncashTotal += dr1["CashPay"].ConvertToDouble();
+                    salesreturncard += dr1["CardPay"].ConvertToDouble();
+                    salesreturncheque += dr1["ChequePay"].ConvertToDouble();
+                    salesreturnneft += dr1["NEFTPayAmount"].ConvertToDouble();
+                    salesreturnonline += dr1["PayTMAmount"].ConvertToDouble();
                 }
 
 
             }
 
-
-            Total_Total = salesTotal.ConvertToDouble() - salesrefundTotal.ConvertToDouble();
-            Total_disc = salesdisc.ConvertToDouble() - salesrefunddisc.ConvertToDouble();
-            Total_net = salesnet.ConvertToDouble() - salesrefundnet.ConvertToDouble();
-            Total_bal = salesbal.ConvertToDouble() - salesrefundbal.ConvertToDouble();
-            Total_refund = salesrefund.ConvertToDouble() - salesrefundrefund.ConvertToDouble();
-            Total_PaidAmount = salespaid.ConvertToDouble() - salesrefundpaid.ConvertToDouble();
-
-            
-            Total_Cash = salescashTotal.ConvertToDouble() - salesreturncashTotal.ConvertToDouble();
-            Total_card = salescard.ConvertToDouble() - salesreturncard.ConvertToDouble();
-            Total_cheque = salescheque.ConvertToDouble() - salesreturncheque.ConvertToDouble();
-            Total_neft = salesneft.ConvertToDouble() - salesreturnneft.ConvertToDouble();
-            Total_online = salesonline.ConvertToDouble() - salesreturnonline.ConvertToDouble();
-
-
-            //
+            salesnet = salesTotal.ConvertToDouble() - salesdisc.ConvertToDouble();
 
             G_BalTotalamt = salesnet.ConvertToDouble()-(T_Creditreturnamt.ConvertToDouble()+ salesadv.ConvertToDouble()+ salescashTotal.ConvertToDouble()+ salesonline.ConvertToDouble());
-
 
 
             //TotalCollection = T_CashPayAmount.ConvertToDouble() + T_CardPayAmount.ConvertToDouble() + T_ChequePayAmount.ConvertToDouble() + T_TotalNEFT.ConvertToDouble() + T_TotalPAYTM.ConvertToDouble();
@@ -1587,24 +1596,8 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{T_Cashpayamt}}", T_Cashpayamt.ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{T_Onlinepayamt}}", T_Onlinepayamt.ConvertToDouble().To2DecimalPlace());
 
-            //html = html.Replace("{{Net_Billamount}}", Net_Billamount.To2DecimalPlace());
-            //html = html.Replace("{{T_Balamt}}", T_Balamt.To2DecimalPlace());
             html = html.Replace("{{G_BalTotalamt}}", G_BalTotalamt.To2DecimalPlace());
-            //html = html.Replace("{{T_Refundamt}}", T_Refundamt.To2DecimalPlace());
-
-            //html = html.Replace("{{T_Cardpayamt}}", T_Cardpayamt.To2DecimalPlace());
-            //html = html.Replace("{{T_Chequepayamt}}", T_Chequepayamt.To2DecimalPlace());
-            //html = html.Replace("{{T_Neftpayamt}}", T_Neftpayamt.To2DecimalPlace());
-
             
-            //html = html.Replace("{{DiscAmount}}", Bills.GetColValue("DiscAmount").ConvertToDouble().To2DecimalPlace());
-            //html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount").ConvertToDouble().To2DecimalPlace());
-            //html = html.Replace("{{DiscAmount}}", Bills.GetColValue("DiscAmount").ConvertToDouble().To2DecimalPlace());
-            //html = html.Replace("{{NetAmount}}", Bills.GetColValue("NetAmount").ConvertToDouble().To2DecimalPlace());
-
-
-
-
 
             html = html.Replace("{{StoreName}}", Bills.GetColValue("StoreName"));
             html = html.Replace("{{StoreAddress}}", Bills.GetColValue("StoreAddress"));
@@ -1657,7 +1650,8 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{CashPay}}", Bills.GetColValue("CashPay").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{PayTMAmount}}", Bills.GetColValue("PayTMAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvUsedAmt").ConvertToDouble().To2DecimalPlace());
-
+            html = html.Replace("{{creditreturnamt}}", Bills.GetColValue("creditreturnamt").ConvertToDouble().To2DecimalPlace());
+            
             return html;
         }
     }

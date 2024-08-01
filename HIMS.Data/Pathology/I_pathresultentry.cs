@@ -7,8 +7,11 @@ namespace HIMS.Data.Pathology
 {
    public interface I_pathresultentry
     {
-        public bool Insert(pathresultentryparam pathresultentryparam);
+       
+        bool Insert(pathresultentryparam pathresultentryparam);
+        bool PrintInsert(pathresultentryparam pathresultentryparam);
 
+        bool Rollback(pathresultentryparam pathresultentryparam);
         string ViewPathTestReport(int OP_IP_Type, string htmlFilePath, string HeaderName);
 
         string ViewPathTestMultipleReport(int OP_IP_Type, string htmlFilePath, string HeaderName);

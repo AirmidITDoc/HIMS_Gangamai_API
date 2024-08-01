@@ -6,10 +6,14 @@ namespace HIMS.Model.Pathology
 {
    public class pathresultentryparam
     {
-        public Deletepathreportheader Deletepathreportheader { get; set; }
+        public List<Deletepathreportheader> Deletepathreportheader { get; set; }
 
         public List<Insertpathreportdetail> Insertpathreportdetail { get; set; }
-        public Updatepathreportheader Updatepathreportheader { get; set; }
+        public List<Updatepathreportheader> Updatepathreportheader { get; set; }
+
+
+        public List<PrintInsert> PrintInsert { get; set; }
+        public RollbackReport RollbackReport { get; set; }
     }
 
 
@@ -53,6 +57,16 @@ namespace HIMS.Model.Pathology
         public string SuggestionNotes { get; set; }
         public int AdmVisitDoctorID { get; set; }
         public int RefDoctorID { get; set; }
+    }
+
+    public class  PrintInsert
+    {
+        public int PathReportId { get; set; }
+    }
+
+    public class RollbackReport
+    {
+        public int PathReportId { get; set; }
     }
 }
 

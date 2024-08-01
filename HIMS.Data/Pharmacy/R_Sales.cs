@@ -57,6 +57,7 @@ namespace HIMS.Data.Pharmacy
 
             var disc3 = salesParams.SalesInsert.ToDictionary();
             disc3.Remove("SalesId");
+            disc3.Remove("IsItem_Header_disc");
             var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_Sales_1", disc3, outputId1);
 
             foreach (var a in salesParams.SalesDetailInsert)
@@ -72,14 +73,17 @@ namespace HIMS.Data.Pharmacy
                 ExecNonQueryProcWithOutSaveChanges("m_Update_T_CurStk_Sales_Id_1", disc1);
             }
 
-            var vDiscCal = salesParams.Cal_DiscAmount_Sales.ToDictionary();
-            vDiscCal["SalesID"] = BillNo;
-            ExecNonQueryProcWithOutSaveChanges("m_Cal_DiscAmount_Sales", vDiscCal);
-
+            if (salesParams.SalesInsert.IsItem_Header_disc > 0)
+            {
+                var vDiscCal = salesParams.Cal_DiscAmount_Sales.ToDictionary();
+                vDiscCal["SalesID"] = BillNo;
+                ExecNonQueryProcWithOutSaveChanges("m_Cal_DiscAmount_Sales", vDiscCal);
+            }
+           
             var vGSTCal = salesParams.Cal_GSTAmount_Sales.ToDictionary();
             vGSTCal["SalesID"] = BillNo;
-            ExecNonQueryProcWithOutSaveChanges("m_Cal_GSTAmount_Sales", vDiscCal);
-
+            ExecNonQueryProcWithOutSaveChanges("m_Cal_GSTAmount_Sales", vGSTCal);
+            
             var vPayment = salesParams.SalesPayment.ToDictionary();
             vPayment["BillNo"] = BillNo;
             ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_Pharmacy_New_1", vPayment);
@@ -150,6 +154,7 @@ namespace HIMS.Data.Pharmacy
 
             var disc3 = salesCreditParams.SalesInsertCredit.ToDictionary();
             disc3.Remove("SalesId");
+            disc3.Remove("IsItem_Header_disc");
             var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_Sales_1", disc3, outputId1);
 
             foreach (var a in salesCreditParams.SalesDetailInsertCredit)
@@ -165,9 +170,16 @@ namespace HIMS.Data.Pharmacy
                 ExecNonQueryProcWithOutSaveChanges("m_Update_T_CurStk_Sales_Id_1", disc1);
             }
 
-            var vDiscCal = salesCreditParams.Cal_DiscAmount_SalesCredit.ToDictionary();
-            vDiscCal["SalesID"] = BillNo;
-            ExecNonQueryProcWithOutSaveChanges("m_Cal_DiscAmount_Sales", vDiscCal);
+            if (salesCreditParams.SalesInsertCredit.IsItem_Header_disc > 0)
+            {
+                var vDiscCal = salesCreditParams.Cal_DiscAmount_SalesCredit.ToDictionary();
+                vDiscCal["SalesID"] = BillNo;
+                ExecNonQueryProcWithOutSaveChanges("m_Cal_DiscAmount_Sales", vDiscCal);
+            }
+
+            //var vDiscCal = salesCreditParams.Cal_DiscAmount_SalesCredit.ToDictionary();
+            //vDiscCal["SalesID"] = BillNo;
+            //ExecNonQueryProcWithOutSaveChanges("m_Cal_DiscAmount_Sales", vDiscCal);
 
             var vGSTCal = salesCreditParams.Cal_GSTAmount_SalesCredit.ToDictionary();
             vGSTCal["SalesID"] = BillNo;
@@ -177,14 +189,24 @@ namespace HIMS.Data.Pharmacy
             return BillNo;
         }
 
-        public bool PaymentSettlement(SalesParams salesParams)
+        public bool PaymentSettlement(SalesPaymentParams salesPaymentParams)
         {
-            var vPayment = salesParams.SalesPayment.ToDictionary();
+            var vPayment = salesPaymentParams.SalesPaymentSettlement.ToDictionary();
             vPayment.Remove("PaymentID");
             ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_Pharmacy_New_1", vPayment);
 
-            var vUpdateHeader = salesParams.update_Pharmacy_BillBalAmount.ToDictionary();
+            var vUpdateHeader = salesPaymentParams.update_Pharmacy_BillBalAmountSettlement.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_update_Pharmacy_BillBalAmount_1", vUpdateHeader);
+
+            foreach (var a in salesPaymentParams.update_T_PHAdvanceDetailSettlement)
+            {
+                var disc2 = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_update_T_PHAdvanceDetail_1", disc2);
+            }
+
+            var disc4 = salesPaymentParams.update_T_PHAdvanceHeaderSettlement.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_PHAdvanceHeader_1", disc4);
+
 
             _unitofWork.SaveChanges();
             return true;

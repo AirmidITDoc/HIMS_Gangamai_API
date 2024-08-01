@@ -7,7 +7,7 @@ namespace HIMS.Data.Pharmacy
 {
    public interface I_PHAdvance
     {
-        bool Insert(PHAdvanceparam PHAdvanceparam);
+        string Insert(PHAdvanceparam PHAdvanceparam);
         bool Update(PHAdvanceparam PHAdvanceparam);
 
         string ViewPharmaAdvanceReceipt(int RefundId, string htmlFilePath, string HeaderName);
