@@ -209,11 +209,11 @@ namespace HIMS.API.Controllers.Transaction
 
 
         [HttpGet("view-Admitted_PatientList")]
-        public IActionResult ViewAdmittedPatientList(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId)
+        public IActionResult ViewAdmittedPatientList(int DoctorId, int WardId,int CompanyId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "AdmittedPatientList.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _Admission.AdmissionListCurrent(FromDate, ToDate, DoctorId, WardId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _Admission.AdmissionListCurrent(DoctorId, WardId, CompanyId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AdmittedPatientList", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
