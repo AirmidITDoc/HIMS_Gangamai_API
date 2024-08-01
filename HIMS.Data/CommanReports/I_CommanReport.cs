@@ -32,7 +32,9 @@ namespace HIMS.Data.CommanReports
 
         string ViewServicewiseReportwithbill(int ServiceId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
 
+
         string ViewBillSummaryReportfor2LakhAmount(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewDoctorAndDepartmentWiseMonthlyCollectionReport(int DepartmentId,int DoctorId,DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewServiceWiseReport(int ServiceId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
     }
 }
