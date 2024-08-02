@@ -36,7 +36,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
 
-            Boolean chkpaidflag = false, chkbalflag = false, chkremarkflag = false;
+            //Boolean chkpaidflag = false, chkbalflag = false, chkremarkflag = false;
 
 
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
