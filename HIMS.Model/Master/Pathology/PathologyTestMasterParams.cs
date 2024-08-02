@@ -7,11 +7,13 @@ namespace HIMS.Model.Master.Pathology
     public class PathologyTestMasterParams
     {
         public InsertPathologyTestMaster InsertPathologyTestMaster { get; set; }
-        public UpdatePathologyTestMaster UpdatePathologyTestMaster { get; set; }
-
-        public UpdatePathologyTemplateTest updatePathologyTemplateTest { get; set; }
+     
         public List<PathTestDetailMaster> PathTestDetailMaster { get; set; }
         public List<PathologyTemplateTest> PathologyTemplateTest { get; set; }
+
+
+        public UpdatePathologyTestMaster UpdatePathologyTestMaster { get; set; }
+        public UpdatePathologyTemplateTest updatePathologyTemplateTest { get; set; }
         public PathTestDetDelete PathTestDetDelete { get; set; }
         public PathTemplateDetDelete PathTemplateDetDelete { get; set; }
 

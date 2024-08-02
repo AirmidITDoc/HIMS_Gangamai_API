@@ -22,17 +22,12 @@ namespace HIMS.Data.Master.Pathology
             ExecNonQueryProcWithOutSaveChanges("update_PathologyTestMaster_1", dic1);
 
 
-            // DeletePathTestDetail
-            var S_Det = pathTestMasterParams.PathTestDetDelete.ToDictionary();
-            S_Det["TestId"] = pathTestMasterParams.UpdatePathologyTestMaster.TestId;
-            ExecNonQueryProcWithOutSaveChanges("Delete_M_PathTestDetailMaster", S_Det);
-
-            var S_Det1 = pathTestMasterParams.PathTemplateDetDelete.ToDictionary();
-            S_Det1["TestId"] = pathTestMasterParams.UpdatePathologyTestMaster.TestId;
-            ExecNonQueryProcWithOutSaveChanges("Delete_M_PathTemplateDetails", S_Det1);
-
             if (pathTestMasterParams.UpdatePathologyTestMaster.IsTemplateTest == true)
             {
+                var S_Det1 = pathTestMasterParams.PathTemplateDetDelete.ToDictionary();
+                S_Det1["TestId"] = pathTestMasterParams.UpdatePathologyTestMaster.TestId;
+                ExecNonQueryProcWithOutSaveChanges("Delete_M_PathTemplateDetails", S_Det1);
+
                 foreach (var a in pathTestMasterParams.PathologyTemplateTest)
                 {
                     var d = a.ToDictionary();
@@ -43,6 +38,11 @@ namespace HIMS.Data.Master.Pathology
             }
             else
             {
+                // DeletePathTestDetail
+                var S_Det = pathTestMasterParams.PathTestDetDelete.ToDictionary();
+                S_Det["TestId"] = pathTestMasterParams.UpdatePathologyTestMaster.TestId;
+                ExecNonQueryProcWithOutSaveChanges("Delete_M_PathTestDetailMaster", S_Det);
+
                 foreach (var a in pathTestMasterParams.PathTestDetailMaster)
                 {
                     var d = a.ToDictionary();

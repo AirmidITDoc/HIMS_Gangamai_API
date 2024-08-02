@@ -106,9 +106,9 @@ namespace HIMS.API.Controllers.Master
         }
 
         [HttpPost("PathologyTestMasterUpdate")]
-        public IActionResult PathologyTestMasterUpdate(PathologyTestMasterParams pathTestParams)
+        public IActionResult PathologyTestMasterUpdate(PathologyTestMasterParams PathologyTestMasterParams)
         {
-            var PathologyTestMasterUpdate = _PathologyTestMasterRep.Update(pathTestParams);
+            var PathologyTestMasterUpdate = _PathologyTestMasterRep.Update(PathologyTestMasterParams);
             return Ok(PathologyTestMasterUpdate);
 
         }
