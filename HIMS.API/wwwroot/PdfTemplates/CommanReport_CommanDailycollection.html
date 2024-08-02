@@ -91,18 +91,27 @@
 
 
             </tbody>
-            <tr><td><h3>Total Collection Data</h3></td></tr>
+            <!--<tr><td><h3>Total Collection Data</h3></td></tr>-->
+            <table class="table" style="width:100%;border-collapse:collapse;margin-top:10px;">
+                <tbody>
+                    <tr style="font-size:18px;color:black">
+                        <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 50%;">Total Collection Data</td>
+                      
+                    </tr>
+            </table>
+
             <table class="table" style="width:100%;border-collapse:collapse;margin-top:10px;">
                 <tbody>
                     <tr style="font-size:18px;color:black">
 
 
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Type</td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;"></td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Cash Amount</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Card Amount</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Cheque Amount</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">NEFT Amount</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Online Amount</td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Net Collection</td>
                     </tr>
                     <tr>
 
@@ -111,6 +120,7 @@
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPCardPayAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPChequePayAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPNEFTPayAmount}}</td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPPayTMAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPPayTMAmount}}</td>
                     </tr>
                     <tr>
@@ -121,6 +131,7 @@
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillChequePayAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillNEFTPayAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillPayTMAmount}}</td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPPayTMAmount}}</td>
                     </tr>
                     <tr>
 
@@ -130,6 +141,7 @@
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvChequePayAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvNEFTPayAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvPayTMAmount}}</td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPPayTMAmount}}</td>
                     </tr>
                     <tr>
 
@@ -139,6 +151,7 @@
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundChequePayAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundNEFTPayAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundPayTMAmount}}</td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPPayTMAmount}}</td>
                     </tr>
                     <tr>
 
@@ -148,6 +161,7 @@
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundAdvChequeAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundNEFTPayAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundAdvPayTMAmount}}</td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPPayTMAmount}}</td>
                     </tr>
                     <tr>
 
@@ -157,6 +171,7 @@
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalChequePayAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalNEFTPayAmount}}</td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalPayTMAmount}}</td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPPayTMAmount}}</td>
                     </tr>
 
                 </tbody>
@@ -165,8 +180,8 @@
             <table class="table" style="width:100%;border-collapse:collapse;margin-top:10px;">
                 <tbody>
                     <tr style="font-size:18px;color:black">
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Total Collection Amount</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{TotalCollection}}</td>
+                        <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 50%;">Total Collection Amount</td>
+                        <td style="border: 1px solid #000; font-weight: 700; text-align: center; vertical-align: middle; padding: 5px 5px; width: 50%;">{{TotalCollection}}</td>
                     </tr>
             </table>
         </table>
