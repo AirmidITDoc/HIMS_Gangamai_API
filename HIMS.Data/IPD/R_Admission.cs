@@ -16,17 +16,18 @@ namespace HIMS.Data.IPD
             //transaction and connection is open when you inject unitofwork
         }
 
-        public string AdmissionListCurrent(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, string htmlFilePath, string htmlHeader)
+        public string AdmissionListCurrent(int DoctorId, int WardId,int CompanyId, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[4];
-            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
-            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            para[2] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.String };
-            para[3] = new SqlParameter("@WardId", WardId) { DbType = DbType.String };
-           
-            var Bills = GetDataTableProc("rptListofAdmission", para);
+            SqlParameter[] para = new SqlParameter[3];
+            //para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            //para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[0] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
+            para[1] = new SqlParameter("@WardId", WardId) { DbType = DbType.Int64 };
+            para[2] = new SqlParameter("@CompanyId", CompanyId) { DbType = DbType.Int64 };
+
+            var Bills = GetDataTableProc("rptCurrentAdmittedListReport", para);
             
             string html = File.ReadAllText(htmlFilePath);
             
@@ -34,7 +35,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
-
+            double T_Count = 0;
             double T_TotalAmount = 0, T_TotalVatAmount = 0, T_TotalDiscAmount = 0, T_TotalNETAmount = 0, T_TotalBalancepay = 0, T_TotalCGST = 0, T_TotalSGST = 0, T_TotalIGST = 0;
 
             foreach (DataRow dr in Bills.Rows)
@@ -46,35 +47,28 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Age"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["GenderName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["RegTime"].ConvertToDateString("dd/MM/yy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["DOT"].ConvertToDateString("dd/MM/yy")).Append("</td>");
                 
                 
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["AdmittedDocName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["AdmittedDoctorName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["RoomName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["BedName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["MobileNo"].ConvertToString()).Append("</td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td>");
+                //items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["MobileNo"].ConvertToString()).Append("</td>");
                 //items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["BalanceAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 //items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["CGSTAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 //items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;vertical-align:middle;padding:3px;height:10px;text-align:right;\">").Append(dr["SGSTAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["AuthorityName"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["UserName"].ConvertToString()).Append("</td></tr>");
 
 
-              
 
+                T_Count = T_Count + 1;
             }
 
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
-            //html = html.Replace("{{TotalAmount}}", T_TotalAmount.To2DecimalPlace());
-            //html = html.Replace("{{TotalVatAmount}}", T_TotalVatAmount.To2DecimalPlace());
-            //html = html.Replace("{{TotalDiscAmount}}", T_TotalDiscAmount.To2DecimalPlace());
-            //html = html.Replace("{{TotalNETAmount}}", T_TotalNETAmount.To2DecimalPlace());
-            //html = html.Replace("{{TotalBalancepay}}", T_TotalBalancepay.To2DecimalPlace());
-            //html = html.Replace("{{TotalCGST}}", T_TotalCGST.To2DecimalPlace());
-            //html = html.Replace("{{TotalSGST}}", T_TotalSGST.To2DecimalPlace());
-            //html = html.Replace("{{TotalIGST}}", T_TotalIGST.To2DecimalPlace());
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{Todate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_Count}}", T_Count.To2DecimalPlace());
 
             return html;
 
