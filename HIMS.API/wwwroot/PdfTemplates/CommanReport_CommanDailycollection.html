@@ -53,9 +53,6 @@
                                 Bill Amt
                             </td>
 
-
-
-
                             <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                                 Cash Amt
                             </td>
@@ -84,89 +81,101 @@
 
 
                         {{Items}}
+                </tbody>
+                    </table>
+
+                <table class="table" style="width:100%;border-collapse:collapse;margin-top:10px;">
+                  
+                    <tr><td><h3>Total Collection Data</h3></td></tr>
+                    <table class="table" style="width:100%;border-collapse:collapse;margin-top:10px;">
+                        <tbody>
+                            <tr style="font-size:18px;color:black">
+
+
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Type</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Cash Amount</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Card Amount</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Cheque Amount</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">NEFT Amount</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Online Amount</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Net Collection</td>
+                            </tr>
+                            <tr>
+
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">OP Bill</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPCashPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPCardPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPChequePayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPNEFTPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPPayTMAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_OPAmount}}</td>
+                            </tr>
+                            <tr>
+
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">IP Bill</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillCashPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillCardPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillChequePayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillNEFTPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillPayTMAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_IPAmount}}</td>
+                            </tr>
+                            <tr>
+
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">IP Advance</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvCashPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvCardPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvChequePayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvNEFTPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvPayTMAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_IPAdvanceAmount}}</td>
+                            </tr>
+                            <tr>
+
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">IP Refund of Bill</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundCashPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundCardPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundChequePayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundNEFTPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundPayTMAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_IPRefundbillAmount}}</td>
+                            </tr>
+                            <tr>
+
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">IP Refund of Advance</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundAdvCashAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundAdvCardAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundAdvChequeAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundNEFTPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundAdvPayTMAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_IPRefundAdvanceAmount}}</td>
+                            </tr>
+                            <tr>
+
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Net Amount</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalCashPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalCardPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalChequePayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalNEFTPayAmount}}</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalPayTMAmount}}</td>
+                            </tr>
+                            <tr>
+
+
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;" colspan="6">Total Collection Amount</td>
+                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{TotalCollection}}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
                 </table>
-
-
-            </tbody>
-            <tr><td><h3>Total Collection Data</h3></td></tr>
-            <table class="table" style="width:100%;border-collapse:collapse;margin-top:10px;">
-                <tbody>
-                    <tr style="font-size:18px;color:black">
-
-
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Type</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Cash Amount</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Card Amount</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Cheque Amount</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">NEFT Amount</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Online Amount</td>
-                    </tr>
-                    <tr>
-
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">OP Bill</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPCashPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPCardPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPChequePayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPNEFTPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_OPPayTMAmount}}</td>
-                    </tr>
-                    <tr>
-
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">IP Bill</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillCashPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillCardPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillChequePayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillNEFTPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_BillPayTMAmount}}</td>
-                    </tr>
-                    <tr>
-
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">IP Advance</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvCashPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvCardPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvChequePayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvNEFTPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_AdvPayTMAmount}}</td>
-                    </tr>
-                    <tr>
-
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">IP Refund of Bill</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundCashPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundCardPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundChequePayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundNEFTPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundPayTMAmount}}</td>
-                    </tr>
-                    <tr>
-
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">IP Refund of Advance</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundAdvCashAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundAdvCardAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundAdvChequeAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundNEFTPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{G_RefundAdvPayTMAmount}}</td>
-                    </tr>
-                    <tr>
-
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Net Amount</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalCashPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalCardPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalChequePayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalNEFTPayAmount}}</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_FinalPayTMAmount}}</td>
-                    </tr>
-
-
-            </table>
-            <table class="table" style="width:100%;border-collapse:collapse;margin-top:10px;">
-                <tbody>
-                    <tr style="font-size:18px;color:black">
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Total Collection Amount</td>
-                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{TotalCollection}}</td>
-                    </tr>
-            </table>
+                
+        </div>
+       
         </table>
-</div>
+    </div>
+    
     </div>
 </body>
 
