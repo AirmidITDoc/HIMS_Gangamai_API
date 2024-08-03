@@ -7,7 +7,7 @@ namespace HIMS.Model.Pathology
     public class PathologyTemplateResultParams
     {
         public DeletePathologyReportTemplateDetails DeletePathologyReportTemplateDetails { get; set; }
-        public List<InsertPathologyReportTemplateDetails> InsertPathologyReportTemplateDetails { get; set; }
+        public InsertPathologyReportTemplateDetails InsertPathologyReportTemplateDetails { get; set; }
         public UpdatePathTemplateReportTemplateHeader UpdatePathTemplateReportHeader { get; set; }
     }
 
@@ -21,6 +21,7 @@ namespace HIMS.Model.Pathology
         public int PathReportId { get; set; }
         public int PathTemplateId { get; set; }
         public string PathTemplateDetailsResult { get; set; }
+        public string TemplateResultInHTML { get; set; }
         public int TestId { get; set; }
     }
 

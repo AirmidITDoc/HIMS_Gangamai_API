@@ -17,7 +17,6 @@ namespace HIMS.Model.Master.Pathology
         public string TemplateName { get; set; }
         public string TemplateDesc { get; set; }
         public bool IsDeleted { get; set; }
-      
         public int AddedBy { get; set; }
     }
     public class UpdatePathologyTemplateMaster
