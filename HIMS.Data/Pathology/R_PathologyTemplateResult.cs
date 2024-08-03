@@ -89,6 +89,8 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{Path_RefDoctorName}}", Bills.GetColValue("Path_RefDoctorName"));
             html = html.Replace("{{PathTemplateDetailsResult}}", Bills.GetColValue("PathTemplateDetailsResult").ConvertToString());
+            html = html.Replace("{{PathTemplateDetailsResult}}", Bills.GetColValue("TemplateResultInHTML").ConvertToString());
+            
             html = html.Replace("{{PrintTestName}}", Bills.GetColValue("PrintTestName"));
             html = html.Replace("{{Path_DoctorName}}", Bills.GetColValue("Path_DoctorName"));
 
