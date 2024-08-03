@@ -155,7 +155,7 @@ namespace HIMS.Data.Opd
             dic1.Remove("PatVisitID");
             ExecNonQueryProcWithOutSaveChanges("m_Insert_TokenNumber_DoctorWise", dic3);
             //commit transaction
-            _unitofWork.SaveChanges();
+            _unitofWork.SaveChanges(); 
 
             return VisitID;
         }
