@@ -11,11 +11,7 @@
     <div class="main-content-wrapper" style="height:1170px">
         <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
-
-
-
-
-                <div>
+                <!--{{NewHeader}}-->
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
@@ -29,139 +25,137 @@
                         </table>
                     </td>
                 </tr>
-        </div>
+                <tr class="bill-info-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;font-weight:bold;border:solid 1px black">
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>UHID No:</span>
+                                    <span>{{RegNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>IPD No :</span>
+                                    <span>{{IPDNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Date | Time:</span>
+                                    <span>{{PathTime}}</span>
+                                </td>
+                            </tr>
+                            <!--<tr>
+                                <td style="padding: 2px;">
+                                    <span>UHID No:</span>
+                                    <span>{{RegNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Age | Gender:</span>
+                                    <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>DOA | Time:</span>
+                                    <span>{{AdmissionTime}}</span>
+                                </td>
+                            </tr>-->
 
-        <tr class="bill-info-row">
-            <td style="padding: 6px;">
-                <table style="width: 100%; border-collapse: collapse;font-weight:bold;border:solid 1px black">
-                    <tr>
-                        <td style="padding: 2px;">
-                            <span>UHID No:</span>
-                            <span>{{RegNo}}</span>
-                        </td>
-                        <td style="padding: 2px;">
-                            <span>IPD No :</span>
-                            <span>{{IPDNo}}</span>
-                        </td>
-                        <td style="padding: 2px;">
-                            <span>Date | Time:</span>
-                            <span>{{PathTime}}</span>
-                        </td>
-                    </tr>
-                    <!--<tr>
-                    <td style="padding: 2px;">
-                        <span>UHID No:</span>
-                        <span>{{RegNo}}</span>
+
+                            <tr>
+
+
+                                <td style="padding: 2px;">
+                                    <span>Patient Name:</span>
+                                    <span>{{PatientName}}</span>
+                                </td>
+
+                                <td style="padding: 2px;">
+                                    <span>Age | Gender:</span>
+                                    <span> {{AgeYear}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Patient Type :</span>
+                                    <span>{{PatientType}}</span>
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td style="padding: 2px;">
+                                    <span>Doctor Name:</span>
+                                    <span>{{DoctorName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Department: </span>
+                                    <span>{{DepartmentName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Ref.Doctor Name:</span>
+                                    <span>{{RefDocName}}</span>
+                                </td>
+                            </tr>
+
+                        </table>
                     </td>
-                    <td style="padding: 2px;">
-                        <span>Age | Gender:</span>
-                        <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
+                </tr>
+                <tr><td></td></tr>
+
+                <tr class="bill-table-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <!-- // <thead style="font-size: 14px;">-->
+                            <tr>
+
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold;">
+                                    INVESTIGATION
+                                </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold;">
+                                    PATIENTS VALUE
+                                </td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold;">NORMAL VALUES</td>
+
+                                {{Items}}
+                                <!-- // </thead>-->
+
+                        </table>
                     </td>
-                    <td style="padding: 2px;">
-                        <span>DOA | Time:</span>
-                        <span>{{AdmissionTime}}</span>
+                </tr>
+
+
+                <!--<tr>
+                    <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; ">
+                        <span>
+                            <img src="{{BaseUrl}}/PdfTemplates/Hospital_logo.jpeg" alt="logo" width="180">
+                        </span>
                     </td>
                 </tr>-->
+                <!--<tr>
+                    <table style="width: 100%; border-collapse: collapse;margin-top:20px;">
 
 
-                    <tr>
+                        <tr style="padding: 6px; text-align: right;">
+                            <td>
 
+                                <span>{{PathResultDr1}}</span>
+                            </td>
+                        </tr>
+                        <tr style="padding: 6px; text-align: right;">
 
-                        <td style="padding: 2px;">
-                            <span>Patient Name:</span>
-                            <span>{{PatientName}}</span>
-                        </td>
+                            <td>
 
-                        <td style="padding: 2px;">
-                            <span>Age | Gender:</span>
-                            <span> {{AgeYear}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
-                        </td>
-                        <td style="padding: 2px;">
-                            <span>Patient Type :</span>
-                            <span>{{PatientType}}</span>
-                        </td>
+                                <span>Pathology Doc Name</span>
+                            </td>
+                        </tr>
 
-                    </tr>
-                    <tr>
-
-                        <td style="padding: 2px;">
-                            <span>Doctor Name:</span>
-                            <span>{{DoctorName}}</span>
-                        </td>
-                        <td style="padding: 2px;">
-                            <span>Department: </span>
-                            <span>{{DepartmentName}}</span>
-                        </td>
-                        <td style="padding: 2px;">
-                            <span>Ref.Doctor Name:</span>
-                            <span>{{RefDocName}}</span>
-                        </td>
-                    </tr>
-
-                </table>
-            </td>
-        </tr>
-        <tr><td></td></tr>
-
-        <tr class="bill-table-row">
-            <td style="padding: 6px;">
-                <table style="width: 100%; border-collapse: collapse;">
-                    <!-- // <thead style="font-size: 14px;">-->
-                    <tr>
-
-                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold;">
-                            INVESTIGATION
-                        </td>
-                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold;">
-                            PATIENTS VALUE
-                        </td>
-                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold;">NORMAL VALUES</td>
-
-                        {{Items}}
-                        <!-- // </thead>-->
-
-                </table>
-            </td>
-        </tr>
-
-
-        <!--<tr>
-            <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; ">
-                <span>
-                    <img src="{{BaseUrl}}/PdfTemplates/Hospital_logo.jpeg" alt="logo" width="180">
-                </span>
-            </td>
-        </tr>-->
-        <!--<tr>
-        <table style="width: 100%; border-collapse: collapse;margin-top:20px;">
-
-
-            <tr style="padding: 6px; text-align: right;">
-                <td>
-
-                    <span>{{PathResultDr1}}</span>
-                </td>
-            </tr>
-            <tr style="padding: 6px; text-align: right;">
-
-                <td>
-
-                    <span>Pathology Doc Name</span>
-                </td>
-            </tr>
-
-        </table>
-    </tr>-->
-        </table>
-    </div>
+                    </table>
+                </tr>-->
+            </table>
+        </div>
     </div>
 
     <footer style="margin-left:80%"> <p>{{PathResultDr1}}</p></footer>
     <footer style="margin-left:80%"> <p>( {{Education}} | {{MahRegNo}} )</p></footer>
     <span>
         sign
-        <img src="{{BaseUrl}}/PdfTemplates/doctorsign.jpeg" alt="logo" width="80">
-        
+        <img src="{{BaseUrl}}/PdfTemplates/PathSign.jpg" alt="logo" width="80">
+
     </span>
 
     <footer style="margin-left:80%"> <p>Pathology Doc Name</p></footer>

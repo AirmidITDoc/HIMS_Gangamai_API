@@ -10,6 +10,7 @@ using HIMS.Model.Pathology;
 using HIMS.Data.Pathology;
 using System.IO;
 using HIMS.API.Utility;
+using Microsoft.Extensions.Configuration;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -26,8 +27,9 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_PathologyTemplateResult _PathologyTemplateResult;
         public readonly I_Pathologysamplecollection _Pathologysamplecollection;
        public readonly I_pathresultentry _Pathresultentry;
-        
-        public PathologyController(I_PathologyTemplateResult pathologyTemplateResult,
+        public readonly IConfiguration _configuration;
+
+        public PathologyController(I_PathologyTemplateResult pathologyTemplateResult,IConfiguration configuration,
             I_Pathologysamplecollection pathologysamplecollection,I_pathresultentry pathresultentry, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility)
         {
             this._PathologyTemplateResult = pathologyTemplateResult;
@@ -35,6 +37,7 @@ namespace HIMS.API.Controllers.Transaction
             this._Pathresultentry = pathresultentry;
             _hostingEnvironment = hostingEnvironment;
             _pdfUtility = pdfUtility;
+            _configuration = configuration;
         }
 
         [HttpPost("PathologyTemplateResult")]
@@ -100,6 +103,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathologyResultTest.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _Pathresultentry.ViewPathTestMultipleReport(OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            html = html.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTestReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
