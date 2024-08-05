@@ -43,6 +43,7 @@ using HIMS.Data.CommanReports;
 using HIMS.Data.MISReports;
 using HIMS.Data.GSTReports;
 using HIMS.Data.InventoryReports;
+using HIMS.Data.PharmacyReports;
 
 
 
@@ -337,10 +338,12 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_ScheduleMaster, R_ScheduleMaster>();
            services.AddTransient<I_Itemmovement, R_Itemmovement>();
              services.AddTransient<I_Hospital, R_Hospital>();
-           services.AddTransient<I_CommanReport, R_CommanReport>();
+            services.AddTransient<I_CommanReport, R_CommanReport>();
             services.AddTransient<I_MISReport, R_MISReport>();
             services.AddTransient<I_GSTReport, R_GSTReport>();
             services.AddTransient<I_InventoryReport, R_InventoryReport>();
+
+            services.AddTransient<I_PharmacyReports, R_PharmacyReports>();
             services.AddTransient<I_PHAdvance, R_PHAdvance>();
             services.AddTransient<I_PHAdvanceRefund, R_PHAdvanceRefund>();
             services.AddTransient<I_CompanyInformation, R_CompanyInformation>();

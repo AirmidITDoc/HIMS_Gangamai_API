@@ -588,24 +588,24 @@ namespace HIMS.Data.IPD
             int i = 0, j = 0;
             string previousLabel = "";
             double TotalCollection = 0;  
-            double G_NetPayableAmt = 0, G_CashPayAmount = 0, G_CardPayAmount = 0, G_ChequePayAmount = 0, /*G_PayTMAmount = 0,*/G_AdvanceUsedAmount = 0;
-            double T_NetPayableAmt = 0, T_CashPayAmount = 0, T_CardPayAmount = 0, T_ChequePayAmount = 0, /*T_PayTMAmount = 0,*/ T_AdvanceUsedAmount = 0;
+            double G_NetPayableAmt = 0, G_CashPayAmount = 0, G_CardPayAmount = 0, G_ChequePayAmount = 0, G_PayTMAmount = 0,G_AdvanceUsedAmount = 0;
+            double T_NetPayableAmt = 0, T_CashPayAmount = 0, T_CardPayAmount = 0, T_ChequePayAmount = 0, T_PayTMAmount = 0, T_AdvanceUsedAmount = 0;
 
-            double G_BillNetPayableAmt = 0, G_BillCashPayAmount = 0, G_BillChequePayAmount = 0, G_BillCardPayAmount = 0/*, G_BillPayTMAmount = 0*/;
+            double G_BillNetPayableAmt = 0, G_BillCashPayAmount = 0, G_BillChequePayAmount = 0, G_BillCardPayAmount = 0, G_BillPayTMAmount = 0;
 
-            double G_AdvNetPayableAmt = 0, G_AdvCashPayAmount = 0,  G_AdvChequePayAmount = 0, G_AdvCardPayAmount = 0/*, G_AdvPayTMAmount = 0*/;
+            double G_AdvNetPayableAmt = 0, G_AdvCashPayAmount = 0,  G_AdvChequePayAmount = 0, G_AdvCardPayAmount = 0, G_AdvPayTMAmount = 0;
 
-            double G_RefundNetPayableAmt = 0, G_RefundCashPayAmount = 0, G_RefundChequePayAmount = 0, G_RefundCardPayAmount = 0/*, G_RefundPayTMAmount = 0*/;
+            double G_RefundNetPayableAmt = 0, G_RefundCashPayAmount = 0, G_RefundChequePayAmount = 0, G_RefundCardPayAmount = 0, G_RefundPayTMAmount = 0;
 
-            double G_RefundAdvNetPayableAmt = 0,  G_RefundAdvCash = 0, G_RefundAdvCheque = 0, G_RefundAdvCard = 0/*, G_RefundAdvPayTMAmount = 0*/;
+            double G_RefundAdvNetPayableAmt = 0,  G_RefundAdvCash = 0, G_RefundAdvCheque = 0, G_RefundAdvCard = 0, G_RefundAdvPayTMAmount = 0;
 
 
 
-            double T_AddBillNetPayableAmt = 0, T_AddBillCashPayAmount = 0, T_AddBillChequePayAmount = 0, T_AddBillCardPayAmount = 0/*, T_AddBillPayTMAmount = 0*/;
+            double T_AddBillNetPayableAmt = 0, T_AddBillCashPayAmount = 0, T_AddBillChequePayAmount = 0, T_AddBillCardPayAmount = 0, T_AddBillPayTMAmount = 0;
 
-            double T_AddBillrefundNetPayableAmt = 0, T_AddBillrefundCashPayAmount = 0, T_AddBillrefundChequePayAmount = 0, T_AddBillrefundCardPayAmount = 0/*, T_AddBillrefundPayTMAmount = 0*/;
+            double T_AddBillrefundNetPayableAmt = 0, T_AddBillrefundCashPayAmount = 0, T_AddBillrefundChequePayAmount = 0, T_AddBillrefundCardPayAmount = 0, T_AddBillrefundPayTMAmount = 0;
 
-            double T_FinalNetPayableAmt = 0, T_FinalCashPayAmount = 0, T_FinalChequePayAmount = 0,  T_FinalCardPayAmount = 0/*, T_FinalPayTMAmount = 0*/;
+            double T_FinalNetPayableAmt = 0, T_FinalCashPayAmount = 0, T_FinalChequePayAmount = 0,  T_FinalCardPayAmount = 0, T_FinalPayTMAmount = 0;
 
 
             foreach (DataRow dr in Bills.Rows)
@@ -628,9 +628,9 @@ namespace HIMS.Data.IPD
                          .Append(G_CashPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;border-bottom:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;border-bottom:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;border-bottom:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                         //.Append(G_PayTMAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;border-bottom:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;border-bottom:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(G_AdvanceUsedAmount.To2DecimalPlace()).Append("</td></tr>");
-                    G_NetPayableAmt = 0; G_CashPayAmount = 0; G_CardPayAmount = 0; G_ChequePayAmount = 0;/* G_PayTMAmount = 0;*/ G_AdvanceUsedAmount = 0;
+                    G_NetPayableAmt = 0; G_CashPayAmount = 0; G_CardPayAmount = 0; G_ChequePayAmount = 0; G_PayTMAmount = 0; G_AdvanceUsedAmount = 0;
 
                     items.Append("<tr style=\"font-size:25px;border-bottom: 1px;color:black; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:15px;text-align:left;vertical-align:middle\">").Append(dr["Type"].ConvertToString()).Append("</td></tr>");
                 }
@@ -641,7 +641,7 @@ namespace HIMS.Data.IPD
                 G_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
                 G_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
 
-                //G_ChequePayAmount += dr["PayTMAmount"].ConvertToDouble();
+                G_PayTMAmount += dr["PayTMAmount"].ConvertToDouble();
                 G_AdvanceUsedAmount += dr["AdvanceUsedAmount"].ConvertToDouble();
 
                 previousLabel = dr["Type"].ConvertToString();
@@ -659,7 +659,7 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["CashPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;vertical-align:middle;text-align: center;margin-left: 5px;\">").Append(dr["ChequePayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;text-align:center;vertical-align:middle;text-align:center;padding:3px;height:10px;text-align:center\">").Append(dr["CardPayAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                //items.Append("<td style=\"border-left:1px solid #000;text-align:center;vertical-align:middle;text-align:center;padding:3px;height:10px;text-align:center\">").Append(dr["PayTMAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;text-align:center;vertical-align:middle;text-align:center;padding:3px;height:10px;text-align:center\">").Append(dr["PayTMAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["AdvanceUsedAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
 
@@ -672,7 +672,7 @@ namespace HIMS.Data.IPD
                          .Append(G_ChequePayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(G_CardPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
 
-                         //.Append(G_PayTMAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
+                         .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                         .Append(G_AdvanceUsedAmount.To2DecimalPlace()).Append("</td></tr>");
                 }
             }
@@ -691,7 +691,7 @@ namespace HIMS.Data.IPD
                     G_BillCashPayAmount += dr["CashPayAmount"].ConvertToDouble();
                     G_BillChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
                     G_BillCardPayAmount += dr["CardPayAmount"].ConvertToDouble();
-                    //G_BillPayTMAmount += dr["PayTMAmount"].ConvertToDouble();
+                    G_BillPayTMAmount += dr["PayTMAmount"].ConvertToDouble();
 
 
                 }
@@ -703,7 +703,7 @@ namespace HIMS.Data.IPD
                     G_AdvChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
                     G_AdvCardPayAmount += dr["CardPayAmount"].ConvertToDouble();
 
-                    //G_AdvPayTMAmount += dr["PayTMAmount"].ConvertToDouble();
+                    G_AdvPayTMAmount += dr["PayTMAmount"].ConvertToDouble();
 
 
                 }
@@ -715,7 +715,7 @@ namespace HIMS.Data.IPD
                     G_RefundChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
                     G_RefundCardPayAmount += dr["CardPayAmount"].ConvertToDouble();
 
-                    //G_RefundPayTMAmount += dr["PayTMAmount"].ConvertToDouble();
+                    G_RefundPayTMAmount += dr["PayTMAmount"].ConvertToDouble();
 
 
                 }
@@ -727,7 +727,7 @@ namespace HIMS.Data.IPD
                     G_RefundAdvCheque += dr["ChequePayAmount"].ConvertToDouble();
                     G_RefundAdvCard += dr["CardPayAmount"].ConvertToDouble();
 
-                    //G_RefundAdvPayTMAmount += dr["PayTMAmount"].ConvertToDouble();
+                    G_RefundAdvPayTMAmount += dr["PayTMAmount"].ConvertToDouble();
 
 
                 }
@@ -739,24 +739,24 @@ namespace HIMS.Data.IPD
             T_AddBillChequePayAmount = G_BillChequePayAmount.ConvertToDouble() + G_AdvChequePayAmount.ConvertToDouble();
             T_AddBillCardPayAmount = G_BillCardPayAmount.ConvertToDouble() + G_AdvCardPayAmount.ConvertToDouble();
 
-            //T_AddBillPayTMAmount = G_BillPayTMAmount.ConvertToDouble() + G_AdvPayTMAmount.ConvertToDouble();
+            T_AddBillPayTMAmount = G_BillPayTMAmount.ConvertToDouble() + G_AdvPayTMAmount.ConvertToDouble();
             T_AddBillrefundNetPayableAmt = G_RefundNetPayableAmt.ConvertToDouble() + G_RefundAdvNetPayableAmt.ConvertToDouble();
             T_AddBillrefundCashPayAmount = G_RefundCashPayAmount.ConvertToDouble() + G_RefundAdvCash.ConvertToDouble();
             T_AddBillrefundChequePayAmount = G_RefundChequePayAmount.ConvertToDouble() + G_RefundAdvCheque.ConvertToDouble();
             T_AddBillrefundCardPayAmount = G_RefundCardPayAmount.ConvertToDouble() + G_RefundAdvCard.ConvertToDouble();
 
-            //T_AddBillrefundPayTMAmount = G_RefundPayTMAmount.ConvertToDouble() + G_RefundAdvPayTMAmount.ConvertToDouble();
+            T_AddBillrefundPayTMAmount = G_RefundPayTMAmount.ConvertToDouble() + G_RefundAdvPayTMAmount.ConvertToDouble();
 
             T_FinalNetPayableAmt = T_AddBillNetPayableAmt.ConvertToDouble() - T_AddBillrefundNetPayableAmt.ConvertToDouble();
             T_FinalCashPayAmount = T_AddBillCashPayAmount.ConvertToDouble() - T_AddBillrefundCashPayAmount.ConvertToDouble();
             T_FinalChequePayAmount = T_AddBillChequePayAmount.ConvertToDouble() - T_AddBillrefundChequePayAmount.ConvertToDouble();
             T_FinalCardPayAmount = T_AddBillCardPayAmount.ConvertToDouble() - T_AddBillrefundCardPayAmount.ConvertToDouble();
             T_FinalChequePayAmount = T_AddBillChequePayAmount.ConvertToDouble() - T_AddBillrefundChequePayAmount.ConvertToDouble();
-            //T_FinalPayTMAmount = T_AddBillPayTMAmount.ConvertToDouble() - T_AddBillrefundPayTMAmount.ConvertToDouble();
+            T_FinalPayTMAmount = T_AddBillPayTMAmount.ConvertToDouble() - T_AddBillrefundPayTMAmount.ConvertToDouble();
 
 
 
-            TotalCollection = T_FinalCashPayAmount.ConvertToDouble() + T_FinalCardPayAmount.ConvertToDouble() + T_FinalChequePayAmount.ConvertToDouble();
+            TotalCollection = T_FinalCashPayAmount.ConvertToDouble() + T_FinalCardPayAmount.ConvertToDouble() + T_FinalChequePayAmount.ConvertToDouble() + T_FinalPayTMAmount.ConvertToDouble();
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
@@ -764,7 +764,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{TotalCashpay}}", T_CashPayAmount.To2DecimalPlace());
             html = html.Replace("{{TotalCardpay}}", T_CardPayAmount.To2DecimalPlace());
             html = html.Replace("{{TotalChequepay}}", T_ChequePayAmount.To2DecimalPlace());
-            //html = html.Replace("{{TotalPayTMAmount}}", T_PayTMAmount.To2DecimalPlace());
+            html = html.Replace("{{TotalPayTMAmount}}", T_PayTMAmount.To2DecimalPlace());
 
             html = html.Replace("{{TotalAdvUsed}}", T_AdvanceUsedAmount.To2DecimalPlace());
             html = html.Replace("{{T_NetPayableAmt}}", T_NetPayableAmt.To2DecimalPlace());
@@ -773,30 +773,30 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{G_BillCashPayAmount}}", G_BillCashPayAmount.To2DecimalPlace());
             html = html.Replace("{{G_BillCardPayAmount}}", G_BillCardPayAmount.To2DecimalPlace());
             html = html.Replace("{{G_BillChequePayAmount}}", G_BillChequePayAmount.To2DecimalPlace());
-            //html = html.Replace("{{G_BillPayTMAmount}}", G_BillPayTMAmount.To2DecimalPlace());
+            html = html.Replace("{{G_BillPayTMAmount}}", G_BillPayTMAmount.To2DecimalPlace());
 
 
 
             html = html.Replace("{{G_AdvCashPayAmount}}", G_AdvCashPayAmount.To2DecimalPlace());
             html = html.Replace("{{G_AdvCardPayAmount}}", G_AdvCardPayAmount.To2DecimalPlace());
             html = html.Replace("{{G_AdvChequePayAmount}}", G_AdvChequePayAmount.To2DecimalPlace());
-            //html = html.Replace("{{G_AdvPayTMAmount}}", G_AdvPayTMAmount.To2DecimalPlace());
+            html = html.Replace("{{G_AdvPayTMAmount}}", G_AdvPayTMAmount.To2DecimalPlace());
 
             html = html.Replace("{{G_RefundCashPayAmount}}", G_RefundCashPayAmount.To2DecimalPlace());
             html = html.Replace("{{G_RefundCardPayAmount}}", G_RefundCardPayAmount.To2DecimalPlace());
             html = html.Replace("{{G_RefundChequePayAmount}}", G_RefundChequePayAmount.To2DecimalPlace());
-            //html = html.Replace("{{g_Refundpaytmamount}}", G_RefundPayTMAmount.To2DecimalPlace());
+            html = html.Replace("{{G_RefundPayTMAmount}}", G_RefundPayTMAmount.To2DecimalPlace());
 
 
             html = html.Replace("{{G_RefundAdvCash}}", G_RefundAdvCash.To2DecimalPlace());
             html = html.Replace("{{G_RefundAdvCard}}", G_RefundAdvCard.To2DecimalPlace());
             html = html.Replace("{{G_RefundAdvCheque}}", G_RefundAdvCheque.To2DecimalPlace());
-            //html = html.Replace("{{G_RefundAdvPayTMAmount}}", G_RefundAdvPayTMAmount.To2DecimalPlace());
+            html = html.Replace("{{G_RefundAdvPayTMAmount}}", G_RefundAdvPayTMAmount.To2DecimalPlace());
 
             html = html.Replace("{{T_FinalCashPayAmount}}", T_FinalCashPayAmount.To2DecimalPlace());
             html = html.Replace("{{T_FinalCardPayAmount}}", T_FinalCardPayAmount.To2DecimalPlace());
             html = html.Replace("{{T_FinalChequePayAmount}}", T_FinalChequePayAmount.To2DecimalPlace());
-            //html = html.Replace("{{T_FinalPayTMAmount}}", T_FinalPayTMAmount.To2DecimalPlace());
+            html = html.Replace("{{T_FinalPayTMAmount}}", T_FinalPayTMAmount.To2DecimalPlace());
 
 
 
