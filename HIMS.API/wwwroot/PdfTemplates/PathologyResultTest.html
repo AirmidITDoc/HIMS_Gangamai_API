@@ -17,7 +17,7 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
                                 <td></td>
-                                <td style="padding: 2px; padding-bottom:5px;text-align:center;padding-top:135px; "><b>DEPARTMENT OF PATHOLOGY</b></td>
+                                <td style="padding: 2px; padding-bottom:5px;text-align:center;padding-top:135px; "><b>Laboratory Report</b></td>
                                 <!--//<td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>-->
 
                                 <td></td>
@@ -27,7 +27,7 @@
                 </tr>
                 <tr class="bill-info-row">
                     <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;font-weight:bold;border:solid 1px black">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 17px; border: solid 1px black">
                             <tr>
                                 <td style="padding: 2px;">
                                     <span>UHID No:</span>
@@ -42,22 +42,6 @@
                                     <span>{{PathTime}}</span>
                                 </td>
                             </tr>
-                            <!--<tr>
-                                <td style="padding: 2px;">
-                                    <span>UHID No:</span>
-                                    <span>{{RegNo}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>Age | Gender:</span>
-                                    <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>DOA | Time:</span>
-                                    <span>{{AdmissionTime}}</span>
-                                </td>
-                            </tr>-->
-
-
                             <tr>
 
 
@@ -117,48 +101,22 @@
                         </table>
                     </td>
                 </tr>
-
-
-                <!--<tr>
-                    <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; ">
-                        <span>
-                            <img src="{{BaseUrl}}/PdfTemplates/Hospital_logo.jpeg" alt="logo" width="180">
-                        </span>
-                    </td>
-                </tr>-->
-                <!--<tr>
-                    <table style="width: 100%; border-collapse: collapse;margin-top:20px;">
-
-
-                        <tr style="padding: 6px; text-align: right;">
-                            <td>
-
-                                <span>{{PathResultDr1}}</span>
-                            </td>
-                        </tr>
-                        <tr style="padding: 6px; text-align: right;">
-
-                            <td>
-
-                                <span>Pathology Doc Name</span>
-                            </td>
-                        </tr>
-
-                    </table>
-                </tr>-->
             </table>
         </div>
     </div>
 
-    <footer style="margin-left:80%"> <p>{{PathResultDr1}}</p></footer>
-    <footer style="margin-left:80%"> <p>( {{Education}} | {{MahRegNo}} )</p></footer>
-    <span>
-        sign
-        <img src="{{BaseUrl}}/PdfTemplates/PathSign.jpg" alt="logo" width="80">
-
+    <span style="margin-left:80%">
+        <img src="{{BaseUrl}}/PdfTemplates/PathSign.jpg" alt="logo" width="100">
     </span>
+    <footer style="margin-left: 80%; font-size: 19px;">
+        <div>{{PathResultDr1}}</div>
+        <div>{{Education}}</div>    
+        <div>{{MahRegNo}}</div>
+    </footer>
+    <!--<footer style="margin-left:80%"> <p>{{MahRegNo}}</p></footer>-->
 
-    <footer style="margin-left:80%"> <p>Pathology Doc Name</p></footer>
+
+    <!--<footer style="margin-left:80%"> <p>Pathology Doc Name</p></footer>-->
 </body>
 
 </html>
