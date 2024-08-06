@@ -93,9 +93,10 @@ namespace HIMS.Data.Pathology
             
             html = html.Replace("{{PrintTestName}}", Bills.GetColValue("PrintTestName"));
             html = html.Replace("{{Path_DoctorName}}", Bills.GetColValue("Path_DoctorName"));
+            html = html.Replace("{{Education}}", Bills.GetColValue("Education"));
+            html = html.Replace("{{MahRegNo}}", Bills.GetColValue("MahRegNo"));
 
-            
-html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
+            html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
             //html = html.Replace("{{chkresonflag}}", Bills.GetColValue("reason").ConvertToString() != null ? "block" : "none");
             return html;
 

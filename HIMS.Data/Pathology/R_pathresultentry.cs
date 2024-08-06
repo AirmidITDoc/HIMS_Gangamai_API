@@ -95,40 +95,7 @@ namespace HIMS.Data.Pathology
             String Label = "", Label1="";
             string previousLabel = "";
 
-            //foreach (DataRow dr in Bills.Rows)
-            //{
-            //    i++;
-            //    if (i == 1 || Label != previousLabel)
-            //    {
-            //        j = 1;
-            //        Label = dr["PrintTestName"].ConvertToString();
-            //        items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(Label).Append("</td></tr>");
-            //    }
-            //    previousLabel = dr["PrintTestName"].ConvertToString();
-
-            //    if (Label == previousLabel)
-            //    {
-            //        i++;
-                                                     
-            //        if (dr["ResultValue"].ConvertToString() != "")
-            //        {
-            //            if(dr["PrintParameterName"].ConvertToString() == "HAEMOGLOBIN" || dr["PrintParameterName"].ConvertToString() == "TOTAL WBC COUNT" || dr["PrintParameterName"].ConvertToString() == "DIFFERENTIAL COUNT")
-            //                items.Append("<tr  style=\"font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding-bottom: 10px;height: 20px;text-align:left;font-size:18px;font-weight:bold;\">").Append(dr["PrintParameterName"].ConvertToString()).Append("</td>");
-            //            else
-            //            items.Append("<tr  style=\"font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding: 0;height: 20px;text-align:left;font-size:18px;\">").Append(dr["PrintParameterName"].ConvertToString()).Append("</td>");
-
-            //            items.Append("<td style=\"vertical-align: top;padding-bottom: 10px;height: 20px;text-align:center;font-size:18px;\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
-            //            items.Append("<td style=\"vertical-align: top;padding-bottom: 10px;height: 20px;text-align:center;font-size:18px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
-
-            //        }
-                
-            //        j++;
-            //    }
-            //}
-            ///////////////////
-            ///
-
-
+         
             foreach (DataRow dr in Bills.Rows)
             {
 
@@ -136,7 +103,8 @@ namespace HIMS.Data.Pathology
                 if (i == 1)
                 {
                     Label = dr["PrintTestName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;padding-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;vertical-align:middle;\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;padding-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;vertical-align:middle;\">").Append("</td></tr>");
                 }
                 if (previousLabel != "" && previousLabel != dr["PrintTestName"].ConvertToString())
                 {
@@ -151,12 +119,11 @@ namespace HIMS.Data.Pathology
                 if (dr["ResultValue"].ConvertToString() != "")
                 {
                     if (dr["PrintParameterName"].ConvertToString() == "HAEMOGLOBIN" || dr["PrintParameterName"].ConvertToString() == "TOTAL WBC COUNT" || dr["PrintParameterName"].ConvertToString() == "DIFFERENTIAL COUNT")
-                        items.Append("<tr  style=\"font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding-bottom: 10px;height: 20px;text-align:left;font-size:18px;font-weight:bold;\">").Append(dr["PrintParameterName"].ConvertToString()).Append("</td>");
+                        items.Append("<tr style=\"font-size: 14px;line-height: 20px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding-bottom: 10px;height: 20px;text-align:left;font-size:18px;font-weight:bold;\">").Append(dr["PrintParameterName"].ConvertToString()).Append("</td>");
                     else
-                        items.Append("<tr  style=\"font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding: 0;height: 20px;text-align:left;font-size:18px;\">").Append(dr["PrintParameterName"].ConvertToString()).Append("</td>");
-
-                    items.Append("<td style=\"vertical-align: top;padding-bottom: 10px;height: 20px;text-align:center;font-size:18px;\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"vertical-align: top;padding-bottom: 10px;height: 20px;text-align:center;font-size:18px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
+                        items.Append("<tr  style=\"font-size: 14px;line-height: 20px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding: 0;height: 20px;text-align:left;font-size:18px;padding-right:10px;\">").Append(dr["PrintParameterName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"vertical-align: top;padding-bottom: 10px;height: 15px;text-align:left;font-size:18px;\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"vertical-align: top;padding-bottom: 10px;height: 15px;text-align:left;font-size:18px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
                 }
 
             }

@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div class="main-content-wrapper" style="height:1170px">
+    <div class="main-content-wrapper" >
         <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
                 <!--{{NewHeader}}-->
@@ -30,15 +30,15 @@
                         <table style="width: 100%; border-collapse: collapse; font-size: 19px; border: solid 1px black">
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>UHID No:</span>
+                                    <span style="font-weight:bold;">UHID No:</span>
                                     <span>{{RegNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>IPD No :</span>
+                                    <span style="font-weight:bold;">IPD No :</span>
                                     <span>{{IPDNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Date | Time:</span>
+                                    <span style="font-weight:bold;">Date | Time:</span>
                                     <span>{{PathTime}}</span>
                                 </td>
                             </tr>
@@ -46,16 +46,16 @@
 
 
                                 <td style="padding: 2px;">
-                                    <span>Patient Name:</span>
+                                    <span style="font-weight:bold;">Patient Name:</span>
                                     <span>{{PatientName}}</span>
                                 </td>
 
                                 <td style="padding: 2px;">
-                                    <span>Age | Gender:</span>
+                                    <span style="font-weight:bold;">Age | Gender:</span>
                                     <span> {{AgeYear}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Patient Type :</span>
+                                    <span style="font-weight:bold;">Patient Type :</span>
                                     <span>{{PatientType}}</span>
                                 </td>
 
@@ -63,15 +63,15 @@
                             <tr>
 
                                 <td style="padding: 2px;">
-                                    <span>Doctor Name:</span>
+                                    <span style="font-weight:bold;">Doctor Name:</span>
                                     <span>{{DoctorName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Department: </span>
+                                    <span style="font-weight:bold;">Department: </span>
                                     <span>{{DepartmentName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Ref.Doctor Name:</span>
+                                    <span style="font-weight:bold;">Ref.Doctor Name:</span>
                                     <span>{{RefDocName}}</span>
                                 </td>
                             </tr>
@@ -87,37 +87,51 @@
                             <!-- // <thead style="font-size: 14px;">-->
                             <tr>
 
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold;">
+                                <td style="border-left: 1px solid #d4c3c3; border-top: 1px solid #d4c3c3; border-bottom: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold;font-size:18px;">
                                     INVESTIGATION
                                 </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold;">
+                                <td style="border-bottom: 1px solid #d4c3c3; border-top: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold; font-size: 18px; ">
                                     PATIENTS VALUE
                                 </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold;">NORMAL VALUES</td>
+                                <td style="border-bottom: 1px solid #d4c3c3; border-top: 1px solid #d4c3c3; border-right: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold; font-size: 18px; ">NORMAL VALUES</td>
 
                                 {{Items}}
                                 <!-- // </thead>-->
+                            </tr>
+
 
                         </table>
                     </td>
                 </tr>
-                <div>{{SuggestionNote}}</div>
+
+                <tr style="font-size:18px;font-weight:bold;">  <td>Suggestion Note : -{{SuggestionNote}}</td></tr>
             </table>
         </div>
     </div>
 
-    <span style="margin-left:80%">
-        <img src="{{BaseUrl}}/PdfTemplates/PathSign.jpg" alt="logo" width="100">
-    </span>
-    <footer style="margin-left: 80%; font-size: 19px;">
-        <div>{{PathResultDr1}}</div>
-        <div>{{Education}}</div>    
-        <div>{{MahRegNo}}</div>
-    </footer>
-    <!--<footer style="margin-left:80%"> <p>{{MahRegNo}}</p></footer>-->
-
-
-    <!--<footer style="margin-left:80%"> <p>Pathology Doc Name</p></footer>-->
+  
+   
 </body>
+
+</html>
+
+
+
+<html><body>
+</body>
+<table style="width: 100%;line-height: inherit;text-align: left;">
+
+   
+    <tr>
+        <span style="margin-left:70%">
+            <img src="{{BaseUrl}}/PdfTemplates/PathSign.jpg" alt="logo" width="100">
+        </span>
+        <footer style="margin-left: 70%; font-size: 19px;">
+            <div>{{PathResultDr1}}</div>
+            <div>{{Education}}</div>
+            <div>{{MahRegNo}}</div>
+        </footer>
+    </tr>
+</table>
 
 </html>
