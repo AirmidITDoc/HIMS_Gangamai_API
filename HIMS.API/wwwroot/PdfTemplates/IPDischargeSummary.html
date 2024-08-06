@@ -10,238 +10,279 @@
 <body>
     <div class="main-content-wrapper">
         <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
-            <table style="width: 100%;line-height: inherit;text-align: left;">
+            <div>
+                <table style="width: 100%;line-height: inherit;text-align: left;">
 
-                {{NewHeader}}
-                <tr class="title-date-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>DISCHARGE SUMMARY</b></td>
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
-                            </tr>
-                        </table>
+                    {{NewHeader}}
+                    <tr class="title-date-row">
+                        <td style="padding: 6px;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr style="font-size: 18px">
+                                    <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>DISCHARGE SUMMARY</b></td>
+                                    <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr class="bill-info-row">
+                        <td style="padding: 6px;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 20px;">
+
+
+                                <tr>
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">UHID No :</span>
+                                        <span>{{RegNo}}</span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">Age | Gender :</span>
+                                        <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">DOA | Time :</span>
+                                        <span>{{AdmissionTime}}</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">Patient Name :</span>
+                                        <span>{{PatientName}}</span>
+                                    </td>
+
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">IPD No :</span>
+                                        <span>{{IPDNo}}</span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">DOD | Time :</span>
+                                        <span>{{DischargeTime}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">Doctor Name :</span>
+                                        <span>{{DoctorName}}</span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">Department :</span>
+                                        <span>{{DepartmentName}} </span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">Ward | Bed Name : </span>
+                                        <span>{{RoomName}}|{{BedName}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">Ref.Doctor Name :</span>
+                                        <span>{{DischargeDoctor1}}</span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">Patient Type :</span>
+                                        <span>{{PatientType}}</span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">Company Name :</span>
+                                        <span>{{CompanyName}}</span>
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #d4c3c3;">
+                                </tr>
+
+                                <tr style="margin-top: 12px; font-size: 24px;">
+
+                                <tr>
+                                    <td>
+                                <tr style="padding:20px;">
+
+                                <tr style="display:{{chkDignosflag}}">
+                                    <td style="border-bottom:1px solid #eee; padding: 6px;font-weight:bold;font-size:22px;">Dignosis :</td>
+                                <tr>
+                                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; margin-left: 10px; font-size: 24px;" colspan="6">{{Diagnosis}}</td>
+                                </tr>
+                        </td>
+                    </tr>
+                    <tr style="display:{{chkHistoryflag}}">
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">History :</td>
+
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; padding-left: 20px; font-size: 24px;" colspan="6">{{History}}</td>
+                    </tr>
+
+                    </tr>
+
+                    <tr style="display:{{chkClinicalconditionflag}}">
+                        <td>
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">Clinical Condition On Admisssion :</td>
+
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{ClinicalConditionOnAdmisssion}}</td>
+                    </tr>
                     </td>
-                </tr>
-                <tr class="bill-info-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
+                    </tr>
 
 
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>UHID No :</span>
-                                    <span>{{RegNo}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>Age | Gender :</span>
-                                    <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>DOA | Time :</span>
-                                    <span>{{AdmissionTime}}</span>
-                                </td>
-                            </tr>
+                    <tr style="display:{{chkClfindingflag}}>
+                        <td>
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">Clinical Finding :</td>
 
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>Patient Name :</span>
-                                    <span>{{PatientName}}</span>
-                                </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{ClinicalFinding}}</td>
+                    </tr>
+                    </td>
+                    </tr>
 
-                                <td style="padding: 2px;">
-                                    <span>IPD No :</span>
-                                    <span>{{IPDNo}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>DOD | Time :</span>
-                                    <span>{{DischargeTime}}</span>
-                                </td>
-                            </tr>
-                            <tr>
+                    <tr style="display:{{chkSurgeryProcDoneflag}}">
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">SurgeryProcDone :</td>
 
-                                <td style="padding: 2px;">
-                                    <span>Doctor Name :</span>
-                                    <span>{{DoctorName}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>Department :</span>
-                                    <span>{{DepartmentName}} </span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>Ward | Bed Name : </span>
-                                    <span>{{RoomName}}|{{BedName}}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                            </tr>
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <span>Ref.Doctor Name :</span>
-                                    <span>{{DischargeDoctor1}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>Patient Type :</span>
-                                    <span>{{PatientType}}</span>
-                                </td>
-                                <td style="padding: 2px;">
-                                    <span>Company Name :</span>
-                                    <span>{{CompanyName}}</span>
-                                </td>
-                            </tr>
+                    </tr>
+
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{SurgeryProcDone}}</td>
+                    </tr>
+                    </tr>
+
+                    <tr style="display:{{chkOprativeflag}}">
+                        <td>
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">Oprative Note :</td>
+
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{OpertiveNotes}}</td>
+                    </tr>
+                    </td>
+                    </tr>
 
 
-                            <tr style="margin-top: 12px;">
 
-                                <table style="width: 100%; border-collapse: collapse;">
-                                    <tr>
-                                    <tr style="padding:20px;">
-                                        <td style="border-bottom:1px solid #eee; padding: 6px;font-weight:bold;">Dignosis :</td>
+                    <tr style="display:{{chkInvestigationflag}}">
+                        <td>
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">Investigation :</td>
 
-                                    </tr>
-                                    <tr style="display:{{chkDignosflag}};">
-                                        <td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;" colspan="6">{{Diagnosis}}</td>
-                                    </tr>
-                            </tr>
-                            <tr>
-                            <tr style="padding:20px;">
-                                <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">History :</td>
+                    </tr>
 
-                            </tr>
-                            <tr style="display:{{chkHistoryflag}}">
-                                <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{History}}</td>
-                            </tr>
-
-                </tr>
-                <tr>
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">Clinical Finding :</td>
-
-                </tr>
-                <tr style="display:{{chkClfindingflag}}">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{ClinicalFinding}}</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">Investigation :</td>
-
-                </tr>
-
-                <tr style="display:{{chkInvestigationflag}}">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{Investigation}}</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">Oprative Note :</td>
-
-                </tr>
-                <tr style="display:{{chkOprativeflag}}">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{OpertiveNotes}}</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">Treatment Given :</td>
-
-                </tr>
-                <tr style="display:{{chkaftdischargeflag}}">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{TreatmentAdvisedAfterDischarge}}</td>
-                </tr>
-
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">Clinical Condition On Admisssion :</td>
-
-                </tr>
-                <tr>
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{ClinicalConditionOnAdmisssion}}</td>
-                </tr>
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">Other Con Dr Opinions:</td>
-
-                </tr>
-
-                <tr>
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{OtherConDrOpinions}}</td>
-                </tr>
-
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">Condition At The TimeOf Discharge :</td>
-
-                </tr>
-
-                <tr >
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{ConditionAtTheTimeOfDischarge}}</td>
-                </tr>
-
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">PainManagementTechnique:</td>
-
-                </tr>
-
-                <tr >
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{PainManagementTechnique}}</td>
-                </tr>
-
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">LifeStyle :</td>
-
-                </tr>
-
-                <tr >
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{LifeStyle}}</td>
-                </tr>
-
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">Warning Symptoms:</td>
-
-                </tr>
-
-                <tr >
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{WarningSymptoms}}</td>
-                </tr>
-
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">SurgeryProcDone :</td>
-
-                </tr>
-
-                <tr >
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{SurgeryProcDone}}</td>
-                </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{Investigation}}</td>
+                    </tr>
+                    </td>
+                    </tr>
 
 
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">TreatmentAdvisedAfterDischarge:</td>
+                    <tr style="display:{{chkTreatmentflag}}">
 
-                </tr>
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">TreatmentGiven :</td>
 
-                <tr >
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{TreatmentAdvisedAfterDischarge}}</td>
-                </tr>
+                    </tr>
 
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">DischargeTypeName:</td>
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{TreatmentGiven}}</td>
+                    </tr>
 
-                </tr>
-
-                <tr >
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{DischargeTypeName}}</td>
-                </tr>
+                    </tr>
 
 
-                <tr style="padding:20px;">
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold;">TreatmentGiven :</td>
+                    <tr style="display:{{chktreatadviceflag}}">
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">TreatmentAdvisedAfterDischarge:</td>
 
-                </tr>
+                    </tr>
 
-                <tr >
-                    <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; " colspan="6">{{TreatmentGiven}}</td>
-                </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{TreatmentAdvisedAfterDischarge}}</td>
+                    </tr>
+                    </tr>
 
-                </tr>
-            </table>
+
+
+                    <tr style="display:{{chkotherconditionflag}}">
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">Other Con Dr Opinions:</td>
+
+                    </tr>
+
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{OtherConDrOpinions}}</td>
+                    </tr>
+                    </tr>
+
+
+                    <tr style="display:{{chkpainmanageflag}}">
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">PainManagementTechnique:</td>
+
+                    </tr>
+
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{PainManagementTechnique}}</td>
+                    </tr>
+                    </tr>
+
+
+
+                    <tr style="display:{{chkLifeStyleflag}}">
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">LifeStyle :</td>
+
+                    </tr>
+
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{LifeStyle}}</td>
+                    </tr>
+                    </tr>
+
+
+                    <tr style="display:{{chkConondiscflag}}">
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">Condition At The TimeOf Discharge :</td>
+
+                    </tr>
+
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{ConditionAtTheTimeOfDischarge}}</td>
+                    </tr>
+                    </tr>
+
+
+                    <tr style="display:{{chkWarningSymptomsflag}}">
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">Warning Symptoms:</td>
+
+                    </tr>
+
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{WarningSymptoms}}</td>
+                    </tr>
+                    </tr>
+
+
+                    <tr style="display:{{chkidischragetypeflag}}">
+                    <tr style="padding:20px;">
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 22px;">DischargeTypeName:</td>
+
+                    </tr>
+
+                    <tr>
+                        <td style="border-bottom: 1px solid #eee; padding: 6px; text-align: left; font-size: 24px; " colspan="6">{{DischargeTypeName}}</td>
+                    </tr>
+                    </tr>
+
+
+                </table>
+            </div>
 
             </tr>
             </table>
@@ -249,11 +290,11 @@
             </tr>
 
 
-            <tr><td colspan="3" style="font-weight:bold">Prescription Details :-</td></tr>
+            <tr><td colspan="3" style="font-weight:bold;font-size:24px;">Prescription Details :-</td></tr>
             <tr class="bill-table-row">
                 <td style="padding: 6px;">
                     <table style="width: 100%; border-collapse: collapse;">
-                        <thead style="font-size: 14px;font-weight:bold;">
+                        <thead style="font-size: 14px; font-weight: bold; font-size: 24px;">
                             <tr>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
@@ -273,7 +314,7 @@
                 </td>
             </tr>
             <tr>
-                <table style="width: 100%; border-collapse: collapse;margin-top:50px;">
+                <table style="width: 100%; border-collapse: collapse; margin-top: 50px; font-size: 24px;">
                     <tr></tr>
                     <tr style="padding: 6px; text-align: center;font-weight:bold;">
                         <td>{{DischargeTime}}</td>
@@ -288,8 +329,8 @@
                     </tr>
 
                     <tr style="padding: 6px; text-align: center;">
-                         <td> Discharge Time</td>
-                        
+                        <td> Discharge Time</td>
+
                         <td>
 
                             <span>Preapered By</span>
