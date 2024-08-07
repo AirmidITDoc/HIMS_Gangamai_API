@@ -154,9 +154,9 @@ namespace HIMS.Data.IPD
             //html = html.Replace("{{TreatmentGiven}}", Bills.GetColValue("TreatmentGiven"));
             //html = html.Replace("{{Investigation}}", Bills.GetColValue("Investigation"));
 
-            html = html.Replace("{{chkHistoryflag}}", Bills.GetColValue("History").ConvertToString() !=" " ? "table-row" : "none");
+            html = html.Replace("{{chkHistoryflag}}", Bills.GetColValue("History").ConvertToString() !="" ? "table-row" : "none");
 
-            html = html.Replace("{{chkHistoryflag}}", Bills.GetColValue("History").ConvertToDouble() > 0 ? "block" : "table-row");
+            html = html.Replace("{{chkHistoryflag}}", Bills.GetColValue("History").ConvertToString() !=""? "block" : "table-row");
 
 
 
