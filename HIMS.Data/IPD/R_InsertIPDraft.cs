@@ -97,7 +97,7 @@ namespace HIMS.Data.IPD
                    .Append(T_TotalAmount.To2DecimalPlace()).Append("</td></tr>");
                     T_TotalAmount = 0;
 
-                    items.Append("<tr style=\"font-size:18px;border-bottom: 1px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["GroupName"].ConvertToString()).Append("</td></tr>");
+                    //items.Append("<tr style=\"font-size:18px;border-bottom: 1px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["GroupName"].ConvertToString()).Append("</td></tr>");
 
                 }
 
