@@ -175,10 +175,10 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{chktreatadviceflag}}", Bills.GetColValue("TreatmentAdvisedAfterDischarge").ConvertToString() != "" ? "table-row" : "none");
 
-            html = html.Replace("{{chkTreatmentflag}}", Bills.GetColValue("TreatmentGiven").ConvertToDouble() != ' ' ? "table-row" : "none");
+            html = html.Replace("{{chkTreatmentflag}}", Bills.GetColValue("TreatmentGiven").ConvertToString() != " " ? "table-row" : "none");
 
 
-            html = html.Replace("{{chkInvestigationflag}}", Bills.GetColValue("Investigation").ConvertToDouble() != ' ' ? "table-row" : "none");
+            html = html.Replace("{{chkInvestigationflag}}", Bills.GetColValue("Investigation").ConvertToString() != "" ? "table-row" : "none");
             //
             html = html.Replace("{{chkClinicalconditionflag}}", Bills.GetColValue("ClinicalConditionOnAdmisssion").ConvertToString() != "" ? "table-row" : "none");
 
@@ -186,22 +186,22 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{chkotherconditionflag}}", Bills.GetColValue("OtherConDrOpinions").ConvertToString() != "" ? "table-row" : "none");
 
-            html = html.Replace("{{chkpainmanageflag}}", Bills.GetColValue("PainManagementTechnique").ConvertToDouble() != ' ' ? "table-row" : "none");
+            html = html.Replace("{{chkpainmanageflag}}", Bills.GetColValue("PainManagementTechnique").ConvertToString() != "" ? "table-row" : "none");
 
 
-            html = html.Replace("{{chkConondiscflag}}", Bills.GetColValue("ConditionAtTheTimeOfDischarge").ConvertToDouble() != ' ' ? "table-row" : "none");
+            html = html.Replace("{{chkConondiscflag}}", Bills.GetColValue("ConditionAtTheTimeOfDischarge").ConvertToString() != "" ? "table-row" : "none");
 
 
             html = html.Replace("{{chkLifeStyleflag}}", Bills.GetColValue("LifeStyle").ConvertToString() != "" ? "table-row" : "none");
 
-            html = html.Replace("{{chkWarningSymptomsflag}}", Bills.GetColValue("WarningSymptoms").ConvertToDouble() != ' ' ? "table-row" : "none");
+            html = html.Replace("{{chkWarningSymptomsflag}}", Bills.GetColValue("WarningSymptoms").ConvertToString() != "" ? "table-row" : "none");
 
 
-            html = html.Replace("{{chkSurgeryProcDoneflag}}", Bills.GetColValue("SurgeryProcDone").ConvertToDouble() != ' ' ? "table-row" : "none");
-            html = html.Replace("{{chkidischragetypeflag}}", Bills.GetColValue("DischargeTypeName").ConvertToDouble() != ' ' ? "table-row" : "none");
+            html = html.Replace("{{chkSurgeryProcDoneflag}}", Bills.GetColValue("SurgeryProcDone").ConvertToString() != "" ? "table-row" : "none");
+            html = html.Replace("{{chkidischragetypeflag}}", Bills.GetColValue("DischargeTypeName").ConvertToString() != "NULL" ? "table-row" : "none");
 
 
-            html = html.Replace("{{chkSurgeryProcDoneflag}}", Bills.GetColValue("SurgeryProcDone").ConvertToDouble() != ' ' ? "table-row" : "none");
+            html = html.Replace("{{chkSurgeryProcDoneflag}}", Bills.GetColValue("SurgeryProcDone").ConvertToString() != "" ? "table-row" : "none");
 
 
             
