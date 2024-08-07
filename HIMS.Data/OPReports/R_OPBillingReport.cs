@@ -2092,7 +2092,7 @@ namespace HIMS.Data.Opd
             T_TotalPAYTM = T_BillPayTm.ConvertToDouble() - T_BillReturnPAYTM.ConvertToDouble();
 
 
-            TotalCollection = T_CashPayAmount.ConvertToDouble() + T_CardPayAmount.ConvertToDouble() + T_ChequePayAmount.ConvertToDouble() + T_TotalNEFT.ConvertToDouble() + T_TotalPAYTM.ConvertToDouble();
+            TotalCollection = T_TotalCash.ConvertToDouble() + T_TotalCard.ConvertToDouble() + T_TotalCheque.ConvertToDouble() + T_TotalNEFT.ConvertToDouble() + T_TotalPAYTM.ConvertToDouble();
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
@@ -2119,7 +2119,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{T_TotalCheque}}", T_TotalCheque.To2DecimalPlace());
             html = html.Replace("{{T_TotalNEFT}}", T_TotalNEFT.To2DecimalPlace());
             html = html.Replace("{{T_TotalPAYTM}}", T_TotalPAYTM.To2DecimalPlace());
-
+            html = html.Replace("{{TotalCollection}}", TotalCollection.To2DecimalPlace());
 
             html = html.Replace("{{T_CashPayAmount}}", T_CashPayAmount.To2DecimalPlace());
             html = html.Replace("{{T_CardPayAmount}}", T_CardPayAmount.To2DecimalPlace());
