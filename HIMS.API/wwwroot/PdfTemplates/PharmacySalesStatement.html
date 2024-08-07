@@ -16,8 +16,8 @@
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
-                            <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Patient Sales Statement,</b> </td>
+                            <tr style="font-size: 24px;">
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Patient Sales Statement</b> </td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
                         </table>
@@ -26,56 +26,56 @@
 
                 <tr class="bill-info-row">
                     <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
+                        <table style="width: 100%; border-collapse: collapse;font-size:20px;">
                             <tr>
 
                                 <td style="padding: 2px;">
-                                    <span>IPD No :</span>
+                                    <span style="font-weight:bold;">IPD No :</span>
                                     <span>{{IPDNo}}</span>
                                 </td>
 
                             </tr>
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>UHID No:</span>
+                                    <span style="font-weight:bold;">UHID No:</span>
                                     <span>{{RegNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Age | Gender:</span>
+                                    <span style="font-weight:bold;">Age | Gender:</span>
                                     <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>DOA | Time:</span>
+                                    <span style="font-weight:bold;">DOA | Time:</span>
                                     <span>{{AdmissionTime}}</span>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>Patient Name:</span>
+                                    <span style="font-weight:bold;">Patient Name:</span>
                                     <span>{{PatientName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Patient Type :</span>
+                                    <span style="font-weight:bold;">Patient Type :</span>
                                     <span>{{PatientType}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span> Company Name :</span>
+                                    <span style="font-weight:bold;"> Company Name :</span>
                                     <span>{{CompanyName}}</span>
                                 </td>
                             </tr>
                             <tr>
 
                                 <td style="padding: 2px;">
-                                    <span>Doctor Name:</span>
+                                    <span style="font-weight:bold;">Doctor Name:</span>
                                     <span>{{DoctorName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Department: </span>
+                                    <span style="font-weight:bold;">Department: </span>
                                     <span>{{DepartmentName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Ref.Doctor Name:</span>
+                                    <span style="font-weight:bold;">Ref.Doctor Name:</span>
                                     <span>{{RefDocName}}</span>
                                 </td>
                             </tr>
@@ -90,7 +90,7 @@
                     <td>
                         <table style="width: 100%; border-collapse: collapse;">
 
-                            <tr>
+                            <tr style="font-weight:bold;font-size:20px;">
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Date</td>
                                 <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Bill No</td>-->
@@ -104,7 +104,7 @@
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Card Pay</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Cheque Pay</td>
                                 <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> NEFT Pay</td>-->
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">PAYTM Pay</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Online Pay</td>
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Adv.Used Amt</td>
                             </tr>
                             <tbody style="font-size: 14px;">
@@ -129,7 +129,7 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
                                 <td style="border: 1px solid #cccc;">
-                                    <table style="text-align:center; border-collapse: collapse; width: 100%;">
+                                    <table style="text-align: center; border-collapse: collapse; width: 100%; font-size: 20px; font-weight: bold;">
 
                                         <tr>
 
@@ -163,7 +163,7 @@
                                         <tr>
                                             <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: left; ">Balance Amount </td>
 
-                                            <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: right;"> {{G_BalTotalamt}}</td>
+                                            <td style=" border: 1px solid #d4c3c3; padding: 6px; text-align: right;"> {{salesbal}}</td>
                                         </tr>
 
                                     </table>
@@ -177,10 +177,9 @@
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
                                 <td>
-                                    <table style="text-align:center; border-collapse: collapse; width: 100%;">
+                                    <table style="text-align: center; border-collapse: collapse; width: 100%; font-size: 20px; font-weight: bold;">
 
-                                        <tbody style="font-size: 14px;">
-
+                                       
                                             <tr>
                                                 <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
                                                     Advance Amount
@@ -202,7 +201,7 @@
                                                     Advance Used Amount
                                                 </td>
                                                 <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                                    {{AdvUsedAmt}}
+                                                    {{salesadv}}
                                                 </td>
                                             </tr>
 
@@ -230,7 +229,7 @@
                                                     {{salesonline}}
                                                 </td>
                                             </tr>
-                                        </tbody>
+                                       
                                     </table>
                                 </td>
 
@@ -248,7 +247,7 @@
                             <td style="padding: 6px;font-size: 12px;">This is Computer generated invoice hence doesn’t require signature</td>
                         </tr>
                         <tr></tr>
-                        <tr style="padding: 6px; text-align: right;">
+                        <tr style="padding: 6px; text-align: right; font-size: 24px; font-weight: bold;">
                             <td>
 
                                 <span>Authorized Signature</span>
