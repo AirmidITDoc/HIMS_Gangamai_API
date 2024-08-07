@@ -148,7 +148,7 @@ namespace HIMS.Data.Opd
                 i++; j++;
               
 
-                if (dr1["Label"].ConvertToString() == "Advance")
+                if (dr1["Label"].ConvertToString() == "IP Advance")
                 {
                     G_AdvNetAmount += dr1["NetAmount"].ConvertToDouble();
                     G_AdvCashPayAmount += dr1["CashPayAmount"].ConvertToDouble();
@@ -162,7 +162,7 @@ namespace HIMS.Data.Opd
 
               
 
-                if (dr1["Label"].ConvertToString() == "IRefund Of Advance")
+                if (dr1["Label"].ConvertToString() == "IP Refund Of Advance")
                 {
                     G_RefundAdvNetAmount += dr1["NetAmount"].ConvertToDouble();
                     G_RefundAdvCash += dr1["CashPayAmount"].ConvertToDouble();
