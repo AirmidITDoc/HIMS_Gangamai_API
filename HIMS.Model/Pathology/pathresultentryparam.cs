@@ -41,6 +41,7 @@ namespace HIMS.Model.Pathology
         public String PatientName { get; set; }
         public String RegNo { get; set; }
         public String SampleID { get; set; }
+        public string ParaBoldFlag { get; set;}
     }
 
     public class Updatepathreportheader
