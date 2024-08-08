@@ -613,6 +613,30 @@ namespace HIMS.API.Controllers.Transaction
             return (IPBill.ToString());
         }
 
+        [HttpPost("IPBillingCreditInsert")]
+
+        public IActionResult IPBillingCreditInsert(IPBillingwithcreditparams IPBP)
+        {
+            var IPBill = _IPBillingwithcredit.Insert(IPBP);
+            return Ok(IPBill);
+        }
+
+        [HttpPost("IPBillingInsertCashCounter")]
+
+        public String IPBillingInsertCashCounter(IPBillingParams IPBP)
+        {
+            var IPBill = _IPBilling.InsertCashCounter(IPBP);
+            return (IPBill.ToString());
+        }
+
+        [HttpPost("IPBillingCreditInsertCashCounter")]
+
+        public IActionResult IPBillingCreditInsertCashCounter(IPBillingwithcreditparams IPBP)
+        {
+            var IPBill = _IPBillingwithcredit.IPBillingCreditCashCounter(IPBP);
+            return Ok(IPBill);
+        }
+
         [HttpPut("IPBillingEditProcess")]
 
         public IActionResult IPBillingEditProcess(IPBillEditparam IPBP)
@@ -621,13 +645,7 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(IPBill);
         }
 
-        [HttpPost("IPBillingCreditInsert")]
-
-        public IActionResult IPBillingCreditInsert(IPBillingwithcreditparams IPBP)
-        {
-            var IPBill = _IPBillingwithcredit.Insert(IPBP);
-            return Ok(IPBill);
-        }
+     
 
 
         [HttpPost("Credit_Payment")]

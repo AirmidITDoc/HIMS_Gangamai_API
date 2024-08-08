@@ -481,12 +481,24 @@ namespace HIMS.API.Controllers.Transaction
             var SSR = _OPbilling.Insert(OPbillingparams);
             return (SSR.ToString());
         }
-
-
         [HttpPost("OPBillingWithCredit")]
         public String OPBillingCredit(OPBillingCreditparam OPBillingCreditparam)
         {
             var SSR = _OPBillingCredit.Insert(OPBillingCreditparam);
+            return (SSR.ToString());
+        }
+
+        [HttpPost("OPBillWithPaymentCashCounter")]
+        public String OPBillWithPaymentCashCounter(OPbillingparams OPbillingparams)
+        {
+            var SSR = _OPbilling.InsertCashCounter(OPbillingparams);
+            return (SSR.ToString());
+        }
+
+        [HttpPost("OPBillingWithCreditCashCounter")]
+        public String OPBillingWithCreditCashCounter(OPBillingCreditparam OPBillingCreditparam)
+        {
+            var SSR = _OPBillingCredit.InsertCreditCashCounter(OPBillingCreditparam);
             return (SSR.ToString());
         }
         //OPAddcharges

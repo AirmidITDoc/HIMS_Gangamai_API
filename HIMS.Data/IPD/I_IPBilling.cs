@@ -9,7 +9,7 @@ namespace HIMS.Data.IPD
     public interface I_IPBilling
     {
         public String Insert(IPBillingParams IPBillingParams);
-
+        public String InsertCashCounter(IPBillingParams IPBillingParams);
         string ViewIPBillReceipt(int BillNo, string htmlFilePath, string HeaderName);
 
         string ViewIPBillDatewiseReceipt(int BillNo, string htmlFilePath, string HeaderName);

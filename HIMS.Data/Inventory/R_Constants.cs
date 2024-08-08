@@ -16,7 +16,7 @@ namespace HIMS.Data.Inventory
         {
 
         }
-        public string InsertConstantsParam(ConstantsParam ConstantsParam)
+        public string InsertConstantsParam(constantsParams ConstantsParam)
         {
             var vIndentId = new SqlParameter
             {
@@ -33,7 +33,7 @@ namespace HIMS.Data.Inventory
             _unitofWork.SaveChanges();
             return vConstantId;
         }
-        public bool UpdateConstantsParam(ConstantsParam ConstantsParam)
+        public bool UpdateConstantsParam(constantsParams ConstantsParam)
         {
 
             var disc3 = ConstantsParam.updateConstantsParam.ToDictionary();

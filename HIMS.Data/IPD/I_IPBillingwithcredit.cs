@@ -8,5 +8,6 @@ namespace HIMS.Data.IPD
   public  interface I_IPBillingwithcredit
     {
         public String Insert(IPBillingwithcreditparams IPBillingwithcreditparams);
+        public String IPBillingCreditCashCounter(IPBillingwithcreditparams IPBillingwithcreditparams);
     }
 }

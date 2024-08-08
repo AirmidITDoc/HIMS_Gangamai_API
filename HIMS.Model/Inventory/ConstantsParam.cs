@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HIMS.Model.Inventory
 {
-    public class ConstantsParam
+    public class constantsParams
     {
         public InsertConstantsParam InsertConstantsParam { get; set; }
         public UpdateConstantsParam updateConstantsParam { get; set; }

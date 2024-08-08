@@ -301,14 +301,14 @@ namespace HIMS.API.Controllers.Master
 
         }
         [HttpPost("Constantssave")]
-        public IActionResult Constantssave(ConstantsParam ConstantsParam)
+        public IActionResult Constantssave(constantsParams ConstantsParam)
         {
             var TODSave = _Constants.InsertConstantsParam(ConstantsParam);
             return Ok(TODSave);
 
         }
         [HttpPost("ConstantsUpdate")]
-        public IActionResult ConstantsUpdate(ConstantsParam ConstantsParam)
+        public IActionResult ConstantsUpdate(constantsParams ConstantsParam)
         {
             var TODUpdate = _Constants.UpdateConstantsParam(ConstantsParam);
             return Ok(TODUpdate);

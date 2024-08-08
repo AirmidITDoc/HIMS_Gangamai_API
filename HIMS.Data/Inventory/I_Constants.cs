@@ -7,7 +7,7 @@ namespace HIMS.Data.Inventory
 {
     public  interface I_Constants
     {
-        public string InsertConstantsParam(ConstantsParam constantsParam);
-        public bool UpdateConstantsParam(ConstantsParam constantsParam);
+        public string InsertConstantsParam(constantsParams constantsParam);
+        public bool UpdateConstantsParam(constantsParams constantsParam);
     }
 }
