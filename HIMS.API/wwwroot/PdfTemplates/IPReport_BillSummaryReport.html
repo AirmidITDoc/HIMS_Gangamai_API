@@ -35,58 +35,91 @@
                         </table>
                     </td>
                 </tr>
-                <tr class="bill-table-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead style="font-size: 15px; text-align: center;">
-                                <tr>
-                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</td>
-                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Bill No</td>
-                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Bill Date</td>
-                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">UHID</td>
+                <table class="table" style="width:100%;border-collapse:collapse">
+                    <tbody>
 
-                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Service Name</td>
-                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</td>
-                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Price</td>
-                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Qty</td>
-                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Total Amount</td>
-                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Con. Amount</td>
-                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Paid Amount</td>
-                                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Bal Amt</td>
-                                  
-
-                                </tr>
-                            </thead>
-                            <tbody style="font-size: 14px;">
-                                {{Items}}
-                            </tbody>
-           
-                            <tr>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Total Amount</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_TotalAmt}}</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> {{T_ConcessionAmt}}</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> {{T_NetPayableAmt}}</td>
-
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> {{T_PaidAmount}}</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_BalanceAmt}}</td>
+                        <tr style="font-size: 18px; background-color: white; font-weight: 700;">
 
 
-                            </tr>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Bill No</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Bill Date</td>
 
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">UHID</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Service Name</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">PatientName</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Price </td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Qty</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Total Amount</td>
 
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Con.Amount</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Net Amount</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Paid Amount</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Bal Amt</td>
                            
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </div>
+
+                        </tr>
+
+
+
+
+
+
+                        <!--<tr class="bill-table-row">
+                            <td style="padding: 6px;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead style="font-size: 15px; text-align: center;">
+                                        <tr>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</td>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">Bill No</td>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">Bill Date</td>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">UHID</td>
+
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">Service Name</td>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</td>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">Price</td>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">Qty</td>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">Total Amount</td>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">Con. Amount</td>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">Net Amount</td>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">Paid Amount</td>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;">Bal Amt</td>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-size: 14px;">-->
+                                        {{Items}}
+                                    </tbody>
+
+                                    <tr>
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Total Amount</td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_TotalAmt}}</td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> {{T_ConcessionAmt}}</td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> {{T_NetPayableAmt}}</td>
+
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> {{T_PaidAmount}}</td>
+                                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_BalanceAmt}}</td>
+
+
+                                    </tr>
+
+
+
+                                </table>
+                            </td>
+
+
+                        </tr>
+                </table>
+</div>
     </div>
 </body>
 </html>
