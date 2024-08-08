@@ -332,6 +332,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{T_OPAmount}}", T_OPAmount.To2DecimalPlace());
             html = html.Replace("{{T_IPAmount}}", T_IPAmount.To2DecimalPlace());
             html = html.Replace("{{T_IPAdvanceAmount}}", T_IPAdvanceAmount.To2DecimalPlace());
+            html = html.Replace("{{T_OPRefundbillAmount}}", T_IPRefundbillAmount.To2DecimalPlace());
             html = html.Replace("{{T_IPRefundbillAmount}}", T_IPRefundbillAmount.To2DecimalPlace());
             html = html.Replace("{{T_IPRefundAdvanceAmount}}", T_IPRefundAdvanceAmount.To2DecimalPlace());
 
