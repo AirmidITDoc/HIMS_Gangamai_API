@@ -11,6 +11,7 @@ namespace HIMS.Model.Pharmacy
 
    public class PaymentModeUpdate
     {
+        public string vType { get; set; }
         public int PaymentId { get; set; }
         public long CashPayAmt { get; set; }
         public float CardPayAmt { get; set; }

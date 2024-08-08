@@ -25,20 +25,20 @@ namespace HIMS.Data.Pathology
             foreach (var a2 in pathresultentryparam.Deletepathreportheader)
             {
                 var disc1 = a2.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("Delete_T_PathologyReportDetails", disc1);
+                ExecNonQueryProcWithOutSaveChanges("m_Delete_T_PathologyReportDetails", disc1);
             }
 
             foreach (var a1 in pathresultentryparam.Insertpathreportdetail)
             {
                
                     var disc3 = a1.ToDictionary();
-                    ExecNonQueryProcWithOutSaveChanges("insert_PathRrptDet_1", disc3);
+                    ExecNonQueryProcWithOutSaveChanges("m_insert_PathRrptDet_1", disc3);
                 
             }
             foreach (var a3 in pathresultentryparam.Updatepathreportheader)
             {
                 var disc3 = a3.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("update_T_PathologyReportHeader_1", disc3);
+                ExecNonQueryProcWithOutSaveChanges("m_update_T_PathologyReportHeader_1", disc3);
             }
 
 
@@ -68,7 +68,7 @@ namespace HIMS.Data.Pathology
         {
            
                 var Roll = pathresultentryparam.RollbackReport.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("RollBack_TestForResult", Roll);
+                ExecNonQueryProcWithOutSaveChanges("m_RollBack_TestForResult", Roll);
             
             _unitofWork.SaveChanges();
             return true;
