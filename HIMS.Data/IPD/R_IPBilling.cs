@@ -29,7 +29,8 @@ namespace HIMS.Data.IPD
             
             var disc1 = IPBillingParams.InsertBillUpdateBillNo.ToDictionary();
             disc1.Remove("BillNo");
-            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_Bill_UpdateWithBillNo_1", disc1, outputId1);
+            disc1.Remove("CashCounterId");
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_Bill_1", disc1, outputId1);
 
             foreach (var a in IPBillingParams.BillDetailsInsert)
             {
@@ -63,6 +64,64 @@ namespace HIMS.Data.IPD
             }
 
                       
+            var disc4 = IPBillingParams.IPAdvanceHeaderUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_AdvanceHeader_1", disc4);
+
+
+
+
+            _unitofWork.SaveChanges();
+            return BillNo;
+
+        }
+
+        public String InsertCashCounter(IPBillingParams IPBillingParams)
+        {
+
+            var outputId1 = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@BillNo",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+            var disc1 = IPBillingParams.InsertBillUpdateBillNo.ToDictionary();
+            disc1.Remove("BillNo");
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_Bill_CashCounter_1", disc1, outputId1);
+
+            foreach (var a in IPBillingParams.BillDetailsInsert)
+            {
+                var disc = a.ToDictionary();
+                disc["BillNo"] = BillNo;
+                ExecNonQueryProcWithOutSaveChanges("m_insert_BillDetails_1", disc);
+            }
+
+            IPBillingParams.Cal_DiscAmount_IPBill.BillNo = (int)Convert.ToInt64(BillNo);
+            var disc3 = IPBillingParams.Cal_DiscAmount_IPBill.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Cal_DiscAmount_OPBill", disc3);
+
+            var AdmissionID = IPBillingParams.AdmissionIPBillingUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_AdmissionforIPBilling", AdmissionID);
+
+            var disc7 = IPBillingParams.IPInsertPayment.ToDictionary();
+            disc7["BillNo"] = (int)Convert.ToInt64(BillNo);
+            //disc7.Remove("PaymentId");
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc7);
+
+
+            IPBillingParams.IPBillBalAmount.BillNo = (int)Convert.ToInt64(BillNo);
+            var disc2 = IPBillingParams.IPBillBalAmount.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_BillBalAmount_1", disc2);
+
+            foreach (var a in IPBillingParams.IPAdvanceDetailUpdate)
+            {
+                var disc = a.ToDictionary();
+                //  disc["BillNo"] = BillNo;
+                ExecNonQueryProcWithOutSaveChanges("m_update_AdvanceDetail_1", disc);
+            }
+
+
             var disc4 = IPBillingParams.IPAdvanceHeaderUpdate.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_update_AdvanceHeader_1", disc4);
 

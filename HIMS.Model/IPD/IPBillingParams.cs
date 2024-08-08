@@ -6,25 +6,14 @@ namespace HIMS.Model.IPD
 {
     public class IPBillingParams
     {
-        //  public List<IpInsertPathologyReportHeader> IpInsertPathologyReportHeader { get; set; }
-
-        //  public List<IpInsertRadiologyReportHeader> IpInsertRadiologyReportHeader { get; set; }
         public InsertBillUpdateBillNo InsertBillUpdateBillNo { get; set; }
         public List<BillDetailsInsert> BillDetailsInsert { get; set; }
         public Cal_DiscAmount_IPBill Cal_DiscAmount_IPBill { get; set; }
         public AdmissionIPBillingUpdate AdmissionIPBillingUpdate { get; set; }
         public IPInsertPayment IPInsertPayment { get; set; }
-
         public IPBillBalAmount IPBillBalAmount { get; set; }
-
-
         public List<IPAdvanceDetailUpdate> IPAdvanceDetailUpdate { get; set; }
-
         public IPAdvanceHeaderUpdate IPAdvanceHeaderUpdate { get; set; }
-
-           
-
-
     }
 
 
@@ -83,11 +72,9 @@ namespace HIMS.Model.IPD
         public int ConcessionAuthorizationName { get; set; }
         public float TaxPer { get; set; }
         public float TaxAmount { get; set; }
-       
         public float CompDiscAmt { get; set; }
         public string DiscComments { get; set; }
-
-     //   public int CashCounterId { get; set; }
+        public int CashCounterId { get; set; }
 
     }
 

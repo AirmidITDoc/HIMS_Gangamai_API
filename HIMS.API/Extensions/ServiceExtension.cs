@@ -44,8 +44,7 @@ using HIMS.Data.MISReports;
 using HIMS.Data.GSTReports;
 using HIMS.Data.InventoryReports;
 using HIMS.Data.PharmacyReports;
-
-
+using HIMS.Data.Administration;
 
 namespace HIMS.API.Extensions
 {
@@ -176,8 +175,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_ParameterMasterAgeWise, R_ParameterMasterAgeWise>();
             services.AddTransient<I_SupplierMaster, R_SupplierMaster>();
             //services.AddTransient<I_StoreMaster, R_StoreMaster>();
+            services.AddTransient<I_Administration, R_Administration>();
             services.AddTransient<I_Constants, R_Constants>();
-
 
             services.AddTransient<I_IssueToDepartmentIndent, R_IssueToDepartmentIndent>();
             services.AddTransient<I_DoctorTypeMaster, R_DoctorTypeMaster>();

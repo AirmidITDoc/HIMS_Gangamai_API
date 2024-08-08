@@ -19,11 +19,13 @@ namespace HIMS.Data.Pharmacy
             if (PharmPaymentMode.PaymentModeUpdate.vType == "Hospital")
             {
                 var disc = PharmPaymentMode.PaymentModeUpdate.ToDictionary();
+                disc.Remove("vType");
                 ExecNonQueryProcWithOutSaveChanges("m_Update_Payment_Mode", disc);
             }
             else
             {
                 var disc = PharmPaymentMode.PaymentModeUpdate.ToDictionary();
+                disc.Remove("vType");
                 ExecNonQueryProcWithOutSaveChanges("m_Update_PaymentPharmacy_Mode", disc);
             }
 

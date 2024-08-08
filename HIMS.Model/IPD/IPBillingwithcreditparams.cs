@@ -10,18 +10,12 @@ namespace HIMS.Model.IPD
         public List<BillDetailscreditInsert> BillDetailscreditInsert { get; set; }
         public Cal_DiscAmount_IPBillcredit Cal_DiscAmount_IPBillcredit { get; set; }
         public AdmissionIPBillingcreditUpdate AdmissionIPBillingcreditUpdate { get; set; }
-     
         public IPBillBalAmountcredit IPBillBalAmountcredit { get; set; }
-
-
         public List<IPAdvanceDetailUpdatecedit> IPAdvanceDetailUpdatecedit { get; set; }
-
         public IPAdvanceHeaderUpdatecredit IPAdvanceHeaderUpdatecredit { get; set; }
     }
 
-
-
-         public class InsertBillcreditUpdateBillNo
+    public class InsertBillcreditUpdateBillNo
     {
         public int BillNo { get; set; }
         public int OPD_IPD_ID { get; set; }
@@ -50,7 +44,7 @@ namespace HIMS.Model.IPD
 
         public float CompDiscAmt { get; set; }
         public string DiscComments { get; set; }
-
+        public long CashCounterId { get; set; }
 
     }
 

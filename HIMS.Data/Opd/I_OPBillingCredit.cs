@@ -8,5 +8,6 @@ namespace HIMS.Data.Opd
   public  interface I_OPBillingCredit
     {
         public string Insert(OPBillingCreditparam OPBillingCreditparam);
+        public string InsertCreditCashCounter(OPBillingCreditparam OPBillingCreditparam);
     }
 }

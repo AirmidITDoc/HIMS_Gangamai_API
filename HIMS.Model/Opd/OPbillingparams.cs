@@ -72,8 +72,8 @@ namespace HIMS.Model.Opd
         public float TaxAmount { get; set; }
          public int CompDiscAmt { get; set; }
       //  public int CashCounterId { get; set; }
-
         public string DiscComments { get; set; }
+        public long CashCounterId { get; set; }
     }
 
     public class OpBillDetailsInsert

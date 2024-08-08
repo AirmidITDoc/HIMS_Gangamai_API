@@ -7,6 +7,8 @@ using HIMS.Data.Users;
 using HIMS.Model.Users;
 using HIMS.Model.Inventory;
 using HIMS.Data.Inventory;
+using HIMS.Model.Administration;
+using HIMS.Data.Administration;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -17,16 +19,18 @@ namespace HIMS.API.Controllers.Transaction
     {
         public readonly I_UserChangePassword _UserChangePassword;
         public readonly I_SMS_Config _SMS_Config;
+        public readonly I_Administration _Administration;
         /* public IActionResult Index()
          {
              return View();
          }*/
         public AdministrationController(
             I_UserChangePassword UserChangePassword,
-            I_SMS_Config sMS_Config)
+            I_SMS_Config sMS_Config, I_Administration Administration)
         {
             this._UserChangePassword = UserChangePassword;
             this._SMS_Config = sMS_Config;
+            this._Administration = Administration;
         }
 
         [HttpPost("UserChangePassword")]
@@ -60,6 +64,14 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult SMS_ConfigUpdate(SMS_ConfigParam SMS_ConfigParam)
         {
             var TODUpdate = _SMS_Config.UpdateSMSConfigParam(SMS_ConfigParam);
+            return Ok(TODUpdate);
+
+        }
+
+        [HttpPost("Billcancellation")]
+        public IActionResult Billcancellation(AdministrationParam administrationParams)
+        {
+            var TODUpdate = _Administration.UpdateBillcancellation(administrationParams);
             return Ok(TODUpdate);
 
         }
