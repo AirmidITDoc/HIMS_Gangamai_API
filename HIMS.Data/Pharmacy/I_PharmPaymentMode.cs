@@ -7,6 +7,6 @@ namespace HIMS.Data.Pharmacy
 {
   public  interface I_PharmPaymentMode
     {
-        public string UpdatePaymentMode(PharmPaymentMode PharmPaymentMode);
+        public bool UpdatePaymentMode(PharmPaymentMode PharmPaymentMode);
     }
 }

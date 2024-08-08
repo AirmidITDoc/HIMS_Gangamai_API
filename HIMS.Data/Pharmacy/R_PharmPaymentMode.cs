@@ -14,14 +14,21 @@ namespace HIMS.Data.Pharmacy
         }
 
        
-        public string UpdatePaymentMode(PharmPaymentMode PharmPaymentMode)
+        public bool UpdatePaymentMode(PharmPaymentMode PharmPaymentMode)
         {
-            var disc = PharmPaymentMode.PaymentModeUpdate.ToDictionary();
-            var BillNo = ExecNonQueryProcWithOutSaveChanges("Update_PaymentPharmacy_Mode", disc);
-
+            if (PharmPaymentMode.PaymentModeUpdate.vType == "Hospital")
+            {
+                var disc = PharmPaymentMode.PaymentModeUpdate.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_Update_Payment_Mode", disc);
+            }
+            else
+            {
+                var disc = PharmPaymentMode.PaymentModeUpdate.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_Update_PaymentPharmacy_Mode", disc);
+            }
 
             _unitofWork.SaveChanges();
-            return BillNo;
+            return true;
         }
     }
 }
