@@ -36,73 +36,89 @@
                         </table>
                     </td>
                 </tr>
-                <tr class="bill-table-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead style="font-size: 15px; text-align: center;">
-                                <tr>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Pay Date</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">OP Amount</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">IP Amount</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Adv Amount</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">OP Bill Refund</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">IP Bill Refund</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">IP Adv Refund</th>
+                <table class="table" style="width:100%;border-collapse:collapse">
+                    <tbody>
 
-                                    
+                        <tr style="font-size: 18px; background-color: white; font-weight: 700;">
 
 
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Pay Date</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> OP Amount </td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IP Amount</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Adv Amount</td>
+
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">OP Bill Refund</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IP Bill Refund</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> IP Adv Refund</td>
+                         
+
+                        </tr>
+
+
+
+                        <!--<tr class="bill-table-row">
+                            <td style="padding: 6px;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead style="font-size: 15px; text-align: center;">
+                                        <tr>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">Pay Date</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">OP Amount</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">IP Amount</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">Adv Amount</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">OP Bill Refund</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">IP Bill Refund</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">IP Adv Refund</th>
+
+
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody style="font-size: 14px;">-->
+                                        {{Items}}
+                                        <tr style="border: 1px solid black; background-color: white">
+
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            </td>
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                                Total
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                {{TotalOPCollection}}
+                                            </td>
+                                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                {{TotalIPCollection}}
+                                            </td>
+                                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                {{TotalAdvCollection}}
+                                            </td>
+                                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                {{TotalOPBillRefund}}
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                {{TotalIPBillRefund}}
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                {{TotalIPAdvRefund}}
+                                            </td>
 
 
 
 
-                                </tr>
 
-                            </thead>
-                            <tbody style="font-size: 14px;">
-                                {{Items}}
-                                <tr style="border: 1px solid black; background-color: white">
-
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                        Total
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                        {{TotalOPCollection}}
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                        {{TotalIPCollection}}
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                        {{TotalAdvCollection}}
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                        {{TotalOPBillRefund}}
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                        {{TotalIPBillRefund}}
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                        {{TotalIPAdvRefund}}
-                                    </td>
-
-                                    
-
-                                   
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </div>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                </table>
+</div>
     </div>
 </body>
 </html>

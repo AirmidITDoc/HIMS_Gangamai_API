@@ -34,72 +34,66 @@
                         </table>
                     </td>
                 </tr>
-                <tr class="bill-table-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead style="font-size: 15px; text-align: center;">
-                                <tr>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill No</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Service Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Type</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
-                                
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Net Amt</th>
+
+                <table class="table" style="width:100%;border-collapse:collapse">
+                    <tbody>
+
+                        <tr style="font-size: 18px; background-color: white; font-weight: 700;">
 
 
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Pay Date</th>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Bill No</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Service Name</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Patient Type</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> UHID</td>
+
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Patient Name</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Net Amt</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Pay Date</td>
 
 
+                        </tr>
 
 
+                      
+                                        {{Items}}
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <!--<tr>
+                <table class="table" style="width:100%;border-collapse:collapse;margin-top:10px;">
+                    <tbody>
+                        <tr style="font-size:18px;color:black">
+                            <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;"></td>
+                            <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Total Amount</td>-->
+                        <!--<td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Checque Amount</td>
+            <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Card Amount</td>
+            <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">NEFT Amount</td>
+            <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">PATTM Amount</td>-->
+                        <!--</tr>
+            <tr>
+                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">IP</td>
+                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_NETPayAmount}}</td>
+                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_NetAmount}}</td>
 
+            </tr>
+            <tr>
+                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">OP</td>
+                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_NETPayAmount}}</td>
+                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_NetAmount}}</td>-->
+                        <!--td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_BillReturnCheque}}</td>
+            <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_BillReturnNEFT}}</td>
+            <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_BillReturnPAYTM}}</td>-->
+                        <!--</tr>
+            <tr>
+                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Net Amount</td>
+                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_TotalNETPayAmount}}</td>
+                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_TotalNetAmount}}</td>
 
-
-
-                                </tr>
-
-                            </thead>
-                            <tbody style="font-size: 14px;">
-                                {{Items}}
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <!--<tr>
-                    <table class="table" style="width:100%;border-collapse:collapse;margin-top:10px;">
-                        <tbody>
-                            <tr style="font-size:18px;color:black">
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;"></td>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Total Amount</td>-->
-                                <!--<td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Checque Amount</td>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Card Amount</td>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">NEFT Amount</td>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">PATTM Amount</td>-->
-                            <!--</tr>
-                            <tr>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">IP</td>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_NETPayAmount}}</td>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_NetAmount}}</td>
-
-                            </tr>
-                            <tr>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">OP</td>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_NETPayAmount}}</td>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_NetAmount}}</td>-->
-                                <!--td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_BillReturnCheque}}</td>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_BillReturnNEFT}}</td>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_BillReturnPAYTM}}</td>-->
-                            <!--</tr>
-                            <tr>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">Net Amount</td>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_TotalNETPayAmount}}</td>
-                                <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_TotalNetAmount}}</td>
-
-                            </tr>-->
-                    <!--</table>-->
-        </div>
+            </tr>-->
+                        <!--</table>-->
+</div>
     </div>
 </body>
 </html>
