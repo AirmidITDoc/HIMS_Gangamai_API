@@ -148,21 +148,21 @@ namespace HIMS.Data.Opd
                 i++; j++;
               
 
-                if (dr1["Label"].ConvertToString() == "IP Advance")
+                if (dr1["Label"].ConvertToString() == "Advance")
                 {
-                    G_AdvNetAmount += dr1["NetAmount"].ConvertToDouble();
-                    G_AdvCashPayAmount += dr1["CashPayAmount"].ConvertToDouble();
-                    G_AdvChequePayAmount += dr1["ChequePayAmount"].ConvertToDouble();
-                    G_AdvCardPayAmount += dr1["CardPayAmount"].ConvertToDouble();
-                    G_AdvNEFTPayAmount += dr1["NEFTPayAmount"].ConvertToDouble();
-                    G_AdvPayTMAmount += dr1["PayTMAmount"].ConvertToDouble();
+                    G_AdvNetAmount +=dr1["NetAmount"].ConvertToDouble();
+                    G_AdvCashPayAmount +=dr1["CashPayAmount"].ConvertToDouble();
+                    G_AdvChequePayAmount +=dr1["ChequePayAmount"].ConvertToDouble();
+                    G_AdvCardPayAmount +=dr1["CardPayAmount"].ConvertToDouble();
+                    G_AdvNEFTPayAmount +=dr1["NEFTPayAmount"].ConvertToDouble();
+                    G_AdvPayTMAmount +=dr1["PayTMAmount"].ConvertToDouble();
 
                     
                 }
 
               
 
-                if (dr1["Label"].ConvertToString() == "IP Refund Of Advance")
+                if (dr1["Label"].ConvertToString() == "Refund Of Advance")
                 {
                     G_RefundAdvNetAmount += dr1["NetAmount"].ConvertToDouble();
                     G_RefundAdvCash += dr1["CashPayAmount"].ConvertToDouble();
