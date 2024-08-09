@@ -332,7 +332,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{T_OPAmount}}", T_OPAmount.To2DecimalPlace());
             html = html.Replace("{{T_IPAmount}}", T_IPAmount.To2DecimalPlace());
             html = html.Replace("{{T_IPAdvanceAmount}}", T_IPAdvanceAmount.To2DecimalPlace());
-            html = html.Replace("{{T_OPRefundbillAmount}}", T_IPRefundbillAmount.To2DecimalPlace());
+            html = html.Replace("{{T_OPRefundbillAmount}}", T_OPRefundbillAmount.To2DecimalPlace());
             html = html.Replace("{{T_IPRefundbillAmount}}", T_IPRefundbillAmount.To2DecimalPlace());
             html = html.Replace("{{T_IPRefundAdvanceAmount}}", T_IPRefundAdvanceAmount.To2DecimalPlace());
 
@@ -1549,6 +1549,50 @@ namespace HIMS.Data.Opd
 
             return html;
         }
+        public string ViewGroupwiseSummaryReport(DateTime FromDate, DateTime ToDate, int AddedById, string htmlFilePath, string htmlHeader)
+        {
+            //throw new NotImplementedException();
+            SqlParameter[] para = new SqlParameter[3];
+
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@AddedById", AddedById) { DbType = DbType.Int64 };
+
+
+            var Bills = GetDataTableProc("rptGrupWiseSummaryPeport", para);
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            string previousLabel = "";
+            string html = File.ReadAllText(htmlFilePath);
+            double ServiceAmt = 0, T_NetPayableAmt = 0;
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+
+
+          
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++; j++;
+
+
+                items.Append("<tr style=\"font-size:15px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border-bottom: 1px;\"><td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["GroupName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">").Append(dr["NetPayableAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+
+
+                T_NetPayableAmt += dr["NetPayableAmt"].ConvertToDouble();
+
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+
+            html = html.Replace("{{T_NetPayableAmt}}", T_NetPayableAmt.ConvertToDouble().To2DecimalPlace());
+
+            return html;
+        }
 
         public string ViewGroupwiseRevenueSummary(DateTime FromDate, DateTime ToDate, int GroupId, string htmlFilePath, string htmlHeader)
         {
@@ -2262,6 +2306,11 @@ namespace HIMS.Data.Opd
 
 
             return html;
+        }
+
+        public string ViewGroupwiseSummaryReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        {
+            throw new NotImplementedException();
         }
     }
 }

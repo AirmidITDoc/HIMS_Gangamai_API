@@ -62,7 +62,7 @@ namespace HIMS.Data.Opd
             double T_AddBillrefundNetAmount = 0, T_AddBillrefundCashPayAmount = 0, T_AddBillrefundChequePayAmount = 0, T_AddBillrefundCardPayAmount = 0, T_AddBillrefundNEFTPayAmount = 0, T_AddBillrefundPayTMAmount = 0;
 
             double T_FinalNetAmount = 0, T_FinalCashPayAmount = 0, T_FinalChequePayAmount = 0, T_FinalCardPayAmount = 0, T_FinalNEFTPayAmount = 0, T_FinalPayTMAmount = 0;
-
+            double T_IPAdvance = 0, T_IPRefundAdvance = 0, T_Sales = 0, T_SalesReturn = 0, T_GRNCASH = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -87,7 +87,7 @@ namespace HIMS.Data.Opd
                            .Append(G_NEFTPayAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;border-bottom:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                          .Append(G_PayTMAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;border-bottom:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
                             .Append(G_AdvanceUsedAmount.To2DecimalPlace()).Append("</td><td style=\"border-right:1px solid #000;border-bottom:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">")
-                        .Append(G_BalanceAmount.To2DecimalPlace()).Append("</td></tr>");
+                         .Append(G_BalanceAmount.To2DecimalPlace()).Append("</td></tr>");
                     G_NetAmount = 0; G_CashPayAmount = 0; G_CardPayAmount = 0; G_ChequePayAmount = 0; G_NEFTPayAmount = 0; G_PayTMAmount = 0; G_BalanceAmount = 0;  G_AdvanceUsedAmount = 0;
 
                     items.Append("<tr style=\"font-size:25px;border-bottom: 1px;color:black; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:15px;text-align:left;vertical-align:middle\">").Append(dr["Label"].ConvertToString()).Append("</td></tr>");
@@ -229,7 +229,14 @@ namespace HIMS.Data.Opd
             T_FinalNEFTPayAmount = T_AddBillNEFTPayAmount.ConvertToDouble() - T_AddBillrefundNEFTPayAmount.ConvertToDouble();
             T_FinalPayTMAmount = T_AddBillPayTMAmount.ConvertToDouble() - T_AddBillrefundPayTMAmount.ConvertToDouble();
 
-
+           
+            T_IPAdvance = G_AdvCashPayAmount.ConvertToDouble() + G_AdvChequePayAmount.ConvertToDouble() + G_AdvCardPayAmount.ConvertToDouble() + G_AdvNEFTPayAmount.ConvertToDouble() + G_AdvPayTMAmount.ConvertToDouble();
+           
+            T_IPRefundAdvance = G_RefundAdvCash.ConvertToDouble() + G_RefundAdvCheque.ConvertToDouble() + G_RefundAdvCard.ConvertToDouble() + G_RefundAdvNEFTPayAmount.ConvertToDouble() + G_RefundAdvPayTMAmount.ConvertToDouble();
+            T_Sales = G_BillCashPayAmount.ConvertToDouble() + G_BillChequePayAmount.ConvertToDouble() + G_BillCardPayAmount.ConvertToDouble() + G_BillNEFTPayAmount.ConvertToDouble() + G_BillPayTMAmount.ConvertToDouble();
+            T_SalesReturn = G_RefundCashPayAmount.ConvertToDouble() + G_RefundChequePayAmount.ConvertToDouble() + G_RefundCardPayAmount.ConvertToDouble() + G_RefundNEFTPayAmount.ConvertToDouble() + G_RefundPayTMAmount.ConvertToDouble();
+            T_GRNCASH = G_GRNCashPayAmount.ConvertToDouble() + G_GRNChequePayAmount.ConvertToDouble() + G_GRNCardPayAmount.ConvertToDouble() + G_GRNNEFTPayAmount.ConvertToDouble() + G_GRNPayTMAmount.ConvertToDouble();
+           
 
             TotalCollection = T_FinalCashPayAmount.ConvertToDouble() + T_FinalCardPayAmount.ConvertToDouble() + T_FinalChequePayAmount.ConvertToDouble() + T_FinalNEFTPayAmount.ConvertToDouble() + T_FinalPayTMAmount.ConvertToDouble();
 
@@ -287,8 +294,14 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{T_FinalNEFTPayAmount}}", T_FinalNEFTPayAmount.To2DecimalPlace());
             html = html.Replace("{{T_FinalPayTMAmount}}", T_FinalPayTMAmount.To2DecimalPlace());
 
+            html = html.Replace("{{T_IPAdvance}}", T_IPAdvance.To2DecimalPlace());
+            html = html.Replace("{{T_IPRefundAdvance}}", T_IPRefundAdvance.To2DecimalPlace());
+            html = html.Replace("{{T_Sales}}", T_Sales.To2DecimalPlace());
+            html = html.Replace("{{T_SalesReturn}}", T_SalesReturn.To2DecimalPlace());
+            html = html.Replace("{{T_GRNCASH}}", T_GRNCASH.To2DecimalPlace());
+          
 
-           
+
 
 
 

@@ -608,7 +608,7 @@ namespace HIMS.Data.IPD
             double T_AddBillrefundNetPayableAmt = 0, T_AddBillrefundCashPayAmount = 0, T_AddBillrefundChequePayAmount = 0, T_AddBillrefundCardPayAmount = 0, T_AddBillrefundPayTMAmount = 0;
 
             double T_FinalNetPayableAmt = 0, T_FinalCashPayAmount = 0, T_FinalChequePayAmount = 0,  T_FinalCardPayAmount = 0, T_FinalPayTMAmount = 0;
-
+            double  T_IPAmount = 0, T_IPAdvanceAmount = 0, T_OPRefundbillAmount = 0, T_IPRefundbillAmount = 0, T_IPRefundAdvanceAmount = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -756,8 +756,11 @@ namespace HIMS.Data.IPD
             T_FinalChequePayAmount = T_AddBillChequePayAmount.ConvertToDouble() - T_AddBillrefundChequePayAmount.ConvertToDouble();
             T_FinalPayTMAmount = T_AddBillPayTMAmount.ConvertToDouble() - T_AddBillrefundPayTMAmount.ConvertToDouble();
 
-
-
+            T_IPAmount = G_BillCashPayAmount.ConvertToDouble() + G_BillChequePayAmount.ConvertToDouble() + G_BillCardPayAmount.ConvertToDouble() +  G_BillPayTMAmount.ConvertToDouble();
+            T_IPAdvanceAmount = G_AdvCashPayAmount.ConvertToDouble() + G_AdvChequePayAmount.ConvertToDouble() + G_AdvCardPayAmount.ConvertToDouble() + G_AdvPayTMAmount.ConvertToDouble();
+           
+            T_IPRefundbillAmount = G_RefundCashPayAmount.ConvertToDouble() + G_RefundChequePayAmount.ConvertToDouble() + G_RefundCardPayAmount.ConvertToDouble() + G_RefundPayTMAmount.ConvertToDouble();
+            T_IPRefundAdvanceAmount = G_RefundAdvCash.ConvertToDouble() + G_RefundAdvCheque.ConvertToDouble() + G_RefundAdvCard.ConvertToDouble() + G_RefundAdvPayTMAmount.ConvertToDouble();
             TotalCollection = T_FinalCashPayAmount.ConvertToDouble() + T_FinalCardPayAmount.ConvertToDouble() + T_FinalChequePayAmount.ConvertToDouble() + T_FinalPayTMAmount.ConvertToDouble();
 
             html = html.Replace("{{Items}}", items.ToString());
@@ -800,6 +803,10 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{T_FinalChequePayAmount}}", T_FinalChequePayAmount.To2DecimalPlace());
             html = html.Replace("{{T_FinalPayTMAmount}}", T_FinalPayTMAmount.To2DecimalPlace());
 
+            html = html.Replace("{{T_IPAmount}}", T_IPAmount.To2DecimalPlace());
+            html = html.Replace("{{T_IPAdvanceAmount}}", T_IPAdvanceAmount.To2DecimalPlace());
+            html = html.Replace("{{T_IPRefundbillAmount}}", T_IPRefundbillAmount.To2DecimalPlace());
+            html = html.Replace("{{T_IPRefundAdvanceAmount}}", T_IPRefundAdvanceAmount.To2DecimalPlace());
 
 
 
@@ -2703,11 +2710,11 @@ namespace HIMS.Data.IPD
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[2];
+            SqlParameter[] para = new SqlParameter[4];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            para[1] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
-            para[1] = new SqlParameter("@DischargeTypeId", DischargeTypeId) { DbType = DbType.Int64 };
+            para[2] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@DischargeTypeId", DischargeTypeId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptDischargeTypeReport", para);
 
 
@@ -2785,11 +2792,11 @@ namespace HIMS.Data.IPD
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[2];
+            SqlParameter[] para = new SqlParameter[4];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            para[1] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
-            para[1] = new SqlParameter("@DischargeTypeId", DischargeTypeId) { DbType = DbType.Int64 };
+            para[2] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@DischargeTypeId", DischargeTypeId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptDischargeTypeReport", para);
 
 

@@ -1947,7 +1947,7 @@ namespace HIMS.Data.Opd
             double T_BillReturnCash = 0, T_BillReturnCard = 0, T_BillReturnCheque = 0, T_BillReturnNEFT = 0, T_BillReturnPAYTM = 0;
             double T_BillReturnTot = 0, T_BillReturnDisc = 0, T_BillReturnNet = 0, T_BillReturnPaid = 0, T_BillReturnBal = 0;
             double T_TotalCash = 0, T_TotalCard = 0, T_TotalCheque = 0, T_TotalNEFT = 0, T_TotalPAYTM = 0;
-
+            double T_OPAmount = 0, T_OPRefundbillAmount = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -2048,7 +2048,7 @@ namespace HIMS.Data.Opd
                     T_CashPayAmount += dr["CashPayAmount"].ConvertToDouble();
                     T_CardPayAmount += dr["CardPayAmount"].ConvertToDouble();
                     T_ChequePayAmount += dr["ChequePayAmount"].ConvertToDouble();
-                    //T_NETPayAmount += dr["NetPayableAmt"].ConvertToDouble();
+                    T_NETPayAmount += dr["NetPayableAmt"].ConvertToDouble();
                     T_BillCash += dr["CashPayAmount"].ConvertToDouble();
                     T_BillCard += dr["CardPayAmount"].ConvertToDouble();
                     T_BillCheque += dr["ChequePayAmount"].ConvertToDouble();
@@ -2087,15 +2087,18 @@ namespace HIMS.Data.Opd
 
             T_TotalCash = T_BillCash.ConvertToDouble() - T_BillReturnCash.ConvertToDouble();
             T_TotalCard = T_BillCard.ConvertToDouble() - T_BillReturnCard.ConvertToDouble();
+
             T_TotalCheque = T_BillCheque.ConvertToDouble() - T_BillReturnCheque.ConvertToDouble();
             T_TotalNEFT = T_BillNEFT.ConvertToDouble() - T_BillReturnNEFT.ConvertToDouble();
             T_TotalPAYTM = T_BillPayTm.ConvertToDouble() - T_BillReturnPAYTM.ConvertToDouble();
 
+            T_OPAmount = G_CashPayAmount.ConvertToDouble() + G_ChequePayAmount.ConvertToDouble() + G_CardPayAmount.ConvertToDouble() + G_NEFTPayAmount.ConvertToDouble() + G_PayTMAmount.ConvertToDouble();
+            T_OPRefundbillAmount = T_BillReturnCash.ConvertToDouble() + T_BillReturnCheque.ConvertToDouble() + T_BillReturnCard.ConvertToDouble() + T_BillReturnNEFT.ConvertToDouble() + T_BillReturnPAYTM.ConvertToDouble();
 
             TotalCollection = T_TotalCash.ConvertToDouble() + T_TotalCard.ConvertToDouble() + T_TotalCheque.ConvertToDouble() + T_TotalNEFT.ConvertToDouble() + T_TotalPAYTM.ConvertToDouble();
 
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy")); 
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{TotalCashpay}}", T_CashPayAmount.To2DecimalPlace());
             html = html.Replace("{{TotalCardpay}}", T_CardPayAmount.To2DecimalPlace());
@@ -2123,6 +2126,9 @@ namespace HIMS.Data.Opd
 
             html = html.Replace("{{T_CashPayAmount}}", T_CashPayAmount.To2DecimalPlace());
             html = html.Replace("{{T_CardPayAmount}}", T_CardPayAmount.To2DecimalPlace());
+
+            html = html.Replace("{{T_OPAmount}}", T_OPAmount.To2DecimalPlace());
+            html = html.Replace("{{T_OPRefundbillAmount}}", T_OPRefundbillAmount.To2DecimalPlace());
 
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName").ToString());
 
