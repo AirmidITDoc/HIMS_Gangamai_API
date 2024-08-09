@@ -1389,7 +1389,7 @@ namespace HIMS.Data.Pharmacy
             para[0] = new SqlParameter("@OP_IP_ID", OP_IP_ID) { DbType = DbType.Int64 };
             para[1] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
 
-            var Bills = GetDataTableProc("RptIPPatientSalesSummary", para);
+            var Bills = GetDataTableProc("m_RptIPPatientSalesSummary", para);
             string html = File.ReadAllText(htmlFilePath);
             
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
@@ -1671,7 +1671,7 @@ namespace HIMS.Data.Pharmacy
             html = html.Replace("{{PayTMAmount}}", Bills.GetColValue("PayTMAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvUsedAmt").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{creditreturnamt}}", Bills.GetColValue("creditreturnamt").ConvertToDouble().To2DecimalPlace());
-            
+            html = html.Replace("{{AdvRefundAmt}}", Bills.GetColValue("AdvRefundAmt").ConvertToDouble().To2DecimalPlace());
             return html;
         }
     }
