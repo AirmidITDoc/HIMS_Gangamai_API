@@ -8,16 +8,14 @@
     public class InsertCategoryMaster
     {
         public string CategoryName { get; set; }
-        //public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public long AddedBy { get; set; }
     }
     public class UpdateCategoryMaster
     {
         public long CategoryId { get; set; }
         public string CategoryName { get; set; }
-
-
-        //  public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public long UpdatedBy { get; set; }
     }
 }

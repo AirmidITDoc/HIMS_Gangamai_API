@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.Radiology
             {
                 var disc = a.ToDictionary();
                 disc["TestId"] = rtMasterParams.UpdateRadiologyTestMaster.TestId;
-                ExecNonQueryProcWithOutSaveChanges("M_Insert_M_RadiologyTemplateTest", disc);
+                ExecNonQueryProcWithOutSaveChanges("M_insert_RadiologyTemplateTest_1", disc);
             }
             //-----------------------
 
@@ -46,8 +46,8 @@ namespace HIMS.Data.Master.Radiology
                 Direction = ParameterDirection.Output
             };
             var disc1 = rtMasterParams.InsertRadiologyTestMaster.ToDictionary();
-           // disc1.Remove("TestId");
-            var testId = ExecNonQueryProcWithOutSaveChanges("M_Insert_M_Radiology_TestMaster", disc1);
+               disc1.Remove("TestId");
+            var testId = ExecNonQueryProcWithOutSaveChanges("M_insert_RadiologyTestMaster_1", disc1, outputId);
 
             //add DoctorDetails
 
@@ -55,7 +55,7 @@ namespace HIMS.Data.Master.Radiology
             {
                 var disc = a.ToDictionary();
                 disc["TestId"] = testId;
-                ExecNonQueryProcWithOutSaveChanges("M_Insert_M_RadiologyTemplateTest", disc);
+                ExecNonQueryProcWithOutSaveChanges("M_insert_RadiologyTemplateTest_1", disc);
             }
 
             _unitofWork.SaveChanges();
