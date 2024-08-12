@@ -7,11 +7,8 @@ namespace HIMS.Model.Pathology
    public class pathresultentryparam
     {
         public List<Deletepathreportheader> Deletepathreportheader { get; set; }
-
         public List<Insertpathreportdetail> Insertpathreportdetail { get; set; }
         public List<Updatepathreportheader> Updatepathreportheader { get; set; }
-
-
         public List<PrintInsert> PrintInsert { get; set; }
         public RollbackReport RollbackReport { get; set; }
     }
@@ -42,6 +39,8 @@ namespace HIMS.Model.Pathology
         public String RegNo { get; set; }
         public String SampleID { get; set; }
         public string ParaBoldFlag { get; set;}
+        public long MinValue { get; set; }
+        public long MaxValue { get; set; }
     }
 
     public class Updatepathreportheader
