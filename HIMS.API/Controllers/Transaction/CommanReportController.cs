@@ -306,6 +306,29 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
         }
+
+        [HttpGet("view-CashCounterWiseDailyCollection")]
+        public IActionResult ViewCashCounterWiseDailyCollection(DateTime FromDate, DateTime ToDate, int OP_IP_Type, int CashCounterId, int UserId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_CashCounterWiseDailycollection.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPComman.ViewCashCounterWiseDailyCollection(FromDate, ToDate, OP_IP_Type,  CashCounterId,  UserId ,htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CashCounterWiseDailyCollection", "CashCounterWiseDailyCollection", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+        [HttpGet("view-ViewCashCounterWiseDailyCollectionSummary")]
+        public IActionResult ViewCashCounterWiseDailyCollectionSummary(DateTime FromDate, DateTime ToDate, int OP_IP_Type, int CashCounterId, int UserId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_CashCounterWiseDailycollectionSummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPComman.ViewCashCounterWiseDailyCollectionSummary(FromDate, ToDate, OP_IP_Type, CashCounterId, UserId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewCashCounterWiseDailyCollectionSummary", "ViewCashCounterWiseDailyCollectionSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
     }
 }
 

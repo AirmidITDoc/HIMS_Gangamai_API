@@ -36,5 +36,7 @@ namespace HIMS.Data.CommanReports
         string ViewBillSummaryReportfor2LakhAmount(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewDoctorAndDepartmentWiseMonthlyCollectionReport(int DepartmentId,int DoctorId,DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewServiceWiseReport(int ServiceId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewCashCounterWiseDailyCollection(DateTime FromDate, DateTime ToDate,int OP_IP_Type,int CashCounterId,int UserId, string htmlFilePath, string htmlHeader);
+        string ViewCashCounterWiseDailyCollectionSummary(DateTime FromDate, DateTime ToDate, int OP_IP_Type, int CashCounterId, int UserId, string htmlFilePath, string htmlHeader);
     }
 }
