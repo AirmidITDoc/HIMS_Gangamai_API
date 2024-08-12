@@ -18,27 +18,28 @@
                             <tr style="font-size: 18px">
                                 <td></td>
                                 <td style="padding: 2px; padding-bottom:5px;text-align:center;padding-top:135px; "><b>Laboratory Report</b></td>
-                                <!--//<td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>-->
+                               
 
                                 <td></td>
                             </tr>
                         </table>
                     </td>
                 </tr>
+                <tr> <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td></tr>
                 <tr class="bill-info-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse; font-size: 19px; border: solid 1px black">
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span  style="font-weight:bold;">UHID No:</span>
+                                    <span style="font-weight:bold;">UHID No:</span>
                                     <span>{{RegNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span  style="font-weight:bold;">IPD No :</span>
+                                    <span style="font-weight:bold;">IPD No :</span>
                                     <span>{{IPDNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span  style="font-weight:bold;">Date | Time:</span>
+                                    <span style="font-weight:bold;">Date | Time:</span>
                                     <span>{{PathTime}}</span>
                                 </td>
                             </tr>
@@ -46,16 +47,16 @@
 
 
                                 <td style="padding: 2px;">
-                                    <span  style="font-weight:bold;">Patient Name:</span>
+                                    <span style="font-weight:bold;">Patient Name:</span>
                                     <span>{{PatientName}}</span>
                                 </td>
 
                                 <td style="padding: 2px;">
-                                    <span  style="font-weight:bold;">Age | Gender:</span>
+                                    <span style="font-weight:bold;">Age | Gender:</span>
                                     <span> {{AgeYear}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span  style="font-weight:bold;">Patient Type :</span>
+                                    <span style="font-weight:bold;">Patient Type :</span>
                                     <span>{{PatientType}}</span>
                                 </td>
 
@@ -63,18 +64,25 @@
                             <tr>
 
                                 <td style="padding: 2px;">
-                                    <span  style="font-weight:bold;">Doctor Name:</span>
+                                    <span style="font-weight:bold;">Doctor Name:</span>
                                     <span>{{DoctorName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span  style="font-weight:bold;">Department: </span>
+                                    <span style="font-weight:bold;">Department: </span>
                                     <span>{{DepartmentName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span  style="font-weight:bold;">Ref.Doctor Name:</span>
+                                    <span style="font-weight:bold;">Ref.Doctor Name:</span>
                                     <span>{{RefDocName}}</span>
                                 </td>
                             </tr>
+                            <tr>
+
+                                <td style="padding: 2px;" colspan="3">
+                                    <span style="font-weight:bold;">Sample Collection Date |Time:</span>
+                                    <span>{{SampleCollection}}</span>
+                                </td>
+                                </tr>
 
                         </table>
                     </td>
