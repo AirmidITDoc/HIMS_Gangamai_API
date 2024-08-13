@@ -342,7 +342,7 @@ namespace HIMS.Data.Opd
 
                 items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegID"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["VisitTime"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["VisitDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["MobileNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Address"].ConvertToString()).Append("</td>");
@@ -2092,7 +2092,7 @@ namespace HIMS.Data.Opd
             T_TotalNEFT = T_BillNEFT.ConvertToDouble() - T_BillReturnNEFT.ConvertToDouble();
             T_TotalPAYTM = T_BillPayTm.ConvertToDouble() - T_BillReturnPAYTM.ConvertToDouble();
 
-            T_OPAmount = G_CashPayAmount.ConvertToDouble() + G_ChequePayAmount.ConvertToDouble() + G_CardPayAmount.ConvertToDouble() + G_NEFTPayAmount.ConvertToDouble() + G_PayTMAmount.ConvertToDouble();
+            T_OPAmount = T_BillCash.ConvertToDouble() + T_BillCard.ConvertToDouble() + T_BillCheque.ConvertToDouble() + T_BillNEFT.ConvertToDouble() + T_BillPayTm.ConvertToDouble();
             T_OPRefundbillAmount = T_BillReturnCash.ConvertToDouble() + T_BillReturnCheque.ConvertToDouble() + T_BillReturnCard.ConvertToDouble() + T_BillReturnNEFT.ConvertToDouble() + T_BillReturnPAYTM.ConvertToDouble();
 
             TotalCollection = T_TotalCash.ConvertToDouble() + T_TotalCard.ConvertToDouble() + T_TotalCheque.ConvertToDouble() + T_TotalNEFT.ConvertToDouble() + T_TotalPAYTM.ConvertToDouble();
