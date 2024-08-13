@@ -8,11 +8,8 @@ namespace HIMS.Model.IPD
     {
         public InterimBillChargesUpdate InterimBillChargesUpdate { get; set; }
         public InsertBillUpdateBillNo1 InsertBillUpdateBillNo1 { get; set; }
-       
         public List<BillDetailsInsert1> BillDetailsInsert1 { get; set; }
-        
         public IPIntremPaymentInsert IPIntremPaymentInsert { get; set; }
-      //  public BillIPInterimBillingUpdate BillIPInterimBillingUpdate { get; set; }        
     }
     public class InterimBillChargesUpdate
     {
@@ -46,9 +43,9 @@ namespace HIMS.Model.IPD
         public float TaxPer { get; set; }
         public float TaxAmount { get; set; }
         public string DiscComments { get; set; }
-
         public float CompDiscAmt {get; set;}
-}
+        public long CashCounterId { get; set; }
+    }
     public class BillDetailsInsert1
     {
         public int BillNo { get; set; }

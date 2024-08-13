@@ -705,6 +705,13 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(IPIBP);
         }
 
+        [HttpPost("IPInterimBillInsertWithCashCounter")]
+        public IActionResult IPInterimBillInsertWithCashCounter(IPInterimBillParams IPBP)
+        {
+            var IPIBP = _IPInterimBill.InsertCashCounter(IPBP);
+            return Ok(IPIBP);
+        }
+
         /*   [HttpPost("IPAdvance")]
            public IActionResult IPAdvance(IPAdvanceParams IPA)
            {
