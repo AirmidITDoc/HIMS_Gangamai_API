@@ -32,13 +32,14 @@ namespace HIMS.Data.IPD
 
             var disc1 = IPInterimBillParams.InsertBillUpdateBillNo1.ToDictionary();
             disc1.Remove("BillNo");
+            disc1.Remove("CashCounterId");
             var BillNo1 = ExecNonQueryProcWithOutSaveChanges("insert_Bill_UpdateWithBillNo_1_New", disc1, outputId1);
 
             foreach (var a in IPInterimBillParams.BillDetailsInsert1)
             {
                 var disc = a.ToDictionary();
                 disc["BillNo"] = BillNo1;
-                ExecNonQueryProcWithOutSaveChanges("insert_BillDetails_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("m_insert_BillDetails_1", disc);
             }
 
             var outputId2 = new SqlParameter
@@ -51,6 +52,47 @@ namespace HIMS.Data.IPD
 
             var disc2 = IPInterimBillParams.IPIntremPaymentInsert.ToDictionary();
             disc2["BillNo"]=BillNo1;
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc2);
+
+            _unitofWork.SaveChanges();
+            return BillNo1;
+        }
+
+        public String InsertCashCounter(IPInterimBillParams IPInterimBillParams)
+        {
+            var ChargesId = IPInterimBillParams.InterimBillChargesUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("Update_InterimBillCharges_1", ChargesId);
+
+
+            var outputId1 = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@BillNo",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+            var disc1 = IPInterimBillParams.InsertBillUpdateBillNo1.ToDictionary();
+            disc1.Remove("BillNo");
+            var BillNo1 = ExecNonQueryProcWithOutSaveChanges("m_insert_Bill_CashCounter_1", disc1, outputId1);
+
+            foreach (var a in IPInterimBillParams.BillDetailsInsert1)
+            {
+                var disc = a.ToDictionary();
+                disc["BillNo"] = BillNo1;
+                ExecNonQueryProcWithOutSaveChanges("m_insert_BillDetails_1", disc);
+            }
+
+            var outputId2 = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@PaymentId",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+            var disc2 = IPInterimBillParams.IPIntremPaymentInsert.ToDictionary();
+            disc2["BillNo"] = BillNo1;
             ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc2);
 
             _unitofWork.SaveChanges();
