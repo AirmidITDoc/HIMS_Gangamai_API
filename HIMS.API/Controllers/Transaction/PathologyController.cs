@@ -54,6 +54,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathTemplate.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _PathologyTemplateResult.ViewPathTemplateReceipt( PathReportId, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            html = html.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTemplate", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
