@@ -58,8 +58,8 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
-            html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
-            html = html.Replace("{{PathTime}}", Bills.GetColValue("PathTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy|hh:mmtt"));
+            html = html.Replace("{{PathTime}}", Bills.GetColValue("PathTime").ConvertToDateString("dd/MM/yyyy|hh:mmtt"));
 
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
@@ -89,12 +89,13 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{Path_RefDoctorName}}", Bills.GetColValue("Path_RefDoctorName"));
             html = html.Replace("{{PathTemplateDetailsResult}}", Bills.GetColValue("PathTemplateDetailsResult").ConvertToString());
-            html = html.Replace("{{PathTemplateDetailsResult}}", Bills.GetColValue("TemplateResultInHTML").ConvertToString());
+           // html = html.Replace("{{PathTemplateDetailsResult}}", Bills.GetColValue("TemplateResultInHTML").ConvertToString());
             
             html = html.Replace("{{PrintTestName}}", Bills.GetColValue("PrintTestName"));
             html = html.Replace("{{Path_DoctorName}}", Bills.GetColValue("Path_DoctorName"));
             html = html.Replace("{{Education}}", Bills.GetColValue("Education"));
             html = html.Replace("{{MahRegNo}}", Bills.GetColValue("MahRegNo"));
+            html = html.Replace("{{SampleCollection}}", Bills.GetColValue("SampleCollection").ConvertToDateString("dd/MM/yyyy|hh:mmtt"));
 
             html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
             //html = html.Replace("{{chkresonflag}}", Bills.GetColValue("reason").ConvertToString() != null ? "block" : "none");

@@ -35,43 +35,62 @@
                         </table>
                     </td>
                 </tr>
-                <tr class="bill-table-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead style="font-size: 15px; text-align: center;">
-                                <tr>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>
-                                    <!--<th style="border: 1px solid #d4c3c3; padding: 6px;">Visit Date</th>-->
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Department Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Doctor Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">OPD NO</th>
 
-                                </tr>
-                                New And Follow UP
-                            </thead>
-                            <tbody style="font-size: 14px;">
-                                {{Items}}
-                                <tr>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">Total Count</td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_Count}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
 
-                <!--<tr>
-                    <td>Total Count :</td>
-                    <td>{{T_Count}}</td>
-                </tr>-->
-            </table>
-        </div>
+
+                <table class="table" style="width:100%;border-collapse:collapse">
+                    <tbody>
+
+                        <tr style="font-size: 18px; background-color: white; font-weight: 700;">
+
+
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">UHID</td>
+                        
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">PatientName</td>
+                          
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Department Name</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Doctor Name</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">OPD No</td>
+
+                        </tr>
+                        <!--<tr class="bill-table-row">
+                            <td style="padding: 6px;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead style="font-size: 15px; text-align: center;">
+                                        <tr>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>-->
+                                            <!--<th style="border: 1px solid #d4c3c3; padding: 6px;">Visit Date</th>-->
+                                            <!--<th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">Department Name</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">Doctor Name</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">OPD NO</th>
+
+                                        </tr>-->
+                                        New And Follow UP
+                                    </thead>
+                                    <tbody style="font-size: 14px;">
+                                        {{Items}}
+                                        <tr>
+                                            <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                            <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                            <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                            <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                            <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">Total Count</td>
+                                            <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">{{T_Count}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <!--<tr>
+                <td>Total Count :</td>
+                <td>{{T_Count}}</td>
+            </tr>-->
+                </table>
+</div>
     </div>
 </body>
 </html>

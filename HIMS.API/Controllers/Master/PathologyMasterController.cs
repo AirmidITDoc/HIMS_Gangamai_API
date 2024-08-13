@@ -74,29 +74,23 @@ namespace HIMS.API.Controllers.Master
             return Ok(PathologyCategoryMasterUpdate);
 
         }
-        //----------------------------------------
-
-      
+           
 
         [HttpPost("PathologyTemplateMasterSave")]
         public IActionResult PathologyTemplateMasterSave(PathologyTemplateMasterParams PathologyTemplateMasterParams)
         {
             var Id = _PathologyTemplateMasterRep.Insert(PathologyTemplateMasterParams);
             return Ok(Id);
-
         }
 
-
-
         [HttpPost("PathologyTemplateMasterUpdate")]
-        public IActionResult PathologyTemplateMasterUpdate(PathologyTemplateMasterParams pathTemplateParams)
+        public IActionResult PathologyTemplateMasterUpdate(PathologyTemplateMasterParams PathologyTemplateMasterParams)
         {
-            var Id = _PathologyTemplateMasterRep.Update(pathTemplateParams);
+            var Id = _PathologyTemplateMasterRep.Update(PathologyTemplateMasterParams);
             return Ok(Id);
 
         }
-        //----------------------------------------
-
+       
         [HttpPost("PathologyTestMasterSave")]
         public IActionResult PathologyTestMasterSave(PathologyTestMasterParams pathTestParams)
         {
