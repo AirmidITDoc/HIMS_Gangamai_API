@@ -36,7 +36,43 @@ namespace HIMS.Data.Administration
             return true;
         }
 
+        public bool InsertDoctorShareMaster(DoctorShareParam doctorShareParam)
+        {
+             var disc3 = doctorShareParam.InsertDoctorShareMasterParam.ToDictionary();
+             disc3.Remove("DoctorShareId");
+             ExecNonQueryProcWithOutSaveChanges("Insert_DoctorShareMaster_1", disc3);
 
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
+        public bool UpdateDoctorShareMaster(DoctorShareParam doctorShareParam)
+        {
+            var disc3 = doctorShareParam.UpdateDoctorShareMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("Update_DoctorShareMaster_1", disc3);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
+        public bool DoctorShareProcess(DoctorShareProcessParam doctorShareProcessParam)
+        {
+            var disc3 = doctorShareProcessParam.ProcessDoctorShareParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("OP_DoctorSharePerCalculation_1", disc3);
+            ExecNonQueryProcWithOutSaveChanges("IP_DoctorSharePerCalculation_1", disc3);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
+        public bool IPDischargeCancel(IPDischargeCancelParam iPDischargeCancelParam)
+        {
+            var disc3 = iPDischargeCancelParam.IP_DischargeCancelParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("IP_DISCHARGE_CANCELLATION", disc3);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
     }
 }
 
