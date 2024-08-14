@@ -994,10 +994,10 @@ namespace HIMS.Data.Opd
                 if (i == 1)
                 {
                     String Label;
-                    Label = dr["VisitDate"].ConvertToDateString("dd/MM/yyyy");
+                    Label = dr["VisitDate"].ConvertToDateString("MM/dd/yyyy");
                     items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
-                if (previousLabel != "" && previousLabel != dr["VisitDate"].ConvertToDateString("dd/MM/yyyy"))
+                if (previousLabel != "" && previousLabel != dr["VisitDate"].ConvertToDateString("MM/dd/yyyy"))
                 {
                     j = 1;
 
@@ -1005,13 +1005,13 @@ namespace HIMS.Data.Opd
                        .Append(T_Count.ToString()).Append("</td></tr>");
 
                     T_Count = 0;
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["VisitDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["VisitDate"].ConvertToDateString("MM/dd/yyyy")).Append("</td></tr>");
 
                 }
 
                 Dcount = Dcount + 1;
                 T_Count = T_Count;
-                previousLabel = dr["VisitDate"].ConvertToDateString("dd/MM/yyyy");
+                previousLabel = dr["VisitDate"].ConvertToDateString("MM/dd/yyyy");
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append(" </td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
@@ -1072,10 +1072,10 @@ namespace HIMS.Data.Opd
                 if (i == 1)
                 {
                     String Label;
-                    Label = dr["VisitDate"].ConvertToDateString("dd/MM/yyyy");
+                    Label = dr["VisitDate"].ConvertToDateString("MM/dd/yyyy");
                     items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
-                if (previousLabel != "" && previousLabel != dr["VisitDate"].ConvertToDateString("dd/MM/yyyy"))
+                if (previousLabel != "" && previousLabel != dr["VisitDate"].ConvertToDateString("MM/dd/yyyy"))
                 {
                     j = 1;
 
@@ -1083,18 +1083,18 @@ namespace HIMS.Data.Opd
                        .Append(Dcount.ToString()).Append("</td></tr>");
 
                     Dcount = 0;
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["VisitDate"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["VisitDate"].ConvertToDateString("MM/dd/yyyy")).Append("</td></tr>");
 
                 }
 
                 Dcount = Dcount + 1;
                 T_Count = T_Count;
-                previousLabel = dr["VisitDate"].ConvertToDateString("dd/MM/yyyy");
+                previousLabel = dr["VisitDate"].ConvertToDateString("MM/dd/yyyy");
 
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append(" </td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Amount"].ConvertToDouble()).Append("</td></tr>");
+                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;font-size:22px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;font-size:22px;\">").Append(dr["Amount"].ConvertToDouble()).Append("</td></tr>");
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
 
@@ -1418,7 +1418,7 @@ namespace HIMS.Data.Opd
             SqlParameter[] para = new SqlParameter[2];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            var Bills = GetDataTableProc("rptservicegroupwisecollectionSummary", para);
+            var Bills = GetDataTableProc("rptDepartmentservicegroupwisecollectionDetail", para);
 
 
             string html = File.ReadAllText(htmlFilePath);

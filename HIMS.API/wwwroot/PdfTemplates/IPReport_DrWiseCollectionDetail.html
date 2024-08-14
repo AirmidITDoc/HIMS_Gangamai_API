@@ -35,83 +35,107 @@
                         </table>
                     </td>
                 </tr>
-                <tr class="bill-table-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead style="font-size: 15px; text-align: center;">
-                                <tr>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">SR No</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill Date</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">BillNo</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">AgeYear</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">IPD No</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Department Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">RefDoctor Name</th>
+                <table class="table" style="width:100%;border-collapse:collapse">
+                    <tbody>
 
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Total Amt</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Disc Amt</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Net Amt</th>
+                        <tr style="font-size: 18px; background-color: white; font-weight: 700;">
 
 
-                                </tr>
-                            </thead>
-                            <tbody style="font-size: 14px;">
-                                {{Items}}
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
 
-                                <tr style="border: 1px solid black; background-color: white">
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Bill Date</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Bill NO</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">UHID</td>
 
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">PatientName</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> AgeYear </td>
 
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IPD No</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Department Name</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">RefDoctor Name</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Total Amt</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Disc Amt</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Net Amt</td>
 
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
+                        </tr>
 
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
+                        <!--<tr class="bill-table-row">
+                            <td style="padding: 6px;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead style="font-size: 15px; text-align: center;">
+                                        <tr>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">SR No</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill Date</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">BillNo</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">AgeYear</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">IPD No</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">Department Name</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">RefDoctor Name</th>
 
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                        Total Amount
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                        {{T_TotalAmt}}
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                        {{T_ConcessionAmt}}
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                        {{T_NetPayableAmt}}
-                                    </td>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">Total Amt</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">Disc Amt</th>
+                                            <th style="border: 1px solid #d4c3c3; padding: 6px;">Net Amt</th>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-               
-            </table>
-        </div>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-size: 14px;">-->
+                                        {{Items}}
+
+                                        <tr style="border: 1px solid black; background-color: white">
+
+
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                            </td>
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                                Total Amount
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                {{T_TotalAmt}}
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                {{T_ConcessionAmt}}
+                                            </td>
+
+                                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                {{T_NetPayableAmt}}
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+
+                </table>
+</div>
     </div>
 </body>
 </html>
