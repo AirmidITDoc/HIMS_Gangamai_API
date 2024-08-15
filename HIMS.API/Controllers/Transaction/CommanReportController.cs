@@ -187,11 +187,11 @@ namespace HIMS.API.Controllers.Transaction
 
         }
         [HttpGet("view-GroupwiseSummaryReport")]
-        public IActionResult ViewGroupwiseSummaryReport(DateTime FromDate, DateTime ToDate,int AddedById)
+        public IActionResult ViewGroupwiseSummaryReport(DateTime FromDate, DateTime ToDate,int GroupId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_GroupWiseSummaryReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPComman.ViewGroupwiseSummaryReport(FromDate, ToDate, AddedById, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPComman.ViewGroupwiseSummaryReport(FromDate, ToDate, GroupId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GroupwiseSummaryReport", "GroupwiseSummaryReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });

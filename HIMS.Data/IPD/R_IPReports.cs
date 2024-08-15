@@ -2066,8 +2066,8 @@ namespace HIMS.Data.IPD
 
                 }
 
-                NetPayableAmt = NetPayableAmt + 1;
-                T_NetPayableAmt = T_NetPayableAmt + 1;
+                NetPayableAmt = NetPayableAmt;
+                //T_NetPayableAmt = T_NetPayableAmt + 1;
                 previousLabel = dr["DoctorName"].ConvertToString();
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
@@ -2094,12 +2094,14 @@ namespace HIMS.Data.IPD
 
 
                 }
-
+                NetPayableAmt += dr["NetPayableAmt"].ConvertToDouble();
                 T_TotalAmt += dr["TotalAmt"].ConvertToDouble();
                 T_ConcessionAmt += dr["ConcessionAmt"].ConvertToDouble();
               T_NetPayableAmt += dr["NetPayableAmt"].ConvertToDouble();
             }
-            
+            html = html.Replace("{{T_TotalAmt}}", T_TotalAmt.To2DecimalPlace());
+            html = html.Replace("{{T_ConcessionAmt}}", T_ConcessionAmt.To2DecimalPlace());
+            html = html.Replace("{{T_NetPayableAmt}}", T_NetPayableAmt.To2DecimalPlace());
             //html = html.Replace("{{T_TotalAmt"}}", T_TotalTotalAmt".To2DecimalPlace());
             //html = html.Replace("{{T_ConcessionAmt}}", T_TotalConcessionAmt.To2DecimalPlace());
             //html = html.Replace("{{T_NetPayableAmt}}", T_TotalNetPayableAmt.To2DecimalPlace());

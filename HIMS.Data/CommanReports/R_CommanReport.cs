@@ -1549,14 +1549,14 @@ namespace HIMS.Data.Opd
 
             return html;
         }
-        public string ViewGroupwiseSummaryReport(DateTime FromDate, DateTime ToDate, int AddedById, string htmlFilePath, string htmlHeader)
+        public string ViewGroupwiseSummaryReport(DateTime FromDate, DateTime ToDate, int GroupId, string htmlFilePath, string htmlHeader)
         {
             //throw new NotImplementedException();
             SqlParameter[] para = new SqlParameter[3];
 
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            para[2] = new SqlParameter("@AddedById", AddedById) { DbType = DbType.Int64 };
+            para[2] = new SqlParameter("@GroupId", GroupId) { DbType = DbType.Int64 };
 
 
             var Bills = GetDataTableProc("rptGrupWiseSummaryPeport", para);
@@ -1578,10 +1578,10 @@ namespace HIMS.Data.Opd
 
                 items.Append("<tr style=\"font-size:15px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border-bottom: 1px;\"><td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["GroupName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">").Append(dr["NetPayableAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
 
-                T_NetPayableAmt += dr["NetPayableAmt"].ConvertToDouble();
+                T_NetPayableAmt += dr["NetAmount"].ConvertToDouble();
 
             }
 
@@ -1952,8 +1952,8 @@ namespace HIMS.Data.Opd
                 if (i == 1)
                 {
                     String Label;
-                    Label = dr["OP Revenue"].ConvertToString();
-                    Label = dr["IP Revenue"].ConvertToString();
+                    Label = dr["patientType "].ConvertToString();
+                    Label = dr["patientType"].ConvertToString();
                     items.Append("<tr style=\"font-size:20px;border: 1;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"5\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td>");
                     items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(j).Append("</td></tr>");
                 }

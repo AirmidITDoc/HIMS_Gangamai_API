@@ -75,6 +75,39 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(TODUpdate);
 
         }
+
+
+        [HttpPost("InsertDoctorShareMaster")]
+        public IActionResult InsertDoctorShareMaster(DoctorShareParam doctorShareParam)
+        {
+            var TODUpdate = _Administration.InsertDoctorShareMaster(doctorShareParam);
+            return Ok(TODUpdate);
+
+        }
+
+        [HttpPost("UpdateDoctorShareMaster")]
+        public IActionResult UpdateDoctorShareMaster(DoctorShareParam doctorShareParam)
+        {
+            var TODUpdate = _Administration.UpdateDoctorShareMaster(doctorShareParam);
+            return Ok(TODUpdate);
+
+        }
+
+
+        [HttpPost("DoctorShareProcess")]
+        public IActionResult DoctorShareProcess(DoctorShareProcessParam doctorShareProcessParam)
+        {
+            var TODUpdate = _Administration.DoctorShareProcess(doctorShareProcessParam);
+            return Ok(TODUpdate);
+
+        }
+        [HttpPost("IPDischargeCancel")]
+        public IActionResult IPDischargeCancel(IPDischargeCancelParam iPDischargeCancelParam)
+        {
+            var TODUpdate = _Administration.IPDischargeCancel(iPDischargeCancelParam);
+            return Ok(TODUpdate);
+
+        }
     }
 
 }
