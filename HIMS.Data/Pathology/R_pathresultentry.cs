@@ -139,8 +139,8 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
 
             html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
-            html = html.Replace("{{PathTime}}", Bills.GetColValue("PathTime").ConvertToDateString());
-            html = html.Replace("{{ReportTime}}", Bills.GetColValue("ReportTime").ConvertToDateString());
+            html = html.Replace("{{PathTime}}", Bills.GetColValue("PathTime").ConvertToDateString("dd/MM/yyyy "));
+            html = html.Replace("{{ReportTime}}", Bills.GetColValue("ReportTime").ConvertToDateString("dd/MM/yyyy "));
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
@@ -152,7 +152,7 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{PaymentTime}}", Bills.GetColValue("PaymentTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
 
-            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("OP_IP_Number"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvanceAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{Phone}}", Bills.GetColValue("Phone"));
@@ -160,7 +160,7 @@ namespace HIMS.Data.Pathology
 
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
             html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
-            html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
+            html = html.Replace("{{DoctorName}}", Bills.GetColValue("ConsultantDocName"));
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
@@ -171,7 +171,8 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{Education}}", Bills.GetColValue("Education"));
             html = html.Replace("{{MahRegNo}}", Bills.GetColValue("MahRegNo"));
             html = html.Replace("{{SuggestionNote}}", Bills.GetColValue("SuggestionNote"));
-            //html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+            html = html.Replace("{{BedName}}", Bills.GetColValue("BedName").ConvertToString());
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName").ConvertToString());
             html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
             //html = html.Replace("{{chkresonflag}}", Bills.GetColValue("reason").ConvertToString() != null ? "block" : "none");
             return html;
