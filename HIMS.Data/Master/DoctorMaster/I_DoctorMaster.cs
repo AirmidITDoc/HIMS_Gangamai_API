@@ -5,7 +5,7 @@ namespace HIMS.Data.Master.DoctorMaster
 {
     public interface I_DoctorMaster
     {
-        bool Save(Model.Master.DoctorMaster.DoctorMasterParams doctorMasterParams);
+        bool Save(HIMS.Model.Master.DoctorMaster.DoctorMaster obj);
         bool Update(Model.Master.DoctorMaster.DoctorMasterParams doctorMasterParams);
         
     }

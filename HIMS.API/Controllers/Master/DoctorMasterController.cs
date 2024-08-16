@@ -43,11 +43,11 @@ namespace HIMS.API.Controllers.Master
 
         //Doctor Save and Update
         [HttpPost("DoctorSave")]
-        public IActionResult DoctorSave(DoctorMasterParams DoctorMasterParams)
+        public IActionResult DoctorSave(DoctorMaster obj)
         {
-            if (!string.IsNullOrWhiteSpace(DoctorMasterParams.InsertDoctorMaster.Signature))
-                DoctorMasterParams.InsertDoctorMaster.Signature = _FileUtility.SaveImageFromBase64(DoctorMasterParams.InsertDoctorMaster.Signature, "Doctors\\Signature");
-            var ServiceSave = _DoctorMaster.Save(DoctorMasterParams);
+            if (!string.IsNullOrWhiteSpace(obj.Signature))
+                obj.Signature = _FileUtility.SaveImageFromBase64(obj.Signature, "Doctors\\Signature");
+            var ServiceSave = _DoctorMaster.Save(obj);
             return Ok(ServiceSave);
         }
 
