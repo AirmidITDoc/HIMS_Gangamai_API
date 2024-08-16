@@ -16,6 +16,7 @@ namespace HIMS.API.Utility
         Task<Tuple<MemoryStream, string, string>> DownloadFile(string filePath);
         Task<string> GetBase64(string filePath);
         string GetMimeType(string fileName);
+        string SaveImageFromBase64(string Base64, string Folder);
     }
 }
 

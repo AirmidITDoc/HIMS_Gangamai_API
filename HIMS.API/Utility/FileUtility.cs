@@ -1,4 +1,5 @@
-﻿using HIMS.Data.Pharmacy;
+﻿using Aspose.Cells;
+using HIMS.Data.Pharmacy;
 using HIMS.Model.IPD;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using Wkhtmltopdf.NetCore;
@@ -68,6 +70,20 @@ namespace HIMS.API.Utility
                 contentType = "application/octet-stream";
             }
             return contentType;
+        }
+        public string SaveImageFromBase64(string Base64, string Folder)
+        {
+            var DestinationPath = _Sales.GetFilePath();
+            if (string.IsNullOrWhiteSpace(DestinationPath))
+                DestinationPath = _configuration.GetValue<string>("StorageBasePath");
+            if (!Directory.Exists(DestinationPath))
+                Directory.CreateDirectory(DestinationPath);
+            if (!Directory.Exists(DestinationPath.Trim('\\') + "\\" + Folder))
+                Directory.CreateDirectory(DestinationPath.Trim('\\') + "\\" + Folder);
+            string FilePath = Path.Combine(DestinationPath.Trim('\\'), Folder.Trim('\\'));
+            string FileName = Guid.NewGuid().ToString() + ".png";
+            File.WriteAllBytes(Path.Combine(FilePath,FileName), Convert.FromBase64String(Base64.Replace("data:image/png;base64,","")));
+            return FileName;
         }
 
 

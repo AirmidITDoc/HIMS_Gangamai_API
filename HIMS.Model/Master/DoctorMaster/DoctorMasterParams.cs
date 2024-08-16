@@ -54,7 +54,7 @@ namespace HIMS.Model.Master.DoctorMaster
 		public Boolean IsInHouseDoctor { get; set; }
         public Boolean IsOnCallDoctor { get; set; }
         public long DoctorId { get; set; }
-
+		public string Signature { get; set; }
     }
 
     public class UpdateDoctorMaster
