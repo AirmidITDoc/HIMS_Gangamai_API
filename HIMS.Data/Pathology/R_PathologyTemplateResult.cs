@@ -21,17 +21,17 @@ namespace HIMS.Data.Pathology
         {
             var disc3 = PathologyTemplateResultParams.DeletePathologyReportTemplateDetails.ToDictionary();
             var PathReportId = disc3["PathReportId"];
-            ExecNonQueryProcWithOutSaveChanges("Delete_T_PathologyReportTemplateDetails", disc3);
+            ExecNonQueryProcWithOutSaveChanges("m_Delete_T_PathologyReportTemplateDetails", disc3);
 
                 
             var disc1 = PathologyTemplateResultParams.InsertPathologyReportTemplateDetails.ToDictionary();
             disc1["PathReportId"] = (int)Convert.ToInt64(PathReportId);
-            ExecNonQueryProcWithOutSaveChanges("insert_PathologyReportTemplateDetails_1", disc1);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_PathologyReportTemplateDetails_1", disc1);
 
             //PathologyTemplateResultParams.UpdatePathologyReportHeader.PathReportID = PathologyTemplateResultParams.
             var disc = PathologyTemplateResultParams.UpdatePathTemplateReportHeader.ToDictionary();
             disc["PathReportID"] = (int)Convert.ToInt64(PathReportId);
-            ExecNonQueryProcWithOutSaveChanges("update_T_PathologyReportHeader_1", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_PathologyReportHeader_1", disc);
 
             _unitofWork.SaveChanges();
             return true;
