@@ -213,7 +213,7 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-ServiceWiseReportWithoutBill")]
         public IActionResult ViewServiceWiseReportWithoutBill(int ServiceId, DateTime FromDate, DateTime ToDate)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommonReport_ServiceWiseReportWithOUTbill.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_ServiceWiseReportWithOUTbill.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPComman.ViewServiceWiseReportWithoutBill(ServiceId, FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ServiceWiseReportWithoutBill", "ServiceWiseReportWithoutBill", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
@@ -226,7 +226,7 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-DoctorVisitAdmittedWiseGroupReport")]
         public IActionResult ViewDoctorVisitAdmittedWiseGroupReport(DateTime FromDate, DateTime ToDate,int DoctorId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_ServiceWiseReportWithOUTbill.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_DoctorWiseVisitAndAdmittedGroupReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPComman.ViewDoctorVisitAdmittedWiseGroupReport(FromDate, ToDate, DoctorId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorVisitAdmittedWiseGroupReport", "DoctorVisitAdmittedWiseGroupReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);

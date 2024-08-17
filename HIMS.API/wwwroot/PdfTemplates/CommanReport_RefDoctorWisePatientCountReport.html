@@ -35,35 +35,38 @@
                         </table>
                     </td>
                 </tr>
-                <tr class="bill-table-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead style="font-size: 15px; text-align: center;">
-                                <tr>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">RefDoctor Name</th>
-                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">OP Patient</th>
 
-                                </tr    
+                <table class="table" style="width:100%;border-collapse:collapse">
+                    <tbody>
 
-                            </thead>
-                            <tbody style="font-size: 14px;">
-                                {{Items}}
-                            </tbody>
-                            <tr>
-                                <td style="border: 1px solid #d4c3c3; padding: 6px;"></td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Total Count</td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{OPcount}}</td>
-                                
+                        <tr style="font-size: 18px; background-color: white; font-weight: 700;">
 
 
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                          
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">RefDoctor Name</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">OP Patient</td>
 
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </div>
+                        </tr>
+
+                       
+                                        {{Items}}
+                                        <tr>
+                                            <td style="border: 1px solid #d4c3c3; padding: 6px;"></td>
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Total Count</td>
+                                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{OPcount}}</td>
+
+
+
+
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </td>
+                        </tr>
+                </table>
+</div>
     </div>
 </body>
 </html>
