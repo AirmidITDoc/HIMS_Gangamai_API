@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HIMS.Data.Master.DoctorMaster;
 using HIMS.Model.Master.DoctorMaster;
+using HIMS.API.Utility;
 
 namespace HIMS.API.Controllers.Master
 {
@@ -18,10 +19,12 @@ namespace HIMS.API.Controllers.Master
           }*/
         public readonly I_DoctorMaster _DoctorMaster;
         public readonly I_DoctorTypeMaster _DoctorTypeMaster;
-        public DoctorMasterController(I_DoctorMaster doctorMaster,I_DoctorTypeMaster doctorTypeMaster)
+        private readonly IFileUtility _FileUtility;
+        public DoctorMasterController(I_DoctorMaster doctorMaster, I_DoctorTypeMaster doctorTypeMaster, IFileUtility fileUtility)
         {
             this._DoctorMaster = doctorMaster;
             this._DoctorTypeMaster = doctorTypeMaster;
+            _FileUtility = fileUtility;
         }
         //DoctorType Save and Update
         [HttpPost("DoctorTypeSave")]
@@ -40,9 +43,11 @@ namespace HIMS.API.Controllers.Master
 
         //Doctor Save and Update
         [HttpPost("DoctorSave")]
-        public IActionResult DoctorSave(DoctorMasterParams DoctorMasterParams)
+        public IActionResult DoctorSave(DoctorMaster obj)
         {
-            var ServiceSave = _DoctorMaster.Save(DoctorMasterParams);
+            if (!string.IsNullOrWhiteSpace(obj.Signature))
+                obj.Signature = _FileUtility.SaveImageFromBase64(obj.Signature, "Doctors\\Signature");
+            var ServiceSave = _DoctorMaster.Save(obj);
             return Ok(ServiceSave);
         }
 

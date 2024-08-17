@@ -656,7 +656,8 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
-            int i = 0, j = 0, Ipcount = 0, OPcount = 0;
+            int i = 0, j = 0; 
+                double T_count = 0, OPcount = 0, T_Ipcount = 0, T_OPcount = 0;
 
 
             foreach (DataRow dr in Bills.Rows)
@@ -665,30 +666,31 @@ namespace HIMS.Data.Opd
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["VisitCount"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientType"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["VisitCount"].ConvertToString()).Append("</td></tr>");
 
+                //T_Ipcount += dr["VisitCount"].ConvertToString();
+                T_count += dr["VisitCount"].ConvertToDouble();
 
 
 
-
-                if (dr["PatientType"].ConvertToString() == "IP Patient")
-                {
-                    Ipcount++;
-                }
-                else if (dr["PatientType"].ConvertToString() == "OP Patient")
-                {
-                    OPcount++;
-                }
+                //if (dr["PatientType"].ConvertToString() == "IP Patient")
+                //{
+                //    Ipcount++;
+                //}
+                //else if (dr["PatientType"].ConvertToString() == "OP Patient")
+                //{
+                //    OPcount++;
+                //}
 
             }
 
-            html = html.Replace("{{Ipcount}}", Ipcount.ToString());
-            html = html.Replace("{{Opcount}}", OPcount.ToString());
+            //html = html.Replace("{{count}}", count.ToString());
+            //html = html.Replace("{{Opcount}}", OPcount.ToString());
 
 
 
-
+            html = html.Replace("{{T_count}}", T_count.ToString());
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
@@ -1436,12 +1438,39 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy"));
 
             StringBuilder items = new StringBuilder("");
-            int i = 0;
-            double Tot_ServiceAmt = 0;
+            string previousLabel = "";
+          
+            int i = 0,j = 0;
+            double Tot_ServiceAmt = 0, NetAmount = 0, T_NetAmount = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
-                i++;
+                i++; j++;
+                if (i == 1)
+                {
+                    String Label;
+                    Label = dr["PatientName"].ConvertToString();
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"9\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+
+                if (previousLabel != "" && previousLabel != dr["PatientName"].ConvertToString())
+                {
+                    j = 1;
+
+
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                     .Append(NetAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\"></td></tr>");
+                    NetAmount = 0;
+
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:black; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["PatientName"].ConvertToString()).Append("</td></tr>");
+                }
+
+
+                NetAmount += dr["NetAmount"].ConvertToDouble();
+               
+                previousLabel = dr["PatientName"].ConvertToString();
+
+
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
@@ -1458,12 +1487,18 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IsCancelledDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["UserName"].ConvertToString()).Append("</td></tr>");
 
+                if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
+                {
 
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    .Append(NetAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\"></td></tr>");
 
-                Tot_ServiceAmt += dr["NetAmount"].ConvertToDouble();
+                }
+
+                T_NetAmount += dr["NetAmount"].ConvertToDouble();
             }
 
-            html = html.Replace("{{Tot_ServiceAmt}}", Tot_ServiceAmt.ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.ConvertToDouble().To2DecimalPlace());
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
@@ -1486,7 +1521,7 @@ namespace HIMS.Data.Opd
             int i = 0, j = 0;
             string previousLabel = "";
             string html = File.ReadAllText(htmlFilePath);
-            double ServiceAmt = 0, Tot_ServiceAmt = 0;
+            double ServiceAmt = 0, T_NetPayableAmt = 0, Tot_ServiceAmt = 0;
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
 
@@ -1529,9 +1564,10 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
         
                 items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">").Append(dr["NetPayableAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border-left:1px solid #000;border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["PaymentDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td></tr>");
 
-
+                T_NetPayableAmt += dr["NetAmount"].ConvertToDouble();
 
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
@@ -1544,8 +1580,8 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
-
             html = html.Replace("{{Tot_ServiceAmt}}", Tot_ServiceAmt.ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{T_NetPayableAmt}}", T_NetPayableAmt.ConvertToDouble().To2DecimalPlace());
 
             return html;
         }

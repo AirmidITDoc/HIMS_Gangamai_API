@@ -9,7 +9,7 @@ using System.Text;
 
 namespace HIMS.Data.Master.DoctorMaster
 {
-    public class R_DoctorMaster : GenericRepository,I_DoctorMaster
+    public class R_DoctorMaster : GenericRepository, I_DoctorMaster
     {
         public R_DoctorMaster(IUnitofWork unitofWork) : base(unitofWork)
         {
@@ -20,12 +20,12 @@ namespace HIMS.Data.Master.DoctorMaster
         {
             var disc1 = DoctorMasterParams.UpdateDoctorMaster.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("update_DoctorMaster_1", disc1);
-            
+
 
             var D_Det = DoctorMasterParams.DeleteAssignDoctorToDepartment.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("Delete_AssignDoctorToDepartment", D_Det);
 
-            
+
             foreach (var a in DoctorMasterParams.AssignDoctorDepartmentDet)
             {
                 var disc = a.ToDictionary();
@@ -36,7 +36,7 @@ namespace HIMS.Data.Master.DoctorMaster
             return true;
         }
 
-        public bool Save(DoctorMasterParams DoctorMasterParams)
+        public bool Save(HIMS.Model.Master.DoctorMaster.DoctorMaster obj)
         {
             //add Doctor
             var outputId = new SqlParameter
@@ -46,13 +46,14 @@ namespace HIMS.Data.Master.DoctorMaster
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
-            var disc1 = DoctorMasterParams.InsertDoctorMaster.ToDictionary();
+            var disc1 = obj.ToDictionary();
             disc1.Remove("DoctorId");
+            disc1.Remove("Departments");
             var doctorId = ExecNonQueryProcWithOutSaveChanges("Insert_DoctorMaster_1", disc1, outputId);
 
             //add DoctorDetails
 
-            foreach (var a in DoctorMasterParams.AssignDoctorDepartmentDet)
+            foreach (var a in obj.Departments)
             {
                 var disc = a.ToDictionary();
                 disc["DoctorId"] = doctorId;
