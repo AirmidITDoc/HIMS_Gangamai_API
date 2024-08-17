@@ -54,7 +54,7 @@ namespace HIMS.Data.Master.Pathology
         public bool Update(PathParameterMasterParams pathParameterMasterParams)
         {
             var disc1 = pathParameterMasterParams.PathParameterMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_ParameterMaster_1", disc1);
+            ExecNonQueryProcWithOutSaveChanges("m_update_ParameterMaster_1", disc1);
 
 
             if (pathParameterMasterParams.PathParameterMasterUpdate.IsNumeric == true)
