@@ -22,15 +22,15 @@ namespace HIMS.Data.IPD
             var outputId1 = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
-                ParameterName = "@RegId",
+                ParameterName = "@EmgId",
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
 
             var disc2 = IPDEmergencyParams.IPDEmergencyRegInsert.ToDictionary();
-            disc2.Remove("RegId");
+            disc2.Remove("EmgId");
 
-            var OutRegId = ExecNonQueryProcWithOutSaveChanges("insert_Registration_1_1", disc2, outputId1);
+            var OutRegId = ExecNonQueryProcWithOutSaveChanges("insert_T_EmergencyAdm_1", disc2, outputId1);
 
            /* var disc1 = IPDEmergencyParams.IPDEmergencyRegInsert.ToDictionary();
             disc1.Remove("RegId");
