@@ -18,7 +18,7 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>IPD Current Admitted - Ward Wise </b> </td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Discharge Report </b> </td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
                         </table>
@@ -42,20 +42,22 @@
                     <tbody>
 
                         <tr style="font-size: 18px; background-color: white; font-weight: 700;">
-                       
+
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">DischargeType Name</td>
 
                         </tr>
 
                         {{Items}}
+                        <tr>
+                            <td>Patient Count :</td>
+                            <td>{{T_Count}}</td>
+                        </tr>
                     </tbody>
+
                 </table>
                 </td>
-                <tr>
-                    <td>Patient Count :</td>
-                    <td>{{T_Count}}</td>
-                </tr>
+               
                 </tr>
             </table>
         </div>

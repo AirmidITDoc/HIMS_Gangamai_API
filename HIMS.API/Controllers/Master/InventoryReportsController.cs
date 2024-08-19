@@ -244,11 +244,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-CurrentStockReport")]
-        public IActionResult ViewCurrentStockReport(DateTime FromDate, DateTime ToDate, int InsertDate, int StoreId)
+        public IActionResult ViewCurrentStockReport(DateTime FromDate, DateTime ToDate, int StoreId, int IsNarcotic, int ish1Drug, int isScheduleH, int IsHighRisk, int IsScheduleX)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_CurrentStockReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _InventoryReport.ViewCurrentStockReport(FromDate, ToDate,  InsertDate,  StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _InventoryReport.ViewCurrentStockReport(FromDate, ToDate, StoreId, IsNarcotic, ish1Drug, isScheduleH, IsHighRisk, IsScheduleX,htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CurrentStockReport", "CurrentStockReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 

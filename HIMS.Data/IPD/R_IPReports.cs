@@ -844,7 +844,7 @@ namespace HIMS.Data.IPD
             double T_NetPayAmount = 0, T_DiscAmount = 0, T_TotalAmount = 0, T_PaidAmount = 0, T_BalAmount = 0, T_CashAmount = 0, T_CardAmount = 0, T_SalesAmount = 0, T_ChequeAmount = 0, T_NEFTAmount = 0, T_OnlineAmount = 0, T_AdvpayAmount = 0;
             double FinalTotal = 0;
             double T_FinalTotalAmount = 0, T_TotalDiscAmount = 0, T_TotalNETAmount = 0, T_TotalPaidAmount = 0, T_TotalBalAmount = 0, T_TotalCashAmount = 0, T_TotalAdvAmount = 0, T_TotalOnlineAmount = 0;
-
+            double AdvUsdPay = 0, PayTMPay = 0, CashPay = 0, BalanceAmt = 0, PaidAmount = 0, TotalAmt = 0, ConcessionAmt = 0, NetPayableAmt = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -935,10 +935,23 @@ namespace HIMS.Data.IPD
                         .Append(T_TotalAdvAmount.To2DecimalPlace()).Append("</td></tr>");
                 }
 
-
-
+                TotalAmt += dr["TotalAmt"].ConvertToDouble();
+                ConcessionAmt += dr["ConcessionAmt"].ConvertToDouble();
+                NetPayableAmt += dr["NetPayableAmt"].ConvertToDouble();
+                PaidAmount += dr["PaidAmount"].ConvertToDouble();
+                BalanceAmt += dr["BalanceAmt"].ConvertToDouble();
+                CashPay += dr["CashPay"].ConvertToDouble();
+                PayTMPay += dr["PayTMPay"].ConvertToDouble();
+                AdvUsdPay += dr["AdvUsdPay"].ConvertToDouble();
             }
-
+            html = html.Replace("{{TotalAmt}}", TotalAmt.To2DecimalPlace());
+            html = html.Replace("{{ConcessionAmt}}", ConcessionAmt.To2DecimalPlace());
+            html = html.Replace("{{NetPayableAmt}}", NetPayableAmt.To2DecimalPlace());
+            html = html.Replace("{{PaidAmount}}", PaidAmount.To2DecimalPlace());
+            html = html.Replace("{{BalanceAmt}}", BalanceAmt.To2DecimalPlace());
+            html = html.Replace("{{CashPay}}", CashPay.To2DecimalPlace());
+            html = html.Replace("{{PayTMPay}}", PayTMPay.To2DecimalPlace());
+            html = html.Replace("{{AdvUsdPay}}", AdvUsdPay.To2DecimalPlace());
 
 
             html = html.Replace("{{Items}}", items.ToString());
@@ -2831,7 +2844,7 @@ namespace HIMS.Data.IPD
                 {
                     j = 1;
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                        .Append(Dcount.ToString()).Append("</td></tr>");
 
                     Dcount = 0;
@@ -2856,7 +2869,7 @@ namespace HIMS.Data.IPD
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
 
                          .Append(Dcount.ToString()).Append("</td></tr>");
 

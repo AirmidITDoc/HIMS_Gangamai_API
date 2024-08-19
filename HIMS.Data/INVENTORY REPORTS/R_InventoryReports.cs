@@ -382,7 +382,7 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@Fromdate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@Todate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
-            para[4] = new SqlParameter("@SupplierID", SupplierID) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@SupplierID", SupplierID) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("rptGrnReturnlistDetails", para);
 
@@ -437,7 +437,7 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@Fromdate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@Todate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@FromStoreId", FromStoreId) { DbType = DbType.Int64 };
-            para[4] = new SqlParameter("@ToStoreId", ToStoreId) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@ToStoreId", ToStoreId) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("rptIssueToDepartmentSummary", para);
 
@@ -489,7 +489,7 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@SupplierId", SupplierId) { DbType = DbType.Int64 };
-            para[4] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("rptGRNWiseProductQtyDet", para);
 
@@ -544,7 +544,7 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
          
-            para[3] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("rptGrnPurchaseReport", para);
 
@@ -948,13 +948,12 @@ namespace HIMS.Data.Opd
             return html;
         }
 
-        public string ViewMaterialConsumptionMonthlySummary(DateTime FromDate, DateTime ToDate, int ToStoreId, string htmlFilePath, string htmlHeader)
+        public string ViewMaterialConsumptionMonthlySummary(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
         {
-            SqlParameter[] para = new SqlParameter[4];
+            SqlParameter[] para = new SqlParameter[3];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-           
-            para[2] = new SqlParameter("@ToStoreId", ToStoreId) { DbType = DbType.Int64 };
+            para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
 
 
             var Bills = GetDataTableProc("rptMaterialConsumptionDateWise", para);
@@ -1057,7 +1056,7 @@ namespace HIMS.Data.Opd
             SqlParameter[] para = new SqlParameter[3];
             para[0] = new SqlParameter("@ExpMonth", ExpMonth) { DbType = DbType.Int64 };
             para[1] = new SqlParameter("@ExpYear", ExpYear) { DbType = DbType.Int64 };
-            para[2] = new SqlParameter("@StoreID", StoreID) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@StoreID", StoreID) { DbType = DbType.Int64 };
          
 
            
@@ -1106,13 +1105,17 @@ namespace HIMS.Data.Opd
             return html;
         }
 
-        public string ViewCurrentStockReport(DateTime FromDate, DateTime ToDate,int InsertDate, int StoreId,  string htmlFilePath, string htmlHeader)
+        public string ViewCurrentStockReport(DateTime FromDate, DateTime ToDate,int StoreId,int IsNarcotic, int ish1Drug, int isScheduleH,int IsHighRisk,int IsScheduleX, string htmlFilePath, string htmlHeader)
         {
-            SqlParameter[] para = new SqlParameter[2];
+            SqlParameter[] para = new SqlParameter[6];
            
-            para[0] = new SqlParameter("@InsertDate", InsertDate) { DbType = DbType.DateTime };
-            para[1] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.DateTime };
-
+         
+            para[0] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            para[1] = new SqlParameter("@IsNarcotic", IsNarcotic) { DbType = DbType.Int64 };
+            para[2] = new SqlParameter("@ish1Drug", ish1Drug) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@isScheduleH", isScheduleH) { DbType = DbType.Int64 };
+            para[4] = new SqlParameter("@IsHighRisk", IsHighRisk) { DbType = DbType.Int64 };
+            para[5] = new SqlParameter("@IsScheduleX", IsScheduleX) { DbType = DbType.Int64 };
 
 
 
@@ -1167,7 +1170,7 @@ namespace HIMS.Data.Opd
 
         public string ViewItemWiseSupplierList(int StoreId, int SupplierID, int ItemId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
-            SqlParameter[] para = new SqlParameter[4];
+            SqlParameter[] para = new SqlParameter[5];
             para[0] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
             para[1] = new SqlParameter("@SupplierID", SupplierID) { DbType = DbType.Int64 };
             para[2] = new SqlParameter("@ItemId", ItemId) { DbType = DbType.Int64 };

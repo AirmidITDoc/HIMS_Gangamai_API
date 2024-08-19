@@ -228,12 +228,12 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
         [HttpGet("view-OPIPBILLSummaryReport")]
-        public IActionResult ViewOpIPBillsummaryReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewOPIPBillSummaryReceipt(DateTime FromDate, DateTime ToDate)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPBillingReceipt.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_OPIPBillsummary.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewOPIPBillSummaryReceipt(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPIPBillsummary", "OPIPBillsummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPIPBillsummary", "OPIPBillsummary", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });

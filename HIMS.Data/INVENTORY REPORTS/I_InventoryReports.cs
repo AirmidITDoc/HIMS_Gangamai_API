@@ -26,10 +26,10 @@ namespace HIMS.Data.InventoryReports
         string ViewIssueToDepartmentItemWise(DateTime FromDate, DateTime ToDate, int FromStoreId, int ToStoreId, int ItemId, string htmlFilePath, string htmlHeader);
         string ViewReturnFromDepartment(DateTime FromDate, DateTime ToDate, int FromStoreId, int ToStoreId, string htmlFilePath, string htmlHeader);
         string ViewPurchaseOrder(DateTime FromDate, DateTime ToDate, int SupplierID, int ToStoreId, string htmlFilePath, string htmlHeader);
-        string ViewMaterialConsumptionMonthlySummary(DateTime FromDate, DateTime ToDate, int ToStoreId, string htmlFilePath, string htmlHeader);
+        string ViewMaterialConsumptionMonthlySummary(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader);
         string ViewMaterialConsumption(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader);
         string ViewItemExpiryReport(int ExpMonth, int ExpYear, int StoreID, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-        string ViewCurrentStockReport(DateTime FromDate, DateTime ToDate, int InsertDate, int StoreId, string htmlFilePath, string htmlHeader);
+        string ViewCurrentStockReport(DateTime FromDate, DateTime ToDate, int StoreId, int IsNarcotic, int ish1Drug, int isScheduleH, int IsHighRisk, int IsScheduleX, string htmlFilePath, string htmlHeader);
         string ViewClosingCurrentStockReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewItemWiseSupplierList(int StoreId, int SupplierID, int ItemId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewCurrentStockDateWise(DateTime InsertDate, int StoreId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
