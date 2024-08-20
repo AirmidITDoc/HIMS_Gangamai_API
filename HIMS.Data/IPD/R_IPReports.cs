@@ -3048,11 +3048,11 @@ namespace HIMS.Data.IPD
 
 
 
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CompanyName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CompanyId"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CompanyName"].ConvertToString()).Append("</td></tr>");
+                //items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CompanyId"].ConvertToString()).Append("</td></tr>");
 
 
-                T_Count += dr["CompanyId"].ConvertToDouble();
+                //T_Count += dr["CompanyId"].ConvertToDouble();
 
 
             }

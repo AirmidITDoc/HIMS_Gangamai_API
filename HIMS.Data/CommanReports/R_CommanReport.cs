@@ -1986,13 +1986,13 @@ namespace HIMS.Data.Opd
                 if (i == 1)
                 {
                     String Label;
-                    Label = dr["patientType "].ConvertToString();
+                    //Label = dr["patientType"].ConvertToString();
                     Label = dr["patientType"].ConvertToString();
                     items.Append("<tr style=\"font-size:20px;border: 1;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"5\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td>");
                     items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(j).Append("</td></tr>");
                 }
 
-                if (previousLabel != "" && previousLabel != dr["OP Revenue"].ConvertToString())
+                if (previousLabel != "" && previousLabel != dr["patientType"].ConvertToString())
                 {
                     j = 1;
 
@@ -2002,10 +2002,10 @@ namespace HIMS.Data.Opd
                             .Append("</td></tr>");
 
 
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["OP Revenue"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["patientType"].ConvertToString()).Append("</td></tr>");
                 }
 
-                if (previousLabel != "" && previousLabel != dr["IP Revenue"].ConvertToString())
+                if (previousLabel != "" && previousLabel != dr["patientType"].ConvertToString())
                 {
                     j = 1;
 
@@ -2015,11 +2015,11 @@ namespace HIMS.Data.Opd
                             .Append("</td></tr>");
 
 
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["IP Revenue"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["patientType"].ConvertToString()).Append("</td></tr>");
                 }
 
 
-                previousLabel = dr["OP Revenue"].ConvertToString();
+                previousLabel = dr["patientType"].ConvertToString();
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GroupName"].ConvertToString()).Append("</td>");
