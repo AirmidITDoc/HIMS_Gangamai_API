@@ -82,10 +82,20 @@ namespace HIMS.API.Utility
                 Directory.CreateDirectory(DestinationPath.Trim('\\') + "\\" + Folder);
             string FilePath = Path.Combine(DestinationPath.Trim('\\'), Folder.Trim('\\'));
             string FileName = Guid.NewGuid().ToString() + ".png";
-            File.WriteAllBytes(Path.Combine(FilePath,FileName), Convert.FromBase64String(Base64.Replace("data:image/png;base64,","")));
+            File.WriteAllBytes(Path.Combine(FilePath, FileName), Convert.FromBase64String(Base64.Replace("data:image/png;base64,", "")));
             return FileName;
         }
-
+        public string GetBase64FromFolder(string Folder, string filename)
+        {
+            var DestinationPath = _Sales.GetFilePath();
+            if (string.IsNullOrWhiteSpace(DestinationPath))
+                DestinationPath = _configuration.GetValue<string>("StorageBasePath");
+            string FilePath = Path.Combine(DestinationPath.Trim('\\'), Folder.Trim('\\'));
+            if (!File.Exists(FilePath + "\\" + filename))
+                return "";
+            byte[] imageArray = System.IO.File.ReadAllBytes(FilePath + "\\" + filename);
+            return "data:image/png;base64," + Convert.ToBase64String(imageArray);
+        }
 
     }
 }
