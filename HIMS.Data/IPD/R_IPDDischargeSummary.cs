@@ -81,7 +81,7 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
-            html = html.Replace("{{Age}}", Bills.GetColValue("Age"));
+            html = html.Replace("{{Age}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{DischargeTime}}", Bills.GetColValue("DischargeTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
@@ -95,6 +95,14 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{OpertiveNotes}}", Bills.GetColValue("OpertiveNotes"));
             html = html.Replace("{{TreatmentGiven}}", Bills.GetColValue("TreatmentGiven"));
             html = html.Replace("{{Investigation}}", Bills.GetColValue("Investigation"));
+
+            html = html.Replace("{{p}}", Bills.GetColValue("History"));
+            html = html.Replace("{{R}}", Bills.GetColValue("Diagnosis"));
+            html = html.Replace("{{SPO2}}", Bills.GetColValue("ClinicalFinding"));
+            html = html.Replace("{{RS}}", Bills.GetColValue("DoctorName"));
+            html = html.Replace("{{PA}}", Bills.GetColValue("OpertiveNotes"));
+            html = html.Replace("{{CVS}}", Bills.GetColValue("TreatmentGiven"));
+            html = html.Replace("{{CNS}}", Bills.GetColValue("Investigation"));
 
             html = html.Replace("{{DischargeTypeName}}", Bills.GetColValue("DischargeTypeName"));
             html = html.Replace("{{TreatmentAdvisedAfterDischarge}}", Bills.GetColValue("TreatmentAdvisedAfterDischarge"));
