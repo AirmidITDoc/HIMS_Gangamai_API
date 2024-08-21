@@ -16,17 +16,18 @@ namespace HIMS.Data.Master.DoctorMaster
             //transaction and connection is open when you inject unitofwork
         }
 
-        public bool Update(DoctorMasterParams DoctorMasterParams)
+        public bool Update(HIMS.Model.Master.DoctorMaster.DoctorMaster DoctorMasterParams)
         {
-            var disc1 = DoctorMasterParams.UpdateDoctorMaster.ToDictionary();
+            var disc1 = DoctorMasterParams.ToDictionary();
+            disc1.Remove("Departments");
             ExecNonQueryProcWithOutSaveChanges("update_DoctorMaster_1", disc1);
 
-
-            var D_Det = DoctorMasterParams.DeleteAssignDoctorToDepartment.ToDictionary();
+            Dictionary<string,object> D_Det = new Dictionary<string, object>
+            {
+                { "DoctorId", DoctorMasterParams.DoctorId }
+            };
             ExecNonQueryProcWithOutSaveChanges("Delete_AssignDoctorToDepartment", D_Det);
-
-
-            foreach (var a in DoctorMasterParams.AssignDoctorDepartmentDet)
+            foreach (var a in DoctorMasterParams.Departments)
             {
                 var disc = a.ToDictionary();
                 ExecNonQueryProcWithOutSaveChanges("Insert_M_DoctorDepartmentDet_1", disc);

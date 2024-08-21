@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using HIMS.Data.Master.DoctorMaster;
 using HIMS.Model.Master.DoctorMaster;
 using HIMS.API.Utility;
+using HIMS.Model.IPD;
+using Microsoft.Extensions.Configuration;
 
 namespace HIMS.API.Controllers.Master
 {
@@ -51,10 +53,18 @@ namespace HIMS.API.Controllers.Master
             return Ok(ServiceSave);
         }
 
-        [HttpPost("DoctorUpdate")]
-        public IActionResult DoctorSaveUpdate(DoctorMasterParams DoctorMasterParams)
+        [HttpGet("get-file")]
+        public IActionResult DownloadFiles(string FileName)
         {
-            var ServiceSave = _DoctorMaster.Update(DoctorMasterParams);
+            return Ok(new { data = _FileUtility.GetBase64FromFolder("Doctors\\Signature", FileName) });
+        }
+
+        [HttpPost("DoctorUpdate")]
+        public IActionResult DoctorSaveUpdate(DoctorMaster obj)
+        {
+            if (!string.IsNullOrWhiteSpace(obj.Signature))
+                obj.Signature = _FileUtility.SaveImageFromBase64(obj.Signature, "Doctors\\Signature");
+            var ServiceSave = _DoctorMaster.Update(obj);
             return Ok(ServiceSave);
         }
     }
