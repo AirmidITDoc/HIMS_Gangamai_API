@@ -40,7 +40,7 @@ namespace HIMS.Data.Opd
             int i = 0, j = 0;
             double T_Count = 0, Dcount = 0;
 
-            string previousLabel = "";
+          
 
 
 
@@ -50,27 +50,27 @@ namespace HIMS.Data.Opd
                 i++; j++;
 
 
-                if (i == 1)
-                {
-                    String Label;
-                    Label = dr["ItemTypeName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
-                }
-                if (previousLabel != "" && previousLabel != dr["ItemTypeName"].ConvertToString())
-                {
-                    j = 1;
+                //if (i == 1)
+                //{
+                //    String Label;
+                //    Label = dr["ItemTypeName"].ConvertToString();
+                //    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                //}
+                //if (previousLabel != "" && previousLabel != dr["ItemTypeName"].ConvertToString())
+                //{
+                //    j = 1;
 
-                    //items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
-                    //   .Append(Dcount.ToString()).Append("</td></tr>");
+                //    //items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                //    //   .Append(Dcount.ToString()).Append("</td></tr>");
 
-                    Dcount = 0;
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["ItemTypeName"].ConvertToString()).Append("</td></tr>");
+                //    Dcount = 0;
+                //    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["ItemTypeName"].ConvertToString()).Append("</td></tr>");
 
-                }
+                //}
 
-                Dcount = Dcount + 1;
-                T_Count = T_Count + 1;
-                previousLabel = dr["ItemTypeName"].ConvertToString();
+                //Dcount = Dcount + 1;
+                //T_Count = T_Count + 1;
+                //previousLabel = dr["ItemTypeName"].ConvertToString();
 
                 items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ItemTypeName"].ConvertToString()).Append("</td>");
