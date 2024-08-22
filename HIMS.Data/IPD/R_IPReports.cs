@@ -3028,7 +3028,7 @@ namespace HIMS.Data.IPD
             para[2] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
             para[3] = new SqlParameter("@WardId", WardId) { DbType = DbType.Int64 };
 
-            var Bills = GetDataTableProc("rptListofAdmission", para);
+            var Bills = GetDataTableProc("rptCompanyWiseAdmissionCountReport", para);
 
 
             string html = File.ReadAllText(htmlFilePath);
