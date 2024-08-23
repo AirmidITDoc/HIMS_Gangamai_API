@@ -105,6 +105,12 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
 
 
+            html = html.Replace("{{PayTMPayAmount}}", Bills.GetColValue("PayTMPayAmount").ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{CashPayAmount}}", Bills.GetColValue("CashPayAmount").ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{CardPayAmount}}", Bills.GetColValue("CardPayAmount").ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{ChequePayAmount}}", Bills.GetColValue("ChequePayAmount").ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{NEFTPayAmount}}", Bills.GetColValue("NEFTPayAmount").ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{OnlinePayAmount}}", Bills.GetColValue("OnlinePayAmount").ConvertToDouble().ToString("0.00"));
 
 
             string finalamt = conversion(Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace().ToString());

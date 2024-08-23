@@ -81,7 +81,9 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
-            html = html.Replace("{{Age}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{DischargeTime}}", Bills.GetColValue("DischargeTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
