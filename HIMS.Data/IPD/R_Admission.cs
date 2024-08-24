@@ -98,7 +98,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{MobileNo}}", Bills.GetColValue("MobileNo"));
             html = html.Replace("{{PhoneNo}}", Bills.GetColValue("PhoneNo"));
 
-            html = html.Replace("{{DOT}}", Bills.GetColValue("DOT").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{DOT}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
 
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));

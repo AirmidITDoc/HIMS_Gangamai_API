@@ -25,6 +25,10 @@ namespace HIMS.Model.Master.Pathology
         public int Addedby { get; set; }
         public bool IsPrintDisSummary { get; set; }
         public string MethodName { get; set; }
+
+        public string IsBoldFlag { get; set; }
+        
+        public string Formula { get; set; }
         public int ParameterID { get; set; }
 
     }
@@ -69,6 +73,9 @@ namespace HIMS.Model.Master.Pathology
         public int Updatedby { get; set; }
         public bool IsPrintDisSummary { get; set; }
         public string MethodName { get; set; }
+
+        public string IsBoldFlag { get; set; }
+        public string Formula { get; set; }
         public int ParameterID { get; set; }
 
     }

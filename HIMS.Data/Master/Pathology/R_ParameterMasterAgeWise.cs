@@ -25,7 +25,7 @@ namespace HIMS.Data.Master.Pathology
 
             var disc1 = pathParameterMasterParams.PathParameterMasterInsert.ToDictionary();
             disc1.Remove("ParameterID");
-            var ParameterID = ExecNonQueryProcWithOutSaveChanges("Insert_PathParameterMaster_1", disc1, outputId);
+            var ParameterID = ExecNonQueryProcWithOutSaveChanges("m_Insert_PathParameterMaster_1", disc1, outputId);
 
             //add Range and Descriptive
             if (pathParameterMasterParams.PathParameterMasterInsert.IsNumeric == true)
@@ -54,7 +54,7 @@ namespace HIMS.Data.Master.Pathology
         public bool Update(PathParameterMasterParams pathParameterMasterParams)
         {
             var disc1 = pathParameterMasterParams.PathParameterMasterUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_update_ParameterMaster_1", disc1);
+            ExecNonQueryProcWithOutSaveChanges("m_update_ParameterMaster_2", disc1);
 
 
             if (pathParameterMasterParams.PathParameterMasterUpdate.IsNumeric == true)
