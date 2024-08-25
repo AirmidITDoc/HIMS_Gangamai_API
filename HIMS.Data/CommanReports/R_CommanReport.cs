@@ -199,7 +199,7 @@ namespace HIMS.Data.Opd
 
                 }
 
-                if (dr1["Type"].ConvertToString() == "IP Refund of Bill")
+                if (dr1["Type"].ConvertToString() == "IP Refund of Bill ")
                 {
                     
                        G_RefundBillAmount += dr1["BillAmount"].ConvertToDouble();
