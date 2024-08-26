@@ -13,6 +13,8 @@ namespace HIMS.Model.Master.Radiology
     {
         public string TemplateName { get; set; }
         public string TemplateDesc { get; set; }
+        public string TemplateDescInHTML { get; set; }
+         
         public bool Isdeleted { get; set; }
         public long AddedBy { get; set; }
     }
@@ -21,7 +23,10 @@ namespace HIMS.Model.Master.Radiology
         public long TemplateId { get; set; }
         public string TemplateName { get; set; }
         public string TemplateDesc { get; set; }
-       public bool Isdeleted { get; set; }
+
+        public string TemplateDescInHTML { get; set; }
+
+        public bool Isdeleted { get; set; }
         public long UpdatedBy { get; set; }
     }
 }

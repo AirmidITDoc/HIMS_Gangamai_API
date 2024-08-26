@@ -284,8 +284,8 @@ namespace HIMS.Data.IPD
                 {
 
                     String Label2;
-                    Label2 = dr["DepartmentName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:18px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;\"><td colspan=\"13\" style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label2).Append("</td></tr>");
+                    Label2 = dr["ClassName"].ConvertToString();
+                    items.Append("<tr style=\"font-size:18px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;font-weight:bold;\"><td colspan=\"13\" style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label2).Append("</td></tr>");
                   
                     String Label;
                     Label = dr["GroupName"].ConvertToString();
@@ -303,10 +303,10 @@ namespace HIMS.Data.IPD
 
                 }
 
-                if (deptLabel != "" && deptLabel != dr["DepartmentName"].ConvertToString())
+                if (deptLabel != "" && deptLabel != dr["ClassName"].ConvertToString())
                 {
 
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;\"><td colspan=\"13\" style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-weight:bold;\"><td colspan=\"13\" style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td></tr>");
 
                 }
 
@@ -316,7 +316,7 @@ namespace HIMS.Data.IPD
 
 
                 previousLabel = dr["GroupName"].ConvertToString();
-                deptLabel = dr["DepartmentName"].ConvertToString();
+                deptLabel = dr["ClassName"].ConvertToString();
 
                 items.Append("<tr style=\"font-family: 'Helvetica Neue','Helvetica', Helvetica, Arial, sans-serif;font-size:22px;\"><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;font-size:15px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");

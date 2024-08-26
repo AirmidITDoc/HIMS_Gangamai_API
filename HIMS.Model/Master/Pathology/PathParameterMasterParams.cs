@@ -39,6 +39,8 @@ namespace HIMS.Model.Master.Pathology
         public string MinValue { get; set; }
         public string Maxvalue { get; set; }
         public int Addedby { get; set; }
+
+        public bool IsDeleted { get; set; }
         public int MinAge { get; set; }
         public int MaxAge { get; set; }
         public string AgeType { get; set; }
@@ -76,7 +78,7 @@ namespace HIMS.Model.Master.Pathology
 
         public string IsBoldFlag { get; set; }
         public string Formula { get; set; }
-        public int ParameterID { get; set; }
+        public int ParameterId { get; set; }
 
     }
 }
