@@ -16,14 +16,14 @@ namespace HIMS.Data.Master.Pathology
         public bool Update(UnitMasterParams unitMasterParams)
         {
             var disc = unitMasterParams.UpdateUnitMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("update_PathUnitMaster_1", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_update_PathUnitMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
         public bool Insert(UnitMasterParams unitMasterParams)
         {
             var disc = unitMasterParams.InsertUnitMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("insert_PathUnitMaster_1", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_PathUnitMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
