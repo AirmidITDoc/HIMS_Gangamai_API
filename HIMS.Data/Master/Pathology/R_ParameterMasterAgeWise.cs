@@ -34,7 +34,7 @@ namespace HIMS.Data.Master.Pathology
                 {
                     var disc = a.ToDictionary();
                     disc["ParaId"] = ParameterID;
-                    ExecNonQueryProcWithOutSaveChanges("Insert_ParameterRangeWithAgeMaster_1", disc);
+                    ExecNonQueryProcWithOutSaveChanges("m_Insert_ParameterRangeWithAgeMaster_1", disc);
                 }
             }
             else
@@ -43,7 +43,7 @@ namespace HIMS.Data.Master.Pathology
                 {
                     var disc = a.ToDictionary();
                     disc["ParameterID"] = ParameterID;
-                    ExecNonQueryProcWithOutSaveChanges("Insert_ParameterDescriptiveMaster_1", disc);
+                    ExecNonQueryProcWithOutSaveChanges("m_Insert_ParameterDescriptiveMaster_1", disc);
                 }
             }
             _unitofWork.SaveChanges();
@@ -61,13 +61,13 @@ namespace HIMS.Data.Master.Pathology
             {
 
                 var D_Det = pathParameterMasterParams.ParameterRangeWithAgeMasterDelete.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("Delete_RangeParameterWithAgeMaster_1", D_Det);
+                ExecNonQueryProcWithOutSaveChanges("m_Delete_RangeParameterWithAgeMaster_1", D_Det);
 
                 foreach (var a in pathParameterMasterParams.ParameterRangeWithAgeMasterInsert)
                 {
                     var disc = a.ToDictionary();
                     disc["ParaId"] = pathParameterMasterParams.PathParameterMasterUpdate.ParameterID;
-                    ExecNonQueryProcWithOutSaveChanges("Insert_ParameterRangeWithAgeMaster_1", disc);
+                    ExecNonQueryProcWithOutSaveChanges("m_Insert_ParameterRangeWithAgeMaster_1", disc);
                 }
 
 
@@ -76,13 +76,13 @@ namespace HIMS.Data.Master.Pathology
             {
 
                 var D_Det = pathParameterMasterParams.DescriptiveParameterMasterDelete.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("Delete_DescriptiveParameterMaster_1", D_Det);
+                ExecNonQueryProcWithOutSaveChanges("m_Delete_DescriptiveParameterMaster_1", D_Det);
 
                 foreach (var a in pathParameterMasterParams.ParameterDescriptiveMasterInsert)
                 {
                     var disc = a.ToDictionary();
                     disc["ParameterID"] = pathParameterMasterParams.PathParameterMasterUpdate.ParameterID; 
-                    ExecNonQueryProcWithOutSaveChanges("Insert_ParameterDescriptiveMaster_1", disc);
+                    ExecNonQueryProcWithOutSaveChanges("m_Insert_ParameterDescriptiveMaster_1", disc);
                 }
             }
 

@@ -19,7 +19,7 @@ namespace HIMS.Data.Pathology
             foreach (var a in Pathologysamplecollectionparameter.Updatepathologysamplecollection)
             {
                 var disc = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("Update_PathologySampleCollection_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("m_Update_PathologySampleCollection_1", disc);
             }
             _unitofWork.SaveChanges();
             return true;
