@@ -27,7 +27,17 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
         }
 
+        [HttpGet("view-IPFinalBill")]
+        public IActionResult ViewIPFinalBill(DateTime FromDate, DateTime ToDate,int AdmissionID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPFinalBill.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPFinalBill(FromDate, ToDate, AdmissionID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPFinalBill", "IPFinalBill", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         [HttpGet("view-IPDDischargeTypeCompanyWise")]
         public IActionResult ViewIPDDischargeTypeCompanyWise(DateTime FromDate, DateTime ToDate, int DoctorId, int DischargeTypeId)
