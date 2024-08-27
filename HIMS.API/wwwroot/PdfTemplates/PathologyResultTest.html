@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div class="main-content-wrapper" >
+    <div class="main-content-wrapper">
         <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
                 <!--{{NewHeader}}-->
@@ -104,13 +104,13 @@
                             <!-- // <thead style="font-size: 14px;">-->
                             <tr>
 
-                                <td style="border-left: 1px solid #d4c3c3; border-top: 1px solid #d4c3c3; border-bottom: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold;font-size:18px;">
+                                <td style="border-left: 1px solid #d4c3c3; border-top: 1px solid #d4c3c3; border-bottom: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold;font-size:18px;">
                                     INVESTIGATION
                                 </td>
                                 <td style="border-bottom: 1px solid #d4c3c3; border-top: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold; font-size: 18px; ">
                                     PATIENTS VALUE
                                 </td>
-                                <td style="border-bottom: 1px solid #d4c3c3; border-top: 1px solid #d4c3c3; border-right: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold; font-size: 18px; ">NORMAL VALUES</td>
+                                <td style="border-bottom: 1px solid #d4c3c3; border-top: 1px solid #d4c3c3; border-right: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold; font-size: 18px; ">NORMAL VALUES</td>
 
                                 {{Items}}
                                 <!-- // </thead>-->
@@ -121,14 +121,24 @@
                     </td>
                 </tr>
 
-                <tr style="font-size:18px;font-weight:bold;">  <td>Suggestion Note</td></tr>
-                <tr style="font-size:18px;font-weight:bold;">  <td>{{SuggestionNote}}</td></tr>
+
             </table>
         </div>
     </div>
+    <table style="width: 100%;line-height: inherit;text-align: left;">
 
-  
-   
+
+        <tr style="display:{{chkSuggestionNote}}">
+            <td style="font-size:20px;font-weight:bold;">Interpretation Remark</td>
+        </tr>
+        <tr style="display:{{chkSuggestionNote}}">
+            <td style="font-size:18px;font-weight:bold;">{{SuggestionNote}}</td>
+        </tr>
+
+        <tr>
+            <td style="text-align:center;font-size:22px;font-weight:bold;padding-top:20px;">"END OF REPORT"</td>
+        </tr>
+    </table>
 </body>
 
 </html>
