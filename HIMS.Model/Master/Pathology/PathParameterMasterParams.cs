@@ -78,7 +78,7 @@ namespace HIMS.Model.Master.Pathology
 
         public string IsBoldFlag { get; set; }
         public string Formula { get; set; }
-        public int ParameterId { get; set; }
+        public int ParameterID { get; set; }
 
     }
 }
