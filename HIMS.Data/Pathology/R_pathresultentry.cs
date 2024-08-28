@@ -1,4 +1,5 @@
 ﻿using HIMS.Common.Utility;
+using HIMS.Model.Opd;
 using HIMS.Model.Pathology;
 using System;
 using System.Collections.Generic;
@@ -73,18 +74,15 @@ namespace HIMS.Data.Pathology
             _unitofWork.SaveChanges();
             return true;
         }
-
-        public string ViewPathTestMultipleReport(int OP_IP_Type, string htmlFilePath, string htmlHeader)
+        public DataTable GetDataForReport(int OP_IP_Type)
         {
-            //throw new NotImplementedException();
-
             SqlParameter[] para = new SqlParameter[1];
-
             para[0] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
-
-            var Bills = GetDataTableProc("m_rptPathologyReportPrintMultiple", para);
+            return GetDataTableProc("m_rptPathologyReportPrintMultiple", para);
+        }
+        public string ViewPathTestMultipleReport(DataTable Bills, string htmlFilePath, string htmlHeader)
+        {
             string html = File.ReadAllText(htmlFilePath);
-
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
@@ -94,8 +92,6 @@ namespace HIMS.Data.Pathology
             int i = 0, j = 0,k=0,l,m;
             String Label = "", Label1="";
             string previousLabel = "",previoussubLabel = "";
-
-         
             foreach (DataRow dr in Bills.Rows)
             {
 
@@ -215,7 +211,6 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName").ConvertToString());
             html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
             html = html.Replace("{{chkSuggestionNote}}", Bills.GetColValue("SuggestionNote").ConvertToString() != "" ? "table-row" : "none");
-
             return html;
         }
 

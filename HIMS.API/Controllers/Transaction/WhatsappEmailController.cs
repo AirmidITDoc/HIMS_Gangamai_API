@@ -8,6 +8,8 @@ using HIMS.Data.Opd;
 using HIMS.Data.IPD;
 using HIMS.Model.IPD;
 using HIMS.Data.Pathology;
+using System.Data;
+using HIMS.Common.Utility;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -34,11 +36,11 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_IPPrescription _IPPrescription;
         public readonly I_pathresultentry _Pathresultentry;
         public readonly I_PathologyTemplateResult _PathologyTemplateResult;
-
+        private readonly IFileUtility _FileUtility;
         public WhatsappEmailController(I_Sales sales, I_WhatsappSms whatsappSms, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment ,IPdfUtility pdfUtility,
             I_GRN gRN,I_PurchaseOrder purchaseOrder, I_Payment Payment, I_OPRefundBill oPRefundBill, I_IPRefundofAdvance iPRefundofAdvance, I_IP_Settlement_Process iP_Settlement_Process, I_IPInterimBill ipinterimbill,
             I_IPRefundofBilll iPRefundofBilll, I_IPBilling iPBilling, I_OPDPrescription oPDPrescription, I_IPPrescription iPPrescription, I_pathresultentry pathresultentry, I_PathologyTemplateResult pathologyTemplateResult,
-            I_OPbilling oPbilling,
+            I_OPbilling oPbilling,IFileUtility fileUtility,
             I_IPAdvance ipAdvance)
         {
             this._Sales = sales;
@@ -60,6 +62,7 @@ namespace HIMS.API.Controllers.Transaction
             this._OPDPrescription = oPDPrescription;
             this._Pathresultentry = pathresultentry;
             this._PathologyTemplateResult = pathologyTemplateResult;
+            _FileUtility = fileUtility;
         }
 
 
@@ -216,7 +219,10 @@ namespace HIMS.API.Controllers.Transaction
             {
                 string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathologyResultTest.html");
                 string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-                var html = _Pathresultentry.ViewPathTestMultipleReport(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                DataTable dt = _Pathresultentry.GetDataForReport(WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo);
+                var html = _Pathresultentry.ViewPathTestMultipleReport(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+                html = html.Replace("{{Signature}}", signature);
                 var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathologyResultTest", "PathologyResultTest" + WhatsappSmsparam.InsertWhatsappsmsInfo.TranNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
                 WhatsappSmsparam.InsertWhatsappsmsInfo.FilePath = tuple.Item2;
             }
