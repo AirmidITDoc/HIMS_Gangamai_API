@@ -52,34 +52,35 @@ namespace HIMS.Model.Master.Inventory
         public string SMSTemplateId { get; set; }
         public string PrintStoreUnitName { get; set; }
         public long StoreId { get; set; }
-
+        public string Header { get; set; }
     }
     public class UpdateStoreMaster
     {
-    public long StoreId { get; set; }
-    public string  StoreShortName { get; set; }
-    public string StoreName { get; set; }
-    public  long PharSalCountID { get; set; }
-    public long PharSalRecCountID { get; set; }
-    public long PharSalReturnCountID {  get; set; }
-    public long PharAdvId { get; set; }
-    public long PharAdvReptId {  get; set; }
-    public long PharAdvRefId {  get; set; }
-    public long PharAdvRefReptId { get; set; }
-    public string PrintStoreName { get; set; }
-    public string DL_NO { get; set; }
-    public string GSTIN { get; set; } 
-    public string StoreAddress { get; set; }
-    public  string HospitalMobileNo { get; set; }
-    public long HospitalEmailId { get; set; }
-    public string PrintStoreUnitName { get; set; }
-    public long  IsPharStore { get; set; }
-    public long IsWhatsAppMsg { get; set; }
-    public string  WhatsAppTemplateId { get; set; }
-    public long IsSMSMsg { get; set; }
-    public long SMSTemplateId { get; set; }
-    public long AddedBy  { get; set; }
-    public long IsDeleted { get; set; }
-    public long UpdatedBy {  get; set; }
+        public long StoreId { get; set; }
+        public string StoreShortName { get; set; }
+        public string StoreName { get; set; }
+        public long PharSalCountID { get; set; }
+        public long PharSalRecCountID { get; set; }
+        public long PharSalReturnCountID { get; set; }
+        public long PharAdvId { get; set; }
+        public long PharAdvReptId { get; set; }
+        public long PharAdvRefId { get; set; }
+        public long PharAdvRefReptId { get; set; }
+        public string PrintStoreName { get; set; }
+        public string DL_NO { get; set; }
+        public string GSTIN { get; set; }
+        public string StoreAddress { get; set; }
+        public string HospitalMobileNo { get; set; }
+        public long HospitalEmailId { get; set; }
+        public string PrintStoreUnitName { get; set; }
+        public long IsPharStore { get; set; }
+        public long IsWhatsAppMsg { get; set; }
+        public string WhatsAppTemplateId { get; set; }
+        public long IsSMSMsg { get; set; }
+        public long SMSTemplateId { get; set; }
+        public long AddedBy { get; set; }
+        public long IsDeleted { get; set; }
+        public long UpdatedBy { get; set; }
+        public string Header { get; set; }
     }
 }
