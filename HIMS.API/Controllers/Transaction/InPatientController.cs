@@ -551,14 +551,19 @@ namespace HIMS.API.Controllers.Transaction
             var html = _IPBilling.ViewIPBillReceipt(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IpBillingReceipt", "IpBillingReceipt" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-
-
-            //if (System.IO.File.Exists(tuple.Item2))
-            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        [HttpGet("view-IP-BillReceiptclasswise")]
+        public IActionResult ViewIpBillReceiptclasswise(int BillNo)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPBillingReceiptclasswise.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPBilling.ViewIPBillReceiptclasswise(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IpBillingReceiptclasswise", "IpBillingReceiptclasswise" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpGet("view-IP-BillDatewiseReceipt")]
         public IActionResult ViewIpBilldatewiseReceipt(int BillNo)
         {

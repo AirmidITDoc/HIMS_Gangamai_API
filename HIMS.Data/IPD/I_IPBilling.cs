@@ -12,6 +12,8 @@ namespace HIMS.Data.IPD
         public String InsertCashCounter(IPBillingParams IPBillingParams);
         string ViewIPBillReceipt(int BillNo, string htmlFilePath, string HeaderName);
 
+        string ViewIPBillReceiptclasswise(int BillNo, string htmlFilePath, string HeaderName);
+
         string ViewIPBillDatewiseReceipt(int BillNo, string htmlFilePath, string HeaderName);
 
         string ViewIPBillWardwiseReceipt(int BillNo, string htmlFilePath, string HeaderName);
