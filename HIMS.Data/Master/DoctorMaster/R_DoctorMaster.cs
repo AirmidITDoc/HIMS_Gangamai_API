@@ -20,17 +20,17 @@ namespace HIMS.Data.Master.DoctorMaster
         {
             var disc1 = DoctorMasterParams.ToDictionary();
             disc1.Remove("Departments");
-            ExecNonQueryProcWithOutSaveChanges("update_DoctorMaster_1", disc1);
+            ExecNonQueryProcWithOutSaveChanges("m_update_DoctorMaster_1", disc1);
 
             Dictionary<string,object> D_Det = new Dictionary<string, object>
             {
                 { "DoctorId", DoctorMasterParams.DoctorId }
             };
-            ExecNonQueryProcWithOutSaveChanges("Delete_AssignDoctorToDepartment", D_Det);
+            ExecNonQueryProcWithOutSaveChanges("m_Delete_AssignDoctorToDepartment", D_Det);
             foreach (var a in DoctorMasterParams.Departments)
             {
                 var disc = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("Insert_M_DoctorDepartmentDet_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("m_Insert_M_DoctorDepartmentDet_1", disc);
             }
             //commit transaction
             _unitofWork.SaveChanges();
@@ -50,7 +50,7 @@ namespace HIMS.Data.Master.DoctorMaster
             var disc1 = obj.ToDictionary();
             disc1.Remove("DoctorId");
             disc1.Remove("Departments");
-            var doctorId = ExecNonQueryProcWithOutSaveChanges("Insert_DoctorMaster_1", disc1, outputId);
+            var doctorId = ExecNonQueryProcWithOutSaveChanges("m_Insert_DoctorMaster_1", disc1, outputId);
 
             //add DoctorDetails
 
@@ -58,7 +58,7 @@ namespace HIMS.Data.Master.DoctorMaster
             {
                 var disc = a.ToDictionary();
                 disc["DoctorId"] = doctorId;
-                ExecNonQueryProcWithOutSaveChanges("Insert_M_DoctorDepartmentDet_1", disc);
+                ExecNonQueryProcWithOutSaveChanges("m_Insert_M_DoctorDepartmentDet_1", disc);
             }
 
             //commit transaction
