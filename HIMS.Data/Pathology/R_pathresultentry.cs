@@ -138,12 +138,29 @@ namespace HIMS.Data.Pathology
                         items.Append("<tr style=\"line-height: 20px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding-bottom:5px;height: 20px;text-align:left;font-size:18px;font-weight:bold;\">").Append(dr["PrintParameterName"].ConvertToString()).Append("</td>");
                     else
                         items.Append("<tr  style=\"line-height: 20px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding: 0;height: 20px;text-align:left;font-size:18px;padding-right:10px;\">").Append(dr["PrintParameterName"].ConvertToString()).Append("</td>");
-                  
-                    if (dr["ParaBoldFlag"].ConvertToString() == "B")
-                      items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:22px;font-weight:bold;width:300px;\">").Append((dr["ResultValue"].ConvertToString())).Append("</td>");
-                    else
-                        items.Append("<td style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;width:300px;\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
+
+
+
+                    if (dr["NormalRange"].ConvertToString() != " -   ") {
+                        if (dr["ParaBoldFlag"].ConvertToString() == "B")
+                            items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:18px;font-weight:bold;\">").Append((dr["ResultValue"].ConvertToString())).Append("</td>");
+                        else
+                            items.Append("<td style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:center;font-size:18px;\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
+                        items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:18px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
+                    }
+                    else if(dr["NormalRange"].ConvertToString() == " -   ")
+                    {
+                        if (dr["ParaBoldFlag"].ConvertToString() == "B")
+                            items.Append("<td colspan=\"2\"   style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:18px;font-weight:bold;\">").Append((dr["ResultValue"].ConvertToString())).Append("</td></tr>");
+                        else
+                            items.Append("<td colspan=\"2\" style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:center;font-size:18px;\">").Append(dr["ResultValue"].ConvertToString()).Append("</td></tr>");
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
                     if (dr["MethodName"].ConvertToString() != "")
                     {
                         items.Append("<tr style=\"line-height: 15px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding-bottom:5px;height:15px;text-align:left;\">").Append(dr["MethodName"].ConvertToString()).Append("</td>");
