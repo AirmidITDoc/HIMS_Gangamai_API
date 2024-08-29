@@ -122,26 +122,15 @@ namespace HIMS.Data.Pathology
                     if (k == 1 && dr["SubTestName"].ConvertToString() != "")
                     {
                         previoussubLabel = dr["SubTestName"].ConvertToString();
-                        //items.Append("<tr style=\"font-size:18px;line-height: 15px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding-bottom:5px;height:15px;text-align:left;font-weight:bold;\">").Append(dr["SubTestName"].ConvertToString()).Append("</td>");
-                        //items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:22px;font-weight:bold;\">").Append("</td>");
-                        //items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:22px;font-weight:bold;\">").Append("</td></tr>");
-
+                     
                         items.Append("<tr style=\"font-size:18px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;padding-bottom:5px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle;\">").Append(dr["SubTestName"].ConvertToString()).Append("</td></tr>");
 
                     }
                     if (previoussubLabel != "" && previoussubLabel != dr["SubTestName"].ConvertToString())
                     {
-
-                        //items.Append("<tr style=\"font-size:18px;line-height: 15px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding-bottom:5px;height:15px;text-align:left;font-weight:bold;\">").Append(dr["SubTestName"].ConvertToString()).Append("</td>");
-                        //items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:22px;font-weight:bold;\">").Append("</td>");
-                        //items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:22px;font-weight:bold;\">").Append("</td></tr>");
-
-
                         items.Append("<tr style=\"font-size:18px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;padding-bottom:5px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle;\">").Append(dr["SubTestName"].ConvertToString()).Append("</td></tr>");
 
                     }
-
-
 
 
 
@@ -151,9 +140,9 @@ namespace HIMS.Data.Pathology
                         items.Append("<tr  style=\"line-height: 20px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding: 0;height: 20px;text-align:left;font-size:18px;padding-right:10px;\">").Append(dr["PrintParameterName"].ConvertToString()).Append("</td>");
                   
                     if (dr["ParaBoldFlag"].ConvertToString() == "B")
-                      items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:22px;font-weight:bold;padding-left:100px;\">").Append((dr["ResultValue"].ConvertToString())).Append("</td>");
+                      items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:22px;font-weight:bold;width:300px;\">").Append((dr["ResultValue"].ConvertToString())).Append("</td>");
                     else
-                        items.Append("<td style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;padding-left:100px;\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
+                        items.Append("<td style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;width:300px;\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
                     items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
                     if (dr["MethodName"].ConvertToString() != "")
                     {
