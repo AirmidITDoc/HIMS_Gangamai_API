@@ -143,23 +143,18 @@ namespace HIMS.Data.Pathology
 
                     if (dr["NormalRange"].ConvertToString() != " -   ") {
                         if (dr["ParaBoldFlag"].ConvertToString() == "B")
-                            items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:18px;font-weight:bold;\">").Append((dr["ResultValue"].ConvertToString())).Append("</td>");
+                            items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;font-weight:bold;padding-left:260px\">").Append((dr["ResultValue"].ConvertToString())).Append("</td>");
                         else
-                            items.Append("<td style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:center;font-size:18px;\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
-                        items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:18px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
+                            items.Append("<td style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;padding-left:260px\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
+                        items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
                     }
                     else if(dr["NormalRange"].ConvertToString() == " -   ")
                     {
                         if (dr["ParaBoldFlag"].ConvertToString() == "B")
-                            items.Append("<td colspan=\"2\"   style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:18px;font-weight:bold;\">").Append((dr["ResultValue"].ConvertToString())).Append("</td></tr>");
+                            items.Append("<td colspan=\"2\"   style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;font-weight:bold;padding-left:260px\">").Append((dr["ResultValue"].ConvertToString())).Append("</td></tr>");
                         else
-                            items.Append("<td colspan=\"2\" style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:center;font-size:18px;\">").Append(dr["ResultValue"].ConvertToString()).Append("</td></tr>");
+                            items.Append("<td colspan=\"2\" style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;padding-left:260px\">").Append(dr["ResultValue"].ConvertToString()).Append("</td></tr>");
                     }
-                    
-                    
-                    
-                    
-                    
                     
                     if (dr["MethodName"].ConvertToString() != "")
                     {
