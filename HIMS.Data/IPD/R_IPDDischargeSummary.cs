@@ -73,6 +73,8 @@ namespace HIMS.Data.IPD
             
             
             var Bills1 = GetDataTableProc("m_Rtrv_IP_Prescription_Discharge", para);
+            int length = 0;
+             length = Bills1.Rows.Count;
             string html = File.ReadAllText(htmlFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
@@ -212,9 +214,10 @@ namespace HIMS.Data.IPD
 
 
             html = html.Replace("{{chkSurgeryProcDoneflag}}", Bills.GetColValue("SurgeryProcDone").ConvertToString() != "" ? "table-row" : "none");
+            html = html.Replace("{{chkSurgeryPrescriptionflag}}", length != 0 ? "table-row" : "none");
 
 
-            
+
 
             return html;
         }
