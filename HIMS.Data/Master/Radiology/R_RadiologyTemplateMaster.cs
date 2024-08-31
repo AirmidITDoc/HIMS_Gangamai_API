@@ -16,7 +16,7 @@ namespace HIMS.Data.Master.Radiology
         public bool Update(RadiologyTemplateMasterParams rtMasterParams)
         {
             var disc = rtMasterParams.UpdateRadiologyTemplateMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Update_Radiology_TemplateMaster_1", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_Update_Radiology_TemplateMaster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }

@@ -24,7 +24,7 @@ namespace HIMS.Data.Master.Inventory
         public bool Insert(StoreMasterParams storeMasterParams)
         {
             var disc = storeMasterParams.InsertStoreMaster.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("M_insert_StoreMaster1", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_StoreMster_1", disc);
             _unitofWork.SaveChanges();
             return true;
         }
