@@ -27,9 +27,9 @@ namespace HIMS.Model.Master.DoctorMaster
         public string PassportNo { get; set; }
         public string ESINO { get; set; }
         public string RegNo { get; set; }
-        public DateTime RegDate { get; set; }
+        //public DateTime RegDate { get; set; }
         public string MahRegNo { get; set; }
-        public DateTime MahRegDate { get; set; }
+        //public DateTime MahRegDate { get; set; }
         public int Addedby { get; set; }
         public int UpdatedBy { get; set; }
        // public string RefDocHospitalName { get; set; }
@@ -74,9 +74,9 @@ namespace HIMS.Model.Master.DoctorMaster
         public string AadharCardNo { get; set; }
         public string RegNo { get; set; }
 
-        public DateTime RegDate { get; set; }
+        //public DateTime RegDate { get; set; }
         public string MahRegNo { get; set; }
-        public DateTime MahRegDate { get; set; }
+        //public DateTime MahRegDate { get; set; }
         public long AddedBy { get; set; }
         public long UpdatedBy { get; set; }
         public Boolean IsInHouseDoctor { get; set; }
@@ -113,9 +113,9 @@ namespace HIMS.Model.Master.DoctorMaster
         public string PanCardNo { get; set; }
         public string AadharCardNo { get; set; }
 
-        public DateTime RegDate { get; set; }
+        //public DateTime RegDate { get; set; }
         public string MahRegNo { get; set; }
-        public DateTime MahRegDate { get; set; }
+        //public DateTime MahRegDate { get; set; }
         public long UpdatedBy { get; set; }
         public Boolean IsInHouseDoctor { get; set; }
         public Boolean IsOnCallDoctor { get; set; }
