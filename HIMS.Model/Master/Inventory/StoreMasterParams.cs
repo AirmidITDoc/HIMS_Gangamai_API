@@ -35,7 +35,7 @@ namespace HIMS.Model.Master.Inventory
         //public long PharSalCountID { get; set; }
         //public long PharSalRecCountID { get; set; }
         //public long PharSalReturnCountID { get; set; }
-        //public long PharAdvId { get; set; }
+        //public long PharAdvId { get; set; }n
         //public long PharAdvReptId { get; set; }
         //public long PharAdvRefId { get; set; }
         //public long PharAdvRefReptId { get; set; }
