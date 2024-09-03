@@ -35,14 +35,93 @@ namespace HIMS.API.Controllers.Transaction
             var html = _IPPharmacy.ViewPharmacyDailycollectionReport(FromDate, ToDate, StoreId, AddedById,htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmacyDailyCollectionReport", "PharmacyDailyCollectionReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
-            // write logic for send pdf in whatsapp
-
-
-            //if (System.IO.File.Exists(tuple.Item2))
-            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+           
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
-       
+
+        [HttpGet("view-SCHEDULEH1Report")]
+        public IActionResult ViewSCHEDULEH1Report(DateTime FromDate, DateTime ToDate, int DrugTypeId, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_SCHEDULEH1Report.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPPharmacy.ViewSCHEDULEH1Report(FromDate, ToDate,  DrugTypeId, StoreId,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SCHEDULEH1Report", "SCHEDULEH1Report", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpGet("view-SCHEDULEH1SalesSummaryReport")]
+        public IActionResult ViewSCHEDULEH1SalesSummaryReport(DateTime FromDate, DateTime ToDate, int DrugTypeId, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_SCHEDULEH1SalesSummaryReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPPharmacy.ViewSCHEDULEH1SalesSummaryReport(FromDate, ToDate,  DrugTypeId, StoreId,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SCHEDULEH1SalesSummaryReport", "SCHEDULEH1SalesSummaryReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-SalesH1DrugCountReport")]
+        public IActionResult ViewSalesH1DrugCountReport(DateTime FromDate, DateTime ToDate, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_SalesH1DrugCountReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPPharmacy.ViewSalesH1DrugCountReport(FromDate, ToDate, StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesH1DrugCountReport", "SalesH1DrugCountReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-ItemWiseDailySalesReport")]
+        public IActionResult ViewItemWiseDailySalesReport(DateTime FromDate, DateTime ToDate, int ItemId, int RegNo, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_ItemWiseDailySalesReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPPharmacy.ViewItemWiseDailySalesReport(FromDate, ToDate, ItemId,RegNo, StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ItemWiseDailySalesReport", "ItemWiseDailySalesReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-WardWiseHighRiskDrugList")]
+        public IActionResult ViewWardWiseHighRiskDrugList(DateTime FromDate, DateTime ToDate, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_WardWiseHighRiskDrugList.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPPharmacy.ViewWardWiseHighRiskDrugList(FromDate, ToDate, StoreId,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "WardWiseHighRiskDrugList", "WardWiseHighRiskDrugList", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-PurchaseReOrderList")]
+        public IActionResult ViewPurchaseReOrderList(int StoreId, DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_PurchaseReOrderList.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPPharmacy.ViewPurchaseReOrderList(StoreId, FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PurchaseReOrderList", "PurchaseReOrderList", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-PharmacyBillSummaryReport")]
+        public IActionResult ViewPharmacyBillSummaryReport(int StoreId, DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_PharmacyBillSummaryReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPPharmacy.ViewPharmacyBillSummaryReport(StoreId, FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmacyBillSummaryReport", "PharmacyBillSummaryReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
     }
 }
 
