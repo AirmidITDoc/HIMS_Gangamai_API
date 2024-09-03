@@ -251,11 +251,11 @@ namespace HIMS.Data.IPD
 
         public string ViewIPBillReceipt(int BillNo, string htmlFilePath,string htmlHeader)
     {
-      
-            SqlParameter[] para = new SqlParameter[1];
-        
-            para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("m_rptIPDFinalBill", para);
+            //m_rptIPDFinalBill
+                  SqlParameter[] para = new SqlParameter[1];
+            
+                para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("m_rptIPD_FINAL_BILL_GROUPWISE", para);
             string html = File.ReadAllText(htmlFilePath);
            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
@@ -802,9 +802,9 @@ namespace HIMS.Data.IPD
         public string ViewIPBillReceiptclasswise(int BillNo, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[1];
-        
-            para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("m_rptIPDFinalBill_classwise", para);
+            //m_rptIPDFinalBill_classwise
+                para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("m_rptIPD_FINAL_BILL_GROUPWISE", para);
             string html = File.ReadAllText(htmlFilePath);
            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
