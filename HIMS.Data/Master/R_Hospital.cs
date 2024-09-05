@@ -9,6 +9,7 @@ using HIMS.Model.Users;
 using HIMS.Model.Opd.OP;
 using HIMS.Model.Master;
 using System.Linq;
+using HIMS.Model.Master.PersonalDetails;
 
 namespace HIMS.Data.Master
 {
@@ -31,6 +32,29 @@ namespace HIMS.Data.Master
             SqlParameter[] para = new SqlParameter[1];
             para[0] = new SqlParameter("@Id", Id);
             return GetList<HospitalStoreMaster>("SELECT StoreId,PrintStoreName,StoreAddress,HospitalMobileNo,HospitalEmailId,PrintStoreUnitName,DL_NO,GSTIN FROM M_StoreMaster WHERE StoreId=@Id", para).FirstOrDefault();
+        }
+
+        public bool Save(HospitalMasterParam HospitalMasterParam)
+        {
+            // throw new NotImplementedException();
+            var disc = HospitalMasterParam.HospitalMasterInsert.ToDictionary();
+
+            ExecNonQueryProcWithOutSaveChanges("insert_HospitalMaster_1", disc);
+
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
+        public bool Update(HospitalMasterParam HospitalMasterParam)
+        {
+            var disc1 = HospitalMasterParam.HospitalMasterUpdate.ToDictionary();
+
+            ExecNonQueryProcWithOutSaveChanges("update_HospitalMaster_1", disc1);
+
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
         }
     }
 }

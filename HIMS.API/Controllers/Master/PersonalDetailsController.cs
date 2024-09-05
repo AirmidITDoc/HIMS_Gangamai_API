@@ -1,4 +1,6 @@
-﻿using HIMS.Data.Master.PersonalDetails;
+﻿using HIMS.Data.Master;
+using HIMS.Data.Master.PersonalDetails;
+using HIMS.Model.Master;
 using HIMS.Model.Master.PersonalDetails;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,13 +31,13 @@ namespace HIMS.API.Controllers.Master
         public readonly I_VillageMaster _VillageMaster;
         public readonly I_AreaMaster _AreaMaster;
         public readonly I_CityMaster _CityMaster;
-        // public readonly I_GenderMaster _GenderMaster;
+         public readonly I_Hospital _Hospital;
 
         public PersonalDetailsController(I_PrefixMaster prefixMaster, I_GenderMaster genderMaster,
             I_RelationshipMaster relationshipMaster,I_PatientTypeMaster patientTypeMaster
             ,I_MaritalStatusMaster maritalStatusMaster,I_ReligionMaster religionMaster,
             I_CountryMaster countryMaster,I_StateMaster stateMaster,I_TalukaMaster talukaMaster,
-            I_VillageMaster villageMaster,I_AreaMaster areaMaster,I_CityMaster cityMaster
+            I_VillageMaster villageMaster,I_AreaMaster areaMaster,I_CityMaster cityMaster,I_Hospital hospital
             )
         {
             this._PrefixMaster = prefixMaster;
@@ -50,6 +52,7 @@ namespace HIMS.API.Controllers.Master
             this._VillageMaster = villageMaster;
             this._AreaMaster = areaMaster;
             this._CityMaster = cityMaster;
+            this._Hospital = hospital;
         }
 
 
@@ -243,6 +246,25 @@ namespace HIMS.API.Controllers.Master
 
             var ServiceSave = _AreaMaster.Update(AreaMasterParams);
             return Ok(ServiceSave);
+        }
+
+
+
+        //AreaMaster Save and update
+        [HttpPost("HospitalSave")]
+        public IActionResult HospitalSave(HospitalMasterParam HospitalMasterParam)
+        {
+
+            var Id = _Hospital.Save(HospitalMasterParam);
+            return Ok(Id);
+        }
+
+        [HttpPost("HospitalUpdate")]
+        public IActionResult HospitalUpdate(HospitalMasterParam HospitalMasterParam)
+        {
+
+            var Id = _Hospital.Update(HospitalMasterParam);
+            return Ok(Id);
         }
     }
 }

@@ -76,7 +76,7 @@ namespace HIMS.Data.Opd
                     Label1 = dr["GenericName"].ConvertToString();
                     Label2 = dr["OldClassName"].ConvertToString();
 
-                    items.Append("<tr style=\"font-size:18px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"2\" style=\";padding:6px;height:10px;text-align:left;font-weight:bold;vertical-align:middle\">").Append(Label2).Append("</td><td colspan=\"2\" style=\";padding:6px;height:10px;text-align:left;font-weight:bold;vertical-align:middle\">").Append(Label).Append("</td><td colspan=\"1\" style=\"padding:6px;height:10px;text-align:left;vertical-align:middle\">").Append(Label1).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"2\" style=\";padding:6px;height:10px;text-align:left;font-weight:bold;vertical-align:middle;padding-left:60px;\">").Append(Label2).Append("-----").Append(Label).Append("</td><td  style=\"padding:6px;height:10px;text-align:left;vertical-align:middle\">").Append(Label1).Append("</td></tr>");
                 }
                 previousLabel = dr["DrugName"].ConvertToString();
 
@@ -84,9 +84,9 @@ namespace HIMS.Data.Opd
                 {
 
                     i++;
-                    items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:22;\"><td style=\"vertical-align: top;padding: 6px;;height: 20px;text-align:center;\">").Append(dr["DoseName"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"padding: 6px;height:10px;vertical-align:middle;text-align:center;\">").Append(dr["DoseNameInEnglish"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"vertical-align:middle;padding: 6px;height:10px;text-align:center;\">").Append(dr["TotalDayes"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:22;font-weight:bold;\"><td colspan=\"2\"  style=\"vertical-align: top;padding: 6px;;height: 20px;text-align:left;font-size:22;font-weight:bold;padding-left:70px;\">").Append(dr["DoseName"].ConvertToString()).Append("(").Append(dr["DoseNameInEnglish"].ConvertToString()).Append(")").Append("</td>");
+                    //items.Append("<td style=\"padding: 6px;height:10px;vertical-align:middle;text-align:left;\">").Append(dr["DoseNameInEnglish"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"vertical-align:middle;padding: 6px;height:10px;text-align:center;font-size:22;font-weight:bold;\">").Append(dr["TotalDayes"].ConvertToString()).Append("</td></tr>");
 
                     j++;
                 }

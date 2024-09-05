@@ -9,13 +9,13 @@
 
 <body>
     <div class="main-content-wrapper">
-        <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+        <div class="invoice-box" style="font-size: 22px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
                 {{NewHeader}}
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
-                            <tr style="font-size: 18px">
+                            <tr style="font-size: 22px">
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>OP PRESCRIPTION</b></td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                             </tr>
@@ -24,34 +24,34 @@
                 </tr>
                 <tr class="bill-info-row">
                     <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
+                        <table style="width: 100%; border-collapse: collapse;font-size:20px;">
                            
                             <tr>
 
                                 <td style="padding: 2px;">
-                                    <span>Prescription No : </span>
+                                    <span style="font-weight:bold;">Prescription No : </span>
                                     <span>{{PrecriptionId}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>OPD No: </span>
+                                    <span style="font-weight:bold;">OPD No: </span>
                                     <span>{{OPDNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span> Date | Time : </span>
+                                    <span style="font-weight:bold;"> Date | Time : </span>
                                     <span>{{PDate}}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>UHID : </span>
+                                    <span style="font-weight:bold;">UHID : </span>
                                     <span>{{RegNo}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Age | Sex: </span>
+                                    <span style="font-weight:bold;">Age | Sex: </span>
                                     <span>{{AgeYear}} Y |{{AgeYear}} M|{{AgeYear}} D | {{GenderName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>OPD | Time : </span>
+                                    <span style="font-weight:bold;">OPD | Time : </span>
                                     <span>{{VisitTime}}</span>
                                 </td>
 
@@ -59,12 +59,12 @@
                             <tr>
 
                                 <td style="padding: 2px;">
-                                    <span>Patient Name : </span>
+                                    <span style="font-weight:bold;">Patient Name : </span>
                                     <span>{{PatientName}}</span>
                                 </td>
 
                                 <td style="padding: 2px;">
-                                    <span>Patient Type : </span>
+                                    <span style="font-weight:bold;">Patient Type : </span>
                                     <span>{{PatientType}}</span>
                                 </td>
                                 <td></td>
@@ -72,15 +72,15 @@
 
                             <tr>
                                 <td style="padding: 2px;">
-                                    <span>Doctor Name : </span>
+                                    <span style="font-weight:bold;">Doctor Name : </span>
                                     <span>{{ConsultantDocName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Department :</span>
+                                    <span style="font-weight:bold;">Department :</span>
                                     <span>{{DepartmentName}}</span>
                                 </td>
                                 <td style="padding: 2px;">
-                                    <span>Ref Dr Name : </span>
+                                    <span style="font-weight:bold;">Ref Dr Name : </span>
                                     <span>{{SecondRefDoctorName}}</span>
                                 </td>
                             </tr>
@@ -93,24 +93,24 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <thead style="font-size: 14px;">
+
                                 <tr>
-                                    <td style="text-align: center; padding: 6px;font-weight:bold;font-size:22px;">Dignosis :</td>
-                                    <td style="text-align: center; padding: 6px;">
+                                    <td style="font-size:38px; font-style:italic;padding:10px;font-weight:bold;">Rx</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left; padding: 6px;font-weight:bold;font-size:28px;">Dignosis :{{ChiefComplaint}}</td>
+                                    <!--<td style="text-align: left; padding: 6px;">
                                         {{ChiefComplaint}}
-                                    </td>
+                                    </td>-->
 
                                 </tr>
                                 <tr>
-                                    <td style="font-size:28px; font-style:italic;padding:10px;font-weight:bold;">Rx</td>
-                                   
-                                    
-                                </tr>
-                                <tr>
+
+                                    <td style="padding: 10px; font-weight: bold; text-align: left; font-size: 24px; padding-left: 70px;">Durgs</td>
                                     <td></td>
-                                    <td></td>
-                                    <td style="padding:10px;font-weight:bold;text-align:center;font-size:18px;">Days</td>
+                                    <td style="padding:10px;font-weight:bold;text-align:left;font-size:24px;">Doses / Days</td>
                                 </tr>
-                                    {{Items}}
+                                {{Items}}
                             </thead>
 
                         </table>
