@@ -68,7 +68,7 @@ namespace HIMS.Data.IPD
             String finalLabel = "";
             int rowlength = 0;
 
-            var Bills = GetDataTableProc("rptIPDDraftBillPrintSummary", para);
+            var Bills = GetDataTableProc("m_rptIPD_DraftBillSummary_Print", para);
             rowlength = Bills.Rows.Count;
             double Tot_AfterAdvused = 0,Tot_Wothoutdedu=0, Tot_Balamt = 0, Tot_Advamt = 0, Tot_Advusedamt = 0, T_TotalAmount=0, F_TotalAmount=0, balafteradvuseAmount=0, BalancewdudcAmt=0,AdminChares = 0, TotalNetPayAmt = 0;
 

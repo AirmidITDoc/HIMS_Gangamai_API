@@ -255,7 +255,7 @@ namespace HIMS.Data.IPD
                   SqlParameter[] para = new SqlParameter[1];
             
                 para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("m_rptIPD_FINAL_BILL_GROUPWISE", para);
+            var Bills = GetDataTableProc("m_rptIPD_FINAL_BILL_GROUPWISE1", para);
             string html = File.ReadAllText(htmlFilePath);
            
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
@@ -283,10 +283,10 @@ namespace HIMS.Data.IPD
                 if (i == 1)
                 {
 
-                    //String Label2;
-                    //Label2 = dr["ClassName"].ConvertToString();
-                    //items.Append("<tr style=\"font-size:18px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;font-weight:bold;\"><td colspan=\"13\" style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label2).Append("</td></tr>");
-                  
+                    String Label2;
+                    Label2 = dr["ClassName"].ConvertToString();
+                    items.Append("<tr style=\"font-size:18px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;font-weight:bold;\"><td colspan=\"13\" style=\"border:1px solid #000;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label2).Append("</td></tr>");
+
                     String Label;
                     Label = dr["GroupName"].ConvertToString();
                     items.Append("<tr style=\"font-size:18px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;\"><td colspan=\"13\" style=\"border:1px solid #000;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
@@ -294,7 +294,7 @@ namespace HIMS.Data.IPD
                 if (previousLabel != "" && previousLabel != dr["GroupName"].ConvertToString())
                 {
                     j = 1;
-                    items.Append("<tr style='font-size:20px;border:1px solid black;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='5' style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Group Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;font-weight:bold;\">")
+                    items.Append("<tr style='font-size:20px;border:1px solid black;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='5' style=\"border:1px solid #000;border-collapse: collapse;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Group Wise Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;font-weight:bold;\">")
                   
                    .Append(T_TotalAmount.To2DecimalPlace()).Append("</td></tr>");
                     T_TotalAmount = 0;
@@ -303,12 +303,12 @@ namespace HIMS.Data.IPD
 
                 }
 
-                //if (deptLabel != "" && deptLabel != dr["ClassName"].ConvertToString())
-                //{
+                if (deptLabel != "" && deptLabel != dr["ClassName"].ConvertToString())
+                {
 
-                //    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-weight:bold;\"><td colspan=\"13\" style=\"border:1px solid #cccccc;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-weight:bold;\"><td colspan=\"13\" style=\"border:1px solid #000;border-collapse: collapse;padding:3px;height:10px;text-align:left;vertical-align:middle;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">").Append(dr["ClassName"].ConvertToString()).Append("</td></tr>");
 
-                //}
+                }
 
                 T_TotalAmount += dr["ChargesTotalAmt"].ConvertToDouble();
                 F_TotalAmount += dr["ChargesTotalAmt"].ConvertToDouble();
@@ -316,7 +316,7 @@ namespace HIMS.Data.IPD
 
 
                 previousLabel = dr["GroupName"].ConvertToString();
-               // deptLabel = dr["ClassName"].ConvertToString();
+                deptLabel = dr["ClassName"].ConvertToString();
 
                 items.Append("<tr style=\"font-family: 'Helvetica Neue','Helvetica', Helvetica, Arial, sans-serif;font-size:22px;\"><td style=\"border: 1px solid #000; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #000; text-align: left; padding: 6px;font-size:15px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
