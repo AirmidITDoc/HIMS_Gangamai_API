@@ -35,12 +35,13 @@ namespace HIMS.API.Controllers.Transaction
         private readonly I_GRNReturn _GRNReturn;
         private readonly I_PHAdvance _PHAdvance;
         private readonly I_PHAdvanceRefund _PHAdvanceRefund;
+        private readonly I_SupplierPayment _SupplierPayment;
 
         public PharmacyController(I_Sales sales, I_PurchaseOrder purchaseOrder, I_SalesReturn salesReturn, I_GRN gRN,
             Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_Workorder workorder, I_Stokadjustment stokadjustment,
             I_Openingbalance openingbalance,
             I_Mrpadjustment mrpadjustment,
-            I_MaterialAcceptance materialAcceptance, I_PharmPaymentMode pharmPaymentMode, I_GRNReturn gRNReturn,I_PHAdvance pHAdvance, I_PHAdvanceRefund pHAdvanceRefund)
+            I_MaterialAcceptance materialAcceptance, I_PharmPaymentMode pharmPaymentMode, I_GRNReturn gRNReturn,I_PHAdvance pHAdvance, I_PHAdvanceRefund pHAdvanceRefund, I_SupplierPayment supplierPayment)
         {
             this._Sales = sales;
             _PurchaseOrder = purchaseOrder;
@@ -57,6 +58,7 @@ namespace HIMS.API.Controllers.Transaction
             _GRNReturn = gRNReturn;
             _PHAdvance = pHAdvance;
             _PHAdvanceRefund = pHAdvanceRefund;
+            _SupplierPayment = supplierPayment;
         }
 
         [HttpPost("SalesSaveWithPaymentwithStockCheck")]
@@ -798,6 +800,17 @@ namespace HIMS.API.Controllers.Transaction
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+
+
+        [HttpPost("InsertSupplierPayment")]
+        public String InsertSupplierPayment(SupplierPayment SupplierPayment)
+        {
+            var IPD = _SupplierPayment.InsertGrnsuppay(SupplierPayment);
+            return (IPD.ToString());
+        }
+
+
+
 
 
     }
