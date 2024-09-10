@@ -543,13 +543,13 @@ namespace HIMS.API.Controllers.Transaction
 
 
 
-        [HttpGet("view-IP-BillReceipt")]
-        public IActionResult ViewIpBillReceipt(int BillNo)
+        [HttpGet("view-IP-BillReceiptgroupwise")]
+        public IActionResult ViewIpBillReceiptgroupwise(int BillNo)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPBillingReceipt.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPBillGroupwiseReceipt.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPBilling.ViewIPBillReceipt(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IpBillingReceipt", "IpBillingReceipt" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDFinalBillgroupwise", "IPDFinalBillgroupwise" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }

@@ -33,9 +33,15 @@ namespace HIMS.Model.Pharmacy
         public string NEFTNo { get; set; }
         public string NEFTBankMaster { get; set; }
         public DateTime NEFTDate { get; set; }
+
+        public float CardPayAmt { get; set; }
+        public string CardNo { get; set; }
+        public string CardBankName { get; set; }
+        public DateTime CardPayDate { get; set; }
         public float PayTMAmount { get; set; }
         public string PayTMTranNo { get; set; }
-        public DateTime PayTMDate { get; set; }
+
+       public DateTime PayTMDate { get; set; }
 
     }
     public class TGRNHeaderPayStatus
