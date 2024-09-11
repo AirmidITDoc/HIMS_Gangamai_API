@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="bill-template-wrapper" style="font-size: 14px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; ">
+
+
+        {{NewHeader}}
+        <table style="width: 100%;line-height: inherit;text-align: left;">
+            <tr class="title-date-row">
+                <td style="padding: 6px;">
+
+                    <table style="width: 100%; border-collapse: collapse;">
+
+                        <tr style="font-size: 18px">
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>Con.Doctor Share Details</b></td>
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                        </tr>
+
+                    </table>
+                    <div style="margin-top:2px;">
+                        <div style="font-weight: bold;font-size:18px;margin-left:10px;padding:5px;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
+                    </div>
+                </td>
+            </tr>
+
+
+            <table class="table" style="width:100%;border-collapse:collapse">
+                <tbody>
+
+                    <tr style="font-size:18px;background-color: white;">
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            SR.NO
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            UHID
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Patient Name
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            IPD No
+                        </td>
+
+
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Bill No
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Final Amt
+                        </td>
+
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Con.Share
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Ref Doc Name
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Ref Share
+                        </td>
+                        <!--<td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Price
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Qty
+                        </td>-->
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Hos.Share
+                        </td>
+                       
+                        <!--<td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            %
+                        </td>-->
+
+                    </tr>
+
+
+                    {{Items}}
+                <tr style="border: 1px solid black; background-color: white">
+
+
+                    
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                    </td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                    </td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                    </td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                    </td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                    </td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                    </td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                    </td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                        Total Amount
+                    </td>
+
+                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                        {{T_NetAmount}}
+                    </td>
+                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                        {{DocAmt}}
+                    </td>
+                   
+
+
+
+
+
+                </tr>
+                </tbody>
+            </table>
+            </td>
+            </tr>
+        </table>
+    </div>
+    </div>
+</body>
+</html>
+

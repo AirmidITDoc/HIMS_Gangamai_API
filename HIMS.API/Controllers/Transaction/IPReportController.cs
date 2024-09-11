@@ -27,7 +27,7 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
         }
 
-        [HttpGet("view-IPFinalBill")]
+        [HttpGet("view-IPCompanyBill")]
         public IActionResult ViewIPFinalBill(DateTime FromDate, DateTime ToDate,int AdmissionID)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPFinalBill.html");

@@ -51,7 +51,31 @@ namespace HIMS.API.Controllers.Transaction
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
-      
+
+        [HttpGet("ViewConDoctorShareDetails")]
+        public IActionResult ViewConDoctorShareDetails(DateTime FromDate, DateTime ToDate, int DoctorId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DoctorShare_ConDoctorShareDetails.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _doctorShareReport.ViewConDoctorShareDetails(FromDate, ToDate, DoctorId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ConDoctorShareDetails", "ConDoctorShareDetails", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("ViewDoctorShareListWithCharges")]
+        public IActionResult ViewDoctorShareListWithCharges(DateTime FromDate, DateTime ToDate, int DoctorId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DoctorShare_DoctorShareListWithCharges.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _doctorShareReport.ViewDoctorShareListWithCharges(FromDate, ToDate, DoctorId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorShareListWithCharges", "DoctorShareListWithCharges", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
 
     }
 }

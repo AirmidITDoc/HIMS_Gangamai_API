@@ -12,6 +12,7 @@ namespace HIMS.Data.DoctorShareReports
     {
         string ViewDoctorShareReport(DateTime FromDate, DateTime ToDate, int DoctorId, string htmlFilePath, string htmlHeaderFilePath);
         string ViewDoctorWiseSummaryReport(DateTime FromDate, DateTime ToDate, int DoctorId,string htmlFilePath, string htmlHeader);
-       
+        string ViewConDoctorShareDetails(DateTime FromDate, DateTime ToDate, int DoctorId, string htmlFilePath, string htmlHeader);
+        string ViewDoctorShareListWithCharges(DateTime FromDate, DateTime ToDate, int DoctorId, string htmlFilePath, string htmlHeader);
     }
 }
