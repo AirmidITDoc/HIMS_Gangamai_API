@@ -17,6 +17,14 @@ namespace HIMS.Data.Pathology
 
         }
 
+        public DataTable GetDataForReport(int PathReportId, int OP_IP_Type)
+        {
+            SqlParameter[] para = new SqlParameter[2];
+            para[0] = new SqlParameter("@PathReportId", PathReportId) { DbType = DbType.Int64 };
+            para[1] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
+            return GetDataTableProc("m_rptPrintPathologyReportTemplate", para);
+        }
+
         public bool Insert(PathologyTemplateResultParams PathologyTemplateResultParams)
         {
             var disc3 = PathologyTemplateResultParams.DeletePathologyReportTemplateDetails.ToDictionary();
