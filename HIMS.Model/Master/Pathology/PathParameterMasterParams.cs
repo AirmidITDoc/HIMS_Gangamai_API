@@ -20,7 +20,7 @@ namespace HIMS.Model.Master.Pathology
         public string ParameterName { get; set; }
         public string PrintParameterName { get; set; }
         public int UnitId { get; set; }
-        public bool IsNumeric { get; set; }
+        public int IsNumeric { get; set; }
         public bool IsDeleted { get; set; }
         public int Addedby { get; set; }
         public bool IsPrintDisSummary { get; set; }
@@ -37,7 +37,7 @@ namespace HIMS.Model.Master.Pathology
         public int ParaId { get; set; }
         public int SexId { get; set; }
         public string MinValue { get; set; }
-        public string Maxvalue { get; set; }
+        public string MaxValue { get; set; }
         public int Addedby { get; set; }
 
         public bool IsDeleted { get; set; }
@@ -70,7 +70,7 @@ namespace HIMS.Model.Master.Pathology
         public string ParameterName { get; set; }
         public string PrintParameterName { get; set; }
         public int UnitId { get; set; }
-        public bool IsNumeric { get; set; }
+        public int IsNumeric { get; set; }
         public bool IsDeleted { get; set; }
         public int Updatedby { get; set; }
         public bool IsPrintDisSummary { get; set; }

@@ -28,7 +28,7 @@ namespace HIMS.Data.Master.Pathology
             var ParameterID = ExecNonQueryProcWithOutSaveChanges("m_Insert_PathParameterMaster_1", disc1, outputId);
 
             //add Range and Descriptive
-            if (pathParameterMasterParams.PathParameterMasterInsert.IsNumeric == true)
+            if (pathParameterMasterParams.PathParameterMasterInsert.IsNumeric == 1)
             {
                 foreach (var a in pathParameterMasterParams.ParameterRangeWithAgeMasterInsert)
                 {
@@ -57,7 +57,7 @@ namespace HIMS.Data.Master.Pathology
             ExecNonQueryProcWithOutSaveChanges("m_update_ParameterMaster_2", disc1);
 
 
-            if (pathParameterMasterParams.PathParameterMasterUpdate.IsNumeric == true)
+            if (pathParameterMasterParams.PathParameterMasterUpdate.IsNumeric == 1)
             {
 
                 var D_Det = pathParameterMasterParams.ParameterRangeWithAgeMasterDelete.ToDictionary();

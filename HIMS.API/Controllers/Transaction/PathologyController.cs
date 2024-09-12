@@ -65,7 +65,7 @@ namespace HIMS.API.Controllers.Transaction
           
             DataTable dt = _PathologyTemplateResult.GetDataForReport(PathReportId,OP_IP_Type);
         
-            var html = _PathologyTemplateResult.ViewPathTemplateReceipt(PathReportId, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _PathologyTemplateResult.ViewPathTemplateReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
             html = html.Replace("{{Signature}}", signature);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTemplate", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);

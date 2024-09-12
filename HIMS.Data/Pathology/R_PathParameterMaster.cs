@@ -30,7 +30,7 @@ namespace HIMS.Data.Pathology
             dic.Remove("ParameterID");
             var ParameterID = ExecNonQueryProcWithOutSaveChanges("ps_Insert_M_PathParameterMaster", dic, outputId);
 
-            if (PathParameterMasterParams.PathParameterMasterInsert.IsNumeric == true)
+            if (PathParameterMasterParams.PathParameterMasterInsert.IsNumeric == 1)
             {
 
                 // ParameterRangeWithAgeMaster Insert
@@ -78,7 +78,7 @@ namespace HIMS.Data.Pathology
                 ExecNonQueryProcWithOutSaveChanges("ps_Update_M_PathParameterMaster", dic);
 
 
-            if (PathParameterMasterParams.PathParameterMasterUpdate.IsNumeric == true)
+            if (PathParameterMasterParams.PathParameterMasterUpdate.IsNumeric == 1)
             {
 
                 //Delete ParameterRangeWithAgeMaster
