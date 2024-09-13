@@ -22,7 +22,9 @@ namespace HIMS.Model.Master.PersonalDetails
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
+        public string HospitalHeader { get; set; }
 
+        
     }
 
     public class HospitalMasterUpdate
@@ -36,6 +38,7 @@ namespace HIMS.Model.Master.PersonalDetails
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
+        public string HospitalHeader { get; set; }
 
     }
 }

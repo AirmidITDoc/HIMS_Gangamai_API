@@ -84,18 +84,18 @@ namespace HIMS.Data.Opd
                 //{
 
                 //    i++;
-                    items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:24px;font-weight:bold;\"><td style=\"vertical-align: top;padding: 6px;;height: 20px;text-align:left;font-size:24px;font-weight:bold;padding-left:10px;\">").Append(dr["DrugName"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"padding: 6px;height:10px;vertical-align:middle;text-align:left;font-size:24px;font-weight:bold;padding-left:10px;\">").Append(dr["DoseName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"padding: 6px;height:10px;vertical-align:middle;text-align:left;font-size:24px;font-weight:bold;padding-left:10px;\">").Append(dr["Instruction"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"vertical-align:middle;padding: 6px;height:10px;text-align:left;font-size:24px;font-weight:bold;padding-left:10px;\">").Append(dr["TotalQty"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:24px;font-weight:bold;\"><td style=\"vertical-align: top;padding: 6px;;height: 20px;text-align:left;font-size:24px;font-weight:bold;padding-left:50px;\">").Append(dr["DrugName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"padding: 6px;height:10px;vertical-align:middle;text-align:left;font-size:24px;font-weight:bold;padding-left:50px;\">").Append(dr["DoseName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"padding: 6px;height:10px;vertical-align:middle;text-align:left;font-size:24px;font-weight:bold;padding-left:50px;\">").Append(dr["Instruction"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"vertical-align:middle;padding: 6px;height:10px;text-align:left;font-size:24px;font-weight:bold;padding-left:50px;\">").Append(dr["TotalQty"].ConvertToString()).Append("</td></tr>");
 
                     if (dr["GenericName"].ConvertToString() != null)
                     {
-                        items.Append("<tr style=\"font-size:18px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle;padding-left:10px;\">").Append("Composition :").Append(dr["GenericName"].ConvertToString()).Append("</td></tr>");
+                        items.Append("<tr style=\"font-size:18px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border: 1px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle;padding-left:50px;\">").Append("Composition :").Append(dr["GenericName"].ConvertToString()).Append("</td></tr>");
 
                     }
                    
-                        items.Append("<tr style=\"font-size:18px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border:1px;border-bottom: 1px solid #d4c3c3;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle;padding-left:10px;\">").Append("Timing :").Append(dr["DoseNameInEnglish"].ConvertToString()).Append(dr["DoseNameInMarathi"].ConvertToString()).Append("</td></tr>");
+                        items.Append("<tr style=\"font-size:18px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border:1px;border-bottom: 1px solid #d4c3c3;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle;padding-left:50px;\">").Append("Timing :").Append(dr["DoseNameInEnglish"].ConvertToString()).Append(dr["DoseNameInMarathi"].ConvertToString()).Append("</td></tr>");
 
 
                 //    j++;
@@ -130,6 +130,9 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{BP}}", Bills.GetColValue("BP"));
             html = html.Replace("{{Pulse}}", Bills.GetColValue("Pulse"));
 
+            html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
+            html = html.Replace("{{MahRegNo}}", Bills.GetColValue("MahRegNo"));
+            html = html.Replace("{{Education}}", Bills.GetColValue("Education"));
 
 
             return html;

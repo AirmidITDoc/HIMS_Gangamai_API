@@ -25,7 +25,7 @@
                 <tr class="bill-info-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;font-size:20px;">
-                           
+
                             <tr>
 
                                 <td style="padding: 2px;">
@@ -88,32 +88,32 @@
                         </table>
                     </td>
                 </tr>
-                <hr/>
+                <hr />
                 <tr class="bill-table-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <thead style="font-size: 14px;">
 
                                 <tr>
-                                    <td style="text-align: left; padding: 10px;font-weight:bold;font-size:22px;">BP :{{BP}} | Pulse:{{Pulse}}</td>
+                                    <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 22px; padding-left: 50px; border-bottom: 1px solid #000;" colspan="3">BP :{{BP}} | Pulse:{{Pulse}}</td>
 
                                 </tr>
                                 <tr>
-                                    <td style="text-align: left; padding: 10px;font-weight:bold;font-size:22px;" colspan="3">Complaints :{{ChiefComplaint}}</td>
+                                    <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 22px; padding-left: 50px;" colspan="3">Complaints :{{ChiefComplaint}}</td>
 
                                 </tr>
                                 <tr>
-                                    <td style="text-align: left; padding: 10px;font-weight:bold;font-size:24px;" colspan="3">Dignosis :{{ChiefComplaint}}</td>
+                                    <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Dignosis :{{ChiefComplaint}}</td>
 
                                 </tr>
                                 <tr>
-                                    <td style="font-size: 38px; font-style: italic; padding: 20px; font-weight: bold; font-family: Bell MT" colspan="3">Rx</td>
+                                    <td style="font-size: 38px; font-style: italic; padding: 20px; font-weight: bold; font-family: Bell MT; padding-left: 50px;" colspan="3">Rx</td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid #000;">
 
 
 
-                                    <td style="padding:10px; font-weight: bold; text-align: left; font-size: 26px;">Medicine</td>
+                                    <td style="padding:10px; font-weight: bold; text-align: left; font-size: 26px;padding-left:50px;">Medicine</td>
 
                                     <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Dosage</td>
                                     <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Timing-Freq-Duration</td>
@@ -127,7 +127,7 @@
                 </tr>
 
 
-                <tfoot>
+                <!--<tfoot>
                     <tr>
                         <table style="width: 100%; border-collapse: collapse;margin-top:30px;">
 
@@ -143,10 +143,36 @@
 
                         </table>
                     </tr>
-                </tfoot>
+                </tfoot>-->
             </table>
         </div>
     </div>
 </body>
+
+</html>
+
+
+<html>
+<body>
+</body>
+<table style="width: 100%;line-height: inherit;text-align: left;padding-top:20px;">
+
+    <tr>
+        <span style="margin-left:70%">
+            <img src="{{Signature}}" width="100">
+        </span>
+        <footer style="margin-left: 70%; font-size: 19px;">
+            <div style="font-weight:bold;">{{PathResultDr1}}</div>
+            <div style="font-weight:bold;">{{Education}}</div>
+            <div style="font-weight:bold;">{{MahRegNo}}</div>
+        </footer>
+    </tr>
+    <footer>
+    <tr style="border-top: 1px solid #000;"><td></td></tr>
+    <tr><td style="border-top: 1px solid #000;" colspan="4">Do not take any medicines without consulting the doctor....</td></tr>
+
+    </footer>
+
+</table>
 
 </html>

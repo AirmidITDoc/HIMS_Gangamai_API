@@ -66,18 +66,11 @@ namespace HIMS.Data.Radiology
             html = html.Replace("{{SuggestionNotes}}", Bills.GetColValue("SuggestionNotes"));
 
 
+            html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
+            html = html.Replace("{{MahRegNo}}", Bills.GetColValue("MahRegNo"));
+            html = html.Replace("{{Education}}", Bills.GetColValue("Education"));
 
-           // String v = Bills.GetColValue("ResultEntry").Con);
-            //String v1= Bills.GetColValue("ResultEntry")
-
-            //html = html.Replace("{{ResultEntry}}", v);
-
-
-
-
-            //{ { PathTemplateDetailsResult || innerHTML} }
-            //{ { PathTemplateDetailsResult} }.innerHTML
-
+         
             html = html.Replace("{{RadiologyDocName}}", Bills.GetColValue("RadiologyDocName"));
             //html = html.Replace("{{chkresonflag}}", Bills.GetColValue("reason").ConvertToString() != null ? "block" : "none");
             return html;

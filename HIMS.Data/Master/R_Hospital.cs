@@ -39,7 +39,7 @@ namespace HIMS.Data.Master
             // throw new NotImplementedException();
             var disc = HospitalMasterParam.HospitalMasterInsert.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("insert_HospitalMaster_1", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_HospitalMaster_1", disc);
 
             //commit transaction
             _unitofWork.SaveChanges();
@@ -50,7 +50,7 @@ namespace HIMS.Data.Master
         {
             var disc1 = HospitalMasterParam.HospitalMasterUpdate.ToDictionary();
 
-            ExecNonQueryProcWithOutSaveChanges("update_HospitalMaster_1", disc1);
+            ExecNonQueryProcWithOutSaveChanges("m_update_HospitalMaster_1", disc1);
 
             //commit transaction
             _unitofWork.SaveChanges();
