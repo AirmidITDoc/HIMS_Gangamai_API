@@ -6,11 +6,13 @@ namespace HIMS.Model.Opd
 {
     public class OPDPrescriptionParams
     {
-        public UpdateOPDPrescription UpdateOPDPrescription { get; set; }
+        //public UpdateOPDPrescription UpdateOPDPrescription { get; set; }
         public List<InsertOPDPrescription> InsertOPDPrescription { get; set; }
+        public Update_VisitFollowupDate Update_VisitFollowupDate { get; set; }
+
+        public List<OPRequestList> OPRequestList { get; set; }
     }
 
-  
     public class InsertOPDPrescription
     {
        // public int PrecriptionId { get; set; }
@@ -37,17 +39,28 @@ namespace HIMS.Model.Opd
         public int IsAddBy { get; set; }
         public String SpO2 { get; set; }
         public int StoreId { get; set; }
-         public int DoseOption2 { get; set; }
+        public int DoseOption2 { get; set; }
         public int DaysOption2 { get; set; }
         public int DoseOption3 { get; set; }
         public int DaysOption3 { get; set; }
-        
+        public int PatientReferDocId { get; set; }
     }
 
-    public class UpdateOPDPrescription
-    {
-        public int OPD_IPD_IP { get; set; }
+    //public class UpdateOPDPrescription
+    //{
+    //    public int OPD_IPD_IP { get; set; }
+    //}
 
+    public class Update_VisitFollowupDate
+    {
+        public int VisitId { get; set; }
+        public DateTime FollowupDate { get; set; }
+    }
+
+    public class OPRequestList
+    {
+        public int OP_IP_ID { get; set; }
+        public long ServiceId { get; set; }
     }
 
 }

@@ -22,11 +22,17 @@ namespace HIMS.Data.Opd
             foreach (var a in OPDPrescriptionParams.InsertOPDPrescription)
             {
                 var disc1 = a.ToDictionary();
-                //var dic1 = OPDPrescriptionParams.InsertOPDPrescription.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("insert_Prescription_1", disc1);
-
+                ExecNonQueryProcWithOutSaveChanges("m_insert_Prescription_1", disc1);
             }
 
+            var disc5 = OPDPrescriptionParams.Update_VisitFollowupDate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_VisitFollowupDate", disc5);
+
+            foreach (var a in OPDPrescriptionParams.OPRequestList)
+            {
+                var disc1 = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_Insert_T_OPRequestList", disc1);
+            }
 
             _unitofWork.SaveChanges();
 
