@@ -16,7 +16,7 @@ namespace HIMS.Data.IPD
         {
 
         }
-        public string ViewIPFinalBill(DateTime FromDate, DateTime ToDate,int AdmissionID, string htmlFilePath, string htmlHeader)
+        public string ViewIPFinalBill(int AdmissionID, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -93,8 +93,8 @@ namespace HIMS.Data.IPD
             }
 
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
             html = html.Replace("{{T_TotalAmount}}", T_TotalAmount.To2DecimalPlace());
             html = html.Replace("{{PatientName}}", PatientName.ToString());
             html = html.Replace("{{AdmittedDoctorName}}", AdmittedDoctorName.ToString());
