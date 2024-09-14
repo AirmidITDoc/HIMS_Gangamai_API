@@ -10,6 +10,8 @@ using HIMS.Model.Radiology;
 using HIMS.Data.Radiology;
 using System.IO;
 using HIMS.API.Utility;
+using System.Data;
+using HIMS.Common.Utility;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -22,11 +24,13 @@ namespace HIMS.API.Controllers.Transaction
 
         public readonly IPdfUtility _pdfUtility;
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
-        public RadiologyController(I_RadiologyTemplateResult i_Radiology, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility)
+        public readonly IFileUtility _FileUtility;
+        public RadiologyController(I_RadiologyTemplateResult i_Radiology, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, IFileUtility fileUtility)
         {
             this.i_RadiologyTemplate = i_Radiology;
             _hostingEnvironment = hostingEnvironment;
             _pdfUtility = pdfUtility;
+            _FileUtility = fileUtility;
         }
 
         [HttpPost("RadiologyTemplateResult")]
@@ -41,14 +45,16 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "RadiologyTemplateReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = i_RadiologyTemplate.ViewRadiologyTemplateReceipt(RadReportId, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RadiologyTemplateReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            //var html = i_RadiologyTemplate.ViewRadiologyTemplateReceipt(RadReportId, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            //var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RadiologyTemplateReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
-            // write logic for send pdf in whatsapp
-            
-                //Templateprinttest
-            //if (System.IO.File.Exists(tuple.Item2))
-            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+          
+            DataTable dt = i_RadiologyTemplate.GetDataForReport(RadReportId,OP_IP_Type);
+            var html = i_RadiologyTemplate.ViewRadiologyTemplateReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+            html = html.Replace("{{Signature}}", signature);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RadiologyTemplateReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
     }

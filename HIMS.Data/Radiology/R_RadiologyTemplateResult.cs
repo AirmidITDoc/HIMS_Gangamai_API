@@ -18,6 +18,14 @@ namespace HIMS.Data.Radiology
 
         }
 
+        public DataTable GetDataForReport(int RadReportId, int OP_IP_Type)
+        {
+            SqlParameter[] para = new SqlParameter[2];
+            para[0] = new SqlParameter("@RadReportId", RadReportId) { DbType = DbType.Int64 };
+            para[1] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
+            return GetDataTableProc("rptRadiologyReportPrint", para);
+        }
+
         public bool Update(RadiologyTemplateResultParams RadiologyTemplateResultParams)
         {
 
@@ -29,16 +37,10 @@ namespace HIMS.Data.Radiology
             return true;
         }
 
-        public string ViewRadiologyTemplateReceipt(int RadReportId, int OP_IP_Type, string htmlFilePath, string htmlHeader)
+        public string ViewRadiologyTemplateReceipt(DataTable Bills, string htmlFilePath, string htmlHeader)
         {
             //  throw new NotImplementedException();
 
-
-            SqlParameter[] para = new SqlParameter[2];
-
-            para[0] = new SqlParameter("@RadReportId ", RadReportId) { DbType = DbType.Int64 };
-            para[1] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("rptRadiologyReportPrint", para);
             string html = File.ReadAllText(htmlFilePath);
             
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
@@ -64,21 +66,16 @@ namespace HIMS.Data.Radiology
             html = html.Replace("{{SuggestionNotes}}", Bills.GetColValue("SuggestionNotes"));
 
 
+            html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
+            html = html.Replace("{{MahRegNo}}", Bills.GetColValue("MahRegNo"));
+            html = html.Replace("{{Education}}", Bills.GetColValue("Education"));
 
-           // String v = Bills.GetColValue("ResultEntry").Con);
-            //String v1= Bills.GetColValue("ResultEntry")
-
-            //html = html.Replace("{{ResultEntry}}", v);
-
-
-
-
-            //{ { PathTemplateDetailsResult || innerHTML} }
-            //{ { PathTemplateDetailsResult} }.innerHTML
-
+         
             html = html.Replace("{{RadiologyDocName}}", Bills.GetColValue("RadiologyDocName"));
             //html = html.Replace("{{chkresonflag}}", Bills.GetColValue("reason").ConvertToString() != null ? "block" : "none");
             return html;
         }
+
+       
     }
 }
