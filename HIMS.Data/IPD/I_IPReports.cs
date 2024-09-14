@@ -77,7 +77,7 @@ namespace HIMS.Data.IPD
         string ViewCompanyWiseCreditReportSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewIPAdmitPatientwardwisechargesReport(int DoctorId, int WardId, int CompanyId, string htmlFilePath, string HeaderName);
 
-        string ViewIPFinalBill(int AdmissionID, string htmlFilePath, string HeaderName);
+        string ViewIPFinalBill(DateTime FromDate, DateTime ToDate,int AdmissionID, string htmlFilePath, string HeaderName);
 
     }
 }
