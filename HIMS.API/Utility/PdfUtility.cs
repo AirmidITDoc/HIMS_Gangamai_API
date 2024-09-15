@@ -9,6 +9,7 @@ using Aspose.Cells;
 using Wkhtmltopdf.NetCore.Options;
 using HIMS.Data.Master;
 using HIMS.Model.Master;
+using HIMS.Data.Master.Inventory;
 
 namespace HIMS.API.Utility
 {
@@ -25,7 +26,7 @@ namespace HIMS.API.Utility
             _configuration = configuration;
             _Hospital = i_Hospital;
         }
-        public string GetHeader(string filePath, long HospitalId=0)
+        public string GetHeader(string filePath, long HospitalId = 0)
         {
             string htmlHeader = System.IO.File.ReadAllText(filePath);
             HospitalMaster objHospital = _Hospital.GetHospitalById(1);
@@ -39,6 +40,19 @@ namespace HIMS.API.Utility
             htmlHeader = htmlHeader.Replace("{{WebSiteInfo}}", objHospital?.WebSiteInfo ?? "");
             htmlHeader = htmlHeader.Replace("{{Display}}", (objHospital?.HospitalId ?? 0) > 0 ? "visible" : "hidden");
             return htmlHeader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+        }
+        public string GetHeader(int Id, int Type = 1)
+        {
+            if (Type == 1)
+            {
+                HospitalMaster objHospital = _Hospital.GetHospitalById(Id);
+                return objHospital.Header;
+            }
+            else
+            {
+                HospitalStoreMaster objHospital = _Hospital.GetHospitalStoreById(Id);
+                return objHospital.Header;
+            }
         }
         public string GetStoreHeader(string filePath, long StoreId = 0)
         {

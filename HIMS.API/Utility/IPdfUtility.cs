@@ -15,6 +15,7 @@ namespace HIMS.API.Utility
         //bool CreateExel();
         string GetHeader(string filePath,long HospitalId=0);
         string GetStoreHeader(string filePath, long StoreId = 0);
+        string GetHeader(int Id, int Type = 1);
     }
 }
 
