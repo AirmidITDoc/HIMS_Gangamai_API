@@ -19,15 +19,22 @@ namespace HIMS.Data.Opd
 
         public bool Insert(OPDPrescriptionParams OPDPrescriptionParams)
         {
+
+            // delete previous data from prescription table
+            var vVisitId = OPDPrescriptionParams.delete_OPPrescription.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_delete_OPPrescription_1", vVisitId);
+
+            // add prescription table
             foreach (var a in OPDPrescriptionParams.InsertOPDPrescription)
             {
                 var disc1 = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("m_insert_Prescription_1", disc1);
+                ExecNonQueryProcWithOutSaveChanges("m_insert_OPPrescription_1", disc1);
             }
-
+            // update follow 
             var disc5 = OPDPrescriptionParams.Update_VisitFollowupDate.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_Update_VisitFollowupDate", disc5);
 
+            // Add Test Request  
             foreach (var a in OPDPrescriptionParams.OPRequestList)
             {
                 var disc1 = a.ToDictionary();
