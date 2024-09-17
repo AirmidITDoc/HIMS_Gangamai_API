@@ -74,6 +74,28 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        [HttpGet("view-PathReportMultiple")]
+        public IActionResult ViewPathReportMultiple(int OP_IP_Type)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathologyResultTest.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+
+            //string header = _pdfUtility.GetHeader(10056, 2); // store header
+            //string header1 = _pdfUtility.GetHeader(6, 1);// hospital header
+
+            //header1 = header1.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+            DataTable dt = _Pathresultentry.GetDataForReport(OP_IP_Type);
+            //var html = _Pathresultentry.ViewPathTestMultipleReport(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+
+            var html = _Pathresultentry.ViewPathTestMultipleReport(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+
+            html = html.Replace("{{Signature}}", signature);
+
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTestReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
 
 
@@ -107,8 +129,8 @@ namespace HIMS.API.Controllers.Transaction
 
 
 
-        [HttpGet("view-PathReportMultiple")]
-        public IActionResult ViewPathReportMultiple(int OP_IP_Type)
+        [HttpGet("view-PathReportMultipleWithHeader")]
+        public IActionResult viewPathReportMultipleWithHeader(int OP_IP_Type)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathologyResultTest.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
@@ -129,6 +151,8 @@ namespace HIMS.API.Controllers.Transaction
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+
+      
     }
 
 }
