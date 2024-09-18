@@ -52,7 +52,7 @@ namespace HIMS.Model.Master.Inventory
         //public string SMSTemplateId { get; set; }
         //public string PrintStoreUnitName { get; set; }
         //public long StoreId { get; set; }
-        //public string Header { get; set; }
+        public string Header { get; set; }
     }
     public class UpdateStoreMaster
     {

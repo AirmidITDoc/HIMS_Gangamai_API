@@ -188,8 +188,8 @@ namespace HIMS.Data.IPD
             var AdmissionID = ExecNonQueryProcWithOutSaveChanges("insert_Admission_1", disc1, outputId);
 
             //BedUpdate
-            var BedId = AdmissionParams.BedStatusUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Update_AdmissionBedstatus", BedId);
+            //var BedId = AdmissionParams.BedStatusUpdate.ToDictionary();
+            //ExecNonQueryProcWithOutSaveChanges("m_Update_AdmissionBedstatus", BedId);
 
             //IpSMSTemplate
             // var disc3 = AdmissionParams.IpSMSTemplateInsert.ToDictionary();

@@ -32,16 +32,17 @@ namespace HIMS.Model.Opd
         public string PWeight { get; set; }
         public string Pulse { get; set; }
         public string BP { get; set; }
-        public String BSL { get; set; }
-        public String ChiefComplaint { get; set; }
+        public string BSL { get; set; }
+        public string ChiefComplaint { get; set; }
         public int IsAddBy { get; set; }
-        public String SpO2 { get; set; }
+        public string SpO2 { get; set; }
         public int StoreId { get; set; }
          public int DoseOption2 { get; set; }
         public int DaysOption2 { get; set; }
         public int DoseOption3 { get; set; }
         public int DaysOption3 { get; set; }
         
+        public int PatientReferDocId { get; set; }
     }
 
     public class UpdateOPDPrescription
