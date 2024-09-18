@@ -31,7 +31,7 @@ namespace HIMS.Data.Master
             if (Id == 0) return new HospitalStoreMaster();
             SqlParameter[] para = new SqlParameter[1];
             para[0] = new SqlParameter("@Id", Id);
-            return GetList<HospitalStoreMaster>("SELECT StoreId,PrintStoreName,StoreAddress,HospitalMobileNo,HospitalEmailId,PrintStoreUnitName,DL_NO,GSTIN FROM M_StoreMaster WHERE StoreId=@Id", para).FirstOrDefault();
+            return GetList<HospitalStoreMaster>("SELECT StoreId,PrintStoreName,StoreAddress,HospitalMobileNo,HospitalEmailId,PrintStoreUnitName,DL_NO,GSTIN,Header FROM M_StoreMaster WHERE StoreId=@Id", para).FirstOrDefault();
         }
 
         public bool Save(HospitalMasterParam HospitalMasterParam)
