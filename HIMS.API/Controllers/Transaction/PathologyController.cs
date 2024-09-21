@@ -61,14 +61,39 @@ namespace HIMS.API.Controllers.Transaction
             //html = html.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
             //var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTemplate", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
+            //string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathTemplate.html");
+            //string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+          
+            //DataTable dt = _PathologyTemplateResult.GetDataForReport(PathReportId,OP_IP_Type);
+        
+            //var html = _PathologyTemplateResult.ViewPathTemplateReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            //var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+            //html = html.Replace("{{Signature}}", signature);
+            //var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTemplate", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            //return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+
+
+
+
+
+
+
+
+
+
+
+
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathTemplate.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-          
+
             DataTable dt = _PathologyTemplateResult.GetDataForReport(PathReportId,OP_IP_Type);
-        
             var html = _PathologyTemplateResult.ViewPathTemplateReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+
             html = html.Replace("{{Signature}}", signature);
+
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PathTemplate", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });

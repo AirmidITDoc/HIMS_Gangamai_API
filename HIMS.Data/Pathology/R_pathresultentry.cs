@@ -212,6 +212,11 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName").ConvertToString());
             html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
             html = html.Replace("{{chkSuggestionNote}}", Bills.GetColValue("SuggestionNote").ConvertToString() != "" ? "table-row" : "none");
+
+            //html = html.Replace("{{Signature}}", Bills.GetColValue("Signature"));
+
+
+            
             return html;
         }
 
