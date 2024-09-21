@@ -46,15 +46,16 @@ namespace HIMS.Data.Opd
             return true;
         }
 
-
-        public string ViewOPPrescriptionReceipt(int VisitId,string htmlFilePath, string htmlHeader)
+        public DataTable GetDataForReport(int VisitId)
         {
-            // throw new NotImplementedException();
             SqlParameter[] para = new SqlParameter[1];
-
             para[0] = new SqlParameter("@VisitId", VisitId) { DbType = DbType.Int64 };
-            //para[1] = new SqlParameter("@PatientType", PatientType) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("m_rptOPDPrecriptionPrint", para);
+            return GetDataTableProc("m_rptOPDPrecriptionPrint", para);
+        }
+
+        public string ViewOPPrescriptionReceipt(DataTable Bills,  string htmlFilePath, string htmlHeader)
+        {
+           
             string html = File.ReadAllText(htmlFilePath);
             
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
