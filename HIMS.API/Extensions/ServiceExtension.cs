@@ -46,6 +46,7 @@ using HIMS.Data.InventoryReports;
 using HIMS.Data.DoctorShareReports;
 using HIMS.Data.PharmacyReports;
 using HIMS.Data.Administration;
+using HIMS.Data.Document;
 
 namespace HIMS.API.Extensions
 {
@@ -348,7 +349,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_PHAdvanceRefund, R_PHAdvanceRefund>();
             services.AddTransient<I_CompanyInformation, R_CompanyInformation>();
            services.AddTransient<I_SupplierPayment, R_SupplierPayment>();
-
+            services.AddTransient<I_Document, R_Document>();
 
 
             /*    //services.AddTransient<I_StoreMaster, R_StoreMaster>();
