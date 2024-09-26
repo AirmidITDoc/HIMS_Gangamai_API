@@ -45,6 +45,7 @@ namespace HIMS.Data.IPD
         string ViewIPDAdmissionListCompanyWiseDetails(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, string htmlFilePath, string HeaderName);
         string ViewIPDCurrentAdmittedList(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId,int CompanyId, string htmlFilePath, string HeaderName);
         string ViewIPDCurrentAdmittedWardWiseCharges(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, int CompanyId, string htmlFilePath, string HeaderName);
+        string ViewIPDCurrentAdmittedDoctorWiseCharges(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, int CompanyId, string htmlFilePath, string HeaderName);
         string ViewIPDDischargeReportWithMarkStatus(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewIPDDischargeReportWithBillSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewDepartmentWiseCountSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);

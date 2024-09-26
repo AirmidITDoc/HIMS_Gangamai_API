@@ -291,7 +291,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPDCurrentAdmittedList.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewIPDCurrentAdmittedList(FromDate, ToDate, DoctorId, WardId, CompanyId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDCurrentAdmittedList", "IPDCurrentAdmittedList", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDCurrentAdmittedList", "IPDCurrentAdmittedList", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -304,6 +304,17 @@ namespace HIMS.API.Controllers.Transaction
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewIPDCurrentAdmittedWardWiseCharges(FromDate, ToDate, DoctorId, WardId, CompanyId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDCurrentAdmittedWardWiseCharges", "IPDCurrentAdmittedWardWiseCharges", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpGet("view-IPDCurrentAdmittedDoctorWiseCharges")]
+        public IActionResult ViewIPDCurrentAdmittedDoctorWiseCharges(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, int CompanyId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPDCurrentAdmittedDOCTORWiseChanges.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPDCurrentAdmittedDoctorWiseCharges(FromDate, ToDate, DoctorId, WardId, CompanyId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDCurrentAdmittedDoctorWiseCharges", "IPDCurrentAdmittedDoctorWiseCharges", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
