@@ -8,34 +8,36 @@
 </head>
 
 <body>
-    <div class="main-content-wrapper">
-        <div class="invoice-box" style="max-width: 1000px; margin: 0 auto; font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
-            <table style="width: 100%;line-height: inherit;text-align: left;">
+    <div class="bill-template-wrapper" style="font-size: 14px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; ">
 
-                {{NewHeader}}
 
-                <tr class="title-date-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>IPD Current Admitted List - Ward Wise</b> </td>
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <!--<tr class="bill-info-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <i style="font-size: 16px;"> From Date : {{FromDate}} -- To Date : {{ToDate}}</i>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>-->
-               
+        {{NewHeader}}
+        <table style="width: 100%;line-height: inherit;text-align: left;">
+            <tr class="title-date-row">
+                <td style="padding: 6px;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="font-size: 18px">
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>IPD Current Admitted List </b> </td>
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                        </tr>
+                    </table>
+                    <div style="margin-top:2px;">
+                        <div style="font-weight: bold;font-size:18px;margin-left:10px;padding:5px;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
+                    </div>
+                </td>
+            </tr>
+            <!--<tr class="bill-info-row">
+            <td style="padding: 6px;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="padding: 2px;">
+                            <i style="font-size: 16px;"> From Date : {{FromDate}} -- To Date : {{ToDate}}</i>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>-->
+
 
 
             <table class="table" style="width:100%;border-collapse:collapse">
@@ -68,6 +70,12 @@
                             Sex
                         </td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Mobile No
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Address
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                             DOA
                         </td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
@@ -95,26 +103,26 @@
                     <!--<tr style="font-size: 18px; background-color: white; font-weight: 700;">
 
 
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">UHID</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">WardName</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;width:10%;">IPD No</td>
+                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">UHID</td>
+                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">WardName</td>
+                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;width:10%;">IPD No</td>
 
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">PatientName</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width:7%;"> Age </td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width:7%;"> Sex</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 10%;">DOA </td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 10%;">DOT</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;width:15%;">Doctor Name</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> RefDoctor Name</td>-->
+                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">PatientName</td>
+                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width:7%;"> Age </td>
+                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width:7%;"> Sex</td>
+                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 10%;">DOA </td>
+                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 10%;">DOT</td>
+                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;width:15%;">Doctor Name</td>
+                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> RefDoctor Name</td>-->
                     <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Address</td>-->
                     <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Bed No</td>
-        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;width: 10%;">Charges Amt</td>
-        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;width:10%;">Adv Amt</td>
-        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;width:10%;">Bal Amt</td>
-    </tr>-->
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;width: 10%;">Charges Amt</td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;width:10%;">Adv Amt</td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;width:10%;">Bal Amt</td>
+                </tr>-->
                     {{Items}}
-                <!--<tr>
+                    <!--<tr>
                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
@@ -128,20 +136,27 @@
                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                  
+
                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"> Total Bal Amt</td>
                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_Count}}</td>
                 </tr>-->
-                   
+
                 </tbody>
+                 <
+                
+
             </table>
-           
-                </table>
-                </td>
-               
-                </tr>
-            </table>
-        </div>
+
+             <
+            
+
+        </table>
+        </td>
+
+        </tr>
+
+        </table>
+    </div>
     </div>
 </body>
 </html>
