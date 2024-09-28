@@ -35,7 +35,7 @@ namespace HIMS.Model.Pharmacy
         public String ExternalPatientName { get; set; }
         public String DoctorName { get; set; }
         public long StoreId { get; set; }
-        public bool IsPrescription { get; set; }
+        public long IsPrescription { get; set; }
         public String CreditReason { get; set; }
         public long CreditReasonID { get; set; }
         public long WardId { get; set; }
