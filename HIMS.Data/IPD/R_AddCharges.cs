@@ -45,7 +45,7 @@ namespace HIMS.Data.IPD
                 Dictionary<string, Object> PathParams = new Dictionary<string, object>();
 
                 PathParams.Add("PathDate", addChargesParams.AddCharges.ChargesDate);
-                PathParams.Add("PathTime", addChargesParams.AddCharges.ChargesDate);
+                PathParams.Add("PathTime", addChargesParams.AddCharges.ChargeTime);
                 PathParams.Add("OPD_IPD_Type", addChargesParams.AddCharges.OPD_IPD_Type);
                 PathParams.Add("OPD_IPD_Id", addChargesParams.AddCharges.OPD_IPD_Id);
                 PathParams.Add("PathTestID", addChargesParams.AddCharges.ServiceId);
