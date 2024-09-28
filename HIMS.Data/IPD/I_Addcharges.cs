@@ -9,5 +9,6 @@ namespace HIMS.Data.IPD
     {
         bool Save(AddChargesParams addChargesParams);
         bool delete(AddChargesParams addChargesParams);
+        bool LabRequestSave(LabRequesChargesParams labRequesChargesParams);
     }
 }

@@ -82,7 +82,7 @@ namespace HIMS.Data.Opd
                     Dictionary<string, Object> PathParams = new Dictionary<string, object>();
 
                     PathParams.Add("PathDate", a.ChargesDate);
-                    PathParams.Add("PathTime", a.ChargesDate);
+                    PathParams.Add("PathTime", a.ChargeTime);
                     PathParams.Add("OPD_IPD_Type", a.OPD_IPD_Type);
                     PathParams.Add("OPD_IPD_Id", a.OPD_IPD_Id);
                     PathParams.Add("PathTestID", a.ServiceId);
@@ -100,7 +100,7 @@ namespace HIMS.Data.Opd
                     Dictionary<string, Object> PathParams = new Dictionary<string, object>();
 
                     PathParams.Add("RadDate", a.ChargesDate);
-                    PathParams.Add("RadTime", a.ChargesDate);
+                    PathParams.Add("RadTime", a.ChargeTime);
                     PathParams.Add("OPD_IPD_Type", a.OPD_IPD_Type);
                     PathParams.Add("OPD_IPD_Id", a.OPD_IPD_Id);
                     PathParams.Add("RadTestID", a.ServiceId);
@@ -181,7 +181,7 @@ namespace HIMS.Data.Opd
                     Dictionary<string, Object> PathParams = new Dictionary<string, object>();
 
                     PathParams.Add("PathDate", a.ChargesDate);
-                    PathParams.Add("PathTime", a.ChargesDate);
+                    PathParams.Add("PathTime", a.ChargeTime);
                     PathParams.Add("OPD_IPD_Type", a.OPD_IPD_Type);
                     PathParams.Add("OPD_IPD_Id", a.OPD_IPD_Id);
                     PathParams.Add("PathTestID", a.ServiceId);
@@ -199,7 +199,7 @@ namespace HIMS.Data.Opd
                     Dictionary<string, Object> PathParams = new Dictionary<string, object>();
 
                     PathParams.Add("RadDate", a.ChargesDate);
-                    PathParams.Add("RadTime", a.ChargesDate);
+                    PathParams.Add("RadTime", a.ChargeTime);
                     PathParams.Add("OPD_IPD_Type", a.OPD_IPD_Type);
                     PathParams.Add("OPD_IPD_Id", a.OPD_IPD_Id);
                     PathParams.Add("RadTestID", a.ServiceId);

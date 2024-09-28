@@ -283,13 +283,19 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(RPAP);
         }
 
+        [HttpPost("LabRequestCharges")]
+        public IActionResult LabRequestCharges(LabRequesChargesParams labRequesChargesParams)
+        {
+            var vlabRequest = _Addcharges.LabRequestSave(labRequesChargesParams);
+            return Ok(vlabRequest);
+        }
+
         [HttpPost("DeleteIPCharges")]
         public IActionResult DeleteIPCharges(AddChargesParams addChargesParams)
         {
             var RPAP = _Addcharges.delete(addChargesParams);
             return Ok(RPAP);
         }
-
 
 
         [HttpPost("InsertIPDischarge")]

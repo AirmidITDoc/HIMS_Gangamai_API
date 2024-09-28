@@ -42,11 +42,10 @@ namespace HIMS.Data.Pharmacy
             foreach (var a in SupplierPayment.TSupPayDetPayStatus)
             {
                 var disc1 = a.ToDictionary();
-              //  disc5["GrnId"] = BillNo;
+                disc1["SupPayId"] = SupPayId;
                 var ID1 = ExecNonQueryProcWithOutSaveChanges("insert_T_SupPayDet_PayStatus", disc1);
             }
 
-           
             _unitofWork.SaveChanges();
             return SupPayId;
         }

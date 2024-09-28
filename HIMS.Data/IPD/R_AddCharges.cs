@@ -25,6 +25,15 @@ namespace HIMS.Data.IPD
             return true;
         }
 
+        public bool LabRequestSave(LabRequesChargesParams labRequesChargesParams)
+        {
+            // throw new NotImplementedException();
+            var disc1 = labRequesChargesParams.LabRequestCharges.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Insert_LabRequest_Charges_1", disc1);
+            _unitofWork.SaveChanges();
+
+            return true;
+        }
         public bool Save(AddChargesParams addChargesParams)
         {
             // add AddCharges
@@ -45,7 +54,7 @@ namespace HIMS.Data.IPD
                 Dictionary<string, Object> PathParams = new Dictionary<string, object>();
 
                 PathParams.Add("PathDate", addChargesParams.AddCharges.ChargesDate);
-                PathParams.Add("PathTime", addChargesParams.AddCharges.ChargesDate);
+                PathParams.Add("PathTime", addChargesParams.AddCharges.ChargeTime);
                 PathParams.Add("OPD_IPD_Type", addChargesParams.AddCharges.OPD_IPD_Type);
                 PathParams.Add("OPD_IPD_Id", addChargesParams.AddCharges.OPD_IPD_Id);
                 PathParams.Add("PathTestID", addChargesParams.AddCharges.ServiceId);
