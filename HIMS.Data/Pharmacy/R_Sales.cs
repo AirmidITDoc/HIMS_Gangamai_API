@@ -88,6 +88,9 @@ namespace HIMS.Data.Pharmacy
             vPayment["BillNo"] = BillNo;
             ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_Pharmacy_New_1", vPayment);
 
+            var vPresciptionStatus = salesParams.SalesPrescriptionStatusUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_T_IPPrescription_Isclosed_Status_1", vPresciptionStatus);
+
             var vDaraftStatus = salesParams.SalesDraftStatusUpdate.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_Update_T_SalDraHeader_IsClosed_1", vDaraftStatus);
 
@@ -177,13 +180,15 @@ namespace HIMS.Data.Pharmacy
                 ExecNonQueryProcWithOutSaveChanges("m_Cal_DiscAmount_Sales", vDiscCal);
             }
 
-            //var vDiscCal = salesCreditParams.Cal_DiscAmount_SalesCredit.ToDictionary();
-            //vDiscCal["SalesID"] = BillNo;
-            //ExecNonQueryProcWithOutSaveChanges("m_Cal_DiscAmount_Sales", vDiscCal);
-
             var vGSTCal = salesCreditParams.Cal_GSTAmount_SalesCredit.ToDictionary();
             vGSTCal["SalesID"] = BillNo;
             ExecNonQueryProcWithOutSaveChanges("m_Cal_GSTAmount_Sales", vGSTCal);
+
+            var vPresciptionStatus = salesCreditParams.PrescriptionStatusUpdate_SalesCredit.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_T_IPPrescription_Isclosed_Status_1", vPresciptionStatus);
+
+            var vDaraftStatus = salesCreditParams.DraftStatusUpdate_SalesCredit.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_T_SalDraHeader_IsClosed_1", vDaraftStatus);
 
             _unitofWork.SaveChanges();
             return BillNo;

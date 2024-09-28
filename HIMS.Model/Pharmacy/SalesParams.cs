@@ -18,6 +18,7 @@ namespace HIMS.Model.Pharmacy
             public update_T_PHAdvanceHeader update_T_PHAdvanceHeader { get; set; }
             public SalesDraftbillInsert SalesDraftbillInsert { get; set; }
             public SalesDraftStatusUpdate SalesDraftStatusUpdate { get; set; }
+            public SalesPrescriptionStatusUpdate SalesPrescriptionStatusUpdate { get; set; }
 
     }
     public class SalesInsert
@@ -151,6 +152,12 @@ namespace HIMS.Model.Pharmacy
     {
         public long DSalesId { get; set; }
         public Boolean IsClosed { get; set; }
+    }
+
+    public class SalesPrescriptionStatusUpdate
+    {
+        public long opipid { get; set; }
+        public Boolean Isclosed { get; set; }
     }
     public class UpdateCurStkSales
     {

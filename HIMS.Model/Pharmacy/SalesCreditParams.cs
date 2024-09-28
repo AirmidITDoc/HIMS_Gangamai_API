@@ -12,6 +12,8 @@ namespace HIMS.Model.Pharmacy
         //public List<UpdateCurStkSalesCreditCheck> UpdateCurStkSalesCreditCheck { get; set; }
         public Cal_DiscAmount_SalesCredit Cal_DiscAmount_SalesCredit { get; set; }
         public Cal_GSTAmount_SalesCredit Cal_GSTAmount_SalesCredit { get; set; }
+        public DraftStatusUpdate_SalesCredit DraftStatusUpdate_SalesCredit { get; set; }
+        public PrescriptionStatusUpdate_SalesCredit PrescriptionStatusUpdate_SalesCredit { get; set; }
     }
     public class SalesInsertCredit
     {
@@ -99,6 +101,18 @@ namespace HIMS.Model.Pharmacy
     public class Cal_GSTAmount_SalesCredit
     {
         public long SalesID { get; set; }
+    }
+
+    public class DraftStatusUpdate_SalesCredit
+    {
+        public long DSalesId { get; set; }
+        public Boolean IsClosed { get; set; }
+    }
+
+    public class PrescriptionStatusUpdate_SalesCredit
+    {
+        public long opipid { get; set; }
+        public Boolean Isclosed { get; set; }
     }
 
 }
