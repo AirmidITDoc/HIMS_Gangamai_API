@@ -1,9 +1,13 @@
 ﻿using HIMS.Common.Utility;
 using HIMS.Model.Document;
+using HIMS.Model.IPD;
 using HIMS.Model.Master.Prescription;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Text;
+using System.Linq;
 
 namespace HIMS.Data.Document
 {
@@ -27,6 +31,39 @@ namespace HIMS.Data.Document
             ExecNonQueryProcWithOutSaveChanges("insert_DocumentTypes_1", disc);
             _unitofWork.SaveChanges();
             return true;
+        }
+
+        public List<PatientDocumentAttachmentItem> Save(List<PatientDocumentAttachmentItem> patientDocumentAttachment)
+        {
+            foreach (var a in patientDocumentAttachment)
+            {
+                var outputId = new SqlParameter
+                {
+                    SqlDbType = SqlDbType.BigInt,
+                    ParameterName = "@Id",
+                    Value = 0,
+                    Direction = ParameterDirection.Output
+                };
+                var disc = a.ToDictionary();
+                disc.Remove("PatientDocFile");
+                disc.Remove("Id");
+                a.Id = ExecNonQueryProcWithOutSaveChanges("insert_PatientDocumentMaster", disc, outputId).ToString();
+            }
+            _unitofWork.SaveChanges();
+            return patientDocumentAttachment;
+        }
+        public List<PatientDocumentAttachmentItem> GetFiles(int Id, int PId)
+        {
+            SqlParameter[] para = new SqlParameter[2];
+            para[0] = new SqlParameter("@Id", Id);
+            para[1] = new SqlParameter("@PId", PId);
+            return GetList<PatientDocumentAttachmentItem>("SELECT * FROM [PatientDocumentMaster] WHERE Id=@Id AND PId=@PId", para);
+        }
+        public PatientDocumentAttachmentItem GetFileById(int Id)
+        {
+            SqlParameter[] para = new SqlParameter[1];
+            para[0] = new SqlParameter("@Id", Id);
+            return GetList<PatientDocumentAttachmentItem>("SELECT * FROM [PatientDocumentMaster] WHERE Id=@Id", para).FirstOrDefault();
         }
     }
 }
