@@ -25,7 +25,7 @@ namespace HIMS.Model.Pharmacy
         public string Remark { get; set; }
         public int IsAddedBy { get; set; }
         public int IsUpdatedBy { get; set; }
-        public int IsCancelled { get; set; }
+        public bool IsCancelled { get; set; }
         public int IsCancelledBy { get; set; }
         public DateTime IsCancelledDate { get; set; }
         public string PartyReceiptNo { get; set; }
@@ -33,15 +33,13 @@ namespace HIMS.Model.Pharmacy
         public string NEFTNo { get; set; }
         public string NEFTBankMaster { get; set; }
         public DateTime NEFTDate { get; set; }
-
         public float CardPayAmt { get; set; }
         public string CardNo { get; set; }
         public string CardBankName { get; set; }
         public DateTime CardPayDate { get; set; }
         public float PayTMAmount { get; set; }
         public string PayTMTranNo { get; set; }
-
-       public DateTime PayTMDate { get; set; }
+        public DateTime PayTMDate { get; set; }
 
     }
     public class TGRNHeaderPayStatus
