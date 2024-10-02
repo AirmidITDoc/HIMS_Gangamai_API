@@ -34,6 +34,14 @@ namespace HIMS.Data.Master
             return GetList<HospitalStoreMaster>("SELECT StoreId,PrintStoreName,StoreAddress,HospitalMobileNo,HospitalEmailId,PrintStoreUnitName,DL_NO,GSTIN,Header FROM M_StoreMaster WHERE StoreId=@Id", para).FirstOrDefault();
         }
 
+        public M_ReportTemplateConfig GetTemplateById(long Id)
+        {
+            if (Id == 0) return new M_ReportTemplateConfig();
+            SqlParameter[] para = new SqlParameter[1];
+            para[0] = new SqlParameter("@Id", Id);
+            return GetList<M_ReportTemplateConfig>("SELECT * FROM M_ReportTemplateConfig WHERE TemplateId=@Id", para).FirstOrDefault();
+        }
+
         public bool Save(HospitalMasterParam HospitalMasterParam)
         {
             // throw new NotImplementedException();

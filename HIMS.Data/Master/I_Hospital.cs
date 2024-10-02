@@ -10,10 +10,9 @@ namespace HIMS.Data.Master
     public interface I_Hospital
     {
         HospitalMaster GetHospitalById(long Id);
-
         HospitalStoreMaster GetHospitalStoreById(long Id);
-
         bool Save(HospitalMasterParam HospitalMasterParam);
         bool Update(HospitalMasterParam HospitalMasterParam);
+        M_ReportTemplateConfig GetTemplateById(long Id);
     }
 }

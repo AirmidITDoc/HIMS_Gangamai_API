@@ -62,6 +62,7 @@ namespace HIMS.API.Controllers.Transaction
         private readonly IFileUtility _IFileUtility;
         private readonly I_CrossConsultation _CrossConsultation;
         public readonly IFileUtility _FileUtility;
+        public readonly IConfiguration _configuration;
         public OutPatientController(
             I_PhoneAppointment phoneAppointment,
             I_Payment payment,
@@ -83,7 +84,8 @@ namespace HIMS.API.Controllers.Transaction
             I_EmailNotification emailNotification,
             I_OPBillingCredit oPBillingCredit, I_OPSettlemtCredit oPSettlemtCredit, I_IP_SMSOutgoing iP_SMSOutgoing, I_PatientDocumentupload patientDocumentupload
             , I_PatientFeedback patientFeedback, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility
-            , IFileUtility fileUtility, I_CrossConsultation crossConsultation,IFileUtility FileUtility
+            , IFileUtility fileUtility, I_CrossConsultation crossConsultation,IFileUtility FileUtility,
+            IConfiguration configuration
 
             )
         {
@@ -118,6 +120,7 @@ namespace HIMS.API.Controllers.Transaction
             _IFileUtility = fileUtility;
             _CrossConsultation = crossConsultation;
             _IFileUtility = fileUtility;
+            _configuration = configuration;
         }
 
 
@@ -187,6 +190,17 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        [HttpGet("view-AppoinmentTemplate")]
+        public IActionResult viewAppoinmentTemplate(int VisitId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanTemplate.html");
+            string header1 = _pdfUtility.GetTemplateHeader(1);// Appointment header
+            header1 = header1.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+            DataTable dt = _OpdAppointment.GetDataForReport(VisitId);
+            var html = _OpdAppointment.ViewAppointmentTemplate(dt, htmlFilePath, header1);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AppointmentPrint", "Appointment_"+ VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         //OPDCrossConsultation Insert 
         [HttpPost("OPDCrossConsultationInsert")]

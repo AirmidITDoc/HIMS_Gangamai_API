@@ -54,6 +54,13 @@ namespace HIMS.API.Utility
                 return objHospital.Header;
             }
         }
+
+        public string GetTemplateHeader(int Id)
+        {
+                M_ReportTemplateConfig objTemplate = _Hospital.GetTemplateById(Id);
+                return objTemplate.TemplateDescription;
+        }
+
         public string GetStoreHeader(string filePath, long StoreId = 0)
         {
             string htmlHeader = System.IO.File.ReadAllText(filePath);
