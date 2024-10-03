@@ -88,6 +88,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_DoctorShare _DoctorShare;
         public readonly I_CanteenRequest _CanteenRequest;
         public readonly I_CompanyInformation _CompanyInformation;
+        public readonly I_PrescriptionTemplate _PrescriptionTemplate;
         public InPatientController(
             IWebHostEnvironment environment,
             IFileUtility fileUtility,
@@ -118,7 +119,7 @@ namespace HIMS.API.Controllers.Transaction
             , I_IPPrescription iPPrescription, I_OTEndoscopy oTEndoscopy, I_OTRequest oTRequest, I_OTNotesTemplate oTNotesTemplate, I_MaterialConsumption materialConsumption
             , I_NeroSurgeryOTNotes neroSurgeryOTNotes, I_DoctorNote doctorNote, I_NursingTemplate nursingTemplate, I_Mrdmedicalcertificate mrdmedicalcertificate,
             I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote,I_WhatsappSms whatsappSms,
-            I_Sales sales,I_DoctorShare doctorShare,
+            I_Sales sales,I_DoctorShare doctorShare, I_PrescriptionTemplate prescriptionTemplate,
             Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility ,I_CanteenRequest canteenRequest,I_CompanyInformation companyInformation
             )
         {
@@ -177,6 +178,7 @@ namespace HIMS.API.Controllers.Transaction
             this._BedTransfer = bedTransfer;
             this._CanteenRequest = canteenRequest;
             this._CompanyInformation = companyInformation;
+            this._PrescriptionTemplate = prescriptionTemplate;
         }
 
         //New AdmissionSave
@@ -1216,6 +1218,13 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
+
+        [HttpPost("Insert-PrescriptionTemplate")]
+        public IActionResult InsertPrescriptioTemplate(Prescription_templateparam Prescription_templateparam)
+        {
+            var Id = _PrescriptionTemplate.Insert(Prescription_templateparam);
+            return Ok(Id);
+        }
     }
 
 }
