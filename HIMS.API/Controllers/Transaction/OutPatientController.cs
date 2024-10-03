@@ -190,15 +190,25 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-        [HttpGet("view-AppoinmentTemplate")]
+        [HttpGet("view-AppointmentTemplate")]
         public IActionResult viewAppoinmentTemplate(int VisitId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanTemplate.html");
+            
+            // Hospital Header 
+            string Hospitalheader = _pdfUtility.GetHeader(6, 1);// hospital header
+            Hospitalheader = Hospitalheader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+            
+            //Report content
             string header1 = _pdfUtility.GetTemplateHeader(1);// Appointment header
             header1 = header1.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+          
             DataTable dt = _OpdAppointment.GetDataForReport(VisitId);
             var html = _OpdAppointment.ViewAppointmentTemplate(dt, htmlFilePath, header1);
+            html = html.Replace("{{NewHeader}}", Hospitalheader);
+
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AppointmentPrint", "Appointment_"+ VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 

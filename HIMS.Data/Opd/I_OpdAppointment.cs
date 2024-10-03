@@ -8,9 +8,7 @@ namespace HIMS.Data.Opd
     {
         //List<dynamic> GetBrowseOPDBill(BrowseOPDBillParams browseOPDBillParams);
         public string Save(OpdAppointmentParams opdAppointmentParams);
-
         public string SavewithPhoto(OpdAppointmentParams opdAppointmentParams);
-
         public bool AppointmentCancle(OpdAppointmentParams opdAppointmentParams);
         public string Update(OpdAppointmentParams opdAppointmentParams);
         string ViewpatientAppointmentReceipt(int VisitId, string htmlFilePath, string htmlHeaderFilePath);
