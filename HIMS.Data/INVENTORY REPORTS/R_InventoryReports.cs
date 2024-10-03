@@ -1091,7 +1091,7 @@ namespace HIMS.Data.Opd
               
 
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalanceQty"].ConvertToString()).Append("</td></tr>");
-                T_NetAmount += dr["PerUnitPurchaseRate"].ConvertToDouble();
+                T_NetAmount += dr["BalanceQty"].ConvertToDouble();
             }
 
 
