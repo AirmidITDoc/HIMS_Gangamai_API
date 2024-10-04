@@ -17,6 +17,7 @@ using HIMS.API.Utility;
 using HIMS.Common.Utility;
 using HIMS.Model.WhatsAppEmail;
 using HIMS.Data.WhatsAppEmail;
+using System.Data;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -89,6 +90,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_CanteenRequest _CanteenRequest;
         public readonly I_CompanyInformation _CompanyInformation;
         public readonly I_PrescriptionTemplate _PrescriptionTemplate;
+        public readonly IConfiguration _configuration;
         public InPatientController(
             IWebHostEnvironment environment,
             IFileUtility fileUtility,
@@ -119,7 +121,7 @@ namespace HIMS.API.Controllers.Transaction
             , I_IPPrescription iPPrescription, I_OTEndoscopy oTEndoscopy, I_OTRequest oTRequest, I_OTNotesTemplate oTNotesTemplate, I_MaterialConsumption materialConsumption
             , I_NeroSurgeryOTNotes neroSurgeryOTNotes, I_DoctorNote doctorNote, I_NursingTemplate nursingTemplate, I_Mrdmedicalcertificate mrdmedicalcertificate,
             I_Mrddeathcertificate mrddeathcertificate, I_SubcompanyTPA subcompanyTPA, I_Prepostopnote prepostopnote,I_WhatsappSms whatsappSms,
-            I_Sales sales,I_DoctorShare doctorShare, I_PrescriptionTemplate prescriptionTemplate,
+            I_Sales sales,I_DoctorShare doctorShare, I_PrescriptionTemplate prescriptionTemplate, IConfiguration configuration,
             Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility ,I_CanteenRequest canteenRequest,I_CompanyInformation companyInformation
             )
         {
@@ -179,6 +181,7 @@ namespace HIMS.API.Controllers.Transaction
             this._CanteenRequest = canteenRequest;
             this._CompanyInformation = companyInformation;
             this._PrescriptionTemplate = prescriptionTemplate;
+            this._configuration = configuration;
         }
 
         //New AdmissionSave
@@ -248,21 +251,45 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-        [HttpGet("view-Admitted_PatientCasepaper")]
-        public IActionResult ViewPatientCasepaper(int AdmissionId)
+        //[HttpGet("view-Admitted_PatientCasepaper")]
+        //public IActionResult ViewPatientCasepaper(int AdmissionId)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPCasepaper.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    var html = _Admission.ViewAdmissionPaper(AdmissionId, htmlFilePath,_pdfUtility.GetHeader( htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPAdmission", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+        //    // write logic for send pdf in whatsapp
+
+
+        //    //if (System.IO.File.Exists(tuple.Item2))
+        //    //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
+
+
+        [HttpGet("view-AdmissionTemplate")]
+        public IActionResult viewAdmissionTemplate(int VisitId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPCasepaper.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _Admission.ViewAdmissionPaper(AdmissionId, htmlFilePath,_pdfUtility.GetHeader( htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPAdmission", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanTemplate.html");
 
-            // write logic for send pdf in whatsapp
+            // Hospital Header 
+            string Hospitalheader = _pdfUtility.GetHeader(4, 1);// hospital header
+            Hospitalheader = Hospitalheader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
 
+            //Report content
+            string header1 = _pdfUtility.GetTemplateHeader(2);// Appointment header
+            header1 = header1.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
 
-            //if (System.IO.File.Exists(tuple.Item2))
-            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            DataTable dt = _Admission.GetDataForReport(VisitId);
+            var html = _Admission.ViewAdmissionPaper(dt, htmlFilePath, header1);
+            html = html.Replace("{{NewHeader}}", Hospitalheader);
+
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AdmissionPrint", "Admission" + VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+
 
         //[HttpPost("RegisteredAdmissionSave")]
         //public IActionResult AdmissionSave(RegisteredPatientAdmissionParams RegisteredPatientAdmissionParams)
@@ -595,19 +622,10 @@ namespace HIMS.API.Controllers.Transaction
             var html = _IPBilling.ViewIPBillWardwiseReceipt(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPBillWardwiseReceipt", "IPBillWardwiseReceipt" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-
-
-            //if (System.IO.File.Exists(tuple.Item2))
-            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-        //[HttpPost("BillDiscountAfter")]
-        //public String BillDiscountAfterUpdate(BillDiscountAfterParams billDiscountAfterParams)
-        //{
-        //    var IPBill = _IPBilling.BillDiscountAfterUpdate(billDiscountAfterParams);
-        //    return (IPBill.ToString());
-        //}
+       
 
         [HttpPost("BillDiscountAfter")]
 

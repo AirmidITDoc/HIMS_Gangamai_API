@@ -35,10 +35,12 @@ namespace HIMS.Data.IPD
             disc2.Remove("PresId");
             var PresId = ExecNonQueryProcWithOutSaveChanges("insert_M_PresTemplateH_1", disc2, outputId1);
 
-
-            var disc3 = Prescription_templateparam.Insert_TemplateD.ToDictionary();
-            disc3["PresId"] = PresId;
-            ExecNonQueryProcWithOutSaveChanges("insert_M_PresTemplateD_1", disc3);
+            foreach (var a in Prescription_templateparam.Insert_TemplateD)
+            {
+                var disc3 = a.ToDictionary();
+                disc3["PresId"] = PresId;
+                ExecNonQueryProcWithOutSaveChanges("insert_M_PresTemplateD_1", disc3);
+            }
 
 
             _unitofWork.SaveChanges();

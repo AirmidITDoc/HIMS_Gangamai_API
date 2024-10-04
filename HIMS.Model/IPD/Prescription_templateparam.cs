@@ -8,7 +8,7 @@ namespace HIMS.Model.IPD
     {
         public Delete_PrescriptionTemplate Delete_PrescriptionTemplate { get; set; }
         public Insert_TemplateH Insert_TemplateH { get; set; }
-        public Insert_TemplateD Insert_TemplateD { get; set; }
+        public List<Insert_TemplateD> Insert_TemplateD { get; set; }
     }
 
     public class Delete_PrescriptionTemplate
