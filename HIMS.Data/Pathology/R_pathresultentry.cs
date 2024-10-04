@@ -114,15 +114,15 @@ namespace HIMS.Data.Pathology
 
                 }
 
-                if (previousLabel != dr["PrintTestName"].ConvertToString() || previousLabel=="")
-                    Suggflag = 1;
-                else
-                    Suggflag = 0;
+                //if (previousLabel != dr["PrintTestName"].ConvertToString() || previousLabel=="")
+                //    Suggflag = 1;
+                //else
+                //    Suggflag = 0;
 
 
-                previousLabel = dr["PrintTestName"].ConvertToString();
-                if (Suggflag == 1)
-                    items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;padding-left:10px;vertical-align:middle\">").Append("Interpretation Remark").Append(dr["SuggestionNote"].ConvertToString()).Append("</td></tr>");
+                //previousLabel = dr["PrintTestName"].ConvertToString();
+                //if (Suggflag == 1)
+                //    items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;padding-left:10px;vertical-align:middle\">").Append("Interpretation Remark").Append(dr["SuggestionNote"].ConvertToString()).Append("</td></tr>");
 
 
 
