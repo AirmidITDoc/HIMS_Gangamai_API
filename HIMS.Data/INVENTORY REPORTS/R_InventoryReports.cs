@@ -105,13 +105,13 @@ namespace HIMS.Data.Opd
         }
 
 
-        public string ViewSupplierList(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewSupplierList(String SupplierName,int StoreID,DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[0];
-            //para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
-            //para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            SqlParameter[] para = new SqlParameter[2];
+            para[0] = new SqlParameter("@SupplierName", SupplierName) { DbType = DbType.String };
+            para[1] = new SqlParameter("@StoreID", StoreID) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("Rtrv_SupplierMasterList_by_Name", para);
 
 

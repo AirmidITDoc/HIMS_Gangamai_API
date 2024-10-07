@@ -41,11 +41,11 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
         [HttpGet("view-SupplierList")]
-        public IActionResult ViewSupplierList(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewSupplierList(String SupplierName,int StoreID,DateTime FromDate, DateTime ToDate)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_SupplierList.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _InventoryReport.ViewSupplierList(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _InventoryReport.ViewSupplierList(SupplierName, StoreID,FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SupplierList", "SupplierList", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 

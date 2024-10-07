@@ -11,7 +11,7 @@ namespace HIMS.Data.InventoryReports
     {
         
         string ViewItemList(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-        string ViewSupplierList(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewSupplierList(String SupplierName,int StoreID,DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewIndentReport(DateTime FromDate, DateTime ToDate, int FromStoreId,int ToStoreId,string htmlFilePath, string htmlHeader);
         string ViewMonthlyPurchaseGRNReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewGRNReport(DateTime FromDate, DateTime ToDate,int StoreId, int SupplierID,string htmlFilePath, string htmlHeader);
