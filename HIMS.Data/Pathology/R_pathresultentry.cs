@@ -89,8 +89,8 @@ namespace HIMS.Data.Pathology
             Boolean chkresonflag = false;
             string chkflag ="";
             int Suggflag = 0;
-            int i = 0, j = 0,k=0,l=0,m;
-            String Label = "", Label1="";
+            int i = 0, j = 0,k=0,testlength=0,m;
+            String Label = "", Suggchk="";
             string previousLabel = "",previoussubLabel = "";
             foreach (DataRow dr in Bills.Rows)
             {
@@ -102,33 +102,41 @@ namespace HIMS.Data.Pathology
                 if (i == 1)
                 {
                     Label = dr["PrintTestName"].ConvertToString();
-                   
+                    Suggchk = dr["PrintTestName"].ConvertToString();
                     items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;padding-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;padding-left:20px;vertical-align:middle;\">").Append(dr["CategoryName"].ConvertToString()).Append("</td></tr>");
                     items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;padding-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;padding-left:30px;vertical-align:middle;\">").Append(Label).Append("</td></tr>");
                     items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;padding-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;vertical-align:middle;\">").Append("</td></tr>");
                 }
                 if (previousLabel != "" && previousLabel != dr["PrintTestName"].ConvertToString())
                 {
-
+                    Suggchk = dr["PrintTestName"].ConvertToString();
                     items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;padding-left:30px;vertical-align:middle\">").Append(dr["PrintTestName"].ConvertToString()).Append("</td></tr>");
 
                 }
 
-                //if (previousLabel != dr["PrintTestName"].ConvertToString() || previousLabel=="")
-                //    Suggflag = 1;
-                //else
-                //    Suggflag = 0;
+                //for (j = 0; j < Bills.Rows.Count; j++)
+                //{
+                //    if (Suggchk == previousLabel)
+                //        testlength++;
+                //}
 
 
-                //previousLabel = dr["PrintTestName"].ConvertToString();
-                //if (Suggflag == 1)
-                //    items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;padding-left:10px;vertical-align:middle\">").Append("Interpretation Remark").Append(dr["SuggestionNote"].ConvertToString()).Append("</td></tr>");
+                if (previousLabel != dr["PrintTestName"].ConvertToString() || previousLabel == "")
+                    Suggflag = 1;
+                else
+                    Suggflag = 0;
 
+
+
+                previousLabel = dr["PrintTestName"].ConvertToString();
+
+                if (Suggflag == 1 || previousLabel != dr["PrintTestName"].ConvertToString())
+                    items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;padding-left:10px;vertical-align:middle\">").Append("Interpretation Remark").Append(dr["SuggestionNote"].ConvertToString()).Append("</td></tr>");
 
 
                 if (dr["ResultValue"].ConvertToString() != "")
                 {
-
+                    
                     k++;
 
                     if (k == 1 && dr["SubTestName"].ConvertToString() != "")
@@ -177,10 +185,15 @@ namespace HIMS.Data.Pathology
 
 
                     previoussubLabel = dr["SubTestName"].ConvertToString();
+
+                    
                 }
 
+                //if (i== testlength)
+                //    items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;padding-left:10px;vertical-align:middle\">").Append("Interpretation Remark").Append(dr["SuggestionNote"].ConvertToString()).Append("</td></tr>");
 
-              
+
+
 
             }
 
@@ -256,7 +269,7 @@ namespace HIMS.Data.Pathology
         //    string chkflag = "";
 
         //    int i = 0, j = 0, k = 0, l, m;
-        //    String Label = "", Label1 = "";
+        //    String Label = "", Sugg = "";
         //    string previousLabel = "";
 
         //    foreach (DataRow dr in Bills.Rows)
