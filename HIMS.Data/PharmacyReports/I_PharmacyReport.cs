@@ -19,5 +19,8 @@ namespace HIMS.Data.PharmacyReports
 
         string ViewItemWiseDailySalesReport(DateTime FromDate, DateTime ToDate,int ItemId,int RegNo, int StoreId, string htmlFilePath, string HeaderName);
 
+
+        string ViewDoctorWiseProfitReport( DateTime FromDate, DateTime ToDate,int DoctorId, string htmlFilePath, string HeaderName);
+
     }
 }
