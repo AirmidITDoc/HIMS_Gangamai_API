@@ -141,15 +141,33 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
             html = html.Replace("{{ChiefComplaint}}", Bills.GetColValue("ChiefComplaint"));
+            html = html.Replace("{{Examination}}", Bills.GetColValue("Examination"));
             html = html.Replace("{{BP}}", Bills.GetColValue("BP"));
             html = html.Replace("{{Pulse}}", Bills.GetColValue("Pulse"));
+           html = html.Replace("{{Height}}", Bills.GetColValue("Height"));
+            html = html.Replace("{{Weight}}", Bills.GetColValue("PWeight"));
+            html = html.Replace("{{Temp}}", Bills.GetColValue("Temp"));
+            html = html.Replace("{{BP}}", Bills.GetColValue("BP"));
+            html = html.Replace("{{BSL}}", Bills.GetColValue("BSL"));
+            html = html.Replace("{{BMI}}", Bills.GetColValue("BMI"));
+            html = html.Replace("{{SpO2}}", Bills.GetColValue("SpO2"));
 
             html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
             html = html.Replace("{{MahRegNo}}", Bills.GetColValue("MahRegNo"));
             html = html.Replace("{{Education}}", Bills.GetColValue("Education"));
             html = html.Replace("{{Advice}}", Bills.GetColValue("Advice"));
 
-            
+            html = html.Replace("{{chkBPflag}}", Bills.GetColValue("BP").ConvertToString() !="" ? "visible" : "none");
+            html = html.Replace("{{chkPulseflag}}", Bills.GetColValue("Pulse").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkHeightflag}}", Bills.GetColValue("Height").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkWeightflag}}", Bills.GetColValue("PWeight").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkTempflag}}", Bills.GetColValue("Temp").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkBSLflag}}", Bills.GetColValue("BSL").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkBMIflag}}", Bills.GetColValue("BMI").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkSpO2flag}}", Bills.GetColValue("SpO2").ConvertToString() != "" ? "visible" : "none");
+
+
+
             return html;
         }
     }

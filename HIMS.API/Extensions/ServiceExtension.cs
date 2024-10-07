@@ -352,7 +352,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_Document, R_Document>();
 
 
-            /*    //services.AddTransient<I_StoreMaster, R_StoreMaster>();
+             services.AddTransient<I_PrescriptionTemplate, PrescriptionTemplate>();
 
             /*  services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();
              services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();

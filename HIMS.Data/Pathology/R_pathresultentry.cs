@@ -88,18 +88,21 @@ namespace HIMS.Data.Pathology
             StringBuilder items = new StringBuilder("");
             Boolean chkresonflag = false;
             string chkflag ="";
-
-            int i = 0, j = 0,k=0,l,m;
+            int Suggflag = 0;
+            int i = 0, j = 0,k=0,l=0,m;
             String Label = "", Label1="";
             string previousLabel = "",previoussubLabel = "";
             foreach (DataRow dr in Bills.Rows)
             {
 
-                i++; 
+                i++;
+
+               
+
                 if (i == 1)
                 {
                     Label = dr["PrintTestName"].ConvertToString();
-                    
+                   
                     items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;padding-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;padding-left:20px;vertical-align:middle;\">").Append(dr["CategoryName"].ConvertToString()).Append("</td></tr>");
                     items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;padding-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;padding-left:30px;vertical-align:middle;\">").Append(Label).Append("</td></tr>");
                     items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;padding-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;vertical-align:middle;\">").Append("</td></tr>");
@@ -111,8 +114,17 @@ namespace HIMS.Data.Pathology
 
                 }
 
-              
-                previousLabel = dr["PrintTestName"].ConvertToString();
+                //if (previousLabel != dr["PrintTestName"].ConvertToString() || previousLabel=="")
+                //    Suggflag = 1;
+                //else
+                //    Suggflag = 0;
+
+
+                //previousLabel = dr["PrintTestName"].ConvertToString();
+                //if (Suggflag == 1)
+                //    items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;padding-left:10px;vertical-align:middle\">").Append("Interpretation Remark").Append(dr["SuggestionNote"].ConvertToString()).Append("</td></tr>");
+
+
 
                 if (dr["ResultValue"].ConvertToString() != "")
                 {
@@ -163,8 +175,12 @@ namespace HIMS.Data.Pathology
                         items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:22px;font-weight:bold;\">").Append("</td></tr>");
                     }
 
+
                     previoussubLabel = dr["SubTestName"].ConvertToString();
                 }
+
+
+              
 
             }
 
@@ -207,7 +223,7 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{Path_DoctorName}}", Bills.GetColValue("Path_DoctorName"));
             html = html.Replace("{{Education}}", Bills.GetColValue("Education"));
             html = html.Replace("{{MahRegNo}}", Bills.GetColValue("MahRegNo"));
-            html = html.Replace("{{SuggestionNote}}", Bills.GetColValue("SuggestionNote"));
+         //   html = html.Replace("{{SuggestionNote}}", Bills.GetColValue("SuggestionNote"));
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName").ConvertToString());
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName").ConvertToString());
             html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
