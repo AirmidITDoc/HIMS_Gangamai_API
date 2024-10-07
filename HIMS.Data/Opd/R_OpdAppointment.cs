@@ -58,16 +58,7 @@ namespace HIMS.Data.Opd
                dic1.Remove("VisitID");
             var VisitID = ExecNonQueryProcWithOutSaveChanges("m_insert_VisitDetails_1", dic1, outputId1);
 
-            // insert_Registration_1_1
-            // var VisitID = ExecNonQueryProcWithOutSaveChanges("ps_Insert_VisitDetails", dic, outputId);
-            //add SMS ,,,insert_VisitDetails_New_1
-            //dic = new Dictionary<string, object>
-            //{
-            //    { "RegId", registerId }
-            //};
-
-            //ExecNonQueryProcWithOutSaveChanges("SMSRegistraion", dic);
-
+        
             //new code
             opdAppointmentParams.TokenNumberWithDoctorWiseSave.PatVisitID = Convert.ToInt64(VisitID);
             var disc3 = opdAppointmentParams.TokenNumberWithDoctorWiseSave.ToDictionary();
