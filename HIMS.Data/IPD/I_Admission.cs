@@ -24,6 +24,10 @@ namespace HIMS.Data.IPD
 
         string AdmissionListCurrentPharmacydetail(int DoctorId, int WardId, string htmlFilePath, string HeaderName);
 
-        string ViewAdmissionPaper(DataTable Bills, string htmlFilePath, string HeaderName);
+
+        
+
+              string ViewAdmissiontemplatePaper(DataTable Bills, string htmlFilePath, string HeaderName);
+        string ViewAdmissionPaper(int AdmissionId , string htmlFilePath, string HeaderName);
     }
 }

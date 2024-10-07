@@ -251,21 +251,21 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-        //[HttpGet("view-Admitted_PatientCasepaper")]
-        //public IActionResult ViewPatientCasepaper(int AdmissionId)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPCasepaper.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _Admission.ViewAdmissionPaper(AdmissionId, htmlFilePath,_pdfUtility.GetHeader( htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPAdmission", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        [HttpGet("view-Admitted_PatientCasepaper")]
+        public IActionResult ViewPatientCasepaper(int AdmissionId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPCasepaper.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Admission.ViewAdmissionPaper(AdmissionId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPAdmission", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-        //    // write logic for send pdf in whatsapp
+            // write logic for send pdf in whatsapp
 
 
-        //    //if (System.IO.File.Exists(tuple.Item2))
-        //    //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        //}
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
 
         [HttpGet("view-AdmissionTemplate")]
@@ -282,7 +282,7 @@ namespace HIMS.API.Controllers.Transaction
             header1 = header1.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
 
             DataTable dt = _Admission.GetDataForReport(VisitId);
-            var html = _Admission.ViewAdmissionPaper(dt, htmlFilePath, header1);
+            var html = _Admission.ViewAdmissiontemplatePaper(dt, htmlFilePath, header1);
             html = html.Replace("{{NewHeader}}", Hospitalheader);
 
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AdmissionPrint", "Admission" + VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
