@@ -573,7 +573,7 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GRNDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>");
 
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+          
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BatchExpDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ReceiveQty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["FreeQty"].ConvertToString()).Append("</td>");
@@ -637,7 +637,7 @@ namespace HIMS.Data.Opd
                 {
                     String Label;
                     Label = dr["SupplierName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
                 if (previousLabel != "" && previousLabel != dr["SupplierName"].ConvertToString())
                 {
@@ -647,7 +647,7 @@ namespace HIMS.Data.Opd
                        .Append(Dcount.ToString()).Append("</td></tr>");
 
                     Dcount = 0;
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["SupplierName"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["SupplierName"].ConvertToString()).Append("</td></tr>");
 
                 }
 
@@ -1149,7 +1149,9 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalanceQty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PurUnitRateWF"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalPur"].ConvertToDouble()).Append("</td></tr>");
-                T_NetAmount += dr["PerUnitPurchaseRate"].ConvertToDouble();
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["UnitMRP"].ConvertToDouble()).Append("</td></tr>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalMRP"].ConvertToDouble()).Append("</td></tr>");
+                T_NetAmount += dr["TotalMRP"].ConvertToDouble();
             }
 
 
@@ -1679,7 +1681,7 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["AfterBalQty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Ad_DD_Type"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["UserName"].ConvertToString()).Append("</td></tr>");
-                T_NetAmount += dr["NetAmount"].ConvertToDouble();
+                //T_NetAmount += dr["NetAmount"].ConvertToDouble();
             }
 
 

@@ -683,5 +683,89 @@ namespace HIMS.Data.Opd
             return html;
 
         }
+
+
+        public string ViewDoctorWiseProfitReport( DateTime FromDate, DateTime ToDate, int DoctorId, string htmlFilePath, string htmlHeader)
+        {
+            SqlParameter[] para = new SqlParameter[3];
+
+
+          
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
+
+            var Bills = GetDataTableProc("rptDrwise_patientwise_proftReport", para);
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            double T_Count = 0, T_NetAmount = 0, T_Amount = 0, T_ProfitAmount = 0;
+
+            string previousLabel = "";
+
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+
+                i++; j++;
+
+
+                if (i == 1)
+                {
+                    String Label;
+                    Label = dr["DoctorName"].ConvertToString();
+
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"6\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+                if (previousLabel != "" && previousLabel != dr["DoctorName"].ConvertToString())
+                {
+                    j = 1;
+
+                    //items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='2' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"></td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    //   .Append(T_Amount.ToString()).Append("</td></tr>");
+
+                    //T_Amount = 0;
+                    //items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"></td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    //  .Append(T_NetAmount.ToString()).Append("</td></tr>");
+                    //T_NetAmount = 0;
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='4' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"></td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                      .Append(T_ProfitAmount.ToString()).Append("</td></tr>");
+                    T_ProfitAmount = 0;
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"6\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["DoctorName"].ConvertToString()).Append("</td></tr>");
+
+                }
+
+                //Dcount = Dcount + 1;
+                //T_Count = T_Count + 1;
+                previousLabel = dr["DoctorName"].ConvertToString();
+
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+                //items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ChargesDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalLandedAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["profitamount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Lable"].ConvertToString()).Append("</td></tr>");
+               
+                T_Amount += dr["TotalLandedAmount"].ConvertToDouble();
+                T_NetAmount += dr["NetAmount"].ConvertToDouble();
+                T_ProfitAmount += dr["profitamount"].ConvertToDouble();
+            }
+            html = html.Replace("{{T_Amount}}", T_Amount.ToString());
+            html = html.Replace("{{T_ProfitAmount}}", T_ProfitAmount.ToString());
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.ToString());
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+
+
+            return html;
+        }
     }
 }
