@@ -51,8 +51,8 @@ namespace HIMS.API.Controllers.Transaction
           
             DataTable dt = i_RadiologyTemplate.GetDataForReport(RadReportId,OP_IP_Type);
             var html = i_RadiologyTemplate.ViewRadiologyTemplateReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
-            html = html.Replace("{{Signature}}", signature);
+            //var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+            //html = html.Replace("{{Signature}}", signature);
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RadiologyTemplateReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });

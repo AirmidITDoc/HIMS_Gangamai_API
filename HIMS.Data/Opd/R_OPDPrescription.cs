@@ -166,6 +166,10 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{chkBMIflag}}", Bills.GetColValue("BMI").ConvertToString() != "" ? "visible" : "none");
             html = html.Replace("{{chkSpO2flag}}", Bills.GetColValue("SpO2").ConvertToString() != "" ? "visible" : "none");
 
+            html = html.Replace("{{chkEdu}}", Bills.GetColValue("PathResultDr1").ConvertToString() != "" ? "table-row" : "none");
+            html = html.Replace("{{chkRegNo}}", Bills.GetColValue("PathResultDr1").ConvertToString() != "" ? "table-row" : "none");
+           
+            html = html.Replace("{{chkSignature}}", Bills.GetColValue("Signature").ConvertToString() != "" ? "table-row" : "none");
 
 
             return html;
