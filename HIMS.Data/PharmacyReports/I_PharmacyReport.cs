@@ -25,6 +25,6 @@ namespace HIMS.Data.PharmacyReports
         string ViewDoctorWiseSalesReport(DateTime FromDate, DateTime ToDate, int StoreId, int DoctorId,string htmlFilePath, string HeaderName);
         string ViewPharmacySalesDoctorWiseProfitDetailsReportOPIP(DateTime FromDate, DateTime ToDate, int StoreId, int DoctorId, string htmlFilePath, string HeaderName);
         string ViewPharmacySalesDoctorWiseProfitReportSummaryOPIP(DateTime FromDate, DateTime ToDate, int DoctorId, string htmlFilePath, string HeaderName);
-
+        string ViewSalesDraftBill(int DSalesId, string htmlFilePath, string HeaderName);
     }
 }
