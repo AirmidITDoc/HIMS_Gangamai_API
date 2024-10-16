@@ -105,7 +105,7 @@ namespace HIMS.Data.Opd
         }
 
 
-        public string ViewSupplierList(String SupplierName,int StoreID,DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewSupplierList(String SupplierName, int StoreID,DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
