@@ -107,9 +107,13 @@ namespace HIMS.Data.Pathology
                     items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;padding-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;padding-left:30px;vertical-align:middle;\">").Append(Label).Append("</td></tr>");
                     items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;padding-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;vertical-align:middle;\">").Append("</td></tr>");
                 }
-                if (previousLabel != "" && previousLabel != dr["PrintTestName"].ConvertToString())
+              
+                if (previousLabel != "" && previousLabel != dr["PrintTestName"].ConvertToString() && i==2)
                 {
                     testlength = i;
+
+                  // testlength = testlength + i;
+
                     if (i == testlength)
                         items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append("Interpretation Remark").Append(dr["SuggestionNote"].ConvertToString()).Append("</td></tr>");
 
@@ -119,18 +123,21 @@ namespace HIMS.Data.Pathology
 
                 }
 
-               
+                if (previousLabel != dr["PrintTestName"].ConvertToString() && testlength==1)
+                {
+                    items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append("Interpretation Remark").Append(dr["SuggestionNote"].ConvertToString()).Append("</td></tr>");
 
-                if (previousLabel != dr["PrintTestName"].ConvertToString() || previousLabel == "")
-                    Suggflag = 1;
-                else
-                    Suggflag = 0;
+                }
+
+                //if (previousLabel != dr["PrintTestName"].ConvertToString() || previousLabel == "")
+                //    Suggflag = 1;
+                //else
+                //    Suggflag = 0;
 
 
 
                 previousLabel = dr["PrintTestName"].ConvertToString();
-
-              
+                              
 
                 if (dr["ResultValue"].ConvertToString() != "")
                 {

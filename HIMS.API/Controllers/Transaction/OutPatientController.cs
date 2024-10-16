@@ -196,7 +196,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanTemplate.html");
             
             // Hospital Header 
-            string Hospitalheader = _pdfUtility.GetHeader(6, 1);// hospital header
+            string Hospitalheader = _pdfUtility.GetHeader(1, 1);// hospital header
             Hospitalheader = Hospitalheader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
             
             //Report content
