@@ -151,6 +151,15 @@ namespace HIMS.Data.Opd
             return VisitID;
         }
 
+        public bool UpdateVitalInformation(OpdAppointmentParams opdAppointmentParams)
+        {
+            //  throw new NotImplementedException();
+
+            var disc3 = opdAppointmentParams.UpdateVitalInformation.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_vitalInformation", disc3);
+            _unitofWork.SaveChanges();
+            return true;
+        }
         public string ViewOppatientAppointmentdetailsReceipt(int VisitId, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();

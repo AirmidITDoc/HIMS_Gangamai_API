@@ -176,6 +176,13 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(appoSave);
         }
 
+        [HttpPost("UpdateVitalInformation")]
+        public IActionResult UpdateVitalInformation(OpdAppointmentParams OpdAppointmentParams)
+        {
+            var appoSave = _OpdAppointment.UpdateVitalInformation(OpdAppointmentParams);
+            return Ok(appoSave);
+        }
+
         [HttpGet("view-PatientAppointment")]
         public IActionResult ViewPatientAppointment(int VisitId)
         {

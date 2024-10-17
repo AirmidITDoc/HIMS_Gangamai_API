@@ -8,10 +8,10 @@ namespace HIMS.Model.Opd
         public RegistrationSave RegistrationSave { get; set; }
         public RegistrationSavewithPhoto RegistrationSavewithPhoto { get; set; }
         public VisitSave VisitSave { get; set; }
-
         public Appointmentcancle Appointmentcancle { get; set; }
         public TokenNumberWithDoctorWiseSave TokenNumberWithDoctorWiseSave { get; set; }
         public RegistrationUpdate RegistrationUpdate { get; set; }
+        public UpdateVitalInformation UpdateVitalInformation { get; set; }
     }
 
 
@@ -183,6 +183,19 @@ namespace HIMS.Model.Opd
     public class Appointmentcancle{
 
         public long VisitId { get; set; }
+    }
+
+    public class UpdateVitalInformation
+    {
+        public long VisitId { get; set; }
+        public string Height { get; set; }
+        public string PWeight { get; set; }
+        public string BMI { get; set; }
+        public string BSL { get; set; }
+        public string SpO2 { get; set; }
+        public string Temp { get; set; }
+        public string Pulse { get; set; }
+        public string BP { get; set; }
     }
 
 }
