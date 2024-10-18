@@ -603,7 +603,7 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-IP-BillReceiptclassServicewise")]
         public IActionResult ViewIpBillReceiptclassServicewise(int BillNo)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPBillingReceiptclasswise.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPBillingReceiptClassServicewise.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPBilling.ViewIPBillReceiptclassServicewise(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IpBillingReceiptclassServicewise", "IpBillingReceiptclassServicewise" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);

@@ -1029,7 +1029,6 @@ namespace HIMS.Data.Opd
             string previousLabel = "";
 
 
-
             foreach (DataRow dr in Bills.Rows)
             {
 
@@ -1039,16 +1038,16 @@ namespace HIMS.Data.Opd
              
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["ProdLocation"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align left;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["BatchExpDate"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["UnitMRP"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["ProdLocation"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align center;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["BatchExpDate"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["UnitMRP"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["TotalAmount"].ConvertToDouble()).Append("</td></tr>");
               
                 TotalAmt += dr["TotalAmount"].ConvertToDouble();
-                T_TotalAmount += dr["TotalAmount"].ConvertToDouble();
+                T_TotalAmount += dr["NetAmount"].ConvertToDouble();
                 //BillNo += dr["BillNo"].ConvertToDouble();
                 //CompBillDate += dr["CompBillDate"].ConvertToDouble();
                 //IPDNo += dr["IPDNo"].ConvertToDouble();
@@ -1056,15 +1055,27 @@ namespace HIMS.Data.Opd
             }
 
             html = html.Replace("{{Items}}", items.ToString());
+
+
+
+       
+            html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{Age}}", Bills.GetColValue("Age"));
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+            html = html.Replace("{{WardName}}", Bills.GetColValue("WardName"));
+            html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
             //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{T_TotalAmount}}", T_TotalAmount.To2DecimalPlace());
+            //html = html.Replace("{{T_TotalAmount}}", T_TotalAmount.To2DecimalPlace());
+            html = html.Replace("{{T_TotalAmount}}", Bills.GetColValue("NetAmount").ConvertToDouble().ToString("0.00"));
             html = html.Replace("{{PatientName}}", PatientName.ToString());
             html = html.Replace("{{GenderName}}", GenderName.ToString());
             html = html.Replace("{{AdmissionDate}}", AdmissionDate.ToString("dd/MM/yyyy"));
             html = html.Replace("{{Age}}", Age.ToString());
             html = html.Replace("{{WardName}}", WardName.ToString());
             html = html.Replace("{{DoctorName}}", DoctorName.ToString());
+            html = html.Replace("{{RegNo}}", DoctorName.ToString());
             html = html.Replace("{{RoomName}}", RoomName.ToString());
             return html;
 
