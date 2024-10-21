@@ -11,7 +11,7 @@
     <div class="main-content-wrapper" style="height:1320px">
         <div class="invoice-box" style="font-size: 22px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
-                {{NewHeader}}
+               <!-- {{NewHeader}}-->
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
@@ -141,13 +141,13 @@
                             <tr></tr>
                             <tr style="padding: 6px; text-align: left;padding-left:50px;">
                                 <td>
-                                    <span>Follow UP Date :{{Followupdate}}</span>
-                                    
+                                    <span>Follow UP Date :{{Advice}}</span>
+
                                 </td>
                             </tr>
                             <tr style="padding: 6px; text-align: left; padding-left: 50px;">
                                 <td>
-                                  <span>Advice:{{Advice}}</span>
+                                    <span>Advice:{{Advice}}</span>
                                 </td>
                             </tr>
                         </table>
@@ -167,13 +167,13 @@
 <table style="width: 100%;text-align: left;">
 
     <tr>
-        <span style="margin-left:70%" >
+        <span style="margin-left:70%">
             <img src="{{Signature}}" width="100" style="display:{{chkSignature}}">
         </span>
         <footer style="margin-left: 70%; font-size: 19px;">
-            <div style="font-weight:bold;" >{{PathResultDr1}}</div>
-            <div style="font-weight:bold;"  style="display:{{chkEdu}}">{{Education}}</div>
-            <div style="font-weight:bold;"  style="display:{{chkRegNo}}">{{MahRegNo}}</div>
+            <div style="font-weight:bold;">{{PathResultDr1}}</div>
+            <div style="font-weight:bold;" style="display:{{chkEdu}}">{{Education}}</div>
+            <div style="font-weight:bold;" style="display:{{chkRegNo}}">{{MahRegNo}}</div>
         </footer>
     </tr>
     <footer>

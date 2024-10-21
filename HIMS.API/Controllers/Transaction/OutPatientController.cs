@@ -402,6 +402,25 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
+
+        [HttpGet("view-OP_PrescriptionwithoutHeader")]
+        public IActionResult ViewOPPrescriptionwithoutheader(int VisitId)
+        {
+          
+
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPrescriptionwithoutheader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+
+            DataTable dt = _OPDPrescription.GetDataForReport(VisitId);
+            var html = _OPDPrescription.ViewOPPrescriptionReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            //var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+
+            //html = html.Replace("{{Signature}}", signature);
+
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         /*[HttpPost("OPDAppointmentList")]
         public IActionResult OPDAppointmentList(AppointmentList AppointmentList)
         {
