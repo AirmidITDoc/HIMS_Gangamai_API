@@ -97,10 +97,12 @@
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[3];
+            SqlParameter[] para = new SqlParameter[4];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-           
+            para[2] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@OPD_IPD_Type", OPD_IPD_Type) { DbType = DbType.Int64 };
+
             var Bills = GetDataTableProc("IP_DocShare_Cal_Sparsh", para);
 
 

@@ -105,7 +105,7 @@ namespace HIMS.Data.Opd
         }
 
 
-        public string ViewSupplierList(String SupplierName, int StoreID,DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewSupplierList(String SupplierName, int StoreID, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -145,8 +145,8 @@ namespace HIMS.Data.Opd
 
 
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
 
           
 
@@ -1051,7 +1051,7 @@ namespace HIMS.Data.Opd
             return html;
         }
 
-        public string ViewItemExpiryReport(int ExpMonth, int ExpYear, int StoreID, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewItemExpiryReport(int ExpMonth, int ExpYear, int StoreID,  string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[3];
             para[0] = new SqlParameter("@ExpMonth", ExpMonth) { DbType = DbType.Int64 };
@@ -1097,15 +1097,15 @@ namespace HIMS.Data.Opd
 
 
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
 
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
 
             return html;
         }
 
-        public string ViewCurrentStockReport(DateTime FromDate, DateTime ToDate,int StoreId,int IsNarcotic, int ish1Drug, int isScheduleH,int IsHighRisk,int IsScheduleX, string htmlFilePath, string htmlHeader)
+        public string ViewCurrentStockReport(int StoreId,int IsNarcotic, int ish1Drug, int isScheduleH,int IsHighRisk,int IsScheduleX, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[6];
            
@@ -1157,8 +1157,8 @@ namespace HIMS.Data.Opd
 
 
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
 
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
 
