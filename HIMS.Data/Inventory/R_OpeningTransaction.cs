@@ -45,7 +45,7 @@ namespace HIMS.Data.Inventory
             {
                 var disc5 = a.ToDictionary();
                 disc5.Remove("OpeningId");
-               // disc5["OpeningDocNo"] = Id;
+                disc5["OpeningDocNo"] = Id;
                var OId = ExecNonQueryProcWithOutSaveChanges("Insert_OpeningTransaction_1", disc5, OpeningId);
 
             }
