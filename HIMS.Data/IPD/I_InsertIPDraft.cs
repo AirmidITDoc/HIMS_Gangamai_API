@@ -10,5 +10,6 @@ namespace HIMS.Data.IPD
         public String Insert(InsertIPDraftParams InsertIPDraftParams);
 
         string ViewIPDraftBillReceipt(int AdmissionID, string htmlFilePath, string HeaderName);
+        string ViewIPDraftBillReceiptNew(int AdmissionID, string htmlFilePath, string HeaderName);
     }
 }
