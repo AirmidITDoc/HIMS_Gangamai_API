@@ -1125,7 +1125,7 @@ namespace HIMS.Data.Opd
             string html = File.ReadAllText(htmlFilePath);
 
             html = html.Replace("{{NewHeader}}", htmlHeader);
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy"));
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy  hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
             int i = 0;
@@ -1148,13 +1148,24 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BatchExpDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalanceQty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PurUnitRateWF"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalPur"].ConvertToDouble()).Append("</td></tr>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["UnitMRP"].ConvertToDouble()).Append("</td></tr>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalPur"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["UnitMRP"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalMRP"].ConvertToDouble()).Append("</td></tr>");
                 T_NetAmount += dr["TotalMRP"].ConvertToDouble();
             }
+            html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("PurUnitRateWF").ConvertToDouble() > 0 ? "table-row" : "none");
 
 
+            html = html.Replace("{{PurUnitRateWF}}", Bills.GetColValue("PurUnitRateWF").ConvertToDouble().ToString("0.00"));
+
+            html = html.Replace("{{PurUnitRateWF}}", Bills.GetColValue("UnitMRP").ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{chkunitflag}}", Bills.GetColValue("UnitMRP").ConvertToDouble() > 0 ? "table-row" : "none");
+
+            html = html.Replace("{{PurUnitRateWF}}", Bills.GetColValue("TotalMRP").ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{chkmrpflag}}", Bills.GetColValue("TotalMRP").ConvertToDouble() > 0 ? "table-row" : "none");
+
+            html = html.Replace("{{TotalPur}}", Bills.GetColValue("TotalPur").ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{chkpurflag}}", Bills.GetColValue("TotalPur").ConvertToDouble() > 0 ? "table-row" : "none");
 
             html = html.Replace("{{Items}}", items.ToString());
             //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
