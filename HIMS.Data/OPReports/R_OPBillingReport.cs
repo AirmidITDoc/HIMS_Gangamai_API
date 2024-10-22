@@ -492,13 +492,14 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-        public string ViewOPAppointmentListReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewOPAppointmentListReport(int Doctor_Id,DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[2];
-            para[0] = new SqlParameter("@From_Dt", FromDate) { DbType = DbType.DateTime };
-            para[1] = new SqlParameter("@To_Dt", ToDate) { DbType = DbType.DateTime };
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@Doctor_Id", Doctor_Id) { DbType = DbType.Int64 };
+            para[1] = new SqlParameter("@From_Dt", FromDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@To_Dt", ToDate) { DbType = DbType.DateTime };
             var Bills = GetDataTableProc("rptOPAppointmentListReport", para);
 
 
