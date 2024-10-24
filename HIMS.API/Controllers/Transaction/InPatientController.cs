@@ -49,6 +49,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_IPAdvance _IPAdvance;
         public readonly I_IPAdvanceUpdate _IPAdvanceUpdate;
         public readonly I_Addcharges _Addcharges;
+        public readonly I_ComAddcharges _ComAddcharges;
         // public readonly I_Addcharges _Addcharges;
         //public readonly I_IPBilling _IPBilling;
         //public readonly I_IPInterimBill _IPInterimBill;
@@ -110,6 +111,7 @@ namespace HIMS.API.Controllers.Transaction
             I_IPAdvanceUpdate ipAdvanceUpdate,
             I_PathologySampleCollection pathologySampleCollection,
             I_Addcharges addcharges, I_RegisteredPatientAdmission registeredPatientAdmission,
+              I_ComAddcharges comaddcharges,
             I_BedTransfer bedTransfer,
             I_Admission admission1,
             I_RegisteredPatientAdmission _RegisteredPatientAdmission,
@@ -143,6 +145,7 @@ namespace HIMS.API.Controllers.Transaction
             this._PathologyReportDetail = pathologyReportDetail;
             this._PathologySampleCollection = pathologySampleCollection;
             this._Addcharges = addcharges;
+            this._ComAddcharges = comaddcharges;
             this._RPA = registeredPatientAdmission;
             this._IPAdvance = ipAdvance;
             //this._IPAdvance = ipAdvance;
@@ -304,6 +307,20 @@ namespace HIMS.API.Controllers.Transaction
         //    var AdmissionS = _RPA.Update(RegisteredPatientAdmissionParams);
         //    return Ok(AdmissionS);
         //}
+
+        [HttpPost("ComAddCharges")]
+        public IActionResult ComAddCharges(ComAddChargesParams comaddChargesParams)
+        {
+            var RPAP = _ComAddcharges.Save(comaddChargesParams);
+            return Ok(RPAP);
+        }
+        [HttpPost("UpdateComAddCharges")]
+        public IActionResult UpdateComAddCharges(ComAddChargesParams comaddChargesParams)
+        {
+            var RPAP = _ComAddcharges.update(comaddChargesParams);
+            return Ok(RPAP);
+        }
+
 
         [HttpPost("AddIPCharges")]
         public IActionResult AddIPCharges(AddChargesParams addChargesParams)
