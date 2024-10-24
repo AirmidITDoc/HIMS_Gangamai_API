@@ -177,6 +177,13 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(appoSave);
         }
 
+        [HttpPost("UpdateVitalInformation")]
+        public IActionResult UpdateVitalInformation(OpdAppointmentParams OpdAppointmentParams)
+        {
+            var appoSave = _OpdAppointment.UpdateVitalInformation(OpdAppointmentParams);
+            return Ok(appoSave);
+        }
+
         [HttpGet("view-PatientAppointment")]
         public IActionResult ViewPatientAppointment(int VisitId)
         {
@@ -191,6 +198,27 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        [HttpGet("view-AppointmentTemplate")]
+        public IActionResult viewAppoinmentTemplate(int VisitId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanTemplate.html");
+            
+            // Hospital Header 
+            string Hospitalheader = _pdfUtility.GetHeader(1, 1);// hospital header
+            Hospitalheader = Hospitalheader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+            
+            //Report content
+            string header1 = _pdfUtility.GetTemplateHeader(1);// Appointment header
+            header1 = header1.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+          
+            DataTable dt = _OpdAppointment.GetDataForReport(VisitId);
+            var html = _OpdAppointment.ViewAppointmentTemplate(dt, htmlFilePath, header1);
+            html = html.Replace("{{NewHeader}}", Hospitalheader);
+
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AppointmentPrint", "Appointment_"+ VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         //OPDCrossConsultation Insert 
         [HttpPost("OPDCrossConsultationInsert")]
@@ -375,6 +403,25 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
+
+        [HttpGet("view-OP_PrescriptionwithoutHeader")]
+        public IActionResult ViewOPPrescriptionwithoutheader(int VisitId)
+        {
+          
+
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPrescriptionwithoutheader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+
+            DataTable dt = _OPDPrescription.GetDataForReport(VisitId);
+            var html = _OPDPrescription.ViewOPPrescriptionReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            //var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+
+            //html = html.Replace("{{Signature}}", signature);
+
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         /*[HttpPost("OPDAppointmentList")]
         public IActionResult OPDAppointmentList(AppointmentList AppointmentList)
         {

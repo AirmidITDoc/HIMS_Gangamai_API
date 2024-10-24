@@ -118,6 +118,7 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_ServiceMaster, R_ServiceMaster>();
             services.AddTransient<I_DoctorMaster, R_DoctorMaster>();
             services.AddTransient<I_Addcharges, R_AddCharges>();
+            services.AddTransient<I_ComAddcharges, R_ComAddCharges>();
             services.AddTransient<I_GenderMaster, R_GenderMaster>();
             services.AddTransient<I_PrefixMaster, R_PrefixMaster>();
             services.AddTransient<I_PatientTypeMaster, R_PatientTypeMaster>();
@@ -354,7 +355,7 @@ namespace HIMS.API.Extensions
 
 
 
-            /*    //services.AddTransient<I_StoreMaster, R_StoreMaster>();
+             services.AddTransient<I_PrescriptionTemplate, PrescriptionTemplate>();
 
             /*  services.AddTransient<I_PayTranModeMasterHome, R_PayTranModeMasterHome>();
              services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();

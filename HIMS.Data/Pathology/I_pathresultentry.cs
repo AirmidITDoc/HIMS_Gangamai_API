@@ -11,7 +11,6 @@ namespace HIMS.Data.Pathology
        
         bool Insert(pathresultentryparam pathresultentryparam);
         bool PrintInsert(pathresultentryparam pathresultentryparam);
-
         bool Rollback(pathresultentryparam pathresultentryparam);
         string ViewPathTestReport(int OP_IP_Type, string htmlFilePath, string HeaderName);
         DataTable GetDataForReport(int OP_IP_Type);

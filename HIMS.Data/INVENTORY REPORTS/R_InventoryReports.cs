@@ -105,13 +105,13 @@ namespace HIMS.Data.Opd
         }
 
 
-        public string ViewSupplierList(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewSupplierList(String SupplierName, int StoreID, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[0];
-            //para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
-            //para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            SqlParameter[] para = new SqlParameter[2];
+            para[0] = new SqlParameter("@SupplierName", SupplierName) { DbType = DbType.String };
+            para[1] = new SqlParameter("@StoreID", StoreID) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("Rtrv_SupplierMasterList_by_Name", para);
 
 
@@ -145,8 +145,8 @@ namespace HIMS.Data.Opd
 
 
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
 
           
 
@@ -573,7 +573,7 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GRNDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>");
 
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+          
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BatchExpDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ReceiveQty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["FreeQty"].ConvertToString()).Append("</td>");
@@ -637,7 +637,7 @@ namespace HIMS.Data.Opd
                 {
                     String Label;
                     Label = dr["SupplierName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
                 if (previousLabel != "" && previousLabel != dr["SupplierName"].ConvertToString())
                 {
@@ -647,7 +647,7 @@ namespace HIMS.Data.Opd
                        .Append(Dcount.ToString()).Append("</td></tr>");
 
                     Dcount = 0;
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["SupplierName"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["SupplierName"].ConvertToString()).Append("</td></tr>");
 
                 }
 
@@ -1051,7 +1051,7 @@ namespace HIMS.Data.Opd
             return html;
         }
 
-        public string ViewItemExpiryReport(int ExpMonth, int ExpYear, int StoreID, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewItemExpiryReport(int ExpMonth, int ExpYear, int StoreID,  string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[3];
             para[0] = new SqlParameter("@ExpMonth", ExpMonth) { DbType = DbType.Int64 };
@@ -1091,21 +1091,21 @@ namespace HIMS.Data.Opd
               
 
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalanceQty"].ConvertToString()).Append("</td></tr>");
-                T_NetAmount += dr["PerUnitPurchaseRate"].ConvertToDouble();
+                T_NetAmount += dr["BalanceQty"].ConvertToDouble();
             }
 
 
 
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
 
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
 
             return html;
         }
 
-        public string ViewCurrentStockReport(DateTime FromDate, DateTime ToDate,int StoreId,int IsNarcotic, int ish1Drug, int isScheduleH,int IsHighRisk,int IsScheduleX, string htmlFilePath, string htmlHeader)
+        public string ViewCurrentStockReport(int StoreId,int IsNarcotic, int ish1Drug, int isScheduleH,int IsHighRisk,int IsScheduleX, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[6];
            
@@ -1125,7 +1125,7 @@ namespace HIMS.Data.Opd
             string html = File.ReadAllText(htmlFilePath);
 
             html = html.Replace("{{NewHeader}}", htmlHeader);
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy"));
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy  hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
             int i = 0;
@@ -1148,15 +1148,30 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BatchExpDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalanceQty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PurUnitRateWF"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalPur"].ConvertToDouble()).Append("</td></tr>");
-                T_NetAmount += dr["PerUnitPurchaseRate"].ConvertToDouble();
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalPur"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["UnitMRP"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalMRP"].ConvertToDouble()).Append("</td></tr>");
+                T_NetAmount += dr["TotalMRP"].ConvertToDouble();
             }
+            html = html.Replace("{{chkdunitrateflag}}", Bills.GetColValue("PurUnitRateWF").ConvertToDouble() > 0 ? "table-row" : "none");
 
 
+            html = html.Replace("{{PurUnitRateWF}}", Bills.GetColValue("PurUnitRateWF").ConvertToDouble().ToString("0.00"));
+
+            html = html.Replace("{{UnitMRP}}", Bills.GetColValue("UnitMRP").ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{chkdunitmrpflag}}", Bills.GetColValue("UnitMRP").ConvertToDouble() > 0 ? "table-row" : "none");
+
+          
+            html = html.Replace("{{chktotalmrpflag}}", Bills.GetColValue("TotalMRP").ConvertToDouble() > 0 ? "table-row" : "none");
+            html = html.Replace("{{TotalMRP}}", Bills.GetColValue("TotalMRP").ConvertToDouble().ToString("0.00"));
+
+        
+            html = html.Replace("{{chktotalpurflag}}", Bills.GetColValue("TotalPur").ConvertToDouble() > 0 ? "table-row" : "none");
+            html = html.Replace("{{TotalPur}}", Bills.GetColValue("TotalPur").ConvertToDouble().ToString("0.00"));
 
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
 
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
 
@@ -1679,7 +1694,7 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["AfterBalQty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Ad_DD_Type"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["UserName"].ConvertToString()).Append("</td></tr>");
-                T_NetAmount += dr["NetAmount"].ConvertToDouble();
+                //T_NetAmount += dr["NetAmount"].ConvertToDouble();
             }
 
 

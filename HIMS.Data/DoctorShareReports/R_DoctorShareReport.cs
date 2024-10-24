@@ -93,14 +93,16 @@
             return html;
 
         }
-        public string ViewDoctorWiseSummaryReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewDoctorWiseSummaryReport(DateTime FromDate, DateTime ToDate, int DoctorId, int OPD_IPD_Type, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[3];
+            SqlParameter[] para = new SqlParameter[4];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-           
+            para[2] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@OPD_IPD_Type", OPD_IPD_Type) { DbType = DbType.Int64 };
+
             var Bills = GetDataTableProc("IP_DocShare_Cal_Sparsh", para);
 
 
@@ -135,17 +137,17 @@
 
         }
 
-        public string ViewConDoctorShareDetails(int Doctor_Id,int GroupId,DateTime From_Dt, DateTime To_Dt, int OP_IP_Type, string htmlFilePath, string htmlHeader)
+        public string ViewConDoctorShareDetails(DateTime FromDate, DateTime ToDate, int DoctorId, int OPD_IPD_Type, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[5];
-            para[0] = new SqlParameter("@Doctor_Id", Doctor_Id) { DbType = DbType.Int64 };
-            para[1] = new SqlParameter("@GroupId", GroupId) { DbType = DbType.Int64 };
-            para[2] = new SqlParameter("@From_Dt", From_Dt) { DbType = DbType.DateTime };
-            para[3] = new SqlParameter("@To_Dt", To_Dt) { DbType = DbType.DateTime };
-            para[4] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("Retrieve_DoctorShareList", para);
+            SqlParameter[] para = new SqlParameter[4];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
+           
+            para[3] = new SqlParameter("@OPD_IPD_Type", OPD_IPD_Type) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("IP_DocShare_Cal_Sparsh", para);
 
 
 
@@ -171,13 +173,13 @@
                 if (i == 1)
                 {
                     String Label;
-                    Label = dr["PatientType"].ConvertToString();
+                    Label = dr["Lable1"].ConvertToString();
 
-                    Label = dr["DoctorName"].ConvertToString();
+                    Label = dr["AdmittedDocName"].ConvertToString();
 
                     items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
-                if (previousLabel != "" && previousLabel != dr["DoctorName"].ConvertToString())
+                if (previousLabel != "" && previousLabel != dr["AdmittedDocName"].ConvertToString())
                 {
                     j = 1;
 
@@ -185,46 +187,46 @@
                        .Append(NetAmount.ToString()).Append("</td></tr>");
 
                     NetAmount = 0;
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["DoctorName"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["AdmittedDocName"].ConvertToString()).Append("</td></tr>");
 
                 }
 
                 NetAmount = NetAmount;
                 T_Count = T_Count;
-                previousLabel = dr["DoctorName"].ConvertToString();
+                previousLabel = dr["AdmittedDocName"].ConvertToString();
 
                 items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
-                //items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IPDNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DischargeDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 //items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CompanyName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PBillNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetPayableAmt"].ConvertToDouble()).Append("</td>");
 
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DocAmt"].ConvertToDouble()).Append("</td></tr>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefDoctorName"].ConvertToString()).Append("</td></tr>");
 
-                NetAmount += dr["NetAmount"].ConvertToDouble();
+              
 
-                if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
-                {
+                //if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
+                //{
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total Amt</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                //    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total Amt</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
 
-                         .Append(NetAmount.ToString()).Append("</td></tr>");
+                //         .Append(NetAmount.ToString()).Append("</td></tr>");
 
 
-                }
-                T_NetAmount += dr["NetAmount"].ConvertToDouble();
-                DocAmt += dr["DocAmt"].ConvertToDouble();
+                //}
+                T_NetAmount += dr["NetPayableAmt"].ConvertToDouble();
+                
             }
 
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.ToString());
             html = html.Replace("{{DocAmt}}", DocAmt.ToString());
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", From_Dt.ToString("dd/MM/yy"));
-            html = html.Replace("{{ToDate}}", To_Dt.ToString("dd/MM/yy"));
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
             return html;
 
 

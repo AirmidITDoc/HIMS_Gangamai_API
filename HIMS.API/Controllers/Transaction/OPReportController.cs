@@ -97,11 +97,11 @@ namespace HIMS.API.Controllers.Transaction
 
 
         [HttpGet("view-AppointmentListReport")]
-        public IActionResult ViewOPAppointmentListReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewOPAppointmentListReport(int Doctor_Id,DateTime FromDate, DateTime ToDate)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPReport_AppoitnmentListReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _OPbilling.ViewOPAppointmentListReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _OPbilling.ViewOPAppointmentListReport(Doctor_Id,FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AppointmentListReport", "AppointmentListReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });

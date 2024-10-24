@@ -41,11 +41,11 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
         [HttpGet("viewDoctorWiseSummaryReport")]
-        public IActionResult ViewDoctorWiseSummaryReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewDoctorWiseSummaryReport(DateTime FromDate, DateTime ToDate, int DoctorId, int OPD_IPD_Type)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DoctorShare_DoctorWiseSummaryReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _doctorShareReport.ViewDoctorWiseSummaryReport(FromDate, ToDate,   htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _doctorShareReport.ViewDoctorWiseSummaryReport(FromDate, ToDate, DoctorId, OPD_IPD_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorWiseSummaryReport", "DoctorWiseSummaryReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
@@ -53,11 +53,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("ViewConDoctorShareDetails")]
-        public IActionResult ViewConDoctorShareDetails(int Doctor_Id, int GroupId, DateTime From_Dt, DateTime To_Dt, int OP_IP_Type)
+        public IActionResult ViewConDoctorShareDetails(DateTime FromDate, DateTime ToDate, int DoctorId, int OPD_IPD_Type)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DoctorShare_ConDoctorShareDetails.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _doctorShareReport.ViewConDoctorShareDetails(Doctor_Id, GroupId, From_Dt, To_Dt, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _doctorShareReport.ViewConDoctorShareDetails(FromDate, ToDate, DoctorId, OPD_IPD_Type,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ConDoctorShareDetails", "ConDoctorShareDetails", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 

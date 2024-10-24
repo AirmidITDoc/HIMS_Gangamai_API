@@ -41,11 +41,11 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
         [HttpGet("view-SupplierList")]
-        public IActionResult ViewSupplierList(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewSupplierList(String SupplierName,int StoreID)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_SupplierList.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _InventoryReport.ViewSupplierList(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _InventoryReport.ViewSupplierList(SupplierName, StoreID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SupplierList", "SupplierList", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
@@ -141,7 +141,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_GRNPurchaseReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _InventoryReport.ViewGRNPurchaseReport(FromDate, ToDate, StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GRNPurchaseReport", "GRNPurchaseReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GRNPurchaseReport", "GRNPurchaseReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -153,7 +153,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_SupplierWiseGRNList.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _InventoryReport.ViewSupplierWiseGRNList( StoreId,  SupplierID, FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SupplierWiseGRNList", "SupplierWiseGRNList", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SupplierWiseGRNList", "SupplierWiseGRNList", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -232,11 +232,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-ItemExpiryReport")]
-        public IActionResult ViewItemExpiryReport(int ExpMonth, int ExpYear, int StoreID, DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewItemExpiryReport(int ExpMonth, int ExpYear, int StoreID)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_ItemExpiryReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _InventoryReport.ViewItemExpiryReport(ExpMonth, ExpYear,  StoreID, FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _InventoryReport.ViewItemExpiryReport(ExpMonth, ExpYear,  StoreID,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ItemExpiryReport", "ItemExpiryReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
@@ -244,11 +244,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-CurrentStockReport")]
-        public IActionResult ViewCurrentStockReport(DateTime FromDate, DateTime ToDate, int StoreId, int IsNarcotic, int ish1Drug, int isScheduleH, int IsHighRisk, int IsScheduleX)
+        public IActionResult ViewCurrentStockReport(int StoreId, int IsNarcotic, int ish1Drug, int isScheduleH, int IsHighRisk, int IsScheduleX)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_CurrentStockReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _InventoryReport.ViewCurrentStockReport(FromDate, ToDate, StoreId, IsNarcotic, ish1Drug, isScheduleH, IsHighRisk, IsScheduleX,htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _InventoryReport.ViewCurrentStockReport(StoreId, IsNarcotic, ish1Drug, isScheduleH, IsHighRisk, IsScheduleX,htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CurrentStockReport", "CurrentStockReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 

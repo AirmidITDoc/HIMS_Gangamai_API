@@ -30,4 +30,11 @@ namespace HIMS.Model.Master
         public string GSTIN { get; set; }
         public string Header { get; set; }
     }
+
+    public class M_ReportTemplateConfig
+    {
+        public long TemplateId { get; set; }
+        public string TemplateName { get; set; }
+        public string TemplateDescription { get; set; }
+    }
 }

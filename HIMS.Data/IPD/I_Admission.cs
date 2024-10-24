@@ -1,6 +1,7 @@
 ﻿using HIMS.Model.IPD;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace HIMS.Data.IPD
@@ -11,7 +12,7 @@ namespace HIMS.Data.IPD
 
         public string AdmissionRegistredInsert(AdmissionParams AdmissionParams);
 
-
+        DataTable GetDataForReport(int AdmissionId);
         public bool AdmissionUpdate(AdmissionParams AdmissionParams);
 
         //public bool BedUpdate(AdmissionParams AdmissionParams);
@@ -23,6 +24,10 @@ namespace HIMS.Data.IPD
 
         string AdmissionListCurrentPharmacydetail(int DoctorId, int WardId, string htmlFilePath, string HeaderName);
 
-        string ViewAdmissionPaper( int AdmissionId, string htmlFilePath, string HeaderName);
+
+        
+
+              string ViewAdmissiontemplatePaper(DataTable Bills, string htmlFilePath, string HeaderName);
+        string ViewAdmissionPaper(int AdmissionId , string htmlFilePath, string HeaderName);
     }
 }

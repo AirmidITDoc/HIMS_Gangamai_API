@@ -16,7 +16,7 @@ namespace HIMS.Data.IPD
             //transaction and connection is open when you inject unitofwork
         }
 
-        public string AdmissionListCurrent(int DoctorId, int WardId,int CompanyId, string htmlFilePath, string htmlHeader)
+        public string AdmissionListCurrent(int DoctorId, int WardId, int CompanyId, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -28,9 +28,9 @@ namespace HIMS.Data.IPD
             para[2] = new SqlParameter("@CompanyId", CompanyId) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("rptCurrentAdmittedListReport", para);
-            
+
             string html = File.ReadAllText(htmlFilePath);
-            
+
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
@@ -48,8 +48,8 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Age"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["GenderName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["DOT"].ConvertToDateString("dd/MM/yy")).Append("</td>");
-                
-                
+
+
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["AdmittedDoctorName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["RoomName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["BedName"].ConvertToString()).Append("</td>");
@@ -74,21 +74,28 @@ namespace HIMS.Data.IPD
 
 
         }
-
+        public DataTable GetDataForReport(int AdmissionId)
+        {
+            SqlParameter[] para = new SqlParameter[1];
+            para[0] = new SqlParameter("@AdmissionId", AdmissionId) { DbType = DbType.Int64 };
+            return GetDataTableProc("m_rptAdmissionPrint", para);
+        }
         public string ViewAdmissionPaper(int AdmissionId, string htmlFilePath, string htmlHeader)
         {
             //  throw new NotImplementedException();
 
             SqlParameter[] para = new SqlParameter[1];
-           
-            para[0] = new SqlParameter("@AdmissionId", AdmissionId) { DbType = DbType.String };
-           
-            var Bills = GetDataTableProc("m_rptAdmissionPrint", para);
+            para[0] = new SqlParameter("@AdmissionId", AdmissionId) { DbType = DbType.Int64 };
+
             string html = File.ReadAllText(htmlFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
+
+            var Bills = GetDataTableProc("m_rptAdmissionPrint", para);
+
+            html = html.Replace("{{DataContent}}", htmlHeader);
 
 
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
@@ -124,19 +131,19 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{IsMLC}}", Bills.GetColValue("IsMLC"));
             html = html.Replace("{{AdmittedDoctor1}}", Bills.GetColValue("AdmittedDoctor1"));
             html = html.Replace("{{AdmittedDoctorName}}", Bills.GetColValue("AdmittedDoctorName"));
-            
+
             html = html.Replace("{{MaritalStatusName}}", Bills.GetColValue("MaritalStatusName"));
             html = html.Replace("{{AadharcardNo}}", Bills.GetColValue("AadharcardNo"));
             html = html.Replace("{{TariffName}}", Bills.GetColValue("TariffName"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
-            
+
             html = html.Replace("{{AdmittedDoctor1}}", Bills.GetColValue("AdmittedDoctor1"));
 
-            html = html.Replace("{{chkMLCflag}}", Bills.GetColValue("IsMLC").ToBool() ==true ? "table-row " : "none");
-            html = html.Replace("{{chkMLCflag1}}", Bills.GetColValue("IsMLC").ToBool()==false ? "table-row " : "none");
+            html = html.Replace("{{chkMLCflag}}", Bills.GetColValue("IsMLC").ToBool() == true ? "table-row " : "none");
+            html = html.Replace("{{chkMLCflag1}}", Bills.GetColValue("IsMLC").ToBool() == false ? "table-row " : "none");
 
             html = html.Replace("{{DOA}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
-            
+
             html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));
             html = html.Replace("{{LoginUserSurname}}", Bills.GetColValue("LoginUserSurname"));
 
@@ -144,10 +151,10 @@ namespace HIMS.Data.IPD
 
         }
 
-       
-       
 
-          public bool AdmissionUpdate(AdmissionParams AdmissionParams)
+
+
+        public bool AdmissionUpdate(AdmissionParams AdmissionParams)
         {
             // throw new NotImplementedException();
 
@@ -244,17 +251,17 @@ namespace HIMS.Data.IPD
 
             para[0] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.String };
             para[1] = new SqlParameter("@WardId", WardId) { DbType = DbType.String };
-          
+
             var Bills = GetDataTableProc("rptCurrentAdmittedList", para);
             string html = File.ReadAllText(htmlFilePath);
-            
+
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
             string previousLabel = "";
 
-            double T_TotalBillAmount = 0,  T_TotalAdvAmount = 0, T_TotalBalAmount = 0;
+            double T_TotalBillAmount = 0, T_TotalAdvAmount = 0, T_TotalBalAmount = 0;
             String Label = "";
 
             foreach (DataRow dr in Bills.Rows)
@@ -291,7 +298,7 @@ namespace HIMS.Data.IPD
 
 
                     T_TotalBillAmount += dr["ChargesAmount"].ConvertToDouble();
-                   T_TotalAdvAmount += dr["AdvanceAmount"].ConvertToDouble();
+                    T_TotalAdvAmount += dr["AdvanceAmount"].ConvertToDouble();
                     T_TotalBalAmount += dr["ApprovedAmount"].ConvertToDouble();
                     j++;
                 }
@@ -320,25 +327,25 @@ namespace HIMS.Data.IPD
 
             para[0] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.String };
             para[1] = new SqlParameter("@WardId", WardId) { DbType = DbType.String };
-           
+
             var Bills = GetDataTableProc("rptCurrentAdmittedList", para);
             string html = File.ReadAllText(htmlFilePath);
-            
+
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
-            int i = 0,j=0;
+            int i = 0, j = 0;
             string previousLabel = "";
 
             double T_TotalBillAmount = 0, T_TotalCreditAmount = 0, T_TotalAdvbalAmount = 0, T_TotalBalafterAdvAmount = 0, T_TotalBalancepay = 0, T_TotalCGST = 0, T_TotalSGST = 0, T_TotalIGST = 0;
-            String Label ="";
+            String Label = "";
 
             foreach (DataRow dr in Bills.Rows)
             {
-                i++; 
+                i++;
                 if (i == 1)
                 {
-                   
+
                     Label = dr["RoomName"].ConvertToString();
                     items.Append("<tr style=\"font-size:20px;border: 1px;color:blue\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
@@ -388,5 +395,73 @@ namespace HIMS.Data.IPD
 
             return html;
         }
+
+        public string ViewAdmissiontemplatePaper(DataTable Bills, string htmlFilePath, string htmlHeader)
+        {
+           
+
+            string html = File.ReadAllText(htmlFilePath);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            // html = html.Replace("{{NewHeader}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+
+            html = html.Replace("{{DataContent}}", htmlHeader);
+
+
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+
+            html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
+            html = html.Replace("{{MobileNo}}", Bills.GetColValue("MobileNo"));
+            html = html.Replace("{{PhoneNo}}", Bills.GetColValue("PhoneNo"));
+
+            html = html.Replace("{{DOT}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
+            html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
+
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
+
+
+            html = html.Replace("{{AdmittedDoctorName}}", Bills.GetColValue("AdmittedDoctorName"));
+            html = html.Replace("{{RefDoctorName}}", Bills.GetColValue("RefDoctorName"));
+
+            html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
+            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
+
+            html = html.Replace("{{RelativeName}}", Bills.GetColValue("RelativeName"));
+            html = html.Replace("{{RelativePhoneNo}}", Bills.GetColValue("RelativePhoneNo"));
+
+            html = html.Replace("{{RelationshipName}}", Bills.GetColValue("RelationshipName"));
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{IsMLC}}", Bills.GetColValue("IsMLC"));
+            html = html.Replace("{{AdmittedDoctor1}}", Bills.GetColValue("AdmittedDoctor1"));
+            html = html.Replace("{{AdmittedDoctorName}}", Bills.GetColValue("AdmittedDoctorName"));
+
+            html = html.Replace("{{MaritalStatusName}}", Bills.GetColValue("MaritalStatusName"));
+            html = html.Replace("{{AadharcardNo}}", Bills.GetColValue("AadharcardNo"));
+            html = html.Replace("{{TariffName}}", Bills.GetColValue("TariffName"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+
+            html = html.Replace("{{AdmittedDoctor1}}", Bills.GetColValue("AdmittedDoctor1"));
+
+            html = html.Replace("{{chkMLCflag}}", Bills.GetColValue("IsMLC").ToBool() == true ? "table-row " : "none");
+            html = html.Replace("{{chkMLCflag1}}", Bills.GetColValue("IsMLC").ToBool() == false ? "table-row " : "none");
+
+            html = html.Replace("{{DOA}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+
+            html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));
+            html = html.Replace("{{LoginUserSurname}}", Bills.GetColValue("LoginUserSurname"));
+
+            return html;
+        }
+
+
+
     }
 }

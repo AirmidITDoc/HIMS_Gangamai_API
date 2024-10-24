@@ -2265,14 +2265,15 @@ namespace HIMS.Data.Opd
 
             return html;
         }
-        public string ViewServiceWiseReport(int ServiceId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewServiceWiseReport(int ServiceId, DateTime FromDate, DateTime ToDate, int DoctorId,string htmlFilePath, string htmlHeader)
         {
-            SqlParameter[] para = new SqlParameter[3];
+            SqlParameter[] para = new SqlParameter[4];
 
 
             para[0] = new SqlParameter("@ServiceId", ServiceId) { DbType = DbType.Int64 };
             para[1] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[3] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("rptServiceWiseReport_ChargesDetail", para);
             string html = File.ReadAllText(htmlFilePath);
@@ -2471,17 +2472,17 @@ namespace HIMS.Data.Opd
                     String Label;
                     Label = dr["CashCounterName"].ConvertToString();
 
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"12\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
                 if (previousLabel != "" && previousLabel != dr["CashCounterName"].ConvertToString())
                 {
                     j = 1;
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='6' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                        .Append(T_NetPayableAmt.ToString()).Append("</td></tr>");
 
                     T_NetPayableAmt = 0;
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["CashCounterName"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"12\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["CashCounterName"].ConvertToString()).Append("</td></tr>");
 
                 }
 

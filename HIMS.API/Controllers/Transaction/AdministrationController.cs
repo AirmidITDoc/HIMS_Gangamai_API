@@ -20,17 +20,19 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_UserChangePassword _UserChangePassword;
         public readonly I_SMS_Config _SMS_Config;
         public readonly I_Administration _Administration;
+        public readonly I_NewTemplateDescription _NewTemplateDescription;
         /* public IActionResult Index()
          {
              return View();
          }*/
         public AdministrationController(
             I_UserChangePassword UserChangePassword,
-            I_SMS_Config sMS_Config, I_Administration Administration)
+            I_SMS_Config sMS_Config, I_Administration Administration, I_NewTemplateDescription newTemplateDescription)
         {
             this._UserChangePassword = UserChangePassword;
             this._SMS_Config = sMS_Config;
             this._Administration = Administration;
+            this._NewTemplateDescription = newTemplateDescription;
         }
 
         [HttpPost("UserChangePassword")]
@@ -105,6 +107,22 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult IPDischargeCancel(IPDischargeCancelParam iPDischargeCancelParam)
         {
             var TODUpdate = _Administration.IPDischargeCancel(iPDischargeCancelParam);
+            return Ok(TODUpdate);
+
+        }
+
+        [HttpPost("NewTemplatedesc")]
+        public IActionResult NewTemplatedesc(NewTemplateDescriptionParam NewTemplateDescriptionParam)
+        {
+            var TODUpdate = _NewTemplateDescription.Insert(NewTemplateDescriptionParam);
+            return Ok(TODUpdate);
+
+        }
+
+        [HttpPost("UpdateTemplatedesc")]
+        public IActionResult UpdateTemplatedesc(NewTemplateDescriptionParam NewTemplateDescriptionParam)
+        {
+            var TODUpdate = _NewTemplateDescription.Update(NewTemplateDescriptionParam);
             return Ok(TODUpdate);
 
         }
