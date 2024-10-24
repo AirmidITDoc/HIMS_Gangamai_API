@@ -50,14 +50,19 @@ namespace HIMS.Data.Radiology
             Boolean chkresonflag = false;
 
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
-            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
-            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("OPDNo"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName").ConvertToString());
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
+
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
 
             html = html.Replace("{{ConsultantName}}", Bills.GetColValue("ConsultantName"));
           //  html = html.Replace("{{ReportTime}}", Bills.GetColValue("ReportTime").ConvertToDateString());
             html = html.Replace("{{ReportTime}}", Bills.GetColValue("ReportTime").ConvertToDateString("dd/MM/yy | hh:mm tt"));
+            html = html.Replace("{{RadTime}}", Bills.GetColValue("RadTime").ConvertToDateString("dd/MM/yy | hh:mm tt"));
+            
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{RadiologyDocName}}", Bills.GetColValue("RadiologyDocName"));

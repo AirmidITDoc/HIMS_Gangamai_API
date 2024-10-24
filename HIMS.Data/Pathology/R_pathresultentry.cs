@@ -103,8 +103,19 @@ namespace HIMS.Data.Pathology
 
                 if (previousLabel != "" && previousLabel != dr["PrintTestName"].ConvertToString())
                 {
+                    if(i > 3)
                     Suggestion = Bills.Rows[i - 2]["SuggestionNote"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append("Interpretation Remark :").Append(Suggestion).Append("</td></tr>");
+                    else if(i<2)
+                        Suggestion = Bills.Rows[i - 1]["SuggestionNote"].ConvertToString();
+                    if (Suggestion != "")
+                    {
+                        items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle;font-weight:bold;\">").Append("Interpretation Remark :").Append("</td></tr>");
+                        items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Suggestion).Append("</td></tr>");
+                    }
+
+                    //items.Append("<tr style=\"line-height: 20px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding-bottom:5px;height: 20px;text-align:left;font-size:18px;font-weight:bold;\">").Append("Interpretation Remark :").Append("</td>");
+                    //items.Append("<td style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;padding-left:260px\">").Append(Suggestion.ConvertToString()).Append("</td></tr>");
+
                     items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:bold;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:center;padding-left:30px;vertical-align:middle\">").Append(dr["PrintTestName"].ConvertToString()).Append("</td></tr>");
 
                    
@@ -142,26 +153,26 @@ namespace HIMS.Data.Pathology
 
                     if (dr["NormalRange"].ConvertToString() != " -   ")
                     {
-                        //if (dr["ParaBoldFlag"].ConvertToString() == "B")
-                        //    items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;font-weight:bold;padding-left:260px\">").Append((dr["ResultValue"].ConvertToString())).Append("</td>");
-                        //else
+                        if (dr["ParaBoldFlag"].ConvertToString() == "B")
+                            items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;font-weight:bold;padding-left:260px\">").Append((dr["ResultValue"].ConvertToString())).Append("</td>");
+                        else
                             items.Append("<td style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;padding-left:260px\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
                         items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
                     }
                     else if (dr["NormalRange"].ConvertToString() == " -   ")
                     {
-                        //if (dr["ParaBoldFlag"].ConvertToString() == "B")
-                        //    items.Append("<td colspan=\"2\"   style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;font-weight:bold;padding-left:260px\">").Append((dr["ResultValue"].ConvertToString())).Append("</td></tr>");
-                        //else
+                        if (dr["ParaBoldFlag"].ConvertToString() == "B")
+                            items.Append("<td colspan=\"2\"   style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;font-weight:bold;padding-left:260px\">").Append((dr["ResultValue"].ConvertToString())).Append("</td></tr>");
+                        else
                             items.Append("<td colspan=\"2\" style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;padding-left:260px\">").Append(dr["ResultValue"].ConvertToString()).Append("</td></tr>");
                     }
 
-                    if (dr["MethodName"].ConvertToString() != "")
-                    {
-                        items.Append("<tr style=\"line-height: 15px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding-bottom:5px;height:15px;text-align:left;\">").Append(dr["MethodName"].ConvertToString()).Append("</td>");
-                        items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:22px;font-weight:bold;\">").Append("</td>");
-                        items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:22px;font-weight:bold;\">").Append("</td></tr>");
-                    }
+                    //if (dr["MethodName"].ConvertToString() != "")
+                    //{
+                    //    items.Append("<tr style=\"line-height: 15px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding-bottom:5px;height:15px;text-align:left;\">").Append(dr["MethodName"].ConvertToString()).Append("</td>");
+                    //    items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:22px;font-weight:bold;\">").Append("</td>");
+                    //    items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:center;font-size:22px;font-weight:bold;\">").Append("</td></tr>");
+                    //}
 
 
                     previoussubLabel = dr["SubTestName"].ConvertToString();
@@ -172,7 +183,13 @@ namespace HIMS.Data.Pathology
                 if (i == Bills.Rows.Count)
                 {
                     Suggestion = Bills.Rows[i - 2]["SuggestionNote"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append("Interpretation Remark :").Append(Suggestion).Append("</td></tr>");
+                    if (Suggestion != "") {
+                        items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle;font-weight:bold;\">").Append("Interpretation Remark :").Append("</td></tr>");
+                        items.Append("<tr style=\"font-size:20px;border: 1px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;margin-bottom:10px;\"><td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Suggestion).Append("</td></tr>");
+                    }
+                    //items.Append("<tr style=\"line-height: 20px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"vertical-align: top;padding-bottom:5px;height: 20px;text-align:left;font-size:18px;font-weight:bold;\">").Append("Interpretation Remark :").Append("</td>");
+                    //items.Append("<td style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;padding-left:260px\">").Append(Suggestion.ConvertToString()).Append("</td></tr>");
+
                 }
                 previousLabel = dr["PrintTestName"].ConvertToString();
                                                           
@@ -225,7 +242,7 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{PathResultDr1}}", Bills.GetColValue("PathResultDr1"));
             html = html.Replace("{{chkSuggestionNote}}", Bills.GetColValue("SuggestionNote").ConvertToString() != "" ? "table-row" : "none");
 
-            //html = html.Replace("{{Signature}}", Bills.GetColValue("Signature"));
+           // html = html.Replace("{{Signature}}", Bills.GetColValue("Signature"));
 
 
             
