@@ -351,6 +351,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_CompanyInformation, R_CompanyInformation>();
            services.AddTransient<I_SupplierPayment, R_SupplierPayment>();
             services.AddTransient<I_Document, R_Document>();
+            services.AddTransient<I_HelthCard, R_HealthCard>();
+
 
 
              services.AddTransient<I_PrescriptionTemplate, PrescriptionTemplate>();

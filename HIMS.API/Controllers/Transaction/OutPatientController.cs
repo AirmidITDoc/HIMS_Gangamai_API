@@ -62,7 +62,8 @@ namespace HIMS.API.Controllers.Transaction
         private readonly IFileUtility _IFileUtility;
         private readonly I_CrossConsultation _CrossConsultation;
         public readonly IFileUtility _FileUtility;
-        public readonly IConfiguration _configuration;
+        public readonly I_HelthCard _I_HelthCard;
+
         public OutPatientController(
             I_PhoneAppointment phoneAppointment,
             I_Payment payment,
@@ -84,8 +85,7 @@ namespace HIMS.API.Controllers.Transaction
             I_EmailNotification emailNotification,
             I_OPBillingCredit oPBillingCredit, I_OPSettlemtCredit oPSettlemtCredit, I_IP_SMSOutgoing iP_SMSOutgoing, I_PatientDocumentupload patientDocumentupload
             , I_PatientFeedback patientFeedback, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility
-            , IFileUtility fileUtility, I_CrossConsultation crossConsultation,IFileUtility FileUtility,
-            IConfiguration configuration
+            , IFileUtility fileUtility, I_CrossConsultation crossConsultation,IFileUtility FileUtility, I_HelthCard HelthCard
 
             )
         {
@@ -120,7 +120,8 @@ namespace HIMS.API.Controllers.Transaction
             _IFileUtility = fileUtility;
             _CrossConsultation = crossConsultation;
             _IFileUtility = fileUtility;
-            _configuration = configuration;
+            _I_HelthCard = HelthCard;
+
         }
 
 
@@ -640,8 +641,15 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(SSR);
         }
 
+       
 
+        [HttpPost("HelthCardsave")]
+        public IActionResult HelthCardsave(HelthCardParam HelthCardParam)
+        {
+            var Helth = _I_HelthCard.Insert(HelthCardParam);
+            return Ok(Helth);
 
+        }
     }
 
 }
