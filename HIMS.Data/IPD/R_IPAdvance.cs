@@ -15,6 +15,14 @@ namespace HIMS.Data.IPD
         {
             //transaction and connection is open when you inject unitofwork
         }
+
+        private static String[] units = { "Zero", "One", "Two", "Three",
+    "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven",
+    "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen",
+    "Seventeen", "Eighteen", "Nineteen" };
+        private static String[] tens = { "", "", "Twenty", "Thirty", "Forty",
+    "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
+
         public String Insert(IPAdvanceParams IPAdvanceParams)
         {
             var outputId = new SqlParameter
@@ -43,7 +51,7 @@ namespace HIMS.Data.IPD
             disc1.Remove("AdvanceId");
             var AdvanceID = ExecNonQueryProcWithOutSaveChanges("insert_AdvanceHeader_1", disc1, outputId);
 
-            IPAdvanceParams.AdvanceDetailInsert.AdvanceId = (int)Convert.ToInt64(AdvanceID);
+           // IPAdvanceParams.AdvanceDetailInsert.AdvanceId = (int)Convert.ToInt64(AdvanceID);
             IPAdvanceParams.AdvanceDetailInsert.RefId = IPAdvanceParams.AdvanceHeaderInsert.RefId;
             IPAdvanceParams.AdvanceDetailInsert.OPD_IPD_Id = IPAdvanceParams.AdvanceHeaderInsert.OPD_IPD_Id;
             IPAdvanceParams.AdvanceDetailInsert.OPD_IPD_Type = IPAdvanceParams.AdvanceHeaderInsert.OPD_IPD_Type;
@@ -56,7 +64,7 @@ namespace HIMS.Data.IPD
             disc2.Remove("AdvanceDetailID");
             var AdvanceDetailID = ExecNonQueryProcWithOutSaveChanges("insert_AdvanceDetail_1", disc2, outputId1);
 
-            IPAdvanceParams.IPPaymentInsert.AdvanceId = (int)Convert.ToInt64(AdvanceDetailID);
+           // IPAdvanceParams.IPPaymentInsert.AdvanceId = (int)Convert.ToInt64(AdvanceDetailID);
             var disc3 = IPAdvanceParams.IPPaymentInsert.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc3);
 
@@ -142,7 +150,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{chkpaytmflag}}", Bills.GetColValue("PayTMAmount").ConvertToDouble() > 0 ? "table-row " : "none");
 
 
-            string finalamt = conversion(Bills.GetColValue("AdvanceAmount").ConvertToDouble().To2DecimalPlace().ToString());
+            string finalamt = ConvertAmount(Bills.GetColValue("AdvanceAmount").ConvertToDouble());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 
@@ -151,70 +159,128 @@ namespace HIMS.Data.IPD
 
         }
 
-        public string conversion(string amount)
+        //public string conversion(string amount)
+        //{
+        //    double m = Convert.ToInt64(Math.Floor(Convert.ToDouble(amount)));
+        //    double l = Convert.ToDouble(amount);
+
+        //    double j = (l - m) * 100;
+        //    //string Word = " ";
+
+        //    var beforefloating = ConvertAmount(Convert.ToInt64(m));
+        //    var afterfloating = ConvertAmount(Convert.ToInt64(j));
+
+        //    // Word = beforefloating + '.' + afterfloating;
+
+        //    var Content = beforefloating + ' ' + " RUPEES" +  ' ' + "only";
+
+        //    return Content;
+        //}
+
+        //public string ConvertNumbertoWords(long number)
+        //{
+        //    if (number == 0) return "ZERO";
+        //    if (number < 0) return "minus " + ConvertNumbertoWords(Math.Abs(number));
+        //    string words = "";
+        //    if ((number / 1000000) > 0)
+        //    {
+        //        words += ConvertNumbertoWords(number / 100000) + " LAKES ";
+        //        number %= 1000000;
+        //    }
+        //    if ((number / 1000) > 0)
+        //    {
+        //        words += ConvertNumbertoWords(number / 1000) + " THOUSAND ";
+        //        number %= 1000;
+        //    }
+        //    if ((number / 100) > 0)
+        //    {
+        //        words += ConvertNumbertoWords(number / 100) + " HUNDRED ";
+        //        number %= 100;
+        //    }
+        //    //if ((number / 10) > 0)  
+        //    //{  
+        //    // words += ConvertNumbertoWords(number / 10) + " RUPEES ";  
+        //    // number %= 10;  
+        //    //}  
+        //    if (number > 0)
+        //    {
+        //        if (words != "") words += "AND ";
+        //        var unitsMap = new[]
+        //   {
+        //    "ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN", "NINETEEN"
+        //};
+        //        var tensMap = new[]
+        //   {
+        //    "ZERO", "TEN", "TWENTY", "THIRTY", "FORTY", "FIFTY", "SIXTY", "SEVENTY", "EIGHTY", "NINETY"
+        //};
+        //        if (number < 20) words += unitsMap[number];
+        //        else
+        //        {
+        //            words += tensMap[number / 10];
+        //            if ((number % 10) > 0) words += " " + unitsMap[number % 10];
+        //        }
+        //    }
+
+        //    if (words == "ONE HUNDRED THOUSAND RUPEES ONLY")
+        //        words = "One Lakh";
+        //    return words;
+        //}
+
+        public static String ConvertAmount(double amount)
         {
-            double m = Convert.ToInt64(Math.Floor(Convert.ToDouble(amount)));
-            double l = Convert.ToDouble(amount);
-
-            double j = (l - m) * 100;
-            //string Word = " ";
-
-            var beforefloating = ConvertNumbertoWords(Convert.ToInt64(m));
-            var afterfloating = ConvertNumbertoWords(Convert.ToInt64(j));
-
-            // Word = beforefloating + '.' + afterfloating;
-
-            var Content = beforefloating + ' ' + " RUPEES" +  ' ' + "only";
-
-            return Content;
-        }
-
-        public string ConvertNumbertoWords(long number)
-        {
-            if (number == 0) return "ZERO";
-            if (number < 0) return "minus " + ConvertNumbertoWords(Math.Abs(number));
-            string words = "";
-            if ((number / 1000000) > 0)
+            try
             {
-                words += ConvertNumbertoWords(number / 100000) + " LAKES ";
-                number %= 1000000;
-            }
-            if ((number / 1000) > 0)
-            {
-                words += ConvertNumbertoWords(number / 1000) + " THOUSAND ";
-                number %= 1000;
-            }
-            if ((number / 100) > 0)
-            {
-                words += ConvertNumbertoWords(number / 100) + " HUNDRED ";
-                number %= 100;
-            }
-            //if ((number / 10) > 0)  
-            //{  
-            // words += ConvertNumbertoWords(number / 10) + " RUPEES ";  
-            // number %= 10;  
-            //}  
-            if (number > 0)
-            {
-                if (words != "") words += "AND ";
-                var unitsMap = new[]
-           {
-            "ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN", "NINETEEN"
-        };
-                var tensMap = new[]
-           {
-            "ZERO", "TEN", "TWENTY", "THIRTY", "FORTY", "FIFTY", "SIXTY", "SEVENTY", "EIGHTY", "NINETY"
-        };
-                if (number < 20) words += unitsMap[number];
+                Int64 amount_int = (Int64)amount;
+                Int64 amount_dec = (Int64)Math.Round((amount - (double)(amount_int)) * 100);
+                if (amount_dec == 0)
+                {
+                    return Convert(amount_int) + " Only.";
+                }
                 else
                 {
-                    words += tensMap[number / 10];
-                    if ((number % 10) > 0) words += " " + unitsMap[number % 10];
+                    return Convert(amount_int) + " Point " + Convert(amount_dec) + " Only.";
                 }
             }
-            return words;
+            catch (Exception e)
+            {
+                // TODO: handle exception  
+            }
+            return "";
         }
 
+        public static String Convert(Int64 i)
+        {
+            if (i < 20)
+            {
+                return units[i];
+            }
+            if (i < 100)
+            {
+                return tens[i / 10] + ((i % 10 > 0) ? " " + Convert(i % 10) : "");
+            }
+            if (i < 1000)
+            {
+                return units[i / 100] + " Hundred"
+                        + ((i % 100 > 0) ? " And " + Convert(i % 100) : "");
+            }
+            if (i < 100000)
+            {
+                return Convert(i / 1000) + " Thousand "
+                + ((i % 1000 > 0) ? " " + Convert(i % 1000) : "");
+            }
+            if (i < 10000000)
+            {
+                return Convert(i / 100000) + " Lakh "
+                        + ((i % 100000 > 0) ? " " + Convert(i % 100000) : "");
+            }
+            if (i < 1000000000)
+            {
+                return Convert(i / 10000000) + " Crore "
+                        + ((i % 10000000 > 0) ? " " + Convert(i % 10000000) : "");
+            }
+            return Convert(i / 1000000000) + " Arab "
+                    + ((i % 1000000000 > 0) ? " " + Convert(i % 1000000000) : "");
+        }
         public string ViewAdvanceSummaryReceipt(int AdmissionID, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[1];

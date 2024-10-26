@@ -120,7 +120,7 @@ namespace HIMS.Data.Pathology
 
                    
                 }
-                if (dr["ResultValue"].ConvertToString() != "")
+                if (dr["ResultValue"].ConvertToString() != " ")
                 {
 
                     k++;

@@ -18,8 +18,8 @@ namespace HIMS.Data.Administration
         {
             //  throw new NotImplementedException();
 
-            var vVisitId = NewTemplateDescriptionParam.InsertTempDescParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Insert_ReportTemplateConfig", vVisitId);
+            var obj = NewTemplateDescriptionParam.InsertTempDescParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("Insert_ReportTemplateConfig", obj);
 
             _unitofWork.SaveChanges();
 
@@ -29,8 +29,8 @@ namespace HIMS.Data.Administration
 
         public bool Update(NewTemplateDescriptionParam NewTemplateDescriptionParam)
         {
-            var vVisitId = NewTemplateDescriptionParam.UpdateTempDescParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Update_ReportTemplateConfig", vVisitId);
+            var obj = NewTemplateDescriptionParam.UpdateTempDescParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("Update_ReportTemplateConfig", obj);
 
             _unitofWork.SaveChanges();
 
