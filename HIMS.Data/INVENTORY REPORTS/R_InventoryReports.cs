@@ -556,7 +556,7 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0;
-            double T_NetAmount = 0;
+            double T_NetAmount = 0, LastPrice = 0, Rate = 0, TotalAmount = 0, CGSTAmt = 0, SGSTAmt = 0, IGSTAmt = 0;
 
 
 
@@ -586,6 +586,12 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["IGSTAmt"].ConvertToDouble()).Append("</td>");
                 
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetAmount"].ConvertToDouble()).Append("</td></tr>");
+                LastPrice += dr["LastPrice"].ConvertToDouble();
+                Rate += dr["Rate"].ConvertToDouble();
+                TotalAmount += dr["TotalAmount"].ConvertToDouble();
+                CGSTAmt += dr["CGSTAmt"].ConvertToDouble();
+                SGSTAmt += dr["SGSTAmt"].ConvertToDouble();
+                IGSTAmt += dr["IGSTAmt"].ConvertToDouble();
                 T_NetAmount += dr["NetAmount"].ConvertToDouble();
             }
 
@@ -594,6 +600,12 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
 
+            html = html.Replace("{{IGSTAmt}}", IGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{SGSTAmt}}", SGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{CGSTAmt}}", CGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{TotalAmount}}", TotalAmount.To2DecimalPlace());
+            html = html.Replace("{{Rate}}", Rate.To2DecimalPlace());
+            html = html.Replace("{{LastPrice}}", LastPrice.To2DecimalPlace());
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
 
             return html;
@@ -621,7 +633,7 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
-            double T_Count = 0, Dcount = 0, T_NetAmount = 0;
+            double T_Count = 0, Dcount = 0, T_NetAmount = 0, NetAmount = 0, DiscAmount = 0, MRP = 0, Rate = 0, TotalAmount = 0, VatAmount = 0, DiscAmount = 0;
 
             string previousLabel = "";
 
@@ -644,14 +656,14 @@ namespace HIMS.Data.Opd
                     j = 1;
 
                     items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Supplier Wise Total </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
-                       .Append(Dcount.ToString()).Append("</td></tr>");
+                       .Append(NetAmount.ToString()).Append("</td></tr>");
 
-                    Dcount = 0;
+                    NetAmount = 0;
                     items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["SupplierName"].ConvertToString()).Append("</td></tr>");
 
                 }
 
-                Dcount = Dcount + 1;
+                NetAmount = NetAmount ;
                 T_Count = T_Count + 1;
                 previousLabel = dr["SupplierName"].ConvertToString();
 
@@ -667,9 +679,19 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["VatPercentage"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["VatAmount"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DiscAmount"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DiscAmount"].ConvertToDouble()).Append("</td>");
              
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetAmount"].ConvertToDouble()).Append("</td></tr>");
+
+                MRP += dr["MRP"].ConvertToDouble();
+
+                Rate += dr["Rate"].ConvertToDouble();
+
+                TotalAmount += dr["TotalAmount"].ConvertToDouble();
+
+                VatAmount += dr["VatAmount"].ConvertToDouble();
+
+                DiscAmount += dr["DiscAmount"].ConvertToDouble();
 
                 T_NetAmount += dr["NetAmount"].ConvertToDouble();
 
@@ -678,12 +700,17 @@ namespace HIMS.Data.Opd
 
                     items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Supplier Wise Total </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
 
-                         .Append(Dcount.ToString()).Append("</td></tr>");
+                         .Append(NetAmount.ToString()).Append("</td></tr>");
 
 
                 }
 
             }
+            html = html.Replace("{{MRP}}", MRP.ToString());
+            html = html.Replace("{{Rate}}", Rate.ToString());
+            html = html.Replace("{{TotalAmount}}", TotalAmount.ToString());
+            html = html.Replace("{{VatAmount}}", VatAmount.ToString());
+            html = html.Replace("{{DiscAmount}}", DiscAmount.ToString());
 
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.ToString());
             html = html.Replace("{{Items}}", items.ToString());
