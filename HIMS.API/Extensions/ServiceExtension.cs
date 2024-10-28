@@ -164,7 +164,7 @@ namespace HIMS.API.Extensions
             // services.AddTransient<I_SaveAppointmentNewPatient, R_SaveAppointmentNewPatient>();
             services.AddTransient<I_PrescriptionTemplateMaster, R_PrescriptionTemplateMaster>();
             services.AddTransient<I_MenuMaster, R_MenuMaster>();
-            // services.AddTransient<I_PayTranModeMaster, R_PayTranModeMaster>();
+             services.AddTransient<I_PayTranModeMaster, R_PayTranModeMaster>();
             //services.AddTransient<I_ProductTypeMasterHome, R_ProductTypeMaster>();
             services.AddTransient<I_MenuMasterDetails, R_MenuMasterDetails>();
             services.AddTransient<I_MenuMasterDetails_Details, R_MenuMasterDetails_Details>();
@@ -358,16 +358,16 @@ namespace HIMS.API.Extensions
              services.AddTransient<I_PrescriptionTemplate, PrescriptionTemplate>();
 
            services.AddTransient<I_NewTemplateDescription, R_NewTemplateDescription>();
-            /* services.AddTransient<I_VendorMasterHome, R_VendorMasterHome>();
-             services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
-             services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
-             services.AddTransient<I_BillingClassMasterHome, R_BillingClassMasterHome>();
-             services.AddTransient<I_Itemmasterhome, R_Itemmasterhome>();
+            services.AddTransient<I_NewMenuMaster, R_NewMenuMaster>();
+            /* services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
+            services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
+            services.AddTransient<I_BillingClassMasterHome, R_BillingClassMasterHome>();
+            services.AddTransient<I_Itemmasterhome, R_Itemmasterhome>();
 
-            services.AddTransient<I_ItemCategoryMasterHome, R_ItemCategoryMasterHome>();
-            services.AddTransient<I_MenuMasterHome, R_MenuMasterHome>();
-            services.AddTransient<I_MenuMasterDetailsHome, R_MenuMasterDetailsHome>();
-            services.AddTransient<I_MenuMasterDetails_DetailsHome, R_MenuMasterDetails_DetailsHome>();*/
+           services.AddTransient<I_ItemCategoryMasterHome, R_ItemCategoryMasterHome>();
+           services.AddTransient<I_MenuMasterHome, R_MenuMasterHome>();
+           services.AddTransient<I_MenuMasterDetailsHome, R_MenuMasterDetailsHome>();
+           services.AddTransient<I_MenuMasterDetails_DetailsHome, R_MenuMasterDetails_DetailsHome>();*/
 
             // services.AddTransient<>();
 

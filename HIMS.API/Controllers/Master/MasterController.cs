@@ -30,12 +30,12 @@ namespace HIMS.API.Controllers.Master
         public readonly I_MenuMasterDetails _MenuMasterDetails;
         public readonly I_MenuMasterDetails_Details _MenuMasterDetails_Details;
         public readonly I_VendorMaster _VendorMaster;
-        // public readonly I_GenderMaster _GenderMaster;
+         public readonly I_NewMenuMaster _NewMenuMaster;
 
         public MasterController(I_ServiceMaster ServiceMasterResp , I_DoctorMaster DoctorMasterResp,
             I_MenuMaster menuMaster, I_PayTranModeMaster payTranModeMaster,
             //I_ProductTypeMasterHome productTypeMaster,
-            I_MenuMasterDetails menuMasterDetails,I_MenuMasterDetails_Details menuMasterDetails_Details,
+            I_MenuMasterDetails menuMasterDetails,I_MenuMasterDetails_Details menuMasterDetails_Details,I_NewMenuMaster newMenuMaster,
             I_VendorMaster vendorMaster)
         {
             this._ServiceMasterResp = ServiceMasterResp;
@@ -46,6 +46,7 @@ namespace HIMS.API.Controllers.Master
             this._MenuMasterDetails = menuMasterDetails;
             this._MenuMasterDetails_Details = menuMasterDetails_Details;
             this._VendorMaster = vendorMaster;
+            this._NewMenuMaster = newMenuMaster;
         }
 
         /* [HttpPost("ServiceSave")]
@@ -165,6 +166,21 @@ namespace HIMS.API.Controllers.Master
         {
             var ServiceSave = _VendorMaster.Update(vendorMasterParams);
             return Ok(ServiceSave);
+        }
+
+        //new Menumaster
+        [HttpPost("MenuSave")]
+        public IActionResult MenuInsert(NewMenumasterParam NewMenumasterParam)
+        {
+            var ServiceSave = _NewMenuMaster.Save(NewMenumasterParam);
+            return Ok(ServiceSave);
+        }
+
+        [HttpPost("MenuUpdate")]
+        public IActionResult MenuUpdate(NewMenumasterParam NewMenumasterParam)
+        {
+            var Id = _NewMenuMaster.Update(NewMenumasterParam);
+            return Ok(Id);
         }
 
     }
