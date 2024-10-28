@@ -14,4 +14,9 @@
     <ProjectReference Include="..\HIMS.Model\HIMS.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Master\NewFolder1\" />
+    <Folder Include="Master\NewFolder\" />
+  </ItemGroup>
+
 </Project>
