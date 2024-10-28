@@ -38,7 +38,7 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0;
-            double T_TotalAmount = 0, T_LandedPrice = 0, T_ItemWiseProfitAmount = 0;
+            double T_TotalAmount = 0, T_LandedPrice = 0, T_ItemWiseProfitAmount = 0, DiscAmount = 0, GrossAmount = 0;
 
 
             foreach (DataRow dr in Bills.Rows)
@@ -48,10 +48,14 @@ namespace HIMS.Data.Opd
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DiscAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GrossAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["LandedPrice"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ItemWiseProfitAmount"].ConvertToDouble()).Append("</td></tr>");
 
                 T_TotalAmount += dr["TotalAmount"].ConvertToDouble();
+                DiscAmount += dr["DiscAmount"].ConvertToDouble();
+                GrossAmount += dr["GrossAmount"].ConvertToDouble();
                 T_LandedPrice += dr["LandedPrice"].ConvertToDouble();
                 T_ItemWiseProfitAmount += dr["ItemWiseProfitAmount"].ConvertToDouble();
             }
@@ -63,6 +67,8 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
 
             html = html.Replace("{{T_TotalAmount}}", T_TotalAmount.To2DecimalPlace());
+            html = html.Replace("{{DiscAmount}}", DiscAmount.To2DecimalPlace());
+            html = html.Replace("{{GrossAmount}}", GrossAmount.To2DecimalPlace());
             html = html.Replace("{{T_LandedPrice}}", T_LandedPrice.To2DecimalPlace());
             html = html.Replace("{{T_ItemWiseProfitAmount}}", T_ItemWiseProfitAmount.To2DecimalPlace());
 
@@ -88,7 +94,7 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0;
-            double T_TotalAmount = 0, T_LandedPrice = 0, T_ItemWiseProfitAmount = 0;
+            double T_TotalAmount = 0, T_LandedPrice = 0, T_ItemWiseProfitAmount = 0, DiscAmount = 0, GrossAmount = 0; 
 
 
             foreach (DataRow dr in Bills.Rows)
@@ -100,10 +106,14 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SalesNo"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DiscAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GrossAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["LandedPrice"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ItemWiseProfitAmount"].ConvertToDouble()).Append("</td></tr>");
 
                 T_TotalAmount += dr["TotalAmount"].ConvertToDouble();
+                T_TotalAmount += dr["DiscAmount"].ConvertToDouble();
+                T_TotalAmount += dr["GrossAmount"].ConvertToDouble();
                 T_LandedPrice += dr["LandedPrice"].ConvertToDouble();
                 T_ItemWiseProfitAmount += dr["ItemWiseProfitAmount"].ConvertToDouble();
             }
@@ -113,7 +123,8 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
-
+            html = html.Replace("{{DiscAmount}}", DiscAmount.To2DecimalPlace());
+            html = html.Replace("{{GrossAmount}}", GrossAmount.To2DecimalPlace());
             html = html.Replace("{{T_TotalAmount}}", T_TotalAmount.To2DecimalPlace());
             html = html.Replace("{{T_LandedPrice}}", T_LandedPrice.To2DecimalPlace());
             html = html.Replace("{{T_ItemWiseProfitAmount}}", T_ItemWiseProfitAmount.To2DecimalPlace());

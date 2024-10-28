@@ -566,6 +566,13 @@ namespace HIMS.API.Controllers.Transaction
             return (SSR.ToString());
         }
 
+        [HttpPost("OPBillWithPackageCashCounter")]
+        public String OPBillWithPackageCashCounter(OPbillingparams OPbillingparams)
+        {
+            var SSR = _OPbilling.InsertPackageCashCounter(OPbillingparams);
+            return (SSR.ToString());
+        }
+
         [HttpPost("OPBillingWithCreditCashCounter")]
         public String OPBillingWithCreditCashCounter(OPBillingCreditparam OPBillingCreditparam)
         {

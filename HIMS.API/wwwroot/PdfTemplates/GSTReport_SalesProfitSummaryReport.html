@@ -47,7 +47,8 @@
 
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 10%;"> Date </td>
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Total Amount</td>
-                            <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width:7%;"> Age </td>-->
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Disc Amount</td>
+                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Gross Amount</td>
 
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Landed Amount</td>
                             <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Profit Amount</td>
@@ -56,28 +57,34 @@
                         </tr>
 
                         {{Items}}
-                        <tr style="border: 1px solid black; background-color: white">
+                    <tr style="border: 1px solid black; background-color: white">
 
 
 
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                            </td>
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                Total Amount
-                            </td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                        </td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                            Total Amount
+                        </td>
 
-                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                {{T_TotalAmount}}
-                            </td>
+                        <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                            {{T_TotalAmount}}
+                        </td>
+                        <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                            {{DiscAmount}}
+                        </td>
+                        <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                            {{GrossAmount}}
+                        </td>
 
-                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                {{T_LandedPrice}}
-                            </td>
+                        <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                            {{T_LandedPrice}}
+                        </td>
 
-                            <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                                {{T_ItemWiseProfitAmount}}
-                            </td>
-                    </tbody>
+                        <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                            {{T_ItemWiseProfitAmount}}
+                        </td>
+</tbody>
                 </table>
                 </td>
                 </tr>
