@@ -632,10 +632,9 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
-            int i = 0, j = 0;
-            double T_Count = 0, Dcount = 0, T_NetAmount = 0, NetAmount = 0, DiscAmount = 0, MRP = 0, Rate = 0, TotalAmount = 0, VatAmount = 0, DiscAmount = 0;
-
             string previousLabel = "";
+            int i = 0, j = 0;
+            double T_Count = 0, Dcount = 0, T_NetAmount = 0, NetAmount = 0, DiscAmount = 0, MRP = 0, Rate = 0, TotalAmount = 0, VatAmount = 0;
 
 
 

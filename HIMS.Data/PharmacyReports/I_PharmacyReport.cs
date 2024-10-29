@@ -21,10 +21,10 @@ namespace HIMS.Data.PharmacyReports
         string ViewItemWiseDailySalesReport(DateTime FromDate, DateTime ToDate,int ItemId,int RegNo, int StoreId, string htmlFilePath, string HeaderName);
 
 
-        string ViewDoctorWiseProfitReport( DateTime FromDate, DateTime ToDate,int DoctorId, string htmlFilePath, string HeaderName);
+        string ViewDoctorWiseProfitReport( DateTime FromDate, DateTime ToDate,int DoctorId, int OP_IP_Type,string htmlFilePath, string HeaderName);
         string ViewDoctorWiseSalesReport(DateTime FromDate, DateTime ToDate, int StoreId, int DoctorId,string htmlFilePath, string HeaderName);
-        string ViewPharmacySalesDoctorWiseProfitDetailsReportOPIP(DateTime FromDate, DateTime ToDate, int StoreId, int DoctorId, string htmlFilePath, string HeaderName);
-        string ViewPharmacySalesDoctorWiseProfitReportSummaryOPIP(DateTime FromDate, DateTime ToDate, int DoctorId, string htmlFilePath, string HeaderName);
+        string ViewPharmacySalesDoctorWiseProfitDetailsReportOPIP(DateTime FromDate, DateTime ToDate, int StoreId, int DoctorId,int OP_IP_Type, string htmlFilePath, string HeaderName);
+        string ViewPharmacySalesDoctorWiseProfitReportSummaryOPIP(DateTime FromDate, DateTime ToDate, int DoctorId, int OP_IP_Type,string htmlFilePath, string HeaderName);
         string ViewSalesDraftBill(int DSalesId, string htmlFilePath, string HeaderName);
     }
 }
