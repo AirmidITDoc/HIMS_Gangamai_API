@@ -51,7 +51,7 @@ namespace HIMS.Data.IPD
             disc1.Remove("AdvanceId");
             var AdvanceID = ExecNonQueryProcWithOutSaveChanges("insert_AdvanceHeader_1", disc1, outputId);
 
-           // IPAdvanceParams.AdvanceDetailInsert.AdvanceId = (int)Convert.ToInt64(AdvanceID);
+           IPAdvanceParams.AdvanceDetailInsert.AdvanceId = (AdvanceID).ToInt();
             IPAdvanceParams.AdvanceDetailInsert.RefId = IPAdvanceParams.AdvanceHeaderInsert.RefId;
             IPAdvanceParams.AdvanceDetailInsert.OPD_IPD_Id = IPAdvanceParams.AdvanceHeaderInsert.OPD_IPD_Id;
             IPAdvanceParams.AdvanceDetailInsert.OPD_IPD_Type = IPAdvanceParams.AdvanceHeaderInsert.OPD_IPD_Type;
@@ -64,7 +64,7 @@ namespace HIMS.Data.IPD
             disc2.Remove("AdvanceDetailID");
             var AdvanceDetailID = ExecNonQueryProcWithOutSaveChanges("insert_AdvanceDetail_1", disc2, outputId1);
 
-           // IPAdvanceParams.IPPaymentInsert.AdvanceId = (int)Convert.ToInt64(AdvanceDetailID);
+            IPAdvanceParams.IPPaymentInsert.AdvanceId = AdvanceDetailID.ToInt();
             var disc3 = IPAdvanceParams.IPPaymentInsert.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc3);
 
