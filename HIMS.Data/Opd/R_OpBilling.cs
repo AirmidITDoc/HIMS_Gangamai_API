@@ -556,8 +556,7 @@ namespace HIMS.Data.Opd
                       
                         var disc6 = obj.ToDictionary();
                         disc6["PackageMainChargeID"] = ChargeID;
-                        id = ChargeID;
-                        //disc5.Remove("ChargeID");
+                       
                         ExecNonQueryProcWithOutSaveChanges("insert_AddCharges_1", disc6);
 
 
@@ -575,7 +574,7 @@ namespace HIMS.Data.Opd
                
             }
             _unitofWork.SaveChanges();
-            return id;
+            return BillNo;
 
         }
     }
