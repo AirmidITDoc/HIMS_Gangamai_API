@@ -12,6 +12,7 @@
 
         {{NewHeader}}
         <table style="width: 100%;line-height: inherit;text-align: left;">
+            <!--<a href="InventoryReport_CurrentStockReport.html">InventoryReport_CurrentStockReport.html</a>-->
             <tr class="title-date-row">
                 <td style="padding: 6px;">
                     <table style="width: 100%; border-collapse: collapse;">
@@ -20,11 +21,11 @@
                             <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                         </tr>
                     </table>
-                   
+
                 </td>
             </tr>
-           
-                    </table>
+
+        </table>
                 
             
 
@@ -70,63 +71,66 @@
 
                     </tr>
 
-                    <!--<tr style="font-size: 18px; background-color: white; font-weight: 700;">
-
-
-
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Store Name</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Item Name</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Batch No</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Exp Date</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Balance Qty</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Purchase Rate</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Total Amt-Purchase</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> MRP</td>
-    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Total MRP</td>-->
+                  
                     </tr>
 
                     {{Items}}
-                    <tr style="margin-top: 12px;">
+                    <!--<tr style="margin-top: 12px;">
                         <td colspan="10">
-                            <table style="width: 100%; border-collapse: collapse; font-size: 20px; font-weight: bold;">
+                            <table style="width: 100%; border-collapse: collapse;">-->
+                                <!--<tr>
 
-                                
+        <td style="border-bottom:1px solid #eee; padding: 6px;">Total Bill Amount</td>
+        <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
+        <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{TotalBillAmount}}</td>
+    </tr>-->
+                                <!--<tr style="display:{{chkdunitrateflag}}">
+                                    <td style="border-bottom: 1px solid #eee; padding: 6px;">Purchase Rate</td>
+                                    <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
+                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{PurUnitRateWF}}</td>
 
-                                <!--<tr style="border: 1px solid black; background-color: white">
-
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>
-                                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                                    </td>-->
-                                <tr>
-
-                                    <td style="border-bottom:1px solid #eee; padding: 6px;">Total  Amount</td>
-
-                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{T_NetAmount}}</td>
                                 </tr>
 
+                                <tr>
+                                <tr style="display:{{chkdtotalpurflag}}">
+                                    <td style="border-bottom: 1px solid #eee; padding: 6px;">TotalAmt Purchase</td>
+                                    <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
+                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{TotalPur}}</td>
+                                </tr>
+                                <tr style="display:{{chkdunitmrpflag}}">
+                                    <td style="border-bottom: 1px solid #eee; padding: 6px;">MRP </td>
+                                    <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
+                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{UnitMRP}}</td>
+                                </tr>
+                                <tr style="display:{{chkdtotalmrpflag}}">
+                                    <td style="border-bottom: 1px solid #eee; padding: 6px;"> Total MRP</td>
+                                    <td style="border-bottom:1px solid #eee; padding: 6px;"></td>
+                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">{{TotalMRP}}</td>
+                                </tr>-->
+
+
+
+                                <tr style="margin-top: 12px;">
+                                    <td colspan="10">
+                                        <table style="width: 100%; border-collapse: collapse; font-size: 20px; font-weight: bold;">
+
+
+
+
+                                            <tr>
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px;">Total  Amount</td>
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{T_NetAmount}}</td>
+                                            </tr>
 
 
 
 
 
-                    </tr>
-                </tbody>
+
+                                </tr>
+</tbody>
             </table>
             </td>
             </tr>
