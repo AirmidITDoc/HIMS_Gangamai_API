@@ -13,6 +13,7 @@ using System.IO;
 using System.Net;
 
 using System.Text.Json;
+using System.ComponentModel.Design;
 
 namespace HIMS.Data.Opd
 {
@@ -553,17 +554,16 @@ namespace HIMS.Data.Opd
                 {
                     foreach (var obj in OPbillingparams.ChargesPackageInsert)
                     {
-                      
-                        var disc6 = obj.ToDictionary();
-                        disc6["PackageMainChargeID"] = ChargeID;
-                       
-                        ExecNonQueryProcWithOutSaveChanges("insert_AddCharges_1", disc6);
+                      if (a.ServiceId == obj.PackageId)
+                        {
+                            var disc6 = obj.ToDictionary();
+                            disc6["PackageMainChargeID"] = ChargeID;
 
+                            ExecNonQueryProcWithOutSaveChanges("insert_AddCharges_1", disc6);
+                        }
+                     
 
                     }
-
-
-
 
                 }
 
