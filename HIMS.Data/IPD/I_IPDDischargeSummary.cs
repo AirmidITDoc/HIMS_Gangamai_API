@@ -1,6 +1,7 @@
 ﻿using HIMS.Model.IPD;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace HIMS.Data.IPD
@@ -9,6 +10,9 @@ namespace HIMS.Data.IPD
     {
         public String Insert(IPDDischargeSummaryParams IPDDischargeSummaryParams);
         public bool Update(IPDDischargeSummaryParams IPDDischargeSummaryParams);
-        string ViewDischargeSummary(int AdmissionID, string htmlFilePath, string HeaderName);
+     
+        DataTable GetDataForReport(int AdmissionID);
+        string ViewDischargeSummary(DataTable Bills, int AdmissionID, string htmlFilePath, string HeaderName);
+
     }
 }
