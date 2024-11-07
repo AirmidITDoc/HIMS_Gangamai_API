@@ -79,7 +79,7 @@ namespace HIMS.Data.IPD
             int length = 0;
             length = Bills1.Rows.Count;
             string html = File.ReadAllText(htmlFilePath);
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;

@@ -126,6 +126,7 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        //correct header print
         [HttpGet("view-PathReportMultipleWithHeader")]
         public IActionResult viewPathReportMultipleWithHeader(int OP_IP_Type)
         {

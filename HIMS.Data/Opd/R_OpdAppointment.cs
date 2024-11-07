@@ -277,10 +277,10 @@ namespace HIMS.Data.Opd
             string html = File.ReadAllText(htmlFilePath);
 
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            //html = html.Replace("{{NewHeader}}", ReportHeader);
-            
-            html = html.Replace("{{DataContent}}", htmlHeader);
+           // html = html.Replace("{{NewHeader}}", Hospitalheader);
 
+            html = html.Replace("{{DataContent}}", htmlHeader);
+           // html = html.Replace("{{NewHeader}}", Hospitalheader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 

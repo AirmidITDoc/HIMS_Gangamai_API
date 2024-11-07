@@ -272,25 +272,27 @@ namespace HIMS.API.Controllers.Transaction
 
 
         [HttpGet("view-AdmissionTemplate")]
-        public IActionResult viewAdmissionTemplate(int VisitId)
+        public IActionResult viewAdmissionTemplate(int AdmissionId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanTemplate.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPCasepaper.html");
+            
 
             // Hospital Header 
-            string Hospitalheader = _pdfUtility.GetHeader(1, 1);// hospital header
+            string Hospitalheader = _pdfUtility.GetHeader(4, 1);// hospital header
             Hospitalheader = Hospitalheader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
 
             //Report content
             string header1 = _pdfUtility.GetTemplateHeader(2);// Admission header
             header1 = header1.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
 
-            DataTable dt = _Admission.GetDataForReport(VisitId);
+            DataTable dt = _Admission.GetDataForReport(AdmissionId);
             var html = _Admission.ViewAdmissiontemplatePaper(dt, htmlFilePath, header1);
             html = html.Replace("{{NewHeader}}", Hospitalheader);
 
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AdmissionPrint", "Admission" + VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPAdmission", "IPAdmission" + AdmissionId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
         }
 
 
@@ -405,17 +407,41 @@ namespace HIMS.API.Controllers.Transaction
         //}
 
 
+        //[HttpGet("view-DischargSummary1")]
+        //public IActionResult viewAppoinmentTemplate1(int AdmissionID)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPDischargeSummary.html");
+
+        //    // Hospital Header 
+        //    string Hospitalheader = _pdfUtility.GetHeader(1, 1);// hospital header
+        //    Hospitalheader = Hospitalheader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+
+        //    //Report content
+        //    string header1 = _pdfUtility.GetTemplateHeader(4);// Appointment header
+        //    header1 = header1.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+
+        //    DataTable dt = _IPDDischargeSummary.GetDataForReport(AdmissionID);
+        //    var html = _IPDDischargeSummary.ViewDischargeSummary(dt, AdmissionID, htmlFilePath, header1);
+        //    html = html.Replace("{{NewHeader}}", Hospitalheader);
+
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDischargeSummary", "IPDischargeSummary" + AdmissionID, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
+
+
         [HttpGet("view-DischargSummary")]
-        public IActionResult viewAppoinmentTemplate(int AdmissionID)
+        public IActionResult viewDischargSummaryTemplate(int AdmissionID)
         {
+
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPDischargeSummary.html");
 
             // Hospital Header 
-            string Hospitalheader = _pdfUtility.GetHeader(1, 1);// hospital header
+            string Hospitalheader = _pdfUtility.GetHeader(4, 1);// hospital header
             Hospitalheader = Hospitalheader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
 
             //Report content
-            string header1 = _pdfUtility.GetTemplateHeader(4);// Appointment header
+            string header1 = _pdfUtility.GetTemplateHeader(5);// Discharge Summary header
             header1 = header1.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
 
             DataTable dt = _IPDDischargeSummary.GetDataForReport(AdmissionID);
@@ -425,6 +451,8 @@ namespace HIMS.API.Controllers.Transaction
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDischargeSummary", "IPDischargeSummary" + AdmissionID, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+
         }
 
 
