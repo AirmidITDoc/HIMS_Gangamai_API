@@ -567,12 +567,14 @@ namespace HIMS.Data.Opd
 
                 }
 
-                var disc7 = OPbillingparams.OPInsertPayment.ToDictionary();
-                disc7["BillNo"] = (int)Convert.ToInt64(BillNo);
-                ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc7);
+              
 
                
             }
+
+            var disc7 = OPbillingparams.OPInsertPayment.ToDictionary();
+            disc7["BillNo"] = (int)Convert.ToInt64(BillNo);
+            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_1", disc7);
             _unitofWork.SaveChanges();
             return BillNo;
 

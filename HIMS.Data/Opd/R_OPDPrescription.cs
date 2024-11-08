@@ -144,6 +144,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
             html = html.Replace("{{ChiefComplaint}}", Bills.GetColValue("ChiefComplaint"));
+            html = html.Replace("{{Diagnosis}}", Bills.GetColValue("Diagnosis"));
             html = html.Replace("{{Examination}}", Bills.GetColValue("Examination"));
             html = html.Replace("{{BP}}", Bills.GetColValue("BP"));
             html = html.Replace("{{Pulse}}", Bills.GetColValue("Pulse"));
