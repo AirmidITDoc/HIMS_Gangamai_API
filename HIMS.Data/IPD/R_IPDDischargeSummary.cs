@@ -232,21 +232,20 @@ namespace HIMS.Data.IPD
             return html;
         }
 
+
         public string ViewDischargeSummaryold(int AdmissionID, string htmlFilePath, string htmlHeader)
         {
-            //  throw new NotImplementedException();
-
             SqlParameter[] para = new SqlParameter[1];
 
             para[0] = new SqlParameter("@AdmissionID", AdmissionID) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("m_rptDischargeSummaryPrint_New", para);
-            
-            
+
+
             var Bills1 = GetDataTableProc("m_Rtrv_IP_Prescription_Discharge", para);
             int length = 0;
-             length = Bills1.Rows.Count;
+            length = Bills1.Rows.Count;
             string html = File.ReadAllText(htmlFilePath);
-            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
@@ -261,7 +260,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{DischargeTime}}", Bills.GetColValue("DischargeTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{Followupdate}}", Bills.GetColValue("Followupdate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
-            
+
             html = html.Replace("{{History}}", Bills.GetColValue("History"));
             html = html.Replace("{{Diagnosis}}", Bills.GetColValue("Diagnosis"));
             html = html.Replace("{{ClinicalFinding}}", Bills.GetColValue("ClinicalFinding"));
@@ -282,9 +281,9 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{TreatmentAdvisedAfterDischarge}}", Bills.GetColValue("TreatmentAdvisedAfterDischarge"));
 
             html = html.Replace("{{ClinicalConditionOnAdmisssion}}", Bills.GetColValue("ClinicalConditionOnAdmisssion"));
-          
+
             html = html.Replace("{{OtherConDrOpinions}}", Bills.GetColValue("OtherConDrOpinions"));
-           
+
             html = html.Replace("{{PainManagementTechnique}}", Bills.GetColValue("PainManagementTechnique"));
             html = html.Replace("{{LifeStyle}}", Bills.GetColValue("LifeStyle"));
 
@@ -299,7 +298,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{SurgeryProcDone}}", Bills.GetColValue("SurgeryProcDone"));
             html = html.Replace("{{ICD10CODE}}", Bills.GetColValue("ICD10CODE"));
             html = html.Replace("{{Radiology}}", Bills.GetColValue("Radiology"));
-           
+
 
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
@@ -343,15 +342,15 @@ namespace HIMS.Data.IPD
             //html = html.Replace("{{TreatmentGiven}}", Bills.GetColValue("TreatmentGiven"));
             //html = html.Replace("{{Investigation}}", Bills.GetColValue("Investigation"));
 
-            html = html.Replace("{{chkHistoryflag}}", Bills.GetColValue("History").ConvertToString() !="" ? "table-row" : "none");
+            html = html.Replace("{{chkHistoryflag}}", Bills.GetColValue("History").ConvertToString() != "" ? "table-row" : "none");
 
-            html = html.Replace("{{chkHistoryflag}}", Bills.GetColValue("History").ConvertToString() !=""? "block" : "table-row");
+            html = html.Replace("{{chkHistoryflag}}", Bills.GetColValue("History").ConvertToString() != "" ? "block" : "table-row");
 
 
 
             html = html.Replace("{{chkDignosflag}}", Bills.GetColValue("Diagnosis").ConvertToString() != "" ? "table-row" : "none");
 
-            html = html.Replace("{{chkClfindingflag}}", Bills.GetColValue("ClinicalFinding").ConvertToString() !="" ? "table-row" : "none");
+            html = html.Replace("{{chkClfindingflag}}", Bills.GetColValue("ClinicalFinding").ConvertToString() != "" ? "table-row" : "none");
 
             html = html.Replace("{{chkOprativeflag}}", Bills.GetColValue("OpertiveNotes").ConvertToString() != "" ? "table-row" : "none");
 
@@ -360,7 +359,7 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{chkInvestigationflag}}", Bills.GetColValue("Investigation").ConvertToString() != "" ? "table-row" : "none");
 
-            
+
 
             html = html.Replace("{{chktreatadviceflag}}", Bills.GetColValue("TreatmentAdvisedAfterDischarge").ConvertToString() != "" ? "table-row" : "none");
 
