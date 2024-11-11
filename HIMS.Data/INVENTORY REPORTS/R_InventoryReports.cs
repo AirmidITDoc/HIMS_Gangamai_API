@@ -501,7 +501,7 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0;
-            //double T_NetAmount = 0;
+            double T_ReceiveQty = 0 , T_FreeQty = 0, T_TotalQty = 0, T_MRP = 0;
 
 
 
@@ -521,7 +521,10 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["FreeQty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalQty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["MRP"].ConvertToDouble()).Append("</td></tr>");
-                //T_NetAmount += dr["NetAmount"].ConvertToDouble();
+                T_ReceiveQty += dr["ReceiveQty"].ConvertToDouble();
+                T_FreeQty += dr["FreeQty"].ConvertToDouble();
+                T_TotalQty += dr["TotalQty"].ConvertToDouble();
+                T_MRP += dr["MRP"].ConvertToDouble();
             }
 
 
@@ -529,7 +532,10 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
 
-            //html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
+            html = html.Replace("{{T_ReceiveQty}}", T_ReceiveQty.To2DecimalPlace());
+            html = html.Replace("{{T_FreeQty}}", T_FreeQty.To2DecimalPlace());
+            html = html.Replace("{{T_TotalQty}}", T_TotalQty.To2DecimalPlace());
+            html = html.Replace("{{T_MRP}}", T_MRP.To2DecimalPlace());
 
             return html;
 
