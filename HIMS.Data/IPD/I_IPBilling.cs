@@ -20,6 +20,7 @@ namespace HIMS.Data.IPD
 
         public bool BillDiscountAfterUpdate(BillDiscountAfterParams billDiscountAfterParams);
         string ViewIPBillReceiptclassServicewise(int BillNo, string htmlFilePath, string HeaderName);
+        string ViewIPFinalBillReceiptNew(int BillNo, string htmlFilePath, string HeaderName);
 
     }
 }
