@@ -131,7 +131,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
             html = html.Replace("{{PDate}}", Bills.GetColValue("PTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{VisitTime}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
-            html = html.Replace("{{Followupdate}}", Bills.GetColValue("FollowupDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{FollowupDate}}", Bills.GetColValue("FollowupDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
 
             
             html = html.Replace("{{PrecriptionId}}", Bills.GetColValue("PrecriptionId"));
