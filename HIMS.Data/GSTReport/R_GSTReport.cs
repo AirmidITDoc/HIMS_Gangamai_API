@@ -36,6 +36,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{NewHeader}}", htmlHeader);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy"));
 
+
             StringBuilder items = new StringBuilder("");
             int i = 0;
             double T_TotalAmount = 0, T_LandedPrice = 0, T_ItemWiseProfitAmount = 0, T_DiscAmount = 0, T_GrossAmount = 0;
