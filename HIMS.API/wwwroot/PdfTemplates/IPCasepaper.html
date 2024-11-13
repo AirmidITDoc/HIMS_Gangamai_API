@@ -1,58 +1,61 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
     <div class="bill-template-wrapper" style="font-size: 30.25%;" #PurchaseOrderTemplate>
 
         <table style="width: 100%;line-height: inherit;text-align: left;">
 
-             <!--{{NewHeader}}-->
-            <tr class="title-date-row">
-                <td style="padding: 6px;">
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <tr style="font-size: 24px;">
-                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>IP Case Paper</b></td>
-                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr class="bill-info-row">
-                <td style="padding: 6px;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 20px;">
-                        <tr>
-                            <td style="padding: 2px;">
-                                <span style="font-weight:bold;">UHID : </span>
-                                <span>{{RegNo}}</span>
-                            </td>
-                            <td style="padding: 2px;">
-                                <span style="font-weight:bold;">Admission Date/Time : </span>
-                                <span>{{DOT}}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 2px;">
-                                <span style="font-weight:bold;">IPD No : </span>
-                                <span>{{IPDNo}}</span>
-                            </td>
-                            <td style="padding: 2px;">
-                                <span style="font-weight:bold;">Ward / Bed Name : </span>
-                                <span>{{RoomName}} / {{BedName}}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 2px;">
-                                <span style="font-weight:bold;">Patient Name : </span>
-                                <span>{{PatientName}}</span>
-                            </td>
-                            <td style="padding: 2px;">
-                                <span style="font-weight:bold;">Age / Gender : </span>
-                                <span> {{AgeYear}} Y| {{AgeMonth}} M|{{AgeDay}} D/ {{GenderName}}</span>
-                            </td>
-                        </tr>
+                {{NewHeader}}
+                <tr class="title-date-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="font-size: 24px;">
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>IP Case Paper</b></td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="bill-info-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 20px;">
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span style="font-weight:bold;">UHID : </span>
+                                    <span>{{RegNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span style="font-weight:bold;">Admission Date/Time : </span>
+                                    <span>{{DOT}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span style="font-weight:bold;">IPD No : </span>
+                                    <span>{{IPDNo}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span style="font-weight:bold;">Ward / Bed Name : </span>
+                                    <span>{{RoomName}} / {{BedName}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span style="font-weight:bold;">Patient Name : </span>
+                                    <span>{{PatientName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span style="font-weight:bold;">Age / Gender : </span>
+                                    <span> {{AgeYear}} Y| {{AgeMonth}} M|{{AgeDay}} D/ {{GenderName}}</span>
+                                </td>
+                            </tr>
 
 
 
@@ -214,19 +217,19 @@
                                     </td>
                                 </tr>
                         </div>
-            <tr>
-                <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; width: 300px;">
-                    Provisional
-                    Dignosis
-                </td>
-                <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;width:300px;"> </td>
-                <!-- <div></div> -->
-                <td style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 300px;">
-                    Name & Signature
-                </td>
-            </tr>
-        </table>
-    </div>
+                <tr>
+                    <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; width: 300px;">
+                        Provisional
+                        Dignosis
+                    </td>
+                    <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;width:300px;"> </td>
+                    <!-- <div></div> -->
+                    <td style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 300px;">
+                        Name & Signature
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div> <!-- <hr style="border-color:#a0a0a0"> --> <br />
     <div style="display:flex;justify-content:space-between">
         <div style="display:flex;margin-top:5px;font-size:20px;font-weight:bold;">

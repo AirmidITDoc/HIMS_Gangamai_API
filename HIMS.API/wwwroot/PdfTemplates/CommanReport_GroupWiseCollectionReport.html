@@ -8,58 +8,82 @@
 </head>
 
 <body>
-    <div class="main-content-wrapper">
-        <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
-            <table style="width: 100%;line-height: inherit;text-align: left;">
-                {{NewHeader}}
-                <tr class="title-date-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <tr style="font-size: 18px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>Group Wise Collection Report</b></td>
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
+    <div class="bill-template-wrapper" style="font-size: 14px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; ">
 
-                <tr class="bill-info-row">
-                    <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <tr>
-                                <td style="padding: 2px;">
-                                    <i style="font-size: 16px;"> From Date : {{FromDate}} -- To Date : {{ToDate}}</i>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-
-                <table class="table" style="width:100%;border-collapse:collapse">
-                    <tbody>
-
-                        <tr style="font-size: 18px; background-color: white; font-weight: 700;">
-
-
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Bill No</td>
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Service Name</td>
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Patient Type</td>
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> UHID</td>
-
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Patient Name</td>
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">NetPayableAmt</td>
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Net Amt</td>
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Pay Date</td>
-
-
+        {{NewHeader}}
+        <table style="width: 100%;line-height: inherit;text-align: left;">
+            <tr class="title-date-row">
+                <td style="padding: 6px;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="font-size: 18px">
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>Group Wise Collection Report</b></td>
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                         </tr>
+                    </table>
+                    <div style="margin-top:2px;">
+                        <div style="font-weight: bold;font-size:18px;margin-left:10px;padding:5px;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
+                    </div>
+                </td>
+            </tr>
+            <table class="table" style="width:100%;border-collapse:collapse">
+                <tbody>
+
+                    <tr style="font-size:18px;background-color: white;">
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            SR.NO
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Bill No
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Pay Date
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Service Name
+                        </td>
+
+
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Patient Type
+                        </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            UHID
+                        </td>
+
+
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Patient Name
+                        </td>
+
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            NetPayableAmt
+                        </td>
+
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            NetAmount
+                        </td>
+                    </tr>
 
 
 
-                        {{Items}}
-                    <tr>
-                        <td style="border: 1px solid #d4c3c3; padding: 6px;"></td>
+
+
+
+                    {{Items}}
+                <tr>
+                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px; colspan=" 3";"></td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px; colspan=" 3";"></td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px; colspan=" 3";"></td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px; colspan=" 3";"></td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px; colspan=" 3";"></td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px; colspan=" 3";"></td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px; colspan=" 3";"></td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px; colspan=" 3";">Total Amount</td>
+                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px; colspan=" 3";">{{T_NetPayableAmt}}</td>
+                </tr>
+                </tbody>
+                    <!--<tr style="border: 1px solid black; background-color: white">
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
                         <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
                         <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
                         <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
@@ -68,19 +92,19 @@
                         <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
                         <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Grand Total </td>
                         <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">{{T_NetPayableAmt}}</td>
-                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
 
 
 
-                    </tr>
-                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-                      
-</div>
-    </div>
-</body>
+
+                    </tr>-->
+</table>
+            </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+
+
 </html>
-
 

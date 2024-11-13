@@ -9,9 +9,11 @@
 
 <body>
     <div class="main-content-wrapper">
-        <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+        <div class="invoice-box" style="max-width: 1000px; margin: 0 auto; font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
+
                 {{NewHeader}}
+                <!--<table style="width: 100%;line-height: inherit;text-align: left;">-->
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
@@ -22,7 +24,6 @@
                         </table>
                     </td>
                 </tr>
-
                 <tr class="bill-info-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
@@ -34,16 +35,19 @@
                         </table>
                     </td>
                 </tr>
-
                 <table class="table" style="width:100%;border-collapse:collapse">
                     <tbody>
 
-                        <tr style="font-size: 18px; background-color: white; font-weight: 700;">
-
-
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Group Name</td>
-                            <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Net Amount</td>
+                        <tr style="font-size:18px;background-color: white;">
+                            <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                                SR.NO
+                            </td>
+                            <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                                Group Name
+                            </td>
+                            <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                                Net Amount
+                            </td>
 
 
 
@@ -51,9 +55,17 @@
 
 
 
-                        {{Items}}
 
-                        <tr style="border: 1px solid black; background-color: white">
+
+                        {{Items}}
+                        <tr>
+                            <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px; colspan=" 3";"></td>
+                            <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px; colspan=" 3";">Total Amount</td>
+                            <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px; colspan=" 3";">{{T_NetPayableAmt}}</td>
+                        </tr>
+                    </tbody>
+
+                        <!--<tr style="border: 1px solid black; background-color: white">
 
 
 
@@ -67,16 +79,18 @@
                                 {{T_NetPayableAmt}}
                             </td>
 
-                         
-                        </tr>
-                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-                       
-</div>
-    </div>
-</body>
+
+                        </tr>-->
+                </table>
+                </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+
 </html>
+
 
 

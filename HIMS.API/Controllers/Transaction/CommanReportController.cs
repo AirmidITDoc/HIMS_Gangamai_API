@@ -211,11 +211,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-ServiceWiseReportWithoutBill")]
-        public IActionResult ViewServiceWiseReportWithoutBill(int ServiceId, DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewServiceWiseReportWithoutBill(int ServiceId, DateTime FromDate, DateTime ToDate,int DoctorId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_ServiceWiseReportWithOUTbill.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPComman.ViewServiceWiseReportWithoutBill(ServiceId, FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPComman.ViewServiceWiseReportWithoutBill(ServiceId, FromDate, ToDate, DoctorId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ServiceWiseReportWithoutBill", "ServiceWiseReportWithoutBill", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
@@ -262,7 +262,7 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-ServicewiseReportwithbill")]
         public IActionResult ViewServicewiseReportwithbill(int ServiceId, DateTime FromDate, DateTime ToDate)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "Servicewisereportwithbill.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_Servicewisereportwithbill.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPComman.ViewServicewiseReportwithbill(ServiceId, FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ServicewiseReportwithbill", "ServicewiseReportwithbill", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
@@ -295,17 +295,17 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
-        [HttpGet("view-ServiceWiseReport")]
-        public IActionResult ViewServiceWiseReport(int ServiceId, DateTime FromDate, DateTime ToDate,int DoctorId)
-        {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_ServiceWiseReport.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPComman.ViewServiceWiseReport(ServiceId, FromDate, ToDate, DoctorId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ServiceWiseReport", "ServiceWiseReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        //[HttpGet("view-ServiceWiseReport")]
+        //public IActionResult ViewServiceWiseReport(int ServiceId, DateTime FromDate, DateTime ToDate,int DoctorId)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_ServiceWiseReport.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    var html = _IPComman.ViewServiceWiseReport(ServiceId, FromDate, ToDate, DoctorId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ServiceWiseReport", "ServiceWiseReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
 
-        }
+        //}
 
         [HttpGet("view-CashCounterWiseDailyCollection")]
         public IActionResult ViewCashCounterWiseDailyCollection(DateTime FromDate, DateTime ToDate, int OP_IP_Type, int CashCounterId, int UserId)

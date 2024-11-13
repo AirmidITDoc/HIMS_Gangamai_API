@@ -131,7 +131,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
             html = html.Replace("{{PDate}}", Bills.GetColValue("PTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{VisitTime}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
-            html = html.Replace("{{Followupdate}}", Bills.GetColValue("FollowupDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{FollowupDate}}", Bills.GetColValue("FollowupDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
 
             
             html = html.Replace("{{PrecriptionId}}", Bills.GetColValue("PrecriptionId"));
@@ -144,6 +144,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
             html = html.Replace("{{ChiefComplaint}}", Bills.GetColValue("ChiefComplaint"));
+            html = html.Replace("{{Diagnosis}}", Bills.GetColValue("Diagnosis"));
             html = html.Replace("{{Examination}}", Bills.GetColValue("Examination"));
             html = html.Replace("{{BP}}", Bills.GetColValue("BP"));
             html = html.Replace("{{Pulse}}", Bills.GetColValue("Pulse"));

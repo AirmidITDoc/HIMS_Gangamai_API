@@ -23,19 +23,19 @@ namespace HIMS.Data.CommanReports
         string ViewGroupWiseCollectionReport(DateTime FromDate, DateTime ToDate, int GroupId, string htmlFilePath, string htmlHeader);
         string ViewGroupwiseRevenueSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewGroupwiseSummaryReport(DateTime FromDate, DateTime ToDate,int GroupId, string htmlFilePath, string htmlHeader);
-        string ViewServiceWiseReportWithoutBill(int ServiceId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewServiceWiseReportWithoutBill(int ServiceId, DateTime FromDate, DateTime ToDate,int DoctorId, string htmlFilePath, string htmlHeader);
 
+        string ViewServicewiseReportwithbill(int ServiceId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewDoctorVisitAdmittedWiseGroupReport(DateTime FromDate, DateTime ToDate,int DoctorId, string htmlFilePath, string htmlHeader);
 
         string ViewBillSummaryWithTCS(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewCanclechargeslist(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
 
-        string ViewServicewiseReportwithbill(int ServiceId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
 
 
         string ViewBillSummaryReportfor2LakhAmount(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewDoctorAndDepartmentWiseMonthlyCollectionReport(int DepartmentId,int DoctorId,DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-        string ViewServiceWiseReport(int ServiceId, DateTime FromDate, DateTime ToDate,int DoctorId, string htmlFilePath, string htmlHeader);
+        //string ViewServiceWiseReport(int ServiceId, DateTime FromDate, DateTime ToDate,int DoctorId, string htmlFilePath, string htmlHeader);
         string ViewCashCounterWiseDailyCollection(DateTime FromDate, DateTime ToDate,int OP_IP_Type,int CashCounterId,int UserId, string htmlFilePath, string htmlHeader);
         string ViewCashCounterWiseDailyCollectionSummary(DateTime FromDate, DateTime ToDate, int OP_IP_Type, int CashCounterId, int UserId, string htmlFilePath, string htmlHeader);
     }
