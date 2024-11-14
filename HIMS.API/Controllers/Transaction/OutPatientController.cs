@@ -398,7 +398,7 @@ namespace HIMS.API.Controllers.Transaction
 
             //html = html.Replace("{{Signature}}", signature);
 
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "OPPrescription" + VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
@@ -419,7 +419,7 @@ namespace HIMS.API.Controllers.Transaction
 
             //html = html.Replace("{{Signature}}", signature);
 
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "OPPrescription_"+ VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
