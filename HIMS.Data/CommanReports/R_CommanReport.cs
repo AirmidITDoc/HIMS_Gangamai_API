@@ -1373,14 +1373,15 @@ namespace HIMS.Data.Opd
             return html;
         }
 
-        public string ViewServicewiseReportwithbill(int ServiceId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewServicewiseReportwithbill(int ServiceId, DateTime FromDate, DateTime ToDate,  int DoctorId ,string htmlFilePath, string htmlHeader)
         {
-            SqlParameter[] para = new SqlParameter[3];
+            SqlParameter[] para = new SqlParameter[4];
 
 
             para[0] = new SqlParameter("@ServiceId", ServiceId) { DbType = DbType.Int64 };
             para[1] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[3] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.DateTime };
 
             var Bills = GetDataTableProc("rptServiceWiseReport_Detail_BillDateWise", para);
             StringBuilder items = new StringBuilder("");

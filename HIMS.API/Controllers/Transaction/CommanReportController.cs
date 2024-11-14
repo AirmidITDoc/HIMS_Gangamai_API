@@ -260,11 +260,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-ServicewiseReportwithbill")]
-        public IActionResult ViewServicewiseReportwithbill(int ServiceId, DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewServicewiseReportwithbill(int ServiceId, DateTime FromDate, DateTime ToDate, int DoctorId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_Servicewisereportwithbill.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPComman.ViewServicewiseReportwithbill(ServiceId, FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPComman.ViewServicewiseReportwithbill(ServiceId, FromDate, ToDate,  DoctorId ,htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ServicewiseReportwithbill", "ServicewiseReportwithbill", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
