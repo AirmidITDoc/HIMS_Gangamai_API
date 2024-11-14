@@ -374,12 +374,7 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
-
-
-
-
         [HttpPost("InsertIPDischargeSummary")]
-
         public String InsertIPDischargeSummary(IPDDischargeSummaryParams IPDDischargeSummaryParams)
         {
             var IPD = _IPDDischargeSummary.Insert(IPDDischargeSummaryParams);
