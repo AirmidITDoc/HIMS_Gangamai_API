@@ -1373,15 +1373,15 @@ namespace HIMS.Data.Opd
             return html;
         }
 
-        public string ViewServicewiseReportwithbill(int ServiceId, DateTime FromDate, DateTime ToDate,  int DoctorId ,string htmlFilePath, string htmlHeader)
+        public string ViewServicewiseReportwithbill(int ServiceId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
-            SqlParameter[] para = new SqlParameter[4];
+            SqlParameter[] para = new SqlParameter[3];
 
 
             para[0] = new SqlParameter("@ServiceId", ServiceId) { DbType = DbType.Int64 };
             para[1] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            para[3] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.DateTime };
+            //para[3] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.DateTime };
 
             var Bills = GetDataTableProc("rptServiceWiseReport_Detail_BillDateWise", para);
             StringBuilder items = new StringBuilder("");
@@ -1939,7 +1939,7 @@ namespace HIMS.Data.Opd
         //    return html;
 
         //}
-        public string ViewServiceWiseReportWithoutBill(int ServiceId, DateTime FromDate, DateTime ToDate,int DoctorId, string htmlFilePath, string htmlHeader)
+        public string ViewServiceWiseReportWithoutBill(int ServiceId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[3];
 
@@ -1947,7 +1947,7 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@ServiceId", ServiceId) { DbType = DbType.Int64 };
             para[1] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            para[3] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
+            //para[3] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptServiceWiseReport_Detail_ChargesDateWise", para); 
 
 
@@ -2008,6 +2008,8 @@ namespace HIMS.Data.Opd
                 T_Amount += dr["NetAmount"].ConvertToDouble();
                 T_NetAmount += dr["NetAmount"].ConvertToDouble();
             }
+            //html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("T_NetAmount").ConvertToDouble().ToString("0.00"));
+            //html = html.Replace("{{chkdnetamountflag}}", Bills.GetColValue("T_NetAmount").ConvertToDouble() > 0 ? "table-row" : "none");
 
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.ToString());
             html = html.Replace("{{Items}}", items.ToString());
