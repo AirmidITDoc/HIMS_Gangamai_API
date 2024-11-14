@@ -663,6 +663,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPFinalBillReceiptNew.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+
             var html = _IPBilling.ViewIPFinalBillReceiptNew(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPFinalBillReceiptNew", "IPFinalBillReceiptNew" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
