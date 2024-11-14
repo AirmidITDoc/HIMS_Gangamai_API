@@ -8,10 +8,10 @@
 </head>
 
 <body>
-    <div class="main-content-wrapper" style="height:1320px">
-        <div class="invoice-box" style="font-size: 22px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+    <div class="main-content-wrapper" style="height:1220px">
+        <div class="invoice-box" style="font-size: 22px; line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #101828; padding-top: 150px;">
             <table style="width: 100%;line-height: inherit;text-align: left;">
-               <!-- {{NewHeader}}-->
+                <!-- {{NewHeader}}-->
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
@@ -103,7 +103,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Dignosis :<span style="font-size: 22px; ">{{ChiefComplaint}}</span></td>
+                                    <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Dignosis :<span style="font-size: 22px; ">{{Diagnosis}}</span></td>
 
                                 </tr>
 
@@ -134,14 +134,14 @@
 
                 <tfoot>
                     <tr>
-                        <table style="width: 100%; border-collapse: collapse;margin-top:30px;font-weight:bold;">
+                        <table style="width: 100%; border-collapse: collapse;margin-top:10px;font-weight:bold;">
 
                             <tr style="margin-top: 12px;">
 
                             <tr></tr>
                             <tr style="padding: 6px; text-align: left;padding-left:50px;">
                                 <td>
-                                    <span>Follow UP Date :{{Advice}}</span>
+                                    <span>Follow-up Date :{{FollowupDate}}</span>
 
                                 </td>
                             </tr>
@@ -160,28 +160,24 @@
 
 </html>
 
-
 <html>
 <body>
-</body>
-<table style="width: 100%;text-align: left;">
+    <table style="width: 100%;text-align: left;">
 
-    <tr>
-        <span style="margin-left:70%">
-            <img src="{{Signature}}" width="100" style="display:{{chkSignature}}">
-        </span>
-        <footer style="margin-left: 70%; font-size: 19px;">
-            <div style="font-weight:bold;">{{PathResultDr1}}</div>
-            <div style="font-weight:bold;" style="display:{{chkEdu}}">{{Education}}</div>
-            <div style="font-weight:bold;" style="display:{{chkRegNo}}">{{MahRegNo}}</div>
+        <tr>
+            <span style="margin-left:70%">
+                <img src="{{Signature}}" width="100" style="display:{{chkSignature}}">
+            </span>
+            <footer style="margin-left: 70%; font-size: 19px;">
+                <div style="font-weight:bold;">{{ConsultantDocName}}</div>
+                <div style="font-weight:bold;" style="display:{{chkEdu}}">{{Education}}</div>
+                <div style="font-weight:bold;" style="display:{{chkRegNo}}">{{MahRegNo}}</div>
+            </footer>
+        </tr>
+        <footer>
+        <tr style="border-top: 1px solid #000;"><td></td></tr>
+        <tr><td style="border-top: 1px solid #000;" colspan="4">Do not take any medicines without consulting the doctor....</td></tr>
         </footer>
-    </tr>
-    <footer>
-    <tr style="border-top: 1px solid #000;"><td></td></tr>
-    <tr><td style="border-top: 1px solid #000;" colspan="4">Do not take any medicines without consulting the doctor....</td></tr>
-
-    </footer>
-
-</table>
-
+    </table>
+</body>
 </html>
