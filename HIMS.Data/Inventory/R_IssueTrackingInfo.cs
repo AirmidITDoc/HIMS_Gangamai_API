@@ -21,14 +21,14 @@ namespace HIMS.Data.Inventory
             var vIssueTrackerId = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
-                ParameterName = "@IssueTrackerId",
+                ParameterName = "@IssueId",
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
 
 
             var disc3 = issueTrackerParams.InsertIssueTracker.ToDictionary();
-            disc3.Remove("IssueTrackerId");
+            disc3.Remove("IssueId");
             var IssueTrackerId = ExecNonQueryProcWithOutSaveChanges("m_insert_T_IssuetrackerInformation", disc3, vIssueTrackerId);
 
 
