@@ -38,7 +38,7 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
-            double T_Count = 0, Dcount = 0;
+            double T_Count = 0;
 
           
 

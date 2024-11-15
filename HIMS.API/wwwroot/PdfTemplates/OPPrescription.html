@@ -15,6 +15,9 @@
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                              
+                            </tr>
                             <tr style="font-size: 22px">
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>OP PRESCRIPTION</b></td>
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
@@ -30,6 +33,7 @@
 
                                 <td style="padding: 2px;">
                                     <span style="font-weight:bold;">Prescription No : </span>
+
                                     <span>{{PrecriptionId}}</span>
                                 </td>
                                 <td style="padding: 2px;">
@@ -142,12 +146,12 @@
                             <tr style="padding: 6px; text-align: left;padding-left:50px;">
                                 <td>
                                     <span>Follow UP Date :{{FollowupDate}}</span>
-                                    
+
                                 </td>
                             </tr>
                             <tr style="padding: 6px; text-align: left; padding-left: 50px;">
                                 <td>
-                                  <span>Advice:{{Advice}}</span>
+                                    <span>Advice:{{Advice}}</span>
                                 </td>
                             </tr>
                         </table>
@@ -157,23 +161,18 @@
         </div>
     </div>
 </body>
-
-</html>
-
-
-<html>
 <body>
 </body>
 <table style="width: 100%;text-align: left;">
 
     <tr>
-        <span style="margin-left:70%" >
+        <span style="margin-left:70%">
             <img src="{{Signature}}" width="100" style="display:{{chkSignature}}">
         </span>
         <footer style="margin-left: 70%; font-size: 19px;">
-            <div style="font-weight:bold;" >{{PathResultDr1}}</div>
-            <div style="font-weight:bold;"  style="display:{{chkEdu}}">{{Education}}</div>
-            <div style="font-weight:bold;"  style="display:{{chkRegNo}}">{{MahRegNo}}</div>
+            <div style="font-weight:bold;">{{PathResultDr1}}</div>
+            <div style="font-weight:bold;" style="display:{{chkEdu}}">{{Education}}</div>
+            <div style="font-weight:bold;" style="display:{{chkRegNo}}">{{MahRegNo}}</div>
         </footer>
     </tr>
     <footer>
@@ -183,5 +182,10 @@
     </footer>
 
 </table>
-
 </html>
+
+
+<!--<html>
+
+
+</html>-->

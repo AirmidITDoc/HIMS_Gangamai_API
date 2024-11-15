@@ -374,12 +374,7 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
-
-
-
-
         [HttpPost("InsertIPDischargeSummary")]
-
         public String InsertIPDischargeSummary(IPDDischargeSummaryParams IPDDischargeSummaryParams)
         {
             var IPD = _IPDDischargeSummary.Insert(IPDDischargeSummaryParams);
@@ -657,11 +652,13 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+
         [HttpGet("view-IP-IPFinalBillReceiptNew")]
         public IActionResult ViewIPFinalBillReceiptNew(int BillNo)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPFinalBillReceiptNew.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+
             var html = _IPBilling.ViewIPFinalBillReceiptNew(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPFinalBillReceiptNew", "IPFinalBillReceiptNew" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
