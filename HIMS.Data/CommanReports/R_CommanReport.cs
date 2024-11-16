@@ -1381,7 +1381,7 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@ServiceId", ServiceId) { DbType = DbType.Int64 };
             para[1] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            para[3] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.DateTime };
+            para[3] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("rptServiceWiseReport_Detail_BillDateWise", para);
             StringBuilder items = new StringBuilder("");
@@ -1981,7 +1981,7 @@ namespace HIMS.Data.Opd
                 {
                     j = 1;
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Patient Wise Type Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='8' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Patient Wise Type Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                        .Append(T_Amount.ToString()).Append("</td></tr>");
 
                     T_Amount = 0;
