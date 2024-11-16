@@ -55,7 +55,7 @@ namespace HIMS.Data.IPD
                 {
                     j = 1;
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='6' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                        .Append(TotalAmt.ToString()).Append("</td></tr>");
 
                     TotalAmt = 0;
@@ -78,7 +78,7 @@ namespace HIMS.Data.IPD
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='6' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
 
                          .Append(TotalAmt.ToString()).Append("</td></tr>");
 
@@ -95,14 +95,25 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{Items}}", items.ToString());
             //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
+
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{AdmittedDoctorName}}", Bills.GetColValue("AdmittedDoctorName"));
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
+            html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{CompBillDate}}", Bills.GetColValue("CompBillDate").ConvertToDateString("dd/MM/yyyy"));
+
+
+
             html = html.Replace("{{T_TotalAmount}}", T_TotalAmount.To2DecimalPlace());
-            html = html.Replace("{{PatientName}}", PatientName.ToString());
-            html = html.Replace("{{AdmittedDoctorName}}", AdmittedDoctorName.ToString());
-            html = html.Replace("{{AdmissionDate}}", AdmissionDate.ToString("dd/MM/yyyy"));
-            html = html.Replace("{{BillNo}}", BillNo.ToString());
-            html = html.Replace("{{CompBillDate}}", CompBillDate.ToString("dd/MM/yyyy"));
-            html = html.Replace("{{IPDNo}}", IPDNo.ToString());
-            html = html.Replace("{{RoomName}}", RoomName.ToString());
+            //html = html.Replace("{{PatientName}}", PatientName.ToString());
+            //html = html.Replace("{{AdmittedDoctorName}}", AdmittedDoctorName.ToString());
+            //html = html.Replace("{{AdmissionDate}}", AdmissionDate.ToString("dd/MM/yyyy"));
+            //html = html.Replace("{{BillNo}}", BillNo.ToString());
+            //html = html.Replace("{{CompBillDate}}", CompBillDate.ToString("dd/MM/yyyy"));
+            //html = html.Replace("{{IPDNo}}", IPDNo.ToString());
+            //html = html.Replace("{{RoomName}}", RoomName.ToString());
             return html;
 
         }
