@@ -22,5 +22,8 @@ namespace HIMS.Data.IPD
         string ViewIPBillReceiptclassServicewise(int BillNo, string htmlFilePath, string HeaderName);
         string ViewIPFinalBillReceiptNew(int BillNo, string htmlFilePath, string HeaderName);
 
+        string ViewIPCompanyFinalBillWithSR(int AdmissionID, string htmlFilePath, string HeaderName);
+        string ViewIPCompanyFinalBill(int AdmissionID, string htmlFilePath, string HeaderName);
+
     }
 }
