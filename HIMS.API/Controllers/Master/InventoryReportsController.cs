@@ -87,6 +87,17 @@ namespace HIMS.API.Controllers.Transaction
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+        [HttpGet("view-GRNReportSummary")]
+        public IActionResult ViewGRNReportSummary(DateTime FromDate, DateTime ToDate, int StoreId, int SupplierID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_GRNReportSummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _InventoryReport.ViewGRNReportSummary(FromDate, ToDate, StoreId, SupplierID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewGRNReportSummary", "ViewGRNReportSummary", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         [HttpGet("view-GRNReportNΑΒΗ")]
         public IActionResult ViewGRNReportNΑΒΗ(DateTime FromDate, DateTime ToDate, int StoreId)
