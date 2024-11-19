@@ -274,7 +274,10 @@ namespace HIMS.Data.Opd
         public string ViewAppointmentTemplate(DataTable Bills, string htmlFilePath, string htmlHeader)
         {
 
-            string html = File.ReadAllText(htmlFilePath);
+            //string html = File.ReadAllText(htmlFilePath);
+
+            string html = htmlFilePath;
+
 
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
            // html = html.Replace("{{NewHeader}}", Hospitalheader);
@@ -290,7 +293,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
             html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
-            html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy  hh:mm tt"));
             html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
             html = html.Replace("{{ConsultantDoctorName}}", Bills.GetColValue("ConsultantDoctorName"));
 
@@ -316,6 +319,11 @@ namespace HIMS.Data.Opd
 
             html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));
             html = html.Replace("{{LoginUserSurname}}", Bills.GetColValue("LoginUserSurname"));
+
+        
+            html = html.Replace("{{chkyearflag}}", Bills.GetColValue("AgeYear").ToInt() == 0 ? "none" : "visible");
+            html = html.Replace("{{chkmonthflag}}", Bills.GetColValue("AgeMonth").ToInt() == 0 ? "none" : "visible");
+            html = html.Replace("{{chkdayflag}}", Bills.GetColValue("AgeDay").ToInt() == 0 ? "none" : "visible");
 
             return html;
         }

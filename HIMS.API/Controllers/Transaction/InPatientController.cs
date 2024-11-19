@@ -274,7 +274,7 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-AdmissionTemplate")]
         public IActionResult viewAdmissionTemplate(int AdmissionId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPCasepaper.html");
+           // string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PrimeAdmissionPaper.html");
             
 
             // Hospital Header 
@@ -282,11 +282,11 @@ namespace HIMS.API.Controllers.Transaction
             Hospitalheader = Hospitalheader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
 
             //Report content
-            string header1 = _pdfUtility.GetTemplateHeader(2);// Admission header
-            header1 = header1.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+            string Admissiontemplate = _pdfUtility.GetTemplateHeader(2);// Admission header
+            Admissiontemplate = Admissiontemplate.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
 
             DataTable dt = _Admission.GetDataForReport(AdmissionId);
-            var html = _Admission.ViewAdmissiontemplatePaper(dt, htmlFilePath, header1);
+            var html = _Admission.ViewAdmissiontemplatePaper(dt, Admissiontemplate, Hospitalheader);
             html = html.Replace("{{NewHeader}}", Hospitalheader);
 
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPAdmission", "IPAdmission" + AdmissionId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);

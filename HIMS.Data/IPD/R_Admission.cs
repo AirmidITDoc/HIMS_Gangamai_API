@@ -105,7 +105,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{MobileNo}}", Bills.GetColValue("MobileNo"));
             html = html.Replace("{{PhoneNo}}", Bills.GetColValue("PhoneNo"));
 
-            html = html.Replace("{{DOT}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{DOT}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yy hh:mm tt"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
 
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
@@ -400,7 +400,8 @@ namespace HIMS.Data.IPD
         {
 
 
-            string html = File.ReadAllText(htmlFilePath);
+            //string html = File.ReadAllText(htmlFilePath);
+            string html = htmlFilePath;
 
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             StringBuilder items = new StringBuilder("");
@@ -416,7 +417,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{MobileNo}}", Bills.GetColValue("MobileNo"));
             html = html.Replace("{{PhoneNo}}", Bills.GetColValue("PhoneNo"));
 
-            html = html.Replace("{{DOT}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{DOT}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yy hh:mm tt"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
 
             html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
@@ -457,6 +458,12 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));
             html = html.Replace("{{LoginUserSurname}}", Bills.GetColValue("LoginUserSurname"));
+
+
+
+            html = html.Replace("{{chkyearflag}}", Bills.GetColValue("AgeYear").ToInt() == 0 ? "none" : "visible");
+            html = html.Replace("{{chkmonthflag}}", Bills.GetColValue("AgeMonth").ToInt() == 0 ? "none" : "visible");
+            html = html.Replace("{{chkdayflag}}", Bills.GetColValue("AgeDay").ToInt() == 0 ? "none" : "visible");
 
             return html;
         }
