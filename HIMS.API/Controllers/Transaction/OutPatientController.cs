@@ -202,18 +202,18 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-AppointmentTemplate")]
         public IActionResult viewAppoinmentTemplate(int VisitId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPCasePaperNew.html");
+           // string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPrimeCasePaper.html");
             
             // Hospital Header 
             string Hospitalheader = _pdfUtility.GetHeader(1, 1);// hospital header
             Hospitalheader = Hospitalheader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
             
             //Report content
-            string header1 = _pdfUtility.GetTemplateHeader(1);// Appointment header
-            header1 = header1.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+            string AppTemplate= _pdfUtility.GetTemplateHeader(1);// Appointment header
+            AppTemplate = AppTemplate.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
           
             DataTable dt = _OpdAppointment.GetDataForReport(VisitId);
-            var html = _OpdAppointment.ViewAppointmentTemplate(dt, htmlFilePath, header1);
+            var html = _OpdAppointment.ViewAppointmentTemplate(dt, AppTemplate, Hospitalheader);
             html = html.Replace("{{NewHeader}}", Hospitalheader);
 
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AppointmentPrint", "Appointment_"+ VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);

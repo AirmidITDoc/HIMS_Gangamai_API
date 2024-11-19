@@ -27,6 +27,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_StockAdjustment _StockAdjustment;
         public readonly I_IssueToDepartmentIndent _IssueToDepartmentIndent;
         public readonly I_Itemmovement _Itemmovement;
+
         public InventoryTransactionController(
              I_Indent indent
             ,I_IssueTrackingInfo issueTrackingInfo
@@ -127,6 +128,13 @@ namespace HIMS.API.Controllers.Transaction
             var IndentUpdate = _IssueTrackingInfo.UpdateStatus(issueTrackerParams);
             return Ok(IndentUpdate);
         }
+        //Issue Tracker 
+        [HttpGet("get-file")]
+        public IActionResult DownloadFiles(string FileName)
+        {
+            return Ok(new { data = _IFileUtility.GetBase64FromFolder("IssueTracker\\Issue", FileName) });
+        }
+
 
         [HttpGet("view-InvItemwiseStock")]
         public IActionResult ViewInvItemwise(DateTime FromDate ,DateTime todate,int StoreId)
