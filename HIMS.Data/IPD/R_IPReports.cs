@@ -16,6 +16,214 @@ namespace HIMS.Data.IPD
         {
 
         }
+
+        public string ViewIPSalesBillReport(int OP_IP_ID, int StoreId,string htmlFilePath, string htmlHeader)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[2];
+            para[0] = new SqlParameter("@OP_IP_ID", OP_IP_ID) { DbType = DbType.Int64 };
+            para[1] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptIPSalesBill", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            double T_Count = 0, T_TotalAmount = 0, TotalAmt = 0, PatientName = 0, AdmittedDoctorName = 0, AdmissionDate = 0, BillNo = 0, CompBillDate = 0, IPDNo = 0, RoomName = 0;
+
+            string previousLabel = "";
+
+
+           foreach (DataRow dr in Bills.Rows)
+            {
+
+                i++; j++;
+
+
+                if (i == 1)
+                {
+                    String Label;
+                    Label = dr["SalesNo"].ConvertToString();
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"9\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+                if (previousLabel != "" && previousLabel != dr["SalesNo"].ConvertToString())
+                {
+                    j = 1;
+
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='8' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Bill Total Amount</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                       .Append(TotalAmt.ToString()).Append("</td></tr>");
+
+                    TotalAmt = 0;
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"9\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["SalesNo"].ConvertToString()).Append("</td></tr>");
+
+                }
+
+                TotalAmt = TotalAmt;
+                T_Count = T_Count + 1;
+                previousLabel = dr["SalesNo"].ConvertToString();
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["SalesNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align center;\">").Append(dr["BatchExpDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["UnitMRP"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["TotalAmount"].ConvertToDouble()).Append("</td></tr>");
+                if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
+                {
+
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='8' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Bill Total Amount</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+
+                         .Append(TotalAmt.ToString()).Append("</td></tr>");
+
+
+                }
+                TotalAmt += dr["TotalAmount"].ConvertToDouble();
+                T_TotalAmount += dr["TotalAmount"].ConvertToDouble();
+                //BillNo += dr["BillNo"].ConvertToDouble();
+                //CompBillDate += dr["CompBillDate"].ConvertToDouble();
+                //IPDNo += dr["IPDNo"].ConvertToDouble();
+                //RoomName += dr["RoomName"].ConvertToDouble();
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
+
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{DoctorName}}", Bills.GetColValue("AdmittedDoctorName"));
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
+            html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{CompBillDate}}", Bills.GetColValue("CompBillDate").ConvertToDateString("dd/MM/yyyy"));
+
+
+
+            html = html.Replace("{{T_TotalAmount}}", T_TotalAmount.To2DecimalPlace());
+            //html = html.Replace("{{PatientName}}", PatientName.ToString());
+            //html = html.Replace("{{AdmittedDoctorName}}", AdmittedDoctorName.ToString());
+            //html = html.Replace("{{AdmissionDate}}", AdmissionDate.ToString("dd/MM/yyyy"));
+            //html = html.Replace("{{BillNo}}", BillNo.ToString());
+            //html = html.Replace("{{CompBillDate}}", CompBillDate.ToString("dd/MM/yyyy"));
+            //html = html.Replace("{{IPDNo}}", IPDNo.ToString());
+            //html = html.Replace("{{RoomName}}", RoomName.ToString());
+            return html;
+
+        }
+
+        public string ViewIPSalesBillWithReturnReport(int OP_IP_ID, string htmlFilePath, string htmlHeader)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[1];
+            para[0] = new SqlParameter("@OP_IP_ID", OP_IP_ID) { DbType = DbType.Int64 };
+            //para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            var Bills = GetDataTableProc("rptIPSalesBill_withReturn", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            double T_Count = 0, T_TotalAmount = 0, TotalAmt = 0, PatientName = 0, AdmittedDoctorName = 0, AdmissionDate = 0, BillNo = 0, CompBillDate = 0, IPDNo = 0, RoomName = 0;
+
+            string previousLabel = "";
+
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+
+                i++; j++;
+
+
+                if (i == 1)
+                {
+                    String Label;
+                    Label = dr["SalesNo"].ConvertToString();
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"9\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+                if (previousLabel != "" && previousLabel != dr["SalesNo"].ConvertToString())
+                {
+                    j = 1;
+
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='8' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Bill Total Amount</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                       .Append(TotalAmt.ToString()).Append("</td></tr>");
+
+                    TotalAmt = 0;
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"9\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["SalesNo"].ConvertToString()).Append("</td></tr>");
+
+                }
+
+                TotalAmt = TotalAmt;
+                T_Count = T_Count + 1;
+                previousLabel = dr["SalesNo"].ConvertToString();
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["SalesNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align center;\">").Append(dr["BatchExpDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["UnitMRP"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["TotalAmount"].ConvertToDouble()).Append("</td></tr>");
+                if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
+                {
+
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='8' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Bill Total Amount</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+
+                         .Append(TotalAmt.ToString()).Append("</td></tr>");
+
+
+                }
+                TotalAmt += dr["TotalAmount"].ConvertToDouble();
+                T_TotalAmount += dr["TotalAmount"].ConvertToDouble();
+                //BillNo += dr["BillNo"].ConvertToDouble();
+                //CompBillDate += dr["CompBillDate"].ConvertToDouble();
+                //IPDNo += dr["IPDNo"].ConvertToDouble();
+                //RoomName += dr["RoomName"].ConvertToDouble();
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
+
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{DoctorName}}", Bills.GetColValue("AdmittedDoctorName"));
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
+            html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{CompBillDate}}", Bills.GetColValue("CompBillDate").ConvertToDateString("dd/MM/yyyy"));
+
+
+
+            html = html.Replace("{{T_TotalAmount}}", T_TotalAmount.To2DecimalPlace());
+            //html = html.Replace("{{PatientName}}", PatientName.ToString());
+            //html = html.Replace("{{AdmittedDoctorName}}", AdmittedDoctorName.ToString());
+            //html = html.Replace("{{AdmissionDate}}", AdmissionDate.ToString("dd/MM/yyyy"));
+            //html = html.Replace("{{BillNo}}", BillNo.ToString());
+            //html = html.Replace("{{CompBillDate}}", CompBillDate.ToString("dd/MM/yyyy"));
+            //html = html.Replace("{{IPDNo}}", IPDNo.ToString());
+            //html = html.Replace("{{RoomName}}", RoomName.ToString());
+            return html;
+
+        }
+
         public string ViewIPFinalBill(int AdmissionID, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();

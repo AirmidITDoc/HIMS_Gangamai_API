@@ -80,5 +80,8 @@ namespace HIMS.Data.IPD
 
         string ViewIPFinalBill(int AdmissionID, string htmlFilePath, string HeaderName);
 
+        string ViewIPSalesBillReport(int OP_IP_ID, int StoreId, string htmlFilePath, string HeaderName);
+        string ViewIPSalesBillWithReturnReport(int OP_IP_ID, string htmlFilePath, string HeaderName);
+
     }
 }

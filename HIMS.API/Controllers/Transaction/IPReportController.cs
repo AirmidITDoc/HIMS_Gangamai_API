@@ -26,11 +26,33 @@ namespace HIMS.API.Controllers.Transaction
             _hostingEnvironment = hostingEnvironment;
             _pdfUtility = pdfUtility;
         }
+        [HttpGet("view-IPSalesBillReport")]
+        public IActionResult ViewIPSalesBillReport(int OP_IP_ID, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPSalesBill.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPSalesBillReport(OP_IP_ID, StoreId,htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPSalesBillReport", "IPSalesBillReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-IPSalesBillWithReturnReport")]
+        public IActionResult ViewIPSalesBillWithReturnReport(int OP_IP_ID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPSalesBillWithReturn.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPReports.ViewIPSalesBillWithReturnReport(OP_IP_ID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPSalesBillWithReturnReport", "IPSalesBillWithReturnReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpGet("view-IPCompanyBill")]
         public IActionResult ViewIPFinalBill(int AdmissionID)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPFinalBill.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPFinalBill.html"); 
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewIPFinalBill(AdmissionID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPFinalBill", "IPFinalBill", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
