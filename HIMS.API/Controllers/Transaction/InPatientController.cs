@@ -407,18 +407,18 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult viewDischargSummaryTemplate(int AdmissionID)
         {
 
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPDischargeSummary.html");
+          //  string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPDischargeSummary.html");
 
             // Hospital Header 
             string Hospitalheader = _pdfUtility.GetHeader(1, 1);// hospital header
             Hospitalheader = Hospitalheader.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
 
             //Report content
-            string header1 = _pdfUtility.GetTemplateHeader(5);// Discharge Summary header
-            header1 = header1.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
+            string DIschargetemplate = _pdfUtility.GetTemplateHeader(5);// Discharge Summary header
+            DIschargetemplate = DIschargetemplate.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
 
             DataTable dt = _IPDDischargeSummary.GetDataForReport(AdmissionID);
-            var html = _IPDDischargeSummary.ViewDischargeSummary(dt, AdmissionID, htmlFilePath, header1);
+            var html = _IPDDischargeSummary.ViewDischargeSummaryTemplate(dt, AdmissionID, DIschargetemplate, Hospitalheader);
             html = html.Replace("{{NewHeader}}", Hospitalheader);
 
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDischargeSummary", "IPDischargeSummary" + AdmissionID, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
