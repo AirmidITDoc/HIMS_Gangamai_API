@@ -309,6 +309,21 @@ namespace HIMS.API.Controllers.Transaction
         //    var AdmissionS = _RPA.Update(RegisteredPatientAdmissionParams);
         //    return Ok(AdmissionS);
         //}
+        //[HttpPost("Save_Comp_HBill")]
+        //public IActionResult ComCharges(CompanyAddParams companyAddParams)
+        //{
+        //    var RPAP = _ComAddcharges.Save(companyAddParams);
+        //    return Ok(RPAP);
+        //}
+        [HttpPost("Updatet_Comp_HBill")]
+        public IActionResult CompanyCharges(CompanyAddParams companyAddParams)
+        {
+            var RPAP = _ComAddcharges.update(companyAddParams);
+            return Ok(RPAP);
+        }
+
+
+
 
         [HttpPost("ComAddCharges")]
         public IActionResult ComAddCharges(ComAddChargesParams comaddChargesParams)

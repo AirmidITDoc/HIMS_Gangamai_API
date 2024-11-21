@@ -38,6 +38,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\PdfTemplates\IPReport_IPSalesBill.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Update="wwwroot\PdfTemplates\PharmacyReport_SalesDraftBill.html">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

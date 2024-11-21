@@ -9,6 +9,10 @@ namespace HIMS.Data.IPD
     {
         bool Save(ComAddChargesParams comaddChargesParams);
         bool update(ComAddChargesParams comaddChargesParams);
-     
+
+
+        //bool Save(CompanyAddParams companyAddParams);
+        bool update(CompanyAddParams companyAddParams);
+
     }
 }

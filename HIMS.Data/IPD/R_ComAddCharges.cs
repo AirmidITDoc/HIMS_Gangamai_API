@@ -52,6 +52,44 @@ namespace HIMS.Data.IPD
             return (true);
 
         }
-      
+
+
+
+        //public bool Save(CompanyAddParams companyAddParams)
+        //{
+        //    // add AddCharges
+        //    var outputId = new SqlParameter
+        //    {
+        //        SqlDbType = SqlDbType.BigInt,
+        //        ParameterName = "@AdmId",
+        //        Value = 0,
+        //        Direction = ParameterDirection.Output
+        //    };
+        //    var dic = companyAddParams.CompanyAdd.ToDictionary();
+        //    dic.Remove("AdmId");
+        //    var AdmId = ExecNonQueryProcWithOutSaveChanges("Upt_Comp_Prc_HBil", dic, outputId);
+
+
+
+
+
+        //    _unitofWork.SaveChanges();
+
+        //    return true;
+        //}
+
+        public bool update(CompanyAddParams companyAddParams)
+        {
+            //throw new NotImplementedException();
+
+
+            var disc = companyAddParams.Companyupdate.ToDictionary();
+            var Id = ExecNonQueryProcWithOutSaveChanges("Upt_Comp_Prc_HBil", disc);
+
+
+            _unitofWork.SaveChanges();
+            return (true);
+
+        }
     }
 }
