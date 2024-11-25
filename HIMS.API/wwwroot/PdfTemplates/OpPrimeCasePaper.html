@@ -10,27 +10,32 @@
 <div>
     <body>
         <div class="main-content-wrapper">
-            <div class="invoice-box" style="font-size: 22px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;padding-top:100px;">
+            <div class="invoice-box" style="font-size: 22px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;padding-top:90px;">
                 <table style="width: 100%;line-height: inherit;text-align: left;">
                     <!--{{NewHeader}}-->
-                    <tr class="title-date-row">
+                    <!--<tr class="title-date-row">
                         <td style="padding: 6px;">
                             <table style="width: 100%; border-collapse: collapse;">
-                                <tr style="font-size: 22px;">
+                                <tr style="font-size: 24px;">
                                     <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px;text-align:center;"><b>OPD Case Paper</b></td>
                                    
                                 </tr>
                             </table>
                         </td>
-                    </tr>
+                    </tr>-->
                     <tr class="bill-info-row">
                         <td style="padding: 6px;">
-                            <table style="width: 100%; border-collapse: collapse;font-size: 22px;">
+                            <table style="width: 100%; border-collapse: collapse;font-size: 24px;">
+                                <tr>
+                                    <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px;text-align:center;" colspan="2"><b>OPD Case Paper</b></td>
+
+                                </tr>
                                 <tr>
                                     <td style="padding: 2px;">
                                         <span style="font-weight:bold;">UHID No. : </span>
                                         <span>{{RegNo}}</span>
                                     </td>
+                                    
                                     <td style="padding: 2px;">
                                         <span style="font-weight:bold;">Visit Date : </span>
                                         <span>{{VisitDate}}</span>
@@ -45,7 +50,7 @@
                                     <td style="padding: 2px;">
                                         <span style="font-weight:bold;">Age | Gender : </span>
                                         <span style="display:{{chkyearflag}}"> {{AgeYear}} Y |</span>
-                                        <span  style="display:{{chkmonthflag}}"> {{AgeMonth}} M | </span> 
+                                        <span style="display:{{chkmonthflag}}"> {{AgeMonth}} M | </span>
                                         <span style="display:{{chkdayflag}}"> {{AgeDay}} D |</span> <span> {{GenderName}}</span>
                                     </td>
 
@@ -61,15 +66,18 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td style="padding: 2px;">
+                                        <span style="font-weight:bold;">Department Name : </span>
+                                        <span>{{DepartmentName}} </span>
+                                    </td>
+                                </tr>
+                                <tr>
 
                                     <td style="padding: 2px;">
                                         <span style="font-weight:bold;">Address : </span>
                                         <span>{{Address}} </span>
                                     </td>
-                                    <td style="padding: 2px;">
-                                        <span style="font-weight:bold;">Department Name : </span>
-                                        <span>{{DepartmentName}} </span>
-                                    </td>
+                                
                                 </tr>
 
                             </table>
@@ -77,7 +85,7 @@
                     </tr>
 
                     <tr style="font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;padding-top:10px;">
-                        <table style="border: 1px solid #000; width: 100%;font-weight:bold;">
+                        <table style="border: 1px solid #000; width: 100%;font-weight:bold;font-size:24px;">
 
 
                             <tr class="bill-info-row">
@@ -99,7 +107,7 @@
                     <tr style="font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;padding-top:10px;">
                         <table style="border: 1px solid #000; width: 100%;font-weight:bold;">
 
-                            <tr style="line-height:50px;">
+                            <tr style="line-height:30px;">
                                 <td style="width: 15%; margin-left: 50px; border-right: 1px solid #000; padding:10px;" colspan="6">C/o:</td>
 
                             </tr>
@@ -274,25 +282,25 @@
 
 
         <tr>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 24px;">
+            <table style="width: 100%; border-collapse: collapse;font-size: 24px;">
+
+                <tr><td><span style="font-size: 22px; font-weight: bold; line-height: 30px;">Note:-Don't Stop any Medication Without Doctor Consultation...</span></td></tr>
                 <tr></tr>
+                <!--<tr style="padding: 6px; text-align: left; padding-top: 20px;">
+        <td><sapn style="font-size:24px;font-weight:bold;"> Follow Up Date : </sapn></td>
 
-                <tr><td><span style="font-size:24px;font-weight:bold;">Note:-Don't Stop any Medication Without Doctor Consultation...</span></td></tr>
-                <br />
-                <tr style="padding: 6px; text-align: left;">
-                    <td><sapn style="font-size:24px;font-weight:bold;"> Follow Up Date : </sapn></td>
+    </tr>-->
 
-                    <td>
-                    </td>
-                    <td>
+                <tr style="padding: 6px; text-align: left;line-height:50px;">
+                    <td><sapn style="font-size: 24px; font-weight: bold;"> Follow Up Date : </sapn></td>
 
+                </tr>
+                <tr style="padding: 6px; text-align: right;line-height:50px;">
+                    <td></td>
+                                       <td style="text-align:right;">
                         <span>Authorize Signature</span>
                     </td>
                 </tr>
-
-
-
-
             </table>
         </tr>
     </table>

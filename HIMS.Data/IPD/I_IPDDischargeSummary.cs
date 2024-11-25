@@ -13,7 +13,10 @@ namespace HIMS.Data.IPD
      
         DataTable GetDataForReport(int AdmissionID);
         string ViewDischargeSummary(DataTable Bills, int AdmissionID, string htmlFilePath, string HeaderName);
+        string ViewDischargeSummaryTemplate(DataTable Bills, int AdmissionID, string htmlFilePath, string HeaderName);
 
+
+        
         string ViewDischargeSummaryold(int AdmissionID,string htmlFilePath, string HeaderName);
         
 
