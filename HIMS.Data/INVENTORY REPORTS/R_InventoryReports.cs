@@ -260,6 +260,8 @@ namespace HIMS.Data.Opd
         {
             // throw new NotImplementedException();
 
+
+
             SqlParameter[] para = new SqlParameter[4];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
