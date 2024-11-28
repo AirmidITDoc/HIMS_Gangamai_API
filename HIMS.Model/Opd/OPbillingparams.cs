@@ -146,6 +146,8 @@ namespace HIMS.Model.Opd
         //public int PackageMainChargeID { get; set; }
         public bool IsSelfOrCompanyService { get; set; }
         public int PackageId { get; set; }
+
+        public int BillNo { get; set; }
         //public DateTime ChargeTime { get; set; }
         //public int ClassId { get; set; }
         //public int BillNo { get; set; }
