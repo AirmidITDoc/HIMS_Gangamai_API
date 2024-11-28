@@ -32,7 +32,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReports_PharmacyDailycollection.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewPharmacyDailycollectionReport(FromDate, ToDate, StoreId, AddedById,htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPPharmacy.ViewPharmacyDailycollectionReport(FromDate, ToDate, StoreId, AddedById,htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmacyDailyCollectionReport", "PharmacyDailyCollectionReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
            
@@ -44,7 +44,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_SCHEDULEH1Report.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewSCHEDULEH1Report(FromDate, ToDate,  DrugTypeId, StoreId,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPPharmacy.ViewSCHEDULEH1Report(FromDate, ToDate,  DrugTypeId, StoreId,  htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SCHEDULEH1Report", "SCHEDULEH1Report", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
@@ -55,7 +55,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_SCHEDULEH1SalesSummaryReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewSCHEDULEH1SalesSummaryReport(FromDate, ToDate,  DrugTypeId, StoreId,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPPharmacy.ViewSCHEDULEH1SalesSummaryReport(FromDate, ToDate,  DrugTypeId, StoreId,  htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SCHEDULEH1SalesSummaryReport", "SCHEDULEH1SalesSummaryReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
@@ -67,7 +67,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_SalesH1DrugCountReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewSalesH1DrugCountReport(FromDate, ToDate, StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPPharmacy.ViewSalesH1DrugCountReport(FromDate, ToDate, StoreId, htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesH1DrugCountReport", "SalesH1DrugCountReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
@@ -79,7 +79,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_ItemWiseDailySalesReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewItemWiseDailySalesReport(FromDate, ToDate, ItemId,RegNo, StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPPharmacy.ViewItemWiseDailySalesReport(FromDate, ToDate, ItemId,RegNo, StoreId, htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ItemWiseDailySalesReport", "ItemWiseDailySalesReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
@@ -91,7 +91,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_WardWiseHighRiskDrugList.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewWardWiseHighRiskDrugList(FromDate, ToDate, StoreId,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPPharmacy.ViewWardWiseHighRiskDrugList(FromDate, ToDate, StoreId,  htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "WardWiseHighRiskDrugList", "WardWiseHighRiskDrugList", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
@@ -103,7 +103,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_PurchaseReOrderList.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewPurchaseReOrderList(StoreId, FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPPharmacy.ViewPurchaseReOrderList(StoreId, FromDate, ToDate,  htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PurchaseReOrderList", "PurchaseReOrderList", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
@@ -115,7 +115,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_PharmacyBillSummaryReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewPharmacyBillSummaryReport(StoreId, FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPPharmacy.ViewPharmacyBillSummaryReport(StoreId, FromDate, ToDate,  htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmacyBillSummaryReport", "PharmacyBillSummaryReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
@@ -126,7 +126,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_DoctorWiseProfitReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewDoctorWiseProfitReport( FromDate, ToDate, DoctorId, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPPharmacy.ViewDoctorWiseProfitReport( FromDate, ToDate, DoctorId, OP_IP_Type, htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorWiseProfitReport", "DoctorWiseProfitReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
@@ -138,7 +138,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_DoctorWiseSalesReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewDoctorWiseSalesReport(FromDate, ToDate, StoreId, DoctorId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPPharmacy.ViewDoctorWiseSalesReport(FromDate, ToDate, StoreId, DoctorId, htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorWiseSalesReport", "DoctorWiseSalesReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
@@ -149,7 +149,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_PharmacySalesDoctorWiseProfitDetailsReportOPIP.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewPharmacySalesDoctorWiseProfitDetailsReportOPIP(FromDate, ToDate, StoreId, DoctorId, OP_IP_Type,htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPPharmacy.ViewPharmacySalesDoctorWiseProfitDetailsReportOPIP(FromDate, ToDate, StoreId, DoctorId, OP_IP_Type,htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmacySalesDoctorWiseProfitDetailsReportOPIP", "PharmacySalesDoctorWiseProfitDetailsReportOPIP", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
@@ -160,7 +160,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_PharmacySalesDoctorWiseProfitReportSummaryOPIP.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewPharmacySalesDoctorWiseProfitReportSummaryOPIP(FromDate, ToDate, DoctorId, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPPharmacy.ViewPharmacySalesDoctorWiseProfitReportSummaryOPIP(FromDate, ToDate, DoctorId, OP_IP_Type, htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PharmacySalesDoctorWiseProfitReportSummaryOPIP", "PharmacySalesDoctorWiseProfitReportSummaryOPIP", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
@@ -173,7 +173,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewSalesDraftBill( int DSalesId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_SalesDraftBill.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPPharmacy.ViewSalesDraftBill( DSalesId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesDraftBill", "SalesDraftBill", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
