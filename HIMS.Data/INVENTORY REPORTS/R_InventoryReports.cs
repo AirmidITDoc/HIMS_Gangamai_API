@@ -800,13 +800,13 @@ namespace HIMS.Data.Opd
             //html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("T_NetAmount").ConvertToDouble().ToString("0.00"));
 
 
-            html = html.Replace("{{T_MRP}}", T_MRP.ToString());
-            html = html.Replace("{{T_Rate}}", T_Rate.ToString());
-            html = html.Replace("{{T_TotalAmount}}", T_TotalAmount.ToString());
-            html = html.Replace("{{T_VatAmount}}", T_VatAmount.ToString());
-            html = html.Replace("{{T_DiscAmount}}", T_DiscAmount.ToString());
+            html = html.Replace("{{T_MRP}}", T_MRP.To2DecimalPlace());
+            html = html.Replace("{{T_Rate}}", T_Rate.To2DecimalPlace());
+            html = html.Replace("{{T_TotalAmount}}", T_TotalAmount.To2DecimalPlace());
+            html = html.Replace("{{T_VatAmount}}", T_VatAmount.To2DecimalPlace());
+            html = html.Replace("{{T_DiscAmount}}", T_DiscAmount.To2DecimalPlace());
 
-            html = html.Replace("{{T_NetAmount}}", T_NetAmount.ToString());
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
@@ -1172,7 +1172,7 @@ namespace HIMS.Data.Opd
             return html;
         }
 
-        public string ViewItemExpiryReport(int ExpMonth, int ExpYear, int StoreID,  string htmlFilePath, string htmlHeader)
+        public string ViewItemExpiryReport(int ExpMonth, int ExpYear, int StoreID, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[3];
             para[0] = new SqlParameter("@ExpMonth", ExpMonth) { DbType = DbType.Int64 };
@@ -1218,8 +1218,8 @@ namespace HIMS.Data.Opd
 
 
             html = html.Replace("{{Items}}", items.ToString());
-            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
 
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
 
