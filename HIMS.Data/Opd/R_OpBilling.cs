@@ -653,8 +653,8 @@ namespace HIMS.Data.Opd
                         {
                             var disc6 = obj.ToDictionary();
                             disc6["PackageMainChargeID"] = ChargeID;
-
-                            ExecNonQueryProcWithOutSaveChanges("insert_AddCharges_1", disc6);
+                            disc6["BillNo"]= BillNo;
+                            ExecNonQueryProcWithOutSaveChanges("m_insert_AddChargesPackages_1", disc6);
                         }
                      
 
