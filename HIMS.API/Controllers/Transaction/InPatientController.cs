@@ -403,6 +403,23 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(IPD);
         }
 
+
+        [HttpPost("InsertIPDischargeSummaryTemplate")]
+        public String InsertIPDischargeSummaryTemplate(IPDDischargeSummaryParams IPDDischargeSummaryParams)
+        {
+            var IPD = _IPDDischargeSummary.DischTemplateInsert(IPDDischargeSummaryParams);
+            return (IPD);
+        }
+        [HttpPost("UpdateIPDischargeSummarytemplate")]
+
+        public IActionResult UpdateIPDischargeSummaryTemplate(IPDDischargeSummaryParams IPDDischargeSummaryParams)
+        {
+            var IPD = _IPDDischargeSummary.DischTemplateUpdate(IPDDischargeSummaryParams);
+            return Ok(IPD);
+        }
+
+
+
         [HttpGet("view-DischargSummary")]
         public IActionResult ViewIPDischargesummary(int AdmissionID)
         {

@@ -10,7 +10,10 @@ namespace HIMS.Data.IPD
     {
         public String Insert(IPDDischargeSummaryParams IPDDischargeSummaryParams);
         public bool Update(IPDDischargeSummaryParams IPDDischargeSummaryParams);
-     
+
+        public String DischTemplateInsert(IPDDischargeSummaryParams IPDDischargeSummaryParams);
+        public bool DischTemplateUpdate(IPDDischargeSummaryParams IPDDischargeSummaryParams);
+
         DataTable GetDataForReport(int AdmissionID);
         string ViewDischargeSummary(DataTable Bills, int AdmissionID, string htmlFilePath, string HeaderName);
         string ViewDischargeSummaryTemplate(DataTable Bills, int AdmissionID, string htmlFilePath, string HeaderName);
