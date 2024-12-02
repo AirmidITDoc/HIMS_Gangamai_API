@@ -530,6 +530,19 @@ namespace HIMS.API.Controllers.Transaction
             //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+
+
+        [HttpGet("view-OPBillWithPackagePrint")]
+        public IActionResult ViewOPBillWithPackagePrint(int BillNo)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OpBillWithPackagePrint.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _OPbilling.ViewOPBillWithPackagePrint(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPBillWithPackagePrint", "OPBillWithPackagePrint" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         //[HttpGet("view-OPD-daily-collection")]
         //public IActionResult ViewOPDDailyCollection(DateTime FromDate, DateTime ToDate, int AddedById)
         //{

@@ -243,11 +243,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-ItemExpiryReport")]
-        public IActionResult ViewItemExpiryReport(int ExpMonth, int ExpYear, int StoreID)
+        public IActionResult ViewItemExpiryReport(int ExpMonth, int ExpYear, int StoreID, DateTime FromDate, DateTime ToDate)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_ItemExpiryReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _InventoryReport.ViewItemExpiryReport(ExpMonth, ExpYear,  StoreID,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _InventoryReport.ViewItemExpiryReport(ExpMonth, ExpYear,  StoreID,  FromDate,  ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ItemExpiryReport", "ItemExpiryReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 

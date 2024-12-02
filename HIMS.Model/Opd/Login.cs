@@ -36,8 +36,8 @@
         public bool PharExtOpt { get; set; }
         public bool PharOPOpt { get; set; }
         public bool PharIPOpt { get; set; }
-
-
+        public long IsDiscApply { get; set; }
+        public long DiscApplyPer { get; set; }
     }
 
 }

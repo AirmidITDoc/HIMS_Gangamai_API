@@ -228,7 +228,7 @@ namespace HIMS.Data.Pharmacy
             var Bills = GetDataTableProc("RptSalesDailyCollection", para);
             string html = File.ReadAllText(htmlFilePath);// templates.Rows[0]["TempDesign"].ToString();
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
@@ -377,7 +377,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
             //string previousLabel = "";
@@ -552,7 +552,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
             Boolean chkdiscflag = false;
@@ -634,7 +634,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -698,7 +698,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -750,7 +750,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -854,7 +854,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -913,7 +913,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -960,7 +960,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
             //  string previousLabel = "";
@@ -1160,7 +1160,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(htmlHeaderFilePath);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -1235,7 +1235,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
             string previousLabel = "";
@@ -1414,7 +1414,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             string htmlHeader = File.ReadAllText(HeaderName);// templates.Rows[0]["TempDesign"].ToString();
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -1543,7 +1543,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -1588,7 +1588,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
@@ -1632,7 +1632,7 @@ namespace HIMS.Data.Pharmacy
             string html = File.ReadAllText(htmlFilePath);
             
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
             string Storename = "";

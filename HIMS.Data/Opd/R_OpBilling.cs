@@ -388,6 +388,101 @@ namespace HIMS.Data.Opd
 
         }
 
+        public String ViewOPBillWithPackagePrint(int BillNo, string htmlFilePath, string htmlHeader)
+        {
+            SqlParameter[] para = new SqlParameter[1];
+            para[0] = new SqlParameter("@BillNo", BillNo) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("m_rptOP_BillWithPackage_Print", para);
+            string html = File.ReadAllText(htmlFilePath);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{ConcessionAmt}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
+            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
+            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
+            html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
+            html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy | H:mm tt"));
+            html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+            html = html.Replace("{{ExtMobileNo}}", Bills.GetColValue("ExtMobileNo"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
+            html = html.Replace("{{Date}}", Bills.GetDateColValue("Date").ConvertToDateString());
+            html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{PhoneNo}}", Bills.GetColValue("PhoneNo"));
+            html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+            html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
+
+
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            string previousLabel = "";
+            double T_NetAmount = 0;
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;j++;
+                if (i == 1)
+                {
+                    String Label;
+                    Label = dr["ServiceName"].ConvertToString();
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"8\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+
+                previousLabel = dr["ServiceName"].ConvertToString();
+                items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:15;\"><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
+             
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ChargesDoctorName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Price"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["Qty"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+
+              
+
+                T_NetAmount += dr["NetAmount"].ConvertToDouble();
+            }
+            T_NetAmount = Math.Round(T_NetAmount);
+
+            html = html.Replace("{{Items}}", items.ToString());
+
+
+            html = html.Replace("{{T_NetAmount}}", T_NetAmount.ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{TotalBillAmount}}", Bills.GetColValue("TotalBillAmount").ConvertToDouble().To2DecimalPlace());
+
+            html = html.Replace("{{BalanceAmt}}", Bills.GetColValue("BalanceAmt").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{Price}}", Bills.GetColValue("Price").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{TotalGst}}", Bills.GetColValue("TotalGst").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{NetPayableAmt}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{UserName}}", Bills.GetColValue("AddedByName").ConvertToString());
+            html = html.Replace("{{HospitalName}}", Bills.GetColValue("HospitalName").ConvertToString());
+            html = html.Replace("{{DiscComments}}", Bills.GetColValue("DiscComments").ConvertToString());
+
+
+            html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkbalflag}}", Bills.GetColValue("BalanceAmt").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row " : "none");
+
+            //html = html.Replace("{{chkRefdrflag}}", Bills.GetColValue("chkRefdrflag").ConvertToDouble() != ' ' ? "table-row " : "none");
+            //html = html.Replace("{{chkCompanyflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() != ' ' ? "table-row " : "none");
+
+
+            string finalamt = conversion(T_NetAmount.ToString());
+            html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
+
+
+            return html;
+
+        }
+
 
         public double GetSum(DataTable dt, string ColName)
         {
@@ -558,18 +653,18 @@ namespace HIMS.Data.Opd
                         {
                             var disc6 = obj.ToDictionary();
                             disc6["PackageMainChargeID"] = ChargeID;
+                            disc6["BillNo"]= BillNo;
+                            disc6.Remove("ChargeID");
+                            var vPackChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_AddChargesPackages_1", disc6, VarChargeID);
 
-                            ExecNonQueryProcWithOutSaveChanges("insert_AddCharges_1", disc6);
+                            // Package Service add in Bill Details
+                            Dictionary<string, Object> OPBillDet2 = new Dictionary<string, object>();
+                            OPBillDet2.Add("BillNo", BillNo);
+                            OPBillDet2.Add("ChargesID", vPackChargeID);
+                            ExecNonQueryProcWithOutSaveChanges("m_insert_BillDetails_1", OPBillDet2);
                         }
-                     
-
                     }
-
                 }
-
-              
-
-               
             }
 
             var disc7 = OPbillingparams.OPInsertPayment.ToDictionary();

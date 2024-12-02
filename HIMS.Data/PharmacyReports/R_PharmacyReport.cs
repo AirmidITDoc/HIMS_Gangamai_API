@@ -1060,7 +1060,7 @@ namespace HIMS.Data.Opd
 
             string html = File.ReadAllText(htmlFilePath);
 
-            html = html.Replace("{{HeaderName}}", htmlHeader);
+            html = html.Replace("{{NewHeader}}", htmlHeader);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");

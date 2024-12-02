@@ -143,13 +143,10 @@ namespace HIMS.Model.Opd
         public bool IsPathology { get; set; }
         public bool IsRadiology { get; set; }
         public bool IsPackage { get; set; }
-        //public int PackageMainChargeID { get; set; }
         public bool IsSelfOrCompanyService { get; set; }
         public int PackageId { get; set; }
-        //public DateTime ChargeTime { get; set; }
-        //public int ClassId { get; set; }
-        //public int BillNo { get; set; }
-        //public int ChargeID { get; set; }
+        public int BillNo { get; set; }
+        public int ChargeID { get; set; }
 
     }
 
