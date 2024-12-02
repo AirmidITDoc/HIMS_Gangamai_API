@@ -57,6 +57,8 @@ namespace HIMS.Model.Users
         public bool PharIPOpt { get; set; }
         public int UnitId { get; set; }
         public long MobileNo { get; set; }
+        public int IsDiscApply { get; set; }
+        public int DiscApplyPer { get; set; }
     }
 
 
@@ -96,5 +98,7 @@ namespace HIMS.Model.Users
         public bool PharIPOpt { get; set; }
         public int UnitId { get; set; }
         public long MobileNo { get; set; }
+        public int IsDiscApply { get; set; }
+        public int DiscApplyPer { get; set; }
     }
 }

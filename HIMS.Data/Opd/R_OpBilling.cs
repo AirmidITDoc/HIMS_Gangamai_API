@@ -654,17 +654,17 @@ namespace HIMS.Data.Opd
                             var disc6 = obj.ToDictionary();
                             disc6["PackageMainChargeID"] = ChargeID;
                             disc6["BillNo"]= BillNo;
-                            ExecNonQueryProcWithOutSaveChanges("m_insert_AddChargesPackages_1", disc6);
+                            disc6.Remove("ChargeID");
+                            var vPackChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_AddChargesPackages_1", disc6, VarChargeID);
+
+                            // Package Service add in Bill Details
+                            Dictionary<string, Object> OPBillDet2 = new Dictionary<string, object>();
+                            OPBillDet2.Add("BillNo", BillNo);
+                            OPBillDet2.Add("ChargesID", vPackChargeID);
+                            ExecNonQueryProcWithOutSaveChanges("m_insert_BillDetails_1", OPBillDet2);
                         }
-                     
-
                     }
-
                 }
-
-              
-
-               
             }
 
             var disc7 = OPbillingparams.OPInsertPayment.ToDictionary();

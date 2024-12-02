@@ -2,62 +2,57 @@
 using System;
 using System.Threading.Tasks;
 using System.IO;
+using HIMS.API.Utility;
+using HIMS.Data.Radiology;
+using HIMS.Model.Radiology;
+using System.Data;
 
 namespace HIMS.API.Controllers.Transaction
 {
+        [ApiController]
+        [Route("api/[controller]")]
+        public class NursingController : Controller
+        {
+            public readonly I_RadiologyTemplateResult i_RadiologyTemplate;
 
-    [ApiController]
-    [Route("api/[controller]")]
-    public class NursingController : Controller
-    {
-        /* public IActionResult Index()
-         {
-             return View();
-         }*/
-        //[HttpPost("Uploadfile")]
-        //public async Task<IActionResult> Uploadfile()
-        //{
-        //    //var result = await WriteFile(file);
+            public readonly IPdfUtility _pdfUtility;
+            private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
+            public readonly IFileUtility _FileUtility;
+            public NursingController(I_RadiologyTemplateResult i_Radiology, 
+                Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, 
+                IPdfUtility pdfUtility, IFileUtility fileUtility)
+            {
+                this.i_RadiologyTemplate = i_Radiology;
+                _hostingEnvironment = hostingEnvironment;
+                _pdfUtility = pdfUtility;
+                _FileUtility = fileUtility;
+            }
 
-        //    return Ok("");
-        //}
+            [HttpPost("RadiologyTemplateResult")]
+            public IActionResult RadiologyTemplateResult(RadiologyTemplateResultParams RRHUP)
+            {
+                var RRHUPI = i_RadiologyTemplate.Update(RRHUP);
+                return Ok(RRHUPI);
+            }
 
-        //public async Task<string> WriteFile(IFileName file)
-        //{
-        //    string filename = "";
-        //    try
-        //    {
-        //        var extension = "." + file.filename.Split('.')[file.filename.Split('.').Length - 1];
-        //        filename = DateTime.Now.Ticks.ToString() + extension;
+            [HttpGet("view-RadiologyTemplateReport")]
+            public IActionResult ViewRadiologyTemplateReport(int RadReportId, int OP_IP_Type)
+            {
+                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "RadiologyTemplateReport.html");
+                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+                //var html = i_RadiologyTemplate.ViewRadiologyTemplateReceipt(RadReportId, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                //var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RadiologyTemplateReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
-        //        var filepath = Path.Combine(Directory.GetCurrentDirectory(), "upload");
 
-        //        if (!Directory.Exists(filepath))
-        //        {
-        //            Directory.CreateDirectory(filepath);
-        //        }
-        //        var exactpath = Path.Combine(Directory.GetCurrentDirectory(), "upload", filename);
-        //        using (var stream = new FileStream(exactpath, FileMode.Create))
-        //        {
-        //            await file.CopytoAsync(stream);
-        //        }
+                DataTable dt = i_RadiologyTemplate.GetDataForReport(RadReportId, OP_IP_Type);
+                var html = i_RadiologyTemplate.ViewRadiologyTemplateReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+                //var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+                //html = html.Replace("{{Signature}}", signature);
+                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RadiologyTemplateReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-        //    }
-        //    catch (Exception ex)
-        //    {
+                return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+            }
 
-        //    }
-        //    return filename;
-
-        //}
-
-    }
-
-    //public interface IFileName
-    //{
-    //    string filename { get; set; }
-
-    //    Task CopytoAsync(FileStream stream);
-    //}
-}
+        }
+ }
 
