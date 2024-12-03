@@ -16,12 +16,12 @@
         <table class="table" style="width: 100%;border-collapse: collapse;">
             <tbody>
                 <tr>
-                  
+
                     <td colspan="6"
                         style="vertical-align: top;border: 1px solid black;width:40%; padding:0 10px 10px;font-size:10px;">
                         <span>
                             <img src="{{BaseUrl}}/PdfTemplates/jss-hospitals.jpeg" alt="logo" width="180">
-                           
+
                         </span>
                         <span style="margin-top:0;margin-bottom:5px;color: #e26d14;text-transform: uppercase;font-size: 10px;">
                             {{StoreName}}
@@ -32,6 +32,7 @@
                         <div>
                             <a href="tel:08352259399"
                                style="margin-right: 20px;">{{HospitalMobileNo}}</a>
+
                             <a href="mailto:info@jsshospitals.com">{{HospitalEmailId}}</a>
                         </div>
                     </td>
@@ -73,7 +74,7 @@
                                 </span><br>
                                 Mode of Payment : {{PayMode}} <br>
                             </td>
-                            
+
                         </table>
                     </td>
                 </tr>
@@ -91,7 +92,7 @@
                     <td style="border: 1px solid #d4c3c3; padding: 6px;">Amount</td>
                 </tr>
                 {{Items}}
-              
+
                 <tr>
                     <td colspan="6" style="border: 1px solid black;vertical-align: top;
                 padding: 0 10px 10px;">
@@ -112,7 +113,7 @@
                         </ul>
                     </td>
                     <!-- <td colspan="5" style="border: 1px solid black;vertical-align: top;padding: 0;">
-                    </td> -->
+        </td> -->
                     <td colspan="9" style="border: 1px solid black;vertical-align: top;
                 padding: 0 10px 10px;width: 300px;font-size:10px;">
                         <div style="display:flex;align-items: center;">
@@ -145,30 +146,36 @@
                     </td>
                 </tr>
                 <!-- <tr>
-                    <td colspan="9" style="border: 1px solid black;vertical-align: top;
-                    padding: 5px 10px;">
-                        <div style="font-size: 15px;font-weight: bold">
-                            Your Saved Amount: {{DiscAmount}}
-                        </div>
-                    </td>
-                    <td rowspan="2" style="border: 1px solid black;vertical-align: bottom;
-                    padding: 5px 10px;text-align: center;">
+        <td colspan="9" style="border: 1px solid black;vertical-align: top;
+        padding: 5px 10px;">
+            <div style="font-size: 15px;font-weight: bold">
+                Your Saved Amount: {{DiscAmount}}
+            </div>
+        </td>
+        <td rowspan="2" style="border: 1px solid black;vertical-align: bottom;
+        padding: 5px 10px;text-align: center;">
 
-                        <span style="font-size: 11px;opacity:.6;">For Shri Siddeshwar Medicals 24/7</span>
-                    </td>
-                </tr> -->
+            <span style="font-size: 11px;opacity:.6;">For Shri Siddeshwar Medicals 24/7</span>
+        </td>
+    </tr> -->
                 <!-- <tr>
-                    <td colspan="9" style="border: 1px solid black;vertical-align: top;
-                    padding: 5px 10px;">
-                        Total Invoice Value in words:
-                    </td>
-                </tr> -->
+        <td colspan="9" style="border: 1px solid black;vertical-align: top;
+        padding: 5px 10px;">
+            Total Invoice Value in words:
+        </td>
+    </tr> -->
                 <tr style="font-size: 10px;">
                     <td colspan="3">
                         Billed By: {{UserName}}
                     </td>
                     <td colspan="10" style="text-align: right;">
                         This is Computer generated invoice hence doesn’t require signature
+                    </td>
+                </tr>
+                <tr style="font-size: 10px;">
+                   
+                    <td colspan="10" style="text-align: left;">
+                        Medicines once sold will not be taken back or exchanged
                     </td>
                 </tr>
             </tbody>

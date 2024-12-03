@@ -9,6 +9,7 @@ using HIMS.Model.Inventory;
 using HIMS.Data.Inventory;
 using HIMS.Model.Administration;
 using HIMS.Data.Administration;
+using HIMS.Model.Opd;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -33,6 +34,34 @@ namespace HIMS.API.Controllers.Transaction
             this._SMS_Config = sMS_Config;
             this._Administration = Administration;
             this._NewTemplateDescription = newTemplateDescription;
+        }
+
+
+        [HttpPost("InsertPackageDetails")]
+        public IActionResult InsertPackageDetails(PackageDetailParam PackageDetailParam)
+        {
+            var appoSave = _Administration.InsertPackageDetails(PackageDetailParam);
+            return Ok(appoSave);
+        }
+
+        [HttpPost("InsertCompanyServiceAssignMaster")]
+        public IActionResult InsertCompanyServiceAssignMaster(CompanyServiceAssignMaster CompanyServiceAssignMaster)
+        {
+            var appoSave = _Administration.InsertCompanyServiceAssignMaster(CompanyServiceAssignMaster);
+            return Ok(appoSave);
+        }
+        [HttpPost("SaveTExpenseParam")]
+        public IActionResult SaveTExpenseParam(TExpenseParam TExpenseParam)
+        {
+            var appoSave = _Administration.SaveTExpenseParam(TExpenseParam);
+            return Ok(appoSave);
+        }
+
+        [HttpPost("CancleTExpenseParam")]
+        public IActionResult CancleTExpenseParam(TExpenseParam TExpenseParam)
+        {
+            var appoSave = _Administration.CancleTExpenseParam(TExpenseParam);
+            return Ok(appoSave);
         }
 
         [HttpPost("UserChangePassword")]
