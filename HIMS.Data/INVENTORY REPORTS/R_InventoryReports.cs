@@ -725,7 +725,7 @@ namespace HIMS.Data.Opd
                     j = 1;
 
                     items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='13' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Supplier Wise Total </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
-                       .Append(NetAmount.ToString()).Append("</td></tr>");
+                       .Append(NetAmount.To2DecimalPlace()).Append("</td></tr>");
 
                     NetAmount = 0;
                     items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"14\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["SupplierName"].ConvertToString()).Append("</td></tr>");
@@ -769,7 +769,7 @@ namespace HIMS.Data.Opd
 
                     items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='13' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Supplier Wise Total </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
 
-                         .Append(NetAmount.ToString()).Append("</td></tr>");
+                         .Append(NetAmount.To2DecimalPlace()).Append("</td></tr>");
 
 
                 }
