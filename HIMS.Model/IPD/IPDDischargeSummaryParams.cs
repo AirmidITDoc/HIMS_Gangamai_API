@@ -12,6 +12,10 @@ namespace HIMS.Model.IPD
         public UpdateAdmisionDischargeSummary UpdateAdmisionDischargeSummary { get; set; }
         public List<InsertIPPrescriptionDischarge> InsertIPPrescriptionDischarge { get; set; }
         public DeleteIPPrescriptionDischarge DeleteIPPrescriptionDischarge { get; set; }
+
+        public InsertIPDDischargSummarytemplate InsertIPDDischargSummarytemplate { get; set; }
+        public UpdatetIPDDischargSummarytemplate UpdatetIPDDischargSummarytemplate { get; set; }
+
     }
 
 
@@ -51,7 +55,45 @@ namespace HIMS.Model.IPD
         public string Radiology { get; set; }
         public bool IsNormalOrDeath { get; set; }
 
+        public string  TemplateDescriptionHtml { get; set; }
+
+
     }
+
+    public class InsertIPDDischargSummarytemplate
+    {
+        public int DischargesummaryId { get; set; }
+        public long AdmissionId { get; set; }
+        public long DischargeId { get; set; }
+      
+        public DateTime Followupdate { get; set; }
+        public long DischargeDoctor1 { get; set; }
+        public long DischargeDoctor2 { get; set; }
+        public long DischargeDoctor3 { get; set; }
+        public long AddedBy { get; set; }
+        public bool IsNormalOrDeath { get; set; }
+
+        public string TemplateDescriptionHtml { get; set; }
+
+
+    }
+    public class UpdatetIPDDischargSummarytemplate
+    {
+        public int DischargesummaryId { get; set; }
+        public long DischargeId { get; set; }
+
+        public DateTime Followupdate { get; set; }
+        public long DischargeDoctor1 { get; set; }
+        public long DischargeDoctor2 { get; set; }
+        public long DischargeDoctor3 { get; set; }
+        public long UpdatedBy { get; set; }
+        public bool IsNormalOrDeath { get; set; }
+
+        public string TemplateDescriptionHtml { get; set; }
+
+
+    }
+
 
     public class IPSMSInsert
     {
@@ -100,6 +142,8 @@ namespace HIMS.Model.IPD
         public string WarningSymptoms { get; set; }
         public string Radiology { get; set; }
         public bool IsNormalOrDeath { get; set; }
+        public string TemplateDescriptionHtml { get; set; }
+
 
 
     }

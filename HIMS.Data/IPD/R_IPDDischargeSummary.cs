@@ -61,6 +61,53 @@ namespace HIMS.Data.IPD
             _unitofWork.SaveChanges();
             return true;
         }
+
+
+
+        public String DischTemplateInsert(IPDDischargeSummaryParams IPDDischargeSummaryParams)
+        {
+
+            var outputId = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@DischargesummaryId",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+            var disc = IPDDischargeSummaryParams.InsertIPDDischargSummarytemplate.ToDictionary();
+            disc.Remove("DischargesummaryId");
+
+            var DischargesummaryId = ExecNonQueryProcWithOutSaveChanges("m_insert_DischargeSummaryTemplate", disc, outputId);
+
+            foreach (var a in IPDDischargeSummaryParams.InsertIPPrescriptionDischarge)
+            {
+                var vPrescDisc = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_insert_T_IP_Prescription_Discharge_1", vPrescDisc);
+            }
+
+            _unitofWork.SaveChanges();
+            return DischargesummaryId;
+        } 
+
+        public bool DischTemplateUpdate(IPDDischargeSummaryParams IPDDischargeSummaryParams)
+        {
+            //  throw new NotImplementedException();
+
+            var disc3 = IPDDischargeSummaryParams.UpdatetIPDDischargSummarytemplate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_DischargeSummaryTemplate", disc3);
+
+            var vDeletePres = IPDDischargeSummaryParams.DeleteIPPrescriptionDischarge.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Delete_T_IP_Prescription_Discharge", vDeletePres);
+
+            foreach (var a in IPDDischargeSummaryParams.InsertIPPrescriptionDischarge)
+            {
+                var vPrescDisc = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_insert_T_IP_Prescription_Discharge_1", vPrescDisc);
+            }
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
         public DataTable GetDataForReport(int AdmissionID)
         {
             SqlParameter[] para = new SqlParameter[1];
