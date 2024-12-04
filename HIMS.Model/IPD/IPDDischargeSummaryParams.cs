@@ -55,7 +55,7 @@ namespace HIMS.Model.IPD
         public string Radiology { get; set; }
         public bool IsNormalOrDeath { get; set; }
 
-        public string  TemplateDescriptionHtml { get; set; }
+        //public string  TemplateDescriptionHtml { get; set; }
 
 
     }
@@ -142,7 +142,7 @@ namespace HIMS.Model.IPD
         public string WarningSymptoms { get; set; }
         public string Radiology { get; set; }
         public bool IsNormalOrDeath { get; set; }
-        public string TemplateDescriptionHtml { get; set; }
+        //public string TemplateDescriptionHtml { get; set; }
 
 
 
