@@ -36,6 +36,25 @@ namespace HIMS.API.Controllers.Transaction
             this._NewTemplateDescription = newTemplateDescription;
         }
 
+        //[HttpPost("SaveUptDocMerge")]
+        //public IActionResult SaveUptDocMerge(UptDocMergeParam UptDocMergeParam)
+        //{
+        //    var appoSave = _Administration.SaveUptDocMerge(UptDocMergeParam);
+        //    return Ok(appoSave);
+        //}
+        //[HttpPost("SaveNursingPainAssessment")]
+        //public IActionResult SaveNursingPainAssessment(SaveNursingPainAssessmentParam SaveNursingPainAssessmentParam)
+        //{
+        //    var appoSave = _Administration.SaveNursingPainAssessment(SaveNursingPainAssessmentParam);
+        //    return Ok(appoSave);
+        //}
+
+        //[HttpPost("UpdateNursingPainAssessment")]
+        //public IActionResult UpdateNursingPainAssessment(SaveNursingPainAssessmentParam SaveNursingPainAssessmentParam)
+        //{
+        //    var appoSave = _Administration.UpdateNursingPainAssessment(SaveNursingPainAssessmentParam);
+        //    return Ok(appoSave);
+        //}
 
         [HttpPost("InsertPackageDetails")]
         public IActionResult InsertPackageDetails(PackageDetailParam PackageDetailParam)

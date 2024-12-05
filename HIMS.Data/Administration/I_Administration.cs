@@ -4,6 +4,10 @@ using HIMS.Model.Opd;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using HIMS.Model.Radiology;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace HIMS.Data.Administration
 {
@@ -22,6 +26,30 @@ namespace HIMS.Data.Administration
         public bool SaveTExpenseParam(TExpenseParam TExpenseParam);
 
         public bool CancleTExpenseParam(TExpenseParam TExpenseParam);
+
+        public bool SaveNursingPainAssessment(SaveNursingPainAssessmentParam SaveNursingPainAssessmentParam);
+
+        public bool UpdateNursingPainAssessment(SaveNursingPainAssessmentParam SaveNursingPainAssessmentParam);
+        public bool SaveUptDocMerge(UptDocMergeParam UptDocMergeParam);
+
+        public bool SaveNursingOrygenVentilator(NursingOrygenVentilatorParam NursingOrygenVentilatorParam);
+        public bool UpdateNursingOrygenVentilator(NursingOrygenVentilatorParam NursingOrygenVentilatorParam);
+
+        public bool SaveNursingVitals(NursingVitalsParam NursingVitalsParam);
+        public bool UpdateNursingVitals(NursingVitalsParam NursingVitalsParam);
+
+
+        public bool SaveNursingSugarLevel(NursingSugarLevelParam NursingSugarLevelParam);
+        public bool UpdateNursingSugarLevel(NursingSugarLevelParam NursingSugarLevelParam);
+
+
+        public bool SaveDischargeInitiate(DischargeInitiateParam DischargeInitiateParam);
+
+        //public bool UpdateDischargeInitiate(DischargeInitiateParam DischargeInitiateParam);
+
+
+        public bool UpdateDischargeInitiateApproval(DischargeInitiateApprovalParam DischargeInitiateApprovalParam);
+       
 
     }
 }

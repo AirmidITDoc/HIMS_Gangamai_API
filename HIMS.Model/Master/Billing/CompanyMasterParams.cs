@@ -23,6 +23,7 @@ namespace HIMS.Model.Master.Billing
         public String MobileNo { get; set; }
         public String FaxNo { get; set; }
         public int TraiffId { get; set; }
+        
         public Boolean IsActive { get; set; }
         public int AddedBy { get; set; }
 

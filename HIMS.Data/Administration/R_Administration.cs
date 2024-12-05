@@ -10,6 +10,16 @@ using HIMS.Common.Utility;
 using HIMS.Model.Administration;
 using HIMS.Model.Opd;
 using HIMS.Model.Transaction;
+using HIMS.Common.Utility;
+using HIMS.Model.IPD;
+using HIMS.Model.Radiology;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
+using System.Text;
+
 
 namespace HIMS.Data.Administration
 {
@@ -21,9 +31,109 @@ namespace HIMS.Data.Administration
 
         }
 
+        public bool SaveNursingOrygenVentilator(NursingOrygenVentilatorParam NursingOrygenVentilatorParam)
+        {
+            // throw new NotImplementedException();
+            var disc = NursingOrygenVentilatorParam.SaveNursingOrygenVentilatorParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_T_NursingOrygenVentilator_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool UpdateNursingOrygenVentilator(NursingOrygenVentilatorParam NursingOrygenVentilatorParam)
+        {
+            // throw new NotImplementedException();
+            var disc = NursingOrygenVentilatorParam.UpdateNursingOrygenVentilatorParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_NursingOrygenVentilator_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
 
 
+        public bool SaveNursingVitals(NursingVitalsParam NursingVitalsParam)
+        {
+            // throw new NotImplementedException();
+            var disc = NursingVitalsParam.SaveNursingVitalsParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_T_NursingVitals_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
 
+        }
+        public bool UpdateNursingVitals(NursingVitalsParam NursingVitalsParam)
+        {
+            // throw new NotImplementedException();
+            var disc = NursingVitalsParam.UpdateSaveNursingVitalsParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_NursingVitals_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+
+        public bool SaveNursingSugarLevel(NursingSugarLevelParam NursingSugarLevelParam)
+        {
+            // throw new NotImplementedException();
+            var disc = NursingSugarLevelParam.SaveNursingSugarLevelParams.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_T_NursingSugarLevel_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool UpdateNursingSugarLevel(NursingSugarLevelParam NursingSugarLevelParam)
+        {
+            // throw new NotImplementedException();
+            var disc = NursingSugarLevelParam.UpdateNursingSugarLevelParams.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_NursingSugarLevel_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool SaveDischargeInitiate(DischargeInitiateParam DischargeInitiateParam)
+        {
+            // throw new NotImplementedException();
+            //var disc = DischargeInitiateParam.SaveDischargeInitiateParam.ToDictionary();
+            //ExecNonQueryProcWithOutSaveChanges("m_insert_initiateDischarge_1", disc);
+            //commit transaction
+            foreach (var a in DischargeInitiateParam.SaveDischargeInitiateParam)
+            {
+                var disc1 = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_insert_initiateDischarge_1", disc1);
+            }
+
+            var disc5 = DischargeInitiateParam.UpdateDischargeInitiateParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_initiateDisc_1", disc5);
+
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool UpdateDischargeInitiate(DischargeInitiateParam DischargeInitiateParam)
+        {
+            // throw new NotImplementedException();
+            var disc = DischargeInitiateParam.UpdateDischargeInitiateParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_initiateDisc_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+
+        public bool UpdateDischargeInitiateApproval(DischargeInitiateApprovalParam DischargeInitiateApprovalParam)
+        {
+            // throw new NotImplementedException();
+            var disc = DischargeInitiateApprovalParam.UpdateDischargeInitiateApprovalParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_initiateDischargeAprov_2", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
         public bool InsertPackageDetails(PackageDetailParam PackageDetailParams)
         {
 
@@ -83,6 +193,46 @@ namespace HIMS.Data.Administration
             _unitofWork.SaveChanges();
             return true;
 
+        }
+
+        public bool SaveNursingPainAssessment(SaveNursingPainAssessmentParam SaveNursingPainAssessmentParam)
+        {
+            // throw new NotImplementedException();
+            var disc = SaveNursingPainAssessmentParam.SaveNursingPainAssessment.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_T_NursingPainAssessment_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+      
+
+        public bool UpdateNursingPainAssessment(SaveNursingPainAssessmentParam SaveNursingPainAssessmentParam)
+        {
+            // throw new NotImplementedException();
+            var disc = SaveNursingPainAssessmentParam.SaveNursingPainAssessment.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_NursingPainAssessment_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool SaveUptDocMerge(UptDocMergeParam UptDocMergeParam)
+        {
+
+
+          
+            // add table
+            foreach (var a in UptDocMergeParam.UptdateDocMergeParams)
+            {
+                var disc1 = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_Upt_DocMerge_1", disc1);
+            }
+          
+
+            _unitofWork.SaveChanges();
+
+            return true;
         }
 
         public bool UpdateBillcancellation(AdministrationParam administrationParam)
