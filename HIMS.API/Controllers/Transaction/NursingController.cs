@@ -32,7 +32,19 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
                 _FileUtility = fileUtility;
             }
-
+        [HttpPost("SaveNursingWeight")]
+        public IActionResult SaveNursingWeight(NursingWeightParam NursingWeightParam)
+        {
+            var appoSave = _Administration.SaveNursingWeight(NursingWeightParam);
+            return Ok(appoSave);
+        }
+        [HttpPost("UpdateNursingWeight")]
+        public IActionResult UpdateNursingWeight(NursingWeightParam NursingWeightParam)
+        {
+            var appoSave = _Administration.UpdateNursingWeight(NursingWeightParam);
+            return Ok(appoSave);
+        }
+      
         [HttpPost("SaveNursingOrygenVentilator")]
         public IActionResult SaveNursingOrygenVentilator(NursingOrygenVentilatorParam NursingOrygenVentilatorParam)
         {

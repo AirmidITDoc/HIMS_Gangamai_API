@@ -47,9 +47,11 @@ namespace HIMS.Data.Administration
 
         //public bool UpdateDischargeInitiate(DischargeInitiateParam DischargeInitiateParam);
 
-
+        public bool SavePatientFeedBack(Parameter PatientFeedbackParameter);
         public bool UpdateDischargeInitiateApproval(DischargeInitiateApprovalParam DischargeInitiateApprovalParam);
-       
+      
+        public bool SaveNursingWeight(NursingWeightParam NursingWeightParam);
 
+        public bool UpdateNursingWeight(NursingWeightParam NursingWeightParam);
     }
 }
