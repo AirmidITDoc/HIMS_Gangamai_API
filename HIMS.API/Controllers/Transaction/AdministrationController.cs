@@ -15,6 +15,7 @@ namespace HIMS.API.Controllers.Transaction
 {
 
     [ApiController]
+
     [Route("api/[controller]")]
     public class AdministrationController : Controller
     {
@@ -35,13 +36,12 @@ namespace HIMS.API.Controllers.Transaction
             this._Administration = Administration;
             this._NewTemplateDescription = newTemplateDescription;
         }
-
-        //[HttpPost("SaveUptDocMerge")]
-        //public IActionResult SaveUptDocMerge(UptDocMergeParam UptDocMergeParam)
-        //{
-        //    var appoSave = _Administration.SaveUptDocMerge(UptDocMergeParam);
-        //    return Ok(appoSave);
-        //}
+        [HttpPost("SaveFeedBack")]
+        public IActionResult Save(Parameter PatientFeedbackParameter)
+        {
+            var appoSave = _Administration.SavePatientFeedBack(PatientFeedbackParameter);
+            return Ok(appoSave);
+        }
         //[HttpPost("SaveNursingPainAssessment")]
         //public IActionResult SaveNursingPainAssessment(SaveNursingPainAssessmentParam SaveNursingPainAssessmentParam)
         //{

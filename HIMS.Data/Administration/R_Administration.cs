@@ -31,6 +31,41 @@ namespace HIMS.Data.Administration
 
         }
 
+
+
+        public bool SaveNursingWeight(NursingWeightParam NursingWeightParam)
+        {
+            // throw new NotImplementedException();
+            var disc = NursingWeightParam.SaveNursingWeight.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_T_NursingWeight_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool UpdateNursingWeight(NursingWeightParam NursingWeightParam)
+        {
+            // throw new NotImplementedException();
+            var disc = NursingWeightParam.UpdateNursingWeight.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_NursingWeight_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool SavePatientFeedBack(Parameter PatientFeedbackParameter)
+        {
+            foreach (var a in PatientFeedbackParameter.PatientFeedbackParams)
+            {
+                var disc1 = a.ToDictionary();
+                disc1.Remove("PatientFeedbackId");
+                ExecNonQueryProcWithOutSaveChanges("m_insert_T_PatientFeedback_1", disc1);
+            }
+
+            _unitofWork.SaveChanges();
+            return (true);
+
+        }
         public bool SaveNursingOrygenVentilator(NursingOrygenVentilatorParam NursingOrygenVentilatorParam)
         {
             // throw new NotImplementedException();
