@@ -264,7 +264,9 @@ namespace HIMS.API.Controllers
                     WebRoleId = user.WebRoleId,
                     PharExtOpt = user.PharExtOpt,
                     PharOPOpt = user.PharOPOpt,
-                    PharIPOpt = user.PharIPOpt
+                    PharIPOpt = user.PharIPOpt,
+                    IsDiscApply =user.IsDiscApply,
+                    DiscApplyPer = user.DiscApplyPer
                 },
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 expires = token.ValidTo
