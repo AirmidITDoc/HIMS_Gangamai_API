@@ -424,17 +424,18 @@ namespace HIMS.Data.Opd
             int i = 0, j = 0;
             string previousLabel = "";
             double T_NetAmount = 0;
+            //foreach (DataRow dr in Bills.Rows)
+            //{
+            //    i++;j++;
+            //    if (i == 1)
+            //    {
+            //        String Label;
+            //        Label = dr["ServiceName"].ConvertToString();
+            //        items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"8\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+            //    }
             foreach (DataRow dr in Bills.Rows)
             {
-                i++;j++;
-                if (i == 1)
-                {
-                    String Label;
-                    Label = dr["ServiceName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"8\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
-                }
-
-                previousLabel = dr["ServiceName"].ConvertToString();
+                i++;
                 items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:15;\"><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(i).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
              
