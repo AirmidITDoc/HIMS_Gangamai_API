@@ -514,7 +514,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{SurgeryProcDone}}", Bills.GetColValue("SurgeryProcDone"));
             html = html.Replace("{{ICD10CODE}}", Bills.GetColValue("ICD10CODE"));
             html = html.Replace("{{Radiology}}", Bills.GetColValue("Radiology"));
-            html = html.Replace("{{IsNormalOrDeath}}", Bills.GetColValue("IsNormalOrDeath"));
+            html = html.Replace("{{IsNormalOrDeath}}", Bills.GetColValue("IsNormalOrDeath\"));
 
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
@@ -701,7 +701,7 @@ namespace HIMS.Data.IPD
             {
                 i++;
                 items.Append("<tr style=\" text-align: center; padding: 6px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, sans-serif;font-size: 24px;\"><td style=\"border-left: 1px solid #d4c3c3;text-align: center; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border-left: 1px solid #d4c3c3;border-top: 1px solid #d4c3c3;border-right: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border-left: 1px solid #d4c3c3;border-top: 1px solid #d4c3c3;border-right: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["ItemName"].ConvertToString()).Append("<br>").Append(dr["ItemGenericName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left: 1px solid #d4c3c3;border-top: 1px solid #d4c3c3;border-right: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["DoseName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border-left: 1px solid #d4c3c3;border-top: 1px solid #d4c3c3;border-right: 1px solid #d4c3c3;text-align: center; padding: 6px;\">").Append(dr["DoseNameInEnglish"].ConvertToString()).Append("</td>");
                 //items.Append("<td style=\"border-right: 1px solid #d4c3c3;border-top: 1px solid #d4c3c3;border-bottom: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append("(").Append(dr["DoseNameInMarathi"].ConvertToString()).Append(")").Append("</td>");
