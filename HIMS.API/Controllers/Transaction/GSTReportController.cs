@@ -27,7 +27,26 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
 
         }
+        [HttpGet("view-SalesProfitDetailDoctorWiseReport")]
+        public IActionResult ViewSalesProfitDetailDoctorWiseReport(DateTime FromDate, DateTime ToDate, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_SalesProfitDetailDoctorWiseReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPGST.ViewSalesProfitDetailDoctorWiseReport(FromDate, ToDate, StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewSalesProfitDetailDoctorWiseReport", "ViewSalesProfitDetailDoctorWiseReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpGet("view-SalesProfitSummaryDoctorWiseReport")]
+        public IActionResult ViewSalesProfitSummaryDoctorWiseReport(DateTime FromDate, DateTime ToDate, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_SalesProfitSummaryDoctorWiseReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPGST.ViewSalesProfitSummaryDoctorWiseReport(FromDate, ToDate, StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewSalesProfitSummaryDoctorWiseReport", "ViewSalesProfitSummaryDoctorWiseReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpGet("view-SalesProfitSummaryReport")]
         public IActionResult ViewSalesProfitSummaryReport(DateTime FromDate, DateTime ToDate, int StoreId)
         {

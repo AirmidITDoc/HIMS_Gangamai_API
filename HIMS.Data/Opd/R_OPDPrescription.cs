@@ -98,10 +98,10 @@ namespace HIMS.Data.Opd
                 //{
 
                 //    i++;
-                    items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:24px;font-weight:bold;\"><td style=\"vertical-align: top;padding: 6px;;height: 20px;text-align:left;font-size:24px;font-weight:bold;padding-left:50px;\">").Append(dr["DrugName"].ConvertToString()).Append("</td>");
-                    items.Append("<td style=\"padding: 6px;height:10px;vertical-align:middle;text-align:left;font-size:24px;font-weight:bold;padding-left:30px;\">").Append(dr["DoseName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"padding: 6px;height:10px;vertical-align:middle;text-align:left;font-size:24px;font-weight:bold;padding-left:20px;\">").Append(dr["Instruction"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"vertical-align:middle;padding: 6px;height:10px;text-align:left;font-size:24px;font-weight:bold;padding-left:20px;\">").Append(dr["TotalQty"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:20px;\"><td style=\"vertical-align: top;padding: 6px;;height: 20px;text-align:left;font-size:20px;padding-left:7px;\">").Append(dr["DrugName"].ConvertToString()).Append("</td>");
+                    items.Append("<td style=\"padding: 6px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:10px;\">").Append(dr["DoseName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"padding: 6px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:10px;\">").Append(dr["Instruction"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"vertical-align:middle;padding: 6px;height:10px;text-align:left;font-size:20px;padding-left:10px;\">").Append(dr["TotalQty"].ConvertToString()).Append("</td></tr>");
 
                     if (dr["GenericName"].ConvertToString() != null)
                     {
@@ -126,12 +126,12 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
             html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
             html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
-            html = html.Replace("{{SecondRefDoctorName}}", Bills.GetColValue("SecondRefDoctorName"));
+            html = html.Replace("{{ReferDrName}}", Bills.GetColValue("ReferDrName"));
             
             html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
             html = html.Replace("{{PDate}}", Bills.GetColValue("PTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{VisitTime}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
-            html = html.Replace("{{FollowupDate}}", Bills.GetColValue("FollowupDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{FollowupDate}}", Bills.GetColValue("FollowupDate").ConvertToDateString("dd/MM/yyyy"));
 
             
             html = html.Replace("{{PrecriptionId}}", Bills.GetColValue("PrecriptionId"));

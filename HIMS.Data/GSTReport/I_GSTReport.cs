@@ -31,6 +31,9 @@ namespace HIMS.Data.GSTReports
         //string ViewGSTB2GSReportConsolidated(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewGSTRZAPurchaseReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader);
         string ViewGSTR2ASupplierWisePurchaseReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader);
-       
+
+        string ViewSalesProfitDetailDoctorWiseReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader);
+        string ViewSalesProfitSummaryDoctorWiseReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader);
+
     }
 }

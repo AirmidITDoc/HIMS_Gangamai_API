@@ -24,7 +24,7 @@
                                             <tr style="font-size: 20px;font-weight:bold;">
                                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; ">
                                                     <b>
-                                                        DISCHARGE SUMMARY
+                                                        {{IsNormalOrDeath}} DISCHARGE SUMMARY
                                                     </b>
                                                 </td>
                                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; text-align: right;">
@@ -297,9 +297,26 @@
         <tr>
             <table style="width: 100%; border-collapse: collapse; margin-top: 50px; font-size: 24px;">
                 <tr></tr>
-                <tr style="padding: 6px; text-align: center;font-weight:bold;">
-                    <td>{{DischargeTime}}</td>
-                    <td>
+
+                <tr style="border-bottom: 1px solid #d4c3c3;">
+                    <td style="padding: 2px;">
+                        <span style="font-weight:bold;">Preapered By</span>
+                        <br />
+                        <span>{{AddedBy}}</span>
+                    </td>
+                    <td style="padding: 2px;">
+                        <span></span>
+                        <span></span>
+                    </td>
+                    <td style="padding: 2px;">
+                        <span style="font-weight:bold;">Doctor Signature</span>
+                        <br />
+                        <span>{{DoctorName}}</span>
+                    </td>
+                </tr>
+                <!--<tr style="padding: 6px; text-align: center;font-weight:bold;">-->
+                    <!--<td>{{DischargeTime}}</td>-->
+                    <!--<td>
 
                         <span>{{AddedBy}}</span>
                     </td>
@@ -309,18 +326,15 @@
                     </td>
                 </tr>
 
-                <tr style="padding: 6px; text-align: center;">
-                    <td> Discharge Time</td>
-
-                    <td>
-
-                        <span>Preapered By</span>
-                    </td>
-                    <td>
+                <tr style="padding: 6px; text-align: center;">-->
+                    <!--<td> Discharge Time</td>-->
+                    <!--<td>
 
                         <span>Doctor Signature</span>
                     </td>
                 </tr>
+                <tr><td><sapn style="font-size:20px;font-weight:bold;">Preapered By</sapn></td></tr>-->
+
 
             </table>
         </tr>

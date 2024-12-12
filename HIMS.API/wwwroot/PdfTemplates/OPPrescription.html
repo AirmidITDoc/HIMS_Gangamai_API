@@ -16,7 +16,6 @@
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
-                              
                             </tr>
                             <tr style="font-size: 22px">
                                 <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>OP PRESCRIPTION</b></td>
@@ -85,7 +84,7 @@
                                 </td>
                                 <td style="padding: 2px;">
                                     <span style="font-weight:bold;">Ref Dr Name : </span>
-                                    <span>{{SecondRefDoctorName}}</span>
+                                    <span>{{ReferDrName}}</span>
                                 </td>
                             </tr>
 
@@ -93,72 +92,111 @@
                     </td>
                 </tr>
                 <hr />
-                <tr class="bill-table-row">
+                <tr class="bill-info-row">
                     <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse;">
+                        <table style="width: 100%; border-collapse: collapse;font-size:20px;">
+                            <!--<tr class="bill-table-row">
+                                <td style="padding: 6px;">
+                                    <table style="width: 100%; border-collapse: collapse;">-->
                             <thead style="font-size: 14px;">
 
                                 <tr style="border-bottom: 1px solid #d4c3c3;">
-                                    <td style="text-align: left; padding-top: 10px; padding-bottom: 10px; font-size: 22px; padding-left: 20px; " colspan="5"><span style="font-weight: bold; margin-left: 10px; display:{{chkHeightflag}}">Height : </span>{{Height}} <span style="margin-left: 5px; display:{{chkHeightflag}}">|</span> <span style="font-weight: bold; margin-left: 10px;display:{{chkWeightflag}}">Weight : </span> {{Weight}} <span style="margin-left: 5px;display:{{chkWeightflag}}">|</span> <span style="font-weight:bold;margin-left:10px;display:{{chkBMIflag}}">BMI : </span>{{BMI}} <span style="margin-left:5px;display:{{chkBMIflag}}">|</span> <span style="font-weight: bold; margin-left: 10px; display:{{chkBSLflag}}">BSL : </span>{{BSL}}  <span style="margin-left: 5px; display:{{chkBSLflag}}">|</span> <span style="font-weight: bold; margin-left: 10px; display:{{chkSpO2flag}}">SPO2 : </span> {{SpO2}} <span style="margin-left: 5px; display:{{chkSpO2flag}}">|</span> <span style="font-weight: bold; margin-left: 10px; display:{{chkBMIflag}}">BP : </span> {{BP}} <span style="margin-left: 5px; display:{{chkSpO2flag}}">|</span> <span style="font-weight: bold; margin-left: 10px; display:{{chkPulseflag}}">Pulse : </span> {{Pulse}} <span style="margin-left: 5px; display:{{chkPulseflag}}">|</span> <span style="font-weight: bold; margin-left: 10px; display:{{chkTempflag}}">Temp : </span> {{Temp}} </td>
+                                    <td style="text-align: left; padding-top: 10px; padding-bottom: 10px; font-size: 22px; padding-left: 7px; " colspan="5"><span style="font-weight: bold; margin-left: 4px; display:{{chkHeightflag}}">Height : </span>{{Height}} <span style="margin-left: 5px; display:{{chkHeightflag}}">|</span> <span style="font-weight: bold; margin-left: 10px;display:{{chkWeightflag}}">Weight : </span> {{Weight}} <span style="margin-left: 5px;display:{{chkWeightflag}}">|</span> <span style="font-weight:bold;margin-left:10px;display:{{chkBMIflag}}">BMI : </span>{{BMI}} <span style="margin-left:5px;display:{{chkBMIflag}}">|</span> <span style="font-weight: bold; margin-left: 10px; display:{{chkBSLflag}}">BSL : </span>{{BSL}}  <span style="margin-left: 5px; display:{{chkBSLflag}}">|</span> <span style="font-weight: bold; margin-left: 10px; display:{{chkSpO2flag}}">SPO2 : </span> {{SpO2}} <span style="margin-left: 5px; display:{{chkSpO2flag}}">|</span> <span style="font-weight: bold; margin-left: 10px; display:{{chkBMIflag}}">BP : </span> {{BP}} <span style="margin-left: 5px; display:{{chkSpO2flag}}">|</span> <span style="font-weight: bold; margin-left: 10px; display:{{chkPulseflag}}">Pulse : </span> {{Pulse}} <span style="margin-left: 5px; display:{{chkPulseflag}}">|</span> <span style="font-weight: bold; margin-left: 10px; display:{{chkTempflag}}">Temp : </span> {{Temp}} </td>
 
+                                </tr>
+                                <tr style="display:{{ChiefComplaint}}">
+
+                                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 24px;">Complaints :</td>
+                                </tr>
+                                <tr style="display:{{Diagnosis}}">
+
+                                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 24px;">Dignosis :</td>
+                                </tr>
+                                <tr style="display:{{Examination}}">
+
+                                    <td style="border-bottom: 1px solid #eee; padding: 6px; font-weight: bold; font-size: 24px;">Examination :</td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Complaints :<span style="font-size: 22px; ">{{ChiefComplaint}}</span></td>
-
+                                    <td style="border-bottom: 1px solid #eee; padding: 20px; font-weight: bold; font-size: 38px; font-style: italic;font-family: Bell MT; padding-left: 50px;" ">Rx </td>
+                                    <!--<td style="font-size: 38px; font-style: italic; padding: 20px; font-weight: bold; font-family: Bell MT; padding-left: 50px;" colspan="3">Rx</td>-->
                                 </tr>
-                                <tr>
-                                    <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Dignosis :<span style="font-size: 22px; ">{{Diagnosis}}</span></td>
+                                <!--<tr>
+        <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Complaints :<span style="font-size: 22px; ">{{ChiefComplaint}}</span></td>
 
-                                </tr>
+    </tr>
+    <tr>
+        <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Dignosis :<span style="font-size: 22px; ">{{Diagnosis}}</span></td>
 
-                                <tr>
-                                    <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Examination :<span style="font-size: 22px; ">{{Examination}}</span></td>
+    </tr>
 
-                                </tr>
-                                <tr>
-                                    <td style="font-size: 38px; font-style: italic; padding: 20px; font-weight: bold; font-family: Bell MT; padding-left: 50px;" colspan="3">Rx</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid #000;">
+    <tr>
+        <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Examination :<span style="font-size: 22px; ">{{Examination}}</span></td>
+
+    </tr>-->
+                                <!--<tr>
+        <td style="font-size: 38px; font-style: italic; padding: 20px; font-weight: bold; font-family: Bell MT; padding-left: 50px;" colspan="3">Rx</td>
+    </tr>-->
+                                <html>
+                                <body>
+                                    <table style="width: 100%; border-collapse: collapse;">
+
+                                            <td style="padding: 6px;">
+                                                <table style="width: 100%; border-collapse: collapse;">
+                                                    <!-- <thead style="font-size: 14px; font-weight: bold; font-size: 24px;">-->
+                                                  
+                                                    <tr>
+
+                                                        <td style="border-bottom: 1px solid #000; text-align: left; padding: 10px; font-size: 26px;">
+                                                            Medicine
+                                                        </td>
+                                                        <td style="border-bottom: 1px solid #000; text-align: left; padding: 10px; font-size: 26px;">
+                                                            Dosage
+                                                        </td>
+                                                        <td style="border-bottom: 1px solid #000; text-align: left; padding: 10px; font-size: 26px;">Instruction</td>
+                                                        <td style="border-bottom: 1px solid #000; text-align: left; padding: 10px; font-size: 26px;">Qty</td>
+
+                                                    </tr>
+                                                    <!--<tr style="border-bottom: 1px solid #000;">
 
 
 
-                                    <td style="padding:10px; font-weight: bold; text-align: left; font-size: 26px;padding-left:50px;">Medicine</td>
+                                                        <td style="padding:10px; font-weight: bold; text-align: left; font-size: 26px;padding-left:50px;">Medicine</td>
 
-                                    <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Dosage</td>
-                                    <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Instruction</td>
-                                    <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Qty</td>
-                                </tr>
-                                {{Items}}
+                                                        <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Dosage</td>
+                                                        <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Instruction</td>
+                                                        <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Qty</td>
+                                                    </tr>-->
+                                                    {{Items}}
                             </thead>
 
-                        </table>
-                    </td>
-                </tr>
-
-
-                <tfoot>
-                    <tr>
-                        <table style="width: 100%; border-collapse: collapse;margin-top:30px;font-weight:bold;">
-
-                            <tr style="margin-top: 12px;">
-
-                            <tr></tr>
-                            <tr style="padding: 6px; text-align: left;padding-left:50px;">
-                                <td>
-                                    <span>Follow UP Date :{{FollowupDate}}</span>
-
+                                    </table>
                                 </td>
                             </tr>
-                            <tr style="padding: 6px; text-align: left; padding-left: 50px;">
-                                <td>
-                                    <span>Advice:{{Advice}}</span>
-                                </td>
-                            </tr>
+
+
+                            <tfoot>
+                                <tr>
+                                    <table style="width: 100%; border-collapse: collapse;margin-top:30px;">
+
+                                        <tr style="margin-top: 12px;">
+
+                                        <tr></tr>
+                                        <tr style="padding: 6px; text-align: left;padding-left:50px;">
+                                            <td>
+                                                <span>FollowUp Date :{{FollowupDate}}</span>
+
+                                            </td>
+                                        </tr>
+                                        <tr style="padding: 6px; text-align: left; padding-left: 50px;">
+                                            <td>
+                                                <span>Advice:{{Advice}}</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </tr>
+                            </tfoot>
                         </table>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
+</div>
     </div>
 </body>
 <body>
