@@ -672,7 +672,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{ConditionAtTheTimeOfDischarge}}", Bills.GetColValue("ConditionAtTheTimeOfDischarge"));
 
 
-
+            html = html.Replace("{{IsNormalOrDeath}}", Bills.GetColValue("IsNormalOrDeath"));
 
             html = html.Replace("{{DoctorAssistantName}}", Bills.GetColValue("DoctorAssistantName"));
             html = html.Replace("{{PreOthNumber}}", Bills.GetColValue("PreOthNumber"));
