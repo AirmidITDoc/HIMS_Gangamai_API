@@ -514,7 +514,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{SurgeryProcDone}}", Bills.GetColValue("SurgeryProcDone"));
             html = html.Replace("{{ICD10CODE}}", Bills.GetColValue("ICD10CODE"));
             html = html.Replace("{{Radiology}}", Bills.GetColValue("Radiology"));
-            html = html.Replace("{{IsNormalOrDeath}}", Bills.GetColValue("IsNormalOrDeath\"));
+            html = html.Replace("{{IsNormalOrDeath}}", Bills.GetColValue("IsNormalOrDeath"));
 
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
