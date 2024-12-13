@@ -717,7 +717,7 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("RptSalesVatReport", para);
+            var Bills = GetDataTableProc("m_rptSalesGSTPatientWiseReport", para);
 
 
             string html = File.ReadAllText(htmlFilePath);
@@ -735,7 +735,6 @@ namespace HIMS.Data.Opd
                 i++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-
               
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Date"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["SalesNo"].ConvertToString()).Append("</td>");
@@ -785,7 +784,7 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
-            var Bills = GetDataTableProc("RptSalesVatReport", para);
+            var Bills = GetDataTableProc("m_rptSalesGSTDateWiseReport", para);
 
 
             string html = File.ReadAllText(htmlFilePath);
@@ -822,7 +821,6 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["MRPAmount"].ConvertToDouble()).Append("</td></tr>");
 
 
-
                 T_NetAmount += dr["MRPAmount"].ConvertToDouble();
                 T_IGSTAmt += dr["IGSTAmt"].ConvertToDouble();
                 T_SGSTAmt += dr["SGSTAmt"].ConvertToDouble();
@@ -845,8 +843,7 @@ namespace HIMS.Data.Opd
 
         }
 
-
-        public string ViewSalesReturnGSTReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
+         public string ViewSalesReturnGSTReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
