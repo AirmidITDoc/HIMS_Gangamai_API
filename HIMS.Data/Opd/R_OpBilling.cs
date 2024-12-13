@@ -319,6 +319,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{ConsultantDocName}}", Bills.GetColValue("ConsultantDocName"));
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
+            html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
             html = html.Replace("{{BillDate}}", Bills.GetColValue("BillTime").ConvertToDateString("dd/MM/yyyy | H:mm tt"));
             html = html.Replace("{{PayMode}}", Bills.GetColValue("PayMode"));
