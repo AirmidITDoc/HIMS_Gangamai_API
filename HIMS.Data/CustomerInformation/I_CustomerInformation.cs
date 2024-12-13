@@ -10,5 +10,7 @@ namespace HIMS.Data.CustomerInformation
     {
         public string CustomerInformationInsert(CustomerInformationParams customerInformationParams);
         public bool CustomerInformationUpdate(CustomerInformationParams customerInformationParams);
+        public bool SaveVendorInformation(VendorInformationParam VendorInformationParam);
+        public bool UpdateVendorInformation(VendorInformationParam VendorInformationParam);
     }
 }

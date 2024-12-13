@@ -24,7 +24,19 @@ namespace HIMS.API.Controllers.Transaction
             _CustomerInvoiceRaise = customerInvoiceRaise;
 
         }
+        [HttpPost("SaveVendorInformation")]
+        public IActionResult SaveVendorInformation(VendorInformationParam VendorInformationParam)
+        {
+            var Id = _CustomerInformation.SaveVendorInformation(VendorInformationParam);
+            return Ok(Id);
+        }
 
+        [HttpPost("UpdateVendorInformation")]
+        public IActionResult UpdateVendorInformation(VendorInformationParam VendorInformationParam)
+        {
+            var Id = _CustomerInformation.UpdateVendorInformation(VendorInformationParam);
+            return Ok(true);
+        }
         [HttpPost("CustomerInformationSave")]
         public IActionResult CustomerInformationSave(CustomerInformationParams customerInformationParams)
         {

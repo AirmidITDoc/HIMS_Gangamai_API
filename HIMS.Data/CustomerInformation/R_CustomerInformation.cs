@@ -12,6 +12,27 @@ namespace HIMS.Data.CustomerInformation
         {
 
         }
+
+        public bool SaveVendorInformation(VendorInformationParam VendorInformationParam)
+        {
+            // throw new NotImplementedException();
+            var disc = VendorInformationParam.SaveVendorInformationParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_T_VendorInformation", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool UpdateVendorInformation(VendorInformationParam VendorInformationParam)
+        {
+            // throw new NotImplementedException();
+            var disc = VendorInformationParam.UpdateVendorInformationParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_VendorInformation", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
         public string CustomerInformationInsert(CustomerInformationParams customerInformationParams)
         {
             var vIndentId = new SqlParameter
