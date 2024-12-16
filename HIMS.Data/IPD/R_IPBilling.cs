@@ -425,7 +425,7 @@ namespace HIMS.Data.IPD
       
              html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
-            string finalamt = conversion(Bills.GetColValue("TotalAmt").ConvertToDouble().To2DecimalPlace().ToString());
+            string finalamt = conversion(Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace().ToString());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 
@@ -996,7 +996,7 @@ namespace HIMS.Data.IPD
              html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
             string finalamt = conversion(Bills.GetColValue("TotalAmt").ConvertToDouble().To2DecimalPlace().ToString());
-            html = html.Replace("{{T_TotalAmt}}", Bills.GetColValue("TotalAmt").ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{T_TotalAmt}}", Bills.GetColValue("PaidAmount").ConvertToDouble().ToString("0.00"));
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 
@@ -1208,7 +1208,7 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
-            string finalamt = conversion(Bills.GetColValue("TotalAmt").ConvertToDouble().To2DecimalPlace().ToString());
+            string finalamt = conversion(Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace().ToString());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 
@@ -1420,7 +1420,7 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
 
-            string finalamt = conversion(Bills.GetColValue("TotalAmt").ConvertToDouble().To2DecimalPlace().ToString());
+            string finalamt = conversion(Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace().ToString());
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 
