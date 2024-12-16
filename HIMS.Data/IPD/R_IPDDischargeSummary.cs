@@ -192,6 +192,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{RefDoctorName}}", Bills.GetColValue("RefDoctorName"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{AddedBy}}", Bills.GetColValue("AddedBy"));
+            html = html.Replace("{{DischargeDoctor2}}", Bills.GetColValue("DischargeDoctor2"));
+            
 
             //border: 1px solid #d4c3c3;
 
@@ -360,6 +362,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{RefDoctorName}}", Bills.GetColValue("RefDoctorName"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{AddedBy}}", Bills.GetColValue("AddedBy"));
+            html = html.Replace("{{DischargeDoctor2}}", Bills.GetColValue("DischargeDoctor2"));
+
 
             //border: 1px solid #d4c3c3;
 
@@ -527,6 +531,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{RefDoctorName}}", Bills.GetColValue("RefDoctorName"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{AddedBy}}", Bills.GetColValue("AddedBy"));
+            html = html.Replace("{{DischargeDoctor2}}", Bills.GetColValue("DischargeDoctor2"));
 
             //border: 1px solid #d4c3c3;
 
