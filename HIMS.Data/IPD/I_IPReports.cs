@@ -25,7 +25,7 @@ namespace HIMS.Data.IPD
         string ViewIPBillGenerationPaymentDueReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
         string ViewOPIPBillSummaryReceipt(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
 
-        string ViewIPCreditReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);
+        string ViewIPCreditReport(DateTime FromDate, DateTime ToDate,int RegId, string htmlFilePath, string HeaderName);
         string ViewIPDAdmissionListCompanyWiseSummary(DateTime FromDate, DateTime ToDate, int DoctorId, int WardId, string htmlFilePath, string HeaderName);
 
         //string ViewIPDAdmissionWardWiseCharges(int DoctorId, int WardId,int CompanyId, string htmlFilePath, string HeaderName);

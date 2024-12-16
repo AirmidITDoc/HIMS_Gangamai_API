@@ -271,11 +271,11 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
         [HttpGet("view-IPCreditReport")]
-        public IActionResult ViewIPCreditReport(DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewIPCreditReport(DateTime FromDate, DateTime ToDate, int RegId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_IPCreditReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPReports.ViewIPCreditReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPReports.ViewIPCreditReport(FromDate, ToDate, RegId,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPCreditReport", "IPCreditReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 

@@ -38,5 +38,9 @@ namespace HIMS.Data.CommanReports
         //string ViewServiceWiseReport(int ServiceId, DateTime FromDate, DateTime ToDate,int DoctorId, string htmlFilePath, string htmlHeader);
         string ViewCashCounterWiseDailyCollection(DateTime FromDate, DateTime ToDate,int OP_IP_Type,int CashCounterId,int UserId, string htmlFilePath, string htmlHeader);
         string ViewCashCounterWiseDailyCollectionSummary(DateTime FromDate, DateTime ToDate, int OP_IP_Type, int CashCounterId, int UserId, string htmlFilePath, string htmlHeader);
+        string ViewOPPatientLedger(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewIPPatientLedger(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+
+
     }
 }

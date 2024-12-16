@@ -27,6 +27,28 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
 
         }
+        [HttpGet("view-OPPatientLedger")]
+        public IActionResult ViewOPPatientLedger(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_PatientLedgerReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPComman.ViewOPPatientLedger(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewOPPatientLedger", "ViewOPPatientLedger", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
+        [HttpGet("view-IPPatientLedger")]
+        public IActionResult ViewIPPatientLedger(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_IPPatientLedgerReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPComman.ViewIPPatientLedger(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewIPPatientLedger", "ViewIPPatientLedger", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
 
         [HttpGet("view-CommanDailyCollectionReport")]
         public IActionResult ViewCommanDailycollectionReport(DateTime FromDate, DateTime ToDate, int AddedById, int DoctorId)
