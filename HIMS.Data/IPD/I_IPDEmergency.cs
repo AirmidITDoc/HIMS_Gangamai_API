@@ -8,5 +8,7 @@ namespace HIMS.Data.IPD
    public interface I_IPDEmergency
     {
         public bool Insert(IPDEmergencyParams IPDEmergencyParams);
+        public bool Edit(IPDEmergencyParams IPDEmergencyParams);
+        public bool Cancel(IPDEmergencyParams IPDEmergencyParams);
     }
 }

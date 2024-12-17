@@ -1,5 +1,6 @@
 ﻿using HIMS.Common.Utility;
 using HIMS.Model.IPD;
+using HIMS.Model.Opd;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,7 +15,25 @@ namespace HIMS.Data.IPD
         {
             //transaction and connection is open when you inject unitofwork
         }
+        public bool Cancel(IPDEmergencyParams IPDEmergencyParams)
+        {
+            //  throw new NotImplementedException();
 
+
+            var disc3 = IPDEmergencyParams.IPDEmergencyRegCancel.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("Cancel_T_EmergencyAdm_1", disc3);
+            _unitofWork.SaveChanges();
+            return true;
+        }
+        public bool Edit(IPDEmergencyParams IPDEmergencyParams)
+        {
+            //  throw new NotImplementedException();
+
+            var disc3 = IPDEmergencyParams.IPDEmergencyRegEdit.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("update_T_EmergencyAdm_1", disc3);
+            _unitofWork.SaveChanges();
+            return true;
+        }
         public bool Insert(IPDEmergencyParams IPDEmergencyParams)
         {
             // throw new NotImplementedException();

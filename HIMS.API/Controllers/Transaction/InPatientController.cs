@@ -645,6 +645,22 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(IPE);
 
         }
+        [HttpPost("IPDEmergencyRegEdit")]
+
+        public IActionResult IPDEmergencyRegEdit(IPDEmergencyParams IPDEmergencyParams)
+        {
+            var IPE = _IPDEmergency.Edit(IPDEmergencyParams);
+            return Ok(IPE);
+
+        }
+        [HttpPost("IPDEmergencyRegCancel")]
+
+        public IActionResult IPDEmergencyRegCancel(IPDEmergencyParams IPDEmergencyParams)
+        {
+            var IPE = _IPDEmergency.Cancel(IPDEmergencyParams);
+            return Ok(IPE);
+
+        }
 
         [HttpPost("IPDPathologyReportDetailsInsert")]
 
