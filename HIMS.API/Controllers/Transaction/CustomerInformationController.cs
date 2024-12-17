@@ -63,6 +63,13 @@ namespace HIMS.API.Controllers.Transaction
             var Id = _CustomerPayments.CustomerPaymentUpdate(customerPaymentParams);
             return Ok(true);
         }
+        [HttpPost("CustomerPaymentCancel")]
+        public IActionResult CustomerPaymentCancel(CustomerPaymentParams customerPaymentParams)
+        {
+            var Id = _CustomerPayments.CustomerPaymentCancel(customerPaymentParams);
+            return Ok(true);
+        }
+
         [HttpPost("CustomerInvoiceRaiseSave")]
         public IActionResult CustomerInvoiceRaiseSave(CustomerInvoiceRaiseParam CustomerInvoiceRaiseParam)
         {

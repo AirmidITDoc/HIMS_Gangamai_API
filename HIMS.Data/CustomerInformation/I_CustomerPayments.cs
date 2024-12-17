@@ -8,8 +8,7 @@ namespace HIMS.Data.CustomerPayment
     public interface I_CustomerPayments
     {
         public string CustomerPaymentInsert(CustomerPaymentParams CustomerPaymentParams);
-
         public bool CustomerPaymentUpdate(CustomerPaymentParams CustomerPaymentParams);
-
+        public bool CustomerPaymentCancel(CustomerPaymentParams CustomerPaymentParams);
     }
 }
