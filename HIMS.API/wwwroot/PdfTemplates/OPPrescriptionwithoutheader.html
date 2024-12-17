@@ -1,11 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
-<head style="margin-top: 50px;">
-    <style>
-        .top-margin {
-            margin-top: 1.5cm; /* Adjusted to 1.5cm */
-        }
+<head>
+   
     </style>
 
     <meta charset="UTF-8">
@@ -16,33 +13,27 @@
 
 <body>
 
-    <div style="margin-top: 50px;">
-       
-    </div>
-
-    <div class="main-content-wrapper" style="height:1320px">
-        <div class="invoice-box" style="font-size: 22px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
-            <table style="width: 105%; line-height: inherit; text-align: left;">
-                <!--{{NewHeader}}-->
-                <tr>
-                </tr>
+    <div class="main-content-wrapper" style="padding-left:20px;">
+        <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+            <table style="width: 103%;line-height: inherit;text-align: left;">
+                <!-- {{NewHeader}}-->
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse; ">
-                            <tr>
-                            </tr>
-                            <tr>
-                            </tr>
-                            <tr style="font-size: 22px">
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>OP PRESCRIPTION</b></td>
-                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="font-size: 18px">
+                                <td style="padding: 2px; padding-bottom:5px;text-align:left;padding-top:135px;font-size:21px;"><b>OP PRESCRIPTION</b></td>
+                                <td style="padding: 2px; padding-bottom:5px;text-align:right;padding-top:135px;font-size:21px;"><b>Print Date :{{CurrentDate}}</b></td>
+
+                                <!--  <td style="padding: 2px; padding-bottom:5px;text-align:right;padding-top:135px; "><b>Print Date :{{CurrentDate}}</b></td>-->
+
+                                <td></td>
                             </tr>
                         </table>
                     </td>
                 </tr>
                 <tr class="bill-info-row">
                     <td style="padding: 6px;">
-                        <table style="width: 100%; border-collapse: collapse; font-size: 20px; ">
+                        <table style="width: 102%; border-collapse: collapse; font-size: 20px; ">
 
                             <tr>
 
@@ -110,7 +101,7 @@
                 <hr />
                 <tr class="bill-info-row">
                     <td style="padding: 6px;">
-                        <table style="width: 105%; border-collapse: collapse; font-size: 20px; ">
+                        <table style="width: 107%; border-collapse: collapse; font-size: 20px; ">
                             <!--<tr class="bill-table-row">
                             <td style="padding: 6px;">
                                 <table style="width: 100%; border-collapse: collapse;">-->
@@ -138,27 +129,27 @@
                                     <!--<td style="font-size: 38px; font-style: italic; padding: 20px; font-weight: bold; font-family: Bell MT; padding-left: 50px;" colspan="3">Rx</td>-->
                                 </tr>
                                 <!--<tr>
-        <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Complaints :<span style="font-size: 22px; ">{{ChiefComplaint}}</span></td>
+                                    <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Complaints :<span style="font-size: 22px; ">{{ChiefComplaint}}</span></td>
 
-    </tr>
-    <tr>
-        <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Dignosis :<span style="font-size: 22px; ">{{Diagnosis}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Dignosis :<span style="font-size: 22px; ">{{Diagnosis}}</span></td>
 
-    </tr>
+                                </tr>
 
-    <tr>
-        <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Examination :<span style="font-size: 22px; ">{{Examination}}</span></td>
+                                <tr>
+                                    <td style="text-align: left; padding: 10px; font-weight: bold; font-size: 24px; padding-left: 50px;" colspan="3">Examination :<span style="font-size: 22px; ">{{Examination}}</span></td>
 
-    </tr>-->
+                                </tr>-->
                                 <!--<tr>
-        <td style="font-size: 38px; font-style: italic; padding: 20px; font-weight: bold; font-family: Bell MT; padding-left: 50px;" colspan="3">Rx</td>
-    </tr>-->
+                                    <td style="font-size: 38px; font-style: italic; padding: 20px; font-weight: bold; font-family: Bell MT; padding-left: 50px;" colspan="3">Rx</td>
+                                </tr>-->
                                 <html>
                                 <body>
-                                    <table style="width: 105%; border-collapse: collapse; ">
+                                    <table style="width: 101%; border-collapse: collapse; ">
 
                                         <td style="padding: 6px;">
-                                            <table style="width: 105%; border-collapse: collapse; ">
+                                            <table style="width: 100%; border-collapse: collapse; ">
                                                 <!-- <thead style="font-size: 14px; font-weight: bold; font-size: 24px;">-->
 
                                                 <tr>
@@ -177,48 +168,52 @@
 
 
 
-                        <td style="padding:10px; font-weight: bold; text-align: left; font-size: 26px;padding-left:50px;">Medicine</td>
+                                                    <td style="padding:10px; font-weight: bold; text-align: left; font-size: 26px;padding-left:50px;">Medicine</td>
 
-                        <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Dosage</td>
-                        <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Instruction</td>
-                        <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Qty</td>
-                    </tr>-->
+                                                    <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Dosage</td>
+                                                    <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Instruction</td>
+                                                    <td style="padding:10px;font-weight:bold;text-align:left;font-size:26px;">Qty</td>
+                                                </tr>-->
                                                 {{Items}}
-                            </thead>
+                        </thead>
 
                     </table>
                 </td>
             </tr>
 
 
-            <tfoot>
+            <!--<tfoot>-->
                 <tr>
-                    <table style="width: 105%; border-collapse: collapse; margin-top: 30px; ">
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px; ">
 
-                        <tr style="margin-top: 12px;">
+                        <tr style="margin-top: 6px;">
 
                         <tr></tr>
-                        <tr style="padding: 6px; text-align: left;padding-left:50px;">
+                        <tr style=" font-size: 19px; padding: 12px; text-align: left; padding-left: 50px;">
                             <td>
                                 <span>FollowUp Date :{{FollowupDate}}</span>
+                            </td>
+                            <td>
+                                <span></span>
+                            </td>
+                            <td>
+                                <span style="margin-left:70%">
+                                    <img src="{{Signature}}" width="100" style="display:{{chkSignature}}">
+                                </span>
+                                <footer style="margin-left: 70%; font-size: 19px;">
+                                    <div style="font-weight:bold;">{{PathResultDr1}}</div>
+                                    <div style="font-weight:bold;" style="display:{{chkEdu}}">{{Education}}</div>
+                                    <div style="font-weight:bold;" style="display:{{chkRegNo}}">{{MahRegNo}}</div>
+                                </footer>
 
                             </td>
                         </tr>
-                        <tr style="padding: 6px; text-align: left; padding-left: 50px;">
+                        <tr style=" font-size: 19px; padding: 12px; text-align: left; padding-left: 50px;">
                             <td>
                                 <span>Advice:{{Advice}}</span>
                             </td>
                         </tr>
-                        <tr>
-                            <span style="margin-left:70%">
-                                <img src="{{Signature}}" width="100" style="display:{{chkSignature}}">
-                            </span>
-                            <footer style="margin-left: 70%; font-size: 19px;">
-                                <div style="font-weight:bold;">{{PathResultDr1}}</div>
-                                <div style="font-weight:bold;" style="display:{{chkEdu}}">{{Education}}</div>
-                                <div style="font-weight:bold;" style="display:{{chkRegNo}}">{{MahRegNo}}</div>
-                            </footer>
-                        </tr>
+                       
                     </table>
                 </tr>
             </tfoot>
