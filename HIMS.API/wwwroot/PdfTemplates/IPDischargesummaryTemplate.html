@@ -21,18 +21,13 @@
                                 <tr class="title-date-row">
                                     <td>
                                         <table style="width: 100%; border-collapse: collapse;">
-                                            <tr style="font-size: 20px;font-weight:bold;">
-                                                <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; ">
+                                            <tr style="font-size: 26px;font-weight:bold;">
+                                                <td style="border-bottom: 1px solid #d4c3c3;padding: 6px;text-align:center;" colspan="2">
                                                     <b>
                                                         {{IsNormalOrDeath}} DISCHARGE SUMMARY
                                                     </b>
                                                 </td>
-                                                <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; text-align: right;">
-                                                    <b>
-                                                        Print
-                                                        Date : {{CurrentDate}}
-                                                    </b>
-                                                </td>
+                                               
                                             </tr>
                                         </table>
                                     </td>
@@ -187,8 +182,8 @@
                     </td>
                 </tr>
                 <!--<tr style="padding: 6px; text-align: center;font-weight:bold;">-->
-                    <!--<td>{{DischargeTime}}</td>-->
-                    <!--<td>
+                <!--<td>{{DischargeTime}}</td>-->
+                <!--<td>
 
                         <span>{{AddedBy}}</span>
                     </td>
@@ -199,13 +194,13 @@
                     </td>
                 </tr>-->
                 <!--<tr><td><span style="font-size: 20px; font-weight: bold; text-align: right;">{{DoctorName}}</span></td></tr>
-    <br />
-    <tr><td><sapn style="font-size: 20px; text-align: right;">Doctor Signature</sapn></td></tr>-->
+                <br />
+                <tr><td><sapn style="font-size: 20px; text-align: right;">Doctor Signature</sapn></td></tr>-->
                 <!--<td> Discharge Time</td>-->
                 <!--<td>
 
-        <span>Preapered By</span>
-    </td>-->
+                    <span>Preapered By</span>
+                </td>-->
                 <!--<tr style="padding: 6px; text-align: center;">
                     <td>
 
@@ -217,6 +212,19 @@
         </tr>
     </table>
 
+    <table style="width: 100%;line-height: inherit;text-align: left;margin-top:20px;">
+        <tr>
+            <footer style="margin-left: 70%; font-size: 19px;">
+
+            <td style="padding: 6px; text-align: right;">
+                <b>
+                    Print
+                    Date : {{CurrentDate}}
+                </b>
+            </td>
+            </footer>
+        </tr>
+    </table>
 </body>
 
 </html>
