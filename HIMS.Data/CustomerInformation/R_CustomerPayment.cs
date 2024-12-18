@@ -41,5 +41,14 @@ namespace HIMS.Data.CustomerInformation
             _unitofWork.SaveChanges();
             return true;
         }
+        public bool CustomerPaymentCancel(CustomerPaymentParams CustomerPaymentParams)
+        {
+
+            var disc3 = CustomerPaymentParams.CustomerPaymentCancel.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_CustomerPayment_Cancel", disc3);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
     }
 }
