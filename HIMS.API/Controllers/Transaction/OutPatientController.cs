@@ -394,9 +394,9 @@ namespace HIMS.API.Controllers.Transaction
 
             DataTable dt = _OPDPrescription.GetDataForReport(VisitId);
             var html = _OPDPrescription.ViewOPPrescriptionReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            //var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+            var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
 
-            //html = html.Replace("{{Signature}}", signature);
+            html = html.Replace("{{Signature}}", signature);
 
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "OPPrescription" + VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
@@ -415,9 +415,8 @@ namespace HIMS.API.Controllers.Transaction
 
             DataTable dt = _OPDPrescription.GetDataForReport(VisitId);
             var html = _OPDPrescription.ViewOPPrescriptionReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            //var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
-
-            //html = html.Replace("{{Signature}}", signature);
+            var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+            html = html.Replace("{{Signature}}", signature);
 
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "OPPrescription_"+ VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
