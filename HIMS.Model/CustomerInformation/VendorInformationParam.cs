@@ -15,28 +15,22 @@ namespace HIMS.Model.CustomerInformation
     {
         public string VendorName { get; set; }
         public string VendorAddress { get; set; }
-        public long VendorMobileNo { get; set; }
-        public long VendorPinCode { get; set; }
+        public string VendorMobileNo { get; set; }
+        public string VendorPinCode { get; set; }
         public string VendorPersonName { get; set; }
-        public long VendorPersonMobileNo { get; set; }
+        public string VendorPersonMobileNo { get; set; }
         public long CreatedBy { get; set; }
-        public DateTime CreatedDateTime { get; set; }
-        public long ModifiedBy { get; set; }
-        public DateTime ModifiedDateTime { get; set; }
     }
     public class UpdateVendorInformationParam
     {
         public long VendorId { get; set; }
         public string VendorName { get; set; }
         public string VendorAddress { get; set; }
-        public long VendorMobileNo { get; set; }
-        public long VendorPinCode { get; set; }
+        public string VendorMobileNo { get; set; }
+        public string VendorPinCode { get; set; }
         public string VendorPersonName { get; set; }
-        public long VendorPersonMobileNo { get; set; }
-        public long CreatedBy { get; set; }
-        public DateTime CreatedDateTime { get; set; }
+        public string VendorPersonMobileNo { get; set; }
         public long ModifiedBy { get; set; }
-        public DateTime ModifiedDateTime { get; set; }
     }
 }
 
