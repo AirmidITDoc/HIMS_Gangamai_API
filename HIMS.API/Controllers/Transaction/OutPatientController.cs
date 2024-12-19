@@ -61,7 +61,6 @@ namespace HIMS.API.Controllers.Transaction
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
         private readonly IFileUtility _IFileUtility;
         private readonly I_CrossConsultation _CrossConsultation;
-        public readonly IFileUtility _FileUtility;
         public readonly I_HelthCard _I_HelthCard;
         public readonly IConfiguration _configuration;
         public OutPatientController(
@@ -119,7 +118,7 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
             _IFileUtility = fileUtility;
             _CrossConsultation = crossConsultation;
-            _IFileUtility = fileUtility;
+            
             _I_HelthCard = HelthCard;
             this._configuration = _configuration;
 
@@ -381,20 +380,13 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-OP_Prescription")]
         public IActionResult ViewOPPrescription(int VisitId)
         {
-            //string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPrescription.html");
-            //string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            //var html = _OPDPrescription.ViewOPPrescriptionReceipt(VisitId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            //var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "OPPrescription" + VisitId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
-            //return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-
-
-
+         
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPrescription.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
 
             DataTable dt = _OPDPrescription.GetDataForReport(VisitId);
             var html = _OPDPrescription.ViewOPPrescriptionReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+            var signature = _IFileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
 
             html = html.Replace("{{Signature}}", signature);
 
@@ -415,7 +407,7 @@ namespace HIMS.API.Controllers.Transaction
 
             DataTable dt = _OPDPrescription.GetDataForReport(VisitId);
             var html = _OPDPrescription.ViewOPPrescriptionReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+            var signature = _IFileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
             html = html.Replace("{{Signature}}", signature);
 
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPPrescription", "OPPrescription_"+ VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
