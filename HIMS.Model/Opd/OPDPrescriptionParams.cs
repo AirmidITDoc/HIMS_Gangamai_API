@@ -10,6 +10,7 @@ namespace HIMS.Model.Opd
         public List<InsertOPDPrescription> InsertOPDPrescription { get; set; }
         public Update_VisitFollowupDate Update_VisitFollowupDate { get; set; }
         public List<OPRequestList> OPRequestList { get; set; }
+        public List<OPCasepaperDignosisMaster> OPCasepaperDignosisMaster { get; set; }
     }
 
     public class InsertOPDPrescription
@@ -63,7 +64,11 @@ namespace HIMS.Model.Opd
         public int OP_IP_ID { get; set; }
         public long ServiceId { get; set; }
     }
-
+    public class OPCasepaperDignosisMaster
+    {
+        public string DescriptionType { get; set; }
+        public string DescriptionName { get; set; }
+    }
     public class delete_OPPrescription
     {
         public int OP_IP_ID { get; set; }
