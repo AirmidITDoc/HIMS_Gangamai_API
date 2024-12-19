@@ -37,10 +37,15 @@ namespace HIMS.Data.Opd
             // Add Test Request  
             foreach (var a in OPDPrescriptionParams.OPRequestList)
             {
-                var disc1 = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("m_Insert_T_OPRequestList", disc1);
+                var vOPRequestList = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_Insert_T_OPRequestList", vOPRequestList);
             }
-
+            // Add Casepaper Master (Complaint,Diagnosis,Examination)
+            foreach (var a in OPDPrescriptionParams.OPCasepaperDignosisMaster)
+            {
+                var vOPCasepaperMaster = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_Insert_OPCasepaperDignosisMaster", vOPCasepaperMaster);
+            }
             _unitofWork.SaveChanges();
 
             return true;
