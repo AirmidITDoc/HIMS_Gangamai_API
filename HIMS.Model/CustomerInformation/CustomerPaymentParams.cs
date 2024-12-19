@@ -21,6 +21,7 @@ namespace HIMS.Model.CustomerInformation
         public long CreatedBy { get; set; }
         public DateTime CreatedByDateTime { get; set; }
         public long TranId { get; set; }
+        public string TranType { get; set; }
     }
     public class CustomerPaymentUpdate
     {
