@@ -186,7 +186,7 @@ namespace HIMS.Data.IPD
             int j = 0;
 
 
-            html = html.Replace("{{BillNo}}", Bills.GetColValue("BillNo"));
+            html = html.Replace("{{BillNo}}", Bills.GetColValue("PBillNo"));
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName").ToString());
