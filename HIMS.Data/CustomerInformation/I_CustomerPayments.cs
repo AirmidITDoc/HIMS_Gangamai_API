@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HIMS.Data.CustomerPayment
+namespace HIMS.Data.CustomerAMCInfo
 {
-    public interface I_CustomerPayments
+    public interface I_CustomerAMCInfo
     {
-        public string CustomerPaymentInsert(CustomerPaymentParams CustomerPaymentParams);
-        public bool CustomerPaymentUpdate(CustomerPaymentParams CustomerPaymentParams);
-        public bool CustomerPaymentCancel(CustomerPaymentParams CustomerPaymentParams);
+        public string CustomerAMCInsert(CustomerAmcParams customerAmcParams);
+        public bool CustomerAMCUpdate(CustomerAmcParams customerAmcParams);
+        public bool CustomerAMCCancel(CustomerAmcParams customerAmcParams);
     }
 }

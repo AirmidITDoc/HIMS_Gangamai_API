@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+using HIMS.Data.CustomerAMCInfo;
 using HIMS.Data.CustomerInformation;
 using HIMS.Data.CustomerPayment;
 using HIMS.Model.CustomerInformation;
@@ -15,14 +16,15 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_CustomerInformation _CustomerInformation;
         public readonly I_CustomerPayments _CustomerPayments;
         public readonly I_CustomerInvoiceRaise _CustomerInvoiceRaise;
+        public readonly I_CustomerAMCInfo _CustomerAMCInfo;
 
         public CustomerInformationController(I_CustomerInformation customerInformation, I_CustomerPayments customerPayments,
-            I_CustomerInvoiceRaise customerInvoiceRaise)
+            I_CustomerInvoiceRaise customerInvoiceRaise, I_CustomerAMCInfo customerAMCInfo)
         {
             this._CustomerInformation = customerInformation;
             _CustomerPayments = customerPayments;
             _CustomerInvoiceRaise = customerInvoiceRaise;
-
+            _CustomerAMCInfo = customerAMCInfo;
         }
         [HttpPost("SaveVendorInformation")]
         public IActionResult SaveVendorInformation(VendorInformationParam VendorInformationParam)
@@ -82,10 +84,25 @@ namespace HIMS.API.Controllers.Transaction
             var Id = _CustomerInvoiceRaise.CustomerInvoiceRaiseUpdate(customerInvoiceRaiseParam);
             return Ok(true);
         }
+        [HttpPost("CustomerAMCSave")]
+        public IActionResult CustomerAMCSave(CustomerAmcParams customerAmcParams)
+        {
+            var Id = _CustomerAMCInfo.CustomerAMCInsert(customerAmcParams);
+            return Ok(Id);
+        }
 
-
-
-
+        [HttpPost("CustomerAMCUpdate")]
+        public IActionResult CustomerAMCUpdate(CustomerAmcParams customerAmcParams)
+        {
+            var Id = _CustomerAMCInfo.CustomerAMCUpdate(customerAmcParams);
+            return Ok(true);
+        }
+        [HttpPost("CustomerAMCCancel")]
+        public IActionResult CustomerAMCCancel(CustomerAmcParams customerAmcParams)
+        {
+            var Id = _CustomerAMCInfo.CustomerAMCCancel(customerAmcParams);
+            return Ok(true);
+        }
     }
 }
 
