@@ -47,6 +47,7 @@ using HIMS.Data.DoctorShareReports;
 using HIMS.Data.PharmacyReports;
 using HIMS.Data.Administration;
 using HIMS.Data.Document;
+using HIMS.Data.CustomerAMCInfo;
 
 namespace HIMS.API.Extensions
 {
@@ -333,13 +334,15 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_OPBillingReport, R_OPBillingReport>();
 
             services.AddTransient<I_StockAdjustment, R_StockAdjustment>();
+            
             services.AddTransient<I_CustomerInformation, R_CustomerInformation>();
-
             services.AddTransient<I_CustomerPayments, R_CustomerPayment>();
             services.AddTransient<I_CustomerInvoiceRaise, R_CustomerInvoiceRaise>();
+            services.AddTransient<I_CustomerAMCInfo, R_CustomerAMCInfo>();
+
             services.AddTransient<I_ScheduleMaster, R_ScheduleMaster>();
-           services.AddTransient<I_Itemmovement, R_Itemmovement>();
-             services.AddTransient<I_Hospital, R_Hospital>();
+            services.AddTransient<I_Itemmovement, R_Itemmovement>();
+            services.AddTransient<I_Hospital, R_Hospital>();
             services.AddTransient<I_CommanReport, R_CommanReport>();
             services.AddTransient<I_MISReport, R_MISReport>();
             services.AddTransient<I_GSTReport, R_GSTReport>();
