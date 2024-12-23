@@ -24,6 +24,78 @@ namespace HIMS.API.Controllers.Transaction
             _CustomerInvoiceRaise = customerInvoiceRaise;
 
         }
+        [HttpPost("SaveOTBookingRequest")]
+        public IActionResult SaveOTBookingRequest(OTBookingRequestParam OTBookingRequestParam)
+        {
+            var Id = _CustomerInformation.SaveOTBookingRequest(OTBookingRequestParam);
+            return Ok(Id);
+        }
+        [HttpPost("UpdateOTBookingRequest")]
+        public IActionResult UpdateOTBookingRequest(OTBookingRequestParam OTBookingRequestParam)
+        {
+            var Id = _CustomerInformation.UpdateOTBookingRequest(OTBookingRequestParam);
+            return Ok(Id);
+        }
+        [HttpPost("CancelOTBookingRequest")]
+        public IActionResult CancelOTBookingRequest(OTBookingRequestParam OTBookingRequestParam)
+        {
+            var Id = _CustomerInformation.CancelOTBookingRequest(OTBookingRequestParam);
+            return Ok(Id);
+        }
+        [HttpPost("SaveOTBooking")]
+        public IActionResult SaveOTBooking(OTBookingParam OTBookingParam)
+        {
+            var Id = _CustomerInformation.SaveOTBooking(OTBookingParam);
+            return Ok(Id);
+        }
+        [HttpPost("UpdateOTBooking")]
+        public IActionResult UpdateOTBooking(OTBookingParam OTBookingParam)
+        {
+            var Id = _CustomerInformation.UpdateOTBooking(OTBookingParam);
+            return Ok(Id);
+        }
+        [HttpPost("CancelOTBooking")]
+        public IActionResult CancelOTBooking(OTBookingParam OTBookingParam)
+        {
+            var Id = _CustomerInformation.CancelOTBooking(OTBookingParam);
+            return Ok(Id);
+        }
+        [HttpPost("SaveCertificateMaster")]
+        public IActionResult SaveCertificateMaster(CertificateMasterParam CertificateMasterParam)
+        {
+            var Id = _CustomerInformation.SaveCertificateMaster(CertificateMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("UpdateCertificateMaster")]
+        public IActionResult UpdateCertificateMaster(CertificateMasterParam CertificateMasterParam)
+        {
+            var Id = _CustomerInformation.UpdateCertificateMaster(CertificateMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("CancelCertificateMaster")]
+        public IActionResult CancelCertificateMaster(CertificateMasterParam CertificateMasterParam)
+        {
+            var Id = _CustomerInformation.CancelCertificateMaster(CertificateMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("SaveConsentMaster")]
+        public IActionResult SaveConsentMaster(ConsentMasterParam ConsentMasterParam)
+        {
+            var Id = _CustomerInformation.SaveConsentMaster(ConsentMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("UpdateConsentMaster")]
+        public IActionResult UpdateConsentMaster(ConsentMasterParam ConsentMasterParam)
+        {
+            var Id = _CustomerInformation.UpdateConsentMaster(ConsentMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("CancelConsentMaster")]
+        public IActionResult CancelConsentMaster(ConsentMasterParam ConsentMasterParam)
+        {
+            var Id = _CustomerInformation.CancelConsentMaster(ConsentMasterParam);
+            return Ok(Id);
+        }
         [HttpPost("SaveVendorInformation")]
         public IActionResult SaveVendorInformation(VendorInformationParam VendorInformationParam)
         {
