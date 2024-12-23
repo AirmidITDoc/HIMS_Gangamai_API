@@ -6,46 +6,47 @@ using System.Data;
 using System.Text;
 using HIMS.Data.CustomerPayment;
 using HIMS.Common.Utility;
+using HIMS.Data.CustomerAMCInfo;
 
 namespace HIMS.Data.CustomerInformation
 {
-    public class R_CustomerPayment:GenericRepository , I_CustomerPayments
+    public class R_CustomerAMCInfo : GenericRepository , I_CustomerAMCInfo
     {
-        public R_CustomerPayment(IUnitofWork unitofWork) : base(unitofWork)
+        public R_CustomerAMCInfo(IUnitofWork unitofWork) : base(unitofWork)
         {
 
         }
-        public string CustomerPaymentInsert(CustomerPaymentParams CustomerPaymentParams)
+        public string CustomerAMCInsert(CustomerAmcParams customerAmcParams)
         {
             var vIndentId = new SqlParameter
             {
                 SqlDbType = SqlDbType.BigInt,
-                ParameterName = "@PaymentId",
+                ParameterName = "@AMCId",
                 Value = 0,
                 Direction = ParameterDirection.Output
             };
 
-            var disc3 = CustomerPaymentParams.CustomerPaymentInsert.ToDictionary();
-            disc3.Remove("PaymentId");
-            var vPaymentId = ExecNonQueryProcWithOutSaveChanges("m_insert_CustomerPayment", disc3, vIndentId);
+            var disc3 = customerAmcParams.AmcSaveParams.ToDictionary();
+            disc3.Remove("AMCId");
+            var vPaymentId = ExecNonQueryProcWithOutSaveChanges("m_insert_CustomerAMC_1", disc3, vIndentId);
 
             _unitofWork.SaveChanges();
             return vPaymentId;
         }
-        public bool CustomerPaymentUpdate(CustomerPaymentParams CustomerPaymentParams)
+        public bool CustomerAMCUpdate(CustomerAmcParams customerAmcParams)
         {
 
-            var disc3 = CustomerPaymentParams.CustomerPaymentUpdate.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_update_CustomerPayment", disc3);
+            var disc3 = customerAmcParams.CustomerAmcUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_CustomerAMC", disc3);
 
             _unitofWork.SaveChanges();
             return true;
         }
-        public bool CustomerPaymentCancel(CustomerPaymentParams CustomerPaymentParams)
+        public bool CustomerAMCCancel(CustomerAmcParams customerAmcParams)
         {
 
-            var disc3 = CustomerPaymentParams.CustomerPaymentCancel.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_CustomerPayment_Cancel", disc3);
+            var disc3 = customerAmcParams.CustomerAmcCancel.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_CustomerAMC_Cancel", disc3);
 
             _unitofWork.SaveChanges();
             return true;
