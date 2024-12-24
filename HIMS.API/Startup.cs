@@ -1,4 +1,5 @@
-﻿using HIMS.API.Extensions;
+﻿using HIMS.API.Comman;
+using HIMS.API.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +31,11 @@ namespace HIMS.API
 
             services.AddWkhtmltopdf();
             services.AddMySwagger();
+
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<ValidateModelAttribute>();
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

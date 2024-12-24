@@ -66,6 +66,7 @@ namespace HIMS.Model.Opd
     }
     public class OPCasepaperDignosisMaster
     {
+        public int VisitId { get; set; }
         public string DescriptionType { get; set; }
         public string DescriptionName { get; set; }
     }

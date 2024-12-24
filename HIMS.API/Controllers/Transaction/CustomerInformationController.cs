@@ -1,14 +1,21 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using HIMS.Data.CustomerAMCInfo;
 using HIMS.Data.CustomerInformation;
 using HIMS.Data.CustomerPayment;
 using HIMS.Model.CustomerInformation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using HIMS.API.Comman;
+using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 namespace HIMS.API.Controllers.Transaction
 {
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CustomerInformationController : Controller
@@ -88,21 +95,91 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult CustomerAMCSave(CustomerAmcParams customerAmcParams)
         {
             var Id = _CustomerAMCInfo.CustomerAMCInsert(customerAmcParams);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully",Id);
+            return Ok(Response);
         }
 
         [HttpPost("CustomerAMCUpdate")]
         public IActionResult CustomerAMCUpdate(CustomerAmcParams customerAmcParams)
         {
-            var Id = _CustomerAMCInfo.CustomerAMCUpdate(customerAmcParams);
+            _CustomerAMCInfo.CustomerAMCUpdate(customerAmcParams);
             return Ok(true);
         }
+
         [HttpPost("CustomerAMCCancel")]
         public IActionResult CustomerAMCCancel(CustomerAmcParams customerAmcParams)
         {
-            var Id = _CustomerAMCInfo.CustomerAMCCancel(customerAmcParams);
+            _CustomerAMCInfo.CustomerAMCUpdate(customerAmcParams);
             return Ok(true);
+
         }
+
+        [HttpPost("AMCCancel")]
+        [ValidateModel]
+        public IActionResult AMCCancel(CustomerAmcParams customerAmcParams)
+        {
+            try
+            {
+                // Step 1: Validate the input using model state
+                if (!ModelState.IsValid)
+                {
+                    // If validation fails, return a BadRequest with the validation errors
+                    var errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList();
+
+                    return BadRequest(ApiResponseHelper.GenerateResponse<string>(
+                        ApiStatusCode.Status400BadRequest,
+                        "Validation failed.",
+                        null,
+                        errors
+                    ));
+                }
+
+                // Step 1: Validate the input
+                if (customerAmcParams == null)
+                {
+                    return BadRequest(ApiResponseHelper.GenerateResponse<string>(
+                        ApiStatusCode.Status400BadRequest,
+                        "Invalid request. Customer AMC parameters cannot be null."
+                    ));
+                }
+
+                // Step 2: Call the business logic layer
+                var result = _CustomerAMCInfo.CustomerAMCCancel(customerAmcParams);
+
+                // Step 3: Handle result from the business layer
+                if (!result)
+                {
+                    return Conflict(ApiResponseHelper.GenerateResponse<string>(
+                        ApiStatusCode.Status409Conflict,
+                        "Unable to cancel the record due to a conflict or invalid data."
+                    ));
+                }
+
+                // Step 4: Return success response
+                var response = ApiResponseHelper.GenerateResponse<string>(
+                    ApiStatusCode.Status200OK,
+                    "Record cancelled successfully"
+                );
+                return Ok(response);
+
+            }
+            catch (Exception ex)
+            {
+                // Step 5: Catch unexpected errors
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    ApiResponseHelper.GenerateResponse<string>(
+                        ApiStatusCode.Status500InternalServerError,
+                        "An unexpected error occurred while processing your request.",
+                        null,
+                        new List<string> { ex.Message }
+                    )
+                );
+            }
+        }
+
     }
 }
 

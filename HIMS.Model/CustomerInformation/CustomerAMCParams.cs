@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace HIMS.Model.CustomerInformation
@@ -16,6 +17,7 @@ namespace HIMS.Model.CustomerInformation
         public long AMCDuration { get; set; }
         public long AMCAmount { get; set; }
         public long CreatedBy { get; set; }
+        public string Comments { get; set; }
     }
     public class CustomerAmcUpdate
     {
@@ -32,7 +34,10 @@ namespace HIMS.Model.CustomerInformation
 
     public class CustomerAmcCancel
     {
+        [Required(ErrorMessage = "AMCId is required.")]
         public long AmcId { get; set; }
+
+        [Required(ErrorMessage = "IsCancelledBy is required.")]
         public long IsCancelledBy { get; set; }
 
     }

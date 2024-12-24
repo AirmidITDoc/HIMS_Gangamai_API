@@ -416,7 +416,7 @@ namespace HIMS.API.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "HIMS JSS API",
+                    Title = "HIMS AIRMID API",
                     Description = "Hospital Informaion Management System"
                 });
                 c.AddSecurityDefinition("Bearer",
