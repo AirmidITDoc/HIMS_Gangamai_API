@@ -46,7 +46,7 @@ namespace HIMS.Data.IPD
             };
             var dic = addChargesParams.AddCharges.ToDictionary();
             dic.Remove("ChargeID");
-            var ChargesId = ExecNonQueryProcWithOutSaveChanges("insert_IPAddCharges_1", dic, outputId);
+            var ChargesId = ExecNonQueryProcWithOutSaveChanges("m_insert_IPAddCharges_1", dic, outputId);
 
 
            if (addChargesParams.AddCharges.IsPathology)
@@ -65,28 +65,27 @@ namespace HIMS.Data.IPD
                 PathParams.Add("IsSamplecollection",0);
                 PathParams.Add("TestType", 0);
 
-                ExecNonQueryProcWithOutSaveChanges("insert_PathologyReportHeader_1", PathParams);  
+                ExecNonQueryProcWithOutSaveChanges("m_insert_PathologyReportHeader_1", PathParams);  
             }
 
-            //if (addChargesParams.IsRadiology)
-            //{
-            //    Dictionary<string, Object> RadParams = new Dictionary<string, object>();
+            if (addChargesParams.AddCharges.IsRadiology)
+            {
+                Dictionary<string, Object> RadParams = new Dictionary<string, object>();
 
-            //    RadParams.Add("RadDate", addChargesParams.ChargesDate);
-            //    RadParams.Add("RadTime", addChargesParams.ChargesDate);
-            //    RadParams.Add("OPD_IPD_Type", addChargesParams.OPD_IPD_Type);
-            //    RadParams.Add("OPD_IPD_Id", addChargesParams.OPD_IPD_Id);
-            //    RadParams.Add("RadTestID", addChargesParams.ServiceId);
-            //    RadParams.Add("AddedBy", addChargesParams.AddedBy);
-            //    RadParams.Add("IsCancelled", 0);
-            //    RadParams.Add("ChargeID", ChargesId);
-            //    RadParams.Add("IsCompleted", 0);
-            //    RadParams.Add("IsPrinted", 0);
-            //    RadParams.Add("IsSamplecollection", 0);
-            //    RadParams.Add("TestType", 0);
+                RadParams.Add("RadDate", addChargesParams.AddCharges.ChargesDate);
+                RadParams.Add("RadTime", addChargesParams.AddCharges.ChargesDate);
+                RadParams.Add("OPD_IPD_Type", addChargesParams.AddCharges.OPD_IPD_Type);
+                RadParams.Add("OPD_IPD_Id", addChargesParams.AddCharges.OPD_IPD_Id);
+                RadParams.Add("RadTestID", addChargesParams.AddCharges.ServiceId);
+                RadParams.Add("AddedBy", addChargesParams.AddCharges.AddedBy);
+                RadParams.Add("IsCancelled", 0);
+                RadParams.Add("ChargeID", ChargesId);
+                RadParams.Add("IsCompleted", 0);
+                RadParams.Add("IsPrinted", 0);
+                RadParams.Add("TestType", 0);
 
-            //    ExecNonQueryProcWithOutSaveChanges("insert_RadiologyReportHeader_1", RadParams);
-            //}
+                ExecNonQueryProcWithOutSaveChanges("m_insert_RadiologyReportHeader_1", RadParams);
+            }
 
             //commit transaction
             _unitofWork.SaveChanges();
