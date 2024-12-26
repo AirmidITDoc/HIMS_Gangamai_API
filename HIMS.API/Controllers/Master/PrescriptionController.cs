@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using HIMS.Data.Master.Prescription;
 using HIMS.Model.Master.Prescription;
+using HIMS.Data.CustomerInformation;
+using HIMS.Model.CustomerInformation;
+using HIMS.API.Comman;
 
 namespace HIMS.API.Controllers.Master
 {
@@ -12,6 +15,7 @@ namespace HIMS.API.Controllers.Master
     [Route("api/[controller]")]
     public class PrescriptionController : ControllerBase
     {
+        public readonly I_CustomerInformation _CustomerInformation;
         public readonly I_GenericMaster _GenericMasterRep;
         public readonly I_DrugMaster _DrugMasterRep;
         public readonly I_DoseMaster _DoseMasterRep;
@@ -20,13 +24,14 @@ namespace HIMS.API.Controllers.Master
         //public readonly I_PrescriptionClassMaster _PrescriptionClassMasterRep; 
         public readonly I_PrescriptionTemplateMaster _PrescriptionTemplateMaster;
         
-        public PrescriptionController(I_GenericMaster genericMaster,
+        public PrescriptionController(I_CustomerInformation customerInformation, I_GenericMaster genericMaster,
                                       I_DrugMaster drugMaster,
                                       I_DoseMaster doseMaster,
                                       //I_CertificateMaster certificateMaster,
                                      // I_PrescriptionClassMaster  prescriptionClassMaster,
                                       I_InstructionMaster instructionMaster,I_PrescriptionTemplateMaster prescriptionTemplateMaster ) 
         {
+            this._CustomerInformation = customerInformation;
             this._GenericMasterRep = genericMaster;
             this._DoseMasterRep = doseMaster;
             this._InstructionMasterRep = instructionMaster;
@@ -35,6 +40,25 @@ namespace HIMS.API.Controllers.Master
             //  this._PrescriptionClassMasterRep = prescriptionClassMaster;
             this._PrescriptionTemplateMaster = prescriptionTemplateMaster;
 
+        }
+        [HttpPost("SaveCertificateMaster")]
+        public IActionResult SaveCertificateMaster(CertificateMasterParam CertificateMasterParam)
+        {
+            var Id = _CustomerInformation.SaveCertificateMaster(CertificateMasterParam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
+            return Ok(Response);
+        }
+        [HttpPost("UpdateCertificateMaster")]
+        public IActionResult UpdateCertificateMaster(CertificateMasterParam CertificateMasterParam)
+        {
+            var Id = _CustomerInformation.UpdateCertificateMaster(CertificateMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("CancelCertificateMaster")]
+        public IActionResult CancelCertificateMaster(CertificateMasterParam CertificateMasterParam)
+        {
+            var Id = _CustomerInformation.CancelCertificateMaster(CertificateMasterParam);
+            return Ok(Id);
         }
         [HttpPost("GenericSave")]
         public IActionResult GenericSave(GenericMasterParams genericMasterParams)

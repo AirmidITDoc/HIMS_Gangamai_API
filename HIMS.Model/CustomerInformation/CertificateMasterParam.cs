@@ -1,4 +1,4 @@
-﻿using HIMS.Model.HomeDelivery;
+﻿using HIMS.Model.CustomerInformation;
 using System;
 using System.Collections.Generic;
 using System.Text;

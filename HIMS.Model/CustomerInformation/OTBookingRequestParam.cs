@@ -14,7 +14,7 @@ namespace HIMS.Model.CustomerInformation
 
     public class SaveOTBookingRequestParam
     {
-        public long OTBookingId { get; set; }
+        public int OTBookingId { get; set; }
         public DateTime OTBookingDate { get; set; }
         public DateTime OTBookingTime { get; set; }
         public long OP_IP_Id { get; set; }
@@ -26,19 +26,19 @@ namespace HIMS.Model.CustomerInformation
         public long SurgeonId { get; set; }
         public long SurgeryId { get; set; }
         public long CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public long ModifiedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public long IsCancelled { get; set; }
-        public long IsCancelledBy { get; set; }
-        public DateTime IsCancelledDateTime { get; set; }
+        //public DateTime CreatedDate { get; set; }
+        //public long ModifiedBy { get; set; }
+        //public DateTime ModifiedDate { get; set; }
+        //public long IsCancelled { get; set; }
+        //public long IsCancelledBy { get; set; }
+        //public DateTime IsCancelledDateTime { get; set; }
 
        
 
     }
     public class UpdateOTBookingRequestParam
     {
-        public long OTBookingId { get; set; }
+        public int OTBookingId { get; set; }
         public DateTime OTBookingDate { get; set; }
         public DateTime OTBookingTime { get; set; }
         public long OP_IP_Id { get; set; }
@@ -49,17 +49,17 @@ namespace HIMS.Model.CustomerInformation
         public long SiteDescId { get; set; }
         public long SurgeonId { get; set; }
         public long SurgeryId { get; set; }
-        public long CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
+        //public long CreatedBy { get; set; }
+        //public DateTime CreatedDate { get; set; }
         public long ModifiedBy { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public long IsCancelled { get; set; }
-        public long IsCancelledBy { get; set; }
-        public DateTime IsCancelledDateTime { get; set; }
+        //public long IsCancelled { get; set; }
+        //public long IsCancelledBy { get; set; }
+        //public DateTime IsCancelledDateTime { get; set; }
     }
     public class CancelOTBookingRequestParam
     {
-        public long OTBookingId { get; set; }
+        public int OTBookingId { get; set; }
        
         public long IsCancelled { get; set; }
         public long IsCancelledBy { get; set; }
