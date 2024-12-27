@@ -73,7 +73,7 @@ namespace HIMS.Data.IPD
                 Dictionary<string, Object> RadParams = new Dictionary<string, object>();
 
                 RadParams.Add("RadDate", addChargesParams.AddCharges.ChargesDate);
-                RadParams.Add("RadTime", addChargesParams.AddCharges.ChargesDate);
+                RadParams.Add("RadTime", addChargesParams.AddCharges.ChargeTime);
                 RadParams.Add("OPD_IPD_Type", addChargesParams.AddCharges.OPD_IPD_Type);
                 RadParams.Add("OPD_IPD_Id", addChargesParams.AddCharges.OPD_IPD_Id);
                 RadParams.Add("RadTestID", addChargesParams.AddCharges.ServiceId);
