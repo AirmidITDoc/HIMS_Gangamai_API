@@ -65,11 +65,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("ViewDoctorShareListWithCharges")]
-        public IActionResult ViewDoctorShareListWithCharges(DateTime FromDate, DateTime Todate, int Doctor_Id, int OP_IP_Type)
+        public IActionResult ViewDoctorShareListWithCharges(DateTime FromDate, DateTime Todate, int Doctor_Id,int GroupId, int OP_IP_Type)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DoctorShare_DoctorShareListWithCharges.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _doctorShareReport.ViewDoctorShareListWithCharges(FromDate, Todate, Doctor_Id,  OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _doctorShareReport.ViewDoctorShareListWithCharges(FromDate, Todate, Doctor_Id, GroupId, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorShareListWithCharges", "DoctorShareListWithCharges", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 

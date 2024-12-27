@@ -231,7 +231,7 @@
 
 
         }
-        public string ViewDoctorShareListWithCharges(DateTime FromDate, DateTime Todate, int Doctor_Id, int OP_IP_Type ,string htmlFilePath, string htmlHeader)
+        public string ViewDoctorShareListWithCharges(DateTime FromDate, DateTime Todate, int Doctor_Id, int GroupId,int OP_IP_Type ,string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -239,8 +239,8 @@
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@Todate", Todate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@Doctor_Id", Doctor_Id) { DbType = DbType.Int64 };
-            //para[3] = new SqlParameter("@GroupId", GroupId) { DbType = DbType.Int64 };
-            para[3] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@GroupId", GroupId) { DbType = DbType.Int64 };
+            para[4] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("rptAddChargeDoctorWiselist", para);
 
 
@@ -258,6 +258,7 @@
 
 
             foreach (DataRow dr in Bills.Rows)
+
             {
 
                 i++; j++;
