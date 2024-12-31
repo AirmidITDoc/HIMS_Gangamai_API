@@ -196,7 +196,7 @@ namespace HIMS.Data.CustomerInformation
         {
 
             var disc3 = MOTTableMasterParam.UpdateOTTableMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_update_M_OT_TableMaster", disc3);
+            ExecNonQueryProcWithOutSaveChanges("m_Update_M_OT_TableMaster", disc3);
 
             _unitofWork.SaveChanges();
             return true;
