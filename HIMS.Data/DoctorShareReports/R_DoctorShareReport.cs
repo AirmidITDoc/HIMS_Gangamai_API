@@ -231,7 +231,7 @@
 
 
         }
-        public string ViewDoctorShareListWithCharges(DateTime FromDate, DateTime Todate, int Doctor_Id,int GroupId, int OP_IP_Type ,string htmlFilePath, string htmlHeader)
+        public string ViewDoctorShareListWithCharges(DateTime FromDate, DateTime Todate, int Doctor_Id, int GroupId,int OP_IP_Type ,string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
@@ -258,6 +258,7 @@
 
 
             foreach (DataRow dr in Bills.Rows)
+
             {
 
                 i++; j++;
