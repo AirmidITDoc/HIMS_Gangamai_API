@@ -101,12 +101,6 @@ namespace HIMS.API.Controllers.Transaction
             var Id = _CustomerInformation.CancelOTTableMaster(MOTTableMasterParam);
             return Ok(Id);
         }
-        [HttpPost("SaveMOTSubCategoryMaster")]
-        public IActionResult SaveMOTSubCategoryMaster(MOTSubCategoryMasterParam MOTSubCategoryMasterParam)
-        {
-            var Id = _CustomerInformation.SaveMOTSubCategoryMaster(MOTSubCategoryMasterParam);
-            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
-            return Ok(Response);
-        }
+        
     }
 }
