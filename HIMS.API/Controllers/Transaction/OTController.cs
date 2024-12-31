@@ -82,5 +82,31 @@ namespace HIMS.API.Controllers.Transaction
             var Id = _CustomerInformation.CancelConsentMaster(ConsentMasterParam);
             return Ok(Id);
         }
+        [HttpPost("SaveOTTableMaster")]
+        public IActionResult SaveOTTableMaster(MOTTableMasterParam MOTTableMasterParam)
+        {
+            var Id = _CustomerInformation.SaveOTTableMaster(MOTTableMasterParam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
+            return Ok(Response);
+        }
+        [HttpPost("UpdateOTTableMaster")]
+        public IActionResult UpdateOTTableMaster(MOTTableMasterParam MOTTableMasterParam)
+        {
+            var Id = _CustomerInformation.UpdateOTTableMaster(MOTTableMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("CancelOTTableMaster")]
+        public IActionResult CancelOTTableMaster(MOTTableMasterParam MOTTableMasterParam)
+        {
+            var Id = _CustomerInformation.CancelOTTableMaster(MOTTableMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("SaveMOTSubCategoryMaster")]
+        public IActionResult SaveMOTSubCategoryMaster(MOTSubCategoryMasterParam MOTSubCategoryMasterParam)
+        {
+            var Id = _CustomerInformation.SaveMOTSubCategoryMaster(MOTSubCategoryMasterParam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
+            return Ok(Response);
+        }
     }
 }

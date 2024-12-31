@@ -3,6 +3,7 @@ using System.Data;
 using HIMS.Common.Utility;
 using HIMS.Model.CustomerInformation;
 using HIMS.Data.CustomerInformation;
+using static HIMS.Model.CustomerInformation.UpdateOTBookingParam;
 
 namespace HIMS.Data.CustomerInformation
 {
@@ -181,5 +182,36 @@ namespace HIMS.Data.CustomerInformation
             _unitofWork.SaveChanges();
             return true;
         }
+        public bool SaveOTTableMaster(MOTTableMasterParam MOTTableMasterParam)
+        {
+            // throw new NotImplementedException();
+            var disc = MOTTableMasterParam.SaveOTTableMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_M_OT_TableMaster", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool UpdateOTTableMaster(MOTTableMasterParam MOTTableMasterParam)
+        {
+
+            var disc3 = MOTTableMasterParam.UpdateOTTableMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_M_OT_TableMaster", disc3);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
+        public bool CancelOTTableMaster(MOTTableMasterParam MOTTableMasterParam)
+        {
+            // throw new NotImplementedException();
+            var disc = MOTTableMasterParam.CancelOTTableMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("Cancel_M_OT_TableMaster", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        
+
     }
 }

@@ -28,5 +28,9 @@ namespace HIMS.Data.CustomerInformation
         public bool SaveOTBooking(OTBookingParam OTBookingParam);
         public bool UpdateOTBooking(OTBookingParam OTBookingParam);
         public bool CancelOTBooking(OTBookingParam OTBookingParam);
+        public bool SaveOTTableMaster(MOTTableMasterParam MOTTableMasterParam);
+        public bool UpdateOTTableMaster(MOTTableMasterParam MOTTableMasterParam);
+        public bool CancelOTTableMaster(MOTTableMasterParam MOTTableMasterParam);
+       
     }
 }
