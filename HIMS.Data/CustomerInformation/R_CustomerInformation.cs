@@ -211,7 +211,34 @@ namespace HIMS.Data.CustomerInformation
             return true;
 
         }
-        
+        public bool SaveMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam)
+        {
+            // throw new NotImplementedException();
+            var disc = MOTSurgeryCategoryMasterParam.SaveMOTSurgeryCategoryMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_M_OT_SurgeryCategoryMaster", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
 
+        }
+        public bool UpdateMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam)
+        {
+
+            var disc3 = MOTSurgeryCategoryMasterParam.UpdateMOTSurgeryCategoryMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("update_M_OT_SurgeryCategoryMaster", disc3);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
+        public bool CancelMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam)
+        {
+            // throw new NotImplementedException();
+            var disc = MOTSurgeryCategoryMasterParam.CancelMOTSurgeryCategoryMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("Cancel_M_OT_SurgeryCategoryMaster", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
     }
 }
