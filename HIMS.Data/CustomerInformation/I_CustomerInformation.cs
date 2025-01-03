@@ -31,6 +31,8 @@ namespace HIMS.Data.CustomerInformation
         public bool SaveOTTableMaster(MOTTableMasterParam MOTTableMasterParam);
         public bool UpdateOTTableMaster(MOTTableMasterParam MOTTableMasterParam);
         public bool CancelOTTableMaster(MOTTableMasterParam MOTTableMasterParam);
-       
+        public bool SaveMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam);
+        public bool UpdateMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam);
+        public bool CancelMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam);
     }
 }
