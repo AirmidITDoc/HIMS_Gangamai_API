@@ -373,7 +373,7 @@
                      .Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefDoctorName"].ConvertToString()).Append("</td></tr>");
 
                 // Update NetAmount for the current group
-                T_NetAmount += dr["NetPayableAmt"].ConvertToDouble();
+                NetPayableAmt += dr["NetPayableAmt"].ConvertToDouble();
 
                 // If it's the last row, add the total for this group
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
@@ -398,13 +398,13 @@
 
 
         }
-        public string ViewDoctorShareListWithCharges(DateTime FromDate, DateTime ToDate, int Doctor_Id, int GroupId,int OP_IP_Type ,string htmlFilePath, string htmlHeader)
+        public string ViewDoctorShareListWithCharges(DateTime FromDate, DateTime Todate, int Doctor_Id, int GroupId,int OP_IP_Type ,string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
             SqlParameter[] para = new SqlParameter[5];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
-            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@Todate", Todate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@Doctor_Id", Doctor_Id) { DbType = DbType.Int64 };
             para[3] = new SqlParameter("@GroupId", GroupId) { DbType = DbType.Int64 };
             para[4] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
@@ -487,7 +487,7 @@
             html = html.Replace("{{DocAmt}}", DocAmt.ToString());
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{Todate}}", Todate.ToString("dd/MM/yy"));
             return html;
 
         }
