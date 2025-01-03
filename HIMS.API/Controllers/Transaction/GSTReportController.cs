@@ -58,11 +58,11 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
         [HttpGet("view-SalesProfitBillReport")]
-        public IActionResult ViewSalesProfitBillReport(DateTime FromDate, DateTime ToDate, int StoreId)
+        public IActionResult ViewSalesProfitBillReport(DateTime FromDate, DateTime ToDate, int StoreId,int RegId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_SalesProfitBillReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPGST.ViewSalesProfitBillReport(FromDate, ToDate,  StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPGST.ViewSalesProfitBillReport(FromDate, ToDate,  StoreId, RegId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesProfitBillReport", "SalesProfitBillReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });

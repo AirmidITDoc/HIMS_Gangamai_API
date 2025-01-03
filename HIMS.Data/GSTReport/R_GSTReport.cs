@@ -221,14 +221,15 @@ namespace HIMS.Data.Opd
 
         }
 
-        public string ViewSalesProfitBillReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader)
+        public string ViewSalesProfitBillReport(DateTime FromDate, DateTime ToDate, int StoreId, int RegId,string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[3];
+            SqlParameter[] para = new SqlParameter[4];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@RegId", RegId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("m_rptSalesProfitReportDetail", para);
 
 
@@ -338,6 +339,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{T_UnitMRP}}", T_UnitMRP.To2DecimalPlace());
             html = html.Replace("{{T_TotalAmount}}", T_TotalAmount.To2DecimalPlace());
             html = html.Replace("{{T_LandedPrice}}", T_LandedPrice.To2DecimalPlace());
+
             html = html.Replace("{{T_ItemWiseProfitAmount}}", T_ItemWiseProfitAmount.To2DecimalPlace());
             html = html.Replace("{{T_DiscAmount}}", T_DiscAmount.To2DecimalPlace());
             html = html.Replace("{{T_GrossAmount}}", T_GrossAmount.To2DecimalPlace());

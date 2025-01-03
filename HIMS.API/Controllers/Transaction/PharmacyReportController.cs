@@ -1,5 +1,6 @@
 ﻿using HIMS.API.Utility;
 using HIMS.Data.Opd;
+using HIMS.Data.Pharmacy;
 using HIMS.Data.PharmacyReports;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,15 +17,29 @@ namespace HIMS.API.Controllers.Transaction
     public class PharmacyReportController : Controller
     {
         public readonly I_PharmacyReports _IPPharmacy;
+        public readonly I_SalesReport _Sales;
         public readonly IPdfUtility _pdfUtility;
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
-        public PharmacyReportController(
+        public PharmacyReportController(I_SalesReport salesReport,
            I_PharmacyReports ippharmacy, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility)
         {
+            _Sales = salesReport;
             _IPPharmacy = ippharmacy;
             _hostingEnvironment = hostingEnvironment;
             _pdfUtility = pdfUtility;
 
+        }
+
+        [HttpGet("view-SalesPatientWiseReport")]
+        public IActionResult viewSalesReportPatientWiseNew(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId, int RegId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SalesReportPatientwise.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _Sales.ViewSalesReportPatientWise(FromDate, ToDate, SalesFromNumber, SalesToNumber, AddedBy, StoreId, RegId, htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesReportPatientwise", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
         [HttpGet("view-PharmacyDailyCollectionReport")]

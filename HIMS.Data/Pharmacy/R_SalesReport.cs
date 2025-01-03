@@ -215,17 +215,18 @@ namespace HIMS.Data.Pharmacy
         }
 
 
-        public string ViewSalesReportPatientWise(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId, string htmlFilePath, string htmlHeader)
+        public string ViewSalesReportPatientWise(DateTime FromDate, DateTime ToDate, string SalesFromNumber, string SalesToNumber, int AddedBy, int StoreId,int RegId, string htmlFilePath, string htmlHeader)
         {
-            SqlParameter[] para = new SqlParameter[6];
+            SqlParameter[] para = new SqlParameter[7];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@SalesFromNumber", SalesFromNumber) { DbType = DbType.String };
             para[3] = new SqlParameter("@SalesToNumber", SalesToNumber) { DbType = DbType.String };
             para[4] = new SqlParameter("@AddedBy", AddedBy) { DbType = DbType.Int64 };
             para[5] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
+            para[6] = new SqlParameter("@RegId", RegId) { DbType = DbType.Int64 };
 
-            var Bills = GetDataTableProc("RptSalesReport", para);
+            var Bills = GetDataTableProc("m_rptSalesPatientWiseReport", para);
 
             string html = File.ReadAllText(htmlFilePath);
             html = html.Replace("{{HeaderName}}", htmlHeader);

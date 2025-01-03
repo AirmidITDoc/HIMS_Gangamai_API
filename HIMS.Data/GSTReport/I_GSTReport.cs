@@ -10,7 +10,7 @@ namespace HIMS.Data.GSTReports
     {
         string ViewSalesProfitSummaryReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string HeaderName);
        
-        string ViewSalesProfitBillReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader);
+        string ViewSalesProfitBillReport(DateTime FromDate, DateTime ToDate, int StoreId,int RegId, string htmlFilePath, string htmlHeader);
         string ViewSalesProfitItemWiseSummaryReport(DateTime FromDate, DateTime ToDate, int StoreId, string htmlFilePath, string htmlHeader);
 
 
