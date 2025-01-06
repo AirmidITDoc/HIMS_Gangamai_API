@@ -47,7 +47,7 @@ namespace HIMS.Data.IPD
             return DRNo;
         }
         //187857
-        public string ViewIPDraftBillReceipt(int AdmissionID, string htmlFilePath, string htmlHeader)
+        public string ViewIPDraftBillClassWise(int AdmissionID, string htmlFilePath, string htmlHeader)
         {
             //throw new NotImplementedException();
 
@@ -179,10 +179,10 @@ namespace HIMS.Data.IPD
 
                 html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount").ConvertToDouble().ToString("0.00"));
                 html = html.Replace("{{AdvanceBalAmount}}", Bills.GetColValue("AdvanceBalAmount").ConvertToDouble().ToString("0.00"));
-               html = html.Replace("{{balafteradvuseAmount}}", balafteradvuseAmount.ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{balafteradvuseAmount}}", balafteradvuseAmount.ConvertToDouble().ToString("0.00"));
 
             html = html.Replace("{{BalancewdudcAmt}}", BalancewdudcAmt.ConvertToDouble().ToString("0.00"));
-                html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvanceAmount").ConvertToDouble().ToString("0.00"));
+            html = html.Replace("{{AdvanceAmount}}", Bills.GetColValue("AdvanceAmount").ConvertToDouble().ToString("0.00"));
                  html = html.Replace("{{TaxAmount}}", Bills.GetColValue("TaxAmount").ConvertToDouble().ToString("0.00"));
                 html = html.Replace("{{ConcessionAmount}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble().ToString("0.00"));
                 html = html.Replace("{{T_NetAmount}}", Bills.GetColValue("NetPayableAmt").ConvertToDouble().ToString("0.00"));
@@ -192,8 +192,8 @@ namespace HIMS.Data.IPD
                 html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
                 string finalamt = conversion(Bills.GetColValue("NetPayableAmt").ConvertToDouble().ToString("0.00"));
                   html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
-            html = html.Replace("{{balafteradvuseAmount}}", balafteradvuseAmount.ToString());
-            html = html.Replace("{{BalancewdudcAmt}}", BalancewdudcAmt.ToString());
+            //html = html.Replace("{{balafteradvuseAmount}}", balafteradvuseAmount.ToString());
+            //html = html.Replace("{{BalancewdudcAmt}}", BalancewdudcAmt.ToString());
             
                 html = html.Replace("{{AdvanceRefundAmount}}", Bills.GetColValue("AdvanceRefundAmount").ConvertToDouble().ToString("0.00"));
             html = html.Replace("{{CardPayAmount}}", Bills.GetColValue("CardPayAmount").ConvertToDouble().ToString("0.00"));

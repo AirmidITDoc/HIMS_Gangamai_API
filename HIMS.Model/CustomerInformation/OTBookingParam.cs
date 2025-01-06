@@ -79,7 +79,7 @@ namespace HIMS.Model.CustomerInformation
             public long OTBookingID { get; set; }
 
             public long IsCancelled { get; set; }
-            public long IsCancelledBy { get; set; }
+            public string IsCancelledBy { get; set; }
             //public DateTime IsCancelledDateTime { get; set; }
         }
     }
