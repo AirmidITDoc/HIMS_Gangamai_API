@@ -22,6 +22,7 @@ namespace HIMS.Model.CustomerInformation
         public DateTime InstallationDate { get; set; }
         public DateTime AMCDate { get; set; }
         public long CreatedBy { get; set; }
+        public long IsActive { get; set; }
         public long CustomerId { get; set; }
     }
     public class CustomerInformationUpdate
