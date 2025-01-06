@@ -326,7 +326,44 @@ namespace HIMS.Data.Administration
             _unitofWork.SaveChanges();
             return true;
         }
-       
+        public bool SaveTDoctorsNotes(TDoctorsNotesParam TDoctorsNotesParam)
+        {
+            // throw new NotImplementedException();
+            var disc = TDoctorsNotesParam.SaveTDoctorsNotesParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Insert_T_Doctors_Notes", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool UpdateTDoctorsNotes(TDoctorsNotesParam TDoctorsNotesParam)
+        {
+
+            var disc3 = TDoctorsNotesParam.UpdateTDoctorsNotesParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_Doctors_Notes", disc3);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
+        public bool SaveTDoctorPatientHandover(TDoctorPatientHandoverParam TDoctorPatientHandoverParam)
+        {
+            // throw new NotImplementedException();
+            var disc = TDoctorPatientHandoverParam.SaveTDoctorPatientHandoverParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Insert_T_Doctor_PatientHandover", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool UpdateTDoctorPatientHandover(TDoctorPatientHandoverParam TDoctorPatientHandoverParam)
+        {
+
+            var disc3 = TDoctorPatientHandoverParam.UpdateTDoctorPatientHandoverParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_Doctor_PatientHandover", disc3);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
 
     }
 }

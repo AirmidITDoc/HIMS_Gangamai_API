@@ -8,6 +8,7 @@ using HIMS.Model.Radiology;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using HIMS.Model.CustomerInformation;
 
 namespace HIMS.Data.Administration
 {
@@ -53,5 +54,9 @@ namespace HIMS.Data.Administration
         public bool SaveNursingWeight(NursingWeightParam NursingWeightParam);
 
         public bool UpdateNursingWeight(NursingWeightParam NursingWeightParam);
+        public bool SaveTDoctorsNotes(TDoctorsNotesParam TDoctorsNotesParam);
+        public bool UpdateTDoctorsNotes(TDoctorsNotesParam TDoctorsNotesParam);
+        public bool SaveTDoctorPatientHandover(TDoctorPatientHandoverParam TDoctorPatientHandoverParam);
+        public bool UpdateTDoctorPatientHandover(TDoctorPatientHandoverParam TDoctorPatientHandoverParam);
     }
 }

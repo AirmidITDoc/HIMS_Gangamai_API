@@ -9,29 +9,30 @@ using System.Data;
 using HIMS.Model.Administration;
 using HIMS.Model.Administration;
 using HIMS.Data.Administration;
+using HIMS.Model.CustomerInformation;
 
 namespace HIMS.API.Controllers.Transaction
 {
-        [ApiController]
-        [Route("api/[controller]")]
-        public class NursingController : Controller
-        {
-            public readonly I_RadiologyTemplateResult i_RadiologyTemplate;
+    [ApiController]
+    [Route("api/[controller]")]
+    public class NursingController : Controller
+    {
+        public readonly I_RadiologyTemplateResult i_RadiologyTemplate;
         public readonly I_Administration _Administration;
         public readonly IPdfUtility _pdfUtility;
-            private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
-            public readonly IFileUtility _FileUtility;
-            public NursingController(I_RadiologyTemplateResult i_Radiology,
-                I_Administration Administration,
-                Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, 
-                IPdfUtility pdfUtility, IFileUtility fileUtility)
-            {
-                this.i_RadiologyTemplate = i_Radiology;
-                _hostingEnvironment = hostingEnvironment;
+        private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
+        public readonly IFileUtility _FileUtility;
+        public NursingController(I_RadiologyTemplateResult i_Radiology,
+            I_Administration Administration,
+            Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment,
+            IPdfUtility pdfUtility, IFileUtility fileUtility)
+        {
+            this.i_RadiologyTemplate = i_Radiology;
+            _hostingEnvironment = hostingEnvironment;
             this._Administration = Administration;
             _pdfUtility = pdfUtility;
-                _FileUtility = fileUtility;
-            }
+            _FileUtility = fileUtility;
+        }
         [HttpPost("SaveNursingWeight")]
         public IActionResult SaveNursingWeight(NursingWeightParam NursingWeightParam)
         {
@@ -44,7 +45,7 @@ namespace HIMS.API.Controllers.Transaction
             var appoSave = _Administration.UpdateNursingWeight(NursingWeightParam);
             return Ok(appoSave);
         }
-      
+
         [HttpPost("SaveNursingOrygenVentilator")]
         public IActionResult SaveNursingOrygenVentilator(NursingOrygenVentilatorParam NursingOrygenVentilatorParam)
         {
@@ -128,30 +129,56 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(appoSave);
         }
         [HttpPost("RadiologyTemplateResult")]
-            public IActionResult RadiologyTemplateResult(RadiologyTemplateResultParams RRHUP)
-            {
-                var RRHUPI = i_RadiologyTemplate.Update(RRHUP);
-                return Ok(RRHUPI);
-            }
-
-            [HttpGet("view-RadiologyTemplateReport")]
-            public IActionResult ViewRadiologyTemplateReport(int RadReportId, int OP_IP_Type)
-            {
-                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "RadiologyTemplateReport.html");
-                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-                //var html = i_RadiologyTemplate.ViewRadiologyTemplateReceipt(RadReportId, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-                //var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RadiologyTemplateReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
-
-
-                DataTable dt = i_RadiologyTemplate.GetDataForReport(RadReportId, OP_IP_Type);
-                var html = i_RadiologyTemplate.ViewRadiologyTemplateReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-                //var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
-                //html = html.Replace("{{Signature}}", signature);
-                var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RadiologyTemplateReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
-
-                return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-            }
-
+        public IActionResult RadiologyTemplateResult(RadiologyTemplateResultParams RRHUP)
+        {
+            var RRHUPI = i_RadiologyTemplate.Update(RRHUP);
+            return Ok(RRHUPI);
         }
- }
+
+        [HttpGet("view-RadiologyTemplateReport")]
+        public IActionResult ViewRadiologyTemplateReport(int RadReportId, int OP_IP_Type)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "RadiologyTemplateReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            //var html = i_RadiologyTemplate.ViewRadiologyTemplateReceipt(RadReportId, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            //var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RadiologyTemplateReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+
+            DataTable dt = i_RadiologyTemplate.GetDataForReport(RadReportId, OP_IP_Type);
+            var html = i_RadiologyTemplate.ViewRadiologyTemplateReceipt(dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            //var signature = _FileUtility.GetBase64FromFolder("Doctors\\Signature", dt.Rows[0]["Signature"].ConvertToString());
+            //html = html.Replace("{{Signature}}", signature);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RadiologyTemplateReport", "", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpPost("SaveTDoctorsNotes")]
+        public IActionResult SaveTDoctorsNotes(TDoctorsNotesParam TDoctorsNotesParam)
+        {
+            var appoSave = _Administration.SaveTDoctorsNotes(TDoctorsNotesParam);
+            return Ok(appoSave);
+        }
+        [HttpPost("UpdateTDoctorsNotes")]
+        public IActionResult UpdateTDoctorsNotes(TDoctorsNotesParam TDoctorsNotesParam)
+        {
+            var appoSave = _Administration.UpdateTDoctorsNotes(TDoctorsNotesParam);
+            return Ok(appoSave);
+        }
+        [HttpPost("SaveTDoctorPatientHandover")]
+        public IActionResult SaveTDoctorPatientHandover(TDoctorPatientHandoverParam TDoctorPatientHandoverParam)
+        {
+            var appoSave = _Administration.SaveTDoctorPatientHandover(TDoctorPatientHandoverParam);
+            return Ok(appoSave);
+        }
+        [HttpPost("UpdateTDoctorPatientHandover")]
+        public IActionResult UpdateTDoctorPatientHandover(TDoctorPatientHandoverParam TDoctorPatientHandoverParam)
+        {
+            var appoSave = _Administration.UpdateTDoctorPatientHandover(TDoctorPatientHandoverParam);
+            return Ok(appoSave);
+        }
+
+
+
+    }
+}
 
