@@ -34,5 +34,14 @@ namespace HIMS.Data.CustomerInformation
         public bool SaveMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam);
         public bool UpdateMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam);
         public bool CancelMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam);
+
+        public bool SaveTNursingNotes(NursingNoteParam NursingNoteParam);
+        public bool UpdateTNursingNotes(NursingNoteParam NursingNoteParam);
+        public bool SaveTNursingPatientHandover(TNursingPatientHandoverParam TNursingPatientHandoverParam);
+        public bool UpdateTNursingPatientHandover(TNursingPatientHandoverParam TNursingPatientHandoverParam);
+        public bool SaveTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam);
+        public bool UpdateTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam);
+        public bool CancelTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam);
+
     }
 }
