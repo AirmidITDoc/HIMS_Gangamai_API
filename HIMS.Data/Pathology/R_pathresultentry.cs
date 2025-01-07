@@ -78,7 +78,7 @@ namespace HIMS.Data.Pathology
         {
             SqlParameter[] para = new SqlParameter[1];
             para[0] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
-            return GetDataTableProc("rptPathologyReportPrintMultiple", para);
+            return GetDataTableProc("m_rptPathologyReportPrintMultiple", para);
         }
         public string ViewPathTestMultipleReport(DataTable Bills, string htmlFilePath, string htmlHeader)
         {

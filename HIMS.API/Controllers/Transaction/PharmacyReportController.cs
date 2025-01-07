@@ -149,11 +149,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-DoctorWiseSalesReport")]
-        public IActionResult ViewDoctorWiseSalesReport(DateTime FromDate, DateTime ToDate, int StoreId, int DoctorId)
+        public IActionResult ViewDoctorWiseSalesReport(DateTime FromDate, DateTime ToDate, int StoreId, int DoctorId,int OP_IP_Type)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PharmacyReport_DoctorWiseSalesReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
-            var html = _IPPharmacy.ViewDoctorWiseSalesReport(FromDate, ToDate, StoreId, DoctorId, htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
+            var html = _IPPharmacy.ViewDoctorWiseSalesReport(FromDate, ToDate, StoreId, DoctorId, OP_IP_Type ,htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath, StoreId));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorWiseSalesReport", "DoctorWiseSalesReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 

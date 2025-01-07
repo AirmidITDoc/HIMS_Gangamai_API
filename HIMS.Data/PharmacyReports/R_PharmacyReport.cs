@@ -808,9 +808,9 @@ namespace HIMS.Data.Opd
         }
 
 
-        public string ViewDoctorWiseSalesReport(DateTime FromDate, DateTime ToDate, int StoreId, int DoctorId, string htmlFilePath, string htmlHeader)
+        public string ViewDoctorWiseSalesReport(DateTime FromDate, DateTime ToDate, int StoreId, int DoctorId,int OP_IP_Type, string htmlFilePath, string htmlHeader)
         {
-            SqlParameter[] para = new SqlParameter[4];
+            SqlParameter[] para = new SqlParameter[5];
 
 
 
@@ -818,6 +818,8 @@ namespace HIMS.Data.Opd
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@StoreId", StoreId) { DbType = DbType.Int64 };
             para[3] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
+            para[4] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
+
 
             var Bills = GetDataTableProc("rptDoctorWiseSalesReport", para);
             string html = File.ReadAllText(htmlFilePath);

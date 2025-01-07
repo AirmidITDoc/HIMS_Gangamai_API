@@ -978,11 +978,11 @@ namespace HIMS.API.Controllers.Transaction
 
 
         [HttpGet("view-IP-DraftBillReceipt")]
-        public IActionResult ViewIpDraftBillReceipt(int AdmissionID)
+        public IActionResult ViewIPDraftBillClassWise(int AdmissionID)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPDraftBill.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPDraftBillClassWise.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _InsertIPDraft.ViewIPDraftBillReceipt(AdmissionID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _InsertIPDraft.ViewIPDraftBillClassWise(AdmissionID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDraftBill", "IPDraftBill" + AdmissionID.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             //if (System.IO.File.Exists(tuple.Item2))
