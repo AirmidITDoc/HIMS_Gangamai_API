@@ -120,5 +120,62 @@ namespace HIMS.API.Controllers.Transaction
             var Id = _CustomerInformation.CancelMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam);
             return Ok(Id);
         }
+        [HttpPost("SaveMOTTypeMaster")]
+        public IActionResult SaveMOTTypeMaster(MOTTypeMasterParam MOTTypeMasterParam)
+        {
+            var Id = _CustomerInformation.SaveMOTTypeMaster(MOTTypeMasterParam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
+            return Ok(Response);
+        }
+        [HttpPost("UpdateMOTTypeMaster")]
+        public IActionResult UpdateMOTTypeMaster(MOTTypeMasterParam MOTTypeMasterParam)
+        {
+            var Id = _CustomerInformation.UpdateMOTTypeMaster(MOTTypeMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("CancelMOTTypeMaster")]
+        public IActionResult CancelMOTTypeMaster(MOTTypeMasterParam MOTTypeMasterParam)
+        {
+            var Id = _CustomerInformation.CancelMOTTypeMaster(MOTTypeMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("SaveMOTSiteDescriptionMaster")]
+        public IActionResult SaveMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam MOTSiteDescriptionMasterParam)
+        {
+            var Id = _CustomerInformation.SaveMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
+            return Ok(Response);
+        }
+        [HttpPost("UpdateMOTSiteDescriptionMaster")]
+        public IActionResult UpdateMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam MOTSiteDescriptionMasterParam)
+        {
+            var Id = _CustomerInformation.UpdateMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("CancelMOTSiteDescriptionMaster")]
+        public IActionResult CancelMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam MOTSiteDescriptionMasterParam)
+        {
+            var Id = _CustomerInformation.CancelMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("SaveMOTSurgeryMaster")]
+        public IActionResult SaveMOTSurgeryMaster(MOTSurgeryMasterParam MOTSurgeryMasterParam)
+        {
+            var Id = _CustomerInformation.SaveMOTSurgeryMaster(MOTSurgeryMasterParam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
+            return Ok(Response);
+        }
+        [HttpPost("UpdateMOTSurgeryMaster")]
+        public IActionResult UpdateMOTSurgeryMaster(MOTSurgeryMasterParam MOTSurgeryMasterParam)
+        {
+            var Id = _CustomerInformation.UpdateMOTSurgeryMaster(MOTSurgeryMasterParam);
+            return Ok(Id);
+        }
+        [HttpPost("CancelMOTSurgeryMaster")]
+        public IActionResult CancelMOTSurgeryMaster(MOTSurgeryMasterParam MOTSurgeryMasterParam)
+        {
+            var Id = _CustomerInformation.CancelMOTSurgeryMaster(MOTSurgeryMasterParam);
+            return Ok(Id);
+        }
     }
 }

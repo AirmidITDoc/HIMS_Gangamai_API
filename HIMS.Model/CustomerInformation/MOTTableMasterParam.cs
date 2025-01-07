@@ -17,7 +17,6 @@ namespace HIMS.Model.CustomerInformation
         public long LocationId { get; set; }
         public long IsActive { get; set; }
         public long CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
         public long OTTableId { get; set; }
     }
     public class UpdateOTTableMasterParam
@@ -26,7 +25,6 @@ namespace HIMS.Model.CustomerInformation
         public string OTTableName { get; set; }
         public long LocationId { get; set; }
         public long IsActive { get; set; }
-        public DateTime ModifiedDate { get; set; }
         public long ModifiedBy { get; set; }
 
     }
@@ -35,7 +33,8 @@ namespace HIMS.Model.CustomerInformation
         public long OTTableId { get; set; }
         public long IsCancelled { get; set; }
         public long IsCancelledBy { get; set; }
-        public DateTime IsCancelledDateTime { get; set; }
+
+
 
     }
 }
