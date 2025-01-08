@@ -19,21 +19,13 @@ namespace HIMS.Model.CustomerInformation
         public DateTime OTBookingTime { get; set; }
         public long OP_IP_Id { get; set; }
         public long OP_IP_Type { get; set; }
-        public long SurgeryType { get; set; }
+        public string SurgeryType { get; set; }
         public long DepartmentId { get; set; }
         public long CategoryId { get; set; }
         public long SiteDescId { get; set; }
         public long SurgeonId { get; set; }
         public long SurgeryId { get; set; }
         public long CreatedBy { get; set; }
-        //public DateTime CreatedDate { get; set; }
-        //public long ModifiedBy { get; set; }
-        //public DateTime ModifiedDate { get; set; }
-        //public long IsCancelled { get; set; }
-        //public long IsCancelledBy { get; set; }
-        //public DateTime IsCancelledDateTime { get; set; }
-
-       
 
     }
     public class UpdateOTBookingRequestParam
@@ -43,19 +35,13 @@ namespace HIMS.Model.CustomerInformation
         public DateTime OTBookingTime { get; set; }
         public long OP_IP_Id { get; set; }
         public long OP_IP_Type { get; set; }
-        public long SurgeryType { get; set; }
+        public string SurgeryType { get; set; }
         public long DepartmentId { get; set; }
         public long CategoryId { get; set; }
         public long SiteDescId { get; set; }
         public long SurgeonId { get; set; }
         public long SurgeryId { get; set; }
-        //public long CreatedBy { get; set; }
-        //public DateTime CreatedDate { get; set; }
         public long ModifiedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        //public long IsCancelled { get; set; }
-        //public long IsCancelledBy { get; set; }
-        //public DateTime IsCancelledDateTime { get; set; }
     }
     public class CancelOTBookingRequestParam
     {
@@ -63,7 +49,6 @@ namespace HIMS.Model.CustomerInformation
        
         public long IsCancelled { get; set; }
         public long IsCancelledBy { get; set; }
-        public DateTime IsCancelledDateTime { get; set; }
     }
 }
 

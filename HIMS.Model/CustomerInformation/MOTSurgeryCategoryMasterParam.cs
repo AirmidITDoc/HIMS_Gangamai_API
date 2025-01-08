@@ -29,7 +29,7 @@ namespace HIMS.Model.CustomerInformation
     {
         public long SurgeryCategoryId { get; set; }
         public long IsCancelled { get; set; }
-        public string IsCancelledBy { get; set; }
+        public long IsCancelledBy { get; set; }
 
 
     }
