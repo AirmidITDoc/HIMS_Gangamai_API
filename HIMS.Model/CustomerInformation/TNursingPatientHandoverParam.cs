@@ -26,7 +26,7 @@ namespace HIMS.Model.CustomerInformation
         public long PatHand_A { get; set; }
         public long PatHand_R { get; set; }
         public string Comments { get; set; }
-        public string CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
 
 
 
@@ -48,7 +48,7 @@ namespace HIMS.Model.CustomerInformation
         public string Comments { get; set; }
      
 
-        public string ModifiedBy { get; set; }
+        public int ModifiedBy { get; set; }
        
 
     }

@@ -21,7 +21,7 @@ namespace HIMS.Model.CustomerInformation
         public DateTime TDate { get; set; }
         public DateTime TTime { get; set; }
         public string NursingNotes { get; set; }
-        public string CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
        
 
 
@@ -34,7 +34,7 @@ namespace HIMS.Model.CustomerInformation
         public DateTime TDate { get; set; }
         public DateTime TTime { get; set; }
         public string NursingNotes { get; set; }
-        public string ModifiedBy { get; set; }
+        public int ModifiedBy { get; set; }
 
 
     }
