@@ -23,7 +23,6 @@ namespace HIMS.Model.CustomerInformation
         public long SurgeryCategoryId { get; set; }
         public string SurGeryCategoryName { get; set;}
         public long IsActive { get; set; }
-        public long CreatedBy { get; set; }
         public long ModifiedBy { get; set; }
     }
     public class CancelMOTSurgeryCategoryMasterParam

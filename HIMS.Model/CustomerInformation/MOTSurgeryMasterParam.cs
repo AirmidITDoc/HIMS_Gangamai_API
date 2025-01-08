@@ -35,7 +35,6 @@ namespace HIMS.Model.CustomerInformation
         public long OTTemplateID { get; set; }
         public long ServiceId { get; set; }
         public long IsActive { get; set; }
-        public long CreatedBy { get; set; }
         public long ModifiedBy { get; set; }
     }
     public class CancelMOTSurgeryMasterParam
