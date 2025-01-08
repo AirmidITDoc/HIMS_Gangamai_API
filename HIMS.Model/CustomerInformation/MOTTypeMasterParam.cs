@@ -22,7 +22,6 @@ namespace HIMS.Model.CustomerInformation
         public long OTTypeId { get; set; }
         public string TypeName { get; set; }
         public long IsActive { get; set; }
-        public long CreatedBy { get; set; }
         public long ModifiedBy { get; set; }
 
     }
