@@ -78,6 +78,7 @@ namespace HIMS.Model.IPD
         public bool IsSelfOrCompanyService { get; set; }
         public int PackageId { get; set; }
         public int PackageMainChargeID { get; set; }
+        public DateTime ChargeTime { get; set; }
 
     }
 }
