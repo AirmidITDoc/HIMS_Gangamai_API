@@ -22,8 +22,8 @@ namespace HIMS.Model.CustomerInformation
       
         public long DurgId { get; set; }
         public long DoseID { get; set; }
-        public long Route { get; set; }
-        public long Freq { get; set; }
+        public string Route { get; set; }
+        public string Freq { get; set; }
         public string NurseName { get; set; }
         public string DoseName { get; set; }
         public int CreatedBy { get; set; }
@@ -42,8 +42,8 @@ namespace HIMS.Model.CustomerInformation
 
         public long DurgId { get; set; }
         public long DoseID { get; set; }
-        public long Route { get; set; }
-        public long Freq { get; set; }
+        public string Route { get; set; }
+        public string Freq { get; set; }
         public string NurseName { get; set; }
         public string DoseName { get; set; }
         public int ModifiedBy { get; set; }

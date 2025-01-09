@@ -20,11 +20,11 @@ namespace HIMS.Model.CustomerInformation
         public DateTime TTime { get; set; }
       
         public string ShiftInfo { get; set; }
-        public long PatHand_I { get; set; }
-        public long PatHand_S { get; set; }
-        public long PatHand_B { get; set; }
-        public long PatHand_A { get; set; }
-        public long PatHand_R { get; set; }
+        public string PatHand_I { get; set; }
+        public string PatHand_S { get; set; }
+        public string PatHand_B { get; set; }
+        public string PatHand_A { get; set; }
+        public string PatHand_R { get; set; }
         public string Comments { get; set; }
         public int CreatedBy { get; set; }
 
@@ -40,11 +40,11 @@ namespace HIMS.Model.CustomerInformation
         public DateTime TTime { get; set; }
 
         public string ShiftInfo { get; set; }
-        public long PatHand_I { get; set; }
-        public long PatHand_S { get; set; }
-        public long PatHand_B { get; set; }
-        public long PatHand_A { get; set; }
-        public long PatHand_R { get; set; }
+        public string PatHand_I { get; set; }
+        public string PatHand_S { get; set; }
+        public string PatHand_B { get; set; }
+        public string PatHand_A { get; set; }
+        public string PatHand_R { get; set; }
         public string Comments { get; set; }
      
 

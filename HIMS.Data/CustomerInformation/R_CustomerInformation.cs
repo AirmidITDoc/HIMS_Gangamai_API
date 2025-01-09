@@ -14,128 +14,7 @@ namespace HIMS.Data.CustomerInformation
 
         }
 
-        public bool SaveOTBookingRequest(OTBookingRequestParam OTBookingRequestParam)
-        {
-            // throw new NotImplementedException();
-            var disc = OTBookingRequestParam.SaveOTBookingRequestParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_insert_T_OTBooking_Request", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool UpdateOTBookingRequest(OTBookingRequestParam OTBookingRequestParam)
-        {
-            // throw new NotImplementedException();
-            var disc = OTBookingRequestParam.UpdateOTBookingRequestParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_update_T_OTBooking_Request", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool CancelOTBookingRequest(OTBookingRequestParam OTBookingRequestParam)
-        {
-            // throw new NotImplementedException();
-            var disc = OTBookingRequestParam.CancelOTBookingRequestParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Cancel_T_OTBooking_Request", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool SaveOTBooking(OTBookingParam OTBookingParam)
-        {
-            // throw new NotImplementedException();
-            var disc = OTBookingParam.SaveOTBookingParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_insert_T_OTBooking", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool UpdateOTBooking(OTBookingParam OTBookingParam)
-        {
-            // throw new NotImplementedException();
-            var disc = OTBookingParam.UpdateOTBookingParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_update_T_OTBooking", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool CancelOTBooking(OTBookingParam OTBookingParam)
-        {
-            // throw new NotImplementedException();
-            var disc = OTBookingParam.CancelOTBookingParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Cancel_T_OTBooking", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool SaveCertificateMaster(CertificateMasterParam CertificateMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = CertificateMasterParam.SaveCertificateMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_insert_M_CertificateMaster", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool UpdateCertificateMaster(CertificateMasterParam CertificateMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = CertificateMasterParam.UpdateCertificateMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_update_M_CertificateMaster", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool CancelCertificateMaster(CertificateMasterParam CertificateMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = CertificateMasterParam.CancelCertificateMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Cancel_M_CertificateMaster ", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-
-
-        public bool SaveConsentMaster(ConsentMasterParam ConsentMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = ConsentMasterParam.SaveConsentMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_insert_M_ConsentMaster", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool UpdateConsentMaster(ConsentMasterParam ConsentMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = ConsentMasterParam.UpdateConsentMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_update_M_ConsentMaster", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool CancelConsentMaster(ConsentMasterParam ConsentMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = ConsentMasterParam.CancelConsentMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Cancel_M_ConsentMaster", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
+       
         public bool SaveVendorInformation(VendorInformationParam VendorInformationParam)
         {
             // throw new NotImplementedException();
@@ -182,221 +61,38 @@ namespace HIMS.Data.CustomerInformation
             _unitofWork.SaveChanges();
             return true;
         }
-        public bool SaveOTTableMaster(MOTTableMasterParam MOTTableMasterParam)
+        public bool SaveCertificateMaster(CertificateMasterParam CertificateMasterParam)
         {
             // throw new NotImplementedException();
-            var disc = MOTTableMasterParam.SaveOTTableMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_insert_M_OT_TableMaster", disc);
+            var disc = CertificateMasterParam.SaveCertificateMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_M_CertificateMaster", disc);
             //commit transaction
             _unitofWork.SaveChanges();
             return true;
 
         }
-        public bool UpdateOTTableMaster(MOTTableMasterParam MOTTableMasterParam)
-        {
-
-            var disc3 = MOTTableMasterParam.UpdateOTTableMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Update_M_OT_TableMaster", disc3);
-
-            _unitofWork.SaveChanges();
-            return true;
-        }
-        public bool CancelOTTableMaster(MOTTableMasterParam MOTTableMasterParam)
+        public bool UpdateCertificateMaster(CertificateMasterParam CertificateMasterParam)
         {
             // throw new NotImplementedException();
-            var disc = MOTTableMasterParam.CancelOTTableMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Cancel_M_OT_TableMaster", disc);
+            var disc = CertificateMasterParam.UpdateCertificateMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_M_CertificateMaster", disc);
             //commit transaction
             _unitofWork.SaveChanges();
             return true;
 
         }
-        public bool SaveMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam)
+        public bool CancelCertificateMaster(CertificateMasterParam CertificateMasterParam)
         {
             // throw new NotImplementedException();
-            var disc = MOTSurgeryCategoryMasterParam.SaveMOTSurgeryCategoryMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_insert_M_OT_SurgeryCategoryMaster", disc);
+            var disc = CertificateMasterParam.CancelCertificateMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("Cancel_M_CertificateMaster ", disc);
             //commit transaction
             _unitofWork.SaveChanges();
             return true;
 
         }
-        public bool UpdateMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam)
-        {
 
-            var disc3 = MOTSurgeryCategoryMasterParam.UpdateMOTSurgeryCategoryMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Update_M_OT_SurgeryCategoryMaster", disc3);
 
-            _unitofWork.SaveChanges();
-            return true;
-        }
-        public bool CancelMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = MOTSurgeryCategoryMasterParam.CancelMOTSurgeryCategoryMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Cancel_M_OT_SurgeryCategoryMaster", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
 
-        }
-        public bool SaveMOTTypeMaster(MOTTypeMasterParam MOTTypeMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = MOTTypeMasterParam.SaveMOTTypeMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_insert_M_OT_TypeMaster", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool UpdateMOTTypeMaster(MOTTypeMasterParam MOTTypeMasterParam)
-        {
-
-            var disc3 = MOTTypeMasterParam.UpdateOTTypemasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Update_M_OT_TypeMaster", disc3);
-
-            _unitofWork.SaveChanges();
-            return true;
-        }
-        public bool CancelMOTTypeMaster(MOTTypeMasterParam MOTTypeMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = MOTTypeMasterParam.CancelOTTypeMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Cancel_M_OT_TypeMaster", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool SaveMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam MOTSiteDescriptionMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = MOTSiteDescriptionMasterParam.SaveMOTSiteDescriptionMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_insert_M_OT_SiteDescriptionMaster", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool UpdateMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam MOTSiteDescriptionMasterParam)
-        {
-
-            var disc3 = MOTSiteDescriptionMasterParam.UpdateMOTSiteDescriptionMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Update_M_OT_SiteDescriptionMaster", disc3);
-
-            _unitofWork.SaveChanges();
-            return true;
-        }
-        public bool CancelMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam MOTSiteDescriptionMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = MOTSiteDescriptionMasterParam.CancelMOTSiteDescriptionMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Cancel_M_OT_SiteDescriptionMaster", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool SaveMOTSurgeryMaster(MOTSurgeryMasterParam MOTSurgeryMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = MOTSurgeryMasterParam.SaveMOTSurgeryMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_insert_M_OT_SurgeryMaster", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool UpdateMOTSurgeryMaster(MOTSurgeryMasterParam MOTSurgeryMasterParam)
-        {
-
-            var disc3 = MOTSurgeryMasterParam.UpdateMOTSurgeryMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Update_M_OT_SurgeryMaster", disc3);
-
-            _unitofWork.SaveChanges();
-            return true;
-        }
-        public bool CancelMOTSurgeryMaster(MOTSurgeryMasterParam MOTSurgeryMasterParam)
-        {
-            // throw new NotImplementedException();
-            var disc = MOTSurgeryMasterParam.CancelMOTSurgeryMasterParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Cancel_M_OT_SurgeryMaster", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool SaveTNursingNotes(NursingNoteParam NursingNoteParam)
-        {
-            // throw new NotImplementedException();
-            var disc = NursingNoteParam.SaveNursingNoteParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Insert_T_Nursing_Note", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool UpdateTNursingNotes(NursingNoteParam NursingNoteParam)
-        {
-            // throw new NotImplementedException();
-            var disc = NursingNoteParam.UpdateNursingNoteParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_update_T_Nursing_Note", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool SaveTNursingPatientHandover(TNursingPatientHandoverParam TNursingPatientHandoverParam)
-        {
-            // throw new NotImplementedException();
-            var disc = TNursingPatientHandoverParam.SaveTNursingPatientHandoverParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_insert_T_Nursing_PatientHandover", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool UpdateTNursingPatientHandover(TNursingPatientHandoverParam TNursingPatientHandoverParam)
-        {
-            // throw new NotImplementedException();
-            var disc = TNursingPatientHandoverParam.UpdateTNursingPatientHandoverParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_update_T_Nursing_PatientHandover", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool SaveTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam)
-        {
-            // throw new NotImplementedException();
-            var disc = TNursingMedicationChartParam.SaveTNursingMedicationChartParams.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_insert_T_Nursing_MedicationChart", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool UpdateTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam)
-        {
-            // throw new NotImplementedException();
-            var disc = TNursingMedicationChartParam.UpdateTNursingMedicationChartParams.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_update_T_Nursing_MedicationChart", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        public bool CancelTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam)
-        {
-            // throw new NotImplementedException();
-            var disc = TNursingMedicationChartParam.CancelTNursingMedicationChartParams.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Cancel_T_Nursing_MedicationChart", disc);
-            //commit transaction
-            _unitofWork.SaveChanges();
-            return true;
-
-        }
-        
     }
 }

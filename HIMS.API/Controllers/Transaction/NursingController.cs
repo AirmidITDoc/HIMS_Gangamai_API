@@ -12,6 +12,7 @@ using HIMS.Data.Administration;
 using HIMS.API.Comman;
 using HIMS.Model.CustomerInformation;
 using HIMS.Data.CustomerInformation;
+using HIMS.Data.Nursing;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -19,19 +20,21 @@ namespace HIMS.API.Controllers.Transaction
         [Route("api/[controller]")]
         public class NursingController : Controller
         {
-            public readonly I_CustomerInformation _CustomerInformation;
+        public readonly I_Nursing _Nursing;
+        public readonly I_CustomerInformation _CustomerInformation;
         public readonly I_RadiologyTemplateResult i_RadiologyTemplate;
         public readonly I_Administration _Administration;
         public readonly IPdfUtility _pdfUtility;
             private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
             public readonly IFileUtility _FileUtility;
-            public NursingController(I_RadiologyTemplateResult i_Radiology,
+            public NursingController(I_Nursing I_Nursing, I_RadiologyTemplateResult i_Radiology,
                 I_Administration Administration,
                  I_CustomerInformation I_CustomerInformation,
                 Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, 
                 IPdfUtility pdfUtility, IFileUtility fileUtility)
             {
-                this.i_RadiologyTemplate = i_Radiology;
+            this._Nursing = I_Nursing;
+            this.i_RadiologyTemplate = i_Radiology;
             this._CustomerInformation = I_CustomerInformation;
             _hostingEnvironment = hostingEnvironment;
             this._Administration = Administration;
@@ -41,14 +44,14 @@ namespace HIMS.API.Controllers.Transaction
         [HttpPost("SaveTNursingNotes")]
         public IActionResult SaveTNursingNotes(NursingNoteParam NursingNoteParam)
         {
-            var Id = _CustomerInformation.SaveTNursingNotes(NursingNoteParam);
+            var Id = _Nursing.SaveTNursingNotes(NursingNoteParam);
             var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
             return Ok(Response);
         }
         [HttpPost("UpdateTNursingNotes")]
         public IActionResult UpdateTNursingNotes(NursingNoteParam NursingNoteParam)
         {
-            var Id = _CustomerInformation.UpdateTNursingNotes(NursingNoteParam);
+            var Id = _Nursing.UpdateTNursingNotes(NursingNoteParam);
             var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Updated successfully", Id);
             return Ok(Response);
         }
@@ -56,35 +59,35 @@ namespace HIMS.API.Controllers.Transaction
         [HttpPost("SaveTNursingPatientHandover")]
         public IActionResult SaveTNursingPatientHandover(TNursingPatientHandoverParam TNursingPatientHandoverParam)
         {
-            var Id = _CustomerInformation.SaveTNursingPatientHandover(TNursingPatientHandoverParam);
+            var Id = _Nursing.SaveTNursingPatientHandover(TNursingPatientHandoverParam);
             var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
             return Ok(Response);
         }
         [HttpPost("UpdateTNursingPatientHandover")]
         public IActionResult UpdateTNursingPatientHandover(TNursingPatientHandoverParam TNursingPatientHandoverParam)
         {
-            var Id = _CustomerInformation.UpdateTNursingPatientHandover(TNursingPatientHandoverParam);
+            var Id = _Nursing.UpdateTNursingPatientHandover(TNursingPatientHandoverParam);
             var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Updated successfully", Id);
             return Ok(Response);
         }
         [HttpPost("SaveTNursingMedicationChart")]
         public IActionResult SaveTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam)
         {
-            var Id = _CustomerInformation.SaveTNursingMedicationChart(TNursingMedicationChartParam);
+            var Id = _Nursing.SaveTNursingMedicationChart(TNursingMedicationChartParam);
             var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
             return Ok(Response);
         }
         [HttpPost("UpdateTNursingMedicationChart")]
         public IActionResult UpdateTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam)
         {
-            var Id = _CustomerInformation.UpdateTNursingMedicationChart(TNursingMedicationChartParam);
+            var Id = _Nursing.UpdateTNursingMedicationChart(TNursingMedicationChartParam);
             var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Updated successfully", Id);
             return Ok(Response);
         }
         [HttpPost("CancelTNursingMedicationChart")]
         public IActionResult CancelTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam)
         {
-            var Id = _CustomerInformation.CancelTNursingMedicationChart(TNursingMedicationChartParam);
+            var Id = _Nursing.CancelTNursingMedicationChart(TNursingMedicationChartParam);
             var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Canceled successfully", Id);
             return Ok(Response);
         }
