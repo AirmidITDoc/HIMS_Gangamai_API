@@ -17,6 +17,8 @@ using HIMS.API.Utility;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using HIMS.Common.Utility;
+using HIMS.API.Comman;
+using HIMS.Model.CustomerInformation;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -123,7 +125,34 @@ namespace HIMS.API.Controllers.Transaction
             this._configuration = _configuration;
 
         }
-
+        [HttpPost("TConsentInformationSave")]
+        public IActionResult TConsentInformationSave(TConsentInformationparams TConsentInformationparams)
+        {
+            var Id = _OPDRegistration.TConsentInformationSave(TConsentInformationparams);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
+            return Ok(Response);
+        }
+        [HttpPost("TConsentInformationUpdate")]
+        public IActionResult TConsentInformationUpdate(TConsentInformationparams TConsentInformationparams)
+        {
+            var Id = _OPDRegistration.TConsentInformationUpdate(TConsentInformationparams);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record updated successfully", Id);
+            return Ok(Response);
+        }
+        [HttpPost("TCertificateInformationSave")]
+        public IActionResult TCertificateInformationSave(TCertificateInformationparams TCertificateInformationparams)
+        {
+            var Id = _OPDRegistration.TCertificateInformationSave(TCertificateInformationparams);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
+            return Ok(Response);
+        }
+        [HttpPost("TCertificateInformationUpdate")]
+        public IActionResult TCertificateInformationUpdate(TCertificateInformationparams TCertificateInformationparams)
+        {
+            var Id = _OPDRegistration.TCertificateInformationUpdate(TCertificateInformationparams);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record updated successfully", Id);
+            return Ok(Response);
+        }
 
         //OPDAppointment Insert 
         [HttpPost("PatientFeedback")]
