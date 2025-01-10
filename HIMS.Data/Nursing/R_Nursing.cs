@@ -13,6 +13,36 @@ namespace HIMS.Data.Nursing
         {
 
         }
+        public bool SaveMTemplateMaster(MTemplateMasterParam MTemplateMasterParam)
+        {
+            // throw new NotImplementedException();
+            var disc = MTemplateMasterParam.SaveMTemplateMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_M_TemplateMaster", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool UpdateMTemplateMaster(MTemplateMasterParam MTemplateMasterParam)
+        {
+            // throw new NotImplementedException();
+            var disc = MTemplateMasterParam.UpdateMTemplateMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_M_TemplateMaster", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool CancelMTemplateMaster(MTemplateMasterParam MTemplateMasterParam)
+        {
+            // throw new NotImplementedException();
+            var disc = MTemplateMasterParam.CancelMTemplateMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_cancel_M_TemplateMaster", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
         public bool SaveTNursingNotes(NursingNoteParam NursingNoteParam)
         {
             // throw new NotImplementedException();

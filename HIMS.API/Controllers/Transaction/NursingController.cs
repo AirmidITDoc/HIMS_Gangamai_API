@@ -41,6 +41,31 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
                 _FileUtility = fileUtility;
             }
+
+
+
+        [HttpPost("SaveMTemplateMaster")]
+        public IActionResult SaveMTemplateMaster(MTemplateMasterParam MTemplateMasterParam)
+        {
+            var Id = _Nursing.SaveMTemplateMaster(MTemplateMasterParam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
+            return Ok(Response);
+        }
+        [HttpPost("UpdateMTemplateMaster")]
+        public IActionResult UpdateMTemplateMaster(MTemplateMasterParam MTemplateMasterParam)
+        {
+            var Id = _Nursing.UpdateMTemplateMaster(MTemplateMasterParam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Updated successfully", Id);
+            return Ok(Response);
+        }
+
+        [HttpPost("CancelMTemplateMaster")]
+        public IActionResult CancelMTemplateMaster(MTemplateMasterParam MTemplateMasterParam)
+        {
+            var Id = _Nursing.CancelMTemplateMaster(MTemplateMasterParam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Canceled successfully", Id);
+            return Ok(Response);
+        }
         [HttpPost("SaveTNursingNotes")]
         public IActionResult SaveTNursingNotes(NursingNoteParam NursingNoteParam)
         {
