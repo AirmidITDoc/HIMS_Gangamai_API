@@ -8,6 +8,9 @@ namespace HIMS.Data.Nursing
 {
     public interface I_Nursing
     {
+        public bool SaveMTemplateMaster(MTemplateMasterParam MTemplateMasterParam);
+        public bool UpdateMTemplateMaster(MTemplateMasterParam MTemplateMasterParam);
+        public bool CancelMTemplateMaster(MTemplateMasterParam MTemplateMasterParam);
         public bool SaveTNursingNotes(NursingNoteParam NursingNoteParam);
         public bool UpdateTNursingNotes(NursingNoteParam NursingNoteParam);
         public bool SaveTNursingPatientHandover(TNursingPatientHandoverParam TNursingPatientHandoverParam);
