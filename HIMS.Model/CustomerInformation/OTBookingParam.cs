@@ -35,15 +35,7 @@ namespace HIMS.Model.CustomerInformation
         public string Instruction { get; set; }
         public long OTTypeID { get; set; }
         public long CreatedBy { get; set; }
-        //public DateTime CreatedDate { get; set; }
-        //public long ModifiedBy { get; set; }
-        //public DateTime ModifiedDate { get; set; }
-        //public long IsCancelled { get; set; }
-        //public long IsCancelledBy { get; set; }
-        //public DateTime IsCancelledDateTime { get; set; }
-
-
-      
+        
     }
     public class UpdateOTBookingParam
     {
@@ -66,21 +58,16 @@ namespace HIMS.Model.CustomerInformation
         public long UnBooking { get; set; }
         public string Instruction { get; set; }
         public long OTTypeID { get; set; }
-        //public long CreatedBy { get; set; }
-        //public DateTime CreatedDate { get; set; }
         public long ModifiedBy { get; set; }
-        //public DateTime ModifiedDate { get; set; }
-        //public long IsCancelled { get; set; }
-        //public long IsCancelledBy { get; set; }
-        //public DateTime IsCancelledDateTime { get; set; }
+        
 
         public class CancelOTBookingParam
         {
             public long OTBookingID { get; set; }
 
             public long IsCancelled { get; set; }
-            public string IsCancelledBy { get; set; }
-            //public DateTime IsCancelledDateTime { get; set; }
+            public long IsCancelledBy { get; set; }
+            
         }
     }
 }

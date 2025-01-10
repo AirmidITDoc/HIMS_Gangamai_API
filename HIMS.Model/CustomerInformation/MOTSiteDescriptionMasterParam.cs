@@ -26,7 +26,6 @@ namespace HIMS.Model.CustomerInformation
         public string SiteDescriptionName { get; set; }
         public long SurgeryCategoryID { get; set; }
         public long IsActive { get; set; }
-        public long CreatedBy { get; set; }
         public long ModifiedBy { get; set; }
     }
     public class CancelMOTSiteDescriptionMasterParam
