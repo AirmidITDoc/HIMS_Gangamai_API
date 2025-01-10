@@ -48,7 +48,8 @@ using HIMS.Data.PharmacyReports;
 using HIMS.Data.Administration;
 using HIMS.Data.Document;
 using HIMS.Data.CustomerAMCInfo;
-
+using HIMS.Data.OT;
+using HIMS.Data.Nursing;
 namespace HIMS.API.Extensions
 {
     public static class ServiceExtension
@@ -356,9 +357,12 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_Document, R_Document>();
             services.AddTransient<I_HelthCard, R_HealthCard>();
 
+            services.AddTransient<I_OT, R_OT>();
+            services.AddTransient<I_Nursing, R_Nursing>();
 
 
-             services.AddTransient<I_PrescriptionTemplate, PrescriptionTemplate>();
+
+            services.AddTransient<I_PrescriptionTemplate, PrescriptionTemplate>();
 
            services.AddTransient<I_NewTemplateDescription, R_NewTemplateDescription>();
             services.AddTransient<I_NewMenuMaster, R_NewMenuMaster>();

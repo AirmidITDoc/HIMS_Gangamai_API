@@ -22,11 +22,11 @@ namespace HIMS.Model.CustomerInformation
       
         public long DurgId { get; set; }
         public long DoseID { get; set; }
-        public long Route { get; set; }
-        public long Freq { get; set; }
+        public string Route { get; set; }
+        public string Freq { get; set; }
         public string NurseName { get; set; }
         public string DoseName { get; set; }
-        public string CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
       
 
 
@@ -42,11 +42,11 @@ namespace HIMS.Model.CustomerInformation
 
         public long DurgId { get; set; }
         public long DoseID { get; set; }
-        public long Route { get; set; }
-        public long Freq { get; set; }
+        public string Route { get; set; }
+        public string Freq { get; set; }
         public string NurseName { get; set; }
         public string DoseName { get; set; }
-        public string ModifiedBy { get; set; }
+        public int ModifiedBy { get; set; }
        
 
     }
@@ -54,7 +54,7 @@ namespace HIMS.Model.CustomerInformation
     {
         public long MedChartId { get; set; }
         public long IsCancelled { get; set; }
-        public string IsCancelledBy { get; set; }
+        public int IsCancelledBy { get; set; }
 
 
        

@@ -6,6 +6,7 @@ using HIMS.Common.Utility;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using HIMS.Model.CustomerInformation;
 
 
 namespace HIMS.Data.Opd
@@ -16,8 +17,48 @@ namespace HIMS.Data.Opd
         {
             //transaction and connection is open when you inject unitofwork
         }
+        public bool TConsentInformationSave(TConsentInformationparams TConsentInformationparams)
+        {
+            // throw new NotImplementedException();
+            var disc = TConsentInformationparams.SaveTConsentInformationparams.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_T_ConsentInformation", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
 
-       
+        }
+        public bool TConsentInformationUpdate(TConsentInformationparams TConsentInformationparams)
+        {
+            // throw new NotImplementedException();
+            var disc = TConsentInformationparams.UpdateTConsentInformationparams.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_ConsentInformation", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+
+        public bool TCertificateInformationSave(TCertificateInformationparams TCertificateInformationparams)
+        {
+            // throw new NotImplementedException();
+            var disc = TCertificateInformationparams.SaveTCertificateInformationparams.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_T_CertificateInformation ", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool TCertificateInformationUpdate(TCertificateInformationparams TCertificateInformationparams)
+        {
+            // throw new NotImplementedException();
+            var disc = TCertificateInformationparams.UpdateTCertificateInformationparams.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_T_CertificateInformation", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+
 
         public string Insert(OPDRegistrationParams OPDRegistrationParams)
         {
