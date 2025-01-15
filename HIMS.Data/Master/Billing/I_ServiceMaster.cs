@@ -9,5 +9,6 @@ namespace HIMS.Data.Master.Billing
     {
         bool Update(ServiceMasterParams ServiceMasterParams);
         bool Save(ServiceMasterParams ServiceMasterParams);
+        bool SaveService(ServiceTarriffParams ServiceTarriffParams);
     }
 }

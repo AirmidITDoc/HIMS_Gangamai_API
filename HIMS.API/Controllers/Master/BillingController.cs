@@ -55,7 +55,13 @@ namespace HIMS.API.Controllers.Master
 
 
         }
-
+        [HttpPost("SaveServiceTraiff")]
+        public IActionResult SaveService(ServiceTarriffParams ServiceTarriffParams)
+        {
+            var Id = _ServiceMaster.SaveService(ServiceTarriffParams);
+            //var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
+            return Ok(Id);
+        }
         //CashCountertMaster Save and Update
         [HttpPost("CashCounterSave")]
         public IActionResult CashCounterSave(CashCounterMasterParams CashCounterMasterParams)

@@ -14,8 +14,17 @@ namespace HIMS.Data.Master.Billing
         {
             //transaction and connection is open when you inject unitofwork
         }
+        public bool SaveService(ServiceTarriffParams ServiceTarriffParams)
+        {
+            // throw new NotImplementedException();
+            var disc = ServiceTarriffParams.SaveServiceTarriffParams.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Assign_Servicesto_DifferTraiff", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
 
-         
+        }
+
         public bool Save(ServiceMasterParams ServiceMasterParams)
         {
             //Service master insert
