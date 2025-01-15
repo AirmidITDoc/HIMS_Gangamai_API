@@ -39,13 +39,15 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult UpdateOTBookingRequest(OTBookingRequestParam OTBookingRequestParam)
         {
             var Id = _OT.UpdateOTBookingRequest(OTBookingRequestParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Update successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("CancelOTBookingRequest")]
         public IActionResult CancelOTBookingRequest(OTBookingRequestParam OTBookingRequestParam)
         {
             var Id = _OT.CancelOTBookingRequest(OTBookingRequestParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Cancel successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("SaveOTBooking")]
         public IActionResult SaveOTBooking(OTBookingParam OTBookingParam)
@@ -58,13 +60,15 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult UpdateOTBooking(OTBookingParam OTBookingParam)
         {
             var Id = _OT.UpdateOTBooking(OTBookingParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Update successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("CancelOTBooking")]
         public IActionResult CancelOTBooking(OTBookingParam OTBookingParam)
         {
             var Id = _OT.CancelOTBooking(OTBookingParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Cancel successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("SaveConsentMaster")]
         public IActionResult SaveConsentMaster(ConsentMasterParam ConsentMasterParam)
@@ -77,13 +81,15 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult UpdateConsentMaster(ConsentMasterParam ConsentMasterParam)
         {
             var Id = _OT.UpdateConsentMaster(ConsentMasterParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Update successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("CancelConsentMaster")]
         public IActionResult CancelConsentMaster(ConsentMasterParam ConsentMasterParam)
         {
             var Id = _OT.CancelConsentMaster(ConsentMasterParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Cancel successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("SaveOTTableMaster")]
         public IActionResult SaveOTTableMaster(MOTTableMasterParam MOTTableMasterParam)
@@ -96,13 +102,15 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult UpdateOTTableMaster(MOTTableMasterParam MOTTableMasterParam)
         {
             var Id = _OT.UpdateOTTableMaster(MOTTableMasterParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Update successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("CancelOTTableMaster")]
         public IActionResult CancelOTTableMaster(MOTTableMasterParam MOTTableMasterParam)
         {
             var Id = _OT.CancelOTTableMaster(MOTTableMasterParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Cancel successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("SaveMOTSurgeryCategoryMaster")]
         public IActionResult SaveMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam)
@@ -115,13 +123,15 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult UpdateMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam)
         {
             var Id = _OT.UpdateMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Update successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("CancelMOTSurgeryCategoryMaster")]
         public IActionResult CancelMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam MOTSurgeryCategoryMasterParam)
         {
             var Id = _OT.CancelMOTSurgeryCategoryMaster(MOTSurgeryCategoryMasterParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Cancel successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("SaveMOTTypeMaster")]
         public IActionResult SaveMOTTypeMaster(MOTTypeMasterParam MOTTypeMasterParam)
@@ -134,13 +144,15 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult UpdateMOTTypeMaster(MOTTypeMasterParam MOTTypeMasterParam)
         {
             var Id = _OT.UpdateMOTTypeMaster(MOTTypeMasterParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Update successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("CancelMOTTypeMaster")]
         public IActionResult CancelMOTTypeMaster(MOTTypeMasterParam MOTTypeMasterParam)
         {
             var Id = _OT.CancelMOTTypeMaster(MOTTypeMasterParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Cancel successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("SaveMOTSiteDescriptionMaster")]
         public IActionResult SaveMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam MOTSiteDescriptionMasterParam)
@@ -153,13 +165,15 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult UpdateMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam MOTSiteDescriptionMasterParam)
         {
             var Id = _OT.UpdateMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Update successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("CancelMOTSiteDescriptionMaster")]
         public IActionResult CancelMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam MOTSiteDescriptionMasterParam)
         {
             var Id = _OT.CancelMOTSiteDescriptionMaster(MOTSiteDescriptionMasterParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Cancel successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("SaveMOTSurgeryMaster")]
         public IActionResult SaveMOTSurgeryMaster(MOTSurgeryMasterParam MOTSurgeryMasterParam)
@@ -172,13 +186,15 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult UpdateMOTSurgeryMaster(MOTSurgeryMasterParam MOTSurgeryMasterParam)
         {
             var Id = _OT.UpdateMOTSurgeryMaster(MOTSurgeryMasterParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Update successfully", Id);
+            return Ok(Response);
         }
         [HttpPost("CancelMOTSurgeryMaster")]
         public IActionResult CancelMOTSurgeryMaster(MOTSurgeryMasterParam MOTSurgeryMasterParam)
         {
             var Id = _OT.CancelMOTSurgeryMaster(MOTSurgeryMasterParam);
-            return Ok(Id);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Cancel successfully", Id);
+            return Ok(Response);
         }
     }
 }
