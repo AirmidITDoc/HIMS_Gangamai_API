@@ -32,13 +32,11 @@ namespace HIMS.Model.CustomerInformation
     {
         public long CertificateId { get; set; }
         public DateTime CertificateDate { get; set; }
-
         public DateTime CertificateTime { get; set; }
         public long VisitId { get; set; }
         public long CertificateTempId { get; set; }
         public string CertificateName { get; set; }
         public string CertificateText { get; set; }
-
         public long ModifiedBy { get; set; }
 
     }
