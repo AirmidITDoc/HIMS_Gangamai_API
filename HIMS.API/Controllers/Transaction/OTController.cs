@@ -14,6 +14,9 @@ using HIMS.API.Comman;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using HIMS.Data.OT;
+using System.IO;
+using HIMS.API.Utility;
+using HIMS.Common.Utility;
 
 namespace HIMS.API.Controllers.Transaction
 { //[Authorize]
@@ -22,11 +25,17 @@ namespace HIMS.API.Controllers.Transaction
     public class OTController : Controller
     {
         public readonly I_OT _OT;
+
         public readonly I_CustomerInformation _CustomerInformation;
-        public OTController (I_CustomerInformation customerInformation, I_OT _OT)
+        public readonly IPdfUtility _pdfUtility;
+        private readonly IFileUtility _IFileUtility;
+        private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
+        public OTController (I_CustomerInformation customerInformation, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility, I_OT _OT)
         {
             this._OT = _OT;
+            _pdfUtility = pdfUtility;
             this._CustomerInformation = customerInformation;
+            _hostingEnvironment = hostingEnvironment;
         }
         [HttpPost("SaveOTBookingRequest")]
         public IActionResult SaveOTBookingRequest(OTBookingRequestParam OTBookingRequestParam)
@@ -195,6 +204,16 @@ namespace HIMS.API.Controllers.Transaction
             var Id = _OT.CancelMOTSurgeryMaster(MOTSurgeryMasterParam);
             var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Cancel successfully", Id);
             return Ok(Response);
+        }
+        [HttpGet("view-TConsentInformation")]
+        public IActionResult ViewTConsentInformation(int ConsentId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "TConsentInformationReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _OT.ViewTConsentInformation(ConsentId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewTConsentInformation", "ViewTConsentInformation", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
     }
 }
