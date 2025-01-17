@@ -50,5 +50,10 @@ namespace HIMS.Data.CustomerInformation
             _unitofWork.SaveChanges();
             return true;
         }
+
+        public string ViewAMCLetterhead(int AdmissionID, string htmlFilePath, string HeaderName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

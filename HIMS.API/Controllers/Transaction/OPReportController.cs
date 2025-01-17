@@ -1,5 +1,6 @@
 ﻿
 
+using HIMS.API.Comman;
 using HIMS.API.Utility;
 using HIMS.Data.Opd;
 using HIMS.Data.OPReports;
@@ -7,9 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using Wkhtmltopdf.NetCore.Options;
 
 namespace HIMS.API.Controllers.Transaction
 
@@ -30,7 +34,7 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
 
         }
-
+      
         [HttpGet("view-OPDailyCollectionReport")]
         
         public IActionResult ViewOPDailycollectionReport(DateTime FromDate, DateTime ToDate, int AddedById)
@@ -39,6 +43,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _OPbilling.ViewOPDailyCollectionReceipt(FromDate, ToDate, AddedById, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPNewDailycollection", "OPNewDailycollection", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }

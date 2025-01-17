@@ -125,6 +125,16 @@ namespace HIMS.API.Controllers.Transaction
             this._configuration = _configuration;
 
         }
+        [HttpGet("view-CertificateInformationPrint")]
+        public IActionResult ViewCertificateInformationPrint(int CertificateId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CertificateInformationPrint.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _OPDRegistration.ViewCertificateInformationPrint( CertificateId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewCertificateInformationPrint", "ViewCertificateInformationPrint", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpPost("TConsentInformationSave")]
         public IActionResult TConsentInformationSave(TConsentInformationparams TConsentInformationparams)
         {

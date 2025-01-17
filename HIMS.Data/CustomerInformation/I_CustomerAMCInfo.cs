@@ -10,5 +10,6 @@ namespace HIMS.Data.CustomerPayment
         public string CustomerPaymentInsert(CustomerPaymentParams CustomerPaymentParams);
         public bool CustomerPaymentUpdate(CustomerPaymentParams CustomerPaymentParams);
         public bool CustomerPaymentCancel(CustomerPaymentParams CustomerPaymentParams);
+        string ViewAMCLetterhead(int AdmissionID, string htmlFilePath, string HeaderName);
     }
 }

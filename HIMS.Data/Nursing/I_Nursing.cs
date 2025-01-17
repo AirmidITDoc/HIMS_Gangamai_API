@@ -18,5 +18,6 @@ namespace HIMS.Data.Nursing
         public bool SaveTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam);
         public bool UpdateTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam);
         public bool CancelTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam);
+        public string ViewNursingNotes(int AdmId, string htmlFilePath, string HeaderName);
     }
 }

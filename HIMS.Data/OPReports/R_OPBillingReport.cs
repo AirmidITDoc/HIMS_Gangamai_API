@@ -2188,7 +2188,122 @@ namespace HIMS.Data.Opd
         {
             throw new NotImplementedException();
         }
-    }
+        public string ViewRegistrationReportDemo(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[2];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            var Bills = GetDataTableProc("rptListofRegistration", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                string[] headerList = { "Sr.No", "UHID", "Patient Name", "Address", "City", "Pin Code", "Age", "Gender Name", "Mobile No" };
+                string[] colList = { "RegID", "PatientName", "Address", "City", "PinNo", "Age", "GenderName", "MobileNo" };
+
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            return html;
+
+            //public string GetReportSetByProc(ReportRequestModel model)
+            //{
+            //    var tuple = new Tuple<byte[], string>(null, string.Empty);
+            //    switch (model.Mode)
+            //    {
+            //        #region :: RegistrationReport ::
+            //        case "RegistrationReport":
+            //            {
+            //                model.ReportName = "Registration List";
+            //                string[] headerList = { "Sr.No", "UHID", "Patient Name", "Address", "City", "Pin Code", "Age", "Gender Name", "Mobile No" };
+            //                string[] colList = { "RegID", "PatientName", "Address", "City", "PinNo", "Age", "GenderName", "MobileNo" };
+            //                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SimpleReportFormat.html");
+            //                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            //                var html = GetHTMLView("rptListofRegistration", model, htmlFilePath, htmlHeaderFilePath, colList, headerList);
+            //                tuple = _pdfUtility.GeneratePdfFromHtml(html, model.StorageBaseUrl, "RegistrationReport", "RegistrationReport", Orientation.Portrait, PaperKind.A4);
+            //                break;
+            //            }
+            //        #endregion
+            //        default:
+            //            break;
+
+
+            //    }
+            //    string byteFile = Convert.ToBase64String(tuple.Item1);
+            //    return byteFile;
+
+            //}
+
+            //private string GetHTMLView(string sp_Name, ReportRequestModel model, string htmlFilePath, string htmlHeaderFilePath, string[] colList, string[] headerList = null, string[] totalColList = null, string groupByCol = "")
+            //{
+            //    Dictionary<string, string> fields = HIMS.Data.Extensions.SearchFieldExtension.GetSearchFields(model.SearchFields).ToDictionary(e => e.FieldName, e => e.FieldValueString);
+            //    DatabaseHelper odal = new();
+            //    int sp_Para = 0;
+            //    SqlParameter[] para = new SqlParameter[fields.Count];
+            //    foreach (var property in fields)
+            //    {
+            //        var param = new SqlParameter
+            //        {
+            //            ParameterName = "@" + property.Key,
+            //            Value = property.Value.ToString()
+            //        };
+
+            //        para[sp_Para] = param;
+            //        sp_Para++;
+            //    }
+            //    var dt = odal.FetchDataTableBySP(sp_Name, para);
+
+
+            //    string htmlHeader = _pdfUtility.GetHeader(htmlHeaderFilePath, model.BaseUrl);
+
+            //    string html = File.ReadAllText(htmlFilePath);
+            //    html = html.Replace("{{HospitalHeader}}", htmlHeader);
+            //    html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            //    html = html.Replace("{{RepoertName}}", model.RepoertName);
+
+            //    DateTime FromDate = Convert.ToDateTime(model.SearchFields.Find(x => x.FieldName?.ToLower() == "fromdate".ToLower())?.FieldValue ?? null);
+            //    DateTime ToDate = Convert.ToDateTime(model.SearchFields.Find(x => x.FieldName?.ToLower() == "todate".ToLower())?.FieldValue ?? null);
+
+            //    StringBuilder HeaderItems = new("");
+            //    StringBuilder items = new("");
+            //    StringBuilder ItemsTotal = new("");
+            //    double T_Count = 0;
+            //    switch (model.Mode)
+            //    {
+            //        // Simple Report Format
+            //        case "RegistrationReport":
+
+
+            //    }
+            //}
+
+
+
+
+          
+            //html = html.Replace("{{HeaderItems}}", HeaderItems.ToString());
+            html = html.Replace("{{Items}}", items.ToString());
+          
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            return html;
+
+        }
+            }
 }
 
 

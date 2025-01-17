@@ -42,6 +42,15 @@ namespace HIMS.API.Controllers.Transaction
                 _FileUtility = fileUtility;
             }
 
+        [HttpGet("View-NursingNotes")]
+        public IActionResult ViewNursingNotes(int AdmId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NursingNotesPrint.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Nursing.ViewNursingNotes(AdmId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPReport_T_NursingNotesPrint", "IPReport_T_NursingNotesPrint", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
 
         [HttpPost("SaveMTemplateMaster")]

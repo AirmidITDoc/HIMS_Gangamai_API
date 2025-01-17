@@ -10,6 +10,8 @@ namespace HIMS.Data.OPReports
 {
     public interface I_OPBillingReport
     {
+       
+        string ViewRegistrationReportDemo(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewOPDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById,string htmlFilePath, string htmlHeaderFilePath);
         string ViewRegistrationReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewDoctorWiseVisitReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);

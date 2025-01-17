@@ -14,5 +14,7 @@ namespace HIMS.Data.Opd
         public bool TConsentInformationUpdate(TConsentInformationparams TConsentInformationparams);
         public bool TCertificateInformationSave(TCertificateInformationparams TCertificateInformationparams);
         public bool TCertificateInformationUpdate(TCertificateInformationparams TCertificateInformationparams);
+        public string ViewCertificateInformationPrint(int CertificateId,  string htmlFilePath, string HeaderName);
+
     }
 }
