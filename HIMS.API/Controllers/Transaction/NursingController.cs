@@ -48,7 +48,16 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NursingNotesPrint.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _Nursing.ViewNursingNotes(AdmId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPReport_T_NursingNotesPrint", "IPReport_T_NursingNotesPrint", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "NursingNotesPrint", "NursingNotesPrint", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpGet("View-DoctorNotes")]
+        public IActionResult ViewDoctorNotes(int AdmID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DoctorNotesPrint.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Nursing.ViewDoctorNotes(AdmID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewDoctorNotes", "ViewDoctorNotes", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
