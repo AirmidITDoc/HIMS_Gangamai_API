@@ -1,4 +1,5 @@
 ﻿using HIMS.Model.CustomerInformation;
+using HIMS.Model.Opd;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,8 @@ namespace HIMS.Model.CustomerInformation
 {
     public class TNursingMedicationChartParam
     {
-        public SaveTNursingMedicationChartParam SaveTNursingMedicationChartParams { get; set; }
+        public List<SaveTNursingMedicationChartParam> SaveTNursingMedicationChartParams { get; set; }
+        //public SaveTNursingMedicationChartParam SaveTNursingMedicationChartParams { get; set; }
         public UpdateTNursingMedicationChartParam UpdateTNursingMedicationChartParams { get; set; }
         public CancelTNursingMedicationChartParam CancelTNursingMedicationChartParams { get; set; }
 

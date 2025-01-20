@@ -41,7 +41,7 @@ namespace HIMS.Data.OT
         {
             // throw new NotImplementedException();
             var disc = OTBookingRequestParam.CancelOTBookingRequestParam.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("Cancel_T_OTBooking_Request", disc);
+            ExecNonQueryProcWithOutSaveChanges("m_Cancel_T_OTBooking_Request", disc);
             //commit transaction
             _unitofWork.SaveChanges();
             return true;

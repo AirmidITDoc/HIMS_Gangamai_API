@@ -7,6 +7,7 @@ using HIMS.Common.Utility;
 using System.Data.SqlClient;
 using System.Data;
 using System.IO;
+using HIMS.Model.Opd;
 
 namespace HIMS.Data.Nursing
 {
@@ -88,9 +89,15 @@ namespace HIMS.Data.Nursing
         }
         public bool SaveTNursingMedicationChart(TNursingMedicationChartParam TNursingMedicationChartParam)
         {
+          
             // throw new NotImplementedException();
-            var disc = TNursingMedicationChartParam.SaveTNursingMedicationChartParams.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_insert_T_Nursing_MedicationChart", disc);
+            //var disc = TNursingMedicationChartParam.SaveTNursingMedicationChartParams.ToDictionary();
+            //ExecNonQueryProcWithOutSaveChanges("m_insert_T_Nursing_MedicationChart", disc);
+            foreach (var a in TNursingMedicationChartParam.SaveTNursingMedicationChartParams)
+            {
+                var disc = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_insert_T_Nursing_MedicationChart", disc);
+            }
             //commit transaction
             _unitofWork.SaveChanges();
             return true;
