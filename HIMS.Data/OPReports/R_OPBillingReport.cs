@@ -2190,6 +2190,8 @@ namespace HIMS.Data.Opd
         }
         public string ViewRegistrationReportDemo(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
+
+            var tuple = new Tuple<byte[], string>(null, string.Empty);
             // throw new NotImplementedException();
 
             SqlParameter[] para = new SqlParameter[2];
@@ -2204,10 +2206,10 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
-            int i = 0;
-
+            StringBuilder HeaderItems = new StringBuilder("");
             foreach (DataRow dr in Bills.Rows)
             {
+                int i = 0;
                 i++;
 
                 string[] headerList = { "Sr.No", "UHID", "Patient Name", "Address", "City", "Pin Code", "Age", "Gender Name", "Mobile No" };
@@ -2216,6 +2218,7 @@ namespace HIMS.Data.Opd
             }
 
             html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{HeaderItems}}", HeaderItems.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
             return html;

@@ -34,9 +34,19 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
 
         }
-      
+        [HttpGet("view-RegistrationReportUsingTemplate")]
+        public IActionResult ViewRegistrationReportDemo(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SimpleReportFormat.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _OPbilling.ViewRegistrationReportDemo(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RegistrationReportUsingTemplate", "RegistrationReportUsingTemplate", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpGet("view-OPDailyCollectionReport")]
         
+
         public IActionResult ViewOPDailycollectionReport(DateTime FromDate, DateTime ToDate, int AddedById)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDailycollectionuserwise.html");
@@ -87,7 +97,7 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-        [HttpGet("view-RegistrationReport ")]
+        [HttpGet("view-RegistrationReport")]
         public IActionResult ViewRegistrationReport(DateTime FromDate, DateTime ToDate)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPReport_RegistrationReport.html");
