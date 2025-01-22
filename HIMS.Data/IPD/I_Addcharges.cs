@@ -7,6 +7,7 @@ namespace HIMS.Data.IPD
 {
     public interface I_Addcharges
     {
+        bool UpdateIPDPackageBill(AddChargesPara AddChargesPara);
         bool Save(AddChargesParams addChargesParams);
         bool delete(AddChargesParams addChargesParams);
         bool LabRequestSave(LabRequesChargesParams labRequesChargesParams);

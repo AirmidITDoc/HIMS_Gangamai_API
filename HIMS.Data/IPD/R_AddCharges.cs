@@ -114,5 +114,86 @@ namespace HIMS.Data.IPD
 
             return true;
         }
+        public bool UpdateIPDPackageBill(AddChargesPara AddChargesPara)
+        {
+            // add AddCharges
+            var outputId = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@ChargeID",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+            var dic = AddChargesPara.AddCharge.ToDictionary();
+            dic.Remove("ChargeID");
+            dic.Remove("IsPackage");
+            if (AddChargesPara.AddCharge.IsPackage)
+            {
+                dic.Add("IsPackage", 0);
+            }
+            else
+            {
+                dic.Add("IsPackage", 0);
+            }
+
+            var vChargesId = ExecNonQueryProcWithOutSaveChanges("m_update_IPAddCharges_1", dic, outputId);
+
+
+            if (AddChargesPara.AddCharge.IsPathology)
+            {
+                Dictionary<string, Object> PathParams = new Dictionary<string, object>();
+
+                PathParams.Add("PathDate", AddChargesPara.AddCharge.ChargesDate);
+                PathParams.Add("PathTime", AddChargesPara.AddCharge.ChargeTime);
+                PathParams.Add("OPD_IPD_Type", AddChargesPara.AddCharge.OPD_IPD_Type);
+                PathParams.Add("OPD_IPD_Id", AddChargesPara.AddCharge.OPD_IPD_Id);
+                PathParams.Add("PathTestID", AddChargesPara.AddCharge.ServiceId);
+                PathParams.Add("AddedBy", AddChargesPara.AddCharge.AddedBy);
+                PathParams.Add("ChargeID", vChargesId);
+                PathParams.Add("IsCompleted", 0);
+                PathParams.Add("IsPrinted", 0);
+                PathParams.Add("IsSamplecollection", 0);
+                PathParams.Add("TestType", 0);
+
+                ExecNonQueryProcWithOutSaveChanges("m_insert_PathologyReportHeader_1", PathParams);
+            }
+
+            if (AddChargesPara.AddCharge.IsRadiology)
+            {
+                Dictionary<string, Object> RadParams = new Dictionary<string, object>();
+
+                RadParams.Add("RadDate", AddChargesPara.AddCharge.ChargesDate);
+                RadParams.Add("RadTime", AddChargesPara.AddCharge.ChargeTime);
+                RadParams.Add("OPD_IPD_Type", AddChargesPara.AddCharge.OPD_IPD_Type);
+                RadParams.Add("OPD_IPD_Id", AddChargesPara.AddCharge.OPD_IPD_Id);
+                RadParams.Add("RadTestID", AddChargesPara.AddCharge.ServiceId);
+                RadParams.Add("AddedBy", AddChargesPara.AddCharge.AddedBy);
+                RadParams.Add("IsCancelled", 0);
+                RadParams.Add("ChargeID", vChargesId);
+                RadParams.Add("IsCompleted", 0);
+                RadParams.Add("IsPrinted", 0);
+                RadParams.Add("TestType", 0);
+
+                ExecNonQueryProcWithOutSaveChanges("m_insert_RadiologyReportHeader_1", RadParams);
+            }
+            if (AddChargesPara.AddCharge.IsPackage)
+            {
+                foreach (var obj in AddChargesPara.ChargesIPPackageInsert)
+                {
+                    if (AddChargesPara.AddCharge.ServiceId == obj.PackageId)
+                    {
+                        var disc6 = obj.ToDictionary();
+                        disc6["PackageMainChargeID"] = vChargesId;
+                        ExecNonQueryProcWithOutSaveChanges("m_insert_IPChargesPackages_1", disc6);
+                    }
+                }
+            }
+
+            //commit transaction
+            _unitofWork.SaveChanges();
+
+            return true;
+        }
     }
 }
+

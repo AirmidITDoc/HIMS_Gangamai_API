@@ -186,7 +186,12 @@ namespace HIMS.API.Controllers.Transaction
             this._PrescriptionTemplate = prescriptionTemplate;
             this._configuration = configuration;
         }
-
+        [HttpPost("UpdateIPDPackageCharges")]
+        public IActionResult UpdateIPDPackageBill(AddChargesPara addChargesPara)
+        {
+            var RPAP = _Addcharges.UpdateIPDPackageBill(addChargesPara);
+            return Ok(RPAP);
+        }
         //New AdmissionSave
 
         [HttpPost("AdmissionNewInsert")]
