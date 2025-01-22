@@ -366,6 +366,8 @@ namespace HIMS.API.Extensions
 
            services.AddTransient<I_NewTemplateDescription, R_NewTemplateDescription>();
             services.AddTransient<I_NewMenuMaster, R_NewMenuMaster>();
+
+            services.AddTransient<I_Report, R_Report>();
             /* services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
             services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
             services.AddTransient<I_BillingClassMasterHome, R_BillingClassMasterHome>();
