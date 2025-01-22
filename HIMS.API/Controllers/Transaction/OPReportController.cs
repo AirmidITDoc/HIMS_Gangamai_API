@@ -34,16 +34,44 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
 
         }
-        [HttpGet("view-RegistrationReportUsingTemplate")]
+       
+        [HttpGet("view-SimpleReportFormat")]
         public IActionResult ViewRegistrationReportDemo(DateTime FromDate, DateTime ToDate)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SimpleReportFormat.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _OPbilling.ViewRegistrationReportDemo(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RegistrationReportUsingTemplate", "RegistrationReportUsingTemplate", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            
+            string vDate = DateTime.Now.ToString("dd_MM_yyyy_hh_mm_tt");
 
+            //switch (model.Mode)
+            //{
+            //    #region"OP Reports"
+
+            //    case "RegistrationReport":
+                    string[] headerList = { "Sr.No", "UHID", "Patient Name", "Address", "City", "Pin Code", "Age", "Gender Name", "Mobile No" };
+                    string[] colList = { "RegID", "PatientName", "Address", "City", "PinNo", "Age", "GenderName", "MobileNo" };
+
+                    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SimpleReportFormat.html");
+                    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+
+                    var html = _OPbilling.ViewSimpleReportFormat("rptListofRegistration", FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath), colList, headerList);
+                    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RegistrationReportUsingTemplate", "RegistrationList_" + vDate, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            //    case "AppointmentListReport":
+            //        string[] headerList = { "Sr.No", "UHID", "Patient Name", "Address", "City", "Pin Code", "Age", "Gender Name", "Mobile No" };
+            //        string[] colList = { "RegID", "PatientName", "Address", "City", "PinNo", "Age", "GenderName", "MobileNo" };
+
+            //        string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SimpleReportFormat.html");
+            //        string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+
+            //        var html = _OPbilling.ViewSimpleReportFormat("rptOPAppointmentListReport", FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath), colList, headerList);
+            //        var tuple = _pdfUtility.GeneratePdfFromHtml(html, "RegistrationReportUsingTemplate", "RegistrationList_" + vDate, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+                
+            //    default:
+            //        break;
+            //}
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+
+
         [HttpGet("view-OPDailyCollectionReport")]
         
 

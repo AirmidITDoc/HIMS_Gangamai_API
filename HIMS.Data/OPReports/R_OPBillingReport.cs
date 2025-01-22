@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace HIMS.Data.Opd
@@ -288,7 +289,6 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-
         public string ViewDoctorWiseVisitReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
@@ -370,8 +370,6 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-
-
         public string ViewRefDoctorWiseReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
@@ -452,8 +450,6 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-
-
         public string ViewCrossConsultationReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
@@ -571,7 +567,6 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-
         public string ViewOPDoctorWiseVisitCountSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
@@ -610,7 +605,6 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-
         public string ViewOPAppoinmentListWithServiseAvailed(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
@@ -785,7 +779,6 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-
         public string ViewDayWiseOpdCountDetails(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
@@ -917,9 +910,6 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-
-        
-
         public string ViewDepartmentWiseOpdCountSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
@@ -961,8 +951,6 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-
-
         public string ViewDoctorWiseOpdCountSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
@@ -1119,7 +1107,6 @@ namespace HIMS.Data.Opd
 
       
         }
-
         public string ViewOPCollectionSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
@@ -1257,7 +1244,6 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-
         public string ViewBillReportSummarySummary(DateTime FromDate, DateTime ToDate,  string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
@@ -1952,9 +1938,6 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-
-       
-
         public string ViewOPDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
@@ -2174,6 +2157,7 @@ namespace HIMS.Data.Opd
         }
 
 
+      
 
         public string ViewOPrefundbilllistReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
@@ -2188,125 +2172,57 @@ namespace HIMS.Data.Opd
         {
             throw new NotImplementedException();
         }
-        public string ViewRegistrationReportDemo(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewSimpleReportFormat(string vProcName,DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader, string[] colList, string[] headerList = null, string[] totalColList = null, string groupByCol = "")
         {
 
             var tuple = new Tuple<byte[], string>(null, string.Empty);
-            // throw new NotImplementedException();
-
             SqlParameter[] para = new SqlParameter[2];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            var Bills = GetDataTableProc("rptListofRegistration", para);
-
+            var dt = GetDataTableProc(vProcName, para);
 
             string html = File.ReadAllText(htmlFilePath);
-
             html = html.Replace("{{NewHeader}}", htmlHeader);
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
 
             StringBuilder items = new StringBuilder("");
             StringBuilder HeaderItems = new StringBuilder("");
-            foreach (DataRow dr in Bills.Rows)
-            {
-                int i = 0;
-                i++;
 
-                string[] headerList = { "Sr.No", "UHID", "Patient Name", "Address", "City", "Pin Code", "Age", "Gender Name", "Mobile No" };
-                string[] colList = { "RegID", "PatientName", "Address", "City", "PinNo", "Age", "GenderName", "MobileNo" };
+                //--------------- New Code 
+                HeaderItems.Append("<tr>");
+                foreach (var hr in headerList)
+                {
+                    HeaderItems.Append("<th style=\"border: 1px solid #d4c3c3; padding: 6px;\">");
+                    HeaderItems.Append(hr.ConvertToString());
+                    HeaderItems.Append("</th>");
+                }
+                HeaderItems.Append("</tr>");
 
-            }
+                int k = 0;
+                foreach (DataRow dr in dt.Rows)
+                {
+                    k++;
 
-            html = html.Replace("{{Items}}", items.ToString());
+                    items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(k).Append("</td>");
+                    foreach (var colName in colList)
+                    {
+                        items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr[colName].ConvertToString()).Append("</td>");
+                    }
+                    //if (model.Mode == "DepartmentWisecountSummury" || model.Mode == "OPDoctorWiseVisitCountSummary")
+                    //    if (model.Mode == "OPDoctorWiseVisitCountSummary")
+                    //        T_Count += dr["Lbl"].ConvertToDouble();
+                }
+                //----------------------------------
+           
             html = html.Replace("{{HeaderItems}}", HeaderItems.ToString());
-            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
-            return html;
-
-            //public string GetReportSetByProc(ReportRequestModel model)
-            //{
-            //    var tuple = new Tuple<byte[], string>(null, string.Empty);
-            //    switch (model.Mode)
-            //    {
-            //        #region :: RegistrationReport ::
-            //        case "RegistrationReport":
-            //            {
-            //                model.ReportName = "Registration List";
-            //                string[] headerList = { "Sr.No", "UHID", "Patient Name", "Address", "City", "Pin Code", "Age", "Gender Name", "Mobile No" };
-            //                string[] colList = { "RegID", "PatientName", "Address", "City", "PinNo", "Age", "GenderName", "MobileNo" };
-            //                string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SimpleReportFormat.html");
-            //                string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            //                var html = GetHTMLView("rptListofRegistration", model, htmlFilePath, htmlHeaderFilePath, colList, headerList);
-            //                tuple = _pdfUtility.GeneratePdfFromHtml(html, model.StorageBaseUrl, "RegistrationReport", "RegistrationReport", Orientation.Portrait, PaperKind.A4);
-            //                break;
-            //            }
-            //        #endregion
-            //        default:
-            //            break;
-
-
-            //    }
-            //    string byteFile = Convert.ToBase64String(tuple.Item1);
-            //    return byteFile;
-
-            //}
-
-            //private string GetHTMLView(string sp_Name, ReportRequestModel model, string htmlFilePath, string htmlHeaderFilePath, string[] colList, string[] headerList = null, string[] totalColList = null, string groupByCol = "")
-            //{
-            //    Dictionary<string, string> fields = HIMS.Data.Extensions.SearchFieldExtension.GetSearchFields(model.SearchFields).ToDictionary(e => e.FieldName, e => e.FieldValueString);
-            //    DatabaseHelper odal = new();
-            //    int sp_Para = 0;
-            //    SqlParameter[] para = new SqlParameter[fields.Count];
-            //    foreach (var property in fields)
-            //    {
-            //        var param = new SqlParameter
-            //        {
-            //            ParameterName = "@" + property.Key,
-            //            Value = property.Value.ToString()
-            //        };
-
-            //        para[sp_Para] = param;
-            //        sp_Para++;
-            //    }
-            //    var dt = odal.FetchDataTableBySP(sp_Name, para);
-
-
-            //    string htmlHeader = _pdfUtility.GetHeader(htmlHeaderFilePath, model.BaseUrl);
-
-            //    string html = File.ReadAllText(htmlFilePath);
-            //    html = html.Replace("{{HospitalHeader}}", htmlHeader);
-            //    html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
-            //    html = html.Replace("{{RepoertName}}", model.RepoertName);
-
-            //    DateTime FromDate = Convert.ToDateTime(model.SearchFields.Find(x => x.FieldName?.ToLower() == "fromdate".ToLower())?.FieldValue ?? null);
-            //    DateTime ToDate = Convert.ToDateTime(model.SearchFields.Find(x => x.FieldName?.ToLower() == "todate".ToLower())?.FieldValue ?? null);
-
-            //    StringBuilder HeaderItems = new("");
-            //    StringBuilder items = new("");
-            //    StringBuilder ItemsTotal = new("");
-            //    double T_Count = 0;
-            //    switch (model.Mode)
-            //    {
-            //        // Simple Report Format
-            //        case "RegistrationReport":
-
-
-            //    }
-            //}
-
-
-
-
-          
-            //html = html.Replace("{{HeaderItems}}", HeaderItems.ToString());
             html = html.Replace("{{Items}}", items.ToString());
-          
+            //html = html.Replace("{{ItemsTotal}}", ItemsTotal.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
             return html;
 
         }
-            }
+    }
 }
 
 
