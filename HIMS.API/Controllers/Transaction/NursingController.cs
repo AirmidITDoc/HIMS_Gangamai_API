@@ -41,7 +41,23 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
                 _FileUtility = fileUtility;
             }
+
+        [HttpPost("InsertPatICDCode")]
+        public IActionResult InsertPatICDCode(PatICDCodeParam PatICDCodeParam)
+        {
+            var RPAP = _Administration.InsertPatICDCode(PatICDCodeParam);
+            return Ok(RPAP);
+        }
+
+        [HttpPost("UpdatePatICDCode")]
+        public IActionResult UpdatePatICDCode(PatICDCodeParam PatICDCodeParam)
+        {
+            var RPAP = _Administration.UpdatePatICDCode(PatICDCodeParam);
+            return Ok(RPAP);
+        }
+
         [HttpGet("View-DoctorPatientHandover")]
+
         public IActionResult ViewDoctorPatientHandover(int AdmID)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DoctorPatientHandoverprint.html");
@@ -52,6 +68,7 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("View-NursingNotes")]
+
         public IActionResult ViewNursingNotes(int AdmId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NursingNotesPrint.html");
@@ -61,6 +78,7 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
         [HttpGet("View-DoctorNotes")]
+
         public IActionResult ViewDoctorNotes(int AdmID)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DoctorNotesPrint.html");
@@ -79,6 +97,7 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(Response);
         }
         [HttpPost("UpdateMTemplateMaster")]
+
         public IActionResult UpdateMTemplateMaster(MTemplateMasterParam MTemplateMasterParam)
         {
             var Id = _Nursing.UpdateMTemplateMaster(MTemplateMasterParam);
@@ -183,6 +202,7 @@ namespace HIMS.API.Controllers.Transaction
             var appoSave = _Administration.UpdateNursingVitals(NursingVitalsParam);
             return Ok(appoSave);
         }
+
 
 
         [HttpPost("SaveNursingSugarLevel")]
