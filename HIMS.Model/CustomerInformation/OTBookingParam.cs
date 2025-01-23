@@ -16,6 +16,7 @@ namespace HIMS.Model.CustomerInformation
     public class SaveOTBookingParam
     {
         public long OTBookingID { get; set; }
+
         public DateTime TranDate { get; set; }
         public DateTime TranTime { get; set; }
         public long OP_IP_ID { get; set; }

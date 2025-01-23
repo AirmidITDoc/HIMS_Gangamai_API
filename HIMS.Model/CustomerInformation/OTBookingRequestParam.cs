@@ -32,6 +32,7 @@ namespace HIMS.Model.CustomerInformation
     public class UpdateOTBookingRequestParam
     {
         public int OTRequestId { get; set; }
+
         public DateTime OTRequestDate { get; set; }
         public DateTime OTRequestTime { get; set; }
         public long OP_IP_Id { get; set; }
