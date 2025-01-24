@@ -1,6 +1,7 @@
 ﻿using HIMS.Common.Utility;
 using HIMS.Model.IPD;
 using HIMS.Model.Pathology;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -169,6 +170,81 @@ namespace HIMS.Data.Pathology
         //    return html;
 
         //}
+        public string ViewPathologyReport(int AdmissionID, string htmlFilePath, string htmlHeader)
+        {
+
+
+            SqlParameter[] para = new SqlParameter[1];
+
+            para[0] = new SqlParameter("@AdmissionID", AdmissionID) { DbType = DbType.Int64 };
+
+            var Bills = GetDataTableProc("RptPathologyTestDetailForDischargeSummary", para);
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            double T_Count = 0, NetAmount = 0, T_NetAmount = 0, DocAmt = 0;
+
+            string previousPatientType = "";
+            string previousDoctorName = "";
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++; j++;
+
+             
+                string currentPatientType = dr["PathDate"].ConvertToDateString("dd/MM/yyyy");
+                string currentDoctorName = dr["TestName"].ConvertToString();
+
+                // If the PatientType or DoctorName changes, insert a new section
+                if (i == 1 || previousPatientType != currentPatientType || previousDoctorName != currentDoctorName)
+                {
+
+
+                    // Add new group header with both PatientType and DoctorName
+                    items.Append("<tr style=\"font-weight:bold;font-size:21px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">")
+                         .Append("<td  style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
+                         .Append(currentPatientType)
+                        .Append("<td colspan='13' style=\"border:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                         .Append(currentDoctorName)
+                       
+                         .Append("</td></tr>");
+                }
+
+                // Update previousPatientType and previousDoctorName
+                previousPatientType = currentPatientType;
+                previousDoctorName = currentDoctorName;
+                items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:18px;\"><td style=\"vertical-align: top;padding: 6px;;height: 20px;text-align:left;font-size:20px;padding-left:7px;\">").Append("</td>");
+
+                //items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["PathDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                //items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ParameterName"].ConvertToString()).Append("</td>");
+                //items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["UnitName"].ConvertToString()).Append("</td>");
+                //items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
+
+                items.Append("<td style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:5px;\">").Append(dr["ParameterName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"padding: 15px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:10px;\">").Append(dr["UnitName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"padding: 20px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-right:5px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
+
+
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+          
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            //   html = html.Replace("{{AdmId}}", Bills.GetColValue("AdmId"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{PathDate}}", Bills.GetColValue("PathDate").ConvertToDateString("dd/MM/yyyy"));
+            html = html.Replace("{{PathTime}}", Bills.GetColValue("PathTime").ConvertToDateString("hh:mm tt"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
+            html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
+
+            return html;
+        }
 
 
     }

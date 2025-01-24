@@ -22,6 +22,6 @@ namespace HIMS.Data.Nursing
         public string ViewDoctorNotes(int AdmID, string htmlFilePath, string HeaderName);
         public string ViewDoctorPatientHandover(int AdmID, string htmlFilePath, string HeaderName);
         public string ViewNursingPatientHandover(int AdmID, string htmlFilePath, string HeaderName);
-
+        public string ViewNursingNotesANDDoctorNotes(int AdmId, string htmlFilePath, string HeaderName);
     }
 }

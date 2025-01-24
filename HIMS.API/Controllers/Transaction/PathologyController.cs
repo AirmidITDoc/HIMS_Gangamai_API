@@ -43,7 +43,16 @@ namespace HIMS.API.Controllers.Transaction
             _configuration = configuration;
             _FileUtility = fileUtility;
         }
+        [HttpGet("View-PathologyReport")]
 
+        public IActionResult ViewPathologyReport(int AdmissionID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PathologyReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _PathologyTemplateResult.ViewPathologyReport(AdmissionID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewPathologyReport", "ViewPathologyReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpPost("PathologyTemplateResult")]
         public IActionResult PathologyTemplateResult(PathologyTemplateResultParams PTRP)
         {

@@ -289,7 +289,85 @@ namespace HIMS.Data.Nursing
 
             return html;
         }
+        public string ViewNursingNotesANDDoctorNotes(int AdmId, string htmlFilePath, string htmlHeader)
+        {
+            SqlParameter[] para = new SqlParameter[1];
+
+            para[0] = new SqlParameter("@AdmId", AdmId) { DbType = DbType.Int64 };
+
+            var Bills = GetDataTableProc("m_rpt_T_NursingNotesPrint", para);
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+
+
+            
+
+            para[0] = new SqlParameter("@AdmID", AdmId) { DbType = DbType.Int64 };
+
+            var Bills1 = GetDataTableProc("m_rpt_T_Doctors_Notes", para);
+
+            
+
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            
+            int i = 0;
+
+            foreach (DataRow dr in Bills1.Rows)
+            {
+                i++;
+
+                items.Append("<tr style\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\" border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["TDate"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["DoctorsNotes"].ConvertToString()).Append("</td></tr>");
+
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{AdmID}}", Bills1.GetColValue("AdmId"));
+            html = html.Replace("{{RegNo}}", Bills1.GetColValue("RegNo"));
+            html = html.Replace("{{PatientName}}", Bills1.GetColValue("PatientName"));
+            html = html.Replace("{{AgeYear}}", Bills1.GetColValue("AgeYear"));
+            html = html.Replace("{{TDate}}", Bills1.GetColValue("TDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{AgeMonth}}", Bills1.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills1.GetColValue("AgeDay"));
+            html = html.Replace("{{DoctorName}}", Bills1.GetColValue("DoctorName"));
+
+
+
+
+
+            int j = 0;
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                j++;
+
+                items.Append("<tr style\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\" border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["TDate"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["NursingNotes"].ConvertToString()).Append("</td></tr>");
+
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{AdmId}}", Bills.GetColValue("AdmId"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            //   html = html.Replace("{{AdmId}}", Bills.GetColValue("AdmId"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
+            html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
+
+
+            return html;
+        }
+      
+
     }
-       
+
 }
 
