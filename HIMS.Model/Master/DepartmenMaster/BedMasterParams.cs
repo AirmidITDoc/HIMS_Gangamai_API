@@ -25,12 +25,11 @@ namespace HIMS.Model.Master.DepartmenMaster
     public class BedMasterUpdate
     {
 
-        public int BedID { get; set; }
-        public String BedName { get; set; }
-        public int RoomId { get; set; }
-        public bool IsAvailable { get; set; }
-        public bool IsDeleted { get; set; }
-        public int UpdatedBy { get; set; }
+        public int BedID_1 { get; set; }
+        public String BedName_2 { get; set; }
+        public int RoomId_3 { get; set; }
+        public bool IsActive_4 { get; set; }
+        
     }
 }
 
