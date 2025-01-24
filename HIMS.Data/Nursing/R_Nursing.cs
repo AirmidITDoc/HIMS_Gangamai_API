@@ -151,6 +151,7 @@ namespace HIMS.Data.Nursing
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{AdmId}}", Bills.GetColValue("AdmId"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
@@ -188,6 +189,7 @@ namespace HIMS.Data.Nursing
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{AdmID}}", Bills.GetColValue("AdmId"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{TDate}}", Bills.GetColValue("TDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
@@ -230,6 +232,7 @@ namespace HIMS.Data.Nursing
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{AdmID}}", Bills.GetColValue("AdmId"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{TDate}}", Bills.GetColValue("TDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
