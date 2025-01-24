@@ -14,9 +14,9 @@ namespace HIMS.Model.CustomerInformation
 
     public class SaveOTBookingRequestParam
     {
-        public int OTBookingId { get; set; }
-        public DateTime OTBookingDate { get; set; }
-        public DateTime OTBookingTime { get; set; }
+        public int OTRequestId { get; set; }
+        public DateTime OTRequestDate { get; set; }
+        public DateTime OTRequestTime { get; set; }
         public long OP_IP_Id { get; set; }
         public long OP_IP_Type { get; set; }
         public string SurgeryType { get; set; }
@@ -26,13 +26,15 @@ namespace HIMS.Model.CustomerInformation
         public long SurgeonId { get; set; }
         public long SurgeryId { get; set; }
         public long CreatedBy { get; set; }
+       
 
     }
     public class UpdateOTBookingRequestParam
     {
-        public int OTBookingId { get; set; }
-        public DateTime OTBookingDate { get; set; }
-        public DateTime OTBookingTime { get; set; }
+        public int OTRequestId { get; set; }
+
+        public DateTime OTRequestDate { get; set; }
+        public DateTime OTRequestTime { get; set; }
         public long OP_IP_Id { get; set; }
         public long OP_IP_Type { get; set; }
         public string SurgeryType { get; set; }
@@ -45,7 +47,7 @@ namespace HIMS.Model.CustomerInformation
     }
     public class CancelOTBookingRequestParam
     {
-        public int OTBookingId { get; set; }
+        public int OTRequestId { get; set; }
        
         public long IsCancelled { get; set; }
         public long IsCancelledBy { get; set; }

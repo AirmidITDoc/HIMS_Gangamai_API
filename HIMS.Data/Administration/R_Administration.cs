@@ -30,7 +30,33 @@ namespace HIMS.Data.Administration
         {
 
         }
+        public bool InsertPatICDCode(PatICDCodeParam PatICDCodeParam)
+        {
+            // throw new NotImplementedException();
+            var disc = PatICDCodeParam.InsertPatICDCodeParamHeader.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Insert_T_PatICDCode_Header", disc);
 
+            var disc1 = PatICDCodeParam.InsertPatICDCodeParamDetails.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("M_Insert_T_PatICDCode_Details", disc1);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+
+        public bool UpdatePatICDCode(PatICDCodeParam PatICDCodeParam)
+        {
+            // throw new NotImplementedException();
+            var disc = PatICDCodeParam.UpdatePatICDCodeParamHeader.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("M_Update_T_PatICDCode_Header", disc);
+
+            var disc1 = PatICDCodeParam.UpdatePatICDCodeParamDetails.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("M_Update_T_PatICDCode_Details", disc1);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
 
 
         public bool SaveNursingWeight(NursingWeightParam NursingWeightParam)

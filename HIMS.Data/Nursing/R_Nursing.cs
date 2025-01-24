@@ -150,6 +150,8 @@ namespace HIMS.Data.Nursing
             }
 
             html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{AdmId}}", Bills.GetColValue("AdmId"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
          //   html = html.Replace("{{AdmId}}", Bills.GetColValue("AdmId"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
@@ -188,6 +190,50 @@ namespace HIMS.Data.Nursing
 
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{AdmID}}", Bills.GetColValue("AdmId"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{TDate}}", Bills.GetColValue("TDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
+            html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
+
+            return html;
+        }
+        public string ViewDoctorPatientHandover(int AdmID, string htmlFilePath, string htmlHeader)
+        {
+
+
+            SqlParameter[] para = new SqlParameter[1];
+
+            para[0] = new SqlParameter("@AdmID", AdmID) { DbType = DbType.Int64 };
+
+            var Bills = GetDataTableProc("m_rpt_T_Doctor_PatientHandover", para);
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++;
+
+                items.Append("<tr style\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\" border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["TDate"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["ShiftInfo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["PatHand_I"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["PatHand_S"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["PatHand_B"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["PatHand_A"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["PatHand_R"].ConvertToString()).Append("</td></tr>");
+
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{AdmID}}", Bills.GetColValue("AdmId"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{TDate}}", Bills.GetColValue("TDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));

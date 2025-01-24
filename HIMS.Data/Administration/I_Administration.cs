@@ -14,6 +14,8 @@ namespace HIMS.Data.Administration
 {
     public  interface I_Administration
     {
+        public bool InsertPatICDCode(PatICDCodeParam PatICDCodeParam);
+        public bool UpdatePatICDCode(PatICDCodeParam PatICDCodeParam);
         public bool UpdateBillcancellation(AdministrationParam administrationParam);
         public bool InsertDoctorShareMaster(DoctorShareParam doctorShareParam);
         public bool UpdateDoctorShareMaster(DoctorShareParam doctorShareParam);

@@ -186,7 +186,12 @@ namespace HIMS.API.Controllers.Transaction
             this._PrescriptionTemplate = prescriptionTemplate;
             this._configuration = configuration;
         }
-
+        [HttpPost("UpdateIPDPackageCharges")]
+        public IActionResult UpdateIPDPackageBill(AddChargesPara addChargesPara)
+        {
+            var RPAP = _Addcharges.UpdateIPDPackageBill(addChargesPara);
+            return Ok(RPAP);
+        }
         //New AdmissionSave
 
         [HttpPost("AdmissionNewInsert")]
@@ -1213,20 +1218,20 @@ namespace HIMS.API.Controllers.Transaction
         }
 
 
-        [HttpPost("OTBookingInsert")]
-        public IActionResult OTBookingInsert(OTBookingDetailParams OTBookingDetailParams)
-        {
-            var OtId = _OTBookingDetail.Insert(OTBookingDetailParams);
-            return Ok(OtId);
-        }
+        //[HttpPost("OTBookingInsert")]
+        //public IActionResult OTBookingInsert(OTBookingDetailParams OTBookingDetailParams)
+        //{
+        //    var OtId = _OTBookingDetail.Insert(OTBookingDetailParams);
+        //    return Ok(OtId);
+        //}
 
 
-        [HttpPost("OTBookingUpdate")]
-        public IActionResult OTBookingUpdate(OTBookingDetailParams OTBookingDetailParams)
-        {
-            var OtId = _OTBookingDetail.Update(OTBookingDetailParams);
-            return Ok(OtId);
-        }
+        //[HttpPost("OTBookingUpdate")]
+        //public IActionResult OTBookingUpdate(OTBookingDetailParams OTBookingDetailParams)
+        //{
+        //    var OtId = _OTBookingDetail.Update(OTBookingDetailParams);
+        //    return Ok(OtId);
+        //}
         [HttpPost("CathLabBookingInsert")]
         public IActionResult CathLabBookingInsert(CathLabBookingDetailParams CathLabBookingDetailParams)
         {
