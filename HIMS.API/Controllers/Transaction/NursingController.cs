@@ -61,6 +61,16 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        [HttpGet("View-NursingPatientHandover")]
+        public IActionResult ViewNursingPatientHandover(int AdmId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NursingPatientHandover.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Nursing.ViewNursingPatientHandover(AdmId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "NursingPatientHandover", "NursingPatientHandover", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
 
         [HttpPost("SaveMTemplateMaster")]
         public IActionResult SaveMTemplateMaster(MTemplateMasterParam MTemplateMasterParam)
