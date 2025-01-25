@@ -55,7 +55,16 @@ namespace HIMS.API.Controllers.Transaction
             var RPAP = _Administration.UpdatePatICDCode(PatICDCodeParam);
             return Ok(RPAP);
         }
+        [HttpGet("View-NursingNotesANDDoctorNotes")]
 
+        public IActionResult ViewNursingNotesANDDoctorNotes(int AdmId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DoctorNotesANDNursingNotesPrint.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Nursing.ViewNursingNotesANDDoctorNotes(AdmId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewNursingNotesANDDoctorNotes", "ViewNursingNotesANDDoctorNotes", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpGet("View-DoctorPatientHandover")]
 
         public IActionResult ViewDoctorPatientHandover(int AdmID)
@@ -94,7 +103,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NursingPatientHandover.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _Nursing.ViewNursingPatientHandover(AdmId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "NursingPatientHandover", "NursingPatientHandover", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewNursingPatientHandover", "ViewNursingPatientHandover", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 

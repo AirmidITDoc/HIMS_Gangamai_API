@@ -14,6 +14,6 @@ namespace HIMS.Data.Pathology
         DataTable GetDataForReport(int PathReportId, int OP_IP_Type);
         string ViewPathTemplateReceipt(DataTable Bills, string htmlFilePath, string HeaderName);
 
-       
+        string ViewPathologyReport(int AdmissionID, string htmlFilePath, string HeaderName);
     }
 }
