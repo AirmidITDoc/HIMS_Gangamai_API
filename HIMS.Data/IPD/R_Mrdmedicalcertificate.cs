@@ -76,6 +76,26 @@ namespace HIMS.Data.IPD
             return true;
         }
 
-       
+        public bool SaveMICDCdeheadMaster(MICDCdeheadMasterParam MICDCdeheadMasterParam)
+        {
+            // throw new NotImplementedException();
+            var disc = MICDCdeheadMasterParam.SaveMICDCdeheadMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_M_ICDCdeheadMaster_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool UpdateMICDCdeheadMaster(MICDCdeheadMasterParam MICDCdeheadMasterParam)
+        {
+
+            var disc3 = MICDCdeheadMasterParam.UpdateMICDCdeheadMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_M_ICDCdeheadMaster_1", disc3);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
+
     }
 }

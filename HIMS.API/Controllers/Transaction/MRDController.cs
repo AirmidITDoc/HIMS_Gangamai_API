@@ -97,6 +97,21 @@ namespace HIMS.API.Controllers.Transaction
             var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Updated successfully", Id);
             return Ok(Response);
         }
+
+        [HttpPost("SaveMICDCdeheadMaster")]
+        public IActionResult SaveMICDCdeheadMaster(MICDCdeheadMasterParam MICDCdeheadMasterParam)
+        {
+            var Id = _Mrdmedicalcertificate.SaveMICDCdeheadMaster(MICDCdeheadMasterParam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record added successfully", Id);
+            return Ok(Response);
+        }
+        [HttpPost("UpdateMICDCdeheadMaster")]
+        public IActionResult UpdateMICDCdeheadMaster(MICDCdeheadMasterParam MICDCdeheadMasterParam)
+        {
+            var Id = _Mrdmedicalcertificate.UpdateMICDCdeheadMaster(MICDCdeheadMasterParam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Update successfully", Id);
+            return Ok(Response);
+        }
     }
 }
 

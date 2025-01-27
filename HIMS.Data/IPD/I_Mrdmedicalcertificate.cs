@@ -13,6 +13,8 @@ namespace HIMS.Data.IPD
         public bool UpdateMICDCodingMaster(MICDCodingMasterParam MICDCodingMasterParam);
         public bool InsertMrdMedicolegalCertificate(MrdMedicolegalCertificateparam MrdMedicolegalCertificateparam);
         public bool UpdateMrdMedicolegalCertificate(MrdMedicolegalCertificateparam MrdMedicolegalCertificateparam);
+        public bool SaveMICDCdeheadMaster(MICDCdeheadMasterParam MICDCdeheadMasterParam);
+        public bool UpdateMICDCdeheadMaster(MICDCdeheadMasterParam MICDCdeheadMasterParam);
     }
 }
 
