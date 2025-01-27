@@ -12,18 +12,22 @@ namespace HIMS.Model.Inventory
     }
    
    public class InsertMaterialConsumption{
-      
+        public int MaterialConsumptionId { get; set; }
+        public int ConsumptionNo { get; set; }
         public DateTime ConsumptionDate { get; set; }
         public DateTime ConsumptionTime { get; set; }
         public int FromStoreId { get; set; }
-        public long LandedTotalAmount { get; set; }
-        public long PurchaseTotal { get; set; }
+        public float LandedTotalAmount { get; set; }
+        public float PurchaseTotal { get; set; }
 
-        public long MRPTotal { get; set; }
+        public float MRPTotalAmount { get; set; }
         public string Remark { get; set; }
-        public long Addedby { get; set; }
+        public long OP_IP_Type { get; set; }
+        public long AdmId { get; set; }
+        public long CreatedBy { get; set; }
 
-        public int MaterialConsumptionId { get; set; }
+       
+
 
     }
 
@@ -31,22 +35,26 @@ namespace HIMS.Model.Inventory
 
     public class InsertMaterialConsDetail
     {
+        //public long MaterialConDetId { get; set; }
         public long MaterialConsumptionId { get; set; }
         public long ItemId { get; set; }
         public string BatchNo { get; set; }
 
         public DateTime BatchExpDate { get; set; }
         public long Qty { get; set; }
-        public long PerUnitLandedRate { get; set; }
-        public long ParUnitPurchaseRate { get; set; }
-        public long PerUnitMRPRate { get; set; }
-        public long LandedRateTotalAmount { get; set; }
-        public long PurchaseRateTotalAmount { get; set; }
-        public long MRPTotalAmount { get; set; }
+        public float PerUnitLandedRate { get; set; }
+        public float ParUnitPurchaseRate { get; set; }
+        public float PerUnitMRPRate { get; set; }
+        public float LandedTotalAmount { get; set; }
+        public float PurchaseTotalAmount { get; set; }
+        public float MRPTotalAmount { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Remark { get; set; }
-       
+        public long AdmId { get; set; }
+
+
+
     }
 
 

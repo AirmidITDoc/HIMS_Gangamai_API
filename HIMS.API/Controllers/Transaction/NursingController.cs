@@ -42,19 +42,19 @@ namespace HIMS.API.Controllers.Transaction
                 _FileUtility = fileUtility;
             }
 
-        [HttpPost("InsertPatICDCode")]
-        public IActionResult InsertPatICDCode(PatICDCodeParam PatICDCodeParam)
-        {
-            var RPAP = _Administration.InsertPatICDCode(PatICDCodeParam);
-            return Ok(RPAP);
-        }
+        //[HttpPost("InsertPatICDCode")]
+        //public IActionResult InsertPatICDCode(PatICDCodeParam PatICDCodeParam)
+        //{
+        //    var RPAP = _Administration.InsertPatICDCode(PatICDCodeParam);
+        //    return Ok(RPAP);
+        //}
 
-        [HttpPost("UpdatePatICDCode")]
-        public IActionResult UpdatePatICDCode(PatICDCodeParam PatICDCodeParam)
-        {
-            var RPAP = _Administration.UpdatePatICDCode(PatICDCodeParam);
-            return Ok(RPAP);
-        }
+        //[HttpPost("UpdatePatICDCode")]
+        //public IActionResult UpdatePatICDCode(PatICDCodeParam PatICDCodeParam)
+        //{
+        //    var RPAP = _Administration.UpdatePatICDCode(PatICDCodeParam);
+        //    return Ok(RPAP);
+        //}
         [HttpGet("View-NursingNotesANDDoctorNotes")]
 
         public IActionResult ViewNursingNotesANDDoctorNotes(int AdmId)

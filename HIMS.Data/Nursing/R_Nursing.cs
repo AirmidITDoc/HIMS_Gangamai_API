@@ -249,6 +249,7 @@ namespace HIMS.Data.Nursing
 
             SqlParameter[] para = new SqlParameter[1];
 
+
             para[0] = new SqlParameter("@AdmId", AdmId) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("m_rpt_T_Nursing_PatientHandover", para);

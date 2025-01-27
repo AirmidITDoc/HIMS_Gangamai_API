@@ -11,3 +11,4 @@ namespace HIMS.Data.IPD
        public bool Update(Mrdmedicalcertificateparam Mrdmedicalcertificateparam);
     }
 }
+
