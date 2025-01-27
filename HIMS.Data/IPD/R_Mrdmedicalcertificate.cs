@@ -6,15 +6,32 @@ using System.Text;
 
 namespace HIMS.Data.IPD
 {
-   public class R_Mrdmedicalcertificate:GenericRepository,I_Mrdmedicalcertificate
+    public class R_Mrdmedicalcertificate : GenericRepository, I_Mrdmedicalcertificate
     {
         public R_Mrdmedicalcertificate(IUnitofWork unitofWork) : base(unitofWork)
         {
             //transaction and connection
         }
 
+        public bool InsertMrdMedicolegalCertificate(MrdMedicolegalCertificateparam MrdMedicolegalCertificateparam)
+        {
+            // throw new NotImplementedException();
+            var disc = MrdMedicolegalCertificateparam.InsertMrdMedicolegalCertificate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_MedicolegalCertificate_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+        }
+        public bool UpdateMrdMedicolegalCertificate(MrdMedicolegalCertificateparam MrdMedicolegalCertificateparam)
+        {
+            // throw new NotImplementedException();
+            var disc = MrdMedicolegalCertificateparam.UpdateMrdMedicolegalCertificate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_MedicolegalCertificate_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+        }
 
-      
         public bool Insert(Mrdmedicalcertificateparam Mrdmedicalcertificateparam)
         {
             //  throw new NotImplementedException();
@@ -58,5 +75,7 @@ namespace HIMS.Data.IPD
             _unitofWork.SaveChanges();
             return true;
         }
+
+       
     }
 }

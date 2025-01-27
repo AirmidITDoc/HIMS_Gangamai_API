@@ -24,6 +24,7 @@ namespace HIMS.API.Controllers.Transaction
         {
 
         public readonly I_Nursing _Nursing;
+        public readonly I_Mrdmedicalcertificate _Mrdmedicalcertificate;
         public readonly I_CustomerInformation _CustomerInformation;
         public readonly I_Mrdmedicalcertificate _Mrdmedicalcertificate;
         public readonly I_RadiologyTemplateResult i_RadiologyTemplate;
@@ -34,6 +35,9 @@ namespace HIMS.API.Controllers.Transaction
             public MRDController(I_Nursing I_Nursing, I_RadiologyTemplateResult i_Radiology,
                 I_Administration Administration, I_Mrdmedicalcertificate Mrdmedicalcertificate,
                  I_CustomerInformation I_CustomerInformation,
+                I_Administration Administration,
+                 I_Mrdmedicalcertificate Mrdmedicalcertificate,
+        I_CustomerInformation I_CustomerInformation,
                 Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, 
                 IPdfUtility pdfUtility, IFileUtility fileUtility)
             {
@@ -43,6 +47,7 @@ namespace HIMS.API.Controllers.Transaction
             _hostingEnvironment = hostingEnvironment;
             this._Administration = Administration;
             this._Mrdmedicalcertificate = Mrdmedicalcertificate;
+            this._Mrdmedicalcertificate =Mrdmedicalcertificate;
             _pdfUtility = pdfUtility;
                 _FileUtility = fileUtility;
             }
@@ -74,6 +79,22 @@ namespace HIMS.API.Controllers.Transaction
         {
             var Id = _Mrdmedicalcertificate.UpdateMICDCodingMaster(MICDCodingMasterParam);
             var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Update successfully", Id);
+            return Ok(Response);
+        }
+      
+        [HttpPost("InsertMrdMedicolegalCertificate")]
+        public IActionResult InsertMrdMedicolegalCertificate(MrdMedicolegalCertificateparam MrdMedicolegalCertificateparam)
+        {
+            var Id = _Mrdmedicalcertificate.InsertMrdMedicolegalCertificate(MrdMedicolegalCertificateparam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Updated successfully", Id);
+            return Ok(Response);
+        }
+
+        [HttpPost("UpdateMrdMedicolegalCertificate")]
+        public IActionResult UpdateMrdMedicolegalCertificate(MrdMedicolegalCertificateparam MrdMedicolegalCertificateparam)
+        {
+            var Id = _Mrdmedicalcertificate.UpdateMrdMedicolegalCertificate(MrdMedicolegalCertificateparam);
+            var Response = ApiResponseHelper.GenerateResponse<string>(ApiStatusCode.Status200OK, "Record Updated successfully", Id);
             return Ok(Response);
         }
     }
