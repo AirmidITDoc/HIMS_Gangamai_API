@@ -254,13 +254,14 @@ namespace HIMS.Data.OT
             return true;
 
         }
-        public string ViewTConsentInformation(int ConsentId, string htmlFilePath, string htmlHeader)
+        public string ViewTConsentInformation(int ConsentId,int OP_IP_Type, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[1];
+            SqlParameter[] para = new SqlParameter[2];
 
             para[0] = new SqlParameter("@ConsentId", ConsentId) { DbType = DbType.Int64 };
+            para[1] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
 
             var Bills = GetDataTableProc("m_rpt_TConsentInformation", para);
 
@@ -298,13 +299,14 @@ namespace HIMS.Data.OT
 
             //html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
             html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
             html = html.Replace("{{ConsentText}}", Bills.GetColValue("ConsentText"));
             //html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             //html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             //html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
-            //html = html.Replace("{{OP_IP_Type}}", Bills.GetColValue("OP_IP_Type"));
+            html = html.Replace("{{OP_IP_Type}}", Bills.GetColValue("OP_IP_Type"));
             //html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             //html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
 

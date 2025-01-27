@@ -206,11 +206,11 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(Response);
         }
         [HttpGet("view-TConsentInformation")]
-        public IActionResult ViewTConsentInformation(int ConsentId)
+        public IActionResult ViewTConsentInformation(int ConsentId,int OP_IP_Type)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "TConsentInformationReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _OT.ViewTConsentInformation(ConsentId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _OT.ViewTConsentInformation(ConsentId, OP_IP_Type, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewTConsentInformation", "ViewTConsentInformation", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });

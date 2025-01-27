@@ -28,7 +28,9 @@ namespace HIMS.Model.Master.DepartmenMaster
         public int BedID_1 { get; set; }
         public String BedName_2 { get; set; }
         public int RoomId_3 { get; set; }
-        public bool IsActive_4 { get; set; }
+        public bool IsAvailible_4 { get; set; }
+
+        public bool IsActive_5 { get; set; }
         
     }
 }

@@ -33,7 +33,7 @@ namespace HIMS.Data.OT
         public bool SaveMOTSurgeryMaster(MOTSurgeryMasterParam MOTSurgeryMasterParam);
         public bool UpdateMOTSurgeryMaster(MOTSurgeryMasterParam MOTSurgeryMasterParam);
         public bool CancelMOTSurgeryMaster(MOTSurgeryMasterParam MOTSurgeryMasterParam);
-        public string ViewTConsentInformation(int ConsentId, string htmlFilePath, string htmlHeader);
+        public string ViewTConsentInformation(int ConsentId,int OP_IP_Type, string htmlFilePath, string htmlHeader);
 
 
 
