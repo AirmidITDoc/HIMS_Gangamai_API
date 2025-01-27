@@ -26,7 +26,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_Nursing _Nursing;
         public readonly I_Mrdmedicalcertificate _Mrdmedicalcertificate;
         public readonly I_CustomerInformation _CustomerInformation;
-        public readonly I_Mrdmedicalcertificate _Mrdmedicalcertificate;
+   
         public readonly I_RadiologyTemplateResult i_RadiologyTemplate;
         public readonly I_Administration _Administration;
         public readonly IPdfUtility _pdfUtility;
@@ -35,9 +35,9 @@ namespace HIMS.API.Controllers.Transaction
             public MRDController(I_Nursing I_Nursing, I_RadiologyTemplateResult i_Radiology,
                 I_Administration Administration, I_Mrdmedicalcertificate Mrdmedicalcertificate,
                  I_CustomerInformation I_CustomerInformation,
-                I_Administration Administration,
-                 I_Mrdmedicalcertificate Mrdmedicalcertificate,
-        I_CustomerInformation I_CustomerInformation,
+                
+                
+        
                 Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, 
                 IPdfUtility pdfUtility, IFileUtility fileUtility)
             {
@@ -47,7 +47,7 @@ namespace HIMS.API.Controllers.Transaction
             _hostingEnvironment = hostingEnvironment;
             this._Administration = Administration;
             this._Mrdmedicalcertificate = Mrdmedicalcertificate;
-            this._Mrdmedicalcertificate =Mrdmedicalcertificate;
+            
             _pdfUtility = pdfUtility;
                 _FileUtility = fileUtility;
             }
