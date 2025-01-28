@@ -115,7 +115,53 @@ namespace HIMS.Data.IPD
 
             return true;
         }
-       
+
+        public bool InsertIPDPackageBill(AddChargesParameters AddChargesParameters)
+        {
+            // add AddCharges
+            var outputId = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@ChargeID",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+            var dic = AddChargesParameters.SaveAddChargesParameters.ToDictionary();
+            dic.Remove("ChargeID");
+            dic.Remove("IsPackage");
+            if (AddChargesParameters.SaveAddChargesParameters.IsPackage)
+            {
+                dic.Add("IsPackage", 0);
+            }
+            else
+            {
+                dic.Add("IsPackage", 0);
+            }
+
+            var vChargesId = ExecNonQueryProcWithOutSaveChanges("m_insert_IPAddCharges_1", dic, outputId);
+
+
+           
+            if (AddChargesParameters.SaveAddChargesParameters.IsPackage)
+            {
+                foreach (var obj in AddChargesParameters.ChargesIPPackageInsert)
+                {
+                    if (AddChargesParameters.SaveAddChargesParameters.ServiceId == obj.PackageId)
+                    {
+                        var disc6 = obj.ToDictionary();
+                        disc6["PackageMainChargeID"] = vChargesId;
+                        ExecNonQueryProcWithOutSaveChanges("m_insert_IPChargesPackages_1", disc6);
+                    }
+                }
+            }
+
+            //commit transaction
+            _unitofWork.SaveChanges();
+
+            return true;
+        }
+
+
         public bool UpdateIPDPackageBill(AddChargesPara AddChargesPara)
         {
             // throw new NotImplementedException();
