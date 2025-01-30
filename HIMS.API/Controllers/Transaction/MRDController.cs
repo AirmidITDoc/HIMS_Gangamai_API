@@ -60,7 +60,7 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpPost("UpdatePatICDCode")]
-        public IActionResult UpdatePatICDCode(PatICDCodeParam PatICDCodeParam)
+        public IActionResult UpdatePatICDCode(PatICDCodeParams PatICDCodeParam)
         {
             var RPAP = _Administration.UpdatePatICDCode(PatICDCodeParam);
          

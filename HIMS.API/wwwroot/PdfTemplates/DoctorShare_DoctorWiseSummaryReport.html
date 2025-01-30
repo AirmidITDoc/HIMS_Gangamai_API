@@ -19,7 +19,7 @@
                     <table style="width: 100%; border-collapse: collapse;">
 
                         <tr style="font-size: 18px">
-                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>Doctor Wise Summary Report</b></td>
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>DOCTOR SHARE REPORT - SUMMARY</b></td>
                             <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                         </tr>
 
@@ -36,35 +36,67 @@
 
                     <tr style="font-size:18px;background-color: white;">
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                            SR.NO
+                            Sr.No
                         </td>
-                       
+
 
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
                             Doctor Name
                         </td>
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Group Name
+                        </td>
 
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                            Total Amount
+                            Net Amount
                         </td>
-                        <!--<td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                            LESS TDS
-                        </td>-->
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                            PAY AMOUNT
+                            Doctor Amount
                         </td>
-                       
+
+                        <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
+                            Hospital Amt
+                        </td>
+
                     </tr>
+                    <!--<table style="width: 100%; border-collapse: collapse;">
+                        <td style="padding: 6px;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="border-bottom: 1px solid #000; text-align: center; padding: 10px; font-size: 26px;">
+                                        Sr.No
+                                    </td>
+                                    <td style="border-bottom: 1px solid #000; text-align: center; padding: 10px; font-size: 26px;">
+                                        Doctor Name
+                                    </td>
+                                    <td style="border-bottom: 1px solid #000; text-align: center; padding: 10px; font-size: 26px;">
+                                        Group Name
+                                    </td>
+                                    <td style="border-bottom: 1px solid #000; text-align: center; padding: 10px; font-size: 26px;">Net Amount</td>
+                                    <td style="border-bottom: 1px solid #000; text-align: center; padding: 10px; font-size: 26px;">Doctor Amt</td>
+                                    <td style="border-bottom: 1px solid #000; text-align: center; padding: 10px; font-size: 26px;">Hospital Amt</td>
 
+                                </tr>-->
 
-                    {{Items}}
-                <tr style="border: 1px solid black; background-color: white">
+                                {{Items}}
+                                <tr>
+
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_NetAmount}}</td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_DocAmt}}</td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_HospitalAmt}}</td>
+                                </tr>
+                                <!--<tr style="border: 1px solid black; background-color: white">
 
 
 
 
                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                        
+                    </td>
+                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
                     </td>
 
                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
@@ -72,14 +104,17 @@
                     </td>
 
                     <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                        {{TotalAmt}}
+                        {{T_NetAmount}}
                     </td>
                     <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                        {{NetAmount}}
+                        {{T_DocAmt}}
                     </td>
-                   
+                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                        {{T_HospitalAmt}}
+                    </td>
 
-                </tr>
+
+                </tr>-->
                 </tbody>
             </table>
             </td>
