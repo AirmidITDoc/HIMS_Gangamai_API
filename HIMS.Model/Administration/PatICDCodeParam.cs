@@ -18,7 +18,7 @@ namespace HIMS.Model.Administration
     {
         public DeletePatICDCodeParamHeader DeletePatICDCodeParamHeader { get; set; }
         //public List<InsertPatICDCodeParamHeader> InsertPatICDCodeParamHeader { get; set; }
-        public List<UpdatePatICDCodeParamHeader> UpdatePatICDCodeParamHeader { get; set; }
+        public UpdatePatICDCodeParamHeader UpdatePatICDCodeParamHeader { get; set; }
         //public List<InsertPatICDCodeParamDetails> InsertPatICDCodeParamDetails { get; set; }
         public List<UpdatePatICDCodeParamDetails> UpdatePatICDCodeParamDetails { get; set; }
     }

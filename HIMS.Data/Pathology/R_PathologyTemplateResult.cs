@@ -225,8 +225,8 @@ namespace HIMS.Data.Pathology
                 //items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
 
                 items.Append("<td style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:5px;\">").Append(dr["ParameterName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"padding: 15px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:10px;\">").Append(dr["UnitName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"padding: 20px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-right:5px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:10px;\">").Append(dr["UnitName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-right:5px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
 
 
             }
