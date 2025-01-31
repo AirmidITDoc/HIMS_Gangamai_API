@@ -49,6 +49,7 @@ namespace HIMS.Data.Administration
 
             _unitofWork.SaveChanges();
 
+
             return true;
         }
 
@@ -85,13 +86,15 @@ namespace HIMS.Data.Administration
             // delete previous data from  table
             var vVisitId = PatICDCodeParam.DeletePatICDCodeParamHeader.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_delete_T_PatICDCode", vVisitId);
+            // throw new NotImplementedException();
+            var disc = PatICDCodeParam.UpdatePatICDCodeParamHeader.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("M_Update_T_PatICDCode_Header", disc);
 
-
-            foreach (var a in PatICDCodeParam.UpdatePatICDCodeParamHeader)
-            {
-                var disc1 = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("M_Update_T_PatICDCode_Header", disc1);
-            }
+            //foreach (var a in PatICDCodeParam.UpdatePatICDCodeParamHeader)
+            //{
+            //    var disc1 = a.ToDictionary();
+            //    ExecNonQueryProcWithOutSaveChanges("M_Update_T_PatICDCode_Header", disc1);
+            //}
             foreach (var a in PatICDCodeParam.UpdatePatICDCodeParamDetails)
             {
                 var disc2 = a.ToDictionary();
