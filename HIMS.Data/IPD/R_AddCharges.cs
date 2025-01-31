@@ -116,50 +116,167 @@ namespace HIMS.Data.IPD
             return true;
         }
 
+        //public bool InsertIPDPackageBill(AddChargesParameters AddChargesParameters)
+        //{
+        //    // add AddCharges
+        //    var outputId = new SqlParameter
+        //    {
+        //        SqlDbType = SqlDbType.BigInt,
+        //        ParameterName = "@ChargeID",
+        //        Value = 0,
+        //        Direction = ParameterDirection.Output
+        //    };
+        //    var dic = AddChargesParameters.SaveAddChargesParameters.ToDictionary();
+        //    dic.Remove("ChargeID");
+        //    dic.Remove("IsPackage");
+        //    if (AddChargesParameters.SaveAddChargesParameters.IsPackage)
+        //    {
+        //        dic.Add("IsPackage", 0);
+        //    }
+        //    else
+        //    {
+        //        dic.Add("IsPackage", 0);
+        //    }
+
+        //    var vChargesId = ExecNonQueryProcWithOutSaveChanges("m_insert_IPAddCharges_1", dic, outputId);
+
+
+           
+        //    if (AddChargesParameters.SaveAddChargesParameters.IsPackage)
+        //    {
+        //        foreach (var obj in AddChargesParameters.ChargesIPPackageInsert)
+        //        {
+        //            if (AddChargesParameters.SaveAddChargesParameters.ServiceId == obj.PackageId)
+        //            {
+        //                var disc6 = obj.ToDictionary();
+        //                disc6["PackageMainChargeID"] = vChargesId;
+        //                ExecNonQueryProcWithOutSaveChanges("m_insert_IPChargesPackages_1", disc6);
+        //            }
+        //        }
+        //    }
+
+        //    //commit transaction
+        //    _unitofWork.SaveChanges();
+
+        //    return true;
+        //}
         public bool InsertIPDPackageBill(AddChargesParameters AddChargesParameters)
+
         {
+
             // add AddCharges
+
             var outputId = new SqlParameter
+
             {
+
                 SqlDbType = SqlDbType.BigInt,
+
                 ParameterName = "@ChargeID",
+
                 Value = 0,
+
                 Direction = ParameterDirection.Output
+
             };
+
             var dic = AddChargesParameters.SaveAddChargesParameters.ToDictionary();
+
             dic.Remove("ChargeID");
+
             dic.Remove("IsPackage");
+
             if (AddChargesParameters.SaveAddChargesParameters.IsPackage)
+
             {
+
                 dic.Add("IsPackage", 0);
+
             }
+
             else
+
             {
+
                 dic.Add("IsPackage", 0);
+
             }
 
             var vChargesId = ExecNonQueryProcWithOutSaveChanges("m_insert_IPAddCharges_1", dic, outputId);
 
 
-           
-            if (AddChargesParameters.SaveAddChargesParameters.IsPackage)
+            if (AddChargesParameters.SaveAddChargesParameters.IsPathology)
+
             {
-                foreach (var obj in AddChargesParameters.ChargesIPPackageInsert)
-                {
-                    if (AddChargesParameters.SaveAddChargesParameters.ServiceId == obj.PackageId)
-                    {
-                        var disc6 = obj.ToDictionary();
-                        disc6["PackageMainChargeID"] = vChargesId;
-                        ExecNonQueryProcWithOutSaveChanges("m_insert_IPChargesPackages_1", disc6);
-                    }
-                }
+
+                Dictionary<string, Object> PathParams = new Dictionary<string, object>();
+
+                PathParams.Add("PathDate", AddChargesParameters.SaveAddChargesParameters.ChargesDate);
+
+                PathParams.Add("PathTime", AddChargesParameters.SaveAddChargesParameters.ChargeTime);
+
+                PathParams.Add("OPD_IPD_Type", AddChargesParameters.SaveAddChargesParameters.OPD_IPD_Type);
+
+                PathParams.Add("OPD_IPD_Id", AddChargesParameters.SaveAddChargesParameters.OPD_IPD_Id);
+
+                PathParams.Add("PathTestID", AddChargesParameters.SaveAddChargesParameters.ServiceId);
+
+                PathParams.Add("AddedBy", AddChargesParameters.SaveAddChargesParameters.AddedBy);
+
+                PathParams.Add("ChargeID", vChargesId);
+
+                PathParams.Add("IsCompleted", 0);
+
+                PathParams.Add("IsPrinted", 0);
+
+                PathParams.Add("IsSamplecollection", 0);
+
+                PathParams.Add("TestType", 0);
+
+                ExecNonQueryProcWithOutSaveChanges("m_insert_PathologyReportHeader_1", PathParams);
+
+            }
+
+            if (AddChargesParameters.SaveAddChargesParameters.IsRadiology)
+
+            {
+
+                Dictionary<string, Object> RadParams = new Dictionary<string, object>();
+
+                RadParams.Add("RadDate", AddChargesParameters.SaveAddChargesParameters.ChargesDate);
+
+                RadParams.Add("RadTime", AddChargesParameters.SaveAddChargesParameters.ChargeTime);
+
+                RadParams.Add("OPD_IPD_Type", AddChargesParameters.SaveAddChargesParameters.OPD_IPD_Type);
+
+                RadParams.Add("OPD_IPD_Id", AddChargesParameters.SaveAddChargesParameters.OPD_IPD_Id);
+
+                RadParams.Add("RadTestID", AddChargesParameters.SaveAddChargesParameters.ServiceId);
+
+                RadParams.Add("AddedBy", AddChargesParameters.SaveAddChargesParameters.AddedBy);
+
+                RadParams.Add("IsCancelled", 0);
+
+                RadParams.Add("ChargeID", vChargesId);
+
+                RadParams.Add("IsCompleted", 0);
+
+                RadParams.Add("IsPrinted", 0);
+
+                RadParams.Add("TestType", 0);
+
+                ExecNonQueryProcWithOutSaveChanges("m_insert_RadiologyReportHeader_1", RadParams);
+
             }
 
             //commit transaction
+
             _unitofWork.SaveChanges();
 
             return true;
+
         }
+
 
 
         public bool UpdateIPDPackageBill(AddChargesPara AddChargesPara)
