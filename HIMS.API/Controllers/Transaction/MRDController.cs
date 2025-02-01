@@ -55,14 +55,14 @@ namespace HIMS.API.Controllers.Transaction
         [HttpPost("InsertPatICDCode")]
         public IActionResult InsertPatICDCode(PatICDCodeParam PatICDCodeParam)
         {
-            var RPAP = _Administration.InsertPatICDCode(PatICDCodeParam);
+            var RPAP = _Mrdmedicalcertificate.InsertPatICDCode(PatICDCodeParam);
             return Ok(RPAP);
         }
 
         [HttpPost("UpdatePatICDCode")]
         public IActionResult UpdatePatICDCode(PatICDCodeParams PatICDCodeParam)
         {
-            var RPAP = _Administration.UpdatePatICDCode(PatICDCodeParam);
+            var RPAP = _Mrdmedicalcertificate.UpdatePatICDCode(PatICDCodeParam);
          
             
             return Ok(RPAP);

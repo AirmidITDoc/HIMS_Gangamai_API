@@ -1,7 +1,10 @@
 ﻿using HIMS.Common.Utility;
+using HIMS.Model.Administration;
 using HIMS.Model.IPD;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Text;
 
 namespace HIMS.Data.IPD
@@ -11,6 +14,73 @@ namespace HIMS.Data.IPD
         public R_Mrdmedicalcertificate(IUnitofWork unitofWork) : base(unitofWork)
         {
             //transaction and connection
+        }
+        public string InsertPatICDCode(PatICDCodeParam PatICDCodeParam)
+        {
+
+            var outputId1 = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@PatICDCodeId",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+
+            var outputId2 = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@DId",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+
+            // throw new NotImplementedException();
+            var disc = PatICDCodeParam.InsertPatICDCodeParamHeader.ToDictionary();
+            disc.Remove("PatICDCodeId");
+            var HId = ExecNonQueryProcWithOutSaveChanges("m_Insert_T_PatICDCode_Header", disc, outputId1);
+
+            foreach (var a in PatICDCodeParam.InsertPatICDCodeParamDetails)
+            {
+                var disc2 = a.ToDictionary();
+                disc2.Remove("DId");
+                disc["PatICDCodeId"] = HId;
+               var DId =ExecNonQueryProcWithOutSaveChanges("M_Insert_T_PatICDCode_Details", disc2, outputId2);
+            }
+
+
+            _unitofWork.SaveChanges();
+
+
+            return HId;
+        }
+
+
+
+        public bool UpdatePatICDCode(PatICDCodeParams PatICDCodeParam)
+        {
+
+            // delete previous data from  table
+            var vVisitId = PatICDCodeParam.DeletePatICDCodeParamHeader.ToDictionary();
+            vVisitId["HId"] = PatICDCodeParam.UpdatePatICDCodeParamDetails;
+            ExecNonQueryProcWithOutSaveChanges("m_delete_T_PatICDCode", vVisitId);
+            // throw new NotImplementedException();
+            var disc = PatICDCodeParam.UpdatePatICDCodeParamHeader.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("M_Update_T_PatICDCode_Header", disc);
+
+
+            foreach (var a in PatICDCodeParam.UpdatePatICDCodeParamDetails)
+            {
+                var disc2 = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("M_Update_T_PatICDCode_Details", disc2);
+            }
+            // update follow 
+
+
+            _unitofWork.SaveChanges();
+
+            return true;
         }
 
         public bool InsertMrdMedicolegalCertificate(MrdMedicolegalCertificateparam MrdMedicolegalCertificateparam)
