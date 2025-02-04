@@ -186,7 +186,21 @@ namespace HIMS.API.Controllers.Transaction
             this._PrescriptionTemplate = prescriptionTemplate;
             this._configuration = configuration;
         }
+        [HttpGet("view-INDOORCasepaper")]
+        public IActionResult ViewIndoorCasepaper(int AdmissionId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "INDOORAdmissionPaperNEW.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Admission.ViewAdmissionPaper(AdmissionId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPAdmission", "IPAdmission" + AdmissionId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpPost("InsertIPDPackageBill")]
         public IActionResult InsertIPDPackageBill(AddChargesParameters AddChargesParameters)
         {
