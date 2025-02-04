@@ -14,7 +14,7 @@ namespace HIMS.Model.Master.PersonalDetails
     public class AreaMasterInsert
     {
         public String AreaName { get; set; }
-       // public int TalukaId { get; set; }
+       public int TalukaId { get; set; }
 
         public int AddedBy { get; set; }
         public bool IsDeleted { get; set; }
@@ -26,7 +26,7 @@ namespace HIMS.Model.Master.PersonalDetails
 
         public int AreaId { get; set; }
         public String AreaName { get; set; }
-       // public int TalukaId { get; set; }
+        public int TalukaId { get; set; }
         public bool IsDeleted { get; set; }
         public int UpdatedBy { get; set; }
     }
