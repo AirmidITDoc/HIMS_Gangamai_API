@@ -226,7 +226,7 @@ namespace HIMS.API.Controllers.Transaction
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReportDischargeType.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _IPReports.ViewIPDDischargetypewise(DoctorId, FromDate, ToDate, DischargeTypeId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _IPReports.ViewIPDischargeTypeReport(DoctorId, FromDate, ToDate, DischargeTypeId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPReportDischargeType", "IPReportDischargeType" + DoctorId, Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
