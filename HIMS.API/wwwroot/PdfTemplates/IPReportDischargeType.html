@@ -7,13 +7,11 @@
     <title>Document</title>
 </head>
 
-<body>
-    <div class="main-content-wrapper">
-        <div class="invoice-box" style="max-width: 1000px; margin: 0 auto; font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
-            <table style="width: 100%;line-height: inherit;text-align: left;">
-
-                {{NewHeader}}
-
+<div class="main-content-wrapper">
+    <div class="invoice-box" style="max-width: 1000px; margin: 0 auto; font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+        <table style="width: 100%;line-height: inherit;text-align: left;">
+            {{NewHeader}}
+          
                 <tr class="title-date-row">
                     <td style="padding: 6px;">
                         <table style="width: 100%; border-collapse: collapse;">
@@ -33,18 +31,18 @@
                                 <td style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</td>
                                 <td style="border: 1px solid #d4c3c3; padding: 6px; width: 8%;">Admission Date</td>
                                 <td style="border: 1px solid #d4c3c3; padding: 6px; width: 8%;">Discharge Date</td>
-                                <!--<td style="border: 1px solid #d4c3c3; padding: 6px;">DischargeType</td>-->
+                                <td style="border: 1px solid #d4c3c3; padding: 6px;">DischargeType</td>
                                 <td style="border: 1px solid #d4c3c3; padding: 6px;">IPDNo</td>
-                                <td style="border: 1px solid #d4c3c3; padding: 6px; width: 12%;">Patient Name</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px; width: 13%;">Patient Name</td>
                                 <!--<td style="border: 1px solid #d4c3c3; padding: 6px;">Mobile No</td>-->
 
                                 <td style="border: 1px solid #d4c3c3; padding: 6px; width: 10%;">DoctorName</td>
                                 <td style="border: 1px solid #d4c3c3; padding: 6px; width: 10%;">Ref Doctor Name </td>
                                 <!--<td style="border: 1px solid #d4c3c3; padding: 6px;">Department</td>-->
-                                <td style="border: 1px solid #d4c3c3; padding: 6px; width: 15%;">Diagnosis</td>
-                                <td style="border: 1px solid #d4c3c3; padding: 6px; width: 15%;">Proc Name1</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px; width: 17%;">Diagnosis</td>
+                                <!--<td style="border: 1px solid #d4c3c3; padding: 6px; width: 15%;">Proc Name1</td>
                                 <td style="border: 1px solid #d4c3c3; padding: 6px; width: 15%;">Proc Name2 </td>
-                                <td style="border: 1px solid #d4c3c3; padding: 6px; width: 15%;">Proc Name3</td>
+                                <td style="border: 1px solid #d4c3c3; padding: 6px; width: 15%;">Proc Name3</td>-->
                                 <td style="border: 1px solid #d4c3c3; padding: 6px; width: 7%;">Net Amt</td>
 
 
@@ -60,8 +58,8 @@
                                     <!--<td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
                                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
                                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>-->
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
-                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                    <!--<td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
+                                    <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>-->
                                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
                                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
                                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;"></td>
@@ -74,6 +72,8 @@
                                     <td style="border:1px solid #000;font-weight:700;text-align:right;vertical-align:middle;padding:5px 5px;">{{T_NetAmount}}</td>
                                 </tr>
                             </tbody>
+
+
                         </table>
                     </td>
                 </tr>
@@ -82,8 +82,8 @@
                     <td>{{T_Count}}</td>
                 </tr>-->
             </table>
-        </div>
     </div>
+</div>
 </body>
 </html>
 

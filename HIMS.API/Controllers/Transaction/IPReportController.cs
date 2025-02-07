@@ -189,7 +189,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPReport_BillSummaryReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPReports.ViewBillSummaryReport(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "BillSummaryReport", "BillSummaryReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "BillSummaryReport", "BillSummaryReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
