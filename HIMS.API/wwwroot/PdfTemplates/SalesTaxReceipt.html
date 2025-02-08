@@ -17,13 +17,14 @@
             <tbody>
                 <tr>
 
-                    <td colspan="6"
-                        style="vertical-align: top;border: 1px solid black;width:40%; padding:0 10px 10px;font-size:10px;">
-                        <span>
-                            <img src="{{BaseUrl}}/PdfTemplates/jss-hospitals.jpeg" alt="logo" width="180">
 
-                        </span>
-                        <span style="margin-top:0;margin-bottom:5px;color: #e26d14;text-transform: uppercase;font-size: 10px;">
+                    <td colspan="6"
+                        style="vertical-align: top; border: 1px solid black; width: 40%; padding: 0 10px 10px; font-size: 16px; font-weight: bold;">
+                        <!--<span>
+                <img src="{{BaseUrl}}/PdfTemplates/jss-hospitals.jpeg" alt="logo" width="180">
+
+            </span>-->
+                        <span style="margin-top:0;margin-bottom:5px;text-transform: uppercase;font-size: 16px;">
                             {{StoreName}}
                         </span>
 
@@ -37,16 +38,33 @@
                         </div>
                     </td>
                     <td colspan="4" style="border: 1px solid black;width: 33.33%;vertical-align: top; padding: 0;">
-                        <table style="width: 100%;border-collapse: collapse;font-size:10px;">
+                        <table style="width: 100%;border-collapse: collapse;font-size:14px;">
 
-                            <td style="vertical-align: top;padding:0 10px 10px">
-                                Customer Id : {{RegNo}} <br>
-                                Customer Name: {{PatientName}} <br>
-                                Age & Gen: - <span style="margin-left: 10px;">
-                                    Mob:
-                                    {{ExtMobileNo}}
-                                </span><br>
-                                Doctor Name: {{DoctorName}}
+                            <td style=" vertical-align: top; padding: 0 10px 10px">
+                                <span style="font-weight: bold;">
+                                    Customer Id :
+                                </span>
+                                <span>{{RegNo}} </span>  <br>
+                                <span style="font-weight: bold;">
+                                    Customer Name:
+                                </span>
+                                <span>{{PatientName}} </span>  <br>
+
+                                                               <span style="font-weight: bold; margin-left: 10px;">
+                                                                   Age & Gen:
+                                                               </span>
+                                    <span style="font-weight: bold;">
+
+                                        Mob:
+                                    </span>
+                                    <span>
+                                        {{ExtMobileNo}}
+                                    </span><br>
+                                    <span style="font-weight: bold;">
+                                        Doctor Name:
+                                    </span>
+                                    <span>{{DoctorName}} </span>
+
                             </td>
 
                         </table>
@@ -56,40 +74,77 @@
                 </tr>
                 <tr>
                     <td colspan="4"
-                        style="vertical-align: top;border: 1px solid black;width:40%; padding:0 10px 10px;font-size:10px;">
-                        <div>GST No. {{GSTIN}}</div>
+                        style=" vertical-align: top; border: 1px solid black; width: 40%; padding: 0 10px 10px; font-size: 14px;">
+                        <div> <span style="font-weight: bold;">
+    GST No.
+</span>
+                                  <span>{{GSTIN}}   </span>
+                               </div>
                         <div>
-                            <span style="margin-right: 20px;">D.L.No. {{DL_NO}}</span>
-                            <!-- <span>D.L.No. {{DL_NO}}</span> -->
+                            <span style="font-weight: bold; margin-right: 20px;">D.L.No. </span>
+                             <span>D.L.No. {{DL_NO}}</span>
                         </div>
                     </td>
 
-                    <td colspan="6" style="border: 1px solid black;width: 33.33%;vertical-align: top; padding: 0;">
-                        <table style="width: 100%;font-size:10px;">
+                    <td colspan="6" style="border: 1px solid black; width: 33.33%; vertical-align: top; padding: 0;">
+                        <table style="width: 100%;font-size:14px;">
                             <!-- <tr> -->
                             <td style="vertical-align: top;padding:0 10px 10px">
-                                Bill No: {{SalesNo}} <span style="margin-left: 10px;">
-                                    Bill
-                                    Date:{{Date}}
+                                <span style="font-weight: bold; margin-left: 10px;">
+                                    Bill No:
+                                </span>
+                                <span>
+                                    {{SalesNo}}
+                                </span>
+                                <span style="font-weight: bold;">
+                                    Bill Date:
+                                </span>
+                                <span>
+                                    {{Date}}
                                 </span><br>
-                                Mode of Payment : {{PayMode}} <br>
+                                <span style="font-weight: bold;">
+                                    Mode of Payment :
+                                </span>
+                                <span>
+                                    {{PayMode}}
+                                </span><br>
                             </td>
 
                         </table>
                     </td>
                 </tr>
 
-                <tr>
-                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Sr.No</td>
-                    <td style="border: 1px solid #d4c3c3; padding: 6px;">HSN</td>
-                    <td style="border: 1px solid #d4c3c3; padding: 6px;">MFR</td>
-                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Product Name</td>
-                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Pack</td>
-                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Batch No.</td>
-                    <td style="border: 1px solid #d4c3c3; padding: 6px;">ExpDate</td>
-                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Qty</td>
-                    <td style="border: 1px solid #d4c3c3; padding: 6px;">MRP</td>
-                    <td style="border: 1px solid #d4c3c3; padding: 6px;">Amount</td>
+                <tr style="font-size:13px;">
+                    <td style="border: 1px solid black;font-weight:bold;text-align:center;vertical-align: middle;padding:5px 5px;width:5%;">
+                        Sr No.
+                    </td>
+                    <td style="border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; padding: 5px 5px; width: 10%;">
+                        HSN
+                    </td>
+                    <td style="border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; padding: 5px 5px; width: 7%;">
+                        MFR
+                    </td>
+                    <td style="border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; padding: 5px 5px; width: 30%;">
+                        Product Name
+                    </td>
+                    <td style="border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; padding: 5px 5px; width: 5%;">
+                        Pack
+                    </td>
+                    <td style="border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; padding: 5px 5px; width: 10%;">
+                        Batch No.
+                    </td>
+                    <td style="border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; padding: 5px 5px; width: 15%;">
+                        ExpDate
+                    </td>
+                    <td style="border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; padding: 5px 5px; width: 10%;">
+                        Qty
+                    </td>
+                    <td style="border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; padding: 5px 5px; width: 20%;">
+                        MRP
+                    </td>
+                    <td style="border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; padding: 5px 5px; width: 20%;">
+                        Amount
+                    </td>
                 </tr>
                 {{Items}}
 
@@ -115,7 +170,7 @@
                     <!-- <td colspan="5" style="border: 1px solid black;vertical-align: top;padding: 0;">
         </td> -->
                     <td colspan="9" style="border: 1px solid black;vertical-align: top;
-                padding: 0 10px 10px;width: 300px;font-size:10px;">
+                padding: 0 10px 10px;width: 300px;font-size:14px;">
                         <div style="display:flex;align-items: center;">
                             <span style="width:90px;display:inline-block;">Sub Total</span>
                             <span style="margin:0 5px">:</span>
@@ -164,7 +219,7 @@
             Total Invoice Value in words:
         </td>
     </tr> -->
-                <tr style="font-size: 10px;">
+                <tr style="font-size: 14px;">
                     <td colspan="3">
                         Billed By: {{UserName}}
                     </td>
@@ -172,8 +227,8 @@
                         This is Computer generated invoice hence doesn’t require signature
                     </td>
                 </tr>
-                <tr style="font-size: 10px;">
-                   
+                <tr style="font-size: 14px;">
+
                     <td colspan="10" style="text-align: left;">
                         Medicines once sold will not be taken back or exchanged
                     </td>
