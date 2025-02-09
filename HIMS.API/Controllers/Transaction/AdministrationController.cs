@@ -15,8 +15,8 @@ namespace HIMS.API.Controllers.Transaction
 {
 
     [ApiController]
-
     [Route("api/[controller]")]
+
     public class AdministrationController : Controller
     {
         public readonly I_UserChangePassword _UserChangePassword;
