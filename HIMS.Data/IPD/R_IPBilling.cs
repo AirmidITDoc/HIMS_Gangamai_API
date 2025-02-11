@@ -140,6 +140,14 @@ namespace HIMS.Data.IPD
             _unitofWork.SaveChanges();
             return true;
         }
+          public bool PhBillDiscountAfterUpdate(PhBillDiscountAfter PhBillDiscountAfter)
+        {
+            var disc1 = PhBillDiscountAfter.PhBillDiscountAfterUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_PhBillDiscountAfter", disc1);
+
+            _unitofWork.SaveChanges();
+            return true;
+        }
 
 
             public string ViewIPBillDatewiseReceipt(int BillNo, string htmlFilePath, string htmlHeader)

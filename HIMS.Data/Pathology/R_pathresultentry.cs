@@ -282,6 +282,7 @@ namespace HIMS.Data.Pathology
             string previousLabel = "", previoussubLabel = "";
 
             rows = Bills.Rows.Count;
+
                 foreach (DataRow dr in Bills.Rows)
             {
 
