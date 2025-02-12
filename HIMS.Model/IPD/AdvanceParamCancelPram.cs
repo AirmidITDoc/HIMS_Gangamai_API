@@ -18,7 +18,8 @@ namespace HIMS.Model.IPD
        
         public int AdvanceId { get; set; }
         public int AdvanceDetailId { get; set; }
-      
+        public int UserId { get; set; }
+        public float AdvanceAmount { get; set; }
 
     }
 
