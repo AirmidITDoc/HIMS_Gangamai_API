@@ -22,7 +22,7 @@ namespace HIMS.Data.IPD
 
 
             var disc3 = AdvanceParamCancelPram.AdvanceParamCancelPrams.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("UpdateAdvanceCancel", disc3);
+            ExecNonQueryProcWithOutSaveChanges("m_UpdateAdvanceCancel", disc3);
             _unitofWork.SaveChanges();
             return true;
         }
