@@ -16,6 +16,20 @@ namespace HIMS.Data.IPD
             //transaction and connection is open when you inject unitofwork
         }
 
+        public bool Cancel(AdvanceParamCancelPram AdvanceParamCancelPram)
+        {
+            //  throw new NotImplementedException();
+
+
+            var disc3 = AdvanceParamCancelPram.AdvanceParamCancelPrams.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_UpdateAdvanceCancel", disc3);
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
+
+
+
         private static String[] units = { "Zero", "One", "Two", "Three",
     "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven",
     "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen",

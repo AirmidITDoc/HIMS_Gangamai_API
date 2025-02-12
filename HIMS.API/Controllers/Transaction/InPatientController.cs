@@ -187,6 +187,38 @@ namespace HIMS.API.Controllers.Transaction
             this._configuration = configuration;
         }
 
+        [HttpPost("UpdateAdvanceCancel")]
+
+        public IActionResult Cancel(AdvanceParamCancelPram AdvanceParamCancelPram)
+        {
+            var IPE = _IPAdvance.Cancel(AdvanceParamCancelPram);
+            return Ok(IPE);
+
+        }
+        [HttpPost("Update_PhBillDiscountAfter")]
+
+        public IActionResult PhBillDiscountAfterUpdate(PhBillDiscountAfter PhBillDiscountAfter)
+        {
+            var IP = _IPBilling.PhBillDiscountAfterUpdate(PhBillDiscountAfter);
+            return Ok(IP);
+        }
+
+
+        [HttpGet("view-INDOORCasepaper")]
+        public IActionResult ViewIndoorCasepaper(int AdmissionId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "INDOORAdmissionPaperNEW.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Admission.ViewAdmissionPaper(AdmissionId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPAdmission", "IPAdmission" + AdmissionId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            // write logic for send pdf in whatsapp
+
+
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpPost("InsertIPDPackageBill")]
         public IActionResult InsertIPDPackageBill(AddChargesParameters AddChargesParameters)
         {
@@ -444,9 +476,34 @@ namespace HIMS.API.Controllers.Transaction
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+        [HttpGet("view-DischargSummaryWithouHeader")]
+        public IActionResult ViewIPDischargesummaryWithoutHeader(int AdmissionID)
+        {
 
 
-       
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPDischargeSummaryWithoutHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPDDischargeSummary.ViewDischargeSummaryold(AdmissionID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDischargeSummary", "IPDischargeSummary" + AdmissionID.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpGet("view-NewDischargSummaryTemplateWithouHeader")]
+        public IActionResult viewNewDischargSummaryTemplateWithouHeader(int AdmissionID)
+        {
+
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPDischargesummaryTemplateWithoutHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPDDischargeSummary.ViewDischargeSummaryTemplateNew(AdmissionID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDischargeSummaryTemplate", "IPDischargeSummaryTemplate" + AdmissionID.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+
+        }
+
+
+
         //[HttpGet("view-DischargSummaryTemplate")]
         //public IActionResult viewDischargSummaryTemplate(int AdmissionID)
         //{

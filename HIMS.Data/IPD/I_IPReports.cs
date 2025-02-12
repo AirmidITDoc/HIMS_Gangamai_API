@@ -53,7 +53,7 @@ namespace HIMS.Data.IPD
 
         string ViewCurrentrefadmittedlist(int DoctorId, string htmlFilePath, string HeaderName);
 
-        string ViewIPDDischargetypewise(int DoctorId, DateTime FromDate, DateTime ToDate,int DischargeTypeId, string htmlFilePath, string HeaderName);
+        string ViewIPDischargeTypeReport(int DoctorId, DateTime FromDate, DateTime ToDate,int DischargeTypeId, string htmlFilePath, string HeaderName);
 
 
         string ViewOPToIPConvertedListWithServiceAvailed(DateTime FromDate, DateTime ToDate, string htmlFilePath, string HeaderName);

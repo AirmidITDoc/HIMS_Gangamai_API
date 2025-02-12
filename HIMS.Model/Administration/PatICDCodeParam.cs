@@ -25,8 +25,8 @@ namespace HIMS.Model.Administration
 
     public class DeletePatICDCodeParamHeader
     {
-        public int PatICDCodeId { get; set; }
-        ////public int MainICDCdeId { get; set; }
+        public int HId { get; set; }
+       
 
 
 

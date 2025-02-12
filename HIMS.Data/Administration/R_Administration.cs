@@ -19,6 +19,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Text;
+using System.Security.Cryptography;
+using HIMS.Model.Pharmacy;
 
 
 namespace HIMS.Data.Administration
@@ -30,84 +32,7 @@ namespace HIMS.Data.Administration
         {
 
         }
-        public bool InsertPatICDCode(PatICDCodeParam PatICDCodeParam)
-        {
-
-          
-
-
-            // throw new NotImplementedException();
-            var disc = PatICDCodeParam.InsertPatICDCodeParamHeader.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_Insert_T_PatICDCode_Header", disc);
-
-            foreach (var a in PatICDCodeParam.InsertPatICDCodeParamDetails)
-            {
-                var disc2 = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("M_Insert_T_PatICDCode_Details", disc2);
-            }
-         
-
-            _unitofWork.SaveChanges();
-
-
-            return true;
-        }
-
-        //public bool InsertPatICDCode(PatICDCodeParam PatICDCodeParam)
-        //{
-        //    // throw new NotImplementedException();
-        //    var disc = PatICDCodeParam.InsertPatICDCodeParamHeader.ToDictionary();
-        //    ExecNonQueryProcWithOutSaveChanges("m_Insert_T_PatICDCode_Header", disc);
-
-        //    var disc1 = PatICDCodeParam.InsertPatICDCodeParamDetails.ToDictionary();
-        //    ExecNonQueryProcWithOutSaveChanges("M_Insert_T_PatICDCode_Details", disc1);
-        //    //commit transaction
-        //    _unitofWork.SaveChanges();
-        //    return true;
-
-        //}
-
-        //public bool UpdatePatICDCode(PatICDCodeParam PatICDCodeParam)
-        //{
-        //    // throw new NotImplementedException();
-        //    var disc = PatICDCodeParam.UpdatePatICDCodeParamHeader.ToDictionary();
-        //    ExecNonQueryProcWithOutSaveChanges("M_Update_T_PatICDCode_Header", disc);
-
-        //    var disc1 = PatICDCodeParam.UpdatePatICDCodeParamDetails.ToDictionary();
-        //    ExecNonQueryProcWithOutSaveChanges("M_Update_T_PatICDCode_Details", disc1);
-        //    //commit transaction
-        //    _unitofWork.SaveChanges();
-        //    return true;
-
-        //}
-        public bool UpdatePatICDCode(PatICDCodeParams PatICDCodeParam)
-        {
-
-            // delete previous data from  table
-            var vVisitId = PatICDCodeParam.DeletePatICDCodeParamHeader.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_delete_T_PatICDCode", vVisitId);
-            // throw new NotImplementedException();
-            var disc = PatICDCodeParam.UpdatePatICDCodeParamHeader.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("M_Update_T_PatICDCode_Header", disc);
-
-            //foreach (var a in PatICDCodeParam.UpdatePatICDCodeParamHeader)
-            //{
-            //    var disc1 = a.ToDictionary();
-            //    ExecNonQueryProcWithOutSaveChanges("M_Update_T_PatICDCode_Header", disc1);
-            //}
-            foreach (var a in PatICDCodeParam.UpdatePatICDCodeParamDetails)
-            {
-                var disc2 = a.ToDictionary();
-                ExecNonQueryProcWithOutSaveChanges("M_Update_T_PatICDCode_Details", disc2);
-            }
-            // update follow 
-          
-
-            _unitofWork.SaveChanges();
-
-            return true;
-        }
-
+      
 
         public bool SaveNursingWeight(NursingWeightParam NursingWeightParam)
         {

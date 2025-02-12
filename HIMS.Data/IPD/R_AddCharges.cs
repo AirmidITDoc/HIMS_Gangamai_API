@@ -184,23 +184,9 @@ namespace HIMS.Data.IPD
 
             dic.Remove("ChargeID");
 
-            dic.Remove("IsPackage");
+           
 
-            if (AddChargesParameters.SaveAddChargesParameters.IsPackage)
-
-            {
-
-                dic.Add("IsPackage", 0);
-
-            }
-
-            else
-
-            {
-
-                dic.Add("IsPackage", 0);
-
-            }
+           
 
             var vChargesId = ExecNonQueryProcWithOutSaveChanges("m_insert_IPAddCharges_1", dic, outputId);
 
