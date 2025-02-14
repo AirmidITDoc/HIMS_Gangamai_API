@@ -34,5 +34,6 @@ namespace HIMS.Model.IPD
         public int Price { get; set; }
         public bool IsStatus { get; set; }
         public bool IsOnFileTest { get; set; }
+        public int DoctorId { get; set; }
     }
 }

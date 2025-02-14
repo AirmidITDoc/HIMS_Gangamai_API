@@ -420,7 +420,7 @@ namespace HIMS.Data.IPD
 
 
             html = html.Replace("{{chkInvestigationflag}}", Bills.GetColValue("Investigation").ConvertToString() != "" ? "table-row" : "none");
-            //
+            
             html = html.Replace("{{chkClinicalconditionflag}}", Bills.GetColValue("ClinicalConditionOnAdmisssion").ConvertToString() != "" ? "table-row" : "none");
 
 
@@ -469,6 +469,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{NewHeader}}", htmlHeader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
+
 
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
@@ -566,6 +567,10 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{chkHistoryflag}}", Bills.GetColValue("History").ConvertToString() != "" ? "table-row" : "none");
 
             html = html.Replace("{{chkHistoryflag}}", Bills.GetColValue("History").ConvertToString() != "" ? "block" : "table-row");
+
+            html = html.Replace("{{chkRadiologyflag}}", Bills.GetColValue("Radiology").ConvertToString() != "" ? "table-row" : "none");
+
+            html = html.Replace("{{chkRadiologyflag}}", Bills.GetColValue("Radiology").ConvertToString() != "" ? "block" : "table-row");
 
 
 

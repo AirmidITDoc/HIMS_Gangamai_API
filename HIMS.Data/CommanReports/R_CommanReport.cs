@@ -335,6 +335,7 @@ namespace HIMS.Data.Opd
                 }
 
 
+
             }
             T_AddBillBillAmount = G_BillBillAmount.ConvertToDouble() + G_AdvBillAmount.ConvertToDouble();
             T_AddBillCashPayAmount = G_OPCashPayAmount.ConvertToDouble()+ G_BillCashPayAmount.ConvertToDouble() + G_AdvCashPayAmount.ConvertToDouble();
@@ -344,27 +345,27 @@ namespace HIMS.Data.Opd
             T_AddBillPayTMAmount = G_OPPayTMAmount.ConvertToDouble()+ G_BillPayTMAmount.ConvertToDouble() + G_AdvPayTMAmount.ConvertToDouble();
             T_AddBillrefundBillAmount = G_OPPayTMAmount.ConvertToDouble()+ G_RefundBillAmount.ConvertToDouble() + G_RefundAdvBillAmount.ConvertToDouble();
 
-            T_AddBillOPrefundCashPayAmount = G_OPRefundCashPayAmount.ConvertToDouble() + G_RefundAdvCashAmount.ConvertToDouble();
-            T_AddBillOPrefundChequePayAmount = G_OPRefundChequePayAmount.ConvertToDouble() + G_RefundAdvChequeAmount.ConvertToDouble();
-            T_AddBillOPrefundCardPayAmount = G_OPRefundCardPayAmount.ConvertToDouble() + G_RefundAdvCardAmount.ConvertToDouble();
-            T_AddBillOPrefundNEFTPayAmount = G_OPRefundNEFTPayAmount.ConvertToDouble() + G_RefundAdvNEFTPayAmount.ConvertToDouble();
-            T_AddBillOPrefundPayTMAmount = G_OPRefundPayTMAmount.ConvertToDouble() + G_RefundAdvPayTMAmount.ConvertToDouble();
+            //T_AddBillOPrefundCashPayAmount = G_OPRefundCashPayAmount.ConvertToDouble() + G_RefundAdvCashAmount.ConvertToDouble();
+            //T_AddBillOPrefundChequePayAmount = G_OPRefundChequePayAmount.ConvertToDouble() + G_RefundAdvChequeAmount.ConvertToDouble();
+            //T_AddBillOPrefundCardPayAmount = G_OPRefundCardPayAmount.ConvertToDouble() + G_RefundAdvCardAmount.ConvertToDouble();
+            //T_AddBillOPrefundNEFTPayAmount = G_OPRefundNEFTPayAmount.ConvertToDouble() + G_RefundAdvNEFTPayAmount.ConvertToDouble();
+            //T_AddBillOPrefundPayTMAmount = G_OPRefundPayTMAmount.ConvertToDouble() + G_RefundAdvPayTMAmount.ConvertToDouble();
 
 
-            T_AddBillrefundCashPayAmount = G_RefundCashPayAmount.ConvertToDouble() + G_RefundAdvCashAmount.ConvertToDouble();
-            T_AddBillrefundChequePayAmount = G_RefundChequePayAmount.ConvertToDouble() + G_RefundAdvChequeAmount.ConvertToDouble();
-            T_AddBillrefundCardPayAmount = G_RefundCardPayAmount.ConvertToDouble() + G_RefundAdvCardAmount.ConvertToDouble();
-            T_AddBillrefundNEFTPayAmount = G_RefundNEFTPayAmount.ConvertToDouble() + G_RefundAdvNEFTPayAmount.ConvertToDouble();
-            T_AddBillrefundPayTMAmount = G_RefundPayTMAmount.ConvertToDouble() + G_RefundAdvPayTMAmount.ConvertToDouble();
+            T_AddBillrefundCashPayAmount = G_RefundCashPayAmount.ConvertToDouble() + G_RefundAdvCashAmount.ConvertToDouble() + G_OPRefundCashPayAmount.ConvertToDouble();
+            T_AddBillrefundChequePayAmount = G_RefundChequePayAmount.ConvertToDouble() + G_RefundAdvChequeAmount.ConvertToDouble() + G_OPRefundChequePayAmount.ConvertToDouble();
+            T_AddBillrefundCardPayAmount = G_RefundCardPayAmount.ConvertToDouble() + G_RefundAdvCardAmount.ConvertToDouble() + G_OPRefundCardPayAmount.ConvertToDouble();
+            T_AddBillrefundNEFTPayAmount = G_RefundNEFTPayAmount.ConvertToDouble() + G_RefundAdvNEFTPayAmount.ConvertToDouble() + G_OPRefundNEFTPayAmount.ConvertToDouble();
+            T_AddBillrefundPayTMAmount = G_RefundPayTMAmount.ConvertToDouble() + G_RefundAdvPayTMAmount.ConvertToDouble() + G_OPRefundPayTMAmount.ConvertToDouble();
 
-            T_FinalBillAmount = T_AddBillBillAmount.ConvertToDouble() - T_AddBillrefundBillAmount.ConvertToDouble();
+            //T_FinalBillAmount = T_AddBillBillAmount.ConvertToDouble() - T_AddBillrefundBillAmount.ConvertToDouble();
             T_FinalCashPayAmount = T_AddBillCashPayAmount.ConvertToDouble() - T_AddBillrefundCashPayAmount.ConvertToDouble();
             //T_FinalChequePayAmount = T_AddBillChequePayAmount.ConvertToDouble() - T_AddBillrefundChequePayAmount.ConvertToDouble();
             T_FinalCardPayAmount = T_AddBillCardPayAmount.ConvertToDouble() - T_AddBillrefundCardPayAmount.ConvertToDouble();
             T_FinalChequePayAmount = T_AddBillChequePayAmount.ConvertToDouble() - T_AddBillrefundChequePayAmount.ConvertToDouble();
             T_FinalNEFTPayAmount = T_AddBillNEFTPayAmount.ConvertToDouble() - T_AddBillrefundNEFTPayAmount.ConvertToDouble();
             T_FinalPayTMAmount = T_AddBillPayTMAmount.ConvertToDouble() - T_AddBillrefundPayTMAmount.ConvertToDouble();
-          
+         
             T_OPAmount = G_OPCashPayAmount.ConvertToDouble() + G_OPChequePayAmount.ConvertToDouble() + G_OPCardPayAmount.ConvertToDouble() + G_OPNEFTPayAmount.ConvertToDouble() + G_OPPayTMAmount.ConvertToDouble();
             T_IPAmount = G_BillCashPayAmount.ConvertToDouble() + G_BillChequePayAmount.ConvertToDouble() + G_BillCardPayAmount.ConvertToDouble() + G_BillNEFTPayAmount.ConvertToDouble() + G_BillPayTMAmount.ConvertToDouble();
             T_IPAdvanceAmount = G_AdvCashPayAmount.ConvertToDouble() + G_AdvChequePayAmount.ConvertToDouble() + G_AdvCardPayAmount.ConvertToDouble() + G_AdvNEFTPayAmount.ConvertToDouble() + G_AdvPayTMAmount.ConvertToDouble() ;
@@ -376,6 +377,7 @@ namespace HIMS.Data.Opd
 
             TotalCollection = T_FinalCashPayAmount.ConvertToDouble() + T_FinalCardPayAmount.ConvertToDouble() + T_FinalChequePayAmount.ConvertToDouble() + T_FinalNEFTPayAmount.ConvertToDouble() + T_FinalPayTMAmount.ConvertToDouble();
 
+            //TotalCollection = TotalCollection.ConvertToDouble() - (T_OPRefundbillAmount.ConvertToDouble() + T_IPRefundbillAmount.ConvertToDouble());
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
@@ -383,6 +385,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{TotalCardpay}}", T_CardPayAmount.To2DecimalPlace());
             html = html.Replace("{{TotalChequepay}}", T_ChequePayAmount.To2DecimalPlace());
             html = html.Replace("{{TotalNEFTPayAmount}}", T_NEFTPayAmount.To2DecimalPlace());
+
             html = html.Replace("{{TotalPayTMAmount}}", T_PayTMAmount.To2DecimalPlace());
 
             html = html.Replace("{{TotalBalanceAmt}}", T_BalanceAmt.To2DecimalPlace());
