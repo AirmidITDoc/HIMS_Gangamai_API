@@ -100,7 +100,7 @@
             para[3] = new SqlParameter("@To_Dt", To_Dt) { DbType = DbType.DateTime };
             para[4] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
 
-            var Bills = GetDataTableProc("Retrieve_DoctorShareList", para);
+            var Bills = GetDataTableProc("m_Rtrv_DoctorShareDetail", para);
 
             string html = File.ReadAllText(htmlFilePath);
 
@@ -110,7 +110,7 @@
 
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
-            double T_Count = 0, NetAmount = 0, T_NetAmount = 0, DocAmt = 0;
+            double T_Count = 0, NetAmount = 0, T_NetAmount = 0, DocAmt = 0, T_DocAmt = 0 , HospitalAmt = 0, T_HospitalAmt = 0;
 
             string previousPatientType = "";
             string previousDoctorName = "";
@@ -128,8 +128,12 @@
                     // If there's an existing group, close it and insert total
                     if (previousPatientType != "" && previousDoctorName != "")
                     {
-                        items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='8' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total Amt</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
-                             .Append(NetAmount.ToString("0.00")).Append("</td></tr>");
+                        items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;font-size:20px;\"> Total Amt</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
+                        .Append(NetAmount.ToString("0.00")).Append("</td>");
+                        items.Append("<td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
+                            .Append(DocAmt.ToString("0.00")).Append("</td>");
+                        items.Append("<td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
+                            .Append(HospitalAmt.ToString("0.00")).Append("</td></tr>");
                     }
 
                     // Reset the net amount for the new group
@@ -155,27 +159,41 @@
                      .Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>")
                      .Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>")
                      .Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>")
-                     .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetPayableAmt"].ConvertToDouble().ToString("0.00")).Append("</td>")
-                     .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalBillAmount"].ConvertToDouble().ToString("0.00")).Append("</td></tr>");
+                     .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetAmount"].ConvertToDouble().ToString("0.00")).Append("</td>")
+                      .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DocAmt"].ConvertToDouble().ToString("0.00")).Append("</td>")
+                      .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["HospitalAmt"].ConvertToDouble().ToString("0.00")).Append("</td></tr>");
+                     //.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalBillAmount"].ConvertToDouble().ToString("0.00")).Append("</td></tr>");
 
                 // Update NetAmount for the current group
-                NetAmount += dr["NetPayableAmt"].ConvertToDouble();
+                NetAmount += dr["NetAmount"].ConvertToDouble();
+                T_NetAmount += dr["NetAmount"].ConvertToDouble();
+                T_DocAmt += dr["DocAmt"].ConvertToDouble();
+                T_HospitalAmt += dr["HospitalAmt"].ConvertToDouble();
+                      DocAmt += dr["DocAmt"].ConvertToDouble();
+                HospitalAmt += dr["HospitalAmt"].ConvertToDouble();
+
+
+
 
                 // If it's the last row, add the total for this group
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='8' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total Amt</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
-                         .Append(NetAmount.ToString("0.00")).Append("</td></tr>");
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;font-size:20px;\"> Total Amt</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
+                        .Append(NetAmount.ToString("0.00")).Append("</td>");
+                    items.Append("<td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
+                        .Append(DocAmt.ToString("0.00")).Append("</td>");
+                    items.Append("<td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
+                        .Append(HospitalAmt.ToString("0.00")).Append("</td></tr>");
                 }
 
-                // Update the total amounts for all doctors and patients
-                T_NetAmount += dr["NetPayableAmt"].ConvertToDouble();
-                DocAmt += dr["TotalBillAmount"].ConvertToDouble();
+              
+               
             }
 
             // Replace the placeholders with actual totals and the generated items
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.ToString("0.00"));
-            html = html.Replace("{{DocAmt}}", DocAmt.ToString("0.00"));
+            html = html.Replace("{{T_DocAmt}}", T_DocAmt.ToString("0.00"));
+            html = html.Replace("{{T_HospitalAmt}}", T_HospitalAmt.ToString("0.00"));
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", From_Dt.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", To_Dt.ToString("dd/MM/yy"));
@@ -195,7 +213,7 @@
             para[3] = new SqlParameter("@To_Dt", To_Dt) { DbType = DbType.DateTime };
             para[4] = new SqlParameter("@OP_IP_Type", OP_IP_Type) { DbType = DbType.Int64 };
 
-            var Bills = GetDataTableProc("Retrieve_DoctorShareList", para);
+            var Bills = GetDataTableProc("m_Rtrv_DoctorShareSummary", para);
 
 
 
@@ -310,7 +328,7 @@
             double T_Count = 0, NetAmount = 0, T_NetAmount = 0, DocAmt = 0, HospitalAmt = 0, T_DocAmt = 0, T_HospitalAmt = 0;
 
             string previousPatientType = "";
-            string previousTariffName = "";
+            //string previousTariffName = "";
             string previousDoctorName = "";
             string previousGroupName = "";
 
@@ -319,18 +337,25 @@
                 i++; j++;
 
                 string currentPatientType = dr["PatientType"].ConvertToString();
-                string currentTariffName = dr["TariffName"].ConvertToString();
+                //string currentTariffName = dr["TariffName"].ConvertToString();
                 string currentDoctorName = dr["DoctorName"].ConvertToString();
                 string currentGroupName = dr["GroupName"].ConvertToString();
 
                 // If the PatientType or DoctorName changes, insert a new section
-                if (i == 1 || previousPatientType != currentPatientType || previousTariffName != currentTariffName || previousDoctorName != currentDoctorName || previousGroupName != currentGroupName)
+                if (i == 1 || previousPatientType != currentPatientType ||previousDoctorName != currentDoctorName || previousGroupName != currentGroupName)
                 {
                     // If there's an existing group, close it and insert total
-                    if (previousPatientType != "" && previousTariffName != "" && previousDoctorName != "" && previousGroupName != "")
+                    if (previousPatientType != "" &&  previousDoctorName != "" && previousGroupName != "")
                     {
-                        items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;font-size:20px;\">Doctor Wise Net Amount</td><td style=\"border-right:1px solid #000;font-size:20px;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
-                             .Append(NetAmount.ToString("0.00")).Append("</td></tr>");
+                        //items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;font-size:20px;\">Doctor Wise Net Amount</td><td style=\"border-right:1px solid #000;font-size:20px;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                        //     .Append(NetAmount.ToString("0.00")).Append(DocAmt.ToString("0.00")).Append(HospitalAmt.ToString("0.00")).Append("</td></tr>");
+                        items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;font-size:20px;\"> Total Amt</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
+                        .Append(NetAmount.ToString("0.00")).Append("</td>");
+                        items.Append("<td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
+                            .Append(DocAmt.ToString("0.00")).Append("</td>");
+                        items.Append("<td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
+                            .Append(HospitalAmt.ToString("0.00")).Append("</td></tr>");
+
                     }
 
                     // Reset the net amount for the new group
@@ -338,11 +363,11 @@
 
                     // Add new group header with both PatientType and DoctorName on separate lines
                     items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">")
-                         .Append("<td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
-                         .Append("Patient Type: ").Append(currentPatientType).Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ").Append(currentTariffName)
+                         .Append("<td colspan=\"6\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
+                         .Append("Patient Type: ").Append(currentPatientType)
                          .Append("</td></tr>")
                          .Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">")
-                         .Append("<td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
+                         .Append("<td colspan=\"6\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
                          .Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ").Append(currentDoctorName).Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ").Append(currentGroupName)
                          .Append("</td></tr>");
                         
@@ -354,7 +379,7 @@
 
                 // Update previousPatientType and previousDoctorName
                 previousPatientType = currentPatientType;
-                previousTariffName = currentTariffName;
+                //previousTariffName = currentTariffName;
                 previousDoctorName = currentDoctorName;
                 previousGroupName = currentGroupName;
 
@@ -364,24 +389,28 @@
                     .Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(j).Append("</td>")
                     .Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\"></td>")
                     .Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\"></td>")
-                    .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetPayableAmt"].ConvertToDouble().ToString("0.00")).Append("</td>")
+                    .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetAmount"].ConvertToDouble().ToString("0.00")).Append("</td>")
                     .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DocAmt"].ConvertToDouble().ToString("0.00")).Append("</td>")
                     .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["HospitalAmt"].ConvertToDouble().ToString("0.00")).Append("</td></tr>");
 
                 // Update NetAmount for the current group
-                NetAmount += dr["NetPayableAmt"].ConvertToDouble();
-                //DocAmt += dr["DocAmt"].ConvertToDouble();
-                //HospitalAmt += dr["HospitalAmt"].ConvertToDouble();
+                NetAmount += dr["NetAmount"].ConvertToDouble();
+                DocAmt += dr["DocAmt"].ConvertToDouble();
+                HospitalAmt += dr["HospitalAmt"].ConvertToDouble();
 
                 // If it's the last row, add the total for this group
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
                     items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;font-size:20px;\"> Total Amt</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
-                         .Append(NetAmount.ToString("0.00")).Append("</td></tr>");
+                         .Append(NetAmount.ToString("0.00")).Append("</td>");
+                    items.Append("<td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
+                        .Append(DocAmt.ToString("0.00")).Append("</td>");
+                    items.Append("<td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
+                        .Append(HospitalAmt.ToString("0.00")).Append("</td></tr>");
                 }
 
                 // Update the total amounts for all doctors and patients
-                T_NetAmount += dr["NetPayableAmt"].ConvertToDouble();
+                T_NetAmount += dr["NetAmount"].ConvertToDouble();
                 T_DocAmt += dr["DocAmt"].ConvertToDouble();
                 T_HospitalAmt += dr["HospitalAmt"].ConvertToDouble();
             }
