@@ -119,14 +119,15 @@
             {
                 i++; j++;
 
-                string currentPatientType = dr["PatientType"].ConvertToString();
+               
                 string currentDoctorName = dr["DoctorName"].ConvertToString();
+                string currentPatientType = dr["PatientType"].ConvertToString();
 
                 // If the PatientType or DoctorName changes, insert a new section
-                if (i == 1 || previousPatientType != currentPatientType || previousDoctorName != currentDoctorName)
+                if (i == 1 ||  previousDoctorName != currentDoctorName ||  previousPatientType != currentPatientType )
                 {
                     // If there's an existing group, close it and insert total
-                    if (previousPatientType != "" && previousDoctorName != "")
+                    if (previousDoctorName != "" && previousPatientType != ""  )
                     {
                         items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;font-size:20px;\"> Total Amt</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
                         .Append(NetAmount.ToString("0.00")).Append("</td>");
@@ -142,7 +143,7 @@
                     // Add new group header with both PatientType and DoctorName
                     items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">")
                          .Append("<td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
-                         .Append("Patient Type: ").Append(currentPatientType).Append(" | Doctor: ").Append(currentDoctorName)
+                         .Append(" | Doctor: ").Append(currentDoctorName).Append("Patient Type: ").Append(currentPatientType)
                          .Append("</td></tr>");
                 }
 
@@ -327,26 +328,35 @@
             int i = 0, j = 0;
             double T_Count = 0, NetAmount = 0, T_NetAmount = 0, DocAmt = 0, HospitalAmt = 0, T_DocAmt = 0, T_HospitalAmt = 0;
 
-            string previousPatientType = "";
+            
             //string previousTariffName = "";
             string previousDoctorName = "";
+            string previousPatientType = "";
             string previousGroupName = "";
 
             foreach (DataRow dr in Bills.Rows)
+
             {
                 i++; j++;
-
+                string currentDoctorName = dr["DoctorName"].ConvertToString();
                 string currentPatientType = dr["PatientType"].ConvertToString();
                 //string currentTariffName = dr["TariffName"].ConvertToString();
-                string currentDoctorName = dr["DoctorName"].ConvertToString();
+                
                 string currentGroupName = dr["GroupName"].ConvertToString();
 
                 // If the PatientType or DoctorName changes, insert a new section
-                if (i == 1 || previousPatientType != currentPatientType ||previousDoctorName != currentDoctorName || previousGroupName != currentGroupName)
+                if (i == 1 || previousDoctorName != currentDoctorName || previousPatientType != currentPatientType || previousGroupName != currentGroupName)
                 {
                     // If there's an existing group, close it and insert total
-                    if (previousPatientType != "" &&  previousDoctorName != "" && previousGroupName != "")
+                    if (previousDoctorName != "" && previousPatientType != "" && previousGroupName != "")
                     {
+                       
+
+                    // Insert the DoctorName only once for the combination of PatientType and GroupName
+                    //if (previousDoctorName != currentDoctorName || previousGroupName != currentGroupName)
+                    //{
+
+                       
                         //items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;font-size:20px;\">Doctor Wise Net Amount</td><td style=\"border-right:1px solid #000;font-size:20px;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                         //     .Append(NetAmount.ToString("0.00")).Append(DocAmt.ToString("0.00")).Append(HospitalAmt.ToString("0.00")).Append("</td></tr>");
                         items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;font-size:20px;\"> Total Amt</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;font-size:20px;vertical-align:middle\">")
@@ -364,11 +374,16 @@
                     // Add new group header with both PatientType and DoctorName on separate lines
                     items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">")
                          .Append("<td colspan=\"6\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
-                         .Append("Patient Type: ").Append(currentPatientType)
-                         .Append("</td></tr>")
-                         .Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">")
+                         .Append(currentDoctorName)
+                         .Append("</td></tr>");
+                         items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">")
                          .Append("<td colspan=\"6\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
-                         .Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ").Append(currentDoctorName).Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ").Append(currentGroupName)
+                         .Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ").Append(currentPatientType)
+                         //.Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ").Append(currentGroupName)
+                         .Append("</td></tr>");
+                     items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">")
+                         .Append("<td colspan=\"6\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
+                         .Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ").Append(currentGroupName)
                          .Append("</td></tr>");
                         
 

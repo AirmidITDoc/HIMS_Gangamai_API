@@ -35,7 +35,7 @@ namespace HIMS.API.Controllers.Transaction
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DoctorShare_DoctorShareReport.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _doctorShareReport.ViewDoctorShareReport(Doctor_Id, GroupId, From_Dt, To_Dt, OP_IP_Type,htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorShareReport", "DoctorShareReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "DoctorShareDetailReport", "DoctorShareDetailReport", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
