@@ -15,5 +15,7 @@ namespace HIMS.Data.Pathology
         string ViewPathTestReport(int OP_IP_Type, string htmlFilePath, string HeaderName);
         DataTable GetDataForReport(int OP_IP_Type);
         string ViewPathTestMultipleReport(DataTable Bills, string htmlFilePath, string HeaderName);
+
+        string ViewPathTestMultipleReportwithheader(DataTable Bills, string htmlFilePath, string HeaderName, string HeaderName1);
     }
 }

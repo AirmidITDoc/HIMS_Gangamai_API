@@ -16,7 +16,7 @@
                         <div>
                             <table style="width: 100%;line-height: inherit;text-align: left;">
                                 <tr class="top-header-row">
-                                    <!--{{NewHeader}}-->
+                                    {{ImgHeader}}
                                 </tr>
                                 <tr class="title-date-row">
                                     <td>
@@ -24,10 +24,6 @@
                                             <tr style="font-size: 18px; font-weight: bold;">
                                                 <td style="padding: 2px; padding-bottom:5px;text-align:left;font-size:22px;"><b>Laboratory Report</b></td>
                                                 <td style="padding: 2px; padding-bottom:5px;text-align:right;font-size:22px;" colspan="2"><b>Print Date :{{CurrentDate}}</b></td>
-
-                                                <!--  <td style="padding: 2px; padding-bottom:5px;text-align:right;padding-top:135px; "><b>Print Date :{{CurrentDate}}</b></td>-->
-
-                                                <td></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -132,15 +128,6 @@
                         </div>
                     </div>
                     <table style="width: 100%;line-height: inherit;text-align: left;padding-left:20px;">
-
-
-                        <!--<tr style="display:{{chkSuggestionNote}}">
-                            <td style="font-size:20px;font-weight:bold;">Interpretation Remark</td>
-                        </tr>
-                        <tr style="display:{{chkSuggestionNote}}">
-                            <td style="font-size:18px;font-weight:bold;">{{SuggestionNote}}</td>
-                        </tr>-->
-
                         <tr>
                             <td style="text-align:center;font-size:22px;font-weight:bold;padding-top:20px;">"END OF REPORT"</td>
                         </tr>
@@ -155,6 +142,10 @@
                                 <div style="font-weight:bold;">{{Education}}</div>
                                 <div style="font-weight:bold;">{{MahRegNo}}</div>
                             </footer>
+                        </tr>
+
+                        <tr>
+                            {{Imgfooter}}
                         </tr>
                     </table>
 
