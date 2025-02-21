@@ -18,5 +18,6 @@ namespace HIMS.Model.IPD
         public long ReqDetId { get; set; }
         public long UserId { get; set; }
         public DateTime ChargesDate { get; set; }
+        public long DoctorId { get; set; }
     }
 }
