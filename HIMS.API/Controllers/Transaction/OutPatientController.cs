@@ -19,6 +19,7 @@ using System.Data;
 using HIMS.Common.Utility;
 using HIMS.API.Comman;
 using HIMS.Model.CustomerInformation;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -240,7 +241,7 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-AppointmentTemplate")]
         public IActionResult viewAppoinmentTemplate(int VisitId)
         {
-           // string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPrimeCasePaper.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPPrimeCasePaper.html");
             
             // Hospital Header 
             string Hospitalheader = _pdfUtility.GetHeader(1, 1);// hospital header
@@ -251,7 +252,7 @@ namespace HIMS.API.Controllers.Transaction
             AppTemplate = AppTemplate.Replace("{{BaseUrl}}", _configuration.GetValue<string>("BaseUrl").Trim('/'));
           
             DataTable dt = _OpdAppointment.GetDataForReport(VisitId);
-            var html = _OpdAppointment.ViewAppointmentTemplate(dt, AppTemplate, Hospitalheader);
+            var html = _OpdAppointment.ViewAppointmentTemplate(dt, htmlFilePath, AppTemplate,  Hospitalheader);
             html = html.Replace("{{NewHeader}}", Hospitalheader);
 
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "AppointmentPrint", "Appointment_"+ VisitId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);

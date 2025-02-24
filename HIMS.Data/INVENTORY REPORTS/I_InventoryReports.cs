@@ -33,7 +33,7 @@ namespace HIMS.Data.InventoryReports
         string ViewCurrentStockReport(int StoreId, int IsNarcotic, int ish1Drug, int isScheduleH, int IsHighRisk, int IsScheduleX, string htmlFilePath, string htmlHeader);
         string ViewClosingCurrentStockReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewItemWiseSupplierList(int StoreId, int SupplierID, int ItemId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-        string ViewCurrentStockDateWise(DateTime InsertDate, int StoreId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewCurrentStockDateWise(DateTime InsertDate, int StoreId, string htmlFilePath, string htmlHeader);
         string ViewNonMovingItemList(DateTime FromDate, DateTime ToDate, int NonMovingDay, int StoreId,string htmlFilePath, string htmlHeader);
         string ViewNonMovingItemWithoutBatchList(DateTime FromDate, DateTime ToDate, int NonMovingDay, int StoreId, string htmlFilePath, string htmlHeader);
         string ViewPatientWiseMaterialConsumption(DateTime FromDate, DateTime ToDate, int Id, int ToStoreId, string htmlFilePath, string htmlHeader);

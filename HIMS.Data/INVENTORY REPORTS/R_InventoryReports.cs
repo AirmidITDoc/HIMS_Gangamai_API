@@ -1369,7 +1369,7 @@ namespace HIMS.Data.Opd
             return html;
         }
 
-        public string ViewCurrentStockDateWise(DateTime InsertDate, int StoreId, DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewCurrentStockDateWise(DateTime InsertDate, int StoreId, string htmlFilePath, string htmlHeader)
         {
             SqlParameter[] para = new SqlParameter[2];
 
@@ -1421,8 +1421,8 @@ namespace HIMS.Data.Opd
 
 
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
 
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
 
@@ -1638,7 +1638,7 @@ namespace HIMS.Data.Opd
               
               
 
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PRQC"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PRQC"].ConvertToDouble().ToString("0.00")).Append("</td></tr>");
                 T_NetAmount += dr["PRQC"].ConvertToDouble();
             }
 

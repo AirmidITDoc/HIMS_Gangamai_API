@@ -131,14 +131,15 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
             html = html.Replace("{{CertificateName}}", Bills.GetColValue("CertificateName"));
 
-
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{RequestId}}", Bills.GetColValue("RequestId"));
             html = html.Replace("{{OPDNo}}", Bills.GetColValue("IPDNo"));
             html = html.Replace("{{ReqDate}}", Bills.GetColValue("ReqDate").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
             html = html.Replace("{{AdmissionTime}}", Bills.GetColValue("AdmissionTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
 
-
-            html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo"));
+            html = html.Replace("{{CreatedDatetime}}", Bills.GetColValue("CreatedDatetime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
 
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
@@ -149,7 +150,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
             html = html.Replace("{{OP_IP_Type}}", Bills.GetColValue("OP_IP_Type"));
-            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
+            html = html.Replace("{{RefDoctorName}}", Bills.GetColValue("RefDoctorName"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
 
 

@@ -291,11 +291,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-CurrentStockDateWise")]
-        public IActionResult ViewCurrentStockDateWise(DateTime InsertDate, int StoreId, DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewCurrentStockDateWise(DateTime InsertDate, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_DateWiseCurrentStock.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _InventoryReport.ViewCurrentStockDateWise(InsertDate, StoreId, FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _InventoryReport.ViewCurrentStockDateWise(InsertDate, StoreId,htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CurrentStockDateWise", "CurrentStockDateWise", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
