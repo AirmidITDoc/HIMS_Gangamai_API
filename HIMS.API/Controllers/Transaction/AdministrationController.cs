@@ -36,6 +36,20 @@ namespace HIMS.API.Controllers.Transaction
             this._Administration = Administration;
             this._NewTemplateDescription = newTemplateDescription;
         }
+        [HttpPost("SaveMExpensesHeadMaster")]
+        public IActionResult SaveMExpensesHeadMaster(MExpensesHeadMasterParam MExpensesHeadMasterParam)
+        {
+            var appoSave = _Administration.SaveMExpensesHeadMaster(MExpensesHeadMasterParam);
+            return Ok(appoSave);
+        }
+
+        [HttpPost("UpdateMExpensesHeadMaster")]
+        public IActionResult UpdateMExpensesHeadMaster(MExpensesHeadMasterParam MExpensesHeadMasterParam)
+        {
+            var appoSave = _Administration.UpdateMExpensesHeadMaster(MExpensesHeadMasterParam);
+            return Ok(appoSave);
+        }
+
         [HttpPost("SaveFeedBack")]
         public IActionResult Save(Parameter PatientFeedbackParameter)
         {

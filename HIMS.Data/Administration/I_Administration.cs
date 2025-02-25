@@ -24,7 +24,8 @@ namespace HIMS.Data.Administration
         public bool InsertPackageDetails(PackageDetailParam PackageDetailParam);
 
         public bool InsertCompanyServiceAssignMaster(CompanyServiceAssignMaster CompanyServiceAssignMaster);
-
+        public bool SaveMExpensesHeadMaster(MExpensesHeadMasterParam MExpensesHeadMasterParam);
+        public bool UpdateMExpensesHeadMaster(MExpensesHeadMasterParam MExpensesHeadMasterParam);
         public bool SaveTExpenseParam(TExpenseParam TExpenseParam);
 
         public bool CancleTExpenseParam(TExpenseParam TExpenseParam);

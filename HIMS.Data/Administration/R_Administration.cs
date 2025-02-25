@@ -230,6 +230,26 @@ namespace HIMS.Data.Administration
             return true;
 
         }
+        public bool SaveMExpensesHeadMaster(MExpensesHeadMasterParam MExpensesHeadMasterParam)
+        {
+            // throw new NotImplementedException();
+            var disc = MExpensesHeadMasterParam.SaveMExpensesHeadMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_M_ExpensesHeadMaster", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+        public bool UpdateMExpensesHeadMaster(MExpensesHeadMasterParam MExpensesHeadMasterParam)
+        {
+            // throw new NotImplementedException();
+            var disc = MExpensesHeadMasterParam.UpdateMExpensesHeadMasterParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_M_ExpensesHeadMaster", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
 
         public bool SaveNursingPainAssessment(SaveNursingPainAssessmentParam SaveNursingPainAssessmentParam)
         {
