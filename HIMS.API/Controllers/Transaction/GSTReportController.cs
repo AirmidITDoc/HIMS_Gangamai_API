@@ -145,16 +145,16 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-        //[HttpGet("view-PurchaseGSTSummary")]
-        //public IActionResult ViewPurchaseGSTSummary(DateTime FromDate, DateTime ToDate)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_SalesProfitItemWiseSummaryReport.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _IPGST.ViewPurchaseGSTSummary(FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PurchaseGSTSummary", "PurchaseGSTSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        [HttpGet("view-PurchaseGSTSummary")]
+        public IActionResult ViewPurchaseGSTSummary(DateTime FromDate, DateTime ToDate, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_PurchaseGSTSummary.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPGST.ViewPurchaseGSTSummary(FromDate, ToDate,  StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "PurchaseGSTSummary", "PurchaseGSTSummary", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        //}
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         [HttpGet("view-SalesGSTReport")]
         public IActionResult ViewSalesGSTReport(DateTime FromDate, DateTime ToDate, int StoreId)
@@ -199,16 +199,16 @@ namespace HIMS.API.Controllers.Transaction
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
-        //[HttpGet("view-SalesGSTSummaryConsolidated")]
-        //public IActionResult ViewSalesGSTSummaryConsolidated(DateTime FromDate, DateTime ToDate)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_SalesProfitItemWiseSummaryReport.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _IPGST.ViewSalesGSTSummaryConsolidated(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesGSTSummaryConsolidated", "SalesGSTSummaryConsolidated", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        [HttpGet("view-SalesGSTSummaryConsolidated")]
+        public IActionResult ViewSalesGSTSummaryConsolidated(DateTime FromDate, DateTime ToDate)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_SalesGSTSummaryConsolidated.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPGST.ViewSalesGSTSummaryConsolidated(FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "SalesGSTSummaryConsolidated", "SalesGSTSummaryConsolidated", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        //}
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         [HttpGet("view-HSNCodeWiseReport")]
         public IActionResult ViewHSNCodeWiseReport(DateTime FromDate, DateTime ToDate, int StoreId)
@@ -220,26 +220,26 @@ namespace HIMS.API.Controllers.Transaction
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
-        //[HttpGet("view-GSTB2CSReport")]
-        //public IActionResult ViewGSTB2CSReport(DateTime FromDate, DateTime ToDate)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_SalesProfitItemWiseSummaryReport.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _IPGST.ViewGSTB2CSReport(FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GSTB2CSReport", "GSTB2CSReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        [HttpGet("view-GSTB2CSReport")]
+        public IActionResult ViewGSTB2CSReport(DateTime FromDate, DateTime ToDate,int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_GSTB2CSReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPGST.ViewGSTB2CSReport(FromDate, ToDate, StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GSTB2CSReport", "GSTB2CSReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        //}
-        //[HttpGet("view-GSTB2GSReportConsolidated")]
-        //public IActionResult ViewGSTB2GSReportConsolidated(DateTime FromDate, DateTime ToDate)
-        //{
-        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_SalesProfitItemWiseSummaryReport.html");
-        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-        //    var html = _IPGST.ViewGSTB2GSReportConsolidated(FromDate, ToDate,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GSTB2GSReportConsolidated", "GSTB2GSReportConsolidated", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpGet("view-GSTB2GSReportConsolidated")]
+        public IActionResult ViewGSTB2GSReportConsolidated(DateTime FromDate, DateTime ToDate, int StoreId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GSTReport_GSTB2CSReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPGST.ViewGSTB2GSReportConsolidated(FromDate, ToDate, StoreId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GSTB2GSReportConsolidated", "GSTB2GSReportConsolidated", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        //}
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpGet("view-GSTRZAPurchaseReport")]
         public IActionResult ViewGSTRZAPurchaseReport(DateTime FromDate, DateTime ToDate, int StoreId)
         {

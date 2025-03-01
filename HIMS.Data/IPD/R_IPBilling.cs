@@ -437,7 +437,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 
-            html = html.Replace("{{BillNo}}", Bills.GetColValue("PBillNo"));
+            html = html.Replace("{{PBillNo}}", Bills.GetColValue("PBillNo"));
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
 
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
@@ -1008,7 +1008,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 
-            html = html.Replace("{{BillNo}}", Bills.GetColValue("PBillNo"));
+            html = html.Replace("{{PBillNo}}", Bills.GetColValue("PBillNo"));
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
 
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
@@ -1220,7 +1220,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 
-            html = html.Replace("{{BillNo}}", Bills.GetColValue("PBillNo"));
+            html = html.Replace("{{PBillNo}}", Bills.GetColValue("PBillNo"));
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
 
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
@@ -1432,7 +1432,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{finalamt}}", finalamt.ToString().ToUpper());
 
 
-            html = html.Replace("{{BillNo}}", Bills.GetColValue("PBillNo"));
+            html = html.Replace("{{PBillNo}}", Bills.GetColValue("PBillNo"));
             html = html.Replace("{{IPDNo}}", Bills.GetColValue("IPDNo").ToString());
 
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));

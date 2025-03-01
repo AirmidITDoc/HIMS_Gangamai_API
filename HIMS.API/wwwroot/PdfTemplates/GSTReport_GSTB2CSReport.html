@@ -16,7 +16,7 @@
                 <td style="padding: 6px;">
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr style="font-size: 18px">
-                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>Purchase Return GST</b> </td>
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>GST B2CS Report</b> </td>
                             <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
                         </tr>
                     </table>
@@ -26,7 +26,6 @@
                 </td>
             </tr>
 
-
             <table class="table" style="width:100%;border-collapse:collapse">
                 <tbody>
 
@@ -35,28 +34,27 @@
                             SR.NO
                         </td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                           GRN ReturnDate
+                            Type
                         </td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                            CGST%
+                           Place of Supply
                         </td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                            CGST Amt
+                            Rate
                         </td>
 
 
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                            SGST Amt
+                            Taxable Value
                         </td>
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                            IGST Amt
+                            Tax Value
                         </td>
 
                         <td style="border:1px solid #000;font-weight:700;text-align:center;vertical-align:middle;padding:5px 5px;">
-                            Total Amt
+                            Gross Value
                         </td>
-                      
-                      
+                       
 
                     </tr>
 
@@ -67,50 +65,52 @@
 
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
 
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 10%;"> GRN ReturnDate </td>
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">GRN No</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 10%;"> HSN Code </td>-->
+                                <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">GRN No</td>-->
 
 
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;width:10%;">CGST%</td>
+                                <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Description</td>
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Qty</td>
+
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Gross Amt</td>
+
+                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Taxable Value</td>
+
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">CGST Amt</td>
-
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">SGST Amt</td>
-
                                 <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">IGST Amt</td>
-
-                                <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Total Amount</td>
-
                             </tr>-->
 
-
                             {{Items}}
+                <tr style="border: 1px solid black; background-color: white">
 
-
-                <tr style="border: 1px solid black; font-weight: bold; font-size: 20px; background-color: white">
 
                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
                     </td>
-
                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
                     </td>
-
-                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                    </td>
-
-                    <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                    </td>
-
                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
                     </td>
 
 
                     <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
-                        Total Amount
+                        
                     </td>
 
                     <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
-                        {{T_NetAmount}}
+                      
                     </td>
+                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                        {{T_TaxableAmount}}
+                    </td>
+
+                    <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                        {{T_GrossAmount}}
+                    </td>
+
+
+
+
                 </tr>
                         </tbody>
                     </table>
