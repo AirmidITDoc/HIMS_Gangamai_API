@@ -533,6 +533,8 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{AddedBy}}", Bills.GetColValue("AddedBy"));
             html = html.Replace("{{DischargeDoctor2}}", Bills.GetColValue("DischargeDoctor2"));
+            string chkSurgeryPrescriptionflag = (Bills1.Rows.Count > 0) ? "table-row" : "none";
+            html = html.Replace("{{chkSurgeryPrescriptionflag}}", chkSurgeryPrescriptionflag);
 
             //border: 1px solid #d4c3c3;
 
@@ -703,7 +705,9 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{AddedBy}}", Bills.GetColValue("AddedBy"));
             html = html.Replace("{{TemplateDescriptionHtml}}", Bills.GetColValue("TemplateDescriptionHtml"));
-            
+            //html = html.Replace("{{chkSurgeryPrescriptionflag}}", length != 0 ? "table-row" : "none");
+            string chkSurgeryPrescriptionflag = (Bills1.Rows.Count > 0) ? "table-row" : "none";
+            html = html.Replace("{{chkSurgeryPrescriptionflag}}", chkSurgeryPrescriptionflag);
 
             //border: 1px solid #d4c3c3;
 

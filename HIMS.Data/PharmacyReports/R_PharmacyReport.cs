@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Reflection.Emit;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace HIMS.Data.Opd
 {
@@ -1067,7 +1068,7 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
-            double T_Count = 0, T_TotalAmount = 0, TotalAmt = 0, PatientName = 0, GenderName = 0, AdmissionDate = 0, WardName = 0, Age = 0, DoctorName = 0, RoomName = 0;
+            double T_Count = 0, T_TotalAmount = 0, TotalAmt = 0, PatientName = 0, GenderName = 0, AdmissionDate = 0, WardName = 0, Age = 0, DoctorName = 0, RoomName = 0, RegNo =0;
 
             string previousLabel = "";
 
@@ -1105,6 +1106,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionDate").ConvertToDateString("dd/MM/yyyy"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{Age}}", Bills.GetColValue("Age"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{WardName}}", Bills.GetColValue("WardName"));
             html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
@@ -1118,7 +1120,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{Age}}", Age.ToString());
             html = html.Replace("{{WardName}}", WardName.ToString());
             html = html.Replace("{{DoctorName}}", DoctorName.ToString());
-            html = html.Replace("{{RegNo}}", DoctorName.ToString());
+            html = html.Replace("{{RegNo}}", RegNo.ToString());
             html = html.Replace("{{RoomName}}", RoomName.ToString());
             return html;
 

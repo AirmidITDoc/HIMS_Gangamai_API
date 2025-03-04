@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace HIMS.Data.Opd
@@ -1735,76 +1736,246 @@ namespace HIMS.Data.Opd
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             para[2] = new SqlParameter("@GroupId", GroupId) { DbType = DbType.Int64 };
 
-
-            var Bills = GetDataTableProc("rptGrupWisePeport", para);
-            StringBuilder items = new StringBuilder("");
-            int i = 0, j = 0;
-            string previousLabel = "";
             string html = File.ReadAllText(htmlFilePath);
-            double ServiceAmt = 0, T_NetPayableAmt = 0, Tot_ServiceAmt = 0;
+            double ServiceAmt = 0;/* T_NetPayableAmt = 0, Tot_ServiceAmt = 0;*/
+            double G_ServiceAmount = 0;
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
 
+            var Bills = GetDataTableProc("rptGrupWisePeport", para);
+            //StringBuilder items = new StringBuilder("");
+            //int i = 0, j = 0;
+            //string previousLabel = "";
 
-            double G_ServiceAmount = 0;
-            foreach (DataRow dr in Bills.Rows)
+
+
+            //foreach (DataRow dr in Bills.Rows)
+            //{
+            //    i++; j++;
+            //    if (i == 1)
+            //    {
+            //        String Label;
+            //        Label = dr["GroupName"].ConvertToString();
+            //        items.Append("<tr style=\"font-size:20px;border: 1px;color:black; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"7\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+            //    }
+
+            //    if (previousLabel != "" && previousLabel != dr["GroupName"].ConvertToString())
+            //    {
+            //        j = 1;
+
+
+            //        items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+            //         .Append(G_ServiceAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\"></td></tr>");
+            //        G_ServiceAmount = 0;
+
+            //        items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:black; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"7\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["GroupName"].ConvertToString()).Append("</td></tr>");
+            //    }
+
+
+            //    G_ServiceAmount += dr["NetPayableAmt"].ConvertToDouble();
+            //    Tot_ServiceAmt += dr["NetPayableAmt"].ConvertToDouble();
+            //    previousLabel = dr["GroupName"].ConvertToString();
+
+
+
+            //    items.Append("<tr style=\"font-size:15px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border-bottom: 1px;\"><td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(j).Append("</td>");
+            //    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["PBillNo"].ConvertToString()).Append("</td>");
+            //    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["PaymentDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+            //    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
+            //    //items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["patientType"].ConvertToString()).Append("</td>");
+            //    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+            //    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+            //    //items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+            //    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">").Append(dr["NetPayableAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+            //    items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
+
+
+            //    T_NetPayableAmt += dr["NetAmount"].ConvertToDouble();
+
+            //    if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
+            //    {
+
+            //        items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+            //        .Append(Tot_ServiceAmt.To2DecimalPlace()).Append("</td></tr>");
+
+            //    }
+            //}
+            //html = html.Replace("{{Items}}", items.ToString());
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{Tot_ServiceAmt}}", Tot_ServiceAmt.ConvertToDouble().To2DecimalPlace());
+            //html = html.Replace("{{T_NetPayableAmt}}", T_NetPayableAmt.ConvertToDouble().To2DecimalPlace());
+
+            //StringBuilder items = new StringBuilder("");
+            //int i = 0, j = 0;
+            //string previousLabel = "";
+            ////double G_ServiceAmount = 0;
+            ////double Tot_ServiceAmt = 0;
+            ////double T_NetPayableAmt = 0;
+
+            //// Separate IP and OP data
+            //var ipRows = Bills.AsEnumerable().Where(dr => dr["PatientType"].ToString() == "IP").ToList();
+            //var opRows = Bills.AsEnumerable().Where(dr => dr["PatientType"].ToString() == "OP").ToList();
+
+            //// Function to process patient type sections
+            //void ProcessPatientType(string patientType, List<DataRow> rows)
+            //{
+            //    if (rows.Count == 0) return;
+
+            //    // Add Patient Type Header (IP or OP)
+            //    items.Append("<tr style=\"font-size:20px;border: 1px;color:black; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">")
+            //        .Append("<td colspan=\"7\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
+            //        .Append(patientType).Append("</td></tr>");
+
+            //    i = 0;
+            //    string previousGroup = "";
+            //    G_ServiceAmount = 0;
+
+            //    foreach (DataRow dr in rows)
+            //    {
+            //        i++; j++;
+
+            //        // Start new GroupName section
+            //        if (i == 1 || previousGroup != dr["GroupName"].ToString())
+            //        {
+            //            if (previousGroup != "")
+            //            {
+            //                // Display Total for the previous group
+            //                items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;font-weight:bold;\">Total</td>")
+            //                    .Append("<td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+            //                    .Append(G_ServiceAmount.ToString("F2")).Append("</td><td></td></tr>");
+
+            //                // Reset group total
+            //                G_ServiceAmount = 0;
+            //            }
+
+            //            // Add GroupName header
+            //            items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:black; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">")
+            //                .Append("<td colspan=\"7\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
+            //                .Append(dr["GroupName"].ToString()).Append("</td></tr>");
+
+            //            j = 1; // Reset row number per group
+            //        }
+
+            //        // Append row details
+            //        items.Append("<tr style=\"font-size:15px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border-bottom: 1px;\">")
+            //            .Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(j).Append("</td>")
+            //            .Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["PBillNo"].ToString()).Append("</td>")
+            //            .Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(Convert.ToDateTime(dr["PaymentDate"]).ToString("dd/MM/yyyy")).Append("</td>")
+            //            .Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["ServiceName"].ToString()).Append("</td>")
+            //            .Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["RegNo"].ToString()).Append("</td>")
+            //            .Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["PatientName"].ToString()).Append("</td>")
+            //            .Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">").Append(Convert.ToDouble(dr["NetPayableAmt"]).ToString("F2")).Append("</td>")
+            //            .Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">").Append(Convert.ToDouble(dr["NetAmount"]).ToString("F2")).Append("</td></tr>");
+
+            //        // Update totals
+            //        G_ServiceAmount += Convert.ToDouble(dr["NetPayableAmt"]);
+            //        Tot_ServiceAmt += Convert.ToDouble(dr["NetPayableAmt"]);
+            //        T_NetPayableAmt += Convert.ToDouble(dr["NetAmount"]);
+
+            //        previousGroup = dr["GroupName"].ToString();
+            //    }
+
+            //    // Add last group total
+            //    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;font-weight:bold;\">Total</td>")
+            //        .Append("<td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+            //        .Append(G_ServiceAmount.ToString("F2")).Append("</td><td></td></tr>");
+            //}
+
+            //// Process IP first, then OP
+            //ProcessPatientType("IP", ipRows);
+            //ProcessPatientType("OP", opRows);
+
+            //// Append final grand totals
+            //items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;font-weight:bold;\">Grand Total</td>")
+            //    .Append("<td>").Append(Tot_ServiceAmt.ToString("F2")).Append("</td><td></td></tr>");
+
+            //// Replace placeholders in the HTML template
+            //html = html.Replace("{{Items}}", items.ToString());
+            //html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            //html = html.Replace("{{Tot_ServiceAmt}}", Tot_ServiceAmt.ToString("F2"));
+            //html = html.Replace("{{T_NetPayableAmt}}", T_NetPayableAmt.ToString("F2"));
+
+
+            //return html;
+            StringBuilder items = new StringBuilder("");
+            int j = 0;  // Row counter
+
+            double T_NetPayableAmt = 0;  // Grand total of NetAmount for all rows (IP + OP)
+
+            // Separate IP and OP data
+            var ipRows = Bills.AsEnumerable().Where(dr => dr["PatientType"].ToString() == "IP").ToList();
+            var opRows = Bills.AsEnumerable().Where(dr => dr["PatientType"].ToString() == "OP").ToList();
+
+            // Function to process patient type sections (IP/OP)
+            void ProcessPatientType(string patientType, List<DataRow> rows)
             {
-                i++; j++;
-                if (i == 1)
+                if (rows.Count == 0) return;
+
+                // Add Patient Type Header (IP or OP)
+                items.Append($"<tr style='font-size:20px;border:1px;color:black;font-family:Calibri,Helvetica,Arial,sans-serif;'>" +
+                    "<td colspan='8' style='border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle'>" +
+                    patientType + "</td></tr>");
+
+                // Grouped data
+                var groupedData = rows.GroupBy(dr => dr["GroupName"].ToString()).ToList();
+
+                foreach (var group in groupedData)
                 {
-                    String Label;
-                    Label = dr["GroupName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"7\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
-                }
+                    string groupName = group.Key;
+                    double groupTotalAmount = 0;  // Total for the current group
 
-                if (previousLabel != "" && previousLabel != dr["GroupName"].ConvertToString())
-                {
-                    j = 1;
+                    // Add GroupName Header
+                    items.Append("<tr style='font-size:20px;border-bottom:1px;color:black;font-family:Calibri,Helvetica,Arial,sans-serif;'>" +
+                        "<td colspan='8' style='border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle'>" +
+                        groupName + "</td></tr>");
 
+                    foreach (DataRow dr in group)
+                    {
+                        double netPayable = dr["NetAmount"] != DBNull.Value ? Convert.ToDouble(dr["NetAmount"]) : 0.00;
+                        groupTotalAmount += netPayable;
+                        T_NetPayableAmt += netPayable;
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
-                     .Append(G_ServiceAmount.To2DecimalPlace()).Append("</td><td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\"></td></tr>");
-                    G_ServiceAmount = 0;
+                        // Append row details
+                        items.Append("<tr style='font-size:15px;font-family:Calibri,Helvetica,Arial,sans-serif;border-bottom:1px;'>" +
+                            "<td style='border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle'>" + ++j + "</td>" +
+                            "<td style='border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle'>" + dr["PBillNo"].ToString() + "</td>" +
+                            "<td style='border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle'>" +
+                            (dr["PaymentDate"] != DBNull.Value ? Convert.ToDateTime(dr["PaymentDate"]).ToString("dd/MM/yyyy") : "") + "</td>" +
+                            "<td style='border-left:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle'>" + dr["ServiceName"].ToString() + "</td>" +
+                            "<td style='border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle'>" + dr["RegNo"].ToString() + "</td>" +
+                            "<td style='border-left:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle'>" + dr["PatientName"].ToString() + "</td>" +
+                            "<td style='border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle'>" + netPayable.ToString("F2") + "</td>" +
+                            "<td style='border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle'>" + netPayable.ToString("F2") + "</td></tr>");
+                    }
 
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;color:black; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"7\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["GroupName"].ConvertToString()).Append("</td></tr>");
-                }
-
-
-                G_ServiceAmount += dr["NetPayableAmt"].ConvertToDouble();
-                Tot_ServiceAmt += dr["NetPayableAmt"].ConvertToDouble();
-                previousLabel = dr["GroupName"].ConvertToString();
-
-
-
-                items.Append("<tr style=\"font-size:15px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;border-bottom: 1px;\"><td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(j).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["PBillNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["PaymentDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["ServiceName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["patientType"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-        
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">").Append(dr["NetPayableAmt"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border-left:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle\">").Append(dr["NetAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
-        
-
-                T_NetPayableAmt += dr["NetAmount"].ConvertToDouble();
-
-                if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
-                {
-
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='7' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
-                    .Append(Tot_ServiceAmt.To2DecimalPlace()).Append("</td></tr>");
-
+                    // Add Group Total
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'>" +
+                        "<td colspan='6' style='border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;font-weight:bold;'>Total</td>" +
+                        "<td style='border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle'>" +
+                        groupTotalAmount.ToString("F2") + "</td><td></td></tr>");
                 }
             }
+
+            // Process IP and OP patient types
+            ProcessPatientType("IP", ipRows);
+            ProcessPatientType("OP", opRows);
+
+            // Add Grand Total
+            items.Append("<tr style='border:1px solid black;color:black;background-color:white'>" +
+                "<td colspan='6' style='border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;font-weight:bold;'>Grand Total </td>" +
+                "<td style='border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle'>" + T_NetPayableAmt.ToString("F2") + "</td><td></td></tr>");
+
+            // Replace placeholders in the HTML template
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
-            html = html.Replace("{{Tot_ServiceAmt}}", Tot_ServiceAmt.ConvertToDouble().To2DecimalPlace());
-            html = html.Replace("{{T_NetPayableAmt}}", T_NetPayableAmt.ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{T_NetPayableAmt}}", T_NetPayableAmt.ToString("F2"));
 
             return html;
+
+
         }
         public string ViewGroupwiseSummaryReport(DateTime FromDate, DateTime ToDate, int GroupId, string htmlFilePath, string htmlHeader)
         {
