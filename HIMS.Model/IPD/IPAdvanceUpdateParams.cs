@@ -31,7 +31,7 @@ namespace HIMS.Model.IPD
         public int IsCancelledBy { get; set; }
         public DateTime IsCancelledDate { get; set; }
         public string Reason { get; set; }
-       // public long CashCounterId { get; set; }
+       public long CashCounterId { get; set; }
 
     }
 
