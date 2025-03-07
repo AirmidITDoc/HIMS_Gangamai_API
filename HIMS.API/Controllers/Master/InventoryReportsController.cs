@@ -265,6 +265,17 @@ namespace HIMS.API.Controllers.Transaction
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+        [HttpGet("view-CurrentStockCategiryWiseReport")]
+        public IActionResult ViewCurrentStockCategoryWise(int StoreId, int IsNarcotic, int ish1Drug, int isScheduleH, int IsHighRisk, int IsScheduleX)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_CurrentStockCategorywiseReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _InventoryReport.ViewCurrentStockCategoryWise(StoreId, IsNarcotic, ish1Drug, isScheduleH, IsHighRisk, IsScheduleX, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CurrentStockCategorywiseReport", "CurrentStockCategoryWiseReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         [HttpGet("view-ClosingCurrentStockReport")]
         public IActionResult ViewClosingCurrentStockReport(DateTime FromDate, DateTime ToDate)
