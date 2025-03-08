@@ -529,13 +529,14 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-        public string ViewDepartmentWisecountSummury(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewDepartmentWisecountSummury(DateTime FromDate, DateTime ToDate, int DepartmentId, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[2];
+            SqlParameter[] para = new SqlParameter[3];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
             var Bills = GetDataTableProc("Rtrv_OPDepartSumry", para);
 
 
@@ -567,13 +568,14 @@ namespace HIMS.Data.Opd
             return html;
 
         }
-        public string ViewOPDoctorWiseVisitCountSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
+        public string ViewOPDoctorWiseVisitCountSummary(DateTime FromDate, DateTime ToDate, int DoctorId, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[2];
+            SqlParameter[] para = new SqlParameter[3];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@DoctorId", DoctorId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("Rtrv_OPDocSumry", para);
 
 

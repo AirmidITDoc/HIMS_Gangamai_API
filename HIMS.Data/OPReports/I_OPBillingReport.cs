@@ -19,8 +19,8 @@ namespace HIMS.Data.OPReports
         string ViewRefDoctorWiseReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewCrossConsultationReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewOPAppointmentListReport(int Doctor_Id,DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-        string ViewDepartmentWisecountSummury(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
-        string ViewOPDoctorWiseVisitCountSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
+        string ViewDepartmentWisecountSummury(DateTime FromDate, DateTime ToDate, int DepartmentId, string htmlFilePath, string htmlHeader);
+        string ViewOPDoctorWiseVisitCountSummary(DateTime FromDate, DateTime ToDate,int DoctorId, string htmlFilePath, string htmlHeader);
         string ViewOPAppoinmentListWithServiseAvailed(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewOPDoctorWiseNewOldPatientReport(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewDepartmentWiseOpdCollectionSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
