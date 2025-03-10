@@ -514,12 +514,12 @@ namespace HIMS.Data.Opd
                 items.Append("<tr style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append(" </td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; font-size:20px;text-align: center; padding: 6px;\">").Append(dr["RegNO"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:20px; text-align: center; padding: 6px;width:10%;\">").Append(dr["VisitDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:20px; text-align: center; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:20px; text-align: left; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:20px; text-align: center; padding: 6px;width:7%;\">").Append(dr["AgeYear"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:20px; text-align: center; padding: 6px;width:10%;\">").Append(dr["OPDNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:20px; text-align: center; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size:20px;text-align: center; padding: 6px;\">").Append(dr["RefDocName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size:20px;text-align: center; padding: 6px;\">").Append(dr["CompanyName"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:20px; text-align: left; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size:20px;text-align: left; padding: 6px;\">").Append(dr["RefDocName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size:20px;text-align: left; padding: 6px;\">").Append(dr["CompanyName"].ConvertToString()).Append("</td></tr>");
 
             }
            
@@ -536,7 +536,7 @@ namespace HIMS.Data.Opd
             SqlParameter[] para = new SqlParameter[3];
             para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
             para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
-            para[2] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@DepartmentId", DepartmentId) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("Rtrv_OPDepartSumry", para);
 
 
@@ -1200,21 +1200,21 @@ namespace HIMS.Data.Opd
                 i++;
                 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegId"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"text-align: center; font-size:18px;border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegId"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left; font-size:18px;border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
                
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillAmt"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ConcessionAmt"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetPayableAmt"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PaidAmount"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalanceAmt"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CashPay"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ChequePay"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CardPay"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NeftPay"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PayTMPay"].ConvertToDouble()).Append("</td></tr>");
+                items.Append("<td style=\"text-align: right;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; font-size:18px;border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ConcessionAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right; font-size:18px;border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetPayableAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PaidAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalanceAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CashPay"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ChequePay"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CardPay"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NeftPay"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PayTMPay"].ConvertToDouble()).Append("</td></tr>");
 
                 T_BillAmt += dr["BillAmt"].ConvertToDouble();
                 T_ConcessionAmt += dr["ConcessionAmt"].ConvertToDouble();
@@ -1349,14 +1349,14 @@ namespace HIMS.Data.Opd
                 i++;j++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegId"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetPayableAmt"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PaidAmount"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalanceAmt"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalAmt"].ConvertToDouble()).Append("</td></tr>");
+                items.Append("<td style=\"text-align: center;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegId"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; font-size:18px;border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BillDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"text-align: left;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: right; font-size:18px;border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["NetPayableAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PaidAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalanceAmt"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalAmt"].ConvertToDouble()).Append("</td></tr>");
 
                 T_NetPayableAmt += dr["NetPayableAmt"].ConvertToDouble();
                 T_PaidAmount += dr["PaidAmount"].ConvertToDouble();
@@ -1399,10 +1399,10 @@ namespace HIMS.Data.Opd
                 i++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefundNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefundDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefundNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefundDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"text-align: center;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left;font-size:18px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
 
                 
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefundAmount"].ConvertToDouble()).Append("</td></tr>");
