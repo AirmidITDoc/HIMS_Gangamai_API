@@ -742,7 +742,7 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GrnNumber"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GRNDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["InvoiceNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalanceQty"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalQty"].ConvertToString()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["MRP"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Rate"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalAmount"].ConvertToDouble()).Append("</td>");

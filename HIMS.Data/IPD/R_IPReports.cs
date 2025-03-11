@@ -1417,14 +1417,14 @@ namespace HIMS.Data.IPD
                 i++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["AdmissionTime"].ConvertToDateString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["IsMarkForDisNurDateTime"].ConvertToDateString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["DischargeDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["DischargeTime"].ConvertToDateString()).Append(" </td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["DiffTimeInHr"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size:19px; padding: 6px;text-align:center;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size:19px; padding: 6px;text-align:left;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size:19px; padding: 6px;text-align:center;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px;  padding: 6px;text-align:center;\">").Append(dr["AdmissionTime"].ConvertToDateString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px;  padding: 6px;text-align:center;\">").Append(dr["IsMarkForDisNurDateTime"].ConvertToDateString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px;  padding: 6px;text-align:center;\">").Append(dr["DischargeDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px;  padding: 6px;text-align:center;\">").Append(dr["DischargeTime"].ConvertToDateString()).Append(" </td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px;  padding: 6px;text-align:center;\">").Append(dr["DiffTimeInHr"].ConvertToString()).Append("</td></tr>");
 
 
             }
@@ -1520,8 +1520,8 @@ namespace HIMS.Data.IPD
                 i++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["Lbl"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 20px; padding: 6px;text-align:left;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size: 20px;padding: 6px;text-align:center;\">").Append(dr["Lbl"].ConvertToString()).Append("</td>");
 
                 T_Count += dr["Lbl"].ConvertToDouble();
             }
@@ -1562,8 +1562,8 @@ namespace HIMS.Data.IPD
                 i++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["DocName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["Lbl"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size: 20px;padding: 6px;text-align:left;\">").Append(dr["DocName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 20px; padding: 6px;text-align:center;\">").Append(dr["Lbl"].ConvertToString()).Append("</td>");
                 T_Count += dr["Lbl"].ConvertToDouble();
             }
 
@@ -1603,12 +1603,12 @@ namespace HIMS.Data.IPD
                 i++;j++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["RefDoctorName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["Medical"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["Pathology"].ConvertToDouble()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["Radiology"].ConvertToDouble()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size: 20px;padding: 6px;text-align:left;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 20px; padding: 6px;text-align:left;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size: 20px;padding: 6px;text-align:left;\">").Append(dr["RefDoctorName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 20px; padding: 6px;text-align:right;\">").Append(dr["Medical"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 20px; padding: 6px;text-align:right;\">").Append(dr["Pathology"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 20px; padding: 6px;text-align:right;\">").Append(dr["Radiology"].ConvertToDouble()).Append("</td></tr>");
                 T_Medical += dr["Medical"].ConvertToDouble();
                 T_Pathology += dr["Pathology"].ConvertToDouble();
                 T_Radiology += dr["Radiology"].ConvertToDouble();
@@ -1652,15 +1652,16 @@ namespace HIMS.Data.IPD
                 i++; j++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text_align:center;\">").Append(dr["AdmissionID"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text_align:center;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text_align:left;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 20px; padding: 6px;text_align:center;\">").Append(dr["AdmissionID"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 20px; padding: 6px;text_align:center;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 20px; padding: 6px;text_align:left;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
                
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text_align:left;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 20px; padding: 6px;text_align:left;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
                 
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text_align:center;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 20px; padding: 6px;text_align:center;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
 
             }
+
 
 
             html = html.Replace("{{T_Count}}", T_Count.ToString());
@@ -1715,7 +1716,7 @@ namespace HIMS.Data.IPD
                 //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["Procedurename1"].ConvertToString()).Append("</td>");
                 //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["Procedurename2"].ConvertToString()).Append("</td>");
                 //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["Procedurename3"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["NetPayableAmt"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["NetPayableAmt"].ConvertToDouble().ToString("0.00")).Append("</td></tr>");
 
                 T_Count += dr["PatientName"].ConvertToDouble();
                 T_NetAmount += dr["NetPayableAmt"].ConvertToDouble();
@@ -1777,7 +1778,7 @@ namespace HIMS.Data.IPD
                 {
                     j = 1;
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-size:21px;font-weight:bold;\">Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                        .Append(Dcount.ToString()).Append("</td></tr>");
 
                     Dcount = 0;
@@ -1790,16 +1791,16 @@ namespace HIMS.Data.IPD
                 previousLabel = dr["AdmittedDocName"].ConvertToDateString();
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["RegNO"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["IPDNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["Age"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["GenderName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["AdmissionTime"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["RefDocName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["Address"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["RoomName"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px; padding: 6px;text-align:center;\">").Append(dr["RegNO"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px; padding: 6px;text-align:center;\">").Append(dr["IPDNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px; padding: 6px;text-align:left;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px; padding: 6px;text-align:center;\">").Append(dr["Age"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px; padding: 6px;text-align:left;\">").Append(dr["GenderName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size:19px;padding: 6px;text-align:center;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px; padding: 6px;text-align:center;\">").Append(dr["AdmissionTime"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px; padding: 6px;text-align:left;\">").Append(dr["RefDocName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px; padding: 6px;text-align:left;\">").Append(dr["Address"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size:19px; padding: 6px;text-align:left;\">").Append(dr["RoomName"].ConvertToString()).Append("</td></tr>");
                 //if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 //{
 
@@ -1902,7 +1903,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
-            double T_Count = 0;
+            double T_Count = 0, T_ChargesAmount = 0, T_AdvanceAmount = 0, T_BalPayAmt = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
@@ -1930,9 +1931,11 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["ChargesAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["AdvanceAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["BalPayAmt"].ConvertToDouble()).Append("</td></tr>");
-             
 
-                T_Count += dr["BalPayAmt"].ConvertToDouble();
+
+                T_ChargesAmount += dr["ChargesAmount"].ConvertToDouble();
+                T_AdvanceAmount += dr["AdvanceAmount"].ConvertToDouble();
+                T_BalPayAmt += dr["BalPayAmt"].ConvertToDouble();
                 //if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 //{
 
@@ -1946,6 +1949,9 @@ namespace HIMS.Data.IPD
 
 
             html = html.Replace("{{T_Count}}", T_Count.ToString());
+            html = html.Replace("{{T_ChargesAmount}}", T_ChargesAmount.ToString());
+            html = html.Replace("{{T_AdvanceAmount}}", T_AdvanceAmount.ToString());
+            html = html.Replace("{{T_BalPayAmt}}", T_BalPayAmt.ToString());
 
 
 
@@ -1977,7 +1983,7 @@ namespace HIMS.Data.IPD
 
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
-            double T_Count = 0, Dcount = 0;
+            double T_Count = 0, Dcount = 0, T_ChargesAmount = 0, T_AdvanceAmount = 0, T_BalPayAmt = 0;
 
             string previousLabel = "";
 
@@ -2032,11 +2038,16 @@ namespace HIMS.Data.IPD
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["ChargesAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["AdvanceAmount"].ConvertToDouble()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["BalPayAmt"].ConvertToDouble()).Append("</td></tr>");
-                T_Count += dr["BalPayAmt"].ConvertToDouble();
+                T_ChargesAmount += dr["ChargesAmount"].ConvertToDouble();
+                T_AdvanceAmount += dr["AdvanceAmount"].ConvertToDouble();
+                T_BalPayAmt += dr["BalPayAmt"].ConvertToDouble();
 
             }
 
 
+            html = html.Replace("{{T_ChargesAmount}}", T_ChargesAmount.ToString());
+            html = html.Replace("{{T_AdvanceAmount}}", T_AdvanceAmount.ToString());
+            html = html.Replace("{{T_BalPayAmt}}", T_BalPayAmt.ToString());
             html = html.Replace("{{T_Count}}", T_Count.ToString());
 
 
@@ -2859,15 +2870,15 @@ namespace HIMS.Data.IPD
                 i++;
 
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["CompanyName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["AgeYear"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["IPDNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["RefDoctorName"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; font-size: 19px;padding: 6px;text-align:center;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 19px; padding: 6px;text-align:center;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 19px; padding: 6px;text-align:left;\">").Append(dr["CompanyName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 19px; padding: 6px;text-align:left;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 19px; padding: 6px;text-align:center;\">").Append(dr["AgeYear"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 19px; padding: 6px;text-align:center;\">").Append(dr["IPDNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 19px; padding: 6px;text-align:left;\">").Append(dr["DepartmentName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 19px; padding: 6px;text-align:left;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3;font-size: 19px; padding: 6px;text-align:left;\">").Append(dr["RefDoctorName"].ConvertToString()).Append("</td></tr>");
 
                 T_Count += dr["PatientName"].ConvertToDouble();
             }
@@ -3293,7 +3304,7 @@ namespace HIMS.Data.IPD
                 {
                     j = 1;
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='8' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                        .Append(Dcount.ToString()).Append("</td></tr>");
 
                     Dcount = 0;
@@ -3318,7 +3329,7 @@ namespace HIMS.Data.IPD
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='5' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='8' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
 
                          .Append(Dcount.ToString()).Append("</td></tr>");
 
@@ -3369,17 +3380,17 @@ namespace HIMS.Data.IPD
                 {
                     String Label;
                     Label = dr["CompanyName"].ConvertToDateString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"3\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
                 }
                 if (previousLabel != "" && previousLabel != dr["CompanyName"].ConvertToDateString())
                 {
                     j = 1;
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='2' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\">Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
                        .Append(Dcount.ToString()).Append("</td></tr>");
 
                     Dcount = 0;
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["CompanyName"].ConvertToString()).Append("</td></tr>");
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"3\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["CompanyName"].ConvertToString()).Append("</td></tr>");
 
                 }
 
@@ -3391,7 +3402,7 @@ namespace HIMS.Data.IPD
                 //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
                 //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["IPDNo"].ConvertToString()).Append("</td>");
                 //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["DischargeTypeName"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;font-size:20px;\">").Append(dr["DischargeTypeName"].ConvertToString()).Append("</td></tr>");
                 //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["AdmissionDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
 
                 //items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["DischargeDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
@@ -3400,7 +3411,7 @@ namespace HIMS.Data.IPD
                 if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
                 {
 
-                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='2' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total Count</td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
 
                          .Append(Dcount.ToString()).Append("</td></tr>");
 
@@ -3530,13 +3541,13 @@ namespace HIMS.Data.IPD
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
 
 
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Address"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["MobileNo"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefDoctorName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Diagnosis"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"text-align: center;font-size:19px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left; font-size:19px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left;font-size:19px;  border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Address"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center;font-size:19px;  border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["MobileNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left;font-size:19px;  border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RefDoctorName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left;font-size:19px;  border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["DoctorName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left;font-size:19px;  border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Diagnosis"].ConvertToString()).Append("</td></tr>");
 
                
           
@@ -3583,7 +3594,7 @@ namespace HIMS.Data.IPD
 
 
 
-                items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CompanyName"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"text-align: left;font-size:20px;  border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CompanyName"].ConvertToString()).Append("</td></tr>");
                 //items.Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["CompanyId"].ConvertToString()).Append("</td></tr>");
 
 
