@@ -208,6 +208,28 @@ namespace HIMS.Data.Opd
            
             html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));
             html = html.Replace("{{LoginUserSurname}}", Bills.GetColValue("LoginUserSurname"));
+            html = html.Replace("{{BP}}", Bills.GetColValue("BP"));
+            html = html.Replace("{{Pulse}}", Bills.GetColValue("Pulse"));
+            html = html.Replace("{{Height}}", Bills.GetColValue("Height"));
+            html = html.Replace("{{Weight}}", Bills.GetColValue("PWeight"));
+            html = html.Replace("{{Temp}}", Bills.GetColValue("Temp"));
+            html = html.Replace("{{BP}}", Bills.GetColValue("BP"));
+            html = html.Replace("{{BSL}}", Bills.GetColValue("BSL"));
+            html = html.Replace("{{BMI}}", Bills.GetColValue("BMI"));
+            html = html.Replace("{{SpO2}}", Bills.GetColValue("SpO2"));
+
+
+
+            html = html.Replace("{{chkBPflag}}", Bills.GetColValue("BP").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkPulseflag}}", Bills.GetColValue("Pulse").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkHeightflag}}", Bills.GetColValue("Height").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkWeightflag}}", Bills.GetColValue("PWeight").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkTempflag}}", Bills.GetColValue("Temp").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkBSLflag}}", Bills.GetColValue("BSL").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkBMIflag}}", Bills.GetColValue("BMI").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkSpO2flag}}", Bills.GetColValue("SpO2").ConvertToString() != "" ? "visible" : "none");
+
+
 
             return html;
         }
@@ -260,6 +282,26 @@ namespace HIMS.Data.Opd
 
             html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));
             html = html.Replace("{{LoginUserSurname}}", Bills.GetColValue("LoginUserSurname"));
+            html = html.Replace("{{BP}}", Bills.GetColValue("BP"));
+            html = html.Replace("{{Pulse}}", Bills.GetColValue("Pulse"));
+            html = html.Replace("{{Height}}", Bills.GetColValue("Height"));
+            html = html.Replace("{{Weight}}", Bills.GetColValue("PWeight"));
+            html = html.Replace("{{Temp}}", Bills.GetColValue("Temp"));
+            html = html.Replace("{{BP}}", Bills.GetColValue("BP"));
+            html = html.Replace("{{BSL}}", Bills.GetColValue("BSL"));
+            html = html.Replace("{{BMI}}", Bills.GetColValue("BMI"));
+            html = html.Replace("{{SpO2}}", Bills.GetColValue("SpO2"));
+
+
+
+            html = html.Replace("{{chkBPflag}}", Bills.GetColValue("BP").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkPulseflag}}", Bills.GetColValue("Pulse").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkHeightflag}}", Bills.GetColValue("Height").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkWeightflag}}", Bills.GetColValue("PWeight").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkTempflag}}", Bills.GetColValue("Temp").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkBSLflag}}", Bills.GetColValue("BSL").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkBMIflag}}", Bills.GetColValue("BMI").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkSpO2flag}}", Bills.GetColValue("SpO2").ConvertToString() != "" ? "visible" : "none");
 
             return html;
 
@@ -271,19 +313,19 @@ namespace HIMS.Data.Opd
             para[0] = new SqlParameter("@VisitId", VisitId) { DbType = DbType.Int64 };
             return GetDataTableProc("rptAppointmentPrint1", para);
         }
-        public string ViewAppointmentTemplate(DataTable Bills, string htmlFilePath, string htmlHeader,string Hospitalheader)
+        public string ViewAppointmentTemplate(DataTable Bills, string htmlFilePath, string htmlHeade)
         {
 
-            string html = File.ReadAllText(htmlFilePath);
+            //string html = File.ReadAllText(htmlFilePath);
 
-            //string html = htmlFilePath;
+            string html = htmlFilePath;
 
 
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
           //html = html.Replace("{{NewHeader}}", htmlHeader);
 
-            html = html.Replace("{{DataContent}}", htmlHeader);
-           html = html.Replace("{{NewHeader}}", Hospitalheader);
+            html = html.Replace("{{DataContent}}", htmlHeade);
+           //html = html.Replace("{{NewHeader}}", Hospitalheader);
             StringBuilder items = new StringBuilder("");
             int i = 0;
 

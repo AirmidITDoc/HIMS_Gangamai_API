@@ -14,7 +14,7 @@ namespace HIMS.Data.Opd
         string ViewpatientAppointmentReceipt(int VisitId, string htmlFilePath, string htmlHeaderFilePath);
         string ViewOppatientAppointmentdetailsReceipt(int VisitId, string htmlFilePath, string htmlHeaderFilePath);
         DataTable GetDataForReport(int VisitId);
-        string ViewAppointmentTemplate(DataTable Bills, string htmlFilePath, string htmlHeader, string Hospitalheader); 
+        string ViewAppointmentTemplate(DataTable Bills, string htmlFilePath, string htmlHeade); 
         bool UpdateVitalInformation(OpdAppointmentParams opdAppointmentParams);
     }
 }
