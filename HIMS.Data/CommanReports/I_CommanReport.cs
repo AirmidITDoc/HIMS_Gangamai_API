@@ -8,6 +8,7 @@ namespace HIMS.Data.CommanReports
 {
     public interface I_CommanReport
     {
+        string ViewDoctorWisePatientCountReportDetails(DateTime FromDate, DateTime ToDate, int DoctorID, string htmlFilePath, string htmlHeader);
         string ViewCommanDailyCollectionReceipt(DateTime FromDate, DateTime ToDate, int AddedById, int DoctorId, string htmlFilePath, string HeaderName);
         string ViewDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate,int DoctorID, string htmlFilePath, string htmlHeader);
         string ViewReferenceDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate, int DoctorID, string htmlFilePath, string htmlHeader);

@@ -501,7 +501,7 @@ namespace HIMS.Data.Opd
 
         //    double T_SubBillAmount = 0, T_SubCashPayAmount = 0, T_SubCardPayAmount = 0, T_SubChequePayAmount = 0, T_SubNEFTPayAmount = 0, T_SubPayTMAmount = 0;
         //    double T_AddBillBillAmount = 0, T_AddBillCashPayAmount = 0, T_AddBillChequePayAmount = 0, T_AddBillCardPayAmount = 0, T_AddBillNEFTPayAmount = 0, T_AddBillPayTMAmount = 0, T_AddBillAdvanceUsedAmount = 0, T_AddBillBalanceAmount = 0;
-              
+
 
         //    double T_AddBillrefundBillAmount = 0, T_AddBillrefundCashPayAmount = 0, T_AddBillrefundChequePayAmount = 0, T_AddBillrefundCardPayAmount = 0, T_AddBillrefundNEFTPayAmount = 0, T_AddBillrefundPayTMAmount = 0, T_AddBillrefundAdvanceUsedAmount = 0, T_AddBillrefundBalanceAmount = 0;
         //    double T_OPBillAmount = 0, T_IPBillAmount = 0;
@@ -510,7 +510,7 @@ namespace HIMS.Data.Opd
 
 
 
-           
+
         //    //double TotalCollection = 0;
         //    //double G_CashPayAmount = 0, G_CardPayAmount = 0, G_ChequePayAmount = 0, G_NETPayAmount = 0, G_NEFTPayAmount = 0, G_PayTMAmount = 0, G_DiscAmount = 0, G_NETAmount = 0, G_PaidAmount = 0, G_BalAmount = 0, G_TotAmount = 0;
         //    //double T_CashPayAmount = 0, T_CardPayAmount = 0, T_ChequePayAmount = 0, T_NETPayAmount = 0, T_NEFTPayAmount = 0, T_PayTmAmount = 0;
@@ -753,6 +753,61 @@ namespace HIMS.Data.Opd
         //}
 
 
+        public string ViewDoctorWisePatientCountReportDetails(DateTime FromDate, DateTime ToDate, int DoctorID, string htmlFilePath, string htmlHeader)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@DoctorID", DoctorID) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("m_Rpt_Consultant_Drwise_Detailreport", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            double T_count = 0, OPcount = 0, T_Ipcount = 0, T_OPcount = 0;
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++; j++;
+
+                items.Append("<tr style=\"text-align: center;font-size: 19px; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"text-align: center;font-size: 19px;  border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["VisitDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"text-align: center; font-size: 19px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["RegNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left;font-size: 19px;  border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PatientName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; font-size: 19px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["AgeYear"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left;font-size: 19px;  border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Address"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left;font-size: 19px;  border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["GenderName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; font-size: 19px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["MobileNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left; font-size: 19px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ReferDrName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left; font-size: 19px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ConsultantDrName"].ConvertToString()).Append("</td></tr>");
+
+      
+                //T_count += dr["VisitCount"].ConvertToDouble();
+
+
+
+
+            }
+
+
+
+
+            //html = html.Replace("{{T_count}}", T_count.ToString());
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            return html;
+
+        }
+
         public string ViewDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate, int DoctorID, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
@@ -811,6 +866,7 @@ namespace HIMS.Data.Opd
             return html;
 
         }
+        
         public string ViewReferenceDoctorWisePatientCountReport(DateTime FromDate, DateTime ToDate, int DoctorID, string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();

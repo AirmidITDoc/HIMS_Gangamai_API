@@ -1395,36 +1395,28 @@ namespace HIMS.Data.Opd
 
             //return html;
             StringBuilder items = new StringBuilder("");
-            int i = 0;
+            int i = 0, j = 0;
             double T_NetAmount = 0;
-            string previousLabel = "";
+            string previousLabel = "";  // To track the previous label
 
             foreach (DataRow dr in Bills.Rows)
             {
-                i++;
-
-                // Only append the first row's Doctor Name once
-                if (i == 1)
-                {
-                    string Label = dr["DoctorName"].ConvertToString();
-                    items.Append("<tr style=\"font-size:20px;border: 1px;color:black;\"><td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
-                          .Append(Label)
-                          .Append("</td></tr>");
-                }
+                i++; j++;
 
                 string currentCategory = dr["ItemCategoryName"].ConvertToString();
 
                 // Append ItemCategoryName only if it is different from the previous one
                 if (previousLabel != currentCategory)
                 {
+                    // Only append once when it's different from the previous
                     items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">")
-                          .Append("<td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
-                          .Append(currentCategory)
-                          .Append("</td></tr>");
-                }
+                         .Append("<td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
+                         .Append(currentCategory)
+                         .Append("</td></tr>");
 
-                // Update previousLabel to the current ItemCategoryName
-                previousLabel = currentCategory;
+                    // Update previousLabel to the current ItemCategoryName to track it for next iterations
+                    previousLabel = currentCategory;
+                }
 
                 // Append item details for each row
                 items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">")
@@ -1455,6 +1447,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
 
             return html;
+
 
         }
 
@@ -1991,6 +1984,66 @@ namespace HIMS.Data.Opd
         public string ViewPurchaseWiseGRNSummary(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader)
         {
             throw new NotImplementedException();
+        }
+        public string ViewOpeningBalanceList(int Storeid, DateTime From_Dt, DateTime To_Dt, string htmlFilePath, string htmlHeader)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@From_Dt", From_Dt) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@To_Dt", To_Dt) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@Storeid", Storeid) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("m_rpt_Opening_Balance", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            double T_count = 0, T_PerUnitPurRate = 0, T_PerUnitMrp = 0, T_BalQty = 0;
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+                i++; j++;
+
+                items.Append("<tr style=\"text-align: center;font-size: 19px; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"text-align: center;font-size: 19px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["OpeningDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"text-align: center; font-size: 19px;border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["OpeningHId"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left; font-size: 19px;border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; font-size: 19px;border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left;font-size: 19px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BatchExpDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
+                items.Append("<td style=\"text-align: right;font-size: 19px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PerUnitPurRate"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: right;font-size: 19px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PerUnitMrp"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"text-align: center; font-size: 19px;border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["VatPer"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center; font-size: 19px;border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalQty"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: center;font-size: 19px; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["OpeningDocNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"text-align: left; font-size: 19px;border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["UserName"].ConvertToString()).Append("</td></tr>");
+
+
+                T_PerUnitPurRate += dr["PerUnitPurRate"].ConvertToDouble();
+                T_PerUnitMrp += dr["PerUnitMrp"].ConvertToDouble();
+                T_BalQty += dr["BalQty"].ConvertToDouble();
+
+
+
+
+            }
+
+
+
+
+            html = html.Replace("{{T_PerUnitPurRate}}", T_PerUnitPurRate.ToString());
+            html = html.Replace("{{T_PerUnitMrp}}", T_PerUnitMrp.ToString());
+            html = html.Replace("{{T_BalQty}}", T_BalQty.ToString());
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", From_Dt.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", To_Dt.ToString("dd/MM/yy"));
+            return html;
+
         }
     }
 }

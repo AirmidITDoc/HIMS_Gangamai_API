@@ -27,6 +27,17 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
 
         }
+        [HttpGet("view-ViewDoctorWisePatientCountReportDetails")]
+        public IActionResult ViewDoctorWisePatientCountReportDetails(DateTime FromDate, DateTime ToDate, int DoctorID)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "CommanReport_DoctorWisePatientCountReportDetails.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPComman.ViewDoctorWisePatientCountReportDetails(FromDate, ToDate, DoctorID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewDoctorWisePatientCountReportDetails", "ViewDoctorWisePatientCountReportDetails", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+
+        }
         [HttpGet("view-OPPatientLedger")]
         public IActionResult ViewOPPatientLedger(DateTime FromDate, DateTime ToDate)
         {

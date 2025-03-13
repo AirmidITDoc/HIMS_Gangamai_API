@@ -9,7 +9,7 @@ namespace HIMS.Data.InventoryReports
 {
     public interface I_InventoryReport
     {
-        
+        string ViewOpeningBalanceList(int Storeid, DateTime From_Dt, DateTime To_Dt, string htmlFilePath, string htmlHeader);
         string ViewItemList(DateTime FromDate, DateTime ToDate, string htmlFilePath, string htmlHeader);
         string ViewSupplierList(String SupplierName,int StoreID, string htmlFilePath, string htmlHeader);
         string ViewIndentReport(DateTime FromDate, DateTime ToDate, int FromStoreId,int ToStoreId,string htmlFilePath, string htmlHeader);

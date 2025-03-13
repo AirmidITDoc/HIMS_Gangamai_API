@@ -29,6 +29,18 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
         
     }
+
+        [HttpGet("view-OpeningBalanceList")]
+        public IActionResult ViewOpeningBalanceList(int Storeid, DateTime From_Dt, DateTime To_Dt)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventortReport_OpeningBalanceList.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _InventoryReport.ViewOpeningBalanceList(Storeid, From_Dt, To_Dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewOpeningBalanceList", "ViewOpeningBalanceList", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpGet("view-ItemList")]
         public IActionResult ViewItemList(DateTime FromDate, DateTime ToDate)
         {
