@@ -31,11 +31,11 @@ namespace HIMS.API.Controllers.Transaction
     }
 
         [HttpGet("view-OpeningBalanceList")]
-        public IActionResult ViewOpeningBalanceList(int Storeid, DateTime From_Dt, DateTime To_Dt)
+        public IActionResult ViewOpeningBalanceList(int Storeid, int OpeningHId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventortReport_OpeningBalanceList.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _InventoryReport.ViewOpeningBalanceList(Storeid, From_Dt, To_Dt, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _InventoryReport.ViewOpeningBalanceList(Storeid, OpeningHId,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewOpeningBalanceList", "ViewOpeningBalanceList", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
 
 

@@ -6,8 +6,8 @@ namespace HIMS.Model.Pharmacy
 {
     public class SalesPaymentParams
     {
-        public SalesPaymentSettlement SalesPaymentSettlement { get; set; }
-        public update_Pharmacy_BillBalAmountSettlement update_Pharmacy_BillBalAmountSettlement { get; set; }
+        public List<SalesPaymentSettlement> SalesPaymentSettlement { get; set; }
+        public List<update_Pharmacy_BillBalAmountSettlement> update_Pharmacy_BillBalAmountSettlement { get; set; }
         public List<update_T_PHAdvanceDetailSettlement> update_T_PHAdvanceDetailSettlement { get; set; }
         public update_T_PHAdvanceHeaderSettlement update_T_PHAdvanceHeaderSettlement { get; set; }
     }

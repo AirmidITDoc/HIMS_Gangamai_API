@@ -1985,14 +1985,14 @@ namespace HIMS.Data.Opd
         {
             throw new NotImplementedException();
         }
-        public string ViewOpeningBalanceList(int Storeid, DateTime From_Dt, DateTime To_Dt, string htmlFilePath, string htmlHeader)
+        public string ViewOpeningBalanceList(int Storeid, int OpeningHId,string htmlFilePath, string htmlHeader)
         {
             // throw new NotImplementedException();
 
-            SqlParameter[] para = new SqlParameter[3];
-            para[0] = new SqlParameter("@From_Dt", From_Dt) { DbType = DbType.DateTime };
-            para[1] = new SqlParameter("@To_Dt", To_Dt) { DbType = DbType.DateTime };
-            para[2] = new SqlParameter("@Storeid", Storeid) { DbType = DbType.Int64 };
+            SqlParameter[] para = new SqlParameter[2];
+            //para[0] = new SqlParameter("@From_Dt", From_Dt) { DbType = DbType.DateTime };
+            para[0] = new SqlParameter("@OpeningHId", OpeningHId) { DbType = DbType.Int64 };
+            para[1] = new SqlParameter("@Storeid", Storeid) { DbType = DbType.Int64 };
             var Bills = GetDataTableProc("m_rpt_Opening_Balance", para);
 
 
@@ -2040,8 +2040,8 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{T_PerUnitMrp}}", T_PerUnitMrp.ToString());
             html = html.Replace("{{T_BalQty}}", T_BalQty.ToString());
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{FromDate}}", From_Dt.ToString("dd/MM/yy"));
-            html = html.Replace("{{ToDate}}", To_Dt.ToString("dd/MM/yy"));
+            //html = html.Replace("{{FromDate}}", From_Dt.ToString("dd/MM/yy"));
+            //html = html.Replace("{{ToDate}}", To_Dt.ToString("dd/MM/yy"));
             return html;
 
         }
