@@ -496,6 +496,7 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{UseName}}", Bills.GetColValue("UseName"));
             html = html.Replace("{{TDSAmount}}", Bills.GetColValue("TDSAmount"));
+            html = html.Replace("{{CompDiscAmt}}", Bills.GetColValue("CompDiscAmt"));
             html = html.Replace("{{AffilAmount}}", Bills.GetColValue("AffilAmount"));
 
 
@@ -509,6 +510,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{chkadminchargeflag}}",AdminChares.ConvertToDouble() > 0 ? "table-row " : "none");
             html = html.Replace("{{chkbalafterdudcflag}}", BalancewdudcAmt.ConvertToDouble() > 0 ? "table-row " : "none");
             html = html.Replace("{{chktdsflag}}", Bills.GetColValue("TDSAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+            html = html.Replace("{{chkcomdiscflag}}", Bills.GetColValue("CompDiscAmt").ConvertToDouble() > 0 ? "table-row " : "none");
             html = html.Replace("{{chkWrfAmountflag}}", Bills.GetColValue("AffilAmount").ConvertToDouble() > 0 ? "table-row " : "none");
 
             html = html.Replace("{{chkadminflag}}", Bills.GetColValue("TaxAmount").ConvertToDouble() > 0 ? "table-row " : "none");
