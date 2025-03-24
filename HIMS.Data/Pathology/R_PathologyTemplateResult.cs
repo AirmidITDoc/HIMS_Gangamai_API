@@ -217,16 +217,16 @@ namespace HIMS.Data.Pathology
                 // Update previousPatientType and previousDoctorName
                 previousPatientType = currentPatientType;
                 previousDoctorName = currentDoctorName;
-                items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:18px;\"><td style=\"vertical-align: top;padding: 6px;;height: 20px;text-align:left;font-size:20px;padding-left:7px;\">").Append("</td>");
+                items.Append("<tr style=\"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:18px;\"><td style=\"vertical-align: top;padding: 6px;height: 20px;text-align:left;font-size:20px;padding-left:2px;\">").Append("</td>");
 
                 //items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["PathDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>");
                 //items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["ParameterName"].ConvertToString()).Append("</td>");
                 //items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["UnitName"].ConvertToString()).Append("</td>");
                 //items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
 
-                items.Append("<td style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:5px;\">").Append(dr["ParameterName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:10px;\">").Append(dr["UnitName"].ConvertToString()).Append("</td>");
-                items.Append("<td style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-right:5px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
+                items.Append("<td style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:3px;margin-right: 12px;\">").Append(dr["ParameterName"].ConvertToString()).Append("</td>");
+                items.Append("<td  style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:12px;margin-left: 20px;\">").Append(dr["UnitName"].ConvertToString()).Append("</td>");
+                items.Append("<td  style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-right:10px;margin-left: 20px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
 
 
             }
