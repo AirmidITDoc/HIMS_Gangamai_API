@@ -4,6 +4,9 @@ namespace HIMS.Data.Pharmacy
 {
     public interface I_GRN
     {
+
+        public string InsertGRNDirectNEW(GRNParamsNEW grnParams);
+        public bool UpdateGRNNEW(GRNParamsNEW grnParams);
         public string InsertGRNDirect(GRNParams grnParams);
         public bool UpdateGRN(GRNParams grnParams);
         public string InsertGRNPurchase(GRNParams grnParams);

@@ -233,7 +233,20 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        [HttpPost("InsertGRNDirectNEW")]
+        public IActionResult InsertGRNDirectNEW(GRNParamsNEW grnParams)
+        {
+            var SalesSave = _GRN.InsertGRNDirectNEW(grnParams);
+            return Ok(SalesSave.ToString());
 
+        }
+        [HttpPost("UpdateGRNNEW")]
+        public IActionResult UpdateGRNNEW(GRNParamsNEW grnParams)
+        {
+            var SalesSave = _GRN.UpdateGRNNEW(grnParams);
+            return Ok(true);
+
+        }
         [HttpPost("InsertGRNDirect")]
         public IActionResult InsertGRNDirect(GRNParams grnParams)
         {

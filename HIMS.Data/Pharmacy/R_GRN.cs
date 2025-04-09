@@ -15,6 +15,84 @@ namespace HIMS.Data.Pharmacy
         {
 
         }
+        public String InsertGRNDirectNEW(GRNParamsNEW grnParams)
+        {
+
+            var outputId1 = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@GRNID",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+
+            var outputId2 = new SqlParameter
+            {
+                SqlDbType = SqlDbType.BigInt,
+                ParameterName = "@GRNDetID",
+                Value = 0,
+                Direction = ParameterDirection.Output
+            };
+
+            foreach (var a in grnParams.InsertTGRNRetDet)
+            {
+                var disc = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_insert_T_GRN_RetDet_1", disc);
+            }
+
+
+            var disc3 = grnParams.GRNSave.ToDictionary();
+            disc3.Remove("GRNID");
+            var BillNo = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNHeader_PurNo_1_New", disc3, outputId1);
+
+            foreach (var a in grnParams.GRNDetailSave)
+            {
+                var disc5 = a.ToDictionary();
+                disc5.Remove("GRNDetID");
+                disc5["GRNId"] = BillNo;
+                var GrnDetID = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNDetails_1_New ", disc5, outputId2);
+            }
+            foreach (var a in grnParams.UpdateItemMasterGSTPer)
+            {
+                var disc5 = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_Update_M_ItemMaster_GSTPer_1", disc5);
+            }
+
+            _unitofWork.SaveChanges();
+            return BillNo;
+        }
+
+        public bool UpdateGRNNEW(GRNParamsNEW grnParams)
+        {
+
+
+            var vDelete = grnParams.DeleteRetDet.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Delete_T_GRN_RetDet", vDelete);
+
+            foreach (var a in grnParams.InsertTGRNRetDet)
+            {
+                var disc = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_insert_T_GRN_RetDet_1", disc);
+            }
+
+            var vPurchaseOrderUdpate = grnParams.updateGRNHeader.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_update_GRNHeader_1", vPurchaseOrderUdpate);
+
+            var vPurchaseOrderDelete = grnParams.Delete_GRNDetails.ToDictionary();
+            vPurchaseOrderDelete["GRNId"] = grnParams.updateGRNHeader.GRNID;
+            ExecNonQueryProcWithOutSaveChanges("m_Delete_GRNDetails_1_1", vPurchaseOrderDelete);
+
+            foreach (var a in grnParams.GRNDetailSave)
+            {
+                var disc5 = a.ToDictionary();
+                var ChargeID = ExecNonQueryProcWithOutSaveChanges("m_insert_GRNDetails_1_New", disc5);
+            }
+
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
 
         public String InsertGRNDirect(GRNParams grnParams)
         {
