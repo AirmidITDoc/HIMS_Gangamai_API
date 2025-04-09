@@ -241,6 +241,7 @@ namespace HIMS.API.Controllers.Transaction
 
         }
         [HttpPost("UpdateGRNNEW")]
+
         public IActionResult UpdateGRNNEW(GRNParamsNEW grnParams)
         {
             var SalesSave = _GRN.UpdateGRNNEW(grnParams);

@@ -27,8 +27,6 @@ namespace HIMS.Model.Pharmacy
     {
         public long Det_Id { get; set; }
        
-
-
     }
     public class InsertTGRNRetDet
     {

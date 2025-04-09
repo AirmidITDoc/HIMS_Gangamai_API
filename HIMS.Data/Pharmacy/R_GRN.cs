@@ -70,6 +70,8 @@ namespace HIMS.Data.Pharmacy
             var vDelete = grnParams.DeleteRetDet.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_Delete_T_GRN_RetDet", vDelete);
 
+
+
             foreach (var a in grnParams.InsertTGRNRetDet)
             {
                 var disc = a.ToDictionary();
