@@ -30,7 +30,7 @@ namespace HIMS.Model.Pharmacy
     }
     public class InsertTGRNRetDet
     {
-        public long Det_Id { get; set; }
+        //public long Det_Id { get; set; }
         public long GRNReturnId { get; set; }
         public long GRNId { get; set; }
         public long StoreId { get; set; }
