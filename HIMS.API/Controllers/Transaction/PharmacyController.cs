@@ -94,7 +94,8 @@ namespace HIMS.API.Controllers.Transaction
             }
             if (IsInStock)
             {
-                var SalesSave = _Sales.InsertSales(salesParams);
+                var SalesSave = _Sales.InsertSales
+                    (salesParams);
                 return Ok(SalesSave.ToString());
             }
             else

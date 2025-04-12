@@ -552,7 +552,7 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0;
-            double T_NetAmount = 0;
+            double T_NetAmount = 0, T_CGSTAmt = 0, T_SGSTAmt = 0, T_IGSTAmt = 0;
 
 
             foreach (DataRow dr in Bills.Rows)
@@ -576,8 +576,11 @@ namespace HIMS.Data.Opd
 
 
 
+                T_CGSTAmt += dr["CGSTAmt"].ConvertToDouble();
+                T_SGSTAmt += dr["SGSTAmt"].ConvertToDouble();
+                T_IGSTAmt += dr["IGSTAmt"].ConvertToDouble();
                 T_NetAmount += dr["TotalAmount"].ConvertToDouble();
-               
+
             }
 
 
@@ -585,8 +588,11 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_CGSTAmt}}", T_CGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_SGSTAmt}}", T_SGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_IGSTAmt}}", T_IGSTAmt.To2DecimalPlace());
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
-           
+
 
             return html;
 
@@ -731,7 +737,7 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0;
-            double T_NetAmount = 0;
+            double T_NetAmount = 0, T_CGSTAmt = 0, T_SGSTAmt = 0, T_IGSTAmt = 0;
 
 
             foreach (DataRow dr in Bills.Rows)
@@ -754,7 +760,10 @@ namespace HIMS.Data.Opd
                 items.Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalAmount"].ConvertToDouble()).Append("</td></tr>");
 
 
-
+                T_CGSTAmt += dr["CGSTAmt"].ConvertToDouble();
+                T_SGSTAmt += dr["SGSTAmt"].ConvertToDouble();
+                T_IGSTAmt += dr["IGSTAmt"].ConvertToDouble();
+               
                 T_NetAmount += dr["TotalAmount"].ConvertToDouble();
 
             }
@@ -764,6 +773,9 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{Items}}", items.ToString());
             html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
             html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{T_CGSTAmt}}", T_CGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_SGSTAmt}}", T_SGSTAmt.To2DecimalPlace());
+            html = html.Replace("{{T_IGSTAmt}}", T_IGSTAmt.To2DecimalPlace());
             html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
 
 
@@ -1274,16 +1286,17 @@ namespace HIMS.Data.Opd
                     if (previousLabel != "")
                     {
                         items.Append("<tr><td colspan='6' style='border-top:2px solid black;'></td></tr>");
-                        items.Append("<tr style='font-weight:bold; font-size:20px;'><td colspan='3'> Total Amt</td><td>").Append(TaxableAmount.ToString("0.00")).Append(CGSTAmt.ToString("0.00")).Append(SGSTAmt.ToString("0.00")).Append(GrossAmount.ToString("0.00")).Append("</td>");
+                        items.Append("<tr style='font-weight:bold; font-size:20px;'><td colspan='3'> Taxable Total Amt</td><td>").Append(TaxableAmount.ToString("0.00")).Append("</td>");
                         //items.Append("<td>").Append(DocAmtOP.ToString("0.00")).Append("</td>");
                         //items.Append("<td>").Append(HospitalAmtOP.ToString("0.00")).Append("</td></tr>");
 
-                        items.Append("<tr style='font-weight:bold; font-size:20px;'><td colspan='3'> Total Amt</td><td>").Append(TaxableAmount.ToString("0.00")).Append(CGSTAmt.ToString("0.00")).Append(SGSTAmt.ToString("0.00")).Append(GrossAmount.ToString("0.00")).Append("</td>");
+                        items.Append("<tr style='font-weight:bold; font-size:20px;'><td colspan='3'> CGST Total Amt</td><td>").Append(CGSTAmt.ToString("0.00")).Append("</td>");
                         //items.Append("<td>").Append(DocAmtIP.ToString("0.00")).Append("</td>");
                         //items.Append("<td>").Append(HospitalAmtIP.ToString("0.00")).Append("</td></tr>");
-                        items.Append("<tr style='font-weight:bold; font-size:20px;'><td colspan='3'> Total Amt</td><td>").Append(TaxableAmount.ToString("0.00")).Append(CGSTAmt.ToString("0.00")).Append(SGSTAmt.ToString("0.00")).Append(GrossAmount.ToString("0.00")).Append("</td>")
+                        items.Append("<tr style='font-weight:bold; font-size:20px;'><td colspan='3'> SGST Total Amt</td><td>").Append(SGSTAmt.ToString("0.00")).Append("</td>");
                         //items.Append("<td>").Append(DocAmtIP.ToString("0.00")).Append("</td>");
                         //items.Append("<td>").Append(HospitalAmtIP.ToString("0.00"))
+                        items.Append("<tr style='font-weight:bold; font-size:20px;'><td colspan='3'>  Gross Total Amt</td><td>").Append(GrossAmount.ToString("0.00")).Append("</td>")
                             .Append("</td></tr>");
 
                        
@@ -1333,7 +1346,10 @@ namespace HIMS.Data.Opd
             if (!string.IsNullOrEmpty(previousLabel))
             {
                 items.Append("<tr><td colspan='6' style='border-top:2px solid black;'></td></tr>");
-                items.Append("<tr style='font-weight:bold; font-size:20px;'><td colspan='3'> Total Amt</td><td>").Append(TaxableAmount.ToString("0.00")).Append(CGSTAmt.ToString("0.00")).Append(SGSTAmt.ToString("0.00")).Append(GrossAmount.ToString("0.00")).Append("</td></tr>");
+                items.Append("<tr style='font-weight:bold; font-size:20px;'><td colspan='3'> Taxable Total Amt</td><td>").Append(TaxableAmount.ToString("0.00")).Append("</td></tr>");
+                items.Append("<tr style='font-weight:bold; font-size:20px;'><td colspan='3'> CGST Total Amt</td><td>").Append(CGSTAmt.ToString("0.00")).Append("</td></tr>");
+                items.Append("<tr style='font-weight:bold; font-size:20px;'><td colspan='3'> SGST Total Amt</td><td>").Append(SGSTAmt.ToString("0.00")).Append("</td></tr>");
+                items.Append("<tr style='font-weight:bold; font-size:20px;'><td colspan='3'> Gross Total Amt</td><td>").Append(GrossAmount.ToString("0.00")).Append("</td></tr>");
                 //items.Append("<td>").Append(TaxableAmount.ToString("0.00")).Append("</td>");
                 //items.Append("<td>").Append(CGSTAmt.ToString("0.00")).Append("</td>");
                 //items.Append("<td>").Append(SGSTAmt.ToString("0.00")).Append("</td>");
@@ -1447,7 +1463,7 @@ namespace HIMS.Data.Opd
             {
                 i++;
 
-                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<tr style=\"text-align: center;font-size: 17px; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
 
 
                 items.Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["Stype"].ConvertToString()).Append("</td>");

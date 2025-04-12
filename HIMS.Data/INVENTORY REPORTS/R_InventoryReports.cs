@@ -1395,59 +1395,109 @@ namespace HIMS.Data.Opd
 
             //return html;
             StringBuilder items = new StringBuilder("");
-            int i = 0, j = 0;
-            double T_NetAmount = 0;
-            string previousLabel = "";  // To track the previous label
+            int i = 0;
+            string previousCategory = "";
+
+            double grand_BalanceQty = 0, grand_PurUnitRateWF = 0, grand_TotalPur = 0, grand_UnitMRP = 0, grand_NetAmount = 0;
+
+            // Group-wise subtotal variables
+            double cat_BalanceQty = 0, cat_PurUnitRateWF = 0, cat_TotalPur = 0, cat_UnitMRP = 0, cat_NetAmount = 0;
 
             foreach (DataRow dr in Bills.Rows)
             {
-                i++; j++;
-
+                i++;
                 string currentCategory = dr["ItemCategoryName"].ConvertToString();
 
-                // Append ItemCategoryName only if it is different from the previous one
-                if (previousLabel != currentCategory)
+                // If new category encountered and it's not the first row
+                if (previousCategory != "" && previousCategory != currentCategory)
                 {
-                    // Only append once when it's different from the previous
-                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\">")
-                         .Append("<td colspan=\"13\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">")
-                         .Append(currentCategory)
-                         .Append("</td></tr>");
+                    // Append subtotal for previous category
+                    items.Append("<tr style='font-weight:bold;background-color:#f2f2f2;'>")
+                         .Append("<td colspan='5' style='text-align:right;'>Sub Total:</td>")
+                         .Append($"<td style='text-align:right;'>{cat_BalanceQty.ToString("0.00")}</td>")
+                         .Append($"<td style='text-align:right;'>{cat_PurUnitRateWF.ToString("0.00")}</td>")
+                         .Append($"<td style='text-align:right;'>{cat_TotalPur.ToString("0.00")}</td>")
+                         .Append($"<td style='text-align:right;'>{cat_UnitMRP.ToString("0.00")}</td>")
+                         .Append($"<td style='text-align:right;'>{cat_NetAmount.ToString("0.00")}</td>")
+                         .Append("</tr>");
 
-                    // Update previousLabel to the current ItemCategoryName to track it for next iterations
-                    previousLabel = currentCategory;
+                    // Reset category totals
+                    cat_BalanceQty = cat_PurUnitRateWF = cat_TotalPur = cat_UnitMRP = cat_NetAmount = 0;
                 }
 
-                // Append item details for each row
-                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">")
-                     .Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>")
-                     .Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["StoreName"].ConvertToString()).Append("</td>")
-                     .Append("<td style=\"text-align: left; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["ItemName"].ConvertToString()).Append("</td>")
-                     .Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BatchNo"].ConvertToString()).Append("</td>")
-                     .Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BatchExpDate"].ConvertToDateString("dd/MM/yyyy")).Append("</td>")
-                     .Append("<td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["BalanceQty"].ConvertToString()).Append("</td>")
-                     .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["PurUnitRateWF"].ConvertToDouble()).Append("</td>")
-                     .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalPur"].ConvertToDouble()).Append("</td>")
-                     .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["UnitMRP"].ConvertToDouble()).Append("</td>")
-                     .Append("<td style=\"text-align: right; border: 1px solid #d4c3c3; padding: 6px;\">").Append(dr["TotalMRP"].ConvertToDouble()).Append("</td></tr>");
+                // If first time or new category
+                if (previousCategory != currentCategory)
+                {
+                    items.Append("<tr style=\"font-size:20px;font-weight:bold;border-bottom: 1px solid #000;\">")
+                         .Append("<td colspan=\"13\" style=\"padding:3px;height:10px;text-align:left;\">")
+                         .Append(currentCategory)
+                         .Append("</td></tr>");
+                    previousCategory = currentCategory;
+                }
 
-                T_NetAmount += dr["TotalMRP"].ConvertToDouble();
+                // Parse values
+                double balanceQty = dr["BalanceQty"].ConvertToDouble();
+                double purUnitRateWF = dr["PurUnitRateWF"].ConvertToDouble();
+                double totalPur = dr["TotalPur"].ConvertToDouble();
+                double unitMRP = dr["UnitMRP"].ConvertToDouble();
+                double netAmount = dr["TotalMRP"].ConvertToDouble();
+
+                // Append item row
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">")
+                     .Append($"<td>{i}</td>")
+                     .Append($"<td>{dr["StoreName"].ConvertToString()}</td>")
+                     .Append($"<td>{dr["ItemName"].ConvertToString()}</td>")
+                     .Append($"<td>{dr["BatchNo"].ConvertToString()}</td>")
+                     .Append($"<td>{dr["BatchExpDate"].ConvertToDateString("dd/MM/yyyy")}</td>")
+                     .Append($"<td style='text-align:right'>{balanceQty.ToString("0.00")}</td>")
+                     .Append($"<td style='text-align:right'>{purUnitRateWF.ToString("0.00")}</td>")
+                     .Append($"<td style='text-align:right'>{totalPur.ToString("0.00")}</td>")
+                     .Append($"<td style='text-align:right'>{unitMRP.ToString("0.00")}</td>")
+                     .Append($"<td style='text-align:right'>{netAmount.ToString("0.00")}</td>")
+                     .Append("</tr>");
+
+                // Accumulate category and grand totals
+                cat_BalanceQty += balanceQty;
+                cat_PurUnitRateWF += purUnitRateWF;
+                cat_TotalPur += totalPur;
+                cat_UnitMRP += unitMRP;
+                cat_NetAmount += netAmount;
+
+                grand_BalanceQty += balanceQty;
+                grand_PurUnitRateWF += purUnitRateWF;
+                grand_TotalPur += totalPur;
+                grand_UnitMRP += unitMRP;
+                grand_NetAmount += netAmount;
             }
 
-            // Replacing placeholders in HTML
-            html = html.Replace("{{PurUnitRateWF}}", Bills.GetColValue("PurUnitRateWF").ConvertToDouble().ToString("0.00"));
-            html = html.Replace("{{chkdunitrateflag}}", Bills.GetColValue("PurUnitRateWF").ConvertToDouble() > 0 ? "table-row" : "none");
-            html = html.Replace("{{UnitMRP}}", Bills.GetColValue("UnitMRP").ConvertToDouble().ToString("0.00"));
-            html = html.Replace("{{chkdunitmrpflag}}", Bills.GetColValue("UnitMRP").ConvertToDouble() > 0 ? "table-row" : "none");
-            html = html.Replace("{{chkdtotalmrpflag}}", Bills.GetColValue("TotalMRP").ConvertToDouble() > 0 ? "table-row" : "none");
-            html = html.Replace("{{TotalMRP}}", Bills.GetColValue("TotalMRP").ConvertToDouble().ToString("0.00"));
-            html = html.Replace("{{chkdtotalpurflag}}", Bills.GetColValue("TotalPur").ConvertToDouble() > 0 ? "table-row" : "none");
-            html = html.Replace("{{TotalPur}}", Bills.GetColValue("TotalPur").ConvertToDouble().ToString("0.00"));
+            // Final category subtotal (for the last category)
+            if (Bills.Rows.Count > 0)
+            {
+                items.Append("<tr style='font-weight:bold;background-color:#f2f2f2;'>")
+                     .Append("<td colspan='5' style='text-align:right;'>Sub Total:</td>")
+                     .Append($"<td style='text-align:right;'>{cat_BalanceQty.ToString("0.00")}</td>")
+                     .Append($"<td style='text-align:right;'>{cat_PurUnitRateWF.ToString("0.00")}</td>")
+                     .Append($"<td style='text-align:right;'>{cat_TotalPur.ToString("0.00")}</td>")
+                     .Append($"<td style='text-align:right;'>{cat_UnitMRP.ToString("0.00")}</td>")
+                     .Append($"<td style='text-align:right;'>{cat_NetAmount.ToString("0.00")}</td>")
+                     .Append("</tr>");
+            }
+
+            // Grand Total
+            items.Append("<tr style='font-weight:bold;background-color:#e0e0e0;'>")
+                 .Append("<td colspan='5' style='text-align:right;'>GRAND TOTAL:</td>")
+                 .Append($"<td style='text-align:right;'>{grand_BalanceQty.ToString("0.00")}</td>")
+                 .Append($"<td style='text-align:right;'>{grand_PurUnitRateWF.ToString("0.00")}</td>")
+                 .Append($"<td style='text-align:right;'>{grand_TotalPur.ToString("0.00")}</td>")
+                 .Append($"<td style='text-align:right;'>{grand_UnitMRP.ToString("0.00")}</td>")
+                 .Append($"<td style='text-align:right;'>{grand_NetAmount.ToString("0.00")}</td>")
+                 .Append("</tr>");
+
+            // Replace placeholders
             html = html.Replace("{{Items}}", items.ToString());
-            html = html.Replace("{{T_NetAmount}}", T_NetAmount.To2DecimalPlace());
+            html = html.Replace("{{T_NetAmount}}", grand_NetAmount.To2DecimalPlace());
 
             return html;
-
 
         }
 
