@@ -31,7 +31,7 @@ namespace HIMS.Model.CustomerInformation
         public long AnestheticsDr1 { get; set; }
         public string Surgeryname { get; set; }
         public long ProcedureId { get; set; }
-        public long AnesthType { get; set; }
+        public string AnesthType { get; set; }
         public long UnBooking { get; set; }
         public string Instruction { get; set; }
         public long OTTypeID { get; set; }
@@ -56,7 +56,7 @@ namespace HIMS.Model.CustomerInformation
         public long AnestheticsDr1 { get; set; }
         public string Surgeryname { get; set; }
         public long ProcedureId { get; set; }
-        public long AnesthType { get; set; }
+        public string AnesthType { get; set; }
         public long UnBooking { get; set; }
         public string Instruction { get; set; }
         public long OTTypeID { get; set; }
