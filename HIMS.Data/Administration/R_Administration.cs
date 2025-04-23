@@ -32,13 +32,22 @@ namespace HIMS.Data.Administration
         {
 
         }
-      
-
         public bool SaveNursingWeight(NursingWeightParam NursingWeightParam)
         {
             // throw new NotImplementedException();
             var disc = NursingWeightParam.SaveNursingWeight.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("m_insert_T_NursingWeight_1", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+
+        public bool InsertGSTReCalculProcess(GSTReCalculProcessParam GSTReCalculProcessParam)
+        {
+            // throw new NotImplementedException();
+            var disc = GSTReCalculProcessParam.InsertGSTReCalculProcessParam.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_RecalcGST", disc);
             //commit transaction
             _unitofWork.SaveChanges();
             return true;

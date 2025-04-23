@@ -225,7 +225,8 @@ namespace HIMS.Data.Pathology
                 //items.Append("<td style=\" border: 1px solid #d4c3c3; text-align: left; padding: 6px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
 
                 items.Append("<td style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:3px;margin-right: 12px;\">").Append(dr["ParameterName"].ConvertToString()).Append("</td>");
-                items.Append("<td  style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:12px;margin-left: 20px;\">").Append(dr["UnitName"].ConvertToString()).Append("</td>");
+                items.Append("<td  style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:12px;margin-left: 20px;\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
+                //items.Append("<td  style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-left:12px;margin-left: 20px;\">").Append(dr["UnitName"].ConvertToString()).Append("</td>");
                 items.Append("<td  style=\"padding: 10px;height:10px;vertical-align:middle;text-align:left;font-size:20px;padding-right:10px;margin-left: 20px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
 
 
@@ -242,7 +243,8 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
             html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
             html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
-
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+            html = html.Replace("{{ReportTime}}", Bills.GetColValue("ReportTime"));
             return html;
         }
 

@@ -36,6 +36,13 @@ namespace HIMS.API.Controllers.Transaction
             this._Administration = Administration;
             this._NewTemplateDescription = newTemplateDescription;
         }
+
+        [HttpPost("InsertGSTReCalculProcess")]
+        public IActionResult InsertGSTReCalculProcess(GSTReCalculProcessParam GSTReCalculProcessParam)
+        {
+            var appoSave = _Administration.InsertGSTReCalculProcess(GSTReCalculProcessParam);
+            return Ok(appoSave);
+        }
         [HttpPost("SaveMExpensesHeadMaster")]
         public IActionResult SaveMExpensesHeadMaster(MExpensesHeadMasterParam MExpensesHeadMasterParam)
         {
