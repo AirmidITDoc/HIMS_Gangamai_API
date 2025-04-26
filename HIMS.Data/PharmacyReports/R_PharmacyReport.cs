@@ -210,11 +210,11 @@ namespace HIMS.Data.Opd
                 }
             }
             T_AddBillNetAmount = G_BillNetAmount.ConvertToDouble() + G_AdvNetAmount.ConvertToDouble() + G_GRNNetAmount.ConvertToDouble();
-            T_AddBillCashPayAmount = G_BillCashPayAmount.ConvertToDouble() + G_AdvCashPayAmount.ConvertToDouble() + G_GRNCashPayAmount.ConvertToDouble();
-            T_AddBillChequePayAmount = G_BillChequePayAmount.ConvertToDouble() + G_AdvChequePayAmount.ConvertToDouble() + G_GRNChequePayAmount.ConvertToDouble();
-            T_AddBillCardPayAmount = G_BillCardPayAmount.ConvertToDouble() + G_AdvCardPayAmount.ConvertToDouble() + G_GRNCardPayAmount.ConvertToDouble();
-            T_AddBillNEFTPayAmount = G_BillNEFTPayAmount.ConvertToDouble() + G_AdvNEFTPayAmount.ConvertToDouble() + G_GRNNEFTPayAmount.ConvertToDouble();
-            T_AddBillPayTMAmount = G_BillPayTMAmount.ConvertToDouble() + G_AdvPayTMAmount.ConvertToDouble() + G_GRNNEFTPayAmount.ConvertToDouble();
+            T_AddBillCashPayAmount = G_BillCashPayAmount.ConvertToDouble() + G_AdvCashPayAmount.ConvertToDouble() - G_GRNCashPayAmount.ConvertToDouble();
+            T_AddBillChequePayAmount = G_BillChequePayAmount.ConvertToDouble() + G_AdvChequePayAmount.ConvertToDouble() - G_GRNChequePayAmount.ConvertToDouble();
+            T_AddBillCardPayAmount = G_BillCardPayAmount.ConvertToDouble() + G_AdvCardPayAmount.ConvertToDouble() - G_GRNCardPayAmount.ConvertToDouble();
+            T_AddBillNEFTPayAmount = G_BillNEFTPayAmount.ConvertToDouble() + G_AdvNEFTPayAmount.ConvertToDouble() - G_GRNNEFTPayAmount.ConvertToDouble();
+            T_AddBillPayTMAmount = G_BillPayTMAmount.ConvertToDouble() + G_AdvPayTMAmount.ConvertToDouble() - G_GRNNEFTPayAmount.ConvertToDouble();
             T_AddBillrefundNetAmount = G_RefundNetAmount.ConvertToDouble() + G_RefundAdvNetAmount.ConvertToDouble();
             T_AddBillrefundCashPayAmount = G_RefundCashPayAmount.ConvertToDouble() + G_RefundAdvCash.ConvertToDouble();
 
