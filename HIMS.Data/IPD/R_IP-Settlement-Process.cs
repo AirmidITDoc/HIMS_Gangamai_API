@@ -75,6 +75,7 @@ namespace HIMS.Data.IPD
             html = html.Replace("{{PBillNo}}", Bills.GetColValue("PBillNo"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{PaidAmount}}", Bills.GetColValue("PaidAmount").ConvertToDouble().To2DecimalPlace());
+            html = html.Replace("{{AdvanceUsedAmount}}", Bills.GetColValue("AdvanceUsedAmount").ConvertToDouble().To2DecimalPlace());
             html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
 
             html = html.Replace("{{CashPayAmount}}", Bills.GetColValue("CashPayAmount").ConvertToDouble().To2DecimalPlace());

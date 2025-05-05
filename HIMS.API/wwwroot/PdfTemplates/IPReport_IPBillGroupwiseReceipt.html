@@ -40,7 +40,7 @@
                                 <tr>
                                     <td style="padding: 2px;">
                                         <span style="font-weight: bold;">Bill No :</span>
-                                        <span>{{BillNo}}</span>
+                                        <span>{{PBillNo}}</span>
                                     </td>
                                     <td style="padding: 2px;">
                                         <span style="font-weight: bold;">IPD No :</span>
@@ -163,14 +163,19 @@
                                                 </tr>
                                                 <!--<tr style="display:{{chkWrfAmountflag}}">
 
-                                                    <td style="border-bottom:1px solid #eee; padding: 6px;">Afill Amount</td>
+        <td style="border-bottom:1px solid #eee; padding: 6px;">Afill Amount</td>
 
-                                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{AffilAmount}}</td>
-                                                </tr>-->
+        <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{AffilAmount}}</td>
+    </tr>-->
                                                 <tr style="display:{{chkdiscflag}}">
                                                     <td style="border-bottom: 1px solid #eee; padding: 6px;">Concession Amount</td>
 
                                                     <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{ConcessionAmount}}</td>
+                                                </tr>
+                                                <tr style="display:{{chkcomdiscflag}}">
+                                                    <td style="border-bottom: 1px solid #eee; padding: 6px;">Company Concession Amount</td>
+
+                                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{CompDiscAmt}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td style="border-bottom: 1px solid #eee; padding: 6px;">Net Amount</td>
@@ -199,10 +204,10 @@
                                                 </tr>
 
                                                 <!--<tr style="display:{{ chkbalafterdudcflag }}">
-                                                    <td style="border-bottom: 1px solid #eee; padding: 6px;">Bal Amount -Without Deduction</td>
+        <td style="border-bottom: 1px solid #eee; padding: 6px;">Bal Amount -Without Deduction</td>
 
-                                                    <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{BalancewdudcAmt}}</td>
-                                                </tr>-->
+        <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;"> {{BalancewdudcAmt}}</td>
+    </tr>-->
 
                                             </table>
                                         </td>
@@ -342,16 +347,35 @@
                             <tr>
                                 <td style="padding: 6px;font-size: 12px;">This is Computer generated invoice hence doesn’t require signature</td>
                             </tr>
-                            <tr></tr>
-                            <tr style="padding: 6px; text-align: right;font-size:24px;">
+                            
+                            <tr>
+                               
+                                <td>
+                                    <span></span>
+                                </td>
+                                <td>
+                                    <span></span>
+                                </td>
+
+
                                 <td>
 
-                                    <span>{{UserName}}</span>
+                                    <span style="padding: 6px; text-align: right; font-size: 24px; margin-left: 200px;">{{UserName}}</span>
                                 </td>
                             </tr>
-                            <tr style="padding: 6px; text-align: right; font-size: 24px;">
+                            <tr>
+                                <td style="text-align:left;">
+                                    <span style="padding: 6px; font-size: 23px; margin-right: 200px;">Administrator </span>
+
+                                </td>
+                              
+                                <td style="text-align:center;">
+                                    <span style="padding: 6px;  font-size: 23px;">Authorized By</span>
+
+                                </td>
+                               
                                 <td>
-                                    <span>Authorized By</span>
+                                    <span style="padding: 6px; text-align: right; font-size: 23px;margin-left:200px;">Prepared By</span>
                                 </td>
                             </tr>
                         </table>

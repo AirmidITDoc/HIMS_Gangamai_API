@@ -29,6 +29,18 @@ namespace HIMS.API.Controllers.Transaction
             _pdfUtility = pdfUtility;
         
     }
+
+        [HttpGet("view-OpeningBalanceList")]
+        public IActionResult ViewOpeningBalanceList(int Storeid, int OpeningHId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventortReport_OpeningBalanceList.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _InventoryReport.ViewOpeningBalanceList(Storeid, OpeningHId,  htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewOpeningBalanceList", "ViewOpeningBalanceList", Wkhtmltopdf.NetCore.Options.Orientation.Landscape);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpGet("view-ItemList")]
         public IActionResult ViewItemList(DateTime FromDate, DateTime ToDate)
         {
@@ -265,6 +277,17 @@ namespace HIMS.API.Controllers.Transaction
 
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
+        [HttpGet("view-CurrentStockCategiryWiseReport")]
+        public IActionResult ViewCurrentStockCategoryWise(int StoreId, int IsNarcotic, int ish1Drug, int isScheduleH, int IsHighRisk, int IsScheduleX,int ItemCategaryId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_CurrentStockCategorywiseReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _InventoryReport.ViewCurrentStockCategoryWise(StoreId, IsNarcotic, ish1Drug, isScheduleH, IsHighRisk, IsScheduleX, ItemCategaryId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CurrentStockCategorywiseReport", "CurrentStockCategoryWiseReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
 
         [HttpGet("view-ClosingCurrentStockReport")]
         public IActionResult ViewClosingCurrentStockReport(DateTime FromDate, DateTime ToDate)
@@ -291,11 +314,11 @@ namespace HIMS.API.Controllers.Transaction
         }
 
         [HttpGet("view-CurrentStockDateWise")]
-        public IActionResult ViewCurrentStockDateWise(DateTime InsertDate, int StoreId, DateTime FromDate, DateTime ToDate)
+        public IActionResult ViewCurrentStockDateWise(DateTime InsertDate, int StoreId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "InventoryReport_DateWiseCurrentStock.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _InventoryReport.ViewCurrentStockDateWise(InsertDate, StoreId, FromDate, ToDate, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var html = _InventoryReport.ViewCurrentStockDateWise(InsertDate, StoreId,htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "CurrentStockDateWise", "CurrentStockDateWise", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 

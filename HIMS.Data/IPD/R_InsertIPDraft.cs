@@ -215,6 +215,7 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "table-row " : "none");
             html = html.Replace("{{chkAdvflag}}", Bills.GetColValue("AdvanceAmount").ConvertToDouble() > 0 ? "table-row " : "none");
+            html = html.Replace("{{chkAdvUsedflag}}", Bills.GetColValue("AdvanceUsedAmount").ConvertToDouble() > 0 ? "table-row " : "none");
 
             html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row " : "none");
 
@@ -254,7 +255,7 @@ namespace HIMS.Data.IPD
 
             var Bills = GetDataTableProc("m_rptIPD_DraftBillSummary_Print", para);
             rowlength = Bills.Rows.Count;
-            double Tot_AfterAdvused = 0, Tot_Wothoutdedu = 0, Tot_Balamt = 0, Tot_Advamt = 0, Tot_Advusedamt = 0, T_TotalAmount = 0, F_TotalAmount = 0, balafteradvuseAmount = 0, BalancewdudcAmt = 0, AdminChares = 0, TotalNetPayAmt = 0;
+            double Tot_AfterAdvused = 0, Tot_Wothoutdedu = 0, Tot_Balamt = 0, AdvanceUsedAmount =0, Tot_Advamt = 0, Tot_Advusedamt = 0, T_TotalAmount = 0, F_TotalAmount = 0, balafteradvuseAmount = 0, BalancewdudcAmt = 0, AdminChares = 0, TotalNetPayAmt = 0;
 
 
 
@@ -305,6 +306,7 @@ namespace HIMS.Data.IPD
 
                 TotalNetPayAmt = dr["NetPayableAmt"].ConvertToDouble();
                 Tot_Advamt = dr["AdvanceAmount"].ConvertToDouble();
+                AdvanceUsedAmount = dr["AdvanceUsedAmount"].ConvertToDouble();
                 if (Tot_Advamt.ConvertToDouble() > TotalNetPayAmt.ConvertToDouble())
                 {
                     balafteradvuseAmount = (Tot_Advamt - TotalNetPayAmt).ConvertToDouble();
@@ -395,7 +397,7 @@ namespace HIMS.Data.IPD
 
             html = html.Replace("{{chkpaidflag}}", Bills.GetColValue("PaidAmount").ConvertToDouble() > 0 ? "table-row " : "none");
             html = html.Replace("{{chkAdvflag}}", Bills.GetColValue("AdvanceAmount").ConvertToDouble() > 0 ? "table-row " : "none");
-
+            html = html.Replace("{{chkAdvUsedflag}}", Bills.GetColValue("AdvanceUsedAmount").ConvertToDouble() > 0 ? "table-row " : "none");
             html = html.Replace("{{chkdiscflag}}", Bills.GetColValue("ConcessionAmt").ConvertToDouble() > 0 ? "table-row " : "none");
 
             html = html.Replace("{{chkbalflag}}", balafteradvuseAmount.ConvertToDouble() > 0 ? "table-row " : "none");

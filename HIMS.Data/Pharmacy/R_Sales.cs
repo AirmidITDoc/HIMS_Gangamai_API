@@ -196,12 +196,27 @@ namespace HIMS.Data.Pharmacy
 
         public bool PaymentSettlement(SalesPaymentParams salesPaymentParams)
         {
-            var vPayment = salesPaymentParams.SalesPaymentSettlement.ToDictionary();
-            vPayment.Remove("PaymentID");
-            ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_Pharmacy_New_1", vPayment);
+           
+            foreach (var a in salesPaymentParams.SalesPaymentSettlement)
+            {
 
-            var vUpdateHeader = salesPaymentParams.update_Pharmacy_BillBalAmountSettlement.ToDictionary();
-            ExecNonQueryProcWithOutSaveChanges("m_update_Pharmacy_BillBalAmount_1", vUpdateHeader);
+                var vPayment = a.ToDictionary();
+                vPayment.Remove("PaymentID");
+                ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_Pharmacy_New_1", vPayment);
+            }
+            //var vPayment = salesPaymentParams.SalesPaymentSettlement.ToDictionary();
+
+            //ExecNonQueryProcWithOutSaveChanges("m_insert_Payment_Pharmacy_New_1", vPayment);
+
+            //var vUpdateHeader = salesPaymentParams.update_Pharmacy_BillBalAmountSettlement.ToDictionary();
+            //ExecNonQueryProcWithOutSaveChanges("m_update_Pharmacy_BillBalAmount_1", vUpdateHeader);
+            foreach (var a in salesPaymentParams.update_Pharmacy_BillBalAmountSettlement)
+            {
+            
+                var disc1 = a.ToDictionary();
+                ExecNonQueryProcWithOutSaveChanges("m_update_Pharmacy_BillBalAmount_1", disc1);
+            }
+
 
             foreach (var a in salesPaymentParams.update_T_PHAdvanceDetailSettlement)
             {

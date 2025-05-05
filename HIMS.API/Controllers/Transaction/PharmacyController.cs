@@ -94,7 +94,8 @@ namespace HIMS.API.Controllers.Transaction
             }
             if (IsInStock)
             {
-                var SalesSave = _Sales.InsertSales(salesParams);
+                var SalesSave = _Sales.InsertSales
+                    (salesParams);
                 return Ok(SalesSave.ToString());
             }
             else
@@ -233,7 +234,21 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        [HttpPost("InsertGRNDirectNEW")]
+        public IActionResult InsertGRNDirectNEW(GRNParamsNEW grnParams)
+        {
+            var SalesSave = _GRN.InsertGRNDirectNEW(grnParams);
+            return Ok(SalesSave.ToString());
 
+        }
+        [HttpPost("UpdateGRNNEW")]
+
+        public IActionResult UpdateGRNNEW(GRNParamsNEW grnParams)
+        {
+            var SalesSave = _GRN.UpdateGRNNEW(grnParams);
+            return Ok(true);
+
+        }
         [HttpPost("InsertGRNDirect")]
         public IActionResult InsertGRNDirect(GRNParams grnParams)
         {
@@ -268,8 +283,8 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewGRNReport(int GRNID)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GRNReport.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _GRN.ViewGRNReport(GRNID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
+            var html = _GRN.ViewGRNReport(GRNID, htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GRNReport", "GRNReport"+ GRNID, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
             // write logic for send pdf in whatsapp
@@ -309,7 +324,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewGRNReturnReport(int GRNReturnId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "GRNReturn.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HeaderName.html");
             var html = _GRNReturn.ViewGRNReturnReport(GRNReturnId, htmlFilePath, _pdfUtility.GetStoreHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "GRNReturn", "GRNReturn" + GRNReturnId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 

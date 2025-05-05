@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Reflection.Emit;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace HIMS.Data.Opd
 {
@@ -196,7 +197,7 @@ namespace HIMS.Data.Opd
 
 
                 }
-                if (dr1["Label"].ConvertToString() == "GRN-CASH")
+                if (dr1["Label"].ConvertToString() == "CASH-GRN")
                 {
                     G_GRNNetAmount += dr1["NetAmount"].ConvertToDouble();
                     G_GRNCashPayAmount += dr1["CashPayAmount"].ConvertToDouble();
@@ -208,14 +209,15 @@ namespace HIMS.Data.Opd
 
                 }
             }
-            T_AddBillNetAmount = G_BillNetAmount.ConvertToDouble() + G_AdvNetAmount.ConvertToDouble();
-            T_AddBillCashPayAmount = G_BillCashPayAmount.ConvertToDouble() + G_AdvCashPayAmount.ConvertToDouble();
-            T_AddBillChequePayAmount = G_BillChequePayAmount.ConvertToDouble() + G_AdvChequePayAmount.ConvertToDouble();
-            T_AddBillCardPayAmount = G_BillCardPayAmount.ConvertToDouble() + G_AdvCardPayAmount.ConvertToDouble();
-            T_AddBillNEFTPayAmount = G_BillNEFTPayAmount.ConvertToDouble() + G_AdvNEFTPayAmount.ConvertToDouble();
-            T_AddBillPayTMAmount = G_BillPayTMAmount.ConvertToDouble() + G_AdvPayTMAmount.ConvertToDouble();
+            T_AddBillNetAmount = G_BillNetAmount.ConvertToDouble() + G_AdvNetAmount.ConvertToDouble() + G_GRNNetAmount.ConvertToDouble();
+            T_AddBillCashPayAmount = G_BillCashPayAmount.ConvertToDouble() + G_AdvCashPayAmount.ConvertToDouble() - G_GRNCashPayAmount.ConvertToDouble();
+            T_AddBillChequePayAmount = G_BillChequePayAmount.ConvertToDouble() + G_AdvChequePayAmount.ConvertToDouble() - G_GRNChequePayAmount.ConvertToDouble();
+            T_AddBillCardPayAmount = G_BillCardPayAmount.ConvertToDouble() + G_AdvCardPayAmount.ConvertToDouble() - G_GRNCardPayAmount.ConvertToDouble();
+            T_AddBillNEFTPayAmount = G_BillNEFTPayAmount.ConvertToDouble() + G_AdvNEFTPayAmount.ConvertToDouble() - G_GRNNEFTPayAmount.ConvertToDouble();
+            T_AddBillPayTMAmount = G_BillPayTMAmount.ConvertToDouble() + G_AdvPayTMAmount.ConvertToDouble() - G_GRNNEFTPayAmount.ConvertToDouble();
             T_AddBillrefundNetAmount = G_RefundNetAmount.ConvertToDouble() + G_RefundAdvNetAmount.ConvertToDouble();
             T_AddBillrefundCashPayAmount = G_RefundCashPayAmount.ConvertToDouble() + G_RefundAdvCash.ConvertToDouble();
+
             T_AddBillrefundChequePayAmount = G_RefundChequePayAmount.ConvertToDouble() + G_RefundAdvCheque.ConvertToDouble();
             T_AddBillrefundCardPayAmount = G_RefundCardPayAmount.ConvertToDouble() + G_RefundAdvCard.ConvertToDouble();
             T_AddBillrefundNEFTPayAmount = G_RefundNEFTPayAmount.ConvertToDouble() + G_RefundAdvNEFTPayAmount.ConvertToDouble();
@@ -280,10 +282,10 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{G_RefundAdvNEFTPayAmount}}", G_RefundAdvNEFTPayAmount.To2DecimalPlace());
             html = html.Replace("{{G_RefundAdvPayTMAmount}}", G_RefundAdvPayTMAmount.To2DecimalPlace());
 
-            html = html.Replace("{{G_GRNNetPayableAmt}}", G_RefundAdvCash.To2DecimalPlace());
-            html = html.Replace("{{G_GRNCashPayAmount}}", G_RefundAdvCard.To2DecimalPlace());
-            html = html.Replace("{{G_GRNChequePayAmount}}", G_RefundAdvCheque.To2DecimalPlace());
-            html = html.Replace("{{G_GRNCardPayAmount}}", G_RefundAdvNEFTPayAmount.To2DecimalPlace());
+            html = html.Replace("{{G_GRNNetPayableAmt}}", G_GRNNetAmount.To2DecimalPlace());
+            html = html.Replace("{{G_GRNCashPayAmount}}", G_GRNCashPayAmount.To2DecimalPlace());
+            html = html.Replace("{{G_GRNChequePayAmount}}", G_GRNChequePayAmount.To2DecimalPlace());
+            html = html.Replace("{{G_GRNCardPayAmount}}", G_GRNCardPayAmount.To2DecimalPlace());
             html = html.Replace("{{G_GRNNEFTPayAmount}}", G_GRNNEFTPayAmount.To2DecimalPlace());
             html = html.Replace("{{G_GRNPayTMAmount}}", G_GRNPayTMAmount.To2DecimalPlace());
 
@@ -1067,7 +1069,7 @@ namespace HIMS.Data.Opd
 
             StringBuilder items = new StringBuilder("");
             int i = 0, j = 0;
-            double T_Count = 0, T_TotalAmount = 0, TotalAmt = 0, PatientName = 0, GenderName = 0, AdmissionDate = 0, WardName = 0, Age = 0, DoctorName = 0, RoomName = 0;
+            double T_Count = 0, T_TotalAmount = 0, TotalAmt = 0, PatientName = 0, GenderName = 0, AdmissionDate = 0, WardName = 0, Age = 0, DoctorName = 0, RoomName = 0, RegNo =0;
 
             string previousLabel = "";
 
@@ -1105,6 +1107,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{AdmissionDate}}", Bills.GetColValue("AdmissionDate").ConvertToDateString("dd/MM/yyyy"));
             html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
             html = html.Replace("{{Age}}", Bills.GetColValue("Age"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
             html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
             html = html.Replace("{{WardName}}", Bills.GetColValue("WardName"));
             html = html.Replace("{{DoctorName}}", Bills.GetColValue("DoctorName"));
@@ -1118,7 +1121,7 @@ namespace HIMS.Data.Opd
             html = html.Replace("{{Age}}", Age.ToString());
             html = html.Replace("{{WardName}}", WardName.ToString());
             html = html.Replace("{{DoctorName}}", DoctorName.ToString());
-            html = html.Replace("{{RegNo}}", DoctorName.ToString());
+            html = html.Replace("{{RegNo}}", RegNo.ToString());
             html = html.Replace("{{RoomName}}", RoomName.ToString());
             return html;
 

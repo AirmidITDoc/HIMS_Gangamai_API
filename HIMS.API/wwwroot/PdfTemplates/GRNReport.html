@@ -3,12 +3,12 @@
     <div class="invoice-box" style="max-width: 1000px; margin: 0 auto; font-size: 14px;line-height: 24px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
         <table style="width: 100%;line-height: inherit;text-align: left;">
             <tr class="top-header-row">
-                {{NewHeader}}
+                {{HeaderName}}
             </tr>
             <tr class="title-date-row">
                 <td>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr style="font-size: 16px">
+                        <tr style="font-size: 20px">
                             <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; ">
                                 <b>
                                     GOODS RECEIPT NOTE
@@ -29,57 +29,57 @@
                 <table style="width: 100%; border-collapse: collapse;">
                     <tr>
                         <td style="padding: 2px;">
-                            <span>Grn No : </span>
+                            <span style="font-weight:bold;">Grn No : </span>
                             <span>{{GrnNumber}}</span>
                         </td>
                         <td style="padding: 2px;">
-                            <span>GRN Date : </span>
+                            <span style="font-weight:bold;">GRN Date : </span>
                             <span>{{GRNDate}}</span>
                         </td>
                     </tr>
                     <tr>
                         <td style="padding: 2px;">
-                            <span>PO NO : </span>
+                            <span style="font-weight:bold;">PO NO : </span>
                             <span>{{PONo}}</span>
                         </td>
                         <td style="padding: 2px;">
-                            <span>PO Date : </span>
+                            <span style="font-weight:bold;">PO Date : </span>
                             <span>{{PurchaseTime}}</span>
                         </td>
                     </tr>
                     <tr>
                         <td style="padding: 2px;">
-                            <span>Store Name : </span>
+                            <span style="font-weight:bold;">Store Name : </span>
                             <span>{{PrintStoreName}}</span>
                         </td>
                         <td style="padding: 2px;">
-                            <span>Address : </span>
+                            <span style="font-weight:bold;">Address : </span>
                             <span> {{Address}}</span>
                         </td>
                     </tr>
                     <tr>
                         <td style="padding: 2px;">
-                            <span>Supplier Name : </span>
+                            <span style="font-weight:bold;">Supplier Name : </span>
                             <span>{{SupplierName}}</span>
                         </td>
                         <td style="padding: 2px;">
-                            <span>Mobile No : </span>
+                            <span style="font-weight:bold;">Mobile No : </span>
                             <span>{{Mobile}}</span>
                         </td>
                     </tr>
                     <tr>
                         <td style="padding: 2px;">
-                            <span>Invoice No. : </span>
+                            <span style="font-weight:bold;">Invoice No. : </span>
                             <span>{{InvoiceNo}}</span>
                         </td>
                         <td style="padding: 2px;">
-                            <span>Invoice Date : </span>
+                            <span style="font-weight:bold;">Invoice Date : </span>
                             <span>{{InvDate}}</span>
                         </td>
                     </tr>
                     <tr>
                         <td style="padding: 2px;">
-                            <span>Gate Entry No : </span>
+                            <span style="font-weight:bold;">Gate Entry No : </span>
                             <span>{{GateEntryNo}}</span>
                         </td>
                       
@@ -93,7 +93,7 @@
             <tr class="bill-table-row">
                 <td style="padding: 6px;">
                     <table style="width: 100%; border-collapse: collapse;">
-                        <thead style="font-size: 15px; text-align: center;">
+                        <thead style="font-size: 20px; text-align: center;font-weight:bold;">
                             <tr>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">Sr.No</th>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">ItemName</th>
@@ -103,8 +103,8 @@
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">F.Qty</th>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">PureRate</th>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">Disc%</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">CGST</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">SGST</th>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">CGST%</th>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">SGST%</th>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">GST Amt</th>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">Net Amt</th>
                             </tr>
@@ -118,83 +118,83 @@
             <tr>
             <table style="width: 100%; border-collapse: collapse;">
                 <tr>
-                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                        Total SGST Amount :-
+                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; font-weight:bold;padding: 6px;">
+                        Total SGST Amount :
                         <span style=" text-align: center; padding: 6px;"> {{T_TotalCGST}}</span>
                     </td>
 
-                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                        Grand Total Amount
+                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold;">
+                        Grand Total Amount:
                     </td>
                     <!-- <div></div> -->
-                    <td colspan="2" style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                    <td colspan="2" style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
                         ₹ {{GrandTotalAount}}
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                        Total SGST Amount :-
+                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold;">
+                        Total SGST Amount :
                         <span style=" text-align: center; padding: 6px;"> {{T_TotalSGST}}</span>
                     </td>
-                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold;">
                         Discount Amount
                     </td>
                     <!-- <div></div> -->
-                    <td colspan="2" style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                    <td colspan="2" style="border: 1px solid #d4c3c3; text-align: right; padding: 6px; ">
                         ₹ {{TotalDiscAmount}}
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                        OtherCharge :-
+                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold;">
+                        OtherCharge :
                         <span style=" text-align: center; padding: 6px;"> {{OtherCharge}}</span>
                     </td>
-                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold;">
                         Credit Amount
                     </td>
                     <!-- <div></div> -->
-                    <td colspan="2" style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                    <td colspan="2" style="border: 1px solid #d4c3c3; text-align: right; padding: 6px; ">
                         ₹ {{CreditNote}}
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                        Received By :-
+                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold;">
+                        Received By :
                         <span style=" text-align: center; padding: 6px;"> {{AddedByName}}</span>
                     </td>
-                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold;">
                         Debit Amount
                     </td>
                     <!-- <div></div> -->
-                    <td colspan="2" style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                    <td colspan="2" style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
                         ₹ {{DebitNote}}
                     </td>
                 </tr>
 
                 <tr>
-                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                        Remark :-
+                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold;">
+                        Remark :
                         <span style=" text-align: center; padding: 6px;"> {{Remark}}</span>
                     </td>
-                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold;">
                         GST Amount
                     </td>
                     <!-- <div></div> -->
-                    <td colspan="2" style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                    <td colspan="2" style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
                         ₹ {{TotalVATAmount}}
                     </td>
                 </tr>
 
                 <tr>
-                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;">
-                        Total Amount In Words :-
+                    <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; font-weight: bold;">
+                        Total Amount In Words :
                         <span style=" text-align: center; padding: 6px;">{{finalamt}}</span>
                     </td>
                     <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;font-weight: bold;">
                         Total Net Amount
                     </td>
                     <!-- <div></div> -->
-                    <td colspan="2" style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;font-weight: bold;">
+                    <td colspan="2" style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px; font-weight: bold;">
                         ₹ {{NetPayble}}
                     </td>
                 </tr>

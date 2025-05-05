@@ -14,7 +14,8 @@ namespace HIMS.Data.Administration
 {
     public  interface I_Administration
     {
-       
+        public bool InsertGSTReCalculProcess(GSTReCalculProcessParam GSTReCalculProcessParam);
+
         public bool UpdateBillcancellation(AdministrationParam administrationParam);
         public bool InsertDoctorShareMaster(DoctorShareParam doctorShareParam);
         public bool UpdateDoctorShareMaster(DoctorShareParam doctorShareParam);
@@ -24,7 +25,8 @@ namespace HIMS.Data.Administration
         public bool InsertPackageDetails(PackageDetailParam PackageDetailParam);
 
         public bool InsertCompanyServiceAssignMaster(CompanyServiceAssignMaster CompanyServiceAssignMaster);
-
+        public bool SaveMExpensesHeadMaster(MExpensesHeadMasterParam MExpensesHeadMasterParam);
+        public bool UpdateMExpensesHeadMaster(MExpensesHeadMasterParam MExpensesHeadMasterParam);
         public bool SaveTExpenseParam(TExpenseParam TExpenseParam);
 
         public bool CancleTExpenseParam(TExpenseParam TExpenseParam);

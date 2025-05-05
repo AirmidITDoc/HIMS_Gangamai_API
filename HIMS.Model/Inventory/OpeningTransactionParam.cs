@@ -19,7 +19,7 @@ namespace HIMS.Model.Inventory
         public long Addedby { get; set; }
         public long OpeningHId { get; set; }
     }
-    public class OpeningTransactionInsert
+
 
     //public long StoreId { get; set; }
     //public DateTime OpeningDate { get; set; }
@@ -34,7 +34,8 @@ namespace HIMS.Model.Inventory
     //public long BalQty { get; set; }
     //public long Addedby { get; set; }
     //public long OpeningId { get; set; }
-   {
+    public class OpeningTransactionInsert
+    {
 
        public long StoreId { get; set; }   
     public DateTime OpeningDate { get; set; }           
@@ -43,9 +44,9 @@ namespace HIMS.Model.Inventory
     public long ItemId { get; set; }    
     public string BatchNo { get; set; }  
     public DateTime BatchExpDate { get; set; }    
-    public long PerUnitPurRate { get; set; }      
-    public long PerUnitMrp { get; set; }      
-    public long VatPer { get; set; }     
+    public float PerUnitPurRate { get; set; }      
+    public float PerUnitMrp { get; set; }      
+    public string VatPer { get; set; }     
     public long BalQty { get; set; }     
     public long Addedby { get; set; } 
     public long updatedby { get; set; }

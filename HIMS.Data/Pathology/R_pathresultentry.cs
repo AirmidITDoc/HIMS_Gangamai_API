@@ -154,17 +154,17 @@ namespace HIMS.Data.Pathology
                     if (dr["NormalRange"].ConvertToString() != " -   ")
                     {
                         if (dr["ParaBoldFlag"].ConvertToString() == "B")
-                            items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;font-weight:bold;padding-left:260px\">").Append((dr["ResultValue"].ConvertToString())).Append("</td>");
+                            items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;font-weight:bold;padding-left:200px\">").Append((dr["ResultValue"].ConvertToString())).Append("</td>");
                         else
-                            items.Append("<td style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;padding-left:260px\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
+                            items.Append("<td style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;padding-left:200px\">").Append(dr["ResultValue"].ConvertToString()).Append("</td>");
                         items.Append("<td style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;\">").Append(dr["NormalRange"].ConvertToString()).Append("</td></tr>");
                     }
                     else if (dr["NormalRange"].ConvertToString() == " -   ")
                     {
                         if (dr["ParaBoldFlag"].ConvertToString() == "B")
-                            items.Append("<td colspan=\"2\"   style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;font-weight:bold;padding-left:260px\">").Append((dr["ResultValue"].ConvertToString())).Append("</td></tr>");
+                            items.Append("<td colspan=\"2\"   style=\"vertical-align: top;padding-bottom: 5px;height: 15px;text-align:left;font-size:18px;font-weight:bold;padding-left:200px\">").Append((dr["ResultValue"].ConvertToString())).Append("</td></tr>");
                         else
-                            items.Append("<td colspan=\"2\" style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;padding-left:260px\">").Append(dr["ResultValue"].ConvertToString()).Append("</td></tr>");
+                            items.Append("<td colspan=\"2\" style=\"vertical-align: top;padding-bottom:5px;height: 15px;text-align:left;font-size:18px;padding-left:200px\">").Append(dr["ResultValue"].ConvertToString()).Append("</td></tr>");
                     }
 
                     //if (dr["MethodName"].ConvertToString() != "")
@@ -247,6 +247,7 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
+            html = html.Replace("{{DoctorType}}", Bills.GetColValue("DoctorType"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{Path_DoctorName}}", Bills.GetColValue("Path_DoctorName"));
             html = html.Replace("{{Education}}", Bills.GetColValue("Education"));
@@ -427,6 +428,7 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+            html = html.Replace("{{DoctorType}}", Bills.GetColValue("DoctorType"));
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{Path_DoctorName}}", Bills.GetColValue("Path_DoctorName"));
@@ -594,6 +596,7 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+            html = html.Replace("{{DoctorType}}", Bills.GetColValue("DoctorType"));
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{Path_DoctorName}}", Bills.GetColValue("Path_DoctorName"));
@@ -820,6 +823,7 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+            html = html.Replace("{{DoctorType}}", Bills.GetColValue("DoctorType"));
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{Path_DoctorName}}", Bills.GetColValue("Path_DoctorName"));
@@ -1003,6 +1007,7 @@ namespace HIMS.Data.Pathology
             html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
             html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
             html = html.Replace("{{PatientType}}", Bills.GetColValue("PatientType"));
+            html = html.Replace("{{DoctorType}}", Bills.GetColValue("DoctorType"));
             html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
             html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
             html = html.Replace("{{Path_DoctorName}}", Bills.GetColValue("Path_DoctorName"));
