@@ -9,33 +9,31 @@
 
 <body>
     <div class="main-content-wrapper">
-        <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
-            <div>
+        <div>
+            <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica',, Arial, sans-serif;color: #101828;">
                 <div>
                     <div>
                         <div>
-                            <table style="width: 100%;line-height: inherit;text-align: left;">
+                            <table style="width: 100%;line-height: inherit;">
                                 <tr class="top-header-row">
                                     {{NewHeader}}
                                 </tr>
                                 <tr class="title-date-row">
                                     <td>
                                         <table style="width: 100%; border-collapse: collapse;">
-                                            <tr style="font-size: 26px;font-weight:bold;">
+                                            <tr style="font-size: 20px;font-weight:bold;">
                                                 <td style="border-bottom: 1px solid #d4c3c3;padding: 6px;text-align:center;" colspan="2">
                                                     <b>
                                                         {{IsNormalOrDeath}} DISCHARGE SUMMARY
                                                     </b>
                                                 </td>
-                                               
+
                                             </tr>
                                         </table>
                                     </td>
                                 </tr>
-
                                 <tr class="bill-info-row">
-                                    <td style="padding: 6px;">
-
+                                    <td>
                                         <table style="width: 100%; border-collapse: collapse; font-size: 20px;">
 
 
@@ -104,28 +102,24 @@
                                         </table>
                                     </td>
                                 </tr>
+
+                                <tr>
+                                    <td>
+                                        {{TemplateDescriptionHtml}}
+
+                                    </td>
+                                </tr>
+
                             </table>
-
-
-                            <tr style="margin-top: 12px;">
-                                <td colspan="6">
-                                    <div>
-                                        <table style="width: 100%; border-collapse: collapse; font-size: 20px;">
-
-                                            {{TemplateDescriptionHtml}}
-                                        </table>
-                                    </div>
                         </div>
 
-                        <br />
 
 
                     </div>
                 </div>
-            </div>
+        </div></div>
         </div>
-    </div>
-
+   
 </body>
 
 </html>
@@ -137,8 +131,7 @@
         <tr style="display:{{chkSurgeryPrescriptionflag}}">
             <td style="padding: 6px;">
                 <table style="width: 100%; border-collapse: collapse;">
-                    <!-- <thead style="font-size: 14px; font-weight: bold; font-size: 24px;">-->
-                    <tr><td colspan="3" style="font-weight: bold; font-size: 24px; border-bottom: 1px solid #eee; padding: 6px;">Prescription Details :</td></tr>
+                 <tr><td colspan="3" style="font-weight: bold; font-size: 24px; border-bottom: 1px solid #eee; padding: 6px;">Prescription Details :</td></tr>
                     <tr>
                         <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
                         <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
@@ -152,8 +145,7 @@
 
                     </tr>
                     {{Items}}
-                    <!--</thead>-->
-
+                   
                 </table>
             </td>
         </tr>

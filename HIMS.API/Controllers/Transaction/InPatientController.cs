@@ -535,7 +535,7 @@ namespace HIMS.API.Controllers.Transaction
         {
 
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPDischargesummaryTemplate.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewVatsaylaHeader.html");
             var html = _IPDDischargeSummary.ViewDischargeSummaryTemplateNew(AdmissionID, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPDischargeSummaryTemplate", "IPDischargeSummaryTemplate" + AdmissionID.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
