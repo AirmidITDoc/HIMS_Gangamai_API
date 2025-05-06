@@ -223,7 +223,19 @@ namespace HIMS.API.Controllers.Transaction
             var appoSave = _OpdAppointment.UpdateVitalInformation(OpdAppointmentParams);
             return Ok(appoSave);
         }
+        [HttpGet("view-OPDSpineCasePaper")]
+        public IActionResult ViewOPDSpineCasePaper(int VisitId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDCASEPAPERSpineClinic.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _OpdAppointment.ViewOPDSpineCasePaper(VisitId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewOPDSpineCasePaper", "ViewOPDSpineCasePaper" + VisitId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
+            // write logic for send pdf in whatsapp
+            //if (System.IO.File.Exists(tuple.Item2))
+            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpGet("view-PatientAppointment")]
         public IActionResult ViewPatientAppointment(int VisitId)
         {

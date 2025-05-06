@@ -233,6 +233,79 @@ namespace HIMS.Data.Opd
 
             return html;
         }
+        public string ViewOPDSpineCasePaper(int VisitId, string htmlFilePath, string htmlHeader)
+        {
+            // throw new NotImplementedException();
+            SqlParameter[] para = new SqlParameter[1];
+
+            para[0] = new SqlParameter("@VisitId", VisitId) { DbType = DbType.String };
+
+            var Bills = GetDataTableProc("rptAppointmentPrint1", para);
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+
+
+            html = html.Replace("{{PatientName}}", Bills.GetColValue("PatientName"));
+            html = html.Replace("{{GenderName}}", Bills.GetColValue("GenderName"));
+            html = html.Replace("{{RegNo}}", Bills.GetColValue("RegNo"));
+            html = html.Replace("{{AgeYear}}", Bills.GetColValue("AgeYear"));
+            html = html.Replace("{{AgeMonth}}", Bills.GetColValue("AgeMonth"));
+            html = html.Replace("{{AgeDay}}", Bills.GetColValue("AgeDay"));
+            html = html.Replace("{{VisitDate}}", Bills.GetColValue("VisitTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+            html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
+            html = html.Replace("{{ConsultantDoctorName}}", Bills.GetColValue("ConsultantDoctorName"));
+
+            html = html.Replace("{{Address}}", Bills.GetColValue("Address"));
+            html = html.Replace("{{Expr1}}", Bills.GetColValue("Expr1"));
+            html = html.Replace("{{MobileNo}}", Bills.GetColValue("MobileNo"));
+            html = html.Replace("{{RoomName}}", Bills.GetColValue("RoomName"));
+            html = html.Replace("{{BedName}}", Bills.GetColValue("BedName"));
+
+
+            html = html.Replace("{{AdmittedDoctorName}}", Bills.GetColValue("AdmittedDoctorName"));
+            html = html.Replace("{{RefDocName}}", Bills.GetColValue("RefDocName"));
+
+            html = html.Replace("{{CompanyName}}", Bills.GetColValue("CompanyName"));
+            html = html.Replace("{{DepartmentName}}", Bills.GetColValue("DepartmentName"));
+
+            html = html.Replace("{{RelativeName}}", Bills.GetColValue("RelativeName"));
+            html = html.Replace("{{RelativePhoneNo}}", Bills.GetColValue("RelativePhoneNo"));
+
+            html = html.Replace("{{RelationshipName}}", Bills.GetColValue("RelationshipName"));
+            html = html.Replace("{{OPDNo}}", Bills.GetColValue("OPDNo"));
+            html = html.Replace("{{IsMLC}}", Bills.GetColValue("IsMLC"));
+
+            html = html.Replace("{{AdmittedDoctor2}}", Bills.GetColValue("AdmittedDoctor2"));
+            html = html.Replace("{{LoginUserSurname}}", Bills.GetColValue("LoginUserSurname"));
+            html = html.Replace("{{BP}}", Bills.GetColValue("BP"));
+            html = html.Replace("{{Pulse}}", Bills.GetColValue("Pulse"));
+            html = html.Replace("{{Height}}", Bills.GetColValue("Height"));
+            html = html.Replace("{{Weight}}", Bills.GetColValue("PWeight"));
+            html = html.Replace("{{Temp}}", Bills.GetColValue("Temp"));
+            html = html.Replace("{{BP}}", Bills.GetColValue("BP"));
+            html = html.Replace("{{BSL}}", Bills.GetColValue("BSL"));
+            html = html.Replace("{{BMI}}", Bills.GetColValue("BMI"));
+            html = html.Replace("{{SpO2}}", Bills.GetColValue("SpO2"));
+
+
+
+            html = html.Replace("{{chkBPflag}}", Bills.GetColValue("BP").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkPulseflag}}", Bills.GetColValue("Pulse").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkHeightflag}}", Bills.GetColValue("Height").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkWeightflag}}", Bills.GetColValue("PWeight").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkTempflag}}", Bills.GetColValue("Temp").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkBSLflag}}", Bills.GetColValue("BSL").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkBMIflag}}", Bills.GetColValue("BMI").ConvertToString() != "" ? "visible" : "none");
+            html = html.Replace("{{chkSpO2flag}}", Bills.GetColValue("SpO2").ConvertToString() != "" ? "visible" : "none");
+
+
+
+            return html;
+        }
         public string ViewpatientAppointmentReceipt(int VisitId, string htmlFilePath, string htmlHeaderFilePath)
         {
             //throw new NotImplementedException();
