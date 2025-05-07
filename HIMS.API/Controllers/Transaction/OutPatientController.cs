@@ -226,7 +226,7 @@ namespace HIMS.API.Controllers.Transaction
         [HttpGet("view-OPDSpineCasePaper")]
         public IActionResult ViewOPDSpineCasePaper(int VisitId)
         {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDCASEPAPERSpineClinic.html");
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDCasePaperSpineClinic.html");
             string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _OpdAppointment.ViewOPDSpineCasePaper(VisitId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewOPDSpineCasePaper", "ViewOPDSpineCasePaper" + VisitId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
