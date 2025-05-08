@@ -224,7 +224,28 @@ namespace HIMS.API.Controllers.Transaction
             var appoSave = _OpdAppointment.UpdateVitalInformation(OpdAppointmentParams);
             return Ok(appoSave);
         }
-        [HttpGet("view-OPDSpineCasePaper")]
+        //[HttpGet("view-OPDSpineCasePaper")]
+        //public IActionResult ViewOPDSpineCasePaper(int VisitId)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDCasePaperSpineClinic.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    string ImgPath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "SpineImg.html");
+
+        //    var html = _OpdAppointment.ViewOPDSpineCasePaper(VisitId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath), _pdfUtility.GetHeader(ImgPath));
+
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewOPDSpineCasePaper", "ViewOPDSpineCasePaper" + VisitId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+           
+
+        //    var Basepath = _configuration.GetValue<string>("BaseUrl").Trim('/');
+
+        //    var Img = Basepath + "/wwwroot/HumanBody.jpg";
+
+        //    html = html.Replace("{{Img}}", Img);
+        //    html = html.Replace("{{Basepath}}", Basepath);
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
+
+        [HttpGet("view-PatientAppointment")]
         public IActionResult ViewOPDSpineCasePaper(int VisitId)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPDCasePaperSpineClinic.html");
@@ -234,7 +255,7 @@ namespace HIMS.API.Controllers.Transaction
             var html = _OpdAppointment.ViewOPDSpineCasePaper(VisitId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath), _pdfUtility.GetHeader(ImgPath));
 
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewOPDSpineCasePaper", "ViewOPDSpineCasePaper" + VisitId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
-           
+
 
             var Basepath = _configuration.GetValue<string>("BaseUrl").Trim('/');
 
@@ -244,20 +265,21 @@ namespace HIMS.API.Controllers.Transaction
             html = html.Replace("{{Basepath}}", Basepath);
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
-        [HttpGet("view-PatientAppointment")]
-        public IActionResult ViewPatientAppointment(int VisitId)
-        {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPCasePaperNew.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-           
-            var html = _OpdAppointment.ViewOppatientAppointmentdetailsReceipt(VisitId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPAppointmentDetails", "AppointmentofOPPatient"+ VisitId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
-            // write logic for send pdf in whatsapp
-            //if (System.IO.File.Exists(tuple.Item2))
-            //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        }
+        //[HttpGet("view-PatientAppointment")]
+        //public IActionResult ViewPatientAppointment(int VisitId)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "OPCasePaperNew.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+
+        //    var html = _OpdAppointment.ViewOppatientAppointmentdetailsReceipt(VisitId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "OPAppointmentDetails", "AppointmentofOPPatient" + VisitId.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+        //    // write logic for send pdf in whatsapp
+        //    //if (System.IO.File.Exists(tuple.Item2))
+        //    //    System.IO.File.Delete(tuple.Item2); // delete generated pdf file.
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
 
         [HttpGet("view-AppointmentTemplate")]
         public IActionResult viewAppoinmentTemplate(int VisitId)
