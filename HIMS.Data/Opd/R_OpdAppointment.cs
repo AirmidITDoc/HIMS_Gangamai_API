@@ -233,7 +233,7 @@ namespace HIMS.Data.Opd
 
             return html;
         }
-        public string ViewOPDSpineCasePaper(int VisitId, string htmlFilePath, string htmlHeader)
+        public string ViewOPDSpineCasePaper(int VisitId, string htmlFilePath, string htmlHeader,string ImgPath)
         {
             // throw new NotImplementedException();
             SqlParameter[] para = new SqlParameter[1];
@@ -245,6 +245,8 @@ namespace HIMS.Data.Opd
 
             html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
             html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{ImgPath}}", ImgPath);
+
             StringBuilder items = new StringBuilder("");
             int i = 0;
 
