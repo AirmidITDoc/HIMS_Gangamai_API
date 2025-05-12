@@ -98,9 +98,10 @@
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">Sr.No</th>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">ItemName</th>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">Packing</th>
-                                <th style="border: 1px solid #d4c3c3; padding: 6px;">MRP</th>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">Batch No</th>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">Qty</th>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">F.Qty</th>
+                                <th style="border: 1px solid #d4c3c3; padding: 6px;">MRP</th>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">PureRate</th>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">Disc%</th>
                                 <th style="border: 1px solid #d4c3c3; padding: 6px;">CGST%</th>
@@ -110,6 +111,7 @@
                             </tr>
                         </thead>
                         {{Items}}
+                      
                     </table>
                 </td>
             </tr>
@@ -119,7 +121,7 @@
             <table style="width: 100%; border-collapse: collapse;">
                 <tr>
                     <td colspan="5" style=" border: 1px solid #d4c3c3; text-align: left; font-weight:bold;padding: 6px;">
-                        Total SGST Amount :
+                        Total CGST Amount :
                         <span style=" text-align: center; padding: 6px;"> {{T_TotalCGST}}</span>
                     </td>
 
@@ -211,10 +213,10 @@
                                         {{AddedByName}}  <br> Added By
                                     </td>
                                     <td style="padding: 6px; text-align: center;">
-                                        {{AddedByName}}  <br> Checked By
+                                        {{AddedByName}}  <br> Admin officer/Accountant
                                     </td>
                                     <td style="padding: 6px; text-align: right;">
-                                        {{AddedByName}} <br> Authorized Signature
+                                        {{AddedByName}} <br> Board of Director
                                     </td>
                                 </tr>
                             </tbody>
