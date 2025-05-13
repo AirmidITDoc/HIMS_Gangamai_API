@@ -32,6 +32,30 @@ namespace HIMS.Data.Administration
         {
 
         }
+
+
+
+        public bool InsertPhysiotherapy(PhysiotherapyParam PhysiotherapyParam)
+        {
+            // throw new NotImplementedException();
+            var disc = PhysiotherapyParam.InsertPhysiotherapyHeader.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_insert_T_PhysioScheduleHeader", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+
+        public bool UpdatePhysiotherapy(PhysiotherapyParam PhysiotherapyParam)
+        {
+            // throw new NotImplementedException();
+            var disc = PhysiotherapyParam.UpdatePhysiotherapyDetails.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Update_T_PhysioScheduleDetail", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
         public bool SaveNursingWeight(NursingWeightParam NursingWeightParam)
         {
             // throw new NotImplementedException();

@@ -13,7 +13,15 @@ using HIMS.Model.CustomerInformation;
 namespace HIMS.Data.Administration
 {
     public  interface I_Administration
+
+
     {
+
+
+        public bool InsertPhysiotherapy(PhysiotherapyParam PhysiotherapyParam);
+
+        public bool UpdatePhysiotherapy(PhysiotherapyParam PhysiotherapyParam);
+
         public bool InsertGSTReCalculProcess(GSTReCalculProcessParam GSTReCalculProcessParam);
 
         public bool UpdateBillcancellation(AdministrationParam administrationParam);
