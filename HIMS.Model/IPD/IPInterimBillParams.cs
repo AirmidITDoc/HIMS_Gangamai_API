@@ -89,16 +89,16 @@ namespace HIMS.Model.IPD
         public String ReceiptNo { get; set; }
         public DateTime PaymentDate { get; set; }
         public DateTime PaymentTime { get; set; }
-        public long CashPayAmount { get; set; }
-        public long ChequePayAmount { get; set; }
+        public float CashPayAmount { get; set; }
+        public float ChequePayAmount { get; set; }
         public String ChequeNo { get; set; }
         public String BankName { get; set; }
         public DateTime ChequeDate { get; set; }
-        public long CardPayAmount { get; set; }
+        public float CardPayAmount { get; set; }
         public String CardNo { get; set; }
         public String CardBankName { get; set; }
         public DateTime CardDate { get; set; }
-        public long AdvanceUsedAmount { get; set; }
+        public float AdvanceUsedAmount { get; set; }
         public int AdvanceId { get; set; }
         public int RefundId { get; set; }
         public int TransactionType { get; set; }
@@ -108,11 +108,11 @@ namespace HIMS.Model.IPD
         public int IsCancelledBy { get; set; }
         public DateTime IsCancelledDate { get; set; }
         // public int OPD_IPD_Type { get; set; }
-        public long NEFTPayAmount { get; set; }
+        public float NEFTPayAmount { get; set; }
         public String NEFTNo { get; set; }
         public String NEFTBankMaster { get; set; }
         public DateTime NEFTDate { get; set; }
-        public long PayTMAmount { get; set; }
+        public float PayTMAmount { get; set; }
         public String PayTMTranNo { get; set; }
         public DateTime PayTMDate { get; set; }
         public float TDSAmount { get; set; }
