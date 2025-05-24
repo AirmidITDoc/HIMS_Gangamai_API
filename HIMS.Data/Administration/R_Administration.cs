@@ -33,7 +33,160 @@ namespace HIMS.Data.Administration
 
         }
 
+        public string ViewVoucharPrint(int ExpId, string htmlFilePath, string htmlHeader)
+        {
+            SqlParameter[] para = new SqlParameter[1];
 
+            para[0] = new SqlParameter("@ExpId", ExpId) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("rptExpVoucharPrint", para);
+
+
+           
+            int length = 0;
+            length = Bills.Rows.Count;
+            string html = File.ReadAllText(htmlFilePath);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            StringBuilder items = new StringBuilder("");
+            int i = 0;
+
+
+            html = html.Replace("{{PersonName}}", Bills.GetColValue("PersonName"));
+            html = html.Replace("{{ExpAmount}}", Bills.GetColValue("ExpAmount"));
+            html = html.Replace("{{ExpensesType}}", Bills.GetColValue("ExpensesType"));
+            html = html.Replace("{{VoucharNo}}", Bills.GetColValue("VoucharNo"));
+            html = html.Replace("{{Narration}}", Bills.GetColValue("Narration"));
+            html = html.Replace("{{UserName}}", Bills.GetColValue("UserName"));
+       
+
+            html = html.Replace("{{ExpDate}}", Bills.GetColValue("ExpTime").ConvertToDateString("dd/MM/yyyy | hh:mm tt"));
+           
+
+          
+
+
+      
+            html = html.Replace("{{Items}}", items.ToString());
+
+
+
+
+
+
+
+            return html;
+        }
+
+        public string ViewExpensesReport(DateTime FromDate, DateTime ToDate, int ExpHeadId, int ExpType, string htmlFilePath, string htmlHeader)
+        {
+            // throw new NotImplementedException();
+
+            SqlParameter[] para = new SqlParameter[4];
+            para[0] = new SqlParameter("@FromDate", FromDate) { DbType = DbType.DateTime };
+            para[1] = new SqlParameter("@ToDate", ToDate) { DbType = DbType.DateTime };
+            para[2] = new SqlParameter("@ExpHeadId", ExpHeadId) { DbType = DbType.Int64 };
+            para[3] = new SqlParameter("@ExpType", ExpType) { DbType = DbType.Int64 };
+            var Bills = GetDataTableProc("Retrieve_T_Expenses", para);
+
+
+            string html = File.ReadAllText(htmlFilePath);
+
+            html = html.Replace("{{NewHeader}}", htmlHeader);
+            html = html.Replace("{{CurrentDate}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm tt"));
+
+            StringBuilder items = new StringBuilder("");
+            int i = 0, j = 0;
+            double T_Count = 0, T_TotalAmount = 0, T_TotalAmt = 0, PatientName = 0, AdmittedDoctorName = 0, AdmissionDate = 0, BillNo = 0, CompBillDate = 0, IPDNo = 0, RoomName = 0;
+
+            string previousLabel = "";
+
+
+
+            foreach (DataRow dr in Bills.Rows)
+            {
+
+                i++; j++;
+
+
+                if (i == 1)
+                {
+                    String Label;
+                    Label = dr["PersonName"].ConvertToString();
+                    items.Append("<tr style=\"font-size:22px;border: 1px;color:black;\"><td colspan=\"8\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(Label).Append("</td></tr>");
+                }
+                if (previousLabel != "" && previousLabel != dr["PersonName"].ConvertToString())
+                {
+                    j = 1;
+
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:24px;font-weight:bold;\">Total </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+                       .Append(T_TotalAmt.ToString()).Append("</td></tr>");
+
+                    T_TotalAmt = 0;
+                    items.Append("<tr style=\"font-size:20px;border-bottom: 1px;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;\"><td colspan=\"8\" style=\"border:1px solid #000;padding:3px;height:10px;text-align:left;vertical-align:middle\">").Append(dr["PersonName"].ConvertToString()).Append("</td></tr>");
+
+                }
+
+                T_TotalAmt = T_TotalAmt;
+                //T_Count = T_Count + 1;
+                previousLabel = dr["PersonName"].ConvertToString();
+
+                items.Append("<tr style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\"><td style=\"text-align: center; border: 1px solid #d4c3c3; padding: 6px;\">").Append(i).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:center;\">").Append(dr["ExpDate"].ConvertToDateString("dd/MM/yyy")).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["PersonName"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align left;\">").Append(dr["ExpAmount"].ConvertToDouble()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["ExpensesType"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["VoucharNo"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:left;\">").Append(dr["Narration"].ConvertToString()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; padding: 6px;text-align:right;\">").Append(dr["UserName"].ConvertToString()).Append("</td></tr>");
+                if (Bills.Rows.Count > 0 && Bills.Rows.Count == i)
+                {
+
+                    items.Append("<tr style='border:1px solid black;color:black;background-color:white; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;'><td colspan='3' style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:right;vertical-align:middle;margin-right:20px;font-weight:bold;\"> Total </td><td style=\"border-right:1px solid #000;padding:3px;height:10px;text-align:center;vertical-align:middle\">")
+
+                         .Append(T_TotalAmt.ToString()).Append("</td></tr>");
+
+
+                }
+                T_TotalAmt += dr["ExpAmount"].ConvertToDouble();
+                T_TotalAmount += dr["ExpAmount"].ConvertToDouble();
+                //BillNo += dr["BillNo"].ConvertToDouble();
+                //CompBillDate += dr["CompBillDate"].ConvertToDouble();
+                //IPDNo += dr["IPDNo"].ConvertToDouble();
+                //RoomName += dr["RoomName"].ConvertToDouble();
+            }
+
+            html = html.Replace("{{Items}}", items.ToString());
+            html = html.Replace("{{FromDate}}", FromDate.ToString("dd/MM/yy"));
+            html = html.Replace("{{ToDate}}", ToDate.ToString("dd/MM/yy"));
+         
+
+            html = html.Replace("{{T_TotalAmount}}", T_TotalAmount.To2DecimalPlace());
+           
+            return html;
+
+        }
+
+        public bool MClassMasterInsert(ClassMasterPara ClassMasterPara)
+        {
+            // throw new NotImplementedException();
+            var disc = ClassMasterPara.ClassMasterParamsInsert.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("insert_M_ClassMaster", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
+
+        public bool MClassMasterUpdate(ClassMasterPara ClassMasterPara)
+        {
+            // throw new NotImplementedException();
+            var disc = ClassMasterPara.ClassMasterParamsUpdate.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("Update_M_ClassMaster", disc);
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+
+        }
 
         public bool InsertPhysiotherapy(PhysiotherapyParam PhysiotherapyParam)
         {

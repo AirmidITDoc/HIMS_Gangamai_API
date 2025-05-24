@@ -1,15 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HIMS.API.Utility;
+using HIMS.Data.Administration;
+using HIMS.Data.Inventory;
+using HIMS.Data.Users;
+using HIMS.Model.Administration;
+using HIMS.Model.Inventory;
+using HIMS.Model.Opd;
+using HIMS.Model.Users;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting.Internal;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using HIMS.Data.Users;
-using HIMS.Model.Users;
-using HIMS.Model.Inventory;
-using HIMS.Data.Inventory;
-using HIMS.Model.Administration;
-using HIMS.Data.Administration;
-using HIMS.Model.Opd;
 
 namespace HIMS.API.Controllers.Transaction
 {
@@ -23,11 +26,13 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_SMS_Config _SMS_Config;
         public readonly I_Administration _Administration;
         public readonly I_NewTemplateDescription _NewTemplateDescription;
+        public readonly IPdfUtility _pdfUtility;
+        private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
         /* public IActionResult Index()
          {
              return View();
          }*/
-        public AdministrationController(
+        public AdministrationController(Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment, IPdfUtility pdfUtility,
             I_UserChangePassword UserChangePassword,
             I_SMS_Config sMS_Config, I_Administration Administration, I_NewTemplateDescription newTemplateDescription)
         {
@@ -35,8 +40,44 @@ namespace HIMS.API.Controllers.Transaction
             this._SMS_Config = sMS_Config;
             this._Administration = Administration;
             this._NewTemplateDescription = newTemplateDescription;
+            _hostingEnvironment = hostingEnvironment;
+            _pdfUtility = pdfUtility;
+        }
+        [HttpGet("view-ExpensesReport")]
+        public IActionResult ViewExpensesReport(DateTime FromDate, DateTime ToDate, int ExpHeadId, int ExpType)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DailyExpensesReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Administration.ViewExpensesReport(FromDate, ToDate, ExpHeadId, ExpType, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewExpensesReport", "ViewExpensesReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
+        [HttpGet("view-VoucharPrint")]
+        public IActionResult ViewVoucharPrint( int ExpId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "VoucherPrint.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _Administration.ViewVoucharPrint(ExpId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewVoucharPrint", "ViewVoucharPrint", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+        [HttpPost("MClassMasterInsert")]
+        public IActionResult MClassMasterInsert(ClassMasterPara ClassMasterPara)
+        {
+            var appoSave = _Administration.MClassMasterInsert(ClassMasterPara);
+            return Ok(appoSave);
+        }
+        [HttpPost("MClassMasterUpdate")]
+        public IActionResult MClassMasterUpdate(ClassMasterPara ClassMasterPara)
+        {
+            var appoSave = _Administration.MClassMasterUpdate(ClassMasterPara);
+            return Ok(appoSave);
+        }
         [HttpPost("InsertGSTReCalculProcess")]
         public IActionResult InsertGSTReCalculProcess(GSTReCalculProcessParam GSTReCalculProcessParam)
         {

@@ -24,6 +24,7 @@ namespace HIMS.Model.Administration
         public long IsCancelled { get; set; }
         public long VoucharNo { get; set; }
         public long ExpHeadId { get; set; }
+        public long TranNo { get; set; }
 
     }
 
@@ -31,6 +32,7 @@ namespace HIMS.Model.Administration
     {
         public long ExpId { get; set; }
         public long IsCancelledBy { get; set; }
-      
+       
+
     }
 }
