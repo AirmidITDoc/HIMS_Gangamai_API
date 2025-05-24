@@ -281,7 +281,7 @@ namespace HIMS.Data.Pharmacy
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["DiscPercentage"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: center; padding: 6px;\">").Append(dr["CGSTPer"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3;  text-align: center;padding: 6px;\">").Append(dr["SGSTPer"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
-                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["TotalVATAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
+                items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["ItemWiseGST"].ConvertToDouble().To2DecimalPlace()).Append("</td>");
                 items.Append("<td style=\"border: 1px solid #d4c3c3; text-align: right; padding: 6px;\">").Append(dr["TotalAmount"].ConvertToDouble().To2DecimalPlace()).Append("</td></tr>");
 
 
