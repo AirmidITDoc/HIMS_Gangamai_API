@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main-content-wrapper">
+        <div class="invoice-box"
+             style="margin: auto;font-size: 13px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+            <table cellpadding="5" cellspacing="5" style="width: 100%;line-height: inherit;text-align: left;">
+
+                {{NewHeader}}
+                <tr class="title-date-row">
+                    <td>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="font-size: 16px">
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; ">
+                                    <b>
+                                        Sales Draft Bill
+
+                                    </b>
+                                </td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 6px; text-align: right;">
+                                    <b>
+                                        Print
+                                        Date : {{CurrentDate}}
+                                    </b>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="bill-info-row">
+                    <td>
+                        <table style="width: 100%; border-collapse: collapse;font-size:20px;">
+
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>UHID :</span>
+                                    <span>{{RegNo}}</span>
+                                    <span></span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>DOA :</span>
+                                    <span>{{AdmissionDate}}</span>
+                                </td>
+
+
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;">
+                                    <span>Patient Name :</span>
+                                    <span> {{PatientName}}</span>
+                                </td>
+                                <td style="padding: 2px;">
+                                    <span>Age :</span>
+                                    <span>{{Age}}</span>
+                                </td>
+
+                            <tr>
+                            </tr>
+                </tr>
+                <tr>
+                    <td style="padding: 2px;">
+                        <span>Gender:</span>
+                        <span>{{GenderName}} </span>
+                    </td>
+
+                    <td style="padding: 2px;">
+                        <span>Ward Name:</span>
+                        <span>{{WardName}}</span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="padding: 2px;">
+                        <span>Doctor Name:</span>
+                        <span>{{DoctorName}} </span>
+                    </td>
+
+
+
+                </tr>
+
+            </table>
+                    </td>
+                </tr>
+                <tr class="bill-table-row" style="margin-top:10px;">
+                    <td>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="font-weight:bold;font-size:20px;">
+                            <tr>
+                                <th style="border: 1px solid #000; text-align: center; padding: 6px;">Sr.No</th>
+                                <th style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                    Item Name
+                                </th>
+                                <th style="border: 1px solid #000; text-align: center; padding: 6px;">
+                                    Location
+                                </th>
+                                <th style="border: 1px solid #000; text-align: center; padding: 6px;">Qty</th>
+                                <th style="border: 1px solid #000; text-align: center; padding: 6px;">Batch No</th>
+                                <th style="border: 1px solid #000; text-align: center; padding: 6px;">Batch Exp</th>
+                                <th style="border: 1px solid #000; text-align: center; padding: 6px;">Unit MRP</th>
+                                <th style="border: 1px solid #000; text-align: center; padding: 6px;">
+                                    Total Amount
+                                </th>
+                            </tr>
+
+                            <tbody style="font-size: 14px;">
+                                {{Items}}
+
+                                <tr style="margin-top: 12px;">
+                                    <td colspan="8"
+                                        style=" border-bottom: 1px solid #d4c3c3; text-align: left; padding: 6px;">
+
+                                        Prescription Prepared By :
+                                    </td>
+                                </tr>
+                                <tr style="margin-top: 12px;">
+                                    <td colspan="8">
+                                        <table style="width: 100%; border-collapse: collapse; font-size: 20px;font-weight:bold;">
+                                            <!--<tr>
+                                                <td style="border-bottom:1px solid #eee; padding: 6px;">
+                                                    Total Amount
+                                                </td>
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">
+                                                    {{T_TotalAmount}}
+                                                </td>-->
+                                            <tr style="display:">
+
+                                                <td style="border-bottom:1px solid #eee; padding: 6px;">Total  Amount</td>
+                                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: right;">  {{T_TotalAmount}}</td>
+                                            </tr>
+</tr>
+
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </thead>
+                        </table>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+                                </td>
+                                <td>
+                                   
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+              
+                <!--<tr>
+                    <td style="text-align: right;">
+                           <span>Doctor Name</span><br>
+                        <span>{{DoctorName}}</span><br>-->
+                     
+                        <!--<span>Signature</span>-->
+                    <!--</td>
+                </tr>-->
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="bill-template-wrapper" style="font-size: 14px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; ">
+
+
+        {{NewHeader}}
+
+        <table style="width: 100%;line-height: inherit;text-align: left;">
+            <tr class="title-date-row">
+                <td style="padding: 6px;">
+
+                    <table style="width: 100%; border-collapse: collapse;">
+
+                        <tr style="font-size: 18px">
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>OP Collection Summary</b></td>
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                        </tr>
+
+                    </table>
+                    <div style="margin-top:2px;">
+                        <div style="font-weight: bold;font-size:18px;margin-left:10px;padding:5px;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
+                    </div>
+                </td>
+            </tr>
+
+            <table class="table" style="width:100%;border-collapse:collapse">
+                <tbody>
+
+                    <tr style="font-size: 18px; background-color: white; font-weight: 700;">
+
+
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">UHID</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Patient Name</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Bill No</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 10%;">Bill Date</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Toatal Amount </td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">DiscAmt</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Net Amount</td>
+
+
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Cash Pay</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Card Pay</td>
+
+
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> NEFT Pay</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Online Pay</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Refund Amt</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Concession Reason</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Company Name</td>
+
+                    </tr>
+
+
+
+
+
+                    <!--<tr class="bill-table-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead style="font-size: 15px; text-align: center;">
+                                <tr>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">SR NO</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">UHID</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Patient Name</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill No</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Bill Date</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">TotalAmt</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">DiscAmt</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">NetPay</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">CashPay</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Card Pay</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">NEFT Pay</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">UPI Pay</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Refund Amt</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Concession Reason</th>
+                                    <th style="border: 1px solid #d4c3c3; padding: 6px;">Company Name</th>
+
+                                </tr>
+                            </thead>
+                            <tbody style="font-size: 14px;">-->
+                    {{Items}}
+                    <tr>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold; font-size: 20px;"> Total Amount</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold; font-size: 20px;">{{T_TotalAmt}}</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold; font-size: 20px;"> {{T_ConcessionAmt}}</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold; font-size: 20px;"> {{T_NetPayableAmt}}</td>
+
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold; font-size: 20px;"> {{T_CashPayAmount}}</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold; font-size: 20px;">{{T_CardPayAmount}}</td>
+
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold; font-size: 20px;"> {{T_NEFTPayAmount}}</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold; font-size: 20px;">{{T_PayTMAmount}}</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-weight: bold; font-size: 20px;">{{T_RefundAmount}}</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td>
+
+
+                    </tr>
+                </tbody>
+
+            </table>
+            </td>
+            </tr>
+        </table>
+    </div>
+    </div>
+</body>
+</html>
+
+
