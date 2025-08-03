@@ -23,18 +23,21 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_SMS_Config _SMS_Config;
         public readonly I_Administration _Administration;
         public readonly I_NewTemplateDescription _NewTemplateDescription;
+
+        public readonly I_ReportConfig _I_ReportConfig;
         /* public IActionResult Index()
          {
              return View();
          }*/
         public AdministrationController(
             I_UserChangePassword UserChangePassword,
-            I_SMS_Config sMS_Config, I_Administration Administration, I_NewTemplateDescription newTemplateDescription)
+            I_SMS_Config sMS_Config, I_Administration Administration, I_NewTemplateDescription newTemplateDescription, I_ReportConfig ReportConfig)
         {
             this._UserChangePassword = UserChangePassword;
             this._SMS_Config = sMS_Config;
             this._Administration = Administration;
             this._NewTemplateDescription = newTemplateDescription;
+            this._I_ReportConfig = ReportConfig;
         }
 
         [HttpPost("InsertGSTReCalculProcess")]
@@ -195,6 +198,44 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(TODUpdate);
 
         }
+
+
+
+        [HttpPost("ReportConfigsave")]
+        public IActionResult InsertReportConfig(ReportConfigparam ReportConfigparam)
+        {
+            var TODUpdate = _I_ReportConfig.InsertReportConfig(ReportConfigparam);
+            return Ok(TODUpdate);
+
+        }
+
+
+        [HttpPost("ReportConfigUpdate")]
+        public IActionResult UpdateReportConfig(ReportConfigparam ReportConfigparam)
+        {
+            var TODUpdate = _I_ReportConfig.UpdateReportConfig(ReportConfigparam);
+            return Ok(TODUpdate);
+
+        }
+
+        //[HttpPut("ReportConfig/{id:int}")]
+
+        //public async Task<ApiResponse> Edit(ReportConfigModel obj)
+        //{
+        //    MReportConfig model = obj.MapTo<MReportConfig>();
+        //    if (obj.ReportId == 0)
+        //        return ApiResponseHelper.GenerateResponse(ApiStatusCode.Status500InternalServerError, "Invalid params");
+        //    else
+        //    {
+        //        model.UpdatedOn = DateTime.Now;
+        //        model.UpdateBy = CurrentUserId;
+        //        model.IsActive = true;
+        //        await _ReportConfigService.UpdateAsyncm(model, CurrentUserId, CurrentUserName);
+        //    }
+        //    return ApiResponseHelper.GenerateResponse(ApiStatusCode.Status200OK, "Record updated successfully.");
+        //}
+
+
     }
 
 }

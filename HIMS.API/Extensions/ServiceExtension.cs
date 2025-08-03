@@ -368,8 +368,8 @@ namespace HIMS.API.Extensions
             services.AddTransient<I_NewMenuMaster, R_NewMenuMaster>();
 
             services.AddTransient<I_Report, R_Report>();
-            /* services.AddTransient<I_CountryMasterHome, R_CountryMasterHome>();
-            services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
+            services.AddTransient<I_ReportConfig, R_ReportConfig>();
+            /* services.AddTransient<I_GenderMasterHome, R_GenderMasterHome>();
             services.AddTransient<I_BillingClassMasterHome, R_BillingClassMasterHome>();
             services.AddTransient<I_Itemmasterhome, R_Itemmasterhome>();
 
