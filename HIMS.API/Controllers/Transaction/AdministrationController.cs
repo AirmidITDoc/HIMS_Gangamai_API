@@ -26,6 +26,7 @@ namespace HIMS.API.Controllers.Transaction
         public readonly I_SMS_Config _SMS_Config;
         public readonly I_Administration _Administration;
         public readonly I_NewTemplateDescription _NewTemplateDescription;
+        public readonly I_ReportConfig _I_ReportConfig;
         /* public IActionResult Index()
          {
              return View();
@@ -38,30 +39,31 @@ namespace HIMS.API.Controllers.Transaction
             this._SMS_Config = sMS_Config;
             this._Administration = Administration;
             this._NewTemplateDescription = newTemplateDescription;
+            this._I_ReportConfig = ReportConfig;
         }
-        [HttpGet("view-ExpensesReport")]
-        public IActionResult ViewExpensesReport(DateTime FromDate, DateTime ToDate, int ExpHeadId, int ExpType)
-        {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DailyExpensesReport.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _Administration.ViewExpensesReport(FromDate, ToDate, ExpHeadId, ExpType, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewExpensesReport", "ViewExpensesReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        //[HttpGet("view-ExpensesReport")]
+        //public IActionResult ViewExpensesReport(DateTime FromDate, DateTime ToDate, int ExpHeadId, int ExpType)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "DailyExpensesReport.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    var html = _Administration.ViewExpensesReport(FromDate, ToDate, ExpHeadId, ExpType, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewExpensesReport", "ViewExpensesReport", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        }
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
 
-        [HttpGet("view-VoucharPrint")]
-        public IActionResult ViewVoucharPrint( int ExpId)
-        {
-            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "VoucherPrint.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
-            var html = _Administration.ViewVoucharPrint(ExpId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
-            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewVoucharPrint", "ViewVoucharPrint", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+        //[HttpGet("view-VoucharPrint")]
+        //public IActionResult ViewVoucharPrint( int ExpId)
+        //{
+        //    string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "VoucherPrint.html");
+        //    string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+        //    var html = _Administration.ViewVoucharPrint(ExpId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+        //    var tuple = _pdfUtility.GeneratePdfFromHtml(html, "ViewVoucharPrint", "ViewVoucharPrint", Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
 
-            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
-        }
+        //    return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        //}
         [HttpPost("MClassMasterInsert")]
         public IActionResult MClassMasterInsert(ClassMasterPara ClassMasterPara)
         {
