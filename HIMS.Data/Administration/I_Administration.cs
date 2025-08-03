@@ -13,7 +13,20 @@ using HIMS.Model.CustomerInformation;
 namespace HIMS.Data.Administration
 {
     public  interface I_Administration
+
+
     {
+
+        string ViewVoucharPrint(int ExpId, string htmlFilePath, string HeaderName);
+        string ViewExpensesReport(DateTime FromDate, DateTime ToDate, int ExpHeadId, int ExpType, string htmlFilePath, string HeaderName);
+        public bool MClassMasterInsert(ClassMasterPara ClassMasterPara);
+
+        public bool MClassMasterUpdate(ClassMasterPara ClassMasterPara);
+
+        public bool InsertPhysiotherapy(PhysiotherapyParam PhysiotherapyParam);
+
+        public bool UpdatePhysiotherapy(PhysiotherapyParam PhysiotherapyParam);
+
         public bool InsertGSTReCalculProcess(GSTReCalculProcessParam GSTReCalculProcessParam);
 
         public bool UpdateBillcancellation(AdministrationParam administrationParam);

@@ -1,0 +1,289 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="main-content-wrapper">
+        <div class="invoice-box" style="font-size: 22px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;padding-top:80px;">
+            <table style="width: 100%;line-height: inherit;text-align: left;">
+             
+                
+                
+                
+                <tr class="title-date-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="font-size: 24px;">
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>IP Case Paper</b></td>
+                                <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="bill-info-row">
+                    <td style="padding: 6px;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 20px;">
+                            <tr>
+                                <td style="padding: 2px;width:450px;">
+                                    <span style="font-weight:bold;">UHID : </span>
+                                    <span>{{RegNo}}</span>
+                                </td>
+                                <td style="padding: 2px; width:450px;">
+                                    <span style="font-weight:bold;">Admission Date/Time : </span>
+                                    <span>{{DOT}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td style="padding: 2px; width: 450px; ">
+                                    <span style="font-weight:bold;">Patient Name : </span>
+                                    <span>{{PatientName}}</span>
+                                </td>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Ward / Bed Name : </span>
+                                    <span>{{RoomName}} / {{BedName}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px; width: 450px;" ">
+                                    <span style="font-weight:bold;">IPD No : </span>
+                                    <span>{{IPDNo}}</span>
+                                </td>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Age | Gender : </span>
+                                    <span style="display:{{chkyearflag}}"> {{AgeYear}} Y |</span>
+                                    <span style="display:{{chkmonthflag}}"> {{AgeMonth}} M | </span>
+                                    <span style="display:{{chkdayflag}}"> {{AgeDay}} D |</span> <span> {{GenderName}}</span>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td style="padding: 2px; width: 450px; ">
+                                    <span style="font-weight:bold;">Address : </span>
+                                    <span>{{Address}}</span>
+                                </td>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Marital Status : </span>
+                                    <span> {{MaritalStatusName}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Phone : </span>
+                                    <span>{{PhoneNo}}</span>
+                                </td>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Mobile No : </span>
+                                    <span>{{MobileNo}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Department Name : </span>
+                                    <span>{{DepartmentName}} </span>
+                                </td>
+
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Consultant Doctor : </span>
+                                    <span>{{AdmittedDoctorName}}</span>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Patient Type : </span>
+                                    <span>{{PatientType}} </span>
+                                </td>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Tariff Name : </span>
+                                    <span>{{TariffName}} </span>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Ref.Doc Name : </span>
+                                    <span>{{RefDoctorName}}</span>
+                                </td>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Company Name : </span>
+                                    <span>{{CompanyName}} </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">AdharCardNo : </span>
+                                    <span> {{AadharcardNo}}</span>
+                                </td>
+                                <td style="padding: 2px; width: 450px; ">
+                                    <span style="font-weight:bold;">Relative PhoneNo : </span>
+                                    <span>{{RelativePhoneNo}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Relative Name : </span>
+                                    <span>{{RelativeName}}</span>
+                                </td>
+                                <td style="padding: 2px; width: 450px;">
+                                    <span style="font-weight:bold;">Relationship : </span>
+                                    <span> {{RelationshipName}}</span>
+                                </td>
+                            </tr>
+                            <tr style="display:{{chkMLCflag}}">
+
+                                <td>
+                                    <span>IsMLC: </span>
+                                    <span><i class="fa fa-check-square" style="font-size:18px;color:red"></i></span>
+                                    </
+                                </td>
+
+                            </tr>
+                            <tr style="display:{{chkMLCflag1}}">
+                             
+                                <td>
+                                    <span style="font-weight:bold;">IsMLC: </span>
+                                    <span><i class="fa fa-close" style="font-size:18px;color:red"></i></span>
+
+                                </td>
+
+                            </tr>
+                        </table>
+
+                        <hr>
+                        <div>
+                            <div style="font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #101828; font-size: 22px; font-weight: bold;">
+                                <span >I hearby give concern to hospitalization of me/my</span><span> ____________________________________________</span><span>about the nature of the illness and the need
+                                            for hospitalization in a language easily understood by me.The necessary investigation and procedure as may be found necessary during hospital stay. Full knowledge of the nature of the illness.</span>
+                            </div> <br> <br>
+                            <div style="display: flex; margin-top: 10px;font-size:20px;font-weight:bold; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+                                <br>
+                                <span style="width:400px;"> Left Thumb Impression Of Patient</span>
+                                <span style="margin-left:140px;"> Signature / Left Thumb impression of the Relative</span>
+                            </div>
+                            <br />
+                            <div style="margin-left:10px; font-size: 18px; font-weight: bold;">
+                                Patient are requested to deposite their ornaments,jwellary and money
+                                with their relative hospital will not be responsible for any loss incureed.
+                            </div>
+
+                        </div> <br />
+
+                        <div style="display:flex;justify-content:space-between">
+                            <div style="display: flex;font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 22px; font-weight: bold;">
+                                <table style="text-align:center;">
+                                    <tr>
+                                        <TH style=" border: 1px solid #d4c3c3; text-align: left; padding: 1px; font-size: 24px; font-weight: bold;" colspan="3">
+                                            <H4>On Admission </H4>
+                                        </TH>
+                                    </tr>
+                                    <tr style="font-size: 22px; font-weight: bold;">
+                                        <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 4px; width: 300px;">
+                                            Cashless
+                                        </td>
+                                        <!-- <div></div> -->
+                                        <td style=" border: 1px solid #d4c3c3; text-align: right; padding: 6px;width:300px;"></td>
+                                        <td style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 300px;">
+                                            MLC
+                                            Insured TO
+                                        </td>
+                                    </tr>
+                                    <div>
+                                    <tr style="font-size: 22px; font-weight: bold;">
+                                        <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; width: 300px;">
+                                            External Cause of Injuries
+                                        </td>
+                                        <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;width:300px;"> </td>
+                                        <!-- <div></div> -->
+                                        <td style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 300px;">
+                                            MLC
+                                            Informed BY
+                                        </td>
+                                    </tr>
+                            </div>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr style="font-size: 22px; font-weight: bold;">
+                    <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; width: 300px;">
+                        Provisional
+                        Dignosis
+                    </td>
+                    <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px;width:300px;"> </td>
+                    <!-- <div></div> -->
+                    <td style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px; width: 300px;">
+                        Name & Signature
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div> <!-- <hr style="border-color:#a0a0a0"> --> <br />
+    <div style="display:flex;justify-content:space-between">
+        <div style="display:flex;margin-top:5px;font-size:24px;font-weight:bold;">
+            <table style="text-align:center;">
+                <tr>
+                    <TH style=" border: 1px solid #d4c3c3; text-align: left; padding: 1px; font-size: 24px; font-weight: bold;" colspan="3">
+
+                        <H4>On Discharge </H4>
+                    </TH>
+                </tr>
+                <tr style="font-size: 26px; font-weight: bold;">
+                    <th style=" border: 1px solid #d4c3c3; text-align: left; padding: 4px;width: 400px;">
+                        Mode
+                        Of Discharge
+                    </th>
+                    <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;width:220px;">
+                        D.O.D
+                        With Time
+                    </th>
+                    <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;width:300px;"></th>
+                </tr>
+                <tr>
+                    <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; font-size: 24px; font-weight: bold;">
+                        <span style="margin-right:10px ;"> Cured</span><span>[   ]</span> <span>
+                            Relived
+                        </span><span>[  ]</span> <span style="margin-right:10px ;">Absconed</span><span>[  ]</span>
+                    </td>
+                    <!-- <div></div> -->
+                    <td style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px; font-size: 24px; font-weight: bold;">
+                        MLC Informed By
+                    </td>
+                    <!-- <td style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;"></td> -->
+                    <td style=" border: 1px solid #d4c3c3; text-align: center; padding:2px;margin-top: 30px;font-size: 24px; font-weight: bold;" rowspan="2">
+                        Name & Signature Of Resident
+                    </td>
+                </tr>
+                <div>
+                <tr>
+                    <td style=" border: 1px solid #d4c3c3; text-align: left; padding: 6px; font-size: 24px; font-weight: bold;">
+                        <span style="margin-right:20px ;">AMA </span><span style="margin-right:10px ;">[    ]</span> <span style="margin-right:20px ;">Died</span><span style="margin-right:10px ;">[  ]</span>
+                        <span style="margin-right:20px ;">Other</span><span style="margin-right:10px ;">[  ]</span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style=" border: 1px solid #d4c3c3; font-size: 22px; font-weight: bold; text-align: left; padding: 6px;" colspan="3">
+                        Find
+                        Dignosis
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>

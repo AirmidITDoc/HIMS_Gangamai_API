@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="bill-template-wrapper" style="font-size: 14px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; ">
+
+
+        {{HeaderName}}
+        <table style="width: 100%;line-height: inherit;text-align: left;">
+            <tr class="title-date-row">
+                <td style="padding: 6px;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="font-size: 18px">
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px;"> <b>  SALES SUMMARY REPORT</b> </td>
+                            <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 14px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                        </tr>
+                    </table>
+                    <div style="margin-top:2px;">
+                        <div style="font-weight: bold;font-size:18px;margin-left:10px;padding:5px;">From Date : {{FromDate}} -- To Date :{{ToDate}}</div>
+                    </div>
+                </td>
+            </tr>
+            <table class="table" style="width:100%;border-collapse:collapse">
+                <tbody>
+
+                    <tr style="font-size: 18px; background-color: white; font-weight: 700;">
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sr.No</td>
+
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Sales No </td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Date</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Total Amt</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">Disc Amt</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Net Amt</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;">CGST Amt</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> SGST Amt</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> IGST Amt</td>
+                        <td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> Balance Amt</td>
+                        <!--<td style="border: 1px solid #d4c3c3; text-align: center; padding: 6px;"> GST%</td>-->
+                    </tr>
+                    <!-- </thead>-->
+                    {{Items}}
+                </tbody>
+
+                <tr style="border: 1px solid black; font-size: 18px; ">
+
+
+
+                    <td style="border: 1px solid #000; text-align: center; padding: 6px;">
+                    </td>
+                    <td style="border: 1px solid #000; text-align: center; padding: 6px;">
+                    </td>
+                    <td style="border: 1px solid #000; text-align: center; padding: 6px;">
+                        Total
+                    </td>
+                    <td style="border: 1px solid #000; text-align: center; padding: 6px;">
+                        {{TotalAmount}}
+                    </td>
+
+                    <td style="border: 1px solid #000; text-align: center; padding: 6px;">
+                        {{TotalDiscAmount}}
+                    </td>
+
+                    <td style="border: 1px solid #000; text-align: center; padding: 6px;">
+                        {{TotalNETAmount}}
+                    </td>
+
+                    <td style="border: 1px solid #000; text-align: center; padding: 6px;">
+                        {{TotalCGST}}
+                    </td>
+
+                    <td style="border: 1px solid #000; text-align: center; padding: 6px;">
+                        {{TotalSGST}}
+                    </td>
+
+                    <td style="border: 1px solid #000; text-align: center; padding: 6px;">
+                        {{TotalIGST}}
+                    </td>
+                    <td style="border: 1px solid #000; text-align: center; padding: 6px;">
+                        {{TotalBalancepay}}
+                    </td>
+                    <!--<td style="border: 1px solid #000; text-align: center; padding: 6px;">
+                    </td>-->
+
+                </tr>
+            </table>
+            </td>
+            </tr>
+
+
+        </table>
+    </div>
+    </div>
+</body>
+
+</html>

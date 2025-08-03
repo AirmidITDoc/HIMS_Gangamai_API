@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main-content-wrapper">
+        <div>
+            <div class="invoice-box" style="font-size: 14px;line-height: 24px; font-family: Calibri,'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #101828;">
+                <table style="width: 100%;line-height: inherit;text-align: left;">
+
+                    {{NewHeader}}
+                    <tr class="title-date-row">
+                        <td style="padding: 6px;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr style="font-size: 18px">
+                                    <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; "><b>CASHLESS PATIENT SUMMARY</b></td>
+                                    <td style="border-bottom: 1px solid #d4c3c3; padding: 2px; padding-bottom: 16px; text-align: right;"><b>Print Date : {{CurrentDate}}</b></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr class="bill-info-row">
+                        <td style="padding: 6px;">
+                            <table style="width: 100%; border-collapse: collapse;">
+
+
+                                <tr>
+                                    <td style="padding: 2px;">
+                                        <span>UHID No :</span>
+                                        <span>{{RegNo}}</span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span>Age | Gender :</span>
+                                        <span> {{Age}}Y | {{AgeMonth}} M|{{AgeDay}}D | {{GenderName}}</span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span>DOA | Time :</span>
+                                        <span>{{AdmissionTime}}</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding: 2px;">
+                                        <span>Patient Name :</span>
+                                        <span>{{PatientName}}</span>
+                                    </td>
+
+                                    <td style="padding: 2px;">
+                                        <span>IPD No :</span>
+                                        <span>{{IPDNo}}</span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span>DOD | Time :</span>
+                                        <span>{{DischargeTime}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td style="padding: 2px;">
+                                        <span>Doctor Name :</span>
+                                        <span>{{DoctorName}}</span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span>Department :</span>
+                                        <span>{{DepartmentName}} </span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span>Ward | Bed Name : </span>
+                                        <span>{{RoomName}}|{{BedName}}</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding: 2px;">
+                                        <span>Ref.Doctor Name :</span>
+                                        <span>{{RefDocName}}</span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span>Patient Type :</span>
+                                        <span>{{PatientType}}</span>
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span>Company Name :</span>
+                                        <span>{{CompanyName}}</span>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <div>
+                    <tr style="margin-top: 12px;">
+
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <!--  <tr>-->
+                            <tr style=" border-bottom: 1px solid #000; border-top: 1px solid #000;">
+
+                                <td style="padding: 6px; font-weight: bold;text-align:left;">A Initial Settlement :</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;">Final Bill TPA / Corporate / Schemes</td>
+                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;">{{C_FinalBillAmt}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;">Approval By  TPA / Corporate / Schemes</td>
+                                <!--<td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;" colspan="6">{{AprovAmount}}</td>-->
+                            </tr>
+
+
+                            <tr>
+                                <td></td>
+                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;">Non Medical Items / Deduction Recovered From Patient or Treated Discount</td>
+                                <!--<td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;" colspan="6">{{Diagnosis}}</td>-->
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;">Discount given to Patient as per TPA approval</td>
+                                <!--<td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;" colspan="6">{{CompDiscount}}</td>-->
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="border-bottom:1px solid #000; padding: 6px; text-align: left;">Discount given to Patient as per TPA Management</td>
+                                <td style="border-bottom:1px solid #000; padding: 6px; text-align: left;" colspan="6">{{AprovAmount}}</td>
+                            </tr>
+
+                            <!--</tr>-->
+
+                            <tr>
+                                <td></td>
+                                <td style="padding: 6px; font-weight: bold; text-align: left; border-bottom: 1px solid #000; border-top: 1px solid #000;">Amount Recovered from Patient:</td>
+                                <td style="padding: 6px; font-weight: bold; text-align: left; border-bottom: 1px solid #000; border-top: 1px solid #000;"></td>
+
+                            </tr>
+
+
+                            <tr>
+                                <td></td>
+                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;">Amount Received from Patient in the form of Advance</td>
+                                <!--<td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;" colspan="6">{{Diagnosis}}</td>-->
+
+
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;">Outside Investigation Paid</td>
+                                <!--<td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;" colspan="6">{{Diagnosis}}</td>-->
+
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;font-weight:bold;">Patient Received Amount</td>
+                                <!--<td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;" colspan="6">{{Diagnosis}}</td>-->
+
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 6px; text-align: left;">Refund / Paid at the time of Discharge</td>
+                                <!--<td style="border-bottom:1px solid #000; padding: 6px; text-align: left;" colspan="6">{{Diagnosis}}</td>-->
+
+                            </tr>
+
+
+                            <tr style=" border-bottom: 1px solid #000; border-top: 1px solid #000;">
+
+                                <td style="padding: 6px; font-weight: bold;text-align:left;">B Final  Settlement :</td>
+                                <td></td>
+                                <td></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;">Amount received in Bank Account </td>
+                                <!--<td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;" colspan="6">{{Diagnosis}}</td>-->
+
+
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="padding: 6px; text-align: left;">TDS U/S </td>
+                                <!--<td style="border-bottom:1px solid #eee; padding: 6px; text-align: left;" colspan="6">{{Diagnosis}}</td>-->
+
+                            </tr>
+
+
+
+                            <tr style=" border-bottom: 1px solid #000; border-top: 1px solid #000;">
+                            <tr>
+                                <th style=" text-align: left;" colspan="5">
+                                    <h4 style="margin: 12px 0px; font-size: 15px;">
+                                        Mode Of Refund
+                                    </h4>
+
+                                </th>
+
+                            </tr>
+                            <tr class="payment-info-row">
+                                <td colspan="2">
+                                    <table style="text-align: center; border-collapse: collapse; width: 100%;">
+                                        <thead style="font-size: 14px;">
+
+                                            <tr>
+                                                <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                                    Cash Amount
+                                                </th>
+                                                <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                                    Card amount
+                                                </th>
+                                                <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                                    Cheque Amount
+                                                </th>
+                                                <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                                    NEFT Amount
+                                                </th>
+                                                <th style=" border: 1px solid #d4c3c3; text-align: center; padding: 6px;">
+                                                    Online amount
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size: 14px;">
+                                            <tr>
+                                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{CashPayAmount}}
+                                                </td>
+
+                                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{CardPayAmount}}
+                                                </td>
+                                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{ChequePayAmount}}
+                                                </td>
+
+                                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{NEFTPayAmount}}
+                                                </td>
+                                                <td style="border: 1px solid #d4c3c3; text-align: right; padding: 6px;">
+                                                    {{PayTMPayAmount}}
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </td>
+
+
+                            </tr>
+
+
+                            <tr>
+                                <table style="width: 100%; border-collapse: collapse;margin-top:50px;">
+
+
+                                    <tr style="padding: 6px; text-align: left;">
+                                        <td>
+
+                                            <span>Prepared By </span>
+                                        </td>
+                                        <td> <span>Checked By</span></td>
+                                        <td> <span>Approved By</span></td>
+                                    </tr>
+
+                                </table>
+                            </tr>
+                            </tr>
+                        </table>
+
+                    </tr>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
