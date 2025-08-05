@@ -825,7 +825,7 @@ namespace HIMS.API.Controllers.Transaction
         public IActionResult ViewIpBilldatewiseReceipt(int BillNo)
         {
             string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPBillDatewiseReport.html");
-            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "HospitalHeader.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
             var html = _IPBilling.ViewIPBillDatewiseReceipt(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
             var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPBillDatewiseReport", "IPBillDatewiseReport" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
@@ -847,8 +847,29 @@ namespace HIMS.API.Controllers.Transaction
             return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
         }
 
-       
+        [HttpGet("view-IPFinalBillDatewiseReport")]
+        public IActionResult ViewIPFinalBillDatewiseReport(int BillNo)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "IPFinalBillDatewiseReport.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPBilling.ViewIPFinalBillDatewiseReport(BillNo, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "IPBillDatewiseReport", "IPBillDatewiseReport" + BillNo.ToString(), Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
 
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
+
+        [HttpGet("view-PatientDetailsSticker")]
+        
+        public IActionResult ViewPatientDetailsSticker(int AdmissionId)
+        {
+            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "PatientDetailsStickerA4Page.html");
+            string htmlHeaderFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "PdfTemplates", "NewHeader.html");
+            var html = _IPBilling.ViewPatientDetailsSticker(AdmissionId, htmlFilePath, _pdfUtility.GetHeader(htmlHeaderFilePath));
+            var tuple = _pdfUtility.GeneratePdfFromHtml(html, "Sticker", "Sticker" + AdmissionId, Wkhtmltopdf.NetCore.Options.Orientation.Portrait);
+
+           
+            return Ok(new { base64 = Convert.ToBase64String(tuple.Item1) });
+        }
         [HttpPost("BillDiscountAfter")]
 
         public IActionResult BillDiscountAfterUpdate(BillDiscountAfterParams BillDiscountAfterParams)

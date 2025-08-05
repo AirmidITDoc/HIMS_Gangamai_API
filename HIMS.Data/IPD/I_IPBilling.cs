@@ -15,7 +15,8 @@ namespace HIMS.Data.IPD
         string ViewIPBillReceiptclasswise(int BillNo, string htmlFilePath, string HeaderName);
 
         string ViewIPBillDatewiseReceipt(int BillNo, string htmlFilePath, string HeaderName);
-
+        string ViewIPFinalBillDatewiseReport(int BillNo, string htmlFilePath, string HeaderName);
+        string ViewPatientDetailsSticker(int AdmissionId, string htmlFilePath, string htmlHeader);
         string ViewIPBillWardwiseReceipt(int BillNo, string htmlFilePath, string HeaderName);
 
         public bool BillDiscountAfterUpdate(BillDiscountAfterParams billDiscountAfterParams);
