@@ -14,6 +14,18 @@ namespace HIMS.Data.Administration
         {
 
         }
+
+        public bool CancleReport(ReportConfigparam ReportConfigparam)
+        {
+
+            var disc1 = ReportConfigparam.Delete_ReportDetails.ToDictionary();
+            ExecNonQueryProcWithOutSaveChanges("m_Delete_ReportconfigDetails", disc1);
+
+            //commit transaction
+            _unitofWork.SaveChanges();
+            return true;
+        }
+
         public String InsertReportConfig(ReportConfigparam ReportConfigparam)
         {
 
@@ -45,6 +57,10 @@ namespace HIMS.Data.Administration
             var disc = ReportConfigparam.UpdateReportConfig.ToDictionary();
             ExecNonQueryProcWithOutSaveChanges("ps_Update_M_ReportConfig", disc);
             //commit transaction
+
+            var disc1 = ReportConfigparam.Delete_ReportDetails.ToDictionary();
+            disc1["ReportId"] = disc["ReportId"];
+            ExecNonQueryProcWithOutSaveChanges("m_Delete_ReportconfigDetails", disc1);
 
             foreach (var a in ReportConfigparam.InsertReportconfigDetails)
             {

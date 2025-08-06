@@ -10,5 +10,8 @@ namespace HIMS.Data.Administration
         public String InsertReportConfig(ReportConfigparam ReportConfigparam);
 
         public bool UpdateReportConfig(ReportConfigparam ReportConfigparam);
+
+        public bool CancleReport(ReportConfigparam ReportConfigparam);
+
     }
 }

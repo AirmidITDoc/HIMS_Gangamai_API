@@ -11,7 +11,7 @@ namespace HIMS.Model.Administration
         public List<InsertReportconfigDetails> InsertReportconfigDetails { get; set; }
 
         public UpdateReportConfig UpdateReportConfig { get; set; }
-        //public List<UpdateReportconfigDetails> UpdateReportconfigDetails { get; set; }
+        public Delete_ReportDetails Delete_ReportDetails { get; set; }
 
     }
 
@@ -101,5 +101,9 @@ namespace HIMS.Model.Administration
         public long MenuId { get; set; }
 
     }
+    public class Delete_ReportDetails
+    {
+        public long ReportId { get; set; }
 
+    }
 }

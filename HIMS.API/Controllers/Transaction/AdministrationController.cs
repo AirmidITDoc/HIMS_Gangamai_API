@@ -254,6 +254,16 @@ namespace HIMS.API.Controllers.Transaction
 
         }
 
+
+
+        [HttpPost("ReportConfigCancle")]
+        public IActionResult CancleReportConfig(ReportConfigparam ReportConfigparam)
+        {
+            var Id = _I_ReportConfig.CancleReport(ReportConfigparam);
+            return Ok(Id);
+
+        }
+
         //[HttpPut("ReportConfig/{id:int}")]
 
         //public async Task<ApiResponse> Edit(ReportConfigModel obj)
